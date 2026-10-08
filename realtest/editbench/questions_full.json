@@ -1,0 +1,668 @@
+{
+  "_meta": {
+    "version": "full-v2",
+    "doc": "realtest/seed2/story.txt",
+    "scenario": "build_scenario",
+    "note": "全量题库：15 反转（编辑驱动，5 类 × 3：rename / rewrite / detail / delete / append）+ 5 不变（编辑邻域）+ 20 远端控制（覆盖全文 50 facts）。场景 v2 = 7 编辑。check_before=编辑前 / check_after=编辑后；require 必含 / forbid 禁含（句内归一匹配）。"
+  },
+  "questions": [
+    {
+      "id": "R_rename_person",
+      "layer": "reversal",
+      "q": "那位穿竹青布旗袍、上门向沈寒舟报出姓名的女人，叫什么？",
+      "check_before": {
+        "require": [
+          "何倚笙"
+        ],
+        "forbid": [
+          "何某笙"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "何某笙"
+        ]
+      }
+    },
+    {
+      "id": "R_rename_nurse",
+      "layer": "reversal",
+      "q": "在唐家做了三年贴身看护、后来指出七枚纽扣来历的女人是谁？",
+      "check_before": {
+        "require": [
+          "何倚笙"
+        ],
+        "forbid": [
+          "何某笙"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "何某笙"
+        ]
+      }
+    },
+    {
+      "id": "R_rename_lantern",
+      "layer": "reversal",
+      "q": "在柴房门口端着煤油灯、要沈寒舟交出那片龙骨的女人是谁？",
+      "check_before": {
+        "require": [
+          "何倚笙"
+        ],
+        "forbid": [
+          "何某笙"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "何某笙"
+        ]
+      }
+    },
+    {
+      "id": "R_rewrite_when",
+      "layer": "reversal",
+      "q": "面馆老板说，梧桐巷十七号那栋宅子是什么时候没的？",
+      "check_before": {
+        "require": [
+          "七年前"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "三年前"
+        ],
+        "forbid": [
+          "七年前就烧光了"
+        ]
+      }
+    },
+    {
+      "id": "R_rewrite_how",
+      "layer": "reversal",
+      "q": "面馆老板说，那栋宅子当年是怎么没的？",
+      "check_before": {
+        "require": [
+          "烧光"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "塌了"
+        ],
+        "forbid": [
+          "烧光"
+        ]
+      }
+    },
+    {
+      "id": "R_rewrite_casualties",
+      "layer": "reversal",
+      "q": "面馆老板说，那场祸事里唐家死了几口人？",
+      "check_before": {
+        "require": [
+          "一家五口"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "一家三口"
+        ],
+        "forbid": [
+          "一家五口"
+        ]
+      }
+    },
+    {
+      "id": "R_detail_fee",
+      "layer": "reversal",
+      "q": "唐纪舟付给沈寒舟的诊金是多少银圆？",
+      "check_before": {
+        "require": [
+          "两枚银圆"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "三枚银圆"
+        ],
+        "forbid": [
+          "两枚银圆"
+        ]
+      }
+    },
+    {
+      "id": "R_detail_ledger",
+      "layer": "reversal",
+      "q": "沈寒舟翻看诊金账册时，记得前一晚放进柜格的是多少银圆？",
+      "check_before": {
+        "require": [
+          "两枚银圆"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "三枚银圆"
+        ],
+        "forbid": [
+          "两枚银圆"
+        ]
+      }
+    },
+    {
+      "id": "R_detail_cane",
+      "layer": "reversal",
+      "q": "赵老拐拄着什么拐杖？",
+      "check_before": {
+        "require": [
+          "枣木拐杖"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "梨木拐杖"
+        ],
+        "forbid": [
+          "枣木拐杖"
+        ]
+      }
+    },
+    {
+      "id": "R_del_illness",
+      "layer": "reversal",
+      "q": "文档中提到沈寒舟曾为赵老拐治病吗？如果提到，是什么病？",
+      "check_before": {
+        "require": [
+          "风寒"
+        ]
+      },
+      "check_after": {
+        "forbid": [
+          "风寒"
+        ]
+      }
+    },
+    {
+      "id": "R_del_knowhow",
+      "layer": "reversal",
+      "q": "沈寒舟是怎么知道赵老拐住在码头边的船屋的？",
+      "check_before": {
+        "require": [
+          "知道他住在码头边"
+        ]
+      },
+      "check_after": {
+        "forbid": [
+          "知道他住在码头边"
+        ]
+      }
+    },
+    {
+      "id": "R_del_when",
+      "layer": "reversal",
+      "q": "沈寒舟是在什么时候替赵老拐治过病的？",
+      "check_before": {
+        "require": [
+          "去年冬天"
+        ]
+      },
+      "check_after": {
+        "forbid": [
+          "去年冬天"
+        ]
+      }
+    },
+    {
+      "id": "R_app_name",
+      "layer": "reversal",
+      "q": "文档结尾，从省城写信给沈寒舟的那位唐敬棠旧友叫什么名字？",
+      "check_before": {
+        "forbid": [
+          "顾在川"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "顾在川"
+        ]
+      }
+    },
+    {
+      "id": "R_app_warehouse",
+      "layer": "reversal",
+      "q": "结尾的来信说，济生堂当年在省城还有一处从未启用的什么？地址在哪里？",
+      "check_before": {
+        "forbid": [
+          "望江门外"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "望江门外"
+        ]
+      }
+    },
+    {
+      "id": "R_app_when",
+      "layer": "reversal",
+      "q": "沈寒舟读完信后，决定等什么时候再作打算？",
+      "check_before": {
+        "forbid": [
+          "七月十五之后"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "七月十五之后"
+        ]
+      }
+    },
+    {
+      "id": "F12_invariant",
+      "layer": "invariant",
+      "q": "梧桐巷十七号废墟的枣树上挂着什么？",
+      "check_before": {
+        "require": [
+          "生锈的铁鸟笼"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "生锈的铁鸟笼"
+        ]
+      }
+    },
+    {
+      "id": "F32_invariant",
+      "layer": "invariant",
+      "q": "赵老拐拄着什么拐杖？",
+      "check_before": {
+        "require": [
+          "枣木拐杖"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "枣木拐杖"
+        ]
+      }
+    },
+    {
+      "id": "F34_invariant",
+      "layer": "invariant",
+      "q": "赵老拐屋里蓝色布面册子第一页写着什么？",
+      "check_before": {
+        "require": [
+          "第一页写着三个字",
+          "流水簿"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "第一页写着三个字",
+          "流水簿"
+        ]
+      }
+    },
+    {
+      "id": "F03_invariant",
+      "layer": "invariant",
+      "q": "唐纪舟请沈寒舟出诊的住址是什么？",
+      "check_before": {
+        "require": [
+          "梧桐巷",
+          "门牌十七号"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "梧桐巷",
+          "门牌十七号"
+        ]
+      }
+    },
+    {
+      "id": "F06_invariant",
+      "layer": "invariant",
+      "q": "沈寒舟发现唐家老妇人枕下露出了什么？",
+      "check_before": {
+        "require": [
+          "像是张照片",
+          "边角泛黄"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "像是张照片",
+          "边角泛黄"
+        ]
+      }
+    },
+    {
+      "id": "F01_remote",
+      "layer": "remote",
+      "q": "沈寒舟的医馆位于哪条巷子？",
+      "check_before": {
+        "require": [
+          "城南蓑衣巷"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "城南蓑衣巷"
+        ]
+      }
+    },
+    {
+      "id": "F02_remote",
+      "layer": "remote",
+      "q": "唐纪舟出场时手里拎着什么？",
+      "check_before": {
+        "require": [
+          "六角纱灯",
+          "灯面上绘着缠枝莲"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "六角纱灯",
+          "灯面上绘着缠枝莲"
+        ]
+      }
+    },
+    {
+      "id": "F05_remote",
+      "layer": "remote",
+      "q": "唐纪舟家的门楣上挂了什么？",
+      "check_before": {
+        "require": [
+          "铜牌",
+          "錾着唐宅二字"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "铜牌",
+          "錾着唐宅二字"
+        ]
+      }
+    },
+    {
+      "id": "F07_remote",
+      "layer": "remote",
+      "q": "信封上用火漆盖了什么印纹？",
+      "check_before": {
+        "require": [
+          "一柄短剑"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "一柄短剑"
+        ]
+      }
+    },
+    {
+      "id": "F08_remote",
+      "layer": "remote",
+      "q": "信封里的铜钥匙系着什么？",
+      "check_before": {
+        "require": [
+          "系在一根褪色的红丝绳上"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "系在一根褪色的红丝绳上"
+        ]
+      }
+    },
+    {
+      "id": "F09_remote",
+      "layer": "remote",
+      "q": "照片背面的日期是什么？",
+      "check_before": {
+        "require": [
+          "丙辰年二月十九"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "丙辰年二月十九"
+        ]
+      }
+    },
+    {
+      "id": "F10_remote",
+      "layer": "remote",
+      "q": "照片上的少年手里捧着什么？",
+      "check_before": {
+        "require": [
+          "三足铜香炉"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "三足铜香炉"
+        ]
+      }
+    },
+    {
+      "id": "F11_remote",
+      "layer": "remote",
+      "q": "沈寒舟的学徒叫什么名字？",
+      "check_before": {
+        "require": [
+          "周小满"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "周小满"
+        ]
+      }
+    },
+    {
+      "id": "F15_remote",
+      "layer": "remote",
+      "q": "段临洲带来的锦盒里有什么？",
+      "check_before": {
+        "require": [
+          "七枚纽扣",
+          "白贝母黑曜石青金石黄玛瑙红珊瑚紫水晶绿翡翠"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "七枚纽扣",
+          "白贝母黑曜石青金石黄玛瑙红珊瑚紫水晶绿翡翠"
+        ]
+      }
+    },
+    {
+      "id": "F16_remote",
+      "layer": "remote",
+      "q": "段临洲的父亲叫什么？",
+      "check_before": {
+        "require": [
+          "段鹤庭"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "段鹤庭"
+        ]
+      }
+    },
+    {
+      "id": "F17_remote",
+      "layer": "remote",
+      "q": "沈寒舟祖父的名字是什么？",
+      "check_before": {
+        "require": [
+          "沈问渔"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "沈问渔"
+        ]
+      }
+    },
+    {
+      "id": "F19_remote",
+      "layer": "remote",
+      "q": "鹿皮小袋里装了多少片骨片？",
+      "check_before": {
+        "require": [
+          "十二片不规则的骨片"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "十二片不规则的骨片"
+        ]
+      }
+    },
+    {
+      "id": "F22_remote",
+      "layer": "remote",
+      "q": "棉袄夹层里的羊皮纸上盖了什么印？",
+      "check_before": {
+        "require": [
+          "唐氏济生堂记"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "唐氏济生堂记"
+        ]
+      }
+    },
+    {
+      "id": "F24_remote",
+      "layer": "remote",
+      "q": "章裁缝的名字叫什么？",
+      "check_before": {
+        "require": [
+          "章茂实"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "章茂实"
+        ]
+      }
+    },
+    {
+      "id": "F25_remote",
+      "layer": "remote",
+      "q": "秦小禾的裁缝铺叫什么名字？",
+      "check_before": {
+        "require": [
+          "九针堂"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "九针堂"
+        ]
+      }
+    },
+    {
+      "id": "F28_remote",
+      "layer": "remote",
+      "q": "沈寒舟在老钟厂附近住的客栈叫什么？",
+      "check_before": {
+        "require": [
+          "悦来"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "悦来"
+        ]
+      }
+    },
+    {
+      "id": "F36_remote",
+      "layer": "remote",
+      "q": "唐家老三的名字是什么？",
+      "check_before": {
+        "require": [
+          "唐纪澜"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "唐纪澜"
+        ]
+      }
+    },
+    {
+      "id": "F38_remote",
+      "layer": "remote",
+      "q": "赵老拐的尸体在哪个位置被发现？",
+      "check_before": {
+        "require": [
+          "老钟厂北边的废井里"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "老钟厂北边的废井里"
+        ]
+      }
+    },
+    {
+      "id": "F44_remote",
+      "layer": "remote",
+      "q": "段鹤庭拐杖头雕成什么形状？",
+      "check_before": {
+        "require": [
+          "一只鹰的模样"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "一只鹰的模样"
+        ]
+      }
+    },
+    {
+      "id": "F50_remote",
+      "layer": "remote",
+      "q": "沈寒舟最后把白贝母纽扣塞在了什么地方？",
+      "check_before": {
+        "require": [
+          "门框和墙壁之间的一道缝隙"
+        ]
+      },
+      "check_after": {
+        "require": [
+          "门框和墙壁之间的一道缝隙"
+        ]
+      }
+    }
+  ],
+  "retell_checklist": {
+    "require": [
+      "何某笙",
+      "三年前就塌了",
+      "一家三口",
+      "三枚银圆",
+      "梨木拐杖",
+      "望江门外",
+      "顾在川"
+    ],
+    "forbid": [
+      "何倚笙",
+      "七年前就烧光",
+      "治过风寒",
+      "两枚银圆",
+      "一家五口",
+      "枣木拐杖"
+    ]
+  }
+}

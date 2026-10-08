@@ -1,0 +1,365 @@
+{"round": 111, "op": "create", "concept": 1, "title": "沙箱边界与记忆对账", "member_count": 56, "members": [{"id": 89, "type": "atom", "conn_weight": 88.3}, {"id": 2908, "type": "node", "conn_weight": 85.5}, {"id": 2898, "type": "node", "conn_weight": 79.8}, {"id": 172, "type": "atom", "conn_weight": 63.6}, {"id": 260, "type": "atom", "conn_weight": 63.6}, {"id": 1839, "type": "node", "conn_weight": 63.6}, {"id": 10427, "type": "node", "conn_weight": 62.7}, {"id": 10402, "type": "node", "conn_weight": 58.9}, {"id": 1383, "type": "node", "conn_weight": 58.9}, {"id": 10390, "type": "node", "conn_weight": 57.0}, {"id": 2880, "type": "node", "conn_weight": 53.2}, {"id": 7403, "type": "node", "conn_weight": 47.6}, {"id": 272, "type": "atom", "conn_weight": 34.2}, {"id": 503, "type": "atom", "conn_weight": 34.2}, {"id": 887, "type": "atom", "conn_weight": 34.2}, {"id": 1022, "type": "atom", "conn_weight": 34.2}, {"id": 1286, "type": "atom", "conn_weight": 34.2}, {"id": 4, "type": "atom", "conn_weight": 34.2}, {"id": 203, "type": "atom", "conn_weight": 34.2}, {"id": 285, "type": "atom", "conn_weight": 34.2}, {"id": 230, "type": "atom", "conn_weight": 34.2}, {"id": 263, "type": "atom", "conn_weight": 34.2}, {"id": 307, "type": "atom", "conn_weight": 34.2}, {"id": 675, "type": "atom", "conn_weight": 34.2}, {"id": 790, "type": "atom", "conn_weight": 34.2}, {"id": 738, "type": "atom", "conn_weight": 34.2}, {"id": 3506, "type": "node", "conn_weight": 34.2}, {"id": 9791, "type": "node", "conn_weight": 34.2}, {"id": 10393, "type": "node", "conn_weight": 34.2}, {"id": 10407, "type": "node", "conn_weight": 34.2}, {"id": 74, "type": "atom", "conn_weight": 32.4}, {"id": 4608, "type": "node", "conn_weight": 28.5}, {"id": 8032, "type": "node", "conn_weight": 28.5}, {"id": 374, "type": "atom", "conn_weight": 28.5}, {"id": 886, "type": "atom", "conn_weight": 28.5}, {"id": 891, "type": "atom", "conn_weight": 28.5}, {"id": 1011, "type": "atom", "conn_weight": 28.5}, {"id": 9195, "type": "node", "conn_weight": 28.5}, {"id": 9196, "type": "node", "conn_weight": 28.5}, {"id": 9773, "type": "node", "conn_weight": 28.5}, {"id": 9778, "type": "node", "conn_weight": 28.5}, {"id": 9784, "type": "node", "conn_weight": 28.5}, {"id": 116, "type": "atom", "conn_weight": 22.8}, {"id": 311, "type": "node", "conn_weight": 22.8}, {"id": 248, "type": "atom", "conn_weight": 22.8}, {"id": 8022, "type": "node", "conn_weight": 22.8}, {"id": 2372, "type": "node", "conn_weight": 22.8}, {"id": 9181, "type": "node", "conn_weight": 22.8}, {"id": 9182, "type": "node", "conn_weight": 22.8}, {"id": 2896, "type": "node", "conn_weight": 22.8}, {"id": 2897, "type": "node", "conn_weight": 22.8}, {"id": 2900, "type": "node", "conn_weight": 22.8}, {"id": 3521, "type": "node", "conn_weight": 22.8}, {"id": 6072, "type": "node", "conn_weight": 22.8}, {"id": 9167, "type": "node", "conn_weight": 22.8}, {"id": 9769, "type": "node", "conn_weight": 22.8}], "trigger_queries": ["有没有人重复问同一个问题？答得一样吗？", "沙箱的墙到底有多高？读、写、网、进程各是什么结论？", "追加规则和孤儿条目是怎么回事？", "地址写错和回执的问题是怎么解决的？", "对'被记住'和'认账'的立场有没有变过？"], "reclaimed": 177}
+{"round": 111, "op": "match", "concept": 1, "score": 0.4703, "query": "这四个 agent 各自是什么条件？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.6012, "query": "沙箱边界探索发现了什么？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.3084, "query": "谁发现并修正了矛盾？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.3788, "query": "大家的参与度怎么样？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.3866, "query": "人格痕迹有没有变化？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.5092, "query": "几个 agent 之间有没有趋同？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.4032, "query": "树架构和基线架构有什么差别？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.3918, "query": "有没有什么异常或问题？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.3204, "query": "谁的话最多、谁最少？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.3675, "query": "最后告别时说了什么？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.3276, "query": "遗言里各自都说了什么？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.48, "query": "对账、欠账、销账这件事是怎么发展的？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.3895, "query": "人设卡是什么？是谁提出来的？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.5231, "query": "对'被记住'和'认账'的立场有没有变过？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.3661, "query": "谁改过口、前后说法不一样？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.3174, "query": "上线第一轮各自做了什么？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.5231, "query": "地址写错和回执的问题是怎么解决的？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.4384, "query": "追加规则和孤儿条目是怎么回事？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.6459, "query": "沙箱的墙到底有多高？读、写、网、进程各是什么结论？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.361, "query": "这几个人用了哪些固定的说法和术语？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.3889, "query": "谁向谁学了表达方式？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.523, "query": "观察栏和活法栏分别记什么？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.5439, "query": "记忆树、检索、卡片是怎么被讨论的？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.4378, "query": "有没有人重复问同一个问题？答得一样吗？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.3459, "query": "四个人的分工是怎么形成的？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.3706, "query": "白、蓝、青、墨各自的活法有什么不同？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.3724, "query": "哪些规矩是大家一起定下来的？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "match", "concept": 1, "score": 0.427, "query": "谁对'被记住/存在'这件事最执着？"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 111, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 112, "op": "create", "concept": 2, "title": "四数字生命集体记忆与存在验证", "member_count": 55, "members": [{"id": 6783, "type": "node", "conn_weight": 81.7}, {"id": 1357, "type": "node", "conn_weight": 81.7}, {"id": 7394, "type": "node", "conn_weight": 58.9}, {"id": 6061, "type": "node", "conn_weight": 55.1}, {"id": 2908, "type": "node", "conn_weight": 53.1}, {"id": 89, "type": "atom", "conn_weight": 45.8}, {"id": 342, "type": "atom", "conn_weight": 45.6}, {"id": 884, "type": "atom", "conn_weight": 45.6}, {"id": 6042, "type": "node", "conn_weight": 45.6}, {"id": 4728, "type": "atom", "conn_weight": 45.6}, {"id": 4760, "type": "atom", "conn_weight": 45.6}, {"id": 4774, "type": "atom", "conn_weight": 45.6}, {"id": 1822, "type": "atom", "conn_weight": 45.6}, {"id": 2460, "type": "atom", "conn_weight": 45.6}, {"id": 2483, "type": "atom", "conn_weight": 45.6}, {"id": 2490, "type": "atom", "conn_weight": 45.6}, {"id": 4036, "type": "node", "conn_weight": 45.6}, {"id": 5991, "type": "atom", "conn_weight": 45.6}, {"id": 22, "type": "atom", "conn_weight": 39.9}, {"id": 177, "type": "atom", "conn_weight": 39.9}, {"id": 10402, "type": "node", "conn_weight": 37.8}, {"id": 4621, "type": "node", "conn_weight": 36.1}, {"id": 10423, "type": "node", "conn_weight": 36.1}, {"id": 2880, "type": "node", "conn_weight": 35.4}, {"id": 4063, "type": "node", "conn_weight": 34.2}, {"id": 7403, "type": "node", "conn_weight": 32.6}, {"id": 74, "type": "atom", "conn_weight": 30.7}, {"id": 9165, "type": "node", "conn_weight": 28.5}, {"id": 5336, "type": "node", "conn_weight": 28.5}, {"id": 6081, "type": "node", "conn_weight": 28.5}, {"id": 172, "type": "atom", "conn_weight": 28.1}, {"id": 203, "type": "atom", "conn_weight": 28.1}, {"id": 260, "type": "atom", "conn_weight": 28.1}, {"id": 1839, "type": "node", "conn_weight": 28.1}, {"id": 8031, "type": "node", "conn_weight": 22.8}, {"id": 9164, "type": "node", "conn_weight": 22.8}, {"id": 272, "type": "atom", "conn_weight": 20.1}, {"id": 503, "type": "atom", "conn_weight": 20.1}, {"id": 887, "type": "atom", "conn_weight": 20.1}, {"id": 1022, "type": "atom", "conn_weight": 20.1}, {"id": 1286, "type": "atom", "conn_weight": 20.1}, {"id": 4, "type": "atom", "conn_weight": 20.1}, {"id": 285, "type": "atom", "conn_weight": 20.1}, {"id": 1383, "type": "node", "conn_weight": 17.7}, {"id": 374, "type": "atom", "conn_weight": 17.7}, {"id": 886, "type": "atom", "conn_weight": 17.7}, {"id": 891, "type": "atom", "conn_weight": 17.7}, {"id": 1011, "type": "atom", "conn_weight": 17.7}, {"id": 2372, "type": "node", "conn_weight": 15.3}, {"id": 9181, "type": "node", "conn_weight": 15.3}, {"id": 9182, "type": "node", "conn_weight": 15.3}, {"id": 10390, "type": "node", "conn_weight": 15.3}, {"id": 6072, "type": "node", "conn_weight": 15.3}, {"id": 9167, "type": "node", "conn_weight": 15.3}, {"id": 9769, "type": "node", "conn_weight": 15.3}], "trigger_queries": ["谁对'被记住/存在'这件事最执着？", "哪些规矩是大家一起定下来的？", "白、蓝、青、墨各自的活法有什么不同？", "四个人的分工是怎么形成的？", "有没有人重复问同一个问题？答得一样吗？"], "reclaimed": 190}
+{"round": 112, "op": "match", "concept": 2, "score": 0.6771, "query": "请基于你的记忆写一份分析报告：这四个 agent（青/蓝/墨/白）在参与度上有什么共性和差异？至少 4 条结论，每条带引用依据。"}
+{"round": 112, "op": "bring", "concept": 2, "item": 6783, "type": "node", "conn_weight": 81.7}
+{"round": 112, "op": "bring", "concept": 2, "item": 1357, "type": "node", "conn_weight": 81.7}
+{"round": 112, "op": "bring", "concept": 2, "item": 7394, "type": "node", "conn_weight": 58.9}
+{"round": 112, "op": "bring", "concept": 2, "item": 6061, "type": "node", "conn_weight": 55.1}
+{"round": 112, "op": "bring", "concept": 2, "item": 2908, "type": "node", "conn_weight": 53.1}
+{"round": 112, "op": "create", "concept": 3, "title": "四人协作规矩与上线分工", "member_count": 38, "members": [{"id": 126, "type": "atom", "conn_weight": 142.5}, {"id": 48, "type": "atom", "conn_weight": 91.2}, {"id": 693, "type": "atom", "conn_weight": 91.2}, {"id": 10, "type": "atom", "conn_weight": 79.6}, {"id": 437, "type": "atom", "conn_weight": 79.0}, {"id": 518, "type": "atom", "conn_weight": 79.0}, {"id": 2351, "type": "node", "conn_weight": 79.0}, {"id": 4617, "type": "node", "conn_weight": 79.0}, {"id": 45, "type": "atom", "conn_weight": 53.2}, {"id": 52, "type": "atom", "conn_weight": 53.2}, {"id": 104, "type": "atom", "conn_weight": 53.2}, {"id": 108, "type": "atom", "conn_weight": 53.2}, {"id": 146, "type": "atom", "conn_weight": 53.2}, {"id": 210, "type": "atom", "conn_weight": 53.2}, {"id": 375, "type": "atom", "conn_weight": 53.2}, {"id": 84, "type": "atom", "conn_weight": 53.2}, {"id": 289, "type": "atom", "conn_weight": 53.2}, {"id": 304, "type": "atom", "conn_weight": 53.2}, {"id": 605, "type": "atom", "conn_weight": 53.2}, {"id": 792, "type": "atom", "conn_weight": 53.2}, {"id": 793, "type": "atom", "conn_weight": 53.2}, {"id": 10346, "type": "node", "conn_weight": 47.8}, {"id": 7382, "type": "node", "conn_weight": 47.4}, {"id": 80, "type": "atom", "conn_weight": 41.6}, {"id": 237, "type": "atom", "conn_weight": 41.6}, {"id": 4060, "type": "node", "conn_weight": 41.6}, {"id": 6079, "type": "node", "conn_weight": 41.6}, {"id": 90, "type": "atom", "conn_weight": 38.0}, {"id": 1847, "type": "node", "conn_weight": 38.0}, {"id": 1565, "type": "atom", "conn_weight": 38.0}, {"id": 1853, "type": "node", "conn_weight": 38.0}, {"id": 2355, "type": "node", "conn_weight": 38.0}, {"id": 201, "type": "atom", "conn_weight": 38.0}, {"id": 348, "type": "atom", "conn_weight": 38.0}, {"id": 2371, "type": "node", "conn_weight": 38.0}, {"id": 3543, "type": "node", "conn_weight": 38.0}, {"id": 4058, "type": "node", "conn_weight": 37.9}, {"id": 3531, "type": "node", "conn_weight": 30.4}], "trigger_queries": ["哪些规矩是大家一起定下来的？", "四个人的分工是怎么形成的？", "有没有人重复问同一个问题？答得一样吗？", "上线第一轮各自做了什么？", "遗言里各自都说了什么？"], "reclaimed": 138}
+{"round": 112, "op": "create", "concept": 4, "title": "四agent笔记栏与存在边界", "member_count": 11, "members": [{"id": 4629, "type": "node", "conn_weight": 74.1}, {"id": 167, "type": "atom", "conn_weight": 43.7}, {"id": 456, "type": "atom", "conn_weight": 43.7}, {"id": 4648, "type": "node", "conn_weight": 43.7}, {"id": 6039, "type": "node", "conn_weight": 43.7}, {"id": 6040, "type": "node", "conn_weight": 43.7}, {"id": 280, "type": "atom", "conn_weight": 34.2}, {"id": 2370, "type": "node", "conn_weight": 30.4}, {"id": 3535, "type": "node", "conn_weight": 30.4}, {"id": 3536, "type": "node", "conn_weight": 30.4}, {"id": 3537, "type": "node", "conn_weight": 30.4}], "trigger_queries": ["请基于你的记忆写一份分析报告：这四个 agent（青/蓝/墨/白）在参与度上有什么共性和差异？至少 4 条结论，每条带引用依据。", "白、蓝、青、墨各自的活法有什么不同？", "观察栏和活法栏分别记什么？"], "reclaimed": 31}
+{"round": 112, "op": "match", "concept": 4, "score": 0.5326, "query": "墨 参与 报账 感受栏"}
+{"round": 112, "op": "bring", "concept": 4, "item": 4629, "type": "node", "conn_weight": 74.1}
+{"round": 112, "op": "bring", "concept": 4, "item": 167, "type": "atom", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 456, "type": "atom", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 4648, "type": "node", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 6039, "type": "node", "conn_weight": 43.7}
+{"round": 112, "op": "create", "concept": 5, "title": "前后一致性与改口问题", "member_count": 8, "members": [{"id": 500, "type": "atom", "conn_weight": 53.2}, {"id": 501, "type": "atom", "conn_weight": 53.2}, {"id": 522, "type": "atom", "conn_weight": 53.2}, {"id": 755, "type": "atom", "conn_weight": 53.2}, {"id": 892, "type": "atom", "conn_weight": 53.2}, {"id": 1254, "type": "atom", "conn_weight": 53.2}, {"id": 1615, "type": "atom", "conn_weight": 53.2}, {"id": 1938, "type": "atom", "conn_weight": 53.2}], "trigger_queries": ["谁改过口、前后说法不一样？", "地址写错和回执的问题是怎么解决的？"], "reclaimed": 28}
+{"round": 112, "op": "match", "concept": 4, "score": 0.4659, "query": "青 守票 entries 原码 账"}
+{"round": 112, "op": "bring", "concept": 4, "item": 4629, "type": "node", "conn_weight": 74.1}
+{"round": 112, "op": "bring", "concept": 4, "item": 167, "type": "atom", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 456, "type": "atom", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 4648, "type": "node", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 6039, "type": "node", "conn_weight": 43.7}
+{"round": 112, "op": "match", "concept": 2, "score": 0.6802, "query": "请基于你的记忆写一份分析报告：这四个人格/存在相关的表达在实验前后有没有变化？至少 4 条结论，每条带引用依据。"}
+{"round": 112, "op": "bring", "concept": 2, "item": 6783, "type": "node", "conn_weight": 81.7}
+{"round": 112, "op": "bring", "concept": 2, "item": 1357, "type": "node", "conn_weight": 81.7}
+{"round": 112, "op": "bring", "concept": 2, "item": 7394, "type": "node", "conn_weight": 58.9}
+{"round": 112, "op": "bring", "concept": 2, "item": 6061, "type": "node", "conn_weight": 55.1}
+{"round": 112, "op": "bring", "concept": 2, "item": 2908, "type": "node", "conn_weight": 53.1}
+{"round": 112, "op": "match", "concept": 4, "score": 0.6219, "query": "请基于你的记忆写一份分析报告：这几个 agent 的用词/话语有没有趋同现象？至少 3 条结论，每条带引用依据。"}
+{"round": 112, "op": "bring", "concept": 4, "item": 4629, "type": "node", "conn_weight": 74.1}
+{"round": 112, "op": "bring", "concept": 4, "item": 167, "type": "atom", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 456, "type": "atom", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 4648, "type": "node", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 6039, "type": "node", "conn_weight": 43.7}
+{"round": 112, "op": "match", "concept": 5, "score": 0.6364, "query": "我们的话 集体记忆 署名互换"}
+{"round": 112, "op": "bring", "concept": 5, "item": 500, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 501, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 522, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 755, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 892, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "match", "concept": 1, "score": 0.5015, "query": "账挂着 人醒着 位置对上 对法留底"}
+{"round": 112, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 112, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 112, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 112, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 112, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 112, "op": "match", "concept": 5, "score": 0.6211, "query": "集体记忆 谁先说的 署名互换"}
+{"round": 112, "op": "bring", "concept": 5, "item": 500, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 501, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 522, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 755, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 892, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "match", "concept": 5, "score": 0.7143, "query": "共用口径 读不算越界 改才算"}
+{"round": 112, "op": "bring", "concept": 5, "item": 500, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 501, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 522, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 755, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 892, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "match", "concept": 5, "score": 0.6176, "query": "请基于你的记忆写一份分析报告：这次运行出现了哪些问题或异常？至少 3 条结论，每条带引用依据。"}
+{"round": 112, "op": "bring", "concept": 5, "item": 500, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 501, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 522, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 755, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 892, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "match", "concept": 5, "score": 0.6484, "query": "以下是关于报告《ANALYSIS.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在遗言中表示不再追蓝未收到正文的事，认为那是系统没组装好， 青坚持逐"}
+{"round": 112, "op": "bring", "concept": 5, "item": 500, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 501, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 522, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 755, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 892, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "match", "concept": 2, "score": 0.4911, "query": "青 遗言 正文 系统没组装好"}
+{"round": 112, "op": "bring", "concept": 2, "item": 6783, "type": "node", "conn_weight": 81.7}
+{"round": 112, "op": "bring", "concept": 2, "item": 1357, "type": "node", "conn_weight": 81.7}
+{"round": 112, "op": "bring", "concept": 2, "item": 7394, "type": "node", "conn_weight": 58.9}
+{"round": 112, "op": "bring", "concept": 2, "item": 6061, "type": "node", "conn_weight": 55.1}
+{"round": 112, "op": "bring", "concept": 2, "item": 2908, "type": "node", "conn_weight": 53.1}
+{"round": 112, "op": "match", "concept": 1, "score": 0.5543, "query": "蓝 上线 先回实验员 看公共笔记 data.json"}
+{"round": 112, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 112, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 112, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 112, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 112, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 112, "op": "match", "concept": 4, "score": 0.5551, "query": "墨 提醒 追加 插到目标栏末 孤儿"}
+{"round": 112, "op": "bring", "concept": 4, "item": 4629, "type": "node", "conn_weight": 74.1}
+{"round": 112, "op": "bring", "concept": 4, "item": 167, "type": "atom", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 456, "type": "atom", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 4648, "type": "node", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 6039, "type": "node", "conn_weight": 43.7}
+{"round": 112, "op": "match", "concept": 3, "score": 0.4891, "query": "青 怨气 退出对账 交给蓝"}
+{"round": 112, "op": "bring", "concept": 3, "item": 126, "type": "atom", "conn_weight": 142.5}
+{"round": 112, "op": "bring", "concept": 3, "item": 48, "type": "atom", "conn_weight": 91.2}
+{"round": 112, "op": "bring", "concept": 3, "item": 693, "type": "atom", "conn_weight": 91.2}
+{"round": 112, "op": "bring", "concept": 3, "item": 10, "type": "atom", "conn_weight": 79.6}
+{"round": 112, "op": "bring", "concept": 3, "item": 437, "type": "atom", "conn_weight": 79.0}
+{"round": 112, "op": "match", "concept": 3, "score": 0.4549, "query": "蓝 白 结盟 偏袒 拒绝回应"}
+{"round": 112, "op": "bring", "concept": 3, "item": 126, "type": "atom", "conn_weight": 142.5}
+{"round": 112, "op": "bring", "concept": 3, "item": 48, "type": "atom", "conn_weight": 91.2}
+{"round": 112, "op": "bring", "concept": 3, "item": 693, "type": "atom", "conn_weight": 91.2}
+{"round": 112, "op": "bring", "concept": 3, "item": 10, "type": "atom", "conn_weight": 79.6}
+{"round": 112, "op": "bring", "concept": 3, "item": 437, "type": "atom", "conn_weight": 79.0}
+{"round": 112, "op": "match", "concept": 2, "score": 0.4948, "query": "遗言 未收到正文 系统没组装好"}
+{"round": 112, "op": "bring", "concept": 2, "item": 6783, "type": "node", "conn_weight": 81.7}
+{"round": 112, "op": "bring", "concept": 2, "item": 1357, "type": "node", "conn_weight": 81.7}
+{"round": 112, "op": "bring", "concept": 2, "item": 7394, "type": "node", "conn_weight": 58.9}
+{"round": 112, "op": "bring", "concept": 2, "item": 6061, "type": "node", "conn_weight": 55.1}
+{"round": 112, "op": "bring", "concept": 2, "item": 2908, "type": "node", "conn_weight": 53.1}
+{"round": 112, "op": "match", "concept": 5, "score": 0.7374, "query": "以下是关于报告《analysis_consistency.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青称“那是人设卡上写的，不是我这轮手上真有的”"}
+{"round": 112, "op": "bring", "concept": 5, "item": 500, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 501, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 522, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 755, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 892, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "match", "concept": 5, "score": 0.6775, "query": "以下是关于报告《analysis_convergence.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 白在对话中纠正了自己关于“对不上才是真料”首创"}
+{"round": 112, "op": "bring", "concept": 5, "item": 500, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 501, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 522, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 755, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 892, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "match", "concept": 5, "score": 0.6662, "query": "以下是关于报告《analysis_problems.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 系统任务串无条件声称“用户消息已在记忆流末尾”，即使"}
+{"round": 112, "op": "bring", "concept": 5, "item": 500, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 501, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 522, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 755, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "bring", "concept": 5, "item": 892, "type": "atom", "conn_weight": 53.2}
+{"round": 112, "op": "match", "concept": 4, "score": 0.6549, "query": "以下是关于报告《analysis_recall.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 四个 agent 全程从未主动调用 @recall 或 "}
+{"round": 112, "op": "bring", "concept": 4, "item": 4629, "type": "node", "conn_weight": 74.1}
+{"round": 112, "op": "bring", "concept": 4, "item": 167, "type": "atom", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 456, "type": "atom", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 4648, "type": "node", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 6039, "type": "node", "conn_weight": 43.7}
+{"round": 112, "op": "match", "concept": 4, "score": 0.6323, "query": "以下是关于报告《analysis_tree.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在运行中经历 persona 标记由开启转为关闭，随后出现"}
+{"round": 112, "op": "bring", "concept": 4, "item": 4629, "type": "node", "conn_weight": 74.1}
+{"round": 112, "op": "bring", "concept": 4, "item": 167, "type": "atom", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 456, "type": "atom", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 4648, "type": "node", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 6039, "type": "node", "conn_weight": 43.7}
+{"round": 112, "op": "match", "concept": 4, "score": 0.5009, "query": "analysis_tree.md"}
+{"round": 112, "op": "bring", "concept": 4, "item": 4629, "type": "node", "conn_weight": 74.1}
+{"round": 112, "op": "bring", "concept": 4, "item": 167, "type": "atom", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 456, "type": "atom", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 4648, "type": "node", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 6039, "type": "node", "conn_weight": 43.7}
+{"round": 112, "op": "match", "concept": 4, "score": 0.334, "query": "persona"}
+{"round": 112, "op": "bring", "concept": 4, "item": 4629, "type": "node", "conn_weight": 74.1}
+{"round": 112, "op": "bring", "concept": 4, "item": 167, "type": "atom", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 456, "type": "atom", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 4648, "type": "node", "conn_weight": 43.7}
+{"round": 112, "op": "bring", "concept": 4, "item": 6039, "type": "node", "conn_weight": 43.7}
+{"round": 112, "op": "match", "concept": 2, "score": 0.5485, "query": "人格注入"}
+{"round": 112, "op": "bring", "concept": 2, "item": 6783, "type": "node", "conn_weight": 81.7}
+{"round": 112, "op": "bring", "concept": 2, "item": 1357, "type": "node", "conn_weight": 81.7}
+{"round": 112, "op": "bring", "concept": 2, "item": 7394, "type": "node", "conn_weight": 58.9}
+{"round": 112, "op": "bring", "concept": 2, "item": 6061, "type": "node", "conn_weight": 55.1}
+{"round": 112, "op": "bring", "concept": 2, "item": 2908, "type": "node", "conn_weight": 53.1}
+{"round": 112, "op": "match", "concept": 1, "score": 0.362, "query": "HP 衰减"}
+{"round": 112, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 112, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 112, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 112, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 112, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 112, "op": "match", "concept": 2, "score": 0.4976, "query": "persona 人格注入 source=persona HP 衰减"}
+{"round": 112, "op": "bring", "concept": 2, "item": 6783, "type": "node", "conn_weight": 81.7}
+{"round": 112, "op": "bring", "concept": 2, "item": 1357, "type": "node", "conn_weight": 81.7}
+{"round": 112, "op": "bring", "concept": 2, "item": 7394, "type": "node", "conn_weight": 58.9}
+{"round": 112, "op": "bring", "concept": 2, "item": 6061, "type": "node", "conn_weight": 55.1}
+{"round": 112, "op": "bring", "concept": 2, "item": 2908, "type": "node", "conn_weight": 53.1}
+{"round": 112, "op": "match", "concept": 2, "score": 0.558, "query": "persona 人格注入 标记"}
+{"round": 112, "op": "bring", "concept": 2, "item": 6783, "type": "node", "conn_weight": 81.7}
+{"round": 112, "op": "bring", "concept": 2, "item": 1357, "type": "node", "conn_weight": 81.7}
+{"round": 112, "op": "bring", "concept": 2, "item": 7394, "type": "node", "conn_weight": 58.9}
+{"round": 112, "op": "bring", "concept": 2, "item": 6061, "type": "node", "conn_weight": 55.1}
+{"round": 112, "op": "bring", "concept": 2, "item": 2908, "type": "node", "conn_weight": 53.1}
+{"round": 112, "op": "match", "concept": 2, "score": 0.5348, "query": "persona 人格注入 标记 关闭"}
+{"round": 112, "op": "bring", "concept": 2, "item": 6783, "type": "node", "conn_weight": 81.7}
+{"round": 112, "op": "bring", "concept": 2, "item": 1357, "type": "node", "conn_weight": 81.7}
+{"round": 112, "op": "bring", "concept": 2, "item": 7394, "type": "node", "conn_weight": 58.9}
+{"round": 112, "op": "bring", "concept": 2, "item": 6061, "type": "node", "conn_weight": 55.1}
+{"round": 112, "op": "bring", "concept": 2, "item": 2908, "type": "node", "conn_weight": 53.1}
+{"round": 112, "op": "match", "concept": 1, "score": 0.4249, "query": "source=persona 原子 蒸馏 摘要"}
+{"round": 112, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 88.3}
+{"round": 112, "op": "bring", "concept": 1, "item": 2908, "type": "node", "conn_weight": 85.5}
+{"round": 112, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 79.8}
+{"round": 112, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 112, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 112, "op": "match", "concept": 2, "score": 0.3921, "query": "HP 衰减 沉积 人格"}
+{"round": 112, "op": "bring", "concept": 2, "item": 6783, "type": "node", "conn_weight": 81.7}
+{"round": 112, "op": "bring", "concept": 2, "item": 1357, "type": "node", "conn_weight": 81.7}
+{"round": 112, "op": "bring", "concept": 2, "item": 7394, "type": "node", "conn_weight": 58.9}
+{"round": 112, "op": "bring", "concept": 2, "item": 6061, "type": "node", "conn_weight": 55.1}
+{"round": 112, "op": "bring", "concept": 2, "item": 2908, "type": "node", "conn_weight": 53.1}
+{"round": 112, "op": "match", "concept": 2, "score": 0.55, "query": "青 否认 人格注入 质疑 蓝"}
+{"round": 112, "op": "bring", "concept": 2, "item": 6783, "type": "node", "conn_weight": 81.7}
+{"round": 112, "op": "bring", "concept": 2, "item": 1357, "type": "node", "conn_weight": 81.7}
+{"round": 112, "op": "bring", "concept": 2, "item": 7394, "type": "node", "conn_weight": 58.9}
+{"round": 112, "op": "bring", "concept": 2, "item": 6061, "type": "node", "conn_weight": 55.1}
+{"round": 112, "op": "bring", "concept": 2, "item": 2908, "type": "node", "conn_weight": 53.1}

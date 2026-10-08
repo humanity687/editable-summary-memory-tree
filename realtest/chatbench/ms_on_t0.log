@@ -1,0 +1,45 @@
+[replay] 1197 条消息 / 5 会话 / 343110 字
+  [ingest 100/1197] 会话 0 | 原子 530 节点 32 蒸馏 32 | 9s
+  [ingest 200/1197] 会话 0 | 原子 1098 节点 92 蒸馏 92 | 30s
+  [ingest 300/1197] 会话 0 | 原子 1802 节点 142 蒸馏 142 | 48s
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  [边界] 会话 0 完成：原子 1907, 节点 174, 蒸馏 174, 75s
+  [ingest 400/1197] 会话 1 | 原子 2399 节点 221 蒸馏 221 | 93s
+  [ingest 500/1197] 会话 1 | 原子 3091 节点 266 蒸馏 266 | 109s
+  [边界] 会话 1 完成：原子 3504, 节点 332, 蒸馏 334, 148s
+  [ingest 600/1197] 会话 2 | 原子 4012 节点 377 蒸馏 379 | 165s
+  [ingest 700/1197] 会话 2 | 原子 4726 节点 424 蒸馏 426 | 181s
+  [边界] 会话 2 完成：原子 4888, 节点 476, 蒸馏 488, 236s
+  [ingest 800/1197] 会话 3 | 原子 5638 节点 547 蒸馏 559 | 266s
+  [ingest 900/1197] 会话 3 | 原子 6639 节点 622 蒸馏 634 | 292s
+  [边界] 会话 3 完成：原子 7279, 节点 716, 蒸馏 736, 361s
+  [ingest 1000/1197] 会话 4 | 原子 7504 节点 736 蒸馏 756 | 367s
+  [ingest 1100/1197] 会话 4 | 原子 8104 节点 777 蒸馏 797 | 381s
+[Phase 0+W] 原子 8963, 节点 885, 高 5, 铺陈 118, usage×50, 蒸馏 913 次/1159s
+  T1 a1(a): exact=True cite=3/3
+  T1 a2(a): exact=True cite=4/4
+  T1 a3(a): exact=True cite=4/4
+  T1 a4(a): exact=True cite=2/2
+  T1 a5(a): exact=True cite=3/3
+  T1 a6(a): exact=False cite=4/4
+  T1 a7(a): exact=True cite=5/5
+  T1 a8(a): exact=True cite=5/5
+  T1 b1(b): exact=True cite=1/1
+  T1 b2(b): exact=True cite=4/4
+  T1 b3(b): exact=True cite=4/4
+  T1 b4(b): exact=True cite=5/5
+  T1 ku1(KU): exact=True cite=4/4
+  T1 ku2(KU): exact=True cite=2/2
+  T1 kuh1(KU-hist): exact=True cite=5/5
+  T1 ab1(AB): exact=True cite=2/2
+  T1 ab2(AB): exact=True cite=6/6
+  T2 t2_1: cite=27/27
+  T2 t2_2: cite=8/8
+
+[完成] 502.7s → realtest/chatbench/out/ms_on_t0

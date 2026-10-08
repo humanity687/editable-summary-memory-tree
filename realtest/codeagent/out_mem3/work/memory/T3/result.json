@@ -1,0 +1,35 @@
+{
+  "group": "memory",
+  "task": "T3",
+  "title": "未闭合的代码块被当作可执行代码",
+  "passed": true,
+  "accept_rc": 0,
+  "accept_verdict": "PASS",
+  "elapsed_s": 84.9,
+  "agent_result": {
+    "ok": true,
+    "rounds": 11,
+    "summary": "修复了 `agents/lin-shen/agent.py` 中的回复解析器 Bug。\n\n**问题根因**：\n在 `_parse_structured_response` 方法中，如果 LLM 的回复以未闭合的 ```python 代码块结尾（例如因长度限制被截断），原逻辑会在循环结束后通过“收尾未关闭的代码块”逻辑（第 401-407 行）强行将其作为 `type: code` 动作执行。这会导致截断的、不完整的代码被意外运行。\n\n**修复方案**：\n修改了收尾逻辑。现在，如果检测到 `in_code_block` 为 True（即代码块未闭合），无论 `code_lang` 是什么，都统一调用 `_emit_message` 将其作为普通文本消息处理，而不是作为可执行代码。\n\n**验证结果**：\n运行 `python3 accept_t3.py`，验收通过（PASS）。",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 11,
+    "atoms_alive": 31,
+    "nodes_alive": 0,
+    "tiling": 31,
+    "distill_calls": 0,
+    "distill_seconds": 0.0,
+    "tool_uses": {
+      "command": 5,
+      "recall": 1,
+      "read": 3,
+      "edit": 1,
+      "finish": 1
+    },
+    "notebook": 1
+  },
+  "last_usage": {
+    "prompt_tokens": 13357,
+    "completion_tokens": 223
+  }
+}

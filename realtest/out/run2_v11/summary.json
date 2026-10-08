@@ -1,0 +1,65 @@
+{
+ "summary": {
+  "rounds": 9,
+  "elapsed_s": 799.16,
+  "story_chars": 10243,
+  "story_tokens": 8928,
+  "llm_calls": 9,
+  "completion_tokens": 38611,
+  "prompt_tokens": 41251,
+  "distill_seconds": 354.38,
+  "distill_calls": 26,
+  "tools": {
+   "append": 15,
+   "edit": 0,
+   "recall": 1
+  },
+  "duplicates": 0,
+  "config": {
+   "provider": "deepseek",
+   "model": "deepseek-v4-flash",
+   "ollama": {
+    "base_url": "http://localhost:11434",
+    "model": "gemma4:12b",
+    "num_ctx": 32768,
+    "temperature": 0.8,
+    "timeout": 900
+   },
+   "deepseek": {
+    "base_url": "https://api.deepseek.com/v1",
+    "model": "deepseek-v4-flash",
+    "api_key": "sk-REDACTED",
+    "temperature": 0.8,
+    "timeout": 600
+   },
+   "assembly_budget": 10000,
+   "max_append_chars": 1000,
+   "merge_every": 4,
+   "retrieval_budget": 6,
+   "decay": 8.0,
+   "hp_merge_threshold": 30.0,
+   "parent_init_hp": 70.0,
+   "hot_threshold": 60.0,
+   "recall_boost": 30.0,
+   "merge_cap_atoms": 500,
+   "merge_depth_diff": 1,
+   "promote_threshold": 3,
+   "attention_cap": 60,
+   "attention_out": 45.0,
+   "attention_in_decay": 0.5,
+   "attention_out_decay": 3.0,
+   "merge_fanout_cap": 12,
+   "pressure_threshold": 2.0,
+   "notebook": "on"
+  }
+ },
+ "charts": [
+  "story",
+  "ctx",
+  "mem",
+  "events",
+  "latency",
+  "compose",
+  "tree"
+ ]
+}

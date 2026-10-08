@@ -1,0 +1,12 @@
+[fullsend] 716 条消息 / 289666 字
+  T2 t2_part: cite={'citations': 22, 'valid_ids': 22, 'bad': [], 'quoted': 22, 'quote_in_cited': 20, 'quotes_total': 31, 'quote_any': 11, 'chars': 1455}
+  T2 t2_persona: cite={'citations': 18, 'valid_ids': 18, 'bad': [], 'quoted': 18, 'quote_in_cited': 17, 'quotes_total': 70, 'quote_any': 27, 'chars': 2008}
+  T2 t2_converge: cite={'citations': 15, 'valid_ids': 15, 'bad': [], 'quoted': 13, 'quote_in_cited': 12, 'quotes_total': 32, 'quote_any': 8, 'chars': 1265}
+  T2 t2_problems: cite={'citations': 22, 'valid_ids': 22, 'bad': [], 'quoted': 21, 'quote_in_cited': 18, 'quotes_total': 44, 'quote_any': 14, 'chars': 2265}
+  T3 t3_1: recall×0 cite={'citations': 8, 'valid_ids': 8, 'bad': [], 'quoted': 8, 'quote_in_cited': 7, 'quotes_total': 11, 'quote_any': 6, 'chars': 444}
+  T3 t3_2: recall×0 cite={'citations': 4, 'valid_ids': 4, 'bad': [], 'quoted': 4, 'quote_in_cited': 4, 'quotes_total': 3, 'quote_any': 2, 'chars': 190}
+  T3 t3_3: recall×0 cite={'citations': 6, 'valid_ids': 6, 'bad': [], 'quoted': 6, 'quote_in_cited': 6, 'quotes_total': 6, 'quote_any': 6, 'chars': 273}
+  T3 t3_4: recall×0 cite={'citations': 14, 'valid_ids': 14, 'bad': [], 'quoted': 14, 'quote_in_cited': 14, 'quotes_total': 19, 'quote_any': 6, 'chars': 614}
+  T3 t3_5: recall×0 cite={'citations': 2, 'valid_ids': 2, 'bad': [], 'quoted': 2, 'quote_in_cited': 2, 'quotes_total': 2, 'quote_any': 2, 'chars': 132}
+  T3 t3_6: recall×0 cite={'citations': 6, 'valid_ids': 6, 'bad': [], 'quoted': 6, 'quote_in_cited': 6, 'quotes_total': 8, 'quote_any': 3, 'chars': 478}
+[fullsend] done 36.9s → realtest/chatbench/out/cmp_fullsend

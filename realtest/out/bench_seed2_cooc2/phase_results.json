@@ -1,0 +1,837 @@
+{
+ "1a": [
+  {
+   "id": "F01",
+   "retrieval_hit": true,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F02",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/2"
+  },
+  {
+   "id": "F03",
+   "retrieval_hit": false,
+   "answer_hit": true,
+   "score": "1/2"
+  },
+  {
+   "id": "F04",
+   "retrieval_hit": true,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F05",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/2"
+  },
+  {
+   "id": "F06",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/2"
+  },
+  {
+   "id": "F07",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F08",
+   "retrieval_hit": true,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F09",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F10",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F11",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F12",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F13",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "2/2"
+  },
+  {
+   "id": "F14",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F15",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/2"
+  },
+  {
+   "id": "F16",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F17",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F18",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F19",
+   "retrieval_hit": true,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F20",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F21",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F22",
+   "retrieval_hit": true,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F23",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/2"
+  },
+  {
+   "id": "F24",
+   "retrieval_hit": false,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F25",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  }
+ ],
+ "1b": [
+  {
+   "id": "F26",
+   "used_recall": false,
+   "recall_rounds": 0,
+   "answer_hit": true,
+   "score": "2/2"
+  },
+  {
+   "id": "F27",
+   "used_recall": false,
+   "recall_rounds": 0,
+   "answer_hit": false,
+   "score": "0/2"
+  },
+  {
+   "id": "F28",
+   "used_recall": true,
+   "recall_rounds": 3,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F29",
+   "used_recall": true,
+   "recall_rounds": 3,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F30",
+   "used_recall": false,
+   "recall_rounds": 0,
+   "answer_hit": true,
+   "score": "2/2"
+  },
+  {
+   "id": "F31",
+   "used_recall": true,
+   "recall_rounds": 3,
+   "answer_hit": false,
+   "score": "0/2"
+  },
+  {
+   "id": "F32",
+   "used_recall": true,
+   "recall_rounds": 1,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F33",
+   "used_recall": true,
+   "recall_rounds": 1,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F34",
+   "used_recall": true,
+   "recall_rounds": 3,
+   "answer_hit": true,
+   "score": "1/2"
+  },
+  {
+   "id": "F35",
+   "used_recall": true,
+   "recall_rounds": 3,
+   "answer_hit": false,
+   "score": "0/1"
+  }
+ ],
+ "2": [
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 2
+  },
+  {
+   "edit": "insert",
+   "verify_ok": false,
+   "edits_done": 4
+  },
+  {
+   "edit": "rename",
+   "verify_ok": true,
+   "edits_done": 6
+  },
+  {
+   "edit": "rename",
+   "verify_ok": true,
+   "edits_done": 8
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 10
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 12
+  },
+  {
+   "edit": "insert",
+   "verify_ok": false,
+   "edits_done": 14
+  },
+  {
+   "edit": "rename",
+   "verify_ok": false,
+   "edits_done": 16
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 18
+  },
+  {
+   "edit": "rename",
+   "verify_ok": false,
+   "edits_done": 20
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 22
+  },
+  {
+   "edit": "insert",
+   "verify_ok": false,
+   "edits_done": 24
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 26
+  },
+  {
+   "edit": "rename",
+   "verify_ok": true,
+   "edits_done": 28
+  },
+  {
+   "edit": "insert",
+   "verify_ok": false,
+   "edits_done": 30
+  },
+  {
+   "edit": "insert",
+   "verify_ok": false,
+   "edits_done": 32
+  },
+  {
+   "edit": "rename",
+   "verify_ok": true,
+   "edits_done": 34
+  },
+  {
+   "edit": "insert",
+   "verify_ok": false,
+   "edits_done": 35
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 37
+  },
+  {
+   "edit": "rename",
+   "verify_ok": false,
+   "edits_done": 39
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 41
+  },
+  {
+   "edit": "rename",
+   "verify_ok": true,
+   "edits_done": 43
+  },
+  {
+   "edit": "rename",
+   "verify_ok": true,
+   "edits_done": 45
+  },
+  {
+   "edit": "rename",
+   "verify_ok": false,
+   "edits_done": 47
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 49
+  },
+  {
+   "edit": "rename",
+   "verify_ok": true,
+   "edits_done": 50
+  }
+ ],
+ "3": [],
+ "retell": [
+  {
+   "label": "before_edits",
+   "recall_used": 0,
+   "chars": 878,
+   "answer": "七月初三黄昏，唐纪舟前往沈寒舟的医馆请其前往梧桐巷为家母诊病，沈寒舟携带牛角药箱与账册随车出发。在唐宅诊脉配药后，沈寒舟通过唐家留下的黑白照片认出了唐纪舟，并发现唐家老宅早在七年前毁于火灾，全家已亡。随后，他从信封中取出铜钥匙、药材清单及写有“七月十五，归还”的信件，并发现账册中的银圆变为了旧铜钱，红绸帕子上的木槿花颜色变淡。\n\n段临洲带着装有七枚不同颜色纽扣的锦盒找上门，试图打听沈寒舟手中的“老龙骨”。沈寒舟通过比对锦盒、铜钥匙、药材清单与照片，发现清单中“龙骨”的标记与祖父沈问渔提及的“甲骨”线索有关，并从祖父遗物中取出十二片刻有文字的骨片，发现骨片配方与清单药材顺序相反，且照片日期与箱封日期相隔十八年。\n\n随后，前唐家看护何倚笙出现，展示了标注有“枕下物”的宅子布局草图及一张绘有七色纽扣图样的羊皮纸地图，称地图指向城西老钟厂地下仓库，并涉及唐敬棠欠六位合股人的债务。沈寒舟通过秦小禾的笔记发现，何倚笙曾于七月初二送出该地图，且唐纪舟早已于三年前去世。沈寒舟进一步通过骨片拓印发现，它们拼接后竟是老钟厂地下仓库的结构图，中心标注着码头上的“赵老拐”。\n\n沈寒舟前往码头寻访，发现赵老拐已失踪，并推测其随段临洲前往老钟厂。他潜入老钟厂，利用铜钥匙打开了通往地下室的铁门，发现甬道两侧的石室对应着当年济生堂的六位债主，且多已被清理。在尽头的铁柜中，他寻获了装有“唐氏济生堂股本总账”、“七年往来明细”及“龙骨”账册的红漆木盒。\n\n在后续的交锋中，唐纪澜现身，揭开了段家与唐家的恩怨：段伯庚曾因唐敬棠的黑市交易及设计陷害而死，导致段鹤庭纵火。沈寒舟发现，何倚笙试图利用刻有周家交易细节的龙骨骨片来抵消旧债，但沈寒舟揭示了骨片背面刻着的真相——沈问渔早在十八年前就已代唐家偿清了周家的债，骨片实为收据而非罪证。\n\n最终，恩怨了结。唐家将三根象征交代与传承的红丝绳送给对方，沈寒舟将刻有“澜”字的短剑交给唐纪澜，并将龙骨、纽扣等物件封存。七月十五中元夜，唐家旧事尽归福寿巷，沈寒舟在黎明时分于医馆睡去，手腕上系着那根褪色的红丝绳，如同缠枝莲般紧紧缠绕。",
+   "coverage": "8/65",
+   "coverage_ratio": 0.123,
+   "miss": [
+    [
+     "F01",
+     "城南蓑衣巷"
+    ],
+    [
+     "F02",
+     "六角纱灯"
+    ],
+    [
+     "F02",
+     "灯面上绘着缠枝莲"
+    ],
+    [
+     "F03",
+     "门牌十七号"
+    ],
+    [
+     "F05",
+     "铜牌"
+    ],
+    [
+     "F05",
+     "錾着唐宅二字"
+    ],
+    [
+     "F06",
+     "像是张照片"
+    ],
+    [
+     "F06",
+     "边角泛黄"
+    ],
+    [
+     "F07",
+     "一柄短剑"
+    ],
+    [
+     "F08",
+     "系在一根褪色的红丝绳上"
+    ],
+    [
+     "F09",
+     "丙辰年二月十九"
+    ],
+    [
+     "F10",
+     "三足铜香炉"
+    ],
+    [
+     "F11",
+     "周小满"
+    ],
+    [
+     "F12",
+     "生锈的铁鸟笼"
+    ],
+    [
+     "F13",
+     "两枚旧铜钱"
+    ],
+    [
+     "F13",
+     "光绪通宝"
+    ],
+    [
+     "F14",
+     "城南码头"
+    ],
+    [
+     "F15",
+     "七枚纽扣"
+    ],
+    [
+     "F15",
+     "白贝母黑曜石青金石黄玛瑙红珊瑚紫水晶绿翡翠"
+    ],
+    [
+     "F18",
+     "戊戌年三月初六"
+    ],
+    [
+     "F19",
+     "十二片不规则的骨片"
+    ],
+    [
+     "F20",
+     "竹青布旗袍"
+    ],
+    [
+     "F21",
+     "藏青色的棉袄"
+    ],
+    [
+     "F22",
+     "唐氏济生堂记"
+    ],
+    [
+     "F23",
+     "一百二十两"
+    ],
+    [
+     "F23",
+     "赵钱孙李周吴"
+    ],
+    [
+     "F24",
+     "章茂实"
+    ],
+    [
+     "F25",
+     "九针堂"
+    ],
+    [
+     "F26",
+     "七根针的图案"
+    ],
+    [
+     "F26",
+     "排列成扇形"
+    ],
+    [
+     "F27",
+     "羊皮一幅"
+    ],
+    [
+     "F27",
+     "地形图与债目表"
+    ],
+    [
+     "F28",
+     "悦来"
+    ],
+    [
+     "F29",
+     "房号是十七"
+    ],
+    [
+     "F31",
+     "圈里写着三个字"
+    ],
+    [
+     "F32",
+     "枣木拐杖"
+    ],
+    [
+     "F33",
+     "豁口的粗瓷碗"
+    ],
+    [
+     "F34",
+     "第一页写着三个字"
+    ],
+    [
+     "F34",
+     "流水簿"
+    ],
+    [
+     "F35",
+     "提着那盏缠枝莲纱灯"
+    ],
+    [
+     "F37",
+     "刻着一个澜字"
+    ],
+    [
+     "F38",
+     "老钟厂北边的废井里"
+    ],
+    [
+     "F39",
+     "上面写着你医馆的地址"
+    ],
+    [
+     "F40",
+     "门楣上依次刻着"
+    ],
+    [
+     "F40",
+     "甬道两侧各有三扇门"
+    ],
+    [
+     "F41",
+     "每行字的末尾"
+    ],
+    [
+     "F41",
+     "刻着一把短剑"
+    ],
+    [
+     "F42",
+     "灰布短褐"
+    ],
+    [
+     "F42",
+     "袖口磨得发白"
+    ],
+    [
+     "F43",
+     "黄花梨拐杖"
+    ],
+    [
+     "F44",
+     "一只鹰的模样"
+    ],
+    [
+     "F45",
+     "周存厚"
+    ],
+    [
+     "F46",
+     "她叫周倚笙"
+    ],
+    [
+     "F47",
+     "笔画更细排列更密"
+    ],
+    [
+     "F48",
+     "一枝木槿花"
+    ],
+    [
+     "F49",
+     "三根褪色的红丝绳"
+    ],
+    [
+     "F50",
+     "门框和墙壁之间的一道缝隙"
+    ]
+   ]
+  },
+  {
+   "label": "after_edits",
+   "recall_used": 0,
+   "chars": 462,
+   "answer": "沈寒舟通过比对唐家遗物与封存物，确认唐家全员于七年前火灾中丧生。结合何倚笙提供的记录、秦小禾的笔记、段鹤庭的访谈以及赵老拐船屋“流水簿”与老钟厂地下铁柜中的账册，沈寒舟确认了沈家白贝母扣子的身份，并查明了丙辰年十二片龙骨抵债的事实。在七月十五于钟厂水塔与唐纪澜会面后，得知梧桐巷十七号是陷阱，且唐纪舟等人确实死于七年前的火灾。\n\n关于恩怨细节，段临洲透露何倚笙曾为寻龙骨在唐家看护三年并布局七年。沈寒舟展示了刻有周存厚与唐敬棠交易细节的十二片骨片，并发现背面刻有沈问渔于戊戌年三月代唐氏偿清周家二十两旧债的记录及木槿花印，证明何倚笙的祖父十八年前已替唐家还清债务。\n\n在真相揭露过程中，唐纪澜否认杀害赵老拐，称其发现时已在老钟厂北边废井死亡；赵老拐随后说明了废井的真相。唐纪澜将系在铜钥匙上的红丝绳还给沈寒舟，称其为母亲二十年前编织的三条红丝绳之一，而段鹤庭持有另一条烧焦的红丝绳作为唐家信物。唐老太太向何倚笙说明了祭奠周存厚的情况，并送出三根编织二十年的丝绳。此外，段鹤庭交予沈寒舟七枚纽扣，并提到其子尚未兑现归还的约定。",
+   "coverage": "8/65",
+   "coverage_ratio": 0.123,
+   "miss": [
+    [
+     "F01",
+     "城南蓑衣巷"
+    ],
+    [
+     "F02",
+     "六角纱灯"
+    ],
+    [
+     "F02",
+     "灯面上绘着缠枝莲"
+    ],
+    [
+     "F03",
+     "门牌十七号"
+    ],
+    [
+     "F04",
+     "牛角药箱"
+    ],
+    [
+     "F05",
+     "铜牌"
+    ],
+    [
+     "F05",
+     "錾着唐宅二字"
+    ],
+    [
+     "F06",
+     "像是张照片"
+    ],
+    [
+     "F06",
+     "边角泛黄"
+    ],
+    [
+     "F07",
+     "一柄短剑"
+    ],
+    [
+     "F08",
+     "系在一根褪色的红丝绳上"
+    ],
+    [
+     "F09",
+     "丙辰年二月十九"
+    ],
+    [
+     "F10",
+     "三足铜香炉"
+    ],
+    [
+     "F11",
+     "周小满"
+    ],
+    [
+     "F12",
+     "生锈的铁鸟笼"
+    ],
+    [
+     "F13",
+     "两枚旧铜钱"
+    ],
+    [
+     "F13",
+     "光绪通宝"
+    ],
+    [
+     "F14",
+     "城南码头"
+    ],
+    [
+     "F15",
+     "白贝母黑曜石青金石黄玛瑙红珊瑚紫水晶绿翡翠"
+    ],
+    [
+     "F18",
+     "戊戌年三月初六"
+    ],
+    [
+     "F19",
+     "十二片不规则的骨片"
+    ],
+    [
+     "F20",
+     "竹青布旗袍"
+    ],
+    [
+     "F21",
+     "藏青色的棉袄"
+    ],
+    [
+     "F22",
+     "唐氏济生堂记"
+    ],
+    [
+     "F23",
+     "一百二十两"
+    ],
+    [
+     "F23",
+     "赵钱孙李周吴"
+    ],
+    [
+     "F24",
+     "章茂实"
+    ],
+    [
+     "F25",
+     "九针堂"
+    ],
+    [
+     "F26",
+     "七根针的图案"
+    ],
+    [
+     "F26",
+     "排列成扇形"
+    ],
+    [
+     "F27",
+     "羊皮一幅"
+    ],
+    [
+     "F27",
+     "地形图与债目表"
+    ],
+    [
+     "F28",
+     "悦来"
+    ],
+    [
+     "F29",
+     "房号是十七"
+    ],
+    [
+     "F30",
+     "老钟厂地下仓库"
+    ],
+    [
+     "F30",
+     "结构图"
+    ],
+    [
+     "F31",
+     "圈里写着三个字"
+    ],
+    [
+     "F32",
+     "枣木拐杖"
+    ],
+    [
+     "F33",
+     "豁口的粗瓷碗"
+    ],
+    [
+     "F34",
+     "第一页写着三个字"
+    ],
+    [
+     "F35",
+     "提着那盏缠枝莲纱灯"
+    ],
+    [
+     "F37",
+     "刻着一个澜字"
+    ],
+    [
+     "F38",
+     "老钟厂北边的废井里"
+    ],
+    [
+     "F39",
+     "上面写着你医馆的地址"
+    ],
+    [
+     "F40",
+     "门楣上依次刻着"
+    ],
+    [
+     "F40",
+     "甬道两侧各有三扇门"
+    ],
+    [
+     "F41",
+     "每行字的末尾"
+    ],
+    [
+     "F41",
+     "刻着一把短剑"
+    ],
+    [
+     "F42",
+     "灰布短褐"
+    ],
+    [
+     "F42",
+     "袖口磨得发白"
+    ],
+    [
+     "F43",
+     "黄花梨拐杖"
+    ],
+    [
+     "F44",
+     "一只鹰的模样"
+    ],
+    [
+     "F46",
+     "她叫周倚笙"
+    ],
+    [
+     "F47",
+     "笔画更细排列更密"
+    ],
+    [
+     "F48",
+     "一枝木槿花"
+    ],
+    [
+     "F49",
+     "三根褪色的红丝绳"
+    ],
+    [
+     "F50",
+     "门框和墙壁之间的一道缝隙"
+    ]
+   ]
+  }
+ ]
+}

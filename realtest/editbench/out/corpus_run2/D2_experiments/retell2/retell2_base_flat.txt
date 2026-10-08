@@ -1,0 +1,21 @@
+该文档是一份实验规划与交接材料，主题为记忆树/上下文管理架构的多场景评测与机制分析。核心结论：可辩护的新颖性是机制组合——位置有序的原子里 + 连续区间摘要树 + 编辑区祖先确定性置脏 + 脏节点立即退出所有读路径 + 零 LLM 编辑/组装 + 延迟 LLM 重建 + 编辑作为使用信号 + 长程反转评测。
+
+Phase A 实验位于 experiments/out_alpha0_take1_20260828/（evidence_report/tree_samples）与 HANDOFF §四.5；基线 take2 为 experiments/out_alpha0_take2_20260828/（指纹 take2.txt）；主实验 1h 为 backup_main_20260828/ 与 experiments/out_main_lan1_20260828/（指纹+遗言 farewell_transcript.txt）；24h 实验为 backup_day_20260829/（634MB 全量）与 experiments/out_day_20260829_stopped/（timeline/watchdog/collection_round1 含判别三问+隐喻事件转录）；复验为 backup_rev。
+
+语料：corpus.jsonl 含 716 条去重 agent 消息、289,666 字、稳定 msg_id；transcript_full.txt 为人读全量转写（时间序，每条带 #[msg_id[:8]] 与来源→目标）；by_agent/*.txt 为单 agent 发言；sandbox_notes.md 为现场协作笔记（含矛盾/修订）；reports/*.md 为 6 份已有分析报告；index.json 为规模/会话/实体骨架。纪律为原始措辞零清洗；append-only 无物理编辑事件（γ 边弱）。全部消息落在 1 个会话。
+
+P2 机制分析待办：编辑信号消融（编辑→热原子 / 编辑→热原子+召回回血 / 编辑→热原子+节点注意力窗口）。数据文件包括 tree-s42/pr_judge.jsonl、flat-s42/pr_judge.jsonl（逐条 judge 明细 agent/ts/label/content）；tree-s42/data/system.db、flat-s42/data/system.db（messages 表含 from/to/content/timestamp）；events_chat.jsonl；mem.jsonl、monitor.out；distill_snapshots.jsonl（树蒸馏 fact/note 含锚点证据）。
+
+场景三为代码智能体。写作壳场景：章目标驱动，固定大纲写 10-20 章，设定三笔伏笔+三个角色状态，高频 rewrite/edit 制造编辑风暴，对照无记忆树基线。测量指标：长程一致性（第 N+1 章对第 1 章伏笔/角色引用正确率）、编辑正确性、状态一致性（改名/死亡/恢复）、回滚对称性、token 计量。
+
+报告文献均真实，含 Infini Memory: Maintainable Topic Documents for Long-Term LLM。能力评分：对话层 20s-3min 吸收 ★★★☆；人格保持 ★★★★☆；注意力签名抗趋同 ★★★★★（Δ自我 30pp，"词汇是公共的，注意力是个人的"）；文化共建载体 ★★★★☆；压缩效率 ★★★★☆；创新/新内容生成 ★★☆☆☆（隐喻回环、内容熵下降，重组系统非生成系统）；鲁棒性相关。
+
+预注册预言：预言 1（皇冠）澜冷缺席回归后存在确认寻求行为显著多于热缺席后，林深两种条件无差异；预言 6（皇冠二号）背后人格≈当面人格；预言 2 分层重同步速度递减（词汇→模板→立场）。关键教训：记忆树擅长保持不擅长生成；精确性需求是试金石；编辑路径从未被真实压力测试；装置效应须记录但不算机制缺陷。
+
+Phase C 三场景并跑：用同一引擎（RealEngine + 记忆树）各跑一轮，输出能力矩阵（事实保持率/精确引用率/任务完成率/内容多样性）+边界结论。题型 T1 细节问答（a 直接/b 转述/KU/KU-hist/AB 拒答）、T2 生成分析报告（≥3~4 条逐条引用）、T3 报告验证（支持/反驳/无据+引用，含机器生成反例：实体互换=反驳、编造=无据）。评分 score.py：T1 精确通道+语义通道+引用真实性；T2 报告内部指标+对照 12 条参照；T3 逐条一致率；引用真实性为确定性检查。
+
+公正性控制：两轮，Round 1 全冷缺席、Round 2 全热缺席，lan-cold vs lan-hot 同一个体跨轮对比；每轮预热约 20 轮，每段缺席约 10-15 轮，回归观测约 15-20 轮；缺席顺序 Round1 为 lan→neutral→lin-shen，Round2 用中性顺序。
+
+单因子实验：结构 × 更新策略。结构分 full（全文发送无预算）/ flat（400 字 chunk + bge 向量 top-12）/ 递归聚簇树（递归摘要+collapsed top-k）/ 分层树；更新策略分 rebuild（从终稿重建，上界参考）/ incremental（只保留编辑）。
+
+另有事件记录：身份混淆正常化、指纹分离稳定（预言 2 支持）、neutral 17:43 OOM 防护重启（natural reset 意外实验）。

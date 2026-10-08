@@ -1,0 +1,197 @@
+{"round": 257, "op": "create", "concept": 1, "title": "唐家与段家的恩怨及旧债调查", "member_count": 9, "members": [{"id": 422, "type": "node", "conn_weight": 82.4}, {"id": 172, "type": "node", "conn_weight": 55.0}, {"id": 271, "type": "node", "conn_weight": 55.0}, {"id": 149, "type": "node", "conn_weight": 31.2}, {"id": 122, "type": "node", "conn_weight": 31.2}, {"id": 391, "type": "node", "conn_weight": 27.4}, {"id": 121, "type": "node", "conn_weight": 23.4}, {"id": 272, "type": "node", "conn_weight": 23.4}, {"id": 331, "type": "node", "conn_weight": 23.4}], "trigger_queries": ["七年前 大火 唐家 四百两 银票", "唐纪澜 短剑 红丝绳 车夫", "老钟厂 地下仓库 铁柜 账册 铁门", "段临洲 段鹤庭 七枚纽扣 锦盒 七扣为证", "何倚笙 棉袄 章茂实 秦小禾 九针堂"], "reclaimed": 19}
+{"round": 257, "op": "match", "concept": 1, "score": 0.5304, "query": "沈寒舟 唐纪舟 出诊 梧桐巷 纱灯"}
+{"round": 257, "op": "bring", "concept": 1, "item": 149, "type": "node", "conn_weight": 31.2}
+{"round": 257, "op": "bring", "concept": 1, "item": 122, "type": "node", "conn_weight": 31.2}
+{"round": 257, "op": "bring", "concept": 1, "item": 391, "type": "node", "conn_weight": 27.4}
+{"round": 257, "op": "bring", "concept": 1, "item": 272, "type": "node", "conn_weight": 23.4}
+{"round": 257, "op": "bring", "concept": 1, "item": 331, "type": "node", "conn_weight": 23.4}
+{"round": 257, "op": "disabled", "concept": 1, "dead_ratio": 0.778}
+{"round": 259, "op": "create", "concept": 2, "title": "老钟厂地下仓库线索调查", "member_count": 8, "members": [{"id": 239, "type": "node", "conn_weight": 47.8}, {"id": 92, "type": "node", "conn_weight": 34.0}, {"id": 143, "type": "atom", "conn_weight": 34.0}, {"id": 159, "type": "atom", "conn_weight": 34.0}, {"id": 173, "type": "node", "conn_weight": 32.6}, {"id": 190, "type": "node", "conn_weight": 32.6}, {"id": 122, "type": "node", "conn_weight": 25.6}, {"id": 123, "type": "node", "conn_weight": 17.0}], "trigger_queries": ["老钟厂 地下仓库 铁柜 账册 铁门", "何倚笙 棉袄 章茂实 秦小禾 九针堂", "沈寒舟 唐纪舟 出诊 梧桐巷 纱灯"], "reclaimed": 25}
+{"round": 259, "op": "match", "concept": 2, "score": 0.5322, "query": "唐纪舟请沈寒舟出诊时手里拎的是什么灯？"}
+{"round": 259, "op": "bring", "concept": 2, "item": 239, "type": "node", "conn_weight": 47.8}
+{"round": 259, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 259, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 259, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 259, "op": "bring", "concept": 2, "item": 173, "type": "node", "conn_weight": 32.6}
+{"round": 260, "op": "match", "concept": 2, "score": 0.4145, "query": "信封封口的火漆印是什么图案？"}
+{"round": 260, "op": "bring", "concept": 2, "item": 239, "type": "node", "conn_weight": 47.8}
+{"round": 260, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 260, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 260, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 260, "op": "bring", "concept": 2, "item": 173, "type": "node", "conn_weight": 32.6}
+{"round": 261, "op": "match", "concept": 2, "score": 0.3238, "query": "照片背面写的日期是什么？"}
+{"round": 261, "op": "bring", "concept": 2, "item": 239, "type": "node", "conn_weight": 47.8}
+{"round": 261, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 261, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 261, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 261, "op": "bring", "concept": 2, "item": 173, "type": "node", "conn_weight": 32.6}
+{"round": 262, "op": "match", "concept": 2, "score": 0.3876, "query": "药材清单上一共列了多少味药？"}
+{"round": 262, "op": "bring", "concept": 2, "item": 239, "type": "node", "conn_weight": 47.8}
+{"round": 262, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 262, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 262, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 262, "op": "bring", "concept": 2, "item": 173, "type": "node", "conn_weight": 32.6}
+{"round": 263, "op": "match", "concept": 2, "score": 0.4324, "query": "秦小禾的裁缝铺叫什么名字？"}
+{"round": 263, "op": "bring", "concept": 2, "item": 239, "type": "node", "conn_weight": 47.8}
+{"round": 263, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 263, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 263, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 263, "op": "bring", "concept": 2, "item": 173, "type": "node", "conn_weight": 32.6}
+{"round": 264, "op": "match", "concept": 2, "score": 0.4541, "query": "地下甬道门楣上刻着哪六个姓氏？"}
+{"round": 264, "op": "bring", "concept": 2, "item": 239, "type": "node", "conn_weight": 47.8}
+{"round": 264, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 264, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 264, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 264, "op": "bring", "concept": 2, "item": 173, "type": "node", "conn_weight": 32.6}
+{"round": 265, "op": "match", "concept": 2, "score": 0.4839, "query": "段临洲带来的锦盒里嵌着几枚纽扣？"}
+{"round": 265, "op": "bring", "concept": 2, "item": 239, "type": "node", "conn_weight": 47.8}
+{"round": 265, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 265, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 265, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 265, "op": "bring", "concept": 2, "item": 173, "type": "node", "conn_weight": 32.6}
+{"round": 266, "op": "match", "concept": 2, "score": 0.4981, "query": "樟木小箱上红纸条写的封箱日期是哪天？"}
+{"round": 266, "op": "bring", "concept": 2, "item": 239, "type": "node", "conn_weight": 47.8}
+{"round": 266, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 266, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 266, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 266, "op": "bring", "concept": 2, "item": 173, "type": "node", "conn_weight": 32.6}
+{"round": 267, "op": "match", "concept": 2, "score": 0.4462, "query": "鹿皮小袋里倒出来多少片骨片？"}
+{"round": 267, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 267, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 267, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 267, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 268, "op": "match", "concept": 2, "score": 0.5783, "query": "沈寒舟出诊时带的是什么药箱？"}
+{"round": 268, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 268, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 268, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 268, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 269, "op": "match", "concept": 2, "score": 0.5485, "query": "章茂实笔记记载棉袄夹层里缝进了什么？"}
+{"round": 269, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 269, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 269, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 269, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 270, "op": "match", "concept": 2, "score": 0.5233, "query": "赵老拐住在什么样的地方？"}
+{"round": 270, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 270, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 270, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 270, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 271, "op": "match", "concept": 2, "score": 0.4006, "query": "何倚笙布局七年真正想要的是什么？"}
+{"round": 271, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 271, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 271, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 271, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 272, "op": "match", "concept": 2, "score": 0.4955, "query": "赵老拐是真的死在废井里吗？"}
+{"round": 272, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 272, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 272, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 272, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 273, "op": "match", "concept": 2, "score": 0.4546, "query": "梧桐巷十七号那户人家的结局是什么？"}
+{"round": 273, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 273, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 273, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 273, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 274, "op": "match", "concept": 2, "score": 0.4505, "query": "段鹤庭留着那张银票打算做什么？"}
+{"round": 274, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 274, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 274, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 274, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 275, "op": "match", "concept": 2, "score": 0.3702, "query": "那盏缠枝莲灯是哪里来的？"}
+{"round": 275, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 275, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 275, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 275, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 276, "op": "match", "concept": 2, "score": 0.4409, "query": "唐家老三这些年去了哪里？"}
+{"round": 276, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 276, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 276, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 276, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 277, "op": "match", "concept": 2, "score": 0.3701, "query": "大火那晚老太太是怎么活下来的？"}
+{"round": 277, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 277, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 277, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 277, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 278, "op": "match", "concept": 2, "score": 0.5565, "query": "周存厚那笔二十两的旧债最后是谁了结的？"}
+{"round": 278, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 278, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 278, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 278, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 279, "op": "match", "concept": 2, "score": 0.3956, "query": "章裁缝经手过什么特殊活计？"}
+{"round": 279, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 279, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 279, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 279, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 280, "op": "match", "concept": 2, "score": 0.6156, "query": "老钟厂铁柜里那个木盒上描的是什么花纹？"}
+{"round": 280, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 280, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 280, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 280, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 281, "op": "match", "concept": 2, "score": 0.4755, "query": "唐家最后拿什么还给沈家？"}
+{"round": 281, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 281, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 281, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 281, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 282, "op": "match", "concept": 2, "score": 0.5653, "query": "沈寒舟最后为什么把柜格锁上？"}
+{"round": 282, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 282, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 282, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 282, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 283, "op": "match", "concept": 2, "score": 0.4942, "query": "地下仓库那张图上最中心写着谁的名字？"}
+{"round": 283, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 283, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 283, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 283, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 284, "op": "match", "concept": 2, "score": 0.3953, "query": "流水簿最近一笔的经手人姓什么？"}
+{"round": 284, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 284, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 284, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 284, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 291, "op": "match", "concept": 2, "score": 0.391, "query": "纸条上写东西在哪个位置？"}
+{"round": 291, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 291, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 291, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 291, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 292, "op": "match", "concept": 2, "score": 0.3592, "query": "七枚纽扣是第一扣属于谁？"}
+{"round": 292, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 292, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 292, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 292, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 293, "op": "match", "concept": 2, "score": 0.4538, "query": "章茂实笔记说龙骨上的字反过来读是什么？"}
+{"round": 293, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 293, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 293, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 293, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 300, "op": "match", "concept": 2, "score": 0.4725, "query": "济生堂倒闭的根子是谁断了货源？"}
+{"round": 300, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 300, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 300, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 300, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 333, "op": "match", "concept": 2, "score": 0.3678, "query": "赵某的左腿有什么毛病？"}
+{"round": 333, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 333, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 333, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 333, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 334, "op": "match", "concept": 2, "score": 0.4308, "query": "唐纪澜在部队用的匕首上刻着什么字？"}
+{"round": 334, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 334, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 334, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 334, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 335, "op": "match", "concept": 2, "score": 0.5457, "query": "龙骨账册最后一页记的那笔账，结果是什么？"}
+{"round": 335, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 335, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 335, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 335, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 336, "op": "match", "concept": 2, "score": 0.5208, "query": "那件藏青棉袄的夹层是谁拆的线？"}
+{"round": 336, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 336, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 336, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 336, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 337, "op": "match", "concept": 2, "score": 0.3469, "query": "信封上写的六个字是什么？"}
+{"round": 337, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 337, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 337, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 337, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}
+{"round": 338, "op": "match", "concept": 2, "score": 0.3549, "query": "骨片正面排列出来是什么？"}
+{"round": 338, "op": "bring", "concept": 2, "item": 92, "type": "node", "conn_weight": 34.0}
+{"round": 338, "op": "bring", "concept": 2, "item": 143, "type": "atom", "conn_weight": 34.0}
+{"round": 338, "op": "bring", "concept": 2, "item": 159, "type": "atom", "conn_weight": 34.0}
+{"round": 338, "op": "bring", "concept": 2, "item": 123, "type": "node", "conn_weight": 17.0}

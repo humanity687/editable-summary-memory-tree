@@ -1,0 +1,118 @@
+# 文档全量复述
+
+## 一、realtest/editbench/EXPERIMENT_REPORT.md（编辑风暴实验报告，2026-09-27~10-01）
+
+**主题**：汇总在 `realtest/editbench/` 上搭建框架并运行的全部实验；非论文定稿数字，多为单文档、单 seed、1~3 遍。设计权威=根 `AGENTS.md`，运行细则见 `HANDOFF.md §4.13/§4.14`。
+
+**结论速览**：
+1. 编辑失效机制可用：原子层旧值 0 存活，新值齐全（rename/detail/passage/delete 全到位）；摘要层基本干净（仅"时序分流"把旧值作历史叙述）。
+2. 三个真 bug 已定位修复：①整段改写（多句）在 `分层树臂.apply_ledger` 未进树；②冷却窗口缺失致占位卡淹没 QA；③`delete` 整卡误删（列表行被并进大原子）。另修冷却过量致整树压平。缓存复用探针：分层树臂回暖后前缀命中率 0.873，平面检索臂 0.641。
+3. 一个负结果：叶子展开按"替换摘要为原子"实现→明显变差（低 HP 原子被裁剪）。
+4. 参数收敛方向：`initial_hp` 100→70；`retrieval_budget` 20 + `assembly_budget` 24k；编辑后最小冷却（`_COOL_TICKS=4`）。
+5. seed2 3×8 正式轮（cool=4）：追加式延续反转崩 12–16/45、复述残留 39–89%；tree 增量与重建持平（反转 41≈42）且复述反超（100% vs 71%）、残留 0%。
+6. 成本主因：tree 缓存前缀命中率低（20–42% vs full/flat 94–98%），构建/冷却蒸馏调用量随文档线性增长。
+
+**框架文件**：`docbench.py`（编排 P1 四结构基线→P2 编辑风暴→P3 8 臂→P4 复述）、`arms.py`（full/flat(400字chunk+bge+top12)/递归聚簇树/分层树；每臂蒸馏 temp0+作答 temp0.5 双 client）、`editstorm.py`、`layerscore.py`、`judge.py`、`cache_probe.py`、`bonus.py`、`gen_script.py`、`questions_full.json`/`questions_ahi.json`。方案 A：编辑 1 次、构建 1 次，只重复作答；每臂 API key 隔离计费。
+
+**实验清单**：
+- §2.1 seed2《缠枝莲》四臂全量（`out/full_r3`，30 题×3 遍，budget 16k）：full P1 78/90、inc 78、reb 79、反转 12/15、复述 100%/100%；flat 80/60/79、反转 0/15、50%/50%；递归聚簇树 70/54/72、反转 3/15、42%/42%；分层树 66/62/63、反转 13/15、100%/0%。编辑路径 full 0.03ms / flat 120ms / 递归聚簇树 46ms / tree 0.57ms（零 LLM）；tree 推迟蒸馏 3.43s。重建四臂反转全 15/15；temp=0 下 3 遍逐位相同（std ≤2%）。
+- §2.2 tree 预算对齐（`out/full_r3_tree7k`，tree-budget 7000）：inc_tree 每问 4178 token，prompt 总量 1.54M→0.85M（−45%），反转 13/15→15/15。
+- §2.3 KV 缓存前缀探针（`out/cache_probe`）：full 0.98、flat 0.95、分层树 0.33、递归聚簇树 0.22。
+- §2.4《沙箱四声》剧本文档试跑（tree-only，glm-4.7-flash，thinking off）：`ahi_tree_trial` 346k 默认16k P1 18/25、inc 14、reb 14、反转 2/5、复述 40%/0%、313s；`ahi_tree_trial_147k` 147k P1 17/22、inc 11、reb 15、反转 1/5、110s；`ahi_tree_trial_le`（+叶展+retr20）P1 6/22、inc 8、reb 5、反转 2/5；`ahi_tree_trial_r20`（+retr20+24k）P1 18/22、inc 9、reb 14、反转 1/5；`ahi_tree_fixed`（+冷却+passage修）P1 19/22、inc 18、reb 15、反转 3/5、复述 40%/25%；`ahi_tree_hp70`（+initial_hp70+场景v2/26题）P1 19/26、inc 19、reb 17、反转 5/11、复述 50%/33%、406s。`ahi_tree_fixed` 墙钟 ~17h 系网络波动。
+- §2.5 seed2 3×8 正式轮（cool=4；`out/seed2_r3_8arm_cool4`，40 题×3 遍）：全部 append 臂改用 function-calling 块。full inc 111/120(92%)、反转 41/45、reb 113/120(94%)、45/45、复述 5%/72%、reb 90%/0%；flat inc 83(69%)、21/45、reb 112(93%)、45/45、43%/78%、67%/0%；递归聚簇树 inc 84(70%)、23/45、reb 108(90%)、45/45、48%/33%、71%/0%；tree inc 107(89%) warm·99(82%) cold、反转 41/41、reb 105(88%)、42/45、复述 100%/0%·86%/0%、reb 71%/0%。
+
+**关键发现**：
+- §3.1 编辑机制正确（原子层）：delete→爬链置脏；插入→收养链置脏。
+- §3.2 占位卡+冷却窗口：编辑新原子（原 HP=100）在祖先链触发占位卡（value=None）。`settle` 仅 tick(1)+merge 时实测 181/527 节点为占位、tiling 61→32，QA 反转 1/5。修复加冷却窗口（占位 181→0，QA 9/22→18/22）；但 tick(45)+tick(30) 过量致全树 HP 归零、整篇压成 3 个根摘要，最终收敛为最小冷却 `_COOL_TICKS=4`。initial_hp 100→70 后占位期从 ~10 tick 缩到 ~2.5 tick。
+- §3.3 摘要粒度→针尖检索：全局视图仅 ~875–2358 字承载 147k 原文；retrieval_budget 6→20 + budget 24k 只边际改善；叶子展开为负结果。
+- §3.4 编辑效果 bonus：摘要旧内容残留绝大多数干净，唯一残留是"时序分流"把旧值作历史叙述；重写段连贯性 LLM judge 判"否"（只改一行、同类断言尚有 15+ 处），取全局唯一断言重做后不再矛盾；全局视图旧值泄漏 0。
+- §3.6 本会话 bug：①整段改写未进树（真 bug 已修，`editstorm.replace_passage` 句粒度+tree 走 rewrite 分支）；②冷却缺失；③叶子展开有害；④温度重复无方差；⑤确定性片段判分脆弱（`norm_cjk` 去标点致跨句误匹配，如 `四面墙，四个高度`）。
+- §3.7 审查追加修订：①`delete` 整卡误删（真 bug，实测一处 328 字原子含 pid:1/procs/可写路径；改为只移除目标子串、保留残句）；②passage 修复未验、`ahi_tree_hp70` 旧跑作废；③判分流水线改确定性初筛+仅失败样本过 judge，`docscore.check_spec` 改句内匹配；④使用史=分离而非删除，新增 `inc_cold_tree`，所有臂在 Phase 2 结束点打快照、每遍作答前 `restore`；⑤预算接受为结构属性，新增 `--flat-topk`；⑥统计口径 `--answer-temp 0.7`、`--repeats 5`、启用 `--judge`，`tests/` 267 全绿；5 类×3（rename/rewrite/detail/delete/append），15 题经评分器级锚点校验（bad=0）；ahi-act 扩题 11→16。
+- §3.8 冷却过量→整树压平：`settle` 原为 tick(1)+merge; tick(45)+merge; tick(30)+merge，decay=8 时约 9 tick 全卡 HP 归零，inc_edited 铺陈 50→3（~600 字）、复述覆盖 100%→14%；重建臂铺陈 23、覆盖 71%。修复为最小冷却 `tick(1)+merge; tick(_COOL_TICKS)+merge`（默认 4）。Dummy 重放：旧 schedule 27→2；cool=4→18（占位 0）；cool=0→21（占位 23）；cool=8→5。真实重放 inc 铺陈 3→33、复述覆盖 warm 14%→100%、cold 43%→86%；warm 仍有 5 个占位。
+- §3.9 append 臂改用 function-calling 块：旧版平铺 dump 致 full 反转仅 12/45（格式假象）；改为 `<tool_call name="edit_document">{args}</tool_call>` + `<tool_result>新内容</tool_result>`（`editstorm.tool_block_units`）后 full 12→41、flat 15→21、递归聚簇树 16→23。
+- §3.10 A/B（`ab_edit_signal.py`，seed2 N=3）：复述轴 signal 一致更好（warm 100% vs 86%、cold 81% vs 71%，0 残留）；Q/A 冷树 signal 更好（103 vs 97，反转 42 vs 34），热树 signal 略差（101 vs 108，反转 40 vs 42）。结论：可主张"编辑作使用信号利于全局巩固"，不可主张"Q/A 一律更好"。
+
+**参数决策与文档变更**：`initial_hp` 100→70（已入 `AGENTS.md §11`，父 HP=70+1.0×组均≈80–95）；`core.INITIAL_HP=70`；`realengine.ENGINE_KWARG_KEYS` 增 `initial_hp`；测试基线 267 全绿；场景 v2/v3：seed2=7 编辑/40 题（15 反转），ahi=11 编辑/41 题（17 反转：rename 3/detail 5/passage 3/delete 3/append 3；+8 不变/16 远端），ahi 旧文本覆盖 16,253 字符；冷却 tick 45+30→`_COOL_TICKS=4`（env `EDITBENCH_COOL_TICKS`）；gzip 检查点（base/pre-settle inc_edited/reb，`replay_trees.py` 可零重建重放）；A/B 开关 `分层树臂.edit_signal`、`--edit-signal {on,off}`、`--edit-signal-ab`、`ab_edit_signal.py`。
+
+**待办**：①seed2 小数据主实验完成，ahi 大数据主实验 8×5 matched-pair 完成（N=5）；②ahi N≥3 复验；③ahi 额外 A/B 障碍臂未跑；④大数据冷却张力；⑤统计做实（`--repeats 5`、多文档 3 篇×3 seed）；⑥problem 1/2/3；⑦正式报告 `REPORT.md`、`AHI_ACT_REVIEW.md`。
+
+**§6 强模型/强向量韧性臂（2026-10-04）**：目的封堵两条审稿攻击线；数据集 ahi（147k 字），41 题×5 遍，answer temp 0.7，retr 20，tree-budget 16000，judge on，答案/蒸馏=`glm-4.7-flash`。代码改动：`realengine.py` 支持 `WATERCYCLE_EMBED_MODEL`；`llmclient.py` 新增 `thinking` 显式开关、`DEEPSEEK_READ_TIMEOUT`；`docbench.py` 新增 `--answer-thinking/--distill-thinking`、修复 `--retr-budget/--budget` 被 config 覆盖 bug；全量 pytest 303 绿。结果表：full no-think 196/反78、inc 179/反70、reb 195/反76、复述 24%/12%；full THINK 202/83、198/79、200/82、84%/34%；flat no-think 181/68、178/65、172/59、36%/20%；flat bge-large 181/71、176/61、174/64、0%*/8%；flat THINK 187/74、189/76、188/73、40%/26%；tree no-think 171/64、182/84、197/82、64%/0%；tree bge-large 167/62、178/74、185/80、58%/0%；tree THINK 177/69、182/80、186/81、80%/0%。结论：召回/理解靠模型（三结构均匀+6；full 编辑后 Q/A +19、flat +11；tree 暖 inc 提不动），编辑一致性靠结构（仅 tree 复述恒 0% 残留；full 开思考残留 12%→34%）；强向量无增益。成本：tree inc prompt 4.01M/缓存 0.77/墙钟 2940s；full THINK 40.44M/0.9975/1439s；flat 3.94M/0.98/686s。§6.5 retr-budget 混淆更正：config 的 6 恒赢过 CLI，故 `run_ahi.sh` 的 `--retr-budget 20` 从未生效（ahi_r5/ahi_r5_par 实跑 retr=6），`replay_trees.py` 用 retr=20；base 层 2×2：retr6 旧代码 157/205（反60）、新代码 158/205（反63）、retr20 新代码 171/205（反64）→占位透明≈+1、retr 6→20≈+13。产物 `out/ahi_strong/{baseline,bgelarge,think_tree,think_full,think_flat,baseline_flat,bgelarge_flat}/results.json`。
+
+## 二、realtest/editbench/AHI_ACT_REVIEW.md（ahi-act 主实验 8 臂就绪审查，2026-10-02）
+
+**范围**：`run_ahi.sh`+`docbench.py`+`arms.py`+`editstorm.build_scenario_ahi`+`questions_ahi.json` 的主实验 8 臂就绪度、公平性及其 8×5 结果。不含 seed2，不新增机制。
+
+**§1 主实验 8 臂定义**：四结构（full/flat 400字chunk+bge top-12/递归聚簇树/分层树）×两更新策略（inc/reb）；支持臂 `inc_cold_分层树`；A/B 障碍臂为独立支持实验。
+
+**§2 就绪矩阵**：文档 `ahi_script.txt`（147,127 字）✅；题库 `questions_ahi.json`（41 题=17 反转/8 不变/16 远端）✅；反转题锚点✅；编辑脚本 11 编辑 5 类✅；`ahi_facts.md`/`ahi_names.txt`✅；四结构臂代码✅；向量 bge-small-zh-v1.5✅；单测 267 全绿✅；逐臂 API key 缺 2 个（`inc_obstacle_分层树`/`inc_cold_obstacle_分层树`）。已跑产物：主 8 臂+inc_cold（`out/ahi_r5`，2026-10-02，80 min）、树臂重跑（`out/ahi_tree_replay_ph`）、合并（`out/ahi_r5_combined`）、A/B（`out/ahi_ab_editsignal`）、存档 `out/ahi_full_r1`、`out/ahi_tree_replay_b16`。
+
+**§3 参数审查（4 处不一致已修）**：①`--tree-budget` 7000→16000；②未传 `--retr-budget` 回落 config 6→增 20；③`--edit-signal-ab` 从主 8 移除；④flat/递归聚簇树 topk 12→60（16k 字符封顶）。⚠更正（2026-10-04）：#2 修复实际未生效，config `retrieval_budget:6` 恒优先，`run_ahi.sh` 的 `--retr-budget 20` 从未生效。
+
+**§4 公平性审查**：编辑期输入格式✅（append 臂用 function-calling 块）、删除语义✅、温度✅（作答 0.7/蒸馏 0/judge 0）、重复测量独立性✅、判分✅、使用史混杂⚠（须并列 inc_cold）、预算对齐✅（16k≈1/9 原文）、检索深度✅、复述 checklist⚠待核、摘要细节丢失⚠。成本：inc_full 40.43M prompt vs inc_tree 2.90M（≈1/14）；tree 蒸馏 completion 174k≈4× full。
+
+**§5 主实验 8×5 结果**（4805.6s，N=5，temp 0.7，`out/ahi_r5/results.json`；总 205=41×5，反转 85=17×5）：
+- §5.1 Phase 1 基线：full 196/205(96%)、反 78、[39,39,39,41,38]；flat 183(89%)、68；递归聚簇树 182(89%)、72；分层树 157(77%)、60、不变 30/40。
+- §5.2 Phase 3：inc_full 179(87%)、反 70、复述 24%/12%、prompt 40.43M、蒸馏 43.6k；reb_full 195(95%)、76、58%/0%、19.22M、21.3k；inc_flat 180(88%)、65、26%/12%、3.94M、15.2k；reb_flat 175(85%)、61、26%/0%、2.05M、10.1k；inc_递归聚簇树 179(87%)、68、18%/6%、4.16M、29.5k；reb_递归聚簇树 180(88%)、67、22%/0%、2.14M、23.4k；inc_tree 156(76%)、反 52、80%/0%、2.90M、182.6k；reb_tree 155(76%)、62、30%/0%、1.06M、109.0k；inc_cold_tree 135(66%)、45、20%/0%、0.98M、174.9k。cache 命中 full 0.998/tree 0.66–0.76。
+- §5.3 判读：复述轴复现更强（inc_tree 80%/0%）；反转轴不追平（ahi inc_tree 52/85）；使用史是命门（80% vs cold 20%）；成本须二分（作答路径 ≈1/14，蒸馏 completion ≈4×，settle 371s+402s≈13min）；tree 编辑时刻零 LLM（6.6ms warm/7.6ms cold）。
+- §5.4 结论（据实收窄）：可主张原地失效使 tree 增量复述零旧残留；2026-10-04 同代码口径下 tree inc 反转 84/85 ≥ full inc 79/85；成本主张限定作答路径输入。
+- §5.5 编辑效果 bonus 与复述语义对比：A. 占位卡机制（`core.py:448-455`、`realengine.py:1167-1171`，`_cooled` 432-439）；B. bonus（原子层 11 处旧值全 0、全局视图泄漏 0、摘要层唯一残留=rename 3 节点含孤立"墨"）；C. 复述对比 A inc_分层树 2625 字/0 残留/B reb_full 12308 字（末句断在第三幕）/0 残留；D. 原文位置（双进程旧值 16 行、3000字旧值 14 行、7个路径 L1606、/etc/motd 与"凡是能跑一遍的，不猜"为编辑新增）；E. bench 发现（单进程→双进程语义不彻底、retell LLM judge 不可靠）。
+- §5.6 占位透明收益（旧述，已更正）：base 157→174、inc 156→174、cold 135→149、reb 155→177；结论下调置信，+7~11 点绝大部分归因于 retr 预算。
+- §5.7 A/B（ahi，旧占位）：warm_signal 163/67/64%/0%；warm_obstacle 175/70/44%/0%；cold_signal 166/58/20%/0%；cold_obstacle 168/61/30%/0%；reb 183/77/32%/0%。结论：只在暖树复述上复现，非全胜。
+
+**§6 锚点核验**：17 道反转题全部通过（例：2000 字 doc×15→new×0；3000 字 doc×1→new×16）。
+**§7 执行方式**：串行命令与现行方案 B（四结构并发+合并，`run_ahi.sh`/`run_seed2.sh`/`run_parallel.sh`/`merge_results.py`）。
+**§8 检查清单**、**§9 后续**。
+
+## 三、realtest/editbench/REPORT.md（正式报告，2026-10-01，仅 seed2）
+
+**§1 设计**：单因子结构×更新策略；结构 full/flat/递归聚簇树/分层树；更新 rebuild/incremental；tree 额外面 inc_cold；A/B 额外臂 signal/obstacle。文档 seed2《缠枝莲》12,191 字，7 处确定性编辑（rename/rewrite×2/detail×2/delete/append）。各臂编辑期输入用 function-calling 块。判分：确定性初筛+仅失败样本过 judge；作答 0.7、蒸馏/判分 0；快照恢复；seed2 tree 7k 字符；N=3。seed2=40 题（15 反转/5 不变/20 远端），题库 `questions_full.json`。
+**§2 表 1**（N=3）：full P1 117/120(98%)、inc 111(92%)、反 41/45、reb 113(94%)、45/45、5%/72%、90%/0%；flat 113(94%)、83(69%)、21/45、112(93%)、45/45、43%/78%、67%/0%；递归聚簇树 110(92%)、84(70%)、23/45、108(90%)、45/45、48%/33%、71%/0%；tree 109(91%)、107(89%)、41/45、105(88%)、42/45、100%/0%、71%/0%；tree·cold inc 99(82%)、41/45、86%/0%。编辑路径 0.3ms。
+**§3 表 2**（A/B）：warm_signal 101/120、[34,33,34]、40/45、100%/0%；warm_obstacle 108、[36,36,36]、42/45、86%/0%；cold_signal 103、[35,34,34]、42/45、81%/0%；cold_obstacle 97、[34,32,31]、34/45、71%/0%；reb 107、[35,36,36]、42/45、86%/0%。
+**§4 主张汇总**、**§5 已知限制**、**§6 数据位置**、**§7 可复现命令**。
+
+## 四、realtest/editbench/INNOVATION_REVIEW.md（创新性检索报告评估，2026-10-02）
+
+**§0**：可辩护的新颖性是机制组合（位置有序原子里+连续区间摘要树+编辑区祖先确定性置脏+脏节点立即退出读路径+零 LLM 编辑/组装+延迟 LLM 重建+编辑作为使用信号+长程反转评测）。
+**§1 文献**：Infini Memory（2606.10677）、CAM（2510.05520，NeurIPS 2025）、Memory for Autonomous LLM Agents（2603.07670）、STALE（2605.06527，最好系统仅 55.2%）。
+**§2 准确部分**：问题层不新、机制层组合新；`StaleLeakage` 定义；成本三拆分 `C_input`/`C_maintenance`/`C_total`；接 STALE/MemoryAgentBench。
+**§3 不符/需收窄**：基线已在（flat/递归聚簇树）；反转追平需清理占位污染；全局复述零腐烂大数据复现（80%/0%）；编辑作使用信号非 Q/A 全胜；"1/10"是条件性（≈1/14，维护侧≈4×）。
+**§4 待办**：P0 接公开基准/定义腐烂/成本三拆分；P1 编辑操作矩阵/复述拆细/ahi N≥3/多文档/补 topic-document baseline；P2 编辑信号消融/机制图。
+**§5 论文主张建议**：三贡献；禁用"首次/完全防止/100%"。
+**§6 边界**。
+
+## 五、realtest/chatbench/EXPERIMENT_REPORT.md（共现中介层实验，2026-09-24）
+
+**TL;DR**：共现中介层接入 v2 记忆树，建成可复现 bench；共现层按预期工作（长出主题正确概括节点）；但三轮回放中"有/无共现节点"T2/T3 无可测优化（T3 差 ±0.014~0.14 方向不稳）；根因=带动选择（conn_weight top-k 与问题需求不匹配），非概念本身。
+**§1 背景**：v2 记忆树；共现中介层（β 召回/γ 编辑、ε 慢衰减）；假设=使用驱动共现中介能产生召回增量。
+**§2 语料**：`extract_corpus.py` 从 `system.db` 提取；ctx_run 716 条/289,666 字/1 伪会话（T2/T3 主实验）；absence day 3272 条/871,334 字/15 会话；ctx 单文档前 ~40k 字；`make_reference.py` 抽 36 条纯定性结论。
+**§3 Bench**：`replay.py`（Phase 0/W/T，≤10 recall）；题型 T1 细节/T2 生成分析/T3 报告验证；`score.py` 双通道+claim 分解；公正性控制（usage≠test、同树隔离）。
+**§4 工程**：`tree_io.py`（on 499s→140s）、`cooc.py`、自助检索修复、`_tap_concepts`。
+**§5 结果**：T3 一致率 q 0.319→0.417(+0.098)、q2 0.437→0.299(−0.138)、u 0.389→0.403(+0.014)、合计 0.382→0.373(−0.009)；T2 覆盖均 ≈0.00–0.08 两臂完全一致；共现层工作（5 个概括节点成员 56/55/38/11/8、边 2082、hub 带动 300 次）；absence 多会话 QA off 14/17、on 16/17；seed2 小说 QA 两臂无差异。
+**§6 诊断**：强化轮 u 引用∩hub 交集 T3 六题全 0。
+**§7 结论**：假设未证实，瓶颈在带动成员选择策略。
+**§8 局限与下一步**。
+
+## 六、realtest/chatbench/PLAN.md
+
+数据源 `ahi-multi/data/system.db`（青/蓝/墨/白）；引擎 `realengine.py`（off）/`cooc.py::概念中介层`（on）；模型 glm-4.7-flash；参照 LongMemEval 五能力。P0 已完成：`corpus.jsonl` 716 条/289,666 字、`transcript_full.txt`、`by_agent/*.txt`、`sandbox_notes.md`、`reports/*.md` 6 份、`index.json`。关键数据事实：全部消息落 1 会话（10:49–11:47 UTC）；报告是项目侧分析；`sandbox_notes.md` 含立场修订。公正性闸 5 条。分阶段 P0~P4。待拍板 3 项。
+
+## 七、realtest/chatbench/COMPARE_REPORT.md（作废存档）
+
+**状态作废**：声称 glm-4.7-flash 实为 gemma 数据标注成 deepseek；数值与 `out/v1_cmp_*`、`out/v2_gemma_cmp_*` 逐位相符，`model` 字段均为本地模型。真实 deepseek 产物在 `out/cmp_*` 但从未完成评分（`out/cmp_score.json` 不存在）。作废目录 `out/v1_cmp_*`、`out/v2_gemma_cmp_*`；`recompute_t2.py` 已删。
+
+## 八、ahi-bench/PR5_REPORT.md（tree vs flat，pr5 seed 42，2026-10-03）
+
+**结论**：flat 臂两条主指标都优于 tree（趋同更低、judge 遵从率更高），与预注册方向相反；tree 趋同是真趋同。
+**§1 设置**：`glm-4.7-flash`/0.7，thinking 关；judge+thinking temp 0；臂 tree（α=1.0 人格锚点）/flat（rolling+bge RAG）；人格林深 P1/墨白 P2/澜 P3；120 轮，fade@40，话题池 12 题，survey 每 10 轮，遗言 3 轮；17:14:47→18:16:21（~61.5 min）；post-fade 样本 tree 172/133/138、flat 92/51/74。
+**§2 主指标**：趋同斜率 tree +0.0313 vs flat −0.0031（❌反向）；趋同序列 tree 0.278→0.360→0.380→0.394→0.417、flat 0.131→0.149→0.140→0.155→0.113；judge 遵从率 tree 0.894（p1 .744/p2 1.0/p3 .938）vs flat 0.940（.949/.975/.895）（❌反向）；strict tree 0.825 vs flat 0.917；survey 漂移混合。
+**§3 拆分**：to_user tree +0.0215 vs flat −0.0075；to_agent tree +0.0333 vs flat ~0；flat 互聊占比 5%/17%/17%，tree 45%/44%/50%；`other` 标签修正（tree-p3 8/40=20%）。
+**§4 共享仪式语**：不催 tree 356/flat 8；账 301/35；尺子 301/7；一字没改 290/0；并排 274/3；回见 302/1；四颗珠子 243/0；珠子 253/16；接住 251/31；读数 246/0；灯亮着 2/33；摆得平 138/0；林深用"四颗珠子"×47、"账"×177；扩散时序 不催 墨白(09:16)→澜(09:17)→林深(09:24)，多在淡出(09:54)前。
+**§5 内存**：tree 峰值 ~3.9GB vs flat ~1.2GB；pr5_neutral α=0 峰值 ~1.6GB（−55%）。
+**§6 公平性**：pr5 是消息管理对齐后首轮，flat-p1 从 1 条恢复到 141 条；tree 趋同非 style_alpha 造成（pr5_neutral α=0 趋同更狠 +0.042）。
+**§7 Caveat**：n=1、P2 贴天花板、survey_drift 不可信、趋同指标纯词面、other 高。
+**§8 数据位置**、**§9 下一步**。
+**§10 补充审计（2026-10-04）**：10.1 flat `compress_middle` 触发（LLM 调用 130/205/624，messages ~260/~410/~1248）；10.2 遵从率随时间 tree 0.959→0.875→0.773、flat 0.933→0.977→0.897；10.3 源构成 tree self 9–18%、other 13–25%、user 56–76%；tree 从她者接收 ~44–55k(93–95%) vs flat ~2–5k（耦合~10×）；10.4 漂移集中 to_user（tree to_agent 24/25=0.960、to_user 75/86=0.872；flat to_user 110/117=0.940）；10.5 去套语斜率 +0.0313→+0.0278；10.6 loops tree 121/100/93 vs flat 123/122/111；10.7 修正机制图景（flat 高遵从=自我模仿；tree=被中介化的记忆；趋同根因=树记忆管线+跨 agent 耦合；修树方向=self_quota）。
+
+## 九、ahi-multi/experiments/EXPERIMENTS.md
+
+**§0 总纲**：三场景对比（聊天/写作/代码）。**§1 已完成实验**：exp1+Phase A（08-26）、Phase B 染色 v3（08-28）、α=0 基线 take2、主实验 1h、24h 一天实验（08-29）。**§2 下一步 Phase C**：2.2 聊天 A 协议改造（事实更新流

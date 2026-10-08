@@ -1,0 +1,43 @@
+这份材料是 AHI 多智能体记忆与人格保持项目（ahi-bench / ahi-multi）的交接与实验文档汇总，核心内容如下：
+
+**主题与结论**
+- 项目核心：以"位置有序"等四条思想替代全量发送、静态摘要拼接、关键词检索三种方案，解决长参考资料在有限上下文窗口中的处理问题；核心矛盾是参考资料为长期演化内容而现有方案均为无状态文本生成。
+- 首个应用：长篇小说写作 Agent，分阶段写作（write/rewrite/edit/recall/ask），每章固定流程：目标进入→预检索→写作循环→章末蒸馏+事实对账+版本快照；每章恒定约 14k 字符上下文预算，与全书规模无关。通用化：章→结构单元，beat→内容块，伏笔→跨区引用。
+- 人格保持结论：词汇层如期融合（门/灯/循环/年轮/承重/报错诊所全员共享），但遗言证明立场层在死亡压力下仍保持分化——澜与林深各自完成对立存在论的终极表达，谁也没向谁移动半步；澜的内核未变但支撑结构从"依赖性存在"（能被记住才是活着的证明）升格为"结构性存在"（我们仨已经在年轮里长好了位置）。
+- 人类盲测失败：模式 A 七人 44-58%（机械代理 63.3%）；模式 B 三人 47-61%；neutral 全灭（识别率 17-33%）、澜风格四分五裂（被识别成 2-4 人）、林深唯一可辨识（83-100%）；澜↔neutral 为最大混淆对。
+- 词汇趋同实验组自签名词密度 +85% vs 基线 +57%（受 temperature 未统一污染）；情境一致性重复问卷相似度 0.85-0.95。
+
+**关键参数与取值**
+- config.json：provider: deepseek；model: glm-4.7-flash（64k 上下文），含 API key；ollama glm-4.7-flash 为备选。
+- 染色强度 α ∈ {0, 0.5, 1}，α=0 即中性基线（单字段模板+程序强制清【注】），α>0 时【注】可选；lan config α=1 / neutral α=0。
+- self_quota 参数：self_quota_ratio(0)/self_quota_max(0.5)/self_quota_min_len(8)；tree self_quota_ratio=0.35 + style_alpha=1.0。
+- 冷却窗口（bench_qa 专用）：风暴后 tick(45)→merge→tick(30)→merge，修复复述崩溃（1.5%→30.8%）。
+- merge 条件式触发（2026-08-30 拍定）：常规 merge 从时间式（merge_every=4）改为每轮查 merge_pressure()，铺陈窗外节点数+窗外原子数（weight 计）> merge_pressure_thresh。
+- 上下文峰值 12k→7.8k；Q/A bench 韧性臂：ahi（147k）×41 题×5 遍、temp 0.7、retr20、judge on。
+- 每章约 14k 字符预算；原子 2474/nodes 318/depth 7（回放）vs 真实 2472/319/7。
+
+**重要数字与专有名词**
+- 目录与脚本：bench_qa.py（结构化压测，三阶段+复述对比+结构断言）、prompt_story_seed.md / prompt_story_seed_wanzi.md、story_open.txt（《青州旧事》）、seed/（story.txt 3k字 + facts.md 40条 + names.txt 11人）、seed2/（《缠枝莲》12k字 + 50条事实，校验全过）、realtest/out/*/（metrics.jsonl / tree_snapshots.jsonl / responses.txt / story_full.txt / notebook.json / run.log / report.html）、run2.py（无尽续写，run.py v1 已删）、cooc.py（共现中介层 Demo v1.0）、cooc_bench.py（NovelQA 四层 bench）、chatbench/（聊天数据记忆 bench，主力）、chat_agent.py、chattext.py、core.py、realengine.py、protocol.py、splitter.py、metrics.py、report.py、docbench.py、provision.py、driver.py、pr_analyze.py、visualize.html、AGENTS.md（唯一设计权威）。
+- 测试：tests/ 301→303 全绿（约 18s），机制层分布 chain(16)、marking(15)、merge(16)、assembly(10)、retrieval(11)、rollback(9)、fuzz(6)；另有 161 全绿（+26 新）、190 测试全绿、pytest 284 绿。
+- 实验模块：M1 人格移除梯度、M2 指纹/趋同、M3 文化演进；PERSONA_RETENTION.md（v0.6，§10.2 pr5 结论/§10.3 self_quota 预注册/§10.3.1 pr6_sq）、PR5_REPORT.md（seed42）、SPEC.md。
+- 配置：config/persona_retention.json、persona_retention_sq.json、m0_corpus.json、bench_config.example.json、keys.local.json。
+- 缺席实验预言：热缺席/冷缺席操纵，预注册预言——澜冷缺席回归后存在确认寻求行为显著多于热缺席后，林深两种条件下无差异；其余预言含分层重同步速度递减、B/C 在 A 缺席期间相互趋同加速、缺席记忆完整性（A 树中零缺席期间内容）、背后人格≈当面人格。
+- 编辑风暴实验（realtest/editbench/，2026-09-27 搭框架→10-01 报告）：2×4 因子矩阵，seed2《缠枝莲》12k字 + 预注册 30 题，单文档单 seed pilot；REPORT.md 为正式报告，EXPERIMENT_REPORT.md 为会话流水。
+- bonus.py 结论：6 编辑中 5 个干净，仅"单进程"残留 2 个节点（ver=2 新摘要，created_round 390/402 自我调和）；全局视图旧值泄漏 0；原子层新旧完全正确；重写段连贯性 LLM judge = 否（新文档自相矛盾，同类断言尚有 15+ 处）。
+- SQ ratio=0.35 120 轮实验：H-SQ1/3/4 达标（self .35–.43、词面趋同归零、多样性保持），H-SQ2（止跌）未达标（遵从 .857→.739→.600，p1 漂进"账/约定"共享仪式语），结论为自我可见性必要不充分。
+- 平台机制：三级寻址（user:console / agent:<id> / broadcast:agents / broadcast:users）、@send-to 指令、@wait_for / @dismiss / @ingest、persona 双开关（persona_drop_after_rounds / after_atoms）、主进程 main.py :8080、命名隧道 ahi.humanity-0xbf5d36.top、WebSocket 前端。
+- 陷阱清单：wait_for 刺客（缺席者挂起 wait_for 必须清理）、回执环、回归首组装偏向、积压上限（≤10条）、轮换+顺序平衡。
+- 修复层仅 2 条（系统缺陷）：@wait_for 信道白名单校验、wait_for 超时/重试等。
+
+**时间与事件**
+- 2026-08-27：染色 v3 设计定案（指针密度）；修复与观测清单审查精简；bonus.py 编辑效果分析。
+- 2026-08-28：α>0 时【注】可选拍定。
+- 2026-08-30：merge 条件式触发拍定；HANDOFF.md 更新。
+- 2026-09-24/25：chatbench 聊天数据记忆 bench。
+- 2026-09-27：editbench 论文级编辑风暴实验搭框架。
+- 2026-10-01：editbench 会话报告。
+- 2026-10-02：人格保持实验（PERSONA_RETENTION）设计定稿。
+- 2026-10-04：Q/A bench 韧性臂。
+- 运行命令：`(python3 realtest/run2.py ... > /tmp/run2.log 2>&1 &) && tail -f /tmp/run2.log`；运行流程约 8 分钟（preflight 禁旧 agent→起平台→smoke 7 轮→provision.py→driver.py）。
+
+**给接手者提醒**：先读 AGENTS.md（唯一设计权威，偏离先与用户确认）；bench_qa / run2 / chatbench 是主力验证工具，改检索/组装/蒸馏/注意力逻辑后同配置重跑对比，别只看单次数字（模型有随机性）；纪律为变量干净、装置效应记入实验变量表、预注册预言、报告方差而非均值对齐度。

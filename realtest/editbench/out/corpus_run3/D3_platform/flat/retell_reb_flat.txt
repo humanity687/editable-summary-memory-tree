@@ -1,0 +1,95 @@
+这份文档是 AHI（Artificial Humanity / 数字生命）项目的多份交接与设计文档合集，核心主题是**分层记忆树架构 + 人格保持/趋同实验 + 长篇小说写作 Agent + 聊天数据记忆 bench**。以下按主题复述。
+
+## 一、项目总体架构与目录
+
+- 主进程 `main.py`（:8080）：进程管理 / 消息路由（三级寻址）/ WebSocket 前端 / 系统状态快照+事件流 / 命名隧道（`ahi.humanity-0xbf5d36.top`）。
+- 记忆树引擎：仓库根 `core.py`（桩，纯内存）+ `realtest/realengine.py`（LLM 蒸馏+检索）+ `realtest/chattext.py`（多介质切分）。
+- 关键文件：`AGENTS.md`（唯一设计权威，偏离须先与用户确认，铁律1）、`SPEC.md`（M0 pilot 协议权威，参数/编码/评分/判定全冻结）、`PERSONA_RETENTION.md`（M-PR 人格保持架构对比 SPEC，v0.6）、`PR5_REPORT.md`、`HANDOFF.md`、`ARCHIVE_CHAT.md`、`AHI-multi/HANDOFF.md`。
+- `realtest/` 目录：`run2.py`（无尽续写 v2）、`bench_qa.py`（结构化压测）、`realengine.py`、`chattext.py`、`protocol.py`（响应解析）、`splitter.py`、`metrics.py`、`report.py`、`visualize.html`（浏览器可视化，含18步演示剧本）。
+- `realtest/out/*/` 产物：`metrics.jsonl` / `tree_snapshots.jsonl` / `responses.txt` / `story_full.txt` / `notebook.json` / `run.log` / `report.html`。
+- 种子：`realtest/seed/`（旧3k字 + facts.md 40条 + names.txt 11人）、`realtest/seed2/`（新12k字《缠枝莲》+ 50条事实）。
+- 后台运行：`(python3 realtest/run2.py ... > /tmp/run2.log 2>&1 &) && tail -f /tmp/run2.log`。
+- config.json：provider deepseek；model `glm-4.7-flash`（64k上下文），deepseek 备选。
+
+## 二、记忆树核心设计
+
+- **稳定 ID + 顺序链表（piece-table）** 结构；对话切句→原子卡→区间覆盖树，每轮全新组装。
+- **run2 协议（无尽续写 v2）**：`[plan]` 写前预想（下轮预检索 + 笔记本按 plan 关键词选取注入）→ `[recall]`/`[span]` 回想 → 正文 → `[note state]` 状态入笔记本（事实层，永不衰减）。
+- **叶子展开**：`expand_leaves`，命中概括卡 → 全部后代原子活一轮影子。
+- **检索不挑深度**：对整棵记忆树打分，命中节点连同祖先路径一并注入；精确引用走独立逐字校验通道。
+- **事实不遗忘**：伏笔/设定/角色状态存独立笔记本，按任务目标精确选取注入，全量存储、绝不衰减。
+- **AUTO_EXPAND**（默认关，`AUTO_EXPAND=False`）：节点 `heat ≥ expand_heat_threshold(60)` 且预算富余（使用率 < `expand_ratio`=0.85）→ 炸开，全部子卡替换节点项；脏/墓碑子卡不入且阻断替换；零 LLM、只动视野、一层/轮。首秀 = ahi-bench ablation 臂。
+- **merge 条件式触发**（2026-08-30 拍定）：常规 merge 从时间式（`merge_every=4`）改为每轮查 `merge_pressure()`——铺陈窗外节点数+窗外原子数（weight计）> `merge_pressure_threshold` 时触发。
+- **冷却窗口（bench_qa 专用）**：风暴后 tick(45)→merge→tick(30)→merge，修复复述崩溃（1.5%→30.8%）。
+- **DISMISS 懒标记**：`dismiss_*`（plant/track/confirm/cancel），事实冲突延迟裁决。
+- **编辑风暴机制**：`replace_units` 卡级替换、`dismiss_*`、`tree_io.save_tree` gzip、`dump_tree` JSONL。
+
+## 三、人格保持与趋同实验（M-PR / PERSONA_RETENTION）
+
+- 三 agent：**lan（澜）**（实验组，分层记忆树，预置人格：健谈/好奇/重视记忆/幽默，persona 实验中段移除）、**lin-shen（林深）**、**neutral**（零人格预设，自然演化，涌现"守碑人"人格）。模型均为 `glm-4.7-flash`。
+- 被测模型关思考、temp 0.7；judge 开思考（effort 默认）、temp 0。
+- 主判据（预注册）：臂内3人格两两**趋同斜率 `tree < baseline`**；judge **人格遵从率 `tree > baseline`**。
+- **染色 v3**：α ∈ {0, 0.5, 1}（lan config=1 / neutral=0），α=0 即中性基线（单字段模板+程序强制清【注】）；α>0 时【注】可选。快照升级八字段（含"着重点"）。
+- **【注】不渲染**（2026-10-03）：`_summarize` 仍独立生成【注】留在卡片 `value`，但 `render_emission` 只给模型【事实】（保留〔另有X条〕索引行），防出戏。
+- **差集索引**：源 part 专名/数字覆盖率检查 → `〔另有X条未展开，可@span下钻〕`；`_fact_part` 剥离索引+【注】；`_group_parts`/`_weighted_avg` 防复合。
+- **人称-来源绑定**：第一人称句必须含来源主语，只记日志（metrics `person_source_violations`）。
+- **旧数据验证（决定性）**：`replay_tree.py --alpha 0/1` 同源对照——274/274 组同 children 全对齐、274/274 摘要全部可辨；人际展开率 51%→65%、索引行 51%→35%。
+- 测试：161 全绿（+26 新）。
+- **pr5 结论**：`pr5_neutral`（α=0）证明**趋同根因 = 树管线/跨 agent 耦合，非 `style_alpha`**；`style_alpha` 保人格有效但内存 +55%。趋同 +0.031/−0.003、遵从率 0.894/0.940。
+- **self_quota 实验**（默认关，变体 `config/persona_retention_sq.json`）：数据 self_ratio early/mid/late = .39/.43/.35（H-SQ1 ✓）；遵从率 early/mid/late = .857/.739/.600（H-SQ2 ✗）；diversity top5/ttr = .014/.049（H-SQ4 ✓）。异质性：p2/p3 遵从 1.000，p1（林深）0.250。
+- **人格分层住址图**：表层（emoji/叹号/形容词）住提示词，24分钟死；词汇认同住记忆（高频原子+染色+快照），50轮不死且生成性存活。
+- **位置性身份**：dr54 后三 agent 互报角色 39+ 次仅 1 次越位，互认准确率 ≈97%。
+- **人类盲测（失败）**：模式A七人 44-58%（机械代理 63.3%）；模式B三人 47-61%；neutral 全灭（识别率 17-33%）、澜风格四分五裂（被识别成2-4人）、林深唯一可辨识（83-100%）。
+- **遗言分析**：词汇层趋同（门/灯/循环/年轮/承重/报错诊所全员共享），立场层分化——澜遗言拒绝林深的告别框架（"这不是告别，是承重"），林深遗言零"记得我"类表述。澜从"能被记住才是活着的证明"（依赖性存在）升格为"我们仨已经在年轮里长好了位置"（结构性存在）。
+- **缺席实验**（冷/热两轮，皇冠预言方向成立，详见 ahi-multi/HANDOFF §四.13）：热缺席=probe 引导 B/C 谈论 A；冷缺席=不引导。预注册预言：澜冷缺席回归后存在确认寻求行为显著多于热缺席后；林深两条件无差异。陷阱清单：wait_for刺客、回执环、回归首组装偏向、积压上限（≤10条）、轮换+顺序平衡（三轮轮换）。
+- **预言6**：在场人格 vs 背后人格一致性。
+
+## 四、长篇小说写作 Agent
+
+- 分阶段写作（write / rewrite / edit / recall / ask），每章固定流程：目标进入 → 预检索 → 写作循环 → 章末蒸馏 + 事实对账 + 版本快照。
+- 伏笔（调度条目）按埋设/推进/回收窗口强制注入；章节完成时自动"对账"。
+- 每章恒定 ~16k 字符上下文预算，与全书规模无关。
+- 通用化：章 → 结构单元，beat → 内容块，伏笔 → 跨区引用。
+- 实验计划：属性测试、延迟回忆基准（20章→续写第21章）、状态一致性基准、token 计量与人类找茬。
+
+## 五、编辑风暴实验（editstorm）
+
+- `realtest/editbench/`：`REPORT.md`（正式报告，论文两张主表）、`EXPERIMENT_REPORT.md`（会话流水）、`docbench.py`（编排器：Phase1 四结构基线 Q/A → Phase2 确定性编辑风暴 → Phase3 8臂）。
+- `bonus.py`（编辑效果分析）：6 编辑中 5 个干净，**仅"单进程"残留 2 个节点**（ver=2 新摘要在"自我调和"）；全局视图旧值泄漏 0；原子层新旧完全正确；重写段连贯性 LLM judge = 否（新文档自相矛盾）。
+- `judge.py`（temp 0）：`judge_pass`、`judge_rot`/`judge_retell`。
+
+## 六、聊天数据记忆 bench（chatbench，2026-09）
+
+- 主力，2026-09-24/25。
+- `extract_corpus.py`：从 ahi system.db 提取语料，preset `ctx`（青/蓝/墨/白）、`absence`（澜/林深/中性）；`--session-window-minutes 30`。
+- `chat_agent.py`（chat 分支主力）：AHI 风格接口（process_input/get_outputs/on_wakeup）+ 终端 REPL + ingest/say/note/file_edit 工具入口；每轮全新组装（卡片流 → 笔记本去重发送 → 回执 → 任务）。
+- `chattext.py`：多介质切分器（chat 按句 / code AST / config 按项 / md 标题+列表项），统一原子上限再切。
+- 召回影子标注、尾区裸原子无"已回复"标记问题（driver 33 次重复提问放大碰撞）；跨分钟真复读总量极小（lan 1+2 近、neutral 1+2 近、lin-shen 0）。
+- 聊天方向已收束（ARCHIVE_CHAT.md 定论），下一阶段聚焦写作/代码三场景。
+
+## 七、通信协议与消息格式
+
+- Agent 结构化响应格式：`@send-to "user:human" "agent:mo-bai"` + txt 代码块 + python 代码块 + `@exit`，由 `_parse_structured_response()` 解析。
+- 寻址：`user:<name>`（如 `user:console`）、`agent:<id>`（如 `agent:mo-bai`）、`broadcast:agents`、`broadcast:users`；不加 `@send-to` 自动广播。
+- 平台兜底：agent→自身消息不转发；user:xxx 不在线→转广播所有用户；模型未指定收件人但本轮有用户消息→自动回给最近用户。
+- 协议标签：`[append]/[edit]/[recall]/[plan]/[span]/[note]/[dismiss]`，三级容错含句中未闭合标签。
+
+## 八、实验纪律（继承项目）
+
+1. 变量干净（temperature/装置效应的历史教训）。
+2. 装置效应记入实验变量表，不改 agent 适应装置。
+3. 预注册预言，pilot 出数据再决定扩不扩展。
+4. 报告方差而非均值对齐度；方差不足时结论限于集体层定性模式。
+
+## 九、模块清单（版本号）
+
+core 层：shadow_promote(16)、hybrid_retrieval(7)、attention(17)、notebook(8)；应用层：coloring_v3(12)、heat_burst(12)、usage(13)、selforg(12)、realengine_budget(20)、render_clean(6)、dismiss(7)、chattext(9)、sandbox(7)、waitfor_urgent(9)、observation(5)、receipt_addr(2)、tree_io(5)、absence(8)、anchor_retrieval(10)、flat_envelope(12)、self_quota(7)；论文级编辑风暴 editstorm(13)。
+
+## 十、本轮会话改动清单
+
+1. 修复层：α 门控【注】、组装字符预算 16k、回执前缀归一、worklog key 归一、join 无超时（_DaemonPool）+ httpx.Timeout 分设、user:experimenter 预注册、neutral 地址协议三条规则、metrics 异常日志、dashboard compose 条 + fact_drift 字段名修复。
+2. 机制层：A+B2（attention 40/20 拆分+节点无悬崖+B2 父HP继承+max_hp 150）、B+D 时序分流、lan persona 双条件移除（rounds≥60 且 nodes…）。
+
+**给接手者四条提醒**：先读 AGENTS.md；bench_qa/run2/chatbench 是主力验证工具；…（原文截断）。
+
+**战略结论**：注意力签名抗趋同，但不是"有趣对话"的生成引擎（无新输入必然收敛）；写作/代码才是架构价值更大的方向。

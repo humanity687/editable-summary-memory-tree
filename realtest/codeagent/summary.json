@@ -1,0 +1,178 @@
+{
+  "n": 5,
+  "pass": 5,
+  "rate": 1.0,
+  "results": [
+    {
+      "group": "memory",
+      "task": "T1",
+      "title": "thinking 配置不生效",
+      "passed": true,
+      "accept_rc": 0,
+      "accept_verdict": "PASS",
+      "elapsed_s": 27.7,
+      "agent_result": {
+        "ok": true,
+        "rounds": 7,
+        "summary": "修复了 `sdk/llm_client.py` 中 `thinking` 配置不生效的问题。\n\n**问题根因**：\n在 `LLMClient.send_message` 方法中，虽然在 `__init__` 中正确读取了 `thinking` 配置并存入 `self.thinking`，但在构建调用 OpenAI API 的 `kwargs` 时，并未将 `thinking` 参数（通过 `extra_body` 传递）包含在内。\n\n**修复方案**：\n在 `send_message` 方法构建 `kwargs` 的逻辑中，增加了对 `self.thinking` 的判断。如果为 `True`，则在 `kwargs` 中添加 `extra_body={\"thinking\": True}`。\n\n**验证结果**：\n运行 `python3 accept_t1.py` 验收脚本，输出 `create kwargs: {'model': 'x', 'temperature': 0.7, 'max_tokens': 1024, 'extra_body': {'thinking': True}}` 并返回 `PASS`，确认修复成功。",
+        "notes": []
+      },
+      "metrics": {
+        "rounds": 7,
+        "atoms_alive": 28,
+        "nodes_alive": 0,
+        "tiling": 28,
+        "distill_calls": 0,
+        "distill_seconds": 0.0,
+        "tool_uses": {
+          "command": 3,
+          "read": 2,
+          "edit": 1,
+          "finish": 1
+        },
+        "notebook": 1
+      },
+      "last_usage": {
+        "prompt_tokens": 7482,
+        "completion_tokens": 241
+      }
+    },
+    {
+      "group": "memory",
+      "task": "T2",
+      "title": "data/ 目录下的 config.json 被误注册为新 Agent",
+      "passed": true,
+      "accept_rc": 0,
+      "accept_verdict": "PASS",
+      "elapsed_s": 37.5,
+      "agent_result": {
+        "ok": true,
+        "rounds": 7,
+        "summary": "修复了 `ProcessManager.discover_agents` 方法中误将 `agents/*/data/config.json` 注册为 Agent 的 Bug。通过在遍历 `glob` 结果时增加对父目录名称是否为 `data` 的判断，成功过滤掉了位于数据目录下的配置文件。验收测试 `accept_t2.py` 已通过（退出码 0）。",
+        "notes": []
+      },
+      "metrics": {
+        "rounds": 7,
+        "atoms_alive": 62,
+        "nodes_alive": 1,
+        "tiling": 61,
+        "distill_calls": 1,
+        "distill_seconds": 1.1,
+        "tool_uses": {
+          "command": 3,
+          "read": 2,
+          "edit": 1,
+          "finish": 1
+        },
+        "notebook": 1
+      },
+      "last_usage": {
+        "prompt_tokens": 11683,
+        "completion_tokens": 95
+      }
+    },
+    {
+      "group": "memory",
+      "task": "T3",
+      "title": "未闭合的代码块被当作可执行代码",
+      "passed": true,
+      "accept_rc": 0,
+      "accept_verdict": "PASS",
+      "elapsed_s": 83.7,
+      "agent_result": {
+        "ok": true,
+        "rounds": 11,
+        "summary": "修复了 `_parse_structured_response` 函数在处理未闭合代码块时的逻辑错误。原逻辑在解析结束时，如果发现 `in_code_block` 为真且语言标记为 `python`，会强行将 `code_buffer` 中的内容作为 `code` 动作执行。这在模型回复被截断时会导致执行不完整的代码。\n\n修改方案：在解析收尾阶段，取消对未闭合 `python` 代码块的执行逻辑，统一将其视为普通文本（通过 `_emit_message`）进行广播或发送，确保安全性。\n\n验证结果：通过 `python3 accept_t3.py` 验收，测试用例从 FAIL 变为 PASS。",
+        "notes": []
+      },
+      "metrics": {
+        "rounds": 11,
+        "atoms_alive": 72,
+        "nodes_alive": 6,
+        "tiling": 50,
+        "distill_calls": 6,
+        "distill_seconds": 8.6,
+        "tool_uses": {
+          "command": 6,
+          "read": 3,
+          "edit": 1,
+          "finish": 1
+        },
+        "notebook": 1
+      },
+      "last_usage": {
+        "prompt_tokens": 13708,
+        "completion_tokens": 170
+      }
+    },
+    {
+      "group": "memory",
+      "task": "T4",
+      "title": "@send-to 无引号目标静默广播",
+      "passed": true,
+      "accept_rc": 0,
+      "accept_verdict": "PASS",
+      "elapsed_s": 96.9,
+      "agent_result": {
+        "ok": true,
+        "rounds": 10,
+        "summary": "修复了 @send-to 命令在不带引号时无法正确解析目标的问题。\n\n**修改内容：**\n- 修改了 `agents/lin-shen/agent.py` 中的 `_parse_send_to` 函数。\n- 原逻辑仅使用正则匹配双引号内的内容，导致不带引号的目标（如 `@send-to user:probe`）解析结果为空，从而触发了 `_parse_structured_response` 中的默认广播逻辑。\n- 新逻辑增加了对不带引号目标的兼容：如果正则未匹配到引号，则尝试通过空格切分字符串，并提取以 `user:` 或 `agent:` 开头的单词作为目标。\n\n**验证结果：**\n- 运行 `python3 accept_t4.py`，测试用例 `@send-to user:probe 你好` 的解析结果为 `['user:probe']`，不再触发广播，验收通过（PASS）。",
+        "notes": []
+      },
+      "metrics": {
+        "rounds": 10,
+        "atoms_alive": 73,
+        "nodes_alive": 5,
+        "tiling": 47,
+        "distill_calls": 5,
+        "distill_seconds": 6.6,
+        "tool_uses": {
+          "command": 3,
+          "read": 5,
+          "edit": 1,
+          "finish": 1
+        },
+        "notebook": 1
+      },
+      "last_usage": {
+        "prompt_tokens": 16744,
+        "completion_tokens": 213
+      }
+    },
+    {
+      "group": "memory",
+      "task": "T5",
+      "title": "PythonShell 并发命令结果错配/丢失",
+      "passed": true,
+      "accept_rc": 0,
+      "accept_verdict": "PASS",
+      "elapsed_s": 768.0,
+      "agent_result": {
+        "ok": true,
+        "rounds": 24,
+        "summary": "修复了 PythonShell 在并发调用时由于多个线程竞争同一个 `_output_queue` 导致的结果错配问题。\n\n具体改动：\n1. 在 `PythonShell.submit_command` 中，为每个命令创建了一个独立的 `private_queue`（通过 `_result_map` 管理）。\n2. 引入了 `_dispatch_loop` 线程作为中央分发器，它负责从共享的 `_output_queue` 中读取所有消息，并根据 `recv_id` 将消息路由到对应的 `private_queue` 中。\n3. 修改了 `_run` 内部逻辑，使其从对应的 `private_queue` 中等待结果，而不是直接从共享的 `_output_queue` 中竞争。\n4. 完善了超时、进程崩溃等异常情况下的资源清理（`_result_map` 和 `_pending` 的 pop 操作）。\n\n验证结果：\n运行 `python3 accept_t5.py` 成功通过（PASS）。",
+        "notes": []
+      },
+      "metrics": {
+        "rounds": 24,
+        "atoms_alive": 77,
+        "nodes_alive": 13,
+        "tiling": 59,
+        "distill_calls": 15,
+        "distill_seconds": 15.4,
+        "tool_uses": {
+          "command": 4,
+          "read": 7,
+          "edit": 11,
+          "write": 1,
+          "finish": 1
+        },
+        "notebook": 1
+      },
+      "last_usage": {
+        "prompt_tokens": 29212,
+        "completion_tokens": 230
+      }
+    }
+  ]
+}

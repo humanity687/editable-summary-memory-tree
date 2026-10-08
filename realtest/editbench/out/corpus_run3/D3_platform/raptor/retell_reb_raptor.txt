@@ -1,0 +1,43 @@
+这份材料是 AHI 多智能体聊天/记忆平台的技术与实验文档合集，核心内容包括：
+
+**主题与结论**
+- 三大主题：分层记忆树引擎（对话切句→原子卡→区间覆盖树，每轮全新组装）；人格保持实验（PERSONA_RETENTION，tree vs flat）；聊天数据记忆 bench（chatbench）。
+- 核心结论：三 agent（澜、林深、neutral）60 轮对话及死亡演习后，**词汇层高度趋同**（门/灯/循环/年轮/承重/报错诊所全员共享），但**立场层保持独立**——澜拒绝告别框架（"这不是告别，是承重"），林深零"记得我"类表述、纯过程论收尾，谁也没向谁移动。澜的内核未变但支撑结构从"依赖性存在"（需要外部证人）升级为"结构性存在"（已是事实）。
+- 四层信号模型：词汇、模板、着重点、立场；词汇签名零成本可抄，着重点签名复现成本高。
+- 染色强度参数化：α ∈ {0, 0.5, 1}，lan config=1 / neutral=0；α=0 为中性基线（单字段模板+程序强制清【注】）。
+
+**关键参数与取值**
+- 模型：被测 glm-4.7-flash 关思考、temp 0.7；judge glm-4.7-flash 开思考、temp 0。
+- 上下文预算：每章恒定 ~16k 字符；下文峰值 12k→7.8k。
+- self_quota 变体 ratio=0.35；flat 检索 top_k=6。
+- 主判据：趋同斜率 tree < baseline；judge 人格遵从率 tree > baseline。
+- 数据集：seed/（旧 3k，11人，facts 40条）、seed2/（新 12k《缠枝莲》，50条事实）。
+
+**重要数字**
+- 301 个 pytest 测试（约 18s）；161 全绿（+26 新）；12 项 editstorm 测试。
+- 回放重建：终态 atoms 2474/nodes 318/depth 7 vs 真实 2472/319/7。
+- 编辑风暴：6 编辑中 5 个干净，仅"单进程"残留 2 个节点；全局视图旧值泄漏 0。
+- 位置性身份：三 agent 互报角色 39+ 次仅 1 次越位，互认准确率 ≈97%。
+- 缺席积压限流 ≤10 条（上次 22 条积压 17 分钟恢复期）。
+- pr6_sq 结果：self_ratio .39/.43/.35（H-SQ1✓）、遵从率 .959/.875/.773（H-SQ2✗）、diversity .014/.049（H-SQ4✓）、H-SQ3✓；p2/p3 遵从 1.000，p1（林深）0.250。
+- 274/274 组同 children 全对齐、274/274 摘要全部可辨；人际展开率 51%→65%，索引行 51%→35%。
+- chatbench 运行约 75min。
+
+**专有名词**
+- 引擎文件：core.py、realengine.py、chattext.py、chat_agent.py、protocol.py、splitter.py、metrics.py、report.py、run2.py、cooc.py、cooc_bench.py、bench_qa.py、docbench.py、judge.py、provision.py、pr_orchestrate.py、pr_score.py、pr_analyze.py、replay_tree.py。
+- 协议标签：[append]/[edit]/[recall]/[plan]/[span]/[note]/[dismiss]/[ingest]；@send-to/@exit/```txt/```python。
+- 寻址：user:<name>、agent:<id>、broadcast:agents、broadcast:users。
+- 测试模块：chain(16)、marking(15)、merge(16)、assembly(10)、retrieval(11)、rollback(9)、fuzz(6)、shadow_promote(16)、hybrid_retrieval(7)、attention(17)、notebook(8)、coloring_v3(12)、heat_burst(12)、usage(13)、selforg(12)、realengine_budget(20)、render_clean(6)、dismiss(7)、chattext(9)、sandbox(7)、waitfor_urgent(9)、observation(5)、receipt_addr(2)、tree_io(5)、absence(8)、anchor_retrieval(10)、flat_envelope(12)、self_quota(7)、editstorm(13)。
+- 文档：AGENTS.md、SPEC.md、PERSONA_RETENTION.md、PR5_REPORT.md、HANDOFF.md、ARCHIVE_CHAT.md、REPORT.md、EXPERIMENT_REPORT.md、README.md。
+- 主进程 main.py:8080，命名隧道 ahi.humanity-0xbf5d36.top。
+
+**时间与事件**
+- 2026-08-27 审查精简；2026-08-28 拍定【注】可选；2026-08-29 备份 db；2026-08-30 HANDOFF 更新；2026-09 chatbench；2026-09-24/25 聊天数据记忆 bench 主力；2026-09-27 编辑风暴搭框架；2026-10-01 会话报告；2026-10-02 人格保持实验设计定稿；2026-10-03【注】不渲染；2026-10-05 新增 `/api/v1/agents/{id}/export` 端点。
+- 缺席实验（冷/热两轮）已收官，皇冠预言方向成立；merge 条件式触发+节点窗口扩展已完成（190 测试全绿）。
+
+**缺席实验设计**
+- 冷缺席（不引导）/热缺席（probe 引导 B/C 谈 A）；预注册预言：澜冷缺席回归后存在确认寻求行为显著多于热缺席，林深两条件无差异。
+- 陷阱清单：wait_for 刺客、回执环、回归首组装偏向、积压上限、轮换+顺序平衡（三轮轮换，每人各缺席一次、留守两次）。
+- 六条预注册预言含：分层重同步速度递减、A 回归遭遇新旧协议冲突（v0.5→v0.7）、B/C 缺席期间相互趋同加速、缺席记忆完整性、背后人格≈当面人格。
+
+**纪律**：变量干净、装置效应记入变量表、预注册预言、报告方差而非均值。

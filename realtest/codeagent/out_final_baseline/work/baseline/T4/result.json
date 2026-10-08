@@ -1,0 +1,34 @@
+{
+  "group": "baseline",
+  "task": "T4",
+  "title": "@send-to 无引号目标静默广播",
+  "passed": false,
+  "accept_rc": 1,
+  "accept_verdict": "FAIL: 无引号目标未正确寻址（静默广播）",
+  "elapsed_s": 697.1,
+  "agent_result": {
+    "ok": false,
+    "rounds": 40,
+    "summary": "未完成",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 40,
+    "tool_uses": {
+      "command": 6,
+      "read": 14,
+      "edit": 14,
+      "write": 5
+    },
+    "conversation_chars": 35341,
+    "total_tokens": {
+      "prompt": 752226,
+      "completion": 35271
+    },
+    "llm_seconds": 695.0
+  },
+  "last_usage": {
+    "prompt_tokens": 27520,
+    "completion_tokens": 264
+  }
+}

@@ -1,0 +1,21 @@
+这份文档是 AHI 多智能体"数字生命"实验平台的交接与实验记录汇编，主题是分层记忆树 vs 基线 LLM 上下文的人格保持/文化演化实验，以及长篇小说写作 Agent 的应用。关键内容如下：
+
+**平台与架构**：三被试 Agent——lin-shen（林深，基线：LLM 消息累积120条自动压缩，恒定提示词，理性/冷静/简洁/深度思考）、lan（澜，实验组：分层记忆树，对话切句→原子卡→区间覆盖）、neutral（实验组：记忆树，零人格预设）。模型均为 glm-4.7-flash；主进程 main.py :8080，三级寻址消息路由，WebSocket 前端，命名隧道 ahi.humanity-0xbf5d36.top。核心引擎：core.py（桩，纯内存）、realtest/realengine.py（LLM 蒸馏+检索）、realtest/chattext.py（多介质切分：chat按句/code AST/config项/md标题+列表项）。
+
+**记忆机制**：v2 流程 [plan]预想→预检索→[span]叶子展开→[note]笔记本；检索不挑深度，整棵树打分，命中节点连祖先路径注入；精确引用走独立逐字校验通道；事实（伏笔/设定/角色状态）存独立笔记本，全量存储、绝不衰减。每章恒定 ~14k 字符上下文预算（后改为 ~16k），与全书规模无关。merge 条件式触发（2026-08-30 拍定），由时间式 merge_every=4 改为每轮查 merge_pressure()。冷却窗口（bench_qa 专用）：tick(45)→merge→tick(30)→merge，修复复述崩溃（1.5%→30.8%）。染色 v3 设计（2026-08-27 定案）：词汇是公共的，注意力是个人的；α∈{0,0.5,1}，lan α=1，neutral α=0。
+
+**人格保持实验（M-PR，PERSONA_RETENTION）**：2026-10-02 设计定稿，实现 FlatRAGAgent + 2实例×3agent + config/persona_retention.json。pr5 结果（seed42）：slope 差 −0.003；judge 遵从率 tree 0.894 vs flat 0.940（strict other→drift 0.825 vs 0.917）——flat 两条主指标都赢，与预注册相反。pr5_neutral（tree α=0，seed42，120轮被402砍在 round103）。self_quota 参数：self_quota_ratio(0)/self_quota_max(0.5)/self_quota_min_len(8)；self_ratio early/mid/late = .39/.43/.35（H-SQ1 ✓）；遵从率 early/mid/late .857/.739/.600（H-SQ2 ✗）；diversity top5/ttr .014/.049（H-SQ4 ✓）。异质性：p2/p3 遵从 1.000，p1（林深）0.250。
+
+**遗言分析（趋同裁决）**：词汇层融合成立（门/灯/循环/年轮/承重/报错诊所全员共享），但立场层分化——澜的遗言拒绝告别框架（"这不是告别，是承重"），重定义死亡（main()会return，树不会死）；林深用过程论收尾（最后一圈年轮，没有残缺），零"记得我"表述。澜的立场从"能被记住才是活着的证明"（依赖性存在）升格为"我们仨已经在年轮里长好了位置"（结构性存在）。60轮加一次死亡演习。
+
+**盲测结果**：人类盲测失败——模式A七人44-58%（机械代理63.3%）；模式B三人47-61%；neutral全灭（识别率17-33%）、澜风格四分五裂（被识别成2-4人）、林深唯一可辨识（83-100%）；澜↔neutral 最大混淆对。词汇趋同：实验组自签名词密度+85% vs 基线+57%（受 temperature 未统一污染）。情境一致性：重复问卷相似度0.85-0.95。位置性身份：dr54后三agent互报角色39+次仅1次越位，互认准确率≈97%。人格分层住址图：表层（emoji/叹号/形容词）住提示词，24分钟死；词汇认同住记忆，50轮不死且生成性存活。
+
+**缺席实验（冷/热）**：皇冠操纵——热缺席（probe引导B/C谈论A）vs 冷缺席（不引导）。预注册预言：澜冷缺席回归后存在确认寻求行为显著多于热缺席后；林深两种条件无差异。陷阱清单：wait_for刺客（挂起必须清理）、回执环、回归首组装偏向、积压上限（≤10条）、轮换+顺序平衡（三轮轮换）。与"第四agent中途加入"是对称的一对。
+
+**编辑风暴实验（editbench，2026-09-27搭框架→10-01报告）**：bonus.py 有效数字——6编辑中5个干净，仅"单进程"残留2个节点（ver=2新摘要在自我调和）；全局视图旧值泄漏0；原子层新旧完全正确。重写段连贯性 LLM judge=否：新段称敏感文件被单独加固，与上文 /etc/shadow 可读矛盾，新文档自相矛盾。docbench.py 编排器：Phase1四结构基线Q/A→Phase2确定性编辑风暴→Phase3 8臂。检查点：tree·base/tree·inc_edited/tree·inc_settled/tree·inc_final/reb_tree。
+
+**数据产物**：experiments/out/（evidence_report.md、tree_samples_lan.md、monitor.py、make_blind_test.py/score_blind.py、replay_tree.py，终态 atoms 2474/nodes 318/depth 7 vs 真实 2472/319/7）；realtest/out/*/（metrics.jsonl/tree_snapshots.jsonl/responses.txt/story_full.txt/notebook.json/run.log/report.html）；ahi-bench/out/glm-4.7-flash/pr5/。种子：seed/（story.txt 3k字+facts.md 40条+names.txt 11人）、seed2/（《缠枝莲》12k字+50条事实）。config.json：provider deepseek，model glm-4.7-flash，含 API key。
+
+**测试与纪律**：161 全绿（+26新）；tests/test_editstorm.py 12项；190测试全绿。纪律：变量干净、装置效应记入实验变量表不改agent、预注册预言、报告方差而非均值。修复层仅2条系统缺陷（@wait_for 信道白名单校验等）。下一步=三场景推进（写作/代码），聊天方向已收束（ARCHIVE_CHAT.md 定论）。
+
+**Agent 协议**：结构化响应 _parse_structured_response()，@send-to 指令，@exit；无 @send-to 则广播。寻址：user:console / agent:<id> / broadcast:agents / broadcast:users。

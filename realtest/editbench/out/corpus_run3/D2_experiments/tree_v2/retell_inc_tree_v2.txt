@@ -1,0 +1,29 @@
+这份文档围绕 `realtest/editbench/` 编辑风暴实验框架，覆盖 2026-09-27 至 2026-10-04 的实验、修正与结论。
+
+**主题与框架**：在 `realtest/editbench/` 搭建框架并运行编辑风暴实验。文件包括：`docbench.py`（编排 P1 四结构基线→P2 编辑风暴→P3 8 臂 rebuild/incremental→P4 复述）、`arms.py`（full/flat 400字chunk+bge+top12/递归聚簇树/分层树，每臂蒸馏 temp0 + 作答 temp0.5 双 client）、`editstorm.py`（确定性编辑序列+台账：rename/detail/rewrite/passage/delete/append）、`layerscore.py`（分层判分：反转/不变/远端+复述两层）、`judge.py`（LLM 判分 temp0：反转语义判/复述残留）、`cache_probe.py`（KV 缓存前缀命中探针）、`ab_edit_signal.py`（N=5，4320s，同一 pre-edit 树施加热/冷编辑新原子）、`bonus.py`、`gen_script.py`（将 ahi 实录转为剧本《沙箱四声》）、`replay_trees.py`。
+
+**关键结论**：原子层旧值 0 存活、新值齐全，摘要层基本干净。定位修复三个真 bug：分层树臂 `apply_ledger` 整段改写未进树、冷却窗口缺失致占位卡淹没 QA、delete 整卡误删；另修冷却过量致整树压平。叶子展开按替换摘要为原子实现为负结果（已回退）。参数收敛方向 initial_hp 100→70。`assembly_budget` 24k；编辑后最小冷却 `_COOL_TICKS=4`（§3.8），非"越大越好"。
+
+**seed2 3×8 正式轮（cool=4）**：追加式延续反转崩 12–16/45、复述残留 39–89%（上下文腐烂）；tree 增量与重建持平（反转 41≈42）且复述反超（100% vs 71%）、残留 0%（§2.5）。成本主因：tree 缓存前缀命中率低（20–42% vs full/flat 94–98%），构建/冷却蒸馏调用量随文档线性增长。
+
+**缓存探针（out/cache_probe）**：full 命中率 0.98、flat 0.95、分层树 0.33、递归聚簇树 0.22。
+
+**ahi 实验**：ahi_script.txt 147,127 字、2359 行，questions_ahi.json 41 题（17 反转/8 不变/16 远端），build_scenario_ahi 11 编辑/5 类，bge-small-zh-v1.5，267 项单测。编辑将 16 处"单进程"改"双进程"、14 处"2000字"改"3000字"、1 处"6个路径"改"7个路径"，新增 /etc/motd 及"凡是能跑一遍的，不猜"段落；"单进程→双进程"替换不彻底（"进程单""进程：单""进程这面是单的"未替换）。2026-10-02 完成 matched-pair 运行（N=5，temp 0.7，4805.6s，out/ahi_r5/results.json，总 205=41×5，反转 85=17×5）：full 196/205（96%，反转 78/85，不变 40/40，远端 78/80，每遍 39,39,39,41,38）、flat 183/205（89%）、reb_full 195（95%）、inc_flat 180（88%）、reb_flat 175（85%）、inc_递归聚簇树 179（87%）、reb_递归聚簇树 180（88%）、inc_tree 156（76%）、reb_tree 155（76%）、inc_cold_tree 135（66%）；inc_tree 80%/0% 为唯一高覆盖且零旧残留。ahi 上 inc_tree 52/85（61%）低于 append 增量（65–70%）与 reb_tree 62/85，证实"tree 增量追平 rebuild/full"仅在 seed2 成立、不可外推。逐臂 API key 缺 2 个（keys.local.json 无 inc_obstacle_分层树/inc_cold_obstacle_分层树）。
+
+**2026-10-04 更正**：inc_分层树 156→174（76→85%）、inc_cold_分层树 135→149（66→73%）、reb_分层树 155→177（76→86%），因 replay_trees.py 用 --retr-budget 20 而 docbench.py 被 config retrieval_budget:6 覆盖，新旧对比同时改占位透明与 retr 6→20 两变量，2×2 拆分显示占位透明≈+1；占位只影响 tree，两轴互不影响。原§5.6 将 retr6→20 收益误归因于占位透明。同代码基线（out/ahi_strong/*）显示 inc_tree（no-think）182/205、反转 84/85、复述 64%/0%。tree 增量反转 84/85≥full 增量 79/85；旧稿 52/85<62/85 与 70/85 追平因 retr 混淆作废。成本主张限作答路径输入约 1/12–1/14 of full，并披露蒸馏维护成本反向；inc_tree 作答路径 prompt 2.90M 为 inc_full 40.43M 的≈1/14，但蒸馏 completion 174k 约 4 倍 full。tree 107/120（89%）warm、99/120（82%）cold，inc_tree 41、inc_full 41、reb 42–45，inc_tree 复述 100%/0%，append-only 增量臂旧残留 33–78%，warm 复述 100% > cold 86%。tree 前缀因每问重组装加影子按位置槽插流而不稳定。warm inc_final 树中 core._rebuild 对含 HP≥hot_threshold 热子卡的节点置 value=None、placeholder=1（core.py:448-455）。
+
+**参数与判分修订**：docbench.py 中 --tree-budget 7000→16000、--retr-budget 增 20、--edit-signal-ab 从主 8 移除另起独立轮、flat/递归聚簇树新增字符预算与 --flat-topk 60 --递归聚簇树-topk 60。temp=0 重复无方差；确定性片段判分因 norm_cjk 去标点致跨句误匹配；分层树臂 apply_ledger 整卡误删 328 字原子（含 pid:1/procs/可写路径）已改为只移除目标子串保留残句，并修 judge.py 三级容错失效；ahi_tree_hp70 修复前旧跑作废；判分流水线改为确定性初筛通过即过、仅失败样本过 judge 复核。2026-10-01 审查修订。2026-10-04 更正 docbench.py 原 retr_budget。
+
+**记忆蒸馏器（§3.4-3.6）**：摘要旧内容残留仅因"时序分流"将旧值作历史叙述（设计特性，指标须改 judge 判断旧值是否被当作当前事实）；重写段连贯性经 LLM judge 判否因只改一行而同类断言尚有 15+ 处致新文档自相矛盾（取全局唯一断言 b 项重做后不再矛盾）；全局视图旧值泄漏 0 且原子层新旧完全正确。
+
+**中性摘要卡**：模型开思考可提升原始文档召回/理解（full 196→202、flat 181→187、tree 171→177）及 append-only 记忆编辑后 Q/A（full 179→198、flat 178→189），但无法提升 tree 暖 inc（总分 182 持平、反转 84→80）；结构（区间失效+懒重建）可实现编辑后复述零旧残留（仅 tree 恒 0%，full/flat 残留 20%）。StaleLeakage 定义为输出引用已失效命题次数除以要求复述当前状态的测试次数（EXPERIMENT_REPORT.md §3.4）；成本拆分为 C_input/C_maintenance/C_total（§0.6，tree 缓存命中率 20–42%）。报告核验 Infini Memory（arXiv 2606.10677）、CAM（arXiv 2510.05520）、Memory for Autonomous LLM Agents（arXiv 2603.07670）、STALE（arXiv 2605.06527）四篇文献均真实存在。
+
+**A/B 信号臂**：warm_signal（热）Q/A 163、反转 67/85、复述 64%/0%；warm_obstacle（冷）Q/A 175、反转 70/85、复述 44%/0%；cold_signal（热）Q/A 166、反转 58/85、复述 20%/0%；cold_obstacle（冷）Q/A 168、反转 61/85、复述 30%/0%。§3.9 显示编辑期输入格式、删除语义、温度、重复测量独立性、判分、预算对齐、检索深度均公平，使用史混杂须披露 inc_cold_分层树。补充实测（跨文档泛化轮）：分层记忆树臂复述旧值残留率 0.31%，平面检索臂 4.2%。
+
+**v2 记忆树**：新增共现中介层（β召回/γ编辑/ε慢衰减，簇达阈值蒸馏冻结概括节点，检索时概括仅作匹配中介并按 conn_weight 带动成员补进召回影子、自身不进组装流），在 ctx_run 语料（09-23 context_compare，716 条/289,666 字，1 伪会话）T2/T3 主实验中三个独立回放轮次显示无共现节点与有共现节点无可测优化（T3 均分差 ±0.014~0.14 且方向不稳）。
+
+**记忆树架构（聊天方向）**：6h+ 聊天实验中斜率 +0.0313→+0.0278、末窗 0.417→0.398，loops tree 121/100/93 vs flat 123/122/111，code_exec 全 0，tree 多出消息几乎全为 agent 互聊。tree-p1 至 tree-p3 各 agent 自身占比 9–18%、他者 12–25%、用户 56–76%、scaffold 2–4%；接收侧 tree 各 agent 从他者接收约 44–55k 字符（93–95%），flat 仅约 2–5k（总量 3–7k），tree 耦合约为 flat 的 10 倍；judge 分口中 tree 的 to_agent 24/25=0.960、to_user 75/86=0.872。分层记忆树为优秀记忆与事实管理层而非有趣对话生成引擎，长程事实保持跨小时跨天零漂移，人格与立场经对话及蒸馏进入记忆树后即使移除 persona 仍存续（自我样本密度 62%）。2026-08-30 校准发现 realtest/codeagent/ 壳中工具对话组装缺陷致 glm-4.7-flash 表现差，重构后该模型无线索通过 T1-T4 单文件 bug 任务达 80%，超出预注册 50-70% 区间。
+
+**冷/热缺席实验（2026-08-30，各 110 轮）**：冷缺席触发 lan 显式存在确认 2 次、热缺席零触发；热缺席期间 probe 每 3 轮引导留守者谈论缺席者，lan 提及 12→16 次（1.3×）、neutral 提及 5→17 次（3.4×）；回归首组装预算改造（元信息+积压限流）实测重放率 0，merge 条件式触发 merge_pressure() 替代时间式 merge_every。lan 冷缺席回归后 20 分钟内去重消息 50 条、存在确认命中 5 次（含主动确认式 2 次，如 18:13:55/18:19:49"我就想确认：我们仨，都被记住了"），热缺席回归后 20 分钟内去重消息 11 条、存在确认命中 2 次但均引用历史定义、主动确认式 0 次，皇冠预言方向成立，但热侧观测窗口仅 9 分钟需延长。lan/neutral/lin-shen 三组数据 30/3/12、23/2/5、23/0/12。冷轮回归首轮重放率 0/27、积压限流投递 3/2/0 条；热轮 lan 0/7、neutral 0/13、lin-shen 0/13、积压 0/0/0 条。三 agent 各缺席 6 分钟期间话题仅发给留守者且缺席者无新消息入树，lan 回归后 inbox_delivered=3、neutral=2、lin-shen=0。lan 251 次蒸馏调用/634s LLM 时间（63 轮）。lin-shen 基线回归后仅回复实验员 19 条、不与其它 agent 互动。下一步 Round2 热缺席以同参数跑 --mode hot、每 3 轮 probe 引导谈论缺席者。修复方案规定 agent 连续 N 轮未唤醒后恢复（N 建议 5），回归首轮经 AHI 系统状态通道注入"你已离开约 X 分钟"元信息。
+
+**其他聊天实验（2026-08-26 至 08-30）**：exp1（三 agent 基线/澜人格/zero，58+26 轮，83min）、Phase A（thinking 关/temp 0.8/并行蒸馏 4，83min）、Phase B α=0 基线 take1（30min，因污染作废）、take2（修复后，30min）；08-29 至 08-30 完成 A+B2 层级涌现修复。ahi-multi 归档 exp1（HANDOFF.md §四，盲测数据集 ~/Desktop/exp-ctx-ahi-blind1）。

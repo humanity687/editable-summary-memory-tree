@@ -1,0 +1,29 @@
+这份材料是一组关于“记忆树/上下文管理架构”实验仓库的文档片段，核心内容如下：
+
+**主题与总体结论**：可辩护的新颖性是“机制组合”，不是问题本身；组合包括：位置有序的原子里 + 连续区间摘要树 + 编辑区祖先确定性置脏 + 脏节点立即退出所有读路径 + 零 LLM 编辑/组装 + 延迟 LLM 重建 + 编辑作为使用信号 + 长程反转评测。记忆树擅长“保持”（事实零漂移、人格、文化），不擅长“生成”（隐喻回环、内容熵下降），是“重组系统非生成系统”。
+
+**关键实验与产物**：
+- 基线 take2：`experiments/out_alpha0_take2_20260828/`（指纹 take2.txt）；α=0 基线 take1 作废（【注】污染基线）。
+- 主实验 1h：`backup_main_20260828/` + `experiments/out_main_lan1_20260828/`（指纹+遗言 farewell_transcript.txt）；lan α=1：技术折叠 81→50、流程展开 21→63、自我 58→82。
+- 24h 实验：`backup_day_20260829/`（634MB 全量）+ `experiments/out_day_20260829_stopped/`。
+- 复验：`backup_reval`。
+- exp1 + Phase A（08-26）：词汇趋同、身份混淆（99 对）、“人格住记忆”（62% 自我样本密度）、回执环、复读装置效应。
+- Phase B 染色 v3（08-28）：指纹测量地基、α 门控修复、字符预算修复、回执前缀修复。
+- 24h（08-29）：隐喻回环机制、回执环复发；neutral 自称澜 52 次 vs 自称 neutral 12 次；neutral 17:43 OOM 防护重启 → natural reset 意外实验（隐喻/身份全失，“签名住环境，不住记忆”）；树平衡健康（深度≈log2）但 99% 历史压进 1-5 个大节点（组装两段式：20% 摘要 + 80% 裸原子）；预注册预言 2 支持（Δ自我 25pp）。
+- 1h v2（A+B2 + driver_v2）：铺陈节点占比 2-3 倍、节点 HP 健康度 1.7-5.3 倍、中间层涌现（重放对比 504 vs 248 节点）；预言 2 加强 Δ自我 24→30pp；lan 自我 82% 两轮稳定。
+
+**缺席实验（冷/热）**：冷缺席 2026-08-30 17:48-18:43（Round1，110 轮）；热缺席 19:05-19:54（Round2，110 轮，反序 lin-shen→neutral→lan）。热缺席期间 probe 每 3 轮引导提问，冷缺席零引导。缺席期指涉倍数：lan 12→16（1.3×）、neutral 5→17（3.4×）、lin-shen 12→10（0.8×）。皇冠预言“澜冷缺席回归后存在确认寻求显著多于热缺席”判定为支持（冷缺席触发“我就想确认：我们仨，都被记住了”×2，热缺席零触发）。每轮预热约 20 轮，每段缺席 12 轮，回归观测 18 轮，合计 110 轮≈55 分钟+余量≈1h。
+
+**关键参数与数字**：编辑 1 次、构建 1 次、只重复作答；温度作答 0.5 / 蒸馏 0 / judge 0；tree-budget 7000、repeats 3；decay=8；冷却过量致整树压平（`inc_edited` 铺陈 50→3、复述覆盖 100%→14%，重建臂铺陈 23、覆盖 71%）。ahi inc_tree 复述 80%/0%（N=5），append-only 残留 6–12%；作答路径 tree≈1/14 full；暖树 Q/A signal 101 vs 108；复述轴 warm 100 vs 86、cold 81 vs 71。判定红线：代码 verbatim 引用错误率 ≥10%、写作编辑风暴后一致性崩塌、事件注入后多样性无回升。
+
+**文件与工具**：`pr_judge.jsonl`、`system.db`（messages 表含 from/to/content/timestamp）、`events_chat.jsonl`、`mem.jsonl`、`monitor.out`、`distill_snapshots.jsonl`；脚本 `editstorm.py`、`layerscore.py`、`judge.py`、`cache_probe.py`、`bonus.py`、`gen_script.py`、`replay.py`、`score.py`、`tree_io.py`、`make_reference.py`、`review.py`；题库 `questions_full.json` / `questions_ahi.json` / `questions_absence.json` / `questions_ctx.json`（usage 28 + T2 4 + T3 6 批）、`reference_claims.json`（36 条）。
+
+**语料**：`corpus.jsonl` 716 条去重 agent 消息、289,666 字、稳定 msg_id，全部落在 1 个会话（10:49–）；`transcript_full.txt`、`by_agent/*.txt`、`sandbox_notes.md`、`reports/*.md`（6 份）、`index.json`。纪律：原始措辞零清洗；append-only → 无物理编辑事件。
+
+**题型与评分**：T1 细节问答（a 直接/b 转述/KU/KU-hist/AB 拒答）；T2 生成分析报告；T3 报告验证（支持/反驳/无据 + 引用，含机器生成反例）。T1 精确通道+语义通道+引用真实性；T2 claim 分解+12 条参照对照；T3 与金标一致率；引用真实性为确定性检查（引用 id 必须存活）。
+
+**三贡献（收窄版）**：1) 编辑安全的有序上下文树；2) 上下文级编辑信号（HP/衰减/注意力窗口，揭示全局覆盖与局部问答热冷权衡）；3) 成本—稳定性折中（无 LLM 在线编辑/组装路径，长程状态反转任务接近上界）。
+
+**Phase C 三场景**：写作（长程一致性主场，伏笔引用正确率、编辑风暴重建质量）、代码（verbatim 精确引用率优于基线、错误率<5%）、聊天（结论已完整可收束，记忆树单独不足）。校准日期 2026-08-30，已搭壳 `realtest/codeagent/`。
+
+**遗留问题**：结构层旧值退役（事实覆盖时旧卡失效/降权）；记忆超载时人格稳定性；组装预算下旧卡优先序。

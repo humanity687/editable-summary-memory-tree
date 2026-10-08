@@ -1,0 +1,100 @@
+{
+ "玉坠": {
+  "key": "玉坠",
+  "kind": "state",
+  "content": "背面井栏纹内藏一道暗裂，沿纹路划过，疑似利器所致",
+  "status": "current",
+  "updated_round": 3
+ },
+ "枯井": {
+  "key": "枯井",
+  "kind": "state",
+  "content": "七娘黄昏时在井边准备下井，系绳探看时井底再次传来一声敲击壁声，与去年冬夜相同",
+  "status": "current",
+  "updated_round": 3
+ },
+ "纸条": {
+  "key": "纸条",
+  "kind": "state",
+  "content": "七娘已将纸条收于袖中，未示人",
+  "status": "current",
+  "updated_round": 0
+ },
+ "账册": {
+  "key": "账册",
+  "kind": "state",
+  "content": "顾七娘在井底东侧松动青砖后发现油布包，内藏蓝布账册与半张地契，账册记录其父民国十九年春替东街李老爷修井时于井底得银匣（银元五十枚、欠条一张），末页写“欠条上的人，我认得。还不起”，账册现由七娘贴身收存",
+  "status": "current",
+  "updated_round": 4
+ },
+ "地契": {
+  "key": "地契",
+  "kind": "state",
+  "content": "半张青州城东旱地三亩地契，落款被撕去半截，与账册同藏于油布包内",
+  "status": "current",
+  "updated_round": 4
+ },
+ "欠条": {
+  "key": "欠条",
+  "kind": "state",
+  "content": "账册内夹有刘三民国十八年腊月欠李老爷五十大洋的欠条，按红指印，刘三于次年开春失踪",
+  "status": "current",
+  "updated_round": 5
+ },
+ "账册末页新线索": {
+  "key": "账册末页新线索",
+  "kind": "state",
+  "content": "账册末页指甲划痕“李老爷的井，我修了三回”，账册正文仅记一回",
+  "status": "current",
+  "updated_round": 5
+ },
+ "李家院墙": {
+  "key": "李家院墙",
+  "kind": "state",
+  "content": "后角补砖上刻有井栏纹，与玉坠背面纹样相同，砖色偏浅似后补，灰浆半糊",
+  "status": "current",
+  "updated_round": 6
+ },
+ "李老爷": {
+  "key": "李老爷",
+  "kind": "state",
+  "content": "去年冬瘫在床上，话说不利索；门房称东街没人愿意提七娘爹的事",
+  "status": "current",
+  "updated_round": 6
+ },
+ "纸条·关帝庙": {
+  "key": "纸条·关帝庙",
+  "kind": "state",
+  "content": "七娘在城隍庙后关帝庙供台下发现黄裱纸条，炭笔字“顾老三往井里埋了东西，就在李家后院”，字迹非顾老三、非刘三，疑似有人特意留下",
+  "status": "current",
+  "updated_round": 7
+ },
+ "李老爷家井": {
+  "key": "李老爷家井",
+  "kind": "state",
+  "content": "民国二十年春填井，填井日顾老三在场，脸色难看，工钱由门房转交；老周证实顾老三此后不再接修井活",
+  "status": "current",
+  "updated_round": 7
+ },
+ "第三回修井": {
+  "key": "第三回修井",
+  "kind": "state",
+  "content": "顾老三夜里翻墙进李宅下井，待不到一炷香便上来，揣油布包，自称“埋回去”而非挖出，此后李老爷瘫痪",
+  "status": "current",
+  "updated_round": 13
+ },
+ "门房": {
+  "key": "门房",
+  "kind": "state",
+  "content": "承认烟嘴是他故意埋在墙根下的诱饵，并交代顾老三第三回下井是夜里翻墙进院，上来时怀里揣油布包，留下一句“那东西我埋回去了，别再挖了”，之后李老爷便瘫了",
+  "status": "current",
+  "updated_round": 13
+ },
+ "麻绳头": {
+  "key": "麻绳头",
+  "kind": "state",
+  "content": "门房捡到并埋于墙根，系井字结收尾打法，一端烧焦，现由七娘收存",
+  "status": "current",
+  "updated_round": 13
+ }
+}

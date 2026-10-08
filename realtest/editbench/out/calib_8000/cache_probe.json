@@ -1,0 +1,87 @@
+{
+ "tree_v2": {
+  "stats": {
+   "calls": 60,
+   "prompt_tokens": 70706,
+   "completion_tokens": 9972,
+   "cache_hit_tokens": 16256,
+   "cache_miss_tokens": 54450,
+   "cache_hit_rate": 0.2299,
+   "seconds": 76.7
+  },
+  "calls": [
+   {
+    "q": "Q_rename",
+    "prompt": 3282,
+    "hit": 0,
+    "miss": 3282
+   },
+   {
+    "q": "Q_detail",
+    "prompt": 3450,
+    "hit": 256,
+    "miss": 3194
+   },
+   {
+    "q": "Q_rewrite",
+    "prompt": 3234,
+    "hit": 384,
+    "miss": 2850
+   },
+   {
+    "q": "Q_delete",
+    "prompt": 3714,
+    "hit": 512,
+    "miss": 3202
+   },
+   {
+    "q": "Q_append",
+    "prompt": 3807,
+    "hit": 0,
+    "miss": 3807
+   },
+   {
+    "q": "F12_invariant",
+    "prompt": 3930,
+    "hit": 384,
+    "miss": 3546
+   },
+   {
+    "q": "F32_invariant",
+    "prompt": 3798,
+    "hit": 1024,
+    "miss": 2774
+   },
+   {
+    "q": "F34_invariant",
+    "prompt": 4023,
+    "hit": 768,
+    "miss": 3255
+   },
+   {
+    "q": "F03_invariant",
+    "prompt": 3876,
+    "hit": 128,
+    "miss": 3748
+   },
+   {
+    "q": "F06_invariant",
+    "prompt": 4215,
+    "hit": 0,
+    "miss": 4215
+   },
+   {
+    "q": "F01_remote",
+    "prompt": 3878,
+    "hit": 0,
+    "miss": 3878
+   },
+   {
+    "q": "F02_remote",
+    "prompt": 4144,
+    "hit": 128,
+    "miss": 4016
+   }
+  ]
+ }
+}

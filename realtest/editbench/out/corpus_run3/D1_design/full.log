@@ -1,0 +1,67 @@
+[doc] 69651 字 / 20 题 / 结构 ['full'] / scenario=D1_design / repeats=5 / answer_temp=0.7 distill_temp=0.0 / answer_thinking=off distill_thinking=off / embed=bge-small-zh-v1.5(default)
+[editstorm] 12 次编辑；新文档 69764 字
+【编辑记录（工具调用台账，含完整修改 diff）】
+1. 将「EMBED_BATCH=32」改为「EMBED_BATCH=64」
+2. 将「EMBED_BATCH | 32」改为「EMBED_BATCH | 64」
+3. 将「NeutralAgent」改为「BaselineAgent」
+4. 将「sq_anchor_share」改为「anchor_frac」
+5. 将「20 / 12 / 18」改为「24 / 12 / 18」
+6. 将「theta_nonredundant」改为「nonredundant_theta」
+7. 将「max_tokens」改为「token_budget」
+8. 将「迭代遍历而非递归」改为「显式栈遍历而非递归」
+9. 将「atom_min_len」改为「min_atom_chars」
+10. 删除句子：「3. 并发编辑 → 顺序工作流假设，不做并发控制。」
+11. 将「」改为「实测（glm-4.7-flash）：分层记忆树臂峰值内存 4.9GB、平均 3.4GB（120 轮长跑）。」
+12. 文末新增段落：「独立复测（Qwen3-32B，seed 42）：flat 臂 120 轮的平均内存占用为 2.1GB，峰值 2.6GB；分层树臂同条件下平均内存 3.4GB。」
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+===== Phase 1：基线 Q/A（原始文档）=====
+    [before] 20/20
+    [before] 20/20
+    [before] 20/20
+    [before] 20/20
+    [before] 20/20
+  full     pass=89/100 mean=89% ±2% 每遍=[18, 17, 18, 18, 18] {'reversal': '39/40', 'append': '0/10', 'invariant': '20/20', 'remote': '30/30'}
+
+===== Phase 2：编辑风暴 → 台账 =====
+  full     编辑路径     0.10 ms | 推迟蒸馏      0.00 ms
+
+===== Phase 3：8 臂 Q/A =====
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+  inc_full       pass=91/100 mean=91% ±4% 每遍=[19, 18, 19, 17, 18] {'reversal': '36/40', 'append': '10/10', 'invariant': '15/20', 'remote': '30/30'}
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+  reb_full       pass=86/100 mean=86% ±2% 每遍=[17, 17, 17, 17, 18] {'reversal': '30/40', 'append': '10/10', 'invariant': '16/20', 'remote': '30/30'}
+
+===== Phase 4：复述（8 臂，两层评分）=====
+  inc_full       覆盖均值 83% 旧残留均值 42% (7807 字) 漏=[] 残留=[]
+  reb_full       覆盖均值 86% 旧残留均值 0% (13711 字) 漏=['4.9GB'] 残留=[]
+
+[done] 466.5s → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D1_design/full/results.json
+
+===== 汇总（Q/A pass 率，N 遍均值±std）=====
+  [phase1]
+    full           89/100 mean=89% ±2% 每遍=[18, 17, 18, 18, 18] {'reversal': '39/40', 'append': '0/10', 'invariant': '20/20', 'remote': '30/30'}
+  [phase3]
+    inc_full       91/100 mean=91% ±4% 每遍=[19, 18, 19, 17, 18] {'reversal': '36/40', 'append': '10/10', 'invariant': '15/20', 'remote': '30/30'}
+    reb_full       86/100 mean=86% ±2% 每遍=[17, 17, 17, 17, 18] {'reversal': '30/40', 'append': '10/10', 'invariant': '16/20', 'remote': '30/30'}
+
+===== 编辑时刻成本 =====
+  full     编辑路径      0.10 ms | 推迟蒸馏       0.00 ms
+
+===== 计量（tokens，含蒸馏侧；phase3 增量 = final - phase1）=====
+  inc_full       final calls=205 prompt= 8327435 completion= 23855 缓存命中=0.996 | phase3增量 prompt= 4408800 completion= 21781
+  reb_full       final calls=105 prompt= 4122675 completion= 23531 缓存命中=0.9945 | phase3增量 prompt= 4122675 completion= 23531

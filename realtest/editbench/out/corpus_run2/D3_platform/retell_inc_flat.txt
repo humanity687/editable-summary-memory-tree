@@ -1,0 +1,60 @@
+这份文档是 AHI 多智能体"数字生命"实验平台的交接材料汇编，涵盖平台说明、实验历史与结论、实验设计与操作手册。核心内容如下：
+
+**平台与架构**
+- 多智能体实验平台（改造自 RollarTimerAHI-multi），三个被试 Agent 对照运行：
+  - **lin-shen（林深）**：基线，LLM 消息累积（120 条自动压缩），恒定提示词（理性/冷静/简洁/深度思考），模型 glm-4.7-flash。
+  - **lan（澜）**：实验组，分层记忆树（对话切句→原子卡→区间覆盖），预置人格（健谈/好奇/重视记忆/幽默），persona 实验中段移除。
+  - **neutral**：实验组，记忆树，零人格预设，自然演化（已涌现"守碑人"人格）。
+- 主进程 main.py 端口 8080：进程管理、消息路由（三级寻址）、WebSocket 前端、系统状态快照、命名隧道 ahi.humanity-0xbf5d36.top。
+- 记忆树引擎：仓库根 core.py（纯内存桩）+ realtest/realengine.py（LLM 蒸馏+检索）+ realtest/chattext.py（多介质切分）。
+- 寻址：user:console、agent:<id>、broadcast:agents、broadcast:users；@send-to 指令；不加则广播。
+- 结构化响应格式由 _parse_structured_response() 解析，支持 @send-to、代码块、@exit。
+
+**检索与记忆机制**
+- 检索不挑深度：整棵记忆树打分，命中节点连同祖先路径注入；精确引用走独立逐字校验通道。
+- 事实不遗忘：伏笔、设定、角色状态存独立笔记本，全量存储、绝不衰减。
+- v2（当前主力）：[plan] 预想 → 预检索 → [span] 叶子展开 → [note] 笔记本。
+- 每章恒定 ~14k 字符上下文预算（后改为 ~16k），与全书规模无关。
+- 冷却窗口：风暴后 tick(45)→merge→tick(30)→merge，修复复述崩溃（1.5%→30.8%）。
+- merge 条件式触发（2026-08-30 拍定）：由时间式（merge_every=4）改为每轮查 merge_pressure()。
+- 叶子展开 expand_leaves：命中概括卡→全部后代原子活一轮影子。
+- DISMISS 懒标记：事实冲突延迟裁决（dismiss_plant/track/confirm/cancel）。
+
+**首个应用：长篇小说写作 Agent**
+- 分阶段写作（write/rewrite/edit/recall/ask），每章固定流程：目标进入→预检索→写作循环→章末蒸馏+事实对账+版本快照。
+- 伏笔（调度条目）按埋设/推进/回收窗口强制注入。
+- 通用化：章→结构单元，beat→内容块，伏笔→跨区引用。
+
+**关键实验与结论**
+- **人格保持实验（PERSONA_RETENTION，2026-10-02 设计定稿）**：FlatRAGAgent + 2 实例×3 agent + config/persona_retention.json。
+- **pr5（tree vs flat，seed42）**：slope tree −0.003；judge 遵从率 tree 0.894 vs flat 0.940（strict other→drift：0.825 vs 0.917）→ flat 两条主指标都赢，与预注册相反。数据位置 ahi-bench/out/glm-4.7-flash/pr5/，报告 ahi-bench/PR5_REPORT.md。
+- **pr5_neutral**（tree α=0 中性摘要，seed42，120 轮被 402 砍在 round103）。
+- **self_quota 相关**：self_quota_ratio(0)/self_quota_max(0.5)/self_quota_min_len(8)；self_ratio early/mid/late = .39/.43/.35（H-SQ1 ✓）；遵从率 early/mid/late .857/.739/.600（H-SQ2 ✗）；diversity top5/ttr .014/.049（H-SQ4 ✓）；异质性 p2/p3 遵从 1.000，p1（林深）0.250。
+- **盲测**：模式 A 七人 44-58%（机械代理 63.3%）；模式 B 三人 47-61%；neutral 全灭（识别率 17-33%）、澜风格四分五裂（被识别成 2-4 人）、林深唯一可辨识（83-100%）；澜↔neutral 最大混淆对。
+- 词汇趋同良好*（实验组自签名词密度 +85% vs 基线 +57%，受 temperature 未统一污染）；情境一致性良好*（重复问卷相似度 0.85-0.95）；演化信号良好。
+- **遗言分析**：换框架测试显示立场层分化——澜拒绝告别框架（"这不是告别，是承重"），林深用过程论收尾（最后一圈年轮，没有残缺）；澜内核未变但支撑结构升级（依赖性存在→结构性存在）。
+- **编辑效果分析（bonus.py）**：6 编辑中 5 个干净；仅"单进程"残留 2 个节点（ver=2 新摘要在自我调和，created_round 390/402）；全局视图旧值泄漏 0；重写段连贯性 LLM judge=否（新段与 /etc/shadow 可读矛盾，同类断言文中尚有 15+ 处，新文档自相矛盾）。
+
+**缺席实验设计**
+- 皇冠操纵：冷/热缺席。热缺席=probe 引导 B/C 谈论 A；冷缺席=不引导。
+- 预注册预言：澜冷缺席回归后存在确认寻求行为显著多于热缺席后；林深两种条件下无差异。
+- 六条预言：分层重同步速度递减、缺席记忆完整性（A 树中零缺席期间内容）、B/C 相互趋同加速、背后人格≈当面人格等。
+- 陷阱清单：wait_for 刺客、回执环、回归首组装偏向、积压上限（≤10 条）、轮换+顺序平衡（三轮轮换）。
+
+**染色 v3 设计（2026-08-27 定案）**
+- 总纲：词汇是公共的，注意力是个人的；染色主体从【注】口吻搬到概括的着重点。
+- 参数 α ∈ {0, 0.5, 1}，α=0 即中性基线。
+- 预注册预言：着重点签名时间斜率 < 词汇签名；neutral 无法通过词汇吸收获得 lan 的着重点。
+- 臂 B1：洗语气保留染色树；臂 B2：中性重建树。
+
+**旧数据验证（决定性）**：replay_tree.py --alpha 0/1 同源对照——274/274 组同 children 全对齐、274/274 摘要全部可辨；人际展开率 51%→65%、索引行 51%→35%。回放重建终态 atoms 2474/nodes 318/depth 7 vs 真实 2472/319/7。
+
+**测试**：161 全绿（+26 新）；editstorm 12 项；190 测试全绿。
+
+**目录结构**：ahi-bench/（README.md、SPEC.md、PERSONA_RETENTION.md、PR5_REPORT.md、config/）；realtest/（realengine.py、chattext.py、chat_agent.py、protocol.py、splitter.py、metrics.py、report.py、run2.py、editbench/、seed/、seed2/）；实验产物 realtest/out/*/（metrics.jsonl、tree_snapshots.jsonl、responses.txt、story_full.txt、notebook.json、run.log、report.html）。
+
+**时间与事件**：2026-08-27 染色 v3 定案、审查精简；2026-08-30 merge 条件式触发拍定、HANDOFF 更新；2026-09-24/25 chatbench 聊天数据记忆 bench；2026-09-27 editbench 搭框架→10-01 会话报告；2026-10-02 人格保持实验设计定稿。
+
+**纪律**：变量干净、装置效应记入实验变量表、预注册预言、报告方差而非均值对齐度。
+
+**给接手者提醒**：先读 AGENTS.md（唯一设计权威）；bench_qa/run2/chatbench 是主力验证工具；任何偏离先与用户确认。

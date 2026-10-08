@@ -1,0 +1,34 @@
+{
+  "group": "memory",
+  "task": "T1",
+  "title": "thinking 配置不生效",
+  "passed": true,
+  "accept_rc": 0,
+  "accept_verdict": "PASS",
+  "elapsed_s": 23.6,
+  "agent_result": {
+    "ok": true,
+    "rounds": 7,
+    "summary": "修复了 `sdk/llm_client.py` 中 `thinking` 配置不生效的问题。\n\n**问题根因**：\n在 `LLMClient.send_message` 方法中，虽然在 `__init__` 中正确读取了 `thinking` 配置并存入 `self.thinking`，但在构造发送给 API 的 `kwargs` 时，并没有将该参数包含进去。\n\n**修复方案**：\n在 `send_message` 方法构造 `kwargs` 的逻辑中，增加了对 `self.thinking` 的判断。如果为 `True`，则在 `kwargs` 中添加 `\"extra_body\": {\"thinking\": True}`，以符合 DeepSeek 等 API 对思考模式的要求。\n\n**验证结果**：\n运行 `python3 accept_t1.py` 验收脚本，输出 `create kwargs: {'model': 'x', 'temperature': 0.7, 'max_tokens': 1024, 'extra_body': {'thinking': True}}` 并返回 `PASS`，确认修复成功。",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 7,
+    "atoms_alive": 21,
+    "nodes_alive": 0,
+    "tiling": 21,
+    "distill_calls": 0,
+    "distill_seconds": 0.0,
+    "tool_uses": {
+      "command": 3,
+      "read": 2,
+      "edit": 1,
+      "finish": 1
+    },
+    "notebook": 1
+  },
+  "last_usage": {
+    "prompt_tokens": 6899,
+    "completion_tokens": 240
+  }
+}

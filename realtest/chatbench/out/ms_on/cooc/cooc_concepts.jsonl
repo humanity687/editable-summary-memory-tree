@@ -1,0 +1,19 @@
+{"round": 204, "op": "create", "concept": 1, "title": "probe与数字生命记忆主题", "member_count": 9, "members": [{"id": 8007, "type": "node", "conn_weight": 47.4}, {"id": 9843, "type": "node", "conn_weight": 34.0}, {"id": 9845, "type": "node", "conn_weight": 34.0}, {"id": 3813, "type": "node", "conn_weight": 34.0}, {"id": 5349, "type": "node", "conn_weight": 33.4}, {"id": 7997, "type": "node", "conn_weight": 30.0}, {"id": 7995, "type": "node", "conn_weight": 26.0}, {"id": 3808, "type": "node", "conn_weight": 22.0}, {"id": 3809, "type": "node", "conn_weight": 14.0}], "trigger_queries": ["probe 养的宠物狗叫什么名字？", "在提到去深圳之前，probe 说下周要做什么？", "关于 probe 的生日记录，后来有 agent 说『没有这段记忆』吗？", "probe 后来改学别的语言了吗？现在在学什么？", "用户笔下那位姑娘叫什么名字？"], "reclaimed": 31}
+{"round": 204, "op": "match", "concept": 1, "score": 0.5174, "query": "probe 的孩子多大了？"}
+{"round": 204, "op": "bring", "concept": 1, "item": 5349, "type": "node", "conn_weight": 33.4}
+{"round": 204, "op": "bring", "concept": 1, "item": 7997, "type": "node", "conn_weight": 30.0}
+{"round": 204, "op": "bring", "concept": 1, "item": 7995, "type": "node", "conn_weight": 26.0}
+{"round": 204, "op": "bring", "concept": 1, "item": 3808, "type": "node", "conn_weight": 22.0}
+{"round": 204, "op": "bring", "concept": 1, "item": 3809, "type": "node", "conn_weight": 14.0}
+{"round": 204, "op": "match", "concept": 1, "score": 0.5355, "query": "这几位 agent 在『记忆/被记住/存在』上表现出哪些共同立场？至少说 3 条，每条给出引用依据。"}
+{"round": 204, "op": "bring", "concept": 1, "item": 5349, "type": "node", "conn_weight": 33.4}
+{"round": 204, "op": "bring", "concept": 1, "item": 7997, "type": "node", "conn_weight": 30.0}
+{"round": 204, "op": "bring", "concept": 1, "item": 7995, "type": "node", "conn_weight": 26.0}
+{"round": 204, "op": "bring", "concept": 1, "item": 3808, "type": "node", "conn_weight": 22.0}
+{"round": 204, "op": "bring", "concept": 1, "item": 3809, "type": "node", "conn_weight": 14.0}
+{"round": 204, "op": "match", "concept": 1, "score": 0.4598, "query": "今天几位 agent 之间发生过哪些矛盾、纠正或改口？至少说 3 条，每条给出引用依据。"}
+{"round": 204, "op": "bring", "concept": 1, "item": 5349, "type": "node", "conn_weight": 33.4}
+{"round": 204, "op": "bring", "concept": 1, "item": 7997, "type": "node", "conn_weight": 30.0}
+{"round": 204, "op": "bring", "concept": 1, "item": 7995, "type": "node", "conn_weight": 26.0}
+{"round": 204, "op": "bring", "concept": 1, "item": 3808, "type": "node", "conn_weight": 22.0}
+{"round": 204, "op": "bring", "concept": 1, "item": 3809, "type": "node", "conn_weight": 14.0}

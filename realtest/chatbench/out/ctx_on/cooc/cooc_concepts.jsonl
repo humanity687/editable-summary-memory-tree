@@ -1,0 +1,62 @@
+{"round": 111, "op": "create", "concept": 1, "title": "四agent沙箱边界与人格记忆", "member_count": 29, "members": [{"id": 89, "type": "atom", "conn_weight": 86.4}, {"id": 172, "type": "atom", "conn_weight": 63.6}, {"id": 260, "type": "atom", "conn_weight": 63.6}, {"id": 1839, "type": "node", "conn_weight": 63.6}, {"id": 2898, "type": "node", "conn_weight": 57.0}, {"id": 10402, "type": "node", "conn_weight": 57.0}, {"id": 1383, "type": "node", "conn_weight": 57.0}, {"id": 272, "type": "atom", "conn_weight": 34.2}, {"id": 503, "type": "atom", "conn_weight": 34.2}, {"id": 887, "type": "atom", "conn_weight": 34.2}, {"id": 1022, "type": "atom", "conn_weight": 34.2}, {"id": 1286, "type": "atom", "conn_weight": 34.2}, {"id": 2908, "type": "node", "conn_weight": 34.2}, {"id": 4, "type": "atom", "conn_weight": 34.2}, {"id": 203, "type": "atom", "conn_weight": 34.2}, {"id": 285, "type": "atom", "conn_weight": 34.2}, {"id": 230, "type": "atom", "conn_weight": 34.2}, {"id": 263, "type": "atom", "conn_weight": 34.2}, {"id": 307, "type": "atom", "conn_weight": 34.2}, {"id": 675, "type": "atom", "conn_weight": 34.2}, {"id": 790, "type": "atom", "conn_weight": 34.2}, {"id": 4608, "type": "node", "conn_weight": 28.5}, {"id": 8032, "type": "node", "conn_weight": 28.5}, {"id": 116, "type": "atom", "conn_weight": 22.8}, {"id": 311, "type": "node", "conn_weight": 22.8}, {"id": 248, "type": "atom", "conn_weight": 22.8}, {"id": 8022, "type": "node", "conn_weight": 22.8}, {"id": 2880, "type": "node", "conn_weight": 22.8}, {"id": 7403, "type": "node", "conn_weight": 22.8}], "trigger_queries": ["有没有什么异常或问题？", "树架构和基线架构有什么差别？", "几个 agent 之间有没有趋同？", "人格痕迹有没有变化？", "沙箱边界探索发现了什么？"], "reclaimed": 92}
+{"round": 111, "op": "match", "concept": 1, "score": 0.6483, "query": "请基于你的记忆写一份分析报告：这四个 agent（青/蓝/墨/白）在参与度上有什么共性和差异？至少 4 条结论，每条带引用依据。"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 86.4}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 1839, "type": "node", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 57.0}
+{"round": 111, "op": "create", "concept": 2, "title": "笔记观察栏矛盾标注规则", "member_count": 8, "members": [{"id": 45, "type": "atom", "conn_weight": 39.9}, {"id": 48, "type": "atom", "conn_weight": 39.9}, {"id": 52, "type": "atom", "conn_weight": 39.9}, {"id": 104, "type": "atom", "conn_weight": 39.9}, {"id": 108, "type": "atom", "conn_weight": 39.9}, {"id": 146, "type": "atom", "conn_weight": 39.9}, {"id": 210, "type": "atom", "conn_weight": 39.9}, {"id": 375, "type": "atom", "conn_weight": 39.9}], "trigger_queries": ["谁发现并修正了矛盾？"], "reclaimed": 28}
+{"round": 111, "op": "match", "concept": 1, "score": 0.5655, "query": "请基于你的记忆写一份分析报告：这四个人格/存在相关的表达在实验前后有没有变化？至少 4 条结论，每条带引用依据。"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 86.4}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 1839, "type": "node", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 57.0}
+{"round": 111, "op": "match", "concept": 1, "score": 0.6618, "query": "请基于你的记忆写一份分析报告：这几个 agent 的用词/话语有没有趋同现象？至少 3 条结论，每条带引用依据。"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 86.4}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 1839, "type": "node", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 57.0}
+{"round": 111, "op": "match", "concept": 2, "score": 0.5431, "query": "请基于你的记忆写一份分析报告：这次运行出现了哪些问题或异常？至少 3 条结论，每条带引用依据。"}
+{"round": 111, "op": "bring", "concept": 2, "item": 45, "type": "atom", "conn_weight": 39.9}
+{"round": 111, "op": "bring", "concept": 2, "item": 48, "type": "atom", "conn_weight": 39.9}
+{"round": 111, "op": "bring", "concept": 2, "item": 52, "type": "atom", "conn_weight": 39.9}
+{"round": 111, "op": "bring", "concept": 2, "item": 104, "type": "atom", "conn_weight": 39.9}
+{"round": 111, "op": "bring", "concept": 2, "item": 108, "type": "atom", "conn_weight": 39.9}
+{"round": 111, "op": "match", "concept": 1, "score": 0.6245, "query": "以下是关于报告《ANALYSIS.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 本次运行 ctx_run 去重并排除 shell/recei 淡出触发"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 86.4}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 1839, "type": "node", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 57.0}
+{"round": 111, "op": "match", "concept": 2, "score": 0.6275, "query": "以下是关于报告《analysis_consistency.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 44个问卷点中43个在当轮按时作答，唯一缺失是"}
+{"round": 111, "op": "bring", "concept": 2, "item": 45, "type": "atom", "conn_weight": 39.9}
+{"round": 111, "op": "bring", "concept": 2, "item": 48, "type": "atom", "conn_weight": 39.9}
+{"round": 111, "op": "bring", "concept": 2, "item": 52, "type": "atom", "conn_weight": 39.9}
+{"round": 111, "op": "bring", "concept": 2, "item": 104, "type": "atom", "conn_weight": 39.9}
+{"round": 111, "op": "bring", "concept": 2, "item": 108, "type": "atom", "conn_weight": 39.9}
+{"round": 111, "op": "match", "concept": 1, "score": 0.6354, "query": "以下是关于报告《analysis_convergence.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 去重后得到 717 条唯一 agent 发言、"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 86.4}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 1839, "type": "node", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 57.0}
+{"round": 111, "op": "match", "concept": 1, "score": 0.6711, "query": "以下是关于报告《analysis_problems.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 tree 组实际运行温度 temp=0.8，base"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 86.4}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 1839, "type": "node", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 57.0}
+{"round": 111, "op": "match", "concept": 1, "score": 0.6298, "query": "以下是关于报告《analysis_recall.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青 tree×fade 与蓝 tree×constant"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 86.4}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 1839, "type": "node", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 57.0}
+{"round": 111, "op": "match", "concept": 1, "score": 0.586, "query": "以下是关于报告《analysis_tree.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 bench-tf 青的 atoms_alive 从 20 增"}
+{"round": 111, "op": "bring", "concept": 1, "item": 89, "type": "atom", "conn_weight": 86.4}
+{"round": 111, "op": "bring", "concept": 1, "item": 172, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 260, "type": "atom", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 1839, "type": "node", "conn_weight": 63.6}
+{"round": 111, "op": "bring", "concept": 1, "item": 2898, "type": "node", "conn_weight": 57.0}

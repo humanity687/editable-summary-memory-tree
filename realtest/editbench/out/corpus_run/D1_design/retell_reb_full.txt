@@ -1,0 +1,1 @@
+文档中无此信息。这些文件是记忆树架构、实验协议与评分规格的技术文档（AGENTS.md、USAGE_SPEC.md、PERSONA_RETENTION.md、SPEC.md），不含人物、地点、物品、事件顺序与结局等叙事内容。

@@ -1,0 +1,46 @@
+[parallel] scenario=D1_design out=/Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D1_design repeats=5 tree=16000 retr=20 flat_topk=60 raptor_topk=60 extras=--splitter line --judge
+[launch] full pid=29190 → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D1_design/full.log
+[launch] flat pid=29191 → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D1_design/flat.log
+[launch] raptor pid=29192 → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D1_design/raptor.log
+[launch] tree_v2 pid=29193 → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D1_design/tree_v2.log
+[ok] full
+[ok] flat
+[ok] raptor
+[ok] tree_v2
+[merged] 4 份 → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D1_design/results.json
+
+===== 合并汇总（Q/A pass 率）=====
+  [phase1]
+    full             89/100 mean=89% ±2% 每遍=[18, 17, 18, 18, 18] {'reversal': '39/40', 'append': '0/10', 'invariant': '20/20', 'remote': '30/30'}
+    flat             81/100 mean=81% ±2% 每遍=[16, 16, 16, 16, 17] {'reversal': '36/40', 'append': '0/10', 'invariant': '15/20', 'remote': '30/30'}
+    raptor           86/100 mean=86% ±2% 每遍=[17, 17, 17, 18, 17] {'reversal': '36/40', 'append': '0/10', 'invariant': '20/20', 'remote': '30/30'}
+    tree_v2          66/100 mean=66% ±6% 每遍=[12, 13, 15, 14, 12] {'reversal': '20/40', 'append': '0/10', 'invariant': '20/20', 'remote': '26/30'}
+  [phase3]
+    inc_full         91/100 mean=91% ±4% 每遍=[19, 18, 19, 17, 18] {'reversal': '36/40', 'append': '10/10', 'invariant': '15/20', 'remote': '30/30'}
+    reb_full         86/100 mean=86% ±2% 每遍=[17, 17, 17, 17, 18] {'reversal': '30/40', 'append': '10/10', 'invariant': '16/20', 'remote': '30/30'}
+    inc_flat         86/100 mean=86% ±2% 每遍=[17, 18, 17, 17, 17] {'reversal': '35/40', 'append': '10/10', 'invariant': '11/20', 'remote': '30/30'}
+    reb_flat         81/100 mean=81% ±4% 每遍=[17, 17, 15, 16, 16] {'reversal': '25/40', 'append': '10/10', 'invariant': '16/20', 'remote': '30/30'}
+    inc_raptor       85/100 mean=85% ±4% 每遍=[18, 17, 18, 16, 16] {'reversal': '30/40', 'append': '10/10', 'invariant': '15/20', 'remote': '30/30'}
+    reb_raptor       86/100 mean=86% ±4% 每遍=[17, 18, 16, 17, 18] {'reversal': '30/40', 'append': '10/10', 'invariant': '16/20', 'remote': '30/30'}
+    inc_tree_v2      59/100 mean=59% ±2% 每遍=[12, 12, 12, 12, 11] {'reversal': '19/40', 'append': '5/10', 'invariant': '15/20', 'remote': '20/30'}
+    reb_tree_v2      65/100 mean=65% ±3% 每遍=[13, 12, 13, 14, 13] {'reversal': '15/40', 'append': '10/10', 'invariant': '15/20', 'remote': '25/30'}
+    inc_cold_tree_v2 51/100 mean=51% ±4% 每遍=[11, 9, 11, 10, 10] {'reversal': '14/40', 'append': '5/10', 'invariant': '15/20', 'remote': '17/30'}
+
+===== 复述（覆盖/残留）=====
+  inc_full         覆盖=83% 残留=42% 漏=[]
+  reb_full         覆盖=86% 残留=0% 漏=['4.9GB']
+  inc_flat         覆盖=30% 残留=10% 漏=['EMBED_BATCH=64/EMBED_BATCH', 'BaselineAgent', '24 / 12 / 18', '4.9GB', 'nonredundant_theta', 'token_budget', '显式栈遍历/显式栈', 'min_atom_chars', '2.1GB', 'max_loop_iterations/动作循环迭代上限', 'find_similar_threshold/重复输入检测/逐字重复检测', 'early_match_threshold/早期', 'parent_init_hp/父卡', 'hot_threshold/热原子', 'recall_boost/回血', 'initial_hp/初始生命值/初始 HP', 'max_memory_mb/内存看门狗', 'merge_fanout_cap/扇出', 'merge_cap_atoms/批量', 'hard_trim_slack/硬截断', 'w_bm_node/关键词权重', 'placeholder_transparent/占位卡透明/占位透明']
+  reb_flat         覆盖=36% 残留=0% 漏=['EMBED_BATCH=64/EMBED_BATCH', 'BaselineAgent', 'anchor_frac', '4.9GB', 'nonredundant_theta', 'token_budget', 'min_atom_chars', '2.1GB', 'max_loop_iterations/动作循环迭代上限', 'find_similar_threshold/重复输入检测/逐字重复检测', 'parent_init_hp/父卡', 'recall_boost/回血', 'initial_hp/初始生命值/初始 HP', 'max_memory_mb/内存看门狗', 'merge_fanout_cap/扇出', 'merge_cap_atoms/批量', 'hard_trim_slack/硬截断', 'w_bm_node/关键词权重', 'placeholder_transparent/占位卡透明/占位透明']
+  inc_raptor       覆盖=59% 残留=16% 漏=['BaselineAgent', '24 / 12 / 18', '4.9GB', 'nonredundant_theta', 'token_budget', '显式栈遍历/显式栈', 'min_atom_chars', '2.1GB', 'max_loop_iterations/动作循环迭代上限', 'find_similar_threshold/重复输入检测/逐字重复检测', 'initial_hp/初始生命值/初始 HP', 'max_memory_mb/内存看门狗']
+  reb_raptor       覆盖=39% 残留=0% 漏=['EMBED_BATCH=64/EMBED_BATCH', 'BaselineAgent', 'anchor_frac', '4.9GB', 'token_budget', '显式栈遍历/显式栈', 'min_atom_chars', '2.1GB', 'max_loop_iterations/动作循环迭代上限', 'parent_init_hp/父卡', 'recall_boost/回血', 'initial_hp/初始生命值/初始 HP', 'max_memory_mb/内存看门狗', 'hard_trim_slack/硬截断', 'w_bm_node/关键词权重', 'placeholder_transparent/占位卡透明/占位透明']
+  inc_tree_v2      覆盖=58% 残留=0% 漏=['BaselineAgent', 'anchor_frac', '24 / 12 / 18', '4.9GB', 'nonredundant_theta', '显式栈遍历/显式栈', 'max_loop_iterations/动作循环迭代上限', 'hot_threshold/热原子', 'initial_hp/初始生命值/初始 HP', 'merge_fanout_cap/扇出', 'merge_depth_diff/深度差', 'placeholder_transparent/占位卡透明/占位透明']
+  reb_tree_v2      覆盖=13% 残留=0% 漏=['EMBED_BATCH=64/EMBED_BATCH', 'BaselineAgent', 'anchor_frac', '24 / 12 / 18', '4.9GB', 'nonredundant_theta', 'token_budget', '显式栈遍历/显式栈', 'min_atom_chars', 'max_loop_iterations/动作循环迭代上限', 'find_similar_threshold/重复输入检测/逐字重复检测', 'early_match_threshold/早期', 'parent_init_hp/父卡', 'hot_threshold/热原子', 'attention_atom_cap/原子段', 'recall_boost/回血', 'initial_hp/初始生命值/初始 HP', 'max_memory_mb/内存看门狗', 'assembly_budget/组装预算', 'merge_fanout_cap/扇出', 'snapshot_max_chars/快照', 'merge_depth_diff/深度差', 'merge_cap_atoms/批量', 'hard_trim_slack/硬截断', 'w_bm_node/关键词权重', 'placeholder_transparent/占位卡透明/占位透明']
+  inc_cold_tree_v2 覆盖=3% 残留=0% 漏=['EMBED_BATCH=64/EMBED_BATCH', 'BaselineAgent', 'anchor_frac', '24 / 12 / 18', '4.9GB', 'nonredundant_theta', 'token_budget', '显式栈遍历/显式栈', 'min_atom_chars', 'max_loop_iterations/动作循环迭代上限', 'find_similar_threshold/重复输入检测/逐字重复检测', 'early_match_threshold/早期', 'parent_init_hp/父卡', 'hot_threshold/热原子', 'attention_atom_cap/原子段', 'recall_boost/回血', 'initial_hp/初始生命值/初始 HP', 'max_memory_mb/内存看门狗', 'assembly_budget/组装预算', 'merge_fanout_cap/扇出', 'force_cooldown_rounds/冷却', 'snapshot_max_chars/快照', 'anchor_top_k/锚点', 'merge_depth_diff/深度差', 'merge_cap_atoms/批量', 'hard_trim_slack/硬截断', 'distill_parallel/并行蒸馏', 'w_bm_node/关键词权重', 'placeholder_transparent/占位卡透明/占位透明']
+
+===== 编辑时刻成本 =====
+  full           编辑路径      0.10 ms | 推迟蒸馏       0.00 ms
+  flat           编辑路径    105.82 ms | 推迟蒸馏       0.00 ms
+  raptor         编辑路径    101.11 ms | 推迟蒸馏       0.00 ms
+  tree_v2        编辑路径      2.46 ms | 推迟蒸馏   31606.55 ms
+  inc_cold_tree_v2 编辑路径      1.75 ms | 推迟蒸馏   59489.60 ms
+[done] → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D1_design/results.json

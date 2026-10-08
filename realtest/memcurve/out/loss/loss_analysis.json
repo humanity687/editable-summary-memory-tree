@@ -1,0 +1,11982 @@
+{
+ "facts": 100,
+ "mock": false,
+ "rows": [
+  {
+   "x": 0,
+   "note": "t0",
+   "kept": 100,
+   "cats": {
+    "kept": 100,
+    "lost@L1": 0,
+    "lost@L2": 0,
+    "lost@L3+": 0,
+    "lost@top": 0,
+    "unowned": 0,
+    "atom_dead": 0
+   },
+   "level_present_counts": {
+    "L1": 0,
+    "L2": 0,
+    "L3": 0,
+    "L4": 0,
+    "L5": 0
+   },
+   "tree_height": 0,
+   "n_nodes_alive": 0,
+   "n_tiling": 100,
+   "served_depth_hist": {},
+   "merge_events": 0,
+   "rebuild_events": 0,
+   "detail_missing": []
+  },
+  {
+   "x": 1007,
+   "note": "r4",
+   "kept": 100,
+   "cats": {
+    "kept": 100,
+    "lost@L1": 0,
+    "lost@L2": 0,
+    "lost@L3+": 0,
+    "lost@top": 0,
+    "unowned": 0,
+    "atom_dead": 0
+   },
+   "level_present_counts": {
+    "L1": 76,
+    "L2": 0,
+    "L3": 0,
+    "L4": 0,
+    "L5": 0
+   },
+   "tree_height": 1,
+   "n_nodes_alive": 8,
+   "n_tiling": 56,
+   "served_depth_hist": {
+    "0": 8
+   },
+   "merge_events": 8,
+   "rebuild_events": 0,
+   "detail_missing": []
+  },
+  {
+   "x": 2118,
+   "note": "r8",
+   "kept": 99,
+   "cats": {
+    "kept": 99,
+    "lost@L1": 1,
+    "lost@L2": 0,
+    "lost@L3+": 0,
+    "lost@top": 0,
+    "unowned": 0,
+    "atom_dead": 0
+   },
+   "level_present_counts": {
+    "L1": 99,
+    "L2": 0,
+    "L3": 0,
+    "L4": 0,
+    "L5": 0
+   },
+   "tree_height": 1,
+   "n_nodes_alive": 10,
+   "n_tiling": 66,
+   "served_depth_hist": {
+    "0": 10
+   },
+   "merge_events": 2,
+   "rebuild_events": 0,
+   "detail_missing": [
+    {
+     "id": "S024",
+     "cat": "lost@L1",
+     "chain_depth": 1,
+     "pres_levels": []
+    }
+   ]
+  },
+  {
+   "x": 3507,
+   "note": "r12",
+   "kept": 99,
+   "cats": {
+    "kept": 99,
+    "lost@L1": 1,
+    "lost@L2": 0,
+    "lost@L3+": 0,
+    "lost@top": 0,
+    "unowned": 0,
+    "atom_dead": 0
+   },
+   "level_present_counts": {
+    "L1": 99,
+    "L2": 0,
+    "L3": 0,
+    "L4": 0,
+    "L5": 0
+   },
+   "tree_height": 1,
+   "n_nodes_alive": 14,
+   "n_tiling": 54,
+   "served_depth_hist": {
+    "0": 14
+   },
+   "merge_events": 4,
+   "rebuild_events": 0,
+   "detail_missing": [
+    {
+     "id": "S024",
+     "cat": "lost@L1",
+     "chain_depth": 1,
+     "pres_levels": []
+    }
+   ]
+  },
+  {
+   "x": 4794,
+   "note": "r16",
+   "kept": 26,
+   "cats": {
+    "kept": 26,
+    "lost@L1": 1,
+    "lost@L2": 73,
+    "lost@L3+": 0,
+    "lost@top": 0,
+    "unowned": 0,
+    "atom_dead": 0
+   },
+   "level_present_counts": {
+    "L1": 99,
+    "L2": 14,
+    "L3": 0,
+    "L4": 0,
+    "L5": 0
+   },
+   "tree_height": 2,
+   "n_nodes_alive": 19,
+   "n_tiling": 50,
+   "served_depth_hist": {
+    "0": 10
+   },
+   "merge_events": 5,
+   "rebuild_events": 0,
+   "detail_missing": [
+    {
+     "id": "S024",
+     "cat": "lost@L1",
+     "chain_depth": 2,
+     "pres_levels": []
+    },
+    {
+     "id": "S025",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S026",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S027",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S028",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S029",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S030",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S031",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S032",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S033",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S034",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S035",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S036",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S037",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S038",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S039",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S040",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S041",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S042",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S043",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S044",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S045",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S046",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S047",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S048",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S049",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S050",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S051",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S052",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S053",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S054",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S055",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S056",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S057",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S058",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S059",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S060",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S061",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S062",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S063",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S064",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S065",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S066",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S067",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S068",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S069",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S070",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S071",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S072",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S073",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S074",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S075",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S076",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S077",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S078",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S079",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S080",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S081",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S082",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S083",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S084",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S085",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S086",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S087",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S088",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S089",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S090",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S091",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S092",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S093",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S094",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S095",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S096",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S097",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    }
+   ]
+  },
+  {
+   "x": 5944,
+   "note": "r20",
+   "kept": 26,
+   "cats": {
+    "kept": 26,
+    "lost@L1": 1,
+    "lost@L2": 73,
+    "lost@L3+": 0,
+    "lost@top": 0,
+    "unowned": 0,
+    "atom_dead": 0
+   },
+   "level_present_counts": {
+    "L1": 99,
+    "L2": 14,
+    "L3": 0,
+    "L4": 0,
+    "L5": 0
+   },
+   "tree_height": 2,
+   "n_nodes_alive": 21,
+   "n_tiling": 60,
+   "served_depth_hist": {
+    "0": 12
+   },
+   "merge_events": 2,
+   "rebuild_events": 0,
+   "detail_missing": [
+    {
+     "id": "S024",
+     "cat": "lost@L1",
+     "chain_depth": 2,
+     "pres_levels": []
+    },
+    {
+     "id": "S025",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S026",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S027",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S028",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S029",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S030",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S031",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S032",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S033",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S034",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S035",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S036",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S037",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S038",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S039",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S040",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S041",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S042",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S043",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S044",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S045",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S046",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S047",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S048",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S049",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S050",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S051",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S052",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S053",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S054",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S055",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S056",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S057",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S058",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S059",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S060",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S061",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S062",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S063",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S064",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S065",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S066",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S067",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S068",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S069",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S070",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S071",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S072",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S073",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S074",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S075",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S076",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S077",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S078",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S079",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S080",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S081",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S082",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S083",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S084",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S085",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S086",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S087",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S088",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S089",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S090",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S091",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S092",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S093",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S094",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S095",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S096",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S097",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    }
+   ]
+  },
+  {
+   "x": 7183,
+   "note": "r24",
+   "kept": 26,
+   "cats": {
+    "kept": 26,
+    "lost@L1": 1,
+    "lost@L2": 73,
+    "lost@L3+": 0,
+    "lost@top": 0,
+    "unowned": 0,
+    "atom_dead": 0
+   },
+   "level_present_counts": {
+    "L1": 99,
+    "L2": 14,
+    "L3": 0,
+    "L4": 0,
+    "L5": 0
+   },
+   "tree_height": 2,
+   "n_nodes_alive": 24,
+   "n_tiling": 68,
+   "served_depth_hist": {
+    "0": 12
+   },
+   "merge_events": 3,
+   "rebuild_events": 0,
+   "detail_missing": [
+    {
+     "id": "S024",
+     "cat": "lost@L1",
+     "chain_depth": 2,
+     "pres_levels": []
+    },
+    {
+     "id": "S025",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S026",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S027",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S028",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S029",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S030",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S031",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S032",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S033",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S034",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S035",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S036",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S037",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S038",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S039",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S040",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S041",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S042",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S043",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S044",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S045",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S046",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S047",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S048",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S049",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S050",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S051",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S052",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S053",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S054",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S055",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S056",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S057",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S058",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S059",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S060",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S061",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S062",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S063",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S064",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S065",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S066",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S067",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S068",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S069",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S070",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S071",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S072",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S073",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S074",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S075",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S076",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S077",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S078",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S079",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S080",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S081",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S082",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S083",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S084",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S085",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S086",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S087",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S088",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S089",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S090",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S091",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S092",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S093",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S094",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S095",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S096",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S097",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    }
+   ]
+  },
+  {
+   "x": 8533,
+   "note": "r28",
+   "kept": 26,
+   "cats": {
+    "kept": 26,
+    "lost@L1": 1,
+    "lost@L2": 73,
+    "lost@L3+": 0,
+    "lost@top": 0,
+    "unowned": 0,
+    "atom_dead": 0
+   },
+   "level_present_counts": {
+    "L1": 99,
+    "L2": 14,
+    "L3": 0,
+    "L4": 0,
+    "L5": 0
+   },
+   "tree_height": 2,
+   "n_nodes_alive": 29,
+   "n_tiling": 55,
+   "served_depth_hist": {
+    "0": 15
+   },
+   "merge_events": 5,
+   "rebuild_events": 0,
+   "detail_missing": [
+    {
+     "id": "S024",
+     "cat": "lost@L1",
+     "chain_depth": 2,
+     "pres_levels": []
+    },
+    {
+     "id": "S025",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S026",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S027",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S028",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S029",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S030",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S031",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S032",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S033",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S034",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S035",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S036",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S037",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S038",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S039",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S040",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S041",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S042",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S043",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S044",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S045",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S046",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S047",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S048",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S049",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S050",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S051",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S052",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S053",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S054",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S055",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S056",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S057",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S058",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S059",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S060",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S061",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S062",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S063",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S064",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S065",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S066",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S067",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S068",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S069",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S070",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S071",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S072",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S073",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S074",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S075",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S076",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S077",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S078",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S079",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S080",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S081",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S082",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S083",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S084",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S085",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S086",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S087",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S088",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S089",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S090",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S091",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S092",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S093",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S094",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S095",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S096",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S097",
+     "cat": "lost@L2",
+     "chain_depth": 2,
+     "pres_levels": [
+      1
+     ]
+    }
+   ]
+  },
+  {
+   "x": 9887,
+   "note": "r32",
+   "kept": 15,
+   "cats": {
+    "kept": 15,
+    "lost@L1": 1,
+    "lost@L2": 73,
+    "lost@L3+": 11,
+    "lost@top": 0,
+    "unowned": 0,
+    "atom_dead": 0
+   },
+   "level_present_counts": {
+    "L1": 99,
+    "L2": 26,
+    "L3": 3,
+    "L4": 0,
+    "L5": 0
+   },
+   "tree_height": 3,
+   "n_nodes_alive": 36,
+   "n_tiling": 54,
+   "served_depth_hist": {
+    "0": 14
+   },
+   "merge_events": 7,
+   "rebuild_events": 0,
+   "detail_missing": [
+    {
+     "id": "F16",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F17",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F18",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F19",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F20",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S021",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S022",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S023",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S024",
+     "cat": "lost@L1",
+     "chain_depth": 3,
+     "pres_levels": []
+    },
+    {
+     "id": "S025",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S026",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S027",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S028",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S029",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S030",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S031",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S032",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S033",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S034",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S035",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S036",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S037",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S038",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S039",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S040",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S041",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S042",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S043",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S044",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S045",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S046",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S047",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S048",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S049",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S050",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S051",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S052",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S053",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S054",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S055",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S056",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S057",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S058",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S059",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S060",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S061",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S062",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S063",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S064",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S065",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S066",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S067",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S068",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S069",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S070",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S071",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S072",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S073",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S074",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S075",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S076",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S077",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S078",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S079",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S080",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S081",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S082",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S083",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S084",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S085",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S086",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S087",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S088",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S089",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S090",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S091",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S092",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S093",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S094",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S095",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S096",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S097",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S098",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S099",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S100",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    }
+   ]
+  },
+  {
+   "x": 11264,
+   "note": "r36",
+   "kept": 15,
+   "cats": {
+    "kept": 15,
+    "lost@L1": 1,
+    "lost@L2": 73,
+    "lost@L3+": 11,
+    "lost@top": 0,
+    "unowned": 0,
+    "atom_dead": 0
+   },
+   "level_present_counts": {
+    "L1": 99,
+    "L2": 26,
+    "L3": 3,
+    "L4": 0,
+    "L5": 0
+   },
+   "tree_height": 3,
+   "n_nodes_alive": 39,
+   "n_tiling": 63,
+   "served_depth_hist": {
+    "0": 15
+   },
+   "merge_events": 3,
+   "rebuild_events": 0,
+   "detail_missing": [
+    {
+     "id": "F16",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F17",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F18",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F19",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F20",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S021",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S022",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S023",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S024",
+     "cat": "lost@L1",
+     "chain_depth": 3,
+     "pres_levels": []
+    },
+    {
+     "id": "S025",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S026",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S027",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S028",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S029",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S030",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S031",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S032",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S033",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S034",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S035",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S036",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S037",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S038",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S039",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S040",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S041",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S042",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S043",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S044",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S045",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S046",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S047",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S048",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S049",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S050",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S051",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S052",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S053",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S054",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S055",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S056",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S057",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S058",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S059",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S060",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S061",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S062",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S063",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S064",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S065",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S066",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S067",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S068",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S069",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S070",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S071",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S072",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S073",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S074",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S075",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S076",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S077",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S078",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S079",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S080",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S081",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S082",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S083",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S084",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S085",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S086",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S087",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S088",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S089",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S090",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S091",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S092",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S093",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S094",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S095",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S096",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S097",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S098",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S099",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S100",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    }
+   ]
+  },
+  {
+   "x": 12429,
+   "note": "r40",
+   "kept": 15,
+   "cats": {
+    "kept": 15,
+    "lost@L1": 1,
+    "lost@L2": 73,
+    "lost@L3+": 11,
+    "lost@top": 0,
+    "unowned": 0,
+    "atom_dead": 0
+   },
+   "level_present_counts": {
+    "L1": 99,
+    "L2": 26,
+    "L3": 3,
+    "L4": 0,
+    "L5": 0
+   },
+   "tree_height": 3,
+   "n_nodes_alive": 44,
+   "n_tiling": 58,
+   "served_depth_hist": {
+    "0": 18
+   },
+   "merge_events": 5,
+   "rebuild_events": 0,
+   "detail_missing": [
+    {
+     "id": "F16",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F17",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F18",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F19",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F20",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S021",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S022",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S023",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S024",
+     "cat": "lost@L1",
+     "chain_depth": 3,
+     "pres_levels": []
+    },
+    {
+     "id": "S025",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S026",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S027",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S028",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S029",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S030",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S031",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S032",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S033",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S034",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S035",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S036",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S037",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S038",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S039",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S040",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S041",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S042",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S043",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S044",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S045",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S046",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S047",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S048",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S049",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S050",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S051",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S052",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S053",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S054",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S055",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S056",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S057",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S058",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S059",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S060",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S061",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S062",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S063",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S064",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S065",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S066",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S067",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S068",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S069",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S070",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S071",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S072",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S073",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S074",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S075",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S076",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S077",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S078",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S079",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S080",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S081",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S082",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S083",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S084",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S085",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S086",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S087",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S088",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S089",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S090",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S091",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S092",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S093",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S094",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S095",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S096",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S097",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S098",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S099",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S100",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    }
+   ]
+  },
+  {
+   "x": 13704,
+   "note": "r44",
+   "kept": 15,
+   "cats": {
+    "kept": 15,
+    "lost@L1": 1,
+    "lost@L2": 73,
+    "lost@L3+": 11,
+    "lost@top": 0,
+    "unowned": 0,
+    "atom_dead": 0
+   },
+   "level_present_counts": {
+    "L1": 99,
+    "L2": 26,
+    "L3": 3,
+    "L4": 0,
+    "L5": 0
+   },
+   "tree_height": 3,
+   "n_nodes_alive": 50,
+   "n_tiling": 59,
+   "served_depth_hist": {
+    "0": 19
+   },
+   "merge_events": 6,
+   "rebuild_events": 0,
+   "detail_missing": [
+    {
+     "id": "F16",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F17",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F18",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F19",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F20",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S021",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S022",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S023",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S024",
+     "cat": "lost@L1",
+     "chain_depth": 3,
+     "pres_levels": []
+    },
+    {
+     "id": "S025",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S026",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S027",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S028",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S029",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S030",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S031",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S032",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S033",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S034",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S035",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S036",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S037",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S038",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S039",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S040",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S041",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S042",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S043",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S044",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S045",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S046",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S047",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S048",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S049",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S050",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S051",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S052",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S053",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S054",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S055",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S056",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S057",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S058",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S059",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S060",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S061",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S062",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S063",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S064",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S065",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S066",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S067",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S068",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S069",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S070",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S071",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S072",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S073",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S074",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S075",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S076",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S077",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S078",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S079",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S080",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S081",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S082",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S083",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S084",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S085",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S086",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S087",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S088",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S089",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S090",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S091",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S092",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S093",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S094",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S095",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S096",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S097",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S098",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S099",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S100",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    }
+   ]
+  },
+  {
+   "x": 14543,
+   "note": "r48",
+   "kept": 15,
+   "cats": {
+    "kept": 15,
+    "lost@L1": 1,
+    "lost@L2": 73,
+    "lost@L3+": 11,
+    "lost@top": 0,
+    "unowned": 0,
+    "atom_dead": 0
+   },
+   "level_present_counts": {
+    "L1": 99,
+    "L2": 26,
+    "L3": 3,
+    "L4": 0,
+    "L5": 0
+   },
+   "tree_height": 3,
+   "n_nodes_alive": 56,
+   "n_tiling": 59,
+   "served_depth_hist": {
+    "0": 19
+   },
+   "merge_events": 6,
+   "rebuild_events": 0,
+   "detail_missing": [
+    {
+     "id": "F16",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F17",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F18",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F19",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F20",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S021",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S022",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S023",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S024",
+     "cat": "lost@L1",
+     "chain_depth": 3,
+     "pres_levels": []
+    },
+    {
+     "id": "S025",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S026",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S027",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S028",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S029",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S030",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S031",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S032",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S033",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S034",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S035",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S036",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S037",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S038",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S039",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S040",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S041",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S042",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S043",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S044",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S045",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S046",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S047",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S048",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S049",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S050",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S051",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S052",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S053",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S054",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S055",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S056",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S057",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S058",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S059",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S060",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S061",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S062",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S063",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S064",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S065",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S066",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S067",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S068",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S069",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S070",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S071",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S072",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S073",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S074",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S075",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S076",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S077",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S078",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S079",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S080",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S081",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S082",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S083",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S084",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S085",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S086",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S087",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S088",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S089",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S090",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S091",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S092",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S093",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S094",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S095",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S096",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S097",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S098",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S099",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S100",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    }
+   ]
+  },
+  {
+   "x": 15686,
+   "note": "r52",
+   "kept": 15,
+   "cats": {
+    "kept": 15,
+    "lost@L1": 1,
+    "lost@L2": 73,
+    "lost@L3+": 11,
+    "lost@top": 0,
+    "unowned": 0,
+    "atom_dead": 0
+   },
+   "level_present_counts": {
+    "L1": 99,
+    "L2": 26,
+    "L3": 3,
+    "L4": 0,
+    "L5": 0
+   },
+   "tree_height": 3,
+   "n_nodes_alive": 62,
+   "n_tiling": 61,
+   "served_depth_hist": {
+    "0": 21
+   },
+   "merge_events": 6,
+   "rebuild_events": 0,
+   "detail_missing": [
+    {
+     "id": "F16",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F17",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F18",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F19",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F20",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S021",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S022",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S023",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S024",
+     "cat": "lost@L1",
+     "chain_depth": 3,
+     "pres_levels": []
+    },
+    {
+     "id": "S025",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S026",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S027",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S028",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S029",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S030",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S031",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S032",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S033",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S034",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S035",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S036",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S037",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S038",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S039",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S040",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S041",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S042",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S043",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S044",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S045",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S046",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S047",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S048",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S049",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S050",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S051",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S052",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S053",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S054",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S055",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S056",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S057",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S058",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S059",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S060",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S061",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S062",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S063",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S064",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S065",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S066",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S067",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S068",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S069",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S070",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S071",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S072",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S073",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S074",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S075",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S076",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S077",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S078",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S079",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S080",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S081",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S082",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S083",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S084",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S085",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S086",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S087",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S088",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S089",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S090",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S091",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S092",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S093",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S094",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S095",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S096",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S097",
+     "cat": "lost@L2",
+     "chain_depth": 3,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S098",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S099",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S100",
+     "cat": "lost@L3+",
+     "chain_depth": 3,
+     "pres_levels": [
+      1,
+      2
+     ]
+    }
+   ]
+  },
+  {
+   "x": 16760,
+   "note": "r56",
+   "kept": 15,
+   "cats": {
+    "kept": 15,
+    "lost@L1": 1,
+    "lost@L2": 73,
+    "lost@L3+": 11,
+    "lost@top": 0,
+    "unowned": 0,
+    "atom_dead": 0
+   },
+   "level_present_counts": {
+    "L1": 99,
+    "L2": 26,
+    "L3": 15,
+    "L4": 3,
+    "L5": 0
+   },
+   "tree_height": 4,
+   "n_nodes_alive": 69,
+   "n_tiling": 62,
+   "served_depth_hist": {
+    "0": 22
+   },
+   "merge_events": 7,
+   "rebuild_events": 0,
+   "detail_missing": [
+    {
+     "id": "F16",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F17",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F18",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F19",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F20",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S021",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S022",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S023",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S024",
+     "cat": "lost@L1",
+     "chain_depth": 4,
+     "pres_levels": []
+    },
+    {
+     "id": "S025",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S026",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S027",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S028",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S029",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S030",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S031",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S032",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S033",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S034",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S035",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S036",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S037",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S038",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S039",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S040",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S041",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S042",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S043",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S044",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S045",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S046",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S047",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S048",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S049",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S050",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S051",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S052",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S053",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S054",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S055",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S056",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S057",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S058",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S059",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S060",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S061",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S062",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S063",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S064",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S065",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S066",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S067",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S068",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S069",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S070",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S071",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S072",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S073",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S074",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S075",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S076",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S077",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S078",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S079",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S080",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S081",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S082",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S083",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S084",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S085",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S086",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S087",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S088",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S089",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S090",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S091",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S092",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S093",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S094",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S095",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S096",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S097",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S098",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S099",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S100",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    }
+   ]
+  },
+  {
+   "x": 17891,
+   "note": "r60",
+   "kept": 15,
+   "cats": {
+    "kept": 15,
+    "lost@L1": 1,
+    "lost@L2": 73,
+    "lost@L3+": 11,
+    "lost@top": 0,
+    "unowned": 0,
+    "atom_dead": 0
+   },
+   "level_present_counts": {
+    "L1": 99,
+    "L2": 26,
+    "L3": 15,
+    "L4": 3,
+    "L5": 0
+   },
+   "tree_height": 4,
+   "n_nodes_alive": 75,
+   "n_tiling": 64,
+   "served_depth_hist": {
+    "0": 24
+   },
+   "merge_events": 6,
+   "rebuild_events": 0,
+   "detail_missing": [
+    {
+     "id": "F16",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F17",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F18",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F19",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F20",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S021",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S022",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S023",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S024",
+     "cat": "lost@L1",
+     "chain_depth": 4,
+     "pres_levels": []
+    },
+    {
+     "id": "S025",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S026",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S027",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S028",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S029",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S030",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S031",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S032",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S033",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S034",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S035",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S036",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S037",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S038",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S039",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S040",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S041",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S042",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S043",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S044",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S045",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S046",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S047",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S048",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S049",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S050",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S051",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S052",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S053",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S054",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S055",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S056",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S057",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S058",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S059",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S060",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S061",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S062",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S063",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S064",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S065",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S066",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S067",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S068",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S069",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S070",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S071",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S072",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S073",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S074",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S075",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S076",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S077",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S078",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S079",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S080",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S081",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S082",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S083",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S084",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S085",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S086",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S087",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S088",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S089",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S090",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S091",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S092",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S093",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S094",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S095",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S096",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S097",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S098",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S099",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S100",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    }
+   ]
+  },
+  {
+   "x": 19134,
+   "note": "r64",
+   "kept": 15,
+   "cats": {
+    "kept": 15,
+    "lost@L1": 1,
+    "lost@L2": 73,
+    "lost@L3+": 11,
+    "lost@top": 0,
+    "unowned": 0,
+    "atom_dead": 0
+   },
+   "level_present_counts": {
+    "L1": 99,
+    "L2": 26,
+    "L3": 15,
+    "L4": 3,
+    "L5": 0
+   },
+   "tree_height": 4,
+   "n_nodes_alive": 82,
+   "n_tiling": 65,
+   "served_depth_hist": {
+    "0": 25
+   },
+   "merge_events": 7,
+   "rebuild_events": 0,
+   "detail_missing": [
+    {
+     "id": "F16",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F17",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F18",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F19",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F20",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S021",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S022",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S023",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S024",
+     "cat": "lost@L1",
+     "chain_depth": 4,
+     "pres_levels": []
+    },
+    {
+     "id": "S025",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S026",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S027",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S028",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S029",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S030",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S031",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S032",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S033",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S034",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S035",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S036",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S037",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S038",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S039",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S040",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S041",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S042",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S043",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S044",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S045",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S046",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S047",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S048",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S049",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S050",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S051",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S052",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S053",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S054",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S055",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S056",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S057",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S058",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S059",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S060",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S061",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S062",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S063",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S064",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S065",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S066",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S067",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S068",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S069",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S070",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S071",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S072",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S073",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S074",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S075",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S076",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S077",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S078",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S079",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S080",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S081",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S082",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S083",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S084",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S085",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S086",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S087",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S088",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S089",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S090",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S091",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S092",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S093",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S094",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S095",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S096",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S097",
+     "cat": "lost@L2",
+     "chain_depth": 4,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S098",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S099",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S100",
+     "cat": "lost@L3+",
+     "chain_depth": 4,
+     "pres_levels": [
+      1,
+      2
+     ]
+    }
+   ]
+  },
+  {
+   "x": 20608,
+   "note": "r68",
+   "kept": 15,
+   "cats": {
+    "kept": 15,
+    "lost@L1": 1,
+    "lost@L2": 73,
+    "lost@L3+": 11,
+    "lost@top": 0,
+    "unowned": 0,
+    "atom_dead": 0
+   },
+   "level_present_counts": {
+    "L1": 99,
+    "L2": 26,
+    "L3": 15,
+    "L4": 15,
+    "L5": 3
+   },
+   "tree_height": 5,
+   "n_nodes_alive": 90,
+   "n_tiling": 65,
+   "served_depth_hist": {
+    "0": 25
+   },
+   "merge_events": 8,
+   "rebuild_events": 0,
+   "detail_missing": [
+    {
+     "id": "F16",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F17",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F18",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F19",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F20",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S021",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S022",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S023",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S024",
+     "cat": "lost@L1",
+     "chain_depth": 5,
+     "pres_levels": []
+    },
+    {
+     "id": "S025",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S026",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S027",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S028",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S029",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S030",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S031",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S032",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S033",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S034",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S035",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S036",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S037",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S038",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S039",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S040",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S041",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S042",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S043",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S044",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S045",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S046",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S047",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S048",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S049",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S050",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S051",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S052",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S053",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S054",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S055",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S056",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S057",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S058",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S059",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S060",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S061",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S062",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S063",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S064",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S065",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S066",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S067",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S068",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S069",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S070",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S071",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S072",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S073",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S074",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S075",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S076",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S077",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S078",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S079",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S080",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S081",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S082",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S083",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S084",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S085",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S086",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S087",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S088",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S089",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S090",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S091",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S092",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S093",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S094",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S095",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S096",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S097",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S098",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S099",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S100",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    }
+   ]
+  },
+  {
+   "x": 22581,
+   "note": "r72",
+   "kept": 15,
+   "cats": {
+    "kept": 15,
+    "lost@L1": 1,
+    "lost@L2": 73,
+    "lost@L3+": 11,
+    "lost@top": 0,
+    "unowned": 0,
+    "atom_dead": 0
+   },
+   "level_present_counts": {
+    "L1": 99,
+    "L2": 26,
+    "L3": 15,
+    "L4": 15,
+    "L5": 3
+   },
+   "tree_height": 5,
+   "n_nodes_alive": 97,
+   "n_tiling": 66,
+   "served_depth_hist": {
+    "0": 26
+   },
+   "merge_events": 7,
+   "rebuild_events": 0,
+   "detail_missing": [
+    {
+     "id": "F16",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F17",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F18",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F19",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F20",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S021",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S022",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S023",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S024",
+     "cat": "lost@L1",
+     "chain_depth": 5,
+     "pres_levels": []
+    },
+    {
+     "id": "S025",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S026",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S027",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S028",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S029",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S030",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S031",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S032",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S033",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S034",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S035",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S036",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S037",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S038",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S039",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S040",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S041",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S042",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S043",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S044",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S045",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S046",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S047",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S048",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S049",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S050",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S051",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S052",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S053",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S054",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S055",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S056",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S057",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S058",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S059",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S060",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S061",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S062",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S063",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S064",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S065",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S066",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S067",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S068",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S069",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S070",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S071",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S072",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S073",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S074",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S075",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S076",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S077",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S078",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S079",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S080",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S081",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S082",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S083",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S084",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S085",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S086",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S087",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S088",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S089",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S090",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S091",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S092",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S093",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S094",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S095",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S096",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S097",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S098",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S099",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S100",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    }
+   ]
+  },
+  {
+   "x": 24530,
+   "note": "r76",
+   "kept": 15,
+   "cats": {
+    "kept": 15,
+    "lost@L1": 1,
+    "lost@L2": 73,
+    "lost@L3+": 11,
+    "lost@top": 0,
+    "unowned": 0,
+    "atom_dead": 0
+   },
+   "level_present_counts": {
+    "L1": 99,
+    "L2": 26,
+    "L3": 15,
+    "L4": 15,
+    "L5": 3
+   },
+   "tree_height": 5,
+   "n_nodes_alive": 105,
+   "n_tiling": 66,
+   "served_depth_hist": {
+    "0": 26
+   },
+   "merge_events": 8,
+   "rebuild_events": 0,
+   "detail_missing": [
+    {
+     "id": "F16",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F17",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F18",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F19",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F20",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S021",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S022",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S023",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S024",
+     "cat": "lost@L1",
+     "chain_depth": 5,
+     "pres_levels": []
+    },
+    {
+     "id": "S025",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S026",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S027",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S028",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S029",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S030",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S031",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S032",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S033",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S034",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S035",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S036",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S037",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S038",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S039",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S040",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S041",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S042",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S043",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S044",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S045",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S046",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S047",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S048",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S049",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S050",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S051",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S052",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S053",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S054",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S055",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S056",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S057",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S058",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S059",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S060",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S061",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S062",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S063",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S064",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S065",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S066",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S067",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S068",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S069",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S070",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S071",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S072",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S073",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S074",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S075",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S076",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S077",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S078",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S079",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S080",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S081",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S082",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S083",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S084",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S085",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S086",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S087",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S088",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S089",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S090",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S091",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S092",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S093",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S094",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S095",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S096",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S097",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S098",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S099",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S100",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    }
+   ]
+  },
+  {
+   "x": 25886,
+   "note": "r80",
+   "kept": 15,
+   "cats": {
+    "kept": 15,
+    "lost@L1": 1,
+    "lost@L2": 73,
+    "lost@L3+": 11,
+    "lost@top": 0,
+    "unowned": 0,
+    "atom_dead": 0
+   },
+   "level_present_counts": {
+    "L1": 99,
+    "L2": 26,
+    "L3": 15,
+    "L4": 15,
+    "L5": 3
+   },
+   "tree_height": 5,
+   "n_nodes_alive": 112,
+   "n_tiling": 67,
+   "served_depth_hist": {
+    "0": 27
+   },
+   "merge_events": 7,
+   "rebuild_events": 0,
+   "detail_missing": [
+    {
+     "id": "F16",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F17",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F18",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F19",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "F20",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S021",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S022",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S023",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S024",
+     "cat": "lost@L1",
+     "chain_depth": 5,
+     "pres_levels": []
+    },
+    {
+     "id": "S025",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S026",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S027",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S028",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S029",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S030",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S031",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S032",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S033",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S034",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S035",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S036",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S037",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S038",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S039",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S040",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S041",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S042",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S043",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S044",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S045",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S046",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S047",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S048",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S049",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S050",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S051",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S052",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S053",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S054",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S055",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S056",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S057",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S058",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S059",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S060",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S061",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S062",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S063",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S064",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S065",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S066",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S067",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S068",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S069",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S070",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S071",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S072",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S073",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S074",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S075",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S076",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S077",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S078",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S079",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S080",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S081",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S082",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S083",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S084",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S085",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S086",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S087",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S088",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S089",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S090",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S091",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S092",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S093",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S094",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S095",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S096",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S097",
+     "cat": "lost@L2",
+     "chain_depth": 5,
+     "pres_levels": [
+      1
+     ]
+    },
+    {
+     "id": "S098",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S099",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    },
+    {
+     "id": "S100",
+     "cat": "lost@L3+",
+     "chain_depth": 5,
+     "pres_levels": [
+      1,
+      2
+     ]
+    }
+   ]
+  }
+ ]
+}

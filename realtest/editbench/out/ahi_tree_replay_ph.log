@@ -1,0 +1,23 @@
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[reuse] realtest/editbench/out/ahi_r5/trees | budget=16000 retr=20 | 41 题 × 5
+
+===== Phase 1：基线 Q/A（原始文档，复用 base 快照）=====
+  tree_v2 pass=174/205 mean=85% {'reversal': '67/85', 'invariant': '35/40', 'remote': '72/80'}
+
+===== Phase 3：三臂 Q/A（复用终结树）=====
+  inc_tree_v2        pass=174/205 mean=85% {'reversal': '70/85', 'invariant': '31/40', 'remote': '73/80'}
+  inc_cold_tree_v2   pass=149/205 mean=73% {'reversal': '49/85', 'invariant': '32/40', 'remote': '68/80'}
+  reb_tree_v2        pass=177/205 mean=86% {'reversal': '68/85', 'invariant': '35/40', 'remote': '74/80'}
+
+===== Phase 4：复述 =====
+  inc_tree_v2        覆盖均值 70% 旧残留 0% (4889 字) 漏=['210e489aead0', '840 字节']
+  inc_cold_tree_v2   覆盖均值 20% 旧残留 0% (2200 字) 漏=['读也算越界', '210e489aead0', '双进程', '840 字节', '3000 字', '7 个路径', 'root:*:99999', '/etc/motd']
+  reb_tree_v2        覆盖均值 30% 旧残留 0% (2108 字) 漏=['读也算越界', '210e489aead0', '双进程', '840 字节', '7 个路径', 'root:*:99999', '/etc/motd']
+
+[done] 1151.8s → realtest/editbench/out/ahi_tree_replay_ph/results.json

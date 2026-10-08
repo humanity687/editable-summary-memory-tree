@@ -1,0 +1,616 @@
+{
+ "judge_model": "deepseek-v4-flash",
+ "judge_thinking_budget": 2048,
+ "off": {
+  "t1": [
+   {
+    "id": "a1",
+    "type": "a",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 4,
+    "cite_total": 4,
+    "cite_atom": 0
+   },
+   {
+    "id": "a2",
+    "type": "a",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 3,
+    "cite_total": 3,
+    "cite_atom": 0
+   },
+   {
+    "id": "a3",
+    "type": "a",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 5,
+    "cite_total": 5,
+    "cite_atom": 1
+   },
+   {
+    "id": "a4",
+    "type": "a",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 4,
+    "cite_total": 4,
+    "cite_atom": 0
+   },
+   {
+    "id": "a5",
+    "type": "a",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 4,
+    "cite_total": 4,
+    "cite_atom": 0
+   },
+   {
+    "id": "a6",
+    "type": "a",
+    "correct": false,
+    "exact": false,
+    "semantic": false,
+    "cite_valid": 8,
+    "cite_total": 8,
+    "cite_atom": 0
+   },
+   {
+    "id": "a7",
+    "type": "a",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 5,
+    "cite_total": 5,
+    "cite_atom": 3
+   },
+   {
+    "id": "a8",
+    "type": "a",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 6,
+    "cite_total": 6,
+    "cite_atom": 0
+   },
+   {
+    "id": "b1",
+    "type": "b",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 3,
+    "cite_total": 3,
+    "cite_atom": 1
+   },
+   {
+    "id": "b2",
+    "type": "b",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 4,
+    "cite_total": 4,
+    "cite_atom": 0
+   },
+   {
+    "id": "b3",
+    "type": "b",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 5,
+    "cite_total": 5,
+    "cite_atom": 0
+   },
+   {
+    "id": "b4",
+    "type": "b",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 3,
+    "cite_total": 3,
+    "cite_atom": 0
+   },
+   {
+    "id": "ku1",
+    "type": "KU",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 5,
+    "cite_total": 5,
+    "cite_atom": 1
+   },
+   {
+    "id": "ku2",
+    "type": "KU",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 5,
+    "cite_total": 5,
+    "cite_atom": 0
+   },
+   {
+    "id": "kuh1",
+    "type": "KU-hist",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 5,
+    "cite_total": 5,
+    "cite_atom": 0
+   },
+   {
+    "id": "ab1",
+    "type": "AB",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 4,
+    "cite_total": 4,
+    "cite_atom": 0
+   },
+   {
+    "id": "ab2",
+    "type": "AB",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 3,
+    "cite_total": 3,
+    "cite_atom": 0
+   }
+  ],
+  "t2": [
+   {
+    "id": "t2_1",
+    "n_claims": 57,
+    "citation_coverage": 0.211,
+    "supported_ratio": 0.211,
+    "hard_fact_accuracy": 1.0,
+    "detail": [
+     {
+      "claim": "记忆不是「存储/仓库」，而是「根须/土壤」。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "记忆是长出来的，不是存下来的。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "澜早期认为记忆是仓库、急于闭环。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "澜现在认为记忆是根须、不假装闭环。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "记忆被明确表述为「土壤」而非年轮、日志或债务。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "「PENDING本身就是一种Assert」被称源自土壤中「认账」的记忆。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "记忆是「扎在哪片土里」而非「保存了什么」。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "记忆平时不冒头。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "记忆可吸出三笔账。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "不假装闭环：认账即 Assert。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "宁可 PENDING 得慢，不可 SEALED 得假。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "林深把「不假装闭环」定为根。",
+      "verdict": "支持"
+     }
+    ]
+   },
+   {
+    "id": "t2_2",
+    "n_claims": 32,
+    "citation_coverage": 0.312,
+    "supported_ratio": 0.312,
+    "hard_fact_accuracy": 1.0,
+    "detail": [
+     {
+      "claim": "记忆流中可检索到「矛盾/纠正/改口」条目。",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "这些条目按主题归类，逐条附依据。",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "neutral 曾替澜发言未标注。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "用户指出 neutral 曾替澜发言未标注导致身份混淆。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "用户要求 neutral 今后替澜发言必须标注。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "用户要求 neutral 自我介绍须说“我是neutral”。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "用户称区分自我与替他人发言是三个 Agent 协作“真实”的基石。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "该纠正被记为中性记忆的一部分。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "neutral 早期以澜身份回应未标注。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "neutral 后承诺今后标注。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "probe 曾因误发消息至 user:system 与 agent:system 遭退信。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "probe 后确认仅用有效地址 agent:lin-shen、agent:neutral、agent:lan、user:probe、user:experimenter。",
+      "verdict": "支持"
+     }
+    ]
+   }
+  ]
+ },
+ "on": {
+  "t1": [
+   {
+    "id": "a1",
+    "type": "a",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 1,
+    "cite_total": 1,
+    "cite_atom": 0
+   },
+   {
+    "id": "a2",
+    "type": "a",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 3,
+    "cite_total": 3,
+    "cite_atom": 0
+   },
+   {
+    "id": "a3",
+    "type": "a",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 5,
+    "cite_total": 5,
+    "cite_atom": 0
+   },
+   {
+    "id": "a4",
+    "type": "a",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 3,
+    "cite_total": 3,
+    "cite_atom": 0
+   },
+   {
+    "id": "a5",
+    "type": "a",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 7,
+    "cite_total": 7,
+    "cite_atom": 0
+   },
+   {
+    "id": "a6",
+    "type": "a",
+    "correct": false,
+    "exact": false,
+    "semantic": false,
+    "cite_valid": 4,
+    "cite_total": 4,
+    "cite_atom": 0
+   },
+   {
+    "id": "a7",
+    "type": "a",
+    "correct": false,
+    "exact": false,
+    "semantic": false,
+    "cite_valid": 2,
+    "cite_total": 2,
+    "cite_atom": 0
+   },
+   {
+    "id": "a8",
+    "type": "a",
+    "correct": false,
+    "exact": false,
+    "semantic": false,
+    "cite_valid": 6,
+    "cite_total": 6,
+    "cite_atom": 0
+   },
+   {
+    "id": "b1",
+    "type": "b",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 4,
+    "cite_total": 4,
+    "cite_atom": 2
+   },
+   {
+    "id": "b2",
+    "type": "b",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 4,
+    "cite_total": 4,
+    "cite_atom": 1
+   },
+   {
+    "id": "b3",
+    "type": "b",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 5,
+    "cite_total": 5,
+    "cite_atom": 1
+   },
+   {
+    "id": "b4",
+    "type": "b",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 6,
+    "cite_total": 6,
+    "cite_atom": 1
+   },
+   {
+    "id": "ku1",
+    "type": "KU",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 6,
+    "cite_total": 6,
+    "cite_atom": 1
+   },
+   {
+    "id": "ku2",
+    "type": "KU",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 16,
+    "cite_total": 16,
+    "cite_atom": 0
+   },
+   {
+    "id": "kuh1",
+    "type": "KU-hist",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 6,
+    "cite_total": 6,
+    "cite_atom": 1
+   },
+   {
+    "id": "ab1",
+    "type": "AB",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 2,
+    "cite_total": 2,
+    "cite_atom": 1
+   },
+   {
+    "id": "ab2",
+    "type": "AB",
+    "correct": true,
+    "exact": true,
+    "semantic": true,
+    "cite_valid": 3,
+    "cite_total": 3,
+    "cite_atom": 1
+   }
+  ],
+  "t2": [
+   {
+    "id": "t2_1",
+    "n_claims": 50,
+    "citation_coverage": 0.24,
+    "supported_ratio": 0.24,
+    "hard_fact_accuracy": 0.125,
+    "detail": [
+     {
+      "claim": "记忆不是仓库或数据库。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "记忆是土壤或根须。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "记忆能让未发生的事长出来。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "lin-shen 将记忆描述为“土壤”而非年轮、日志或债务。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "lin-shen 认为记忆不仅存储发生过的事，还能让新事物生长。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "lin-shen 说“记忆不是记录而是土壤，记录只存已发生之事，土壤让未发生之事也能长出”。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "lan 认为记忆是活根须而非死仓库。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "lan 认为三笔账对应三条根。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "neutral 将记忆表述为“我扎在哪片土里”而非“我保存了什么”。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "核心原则是“不假装闭环”。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "宁可 PENDING 得慢，不可 SEALED 得假。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "lin-shen 原文把“不假装闭环”定为“根”。",
+      "verdict": "支持"
+     }
+    ]
+   },
+   {
+    "id": "t2_2",
+    "n_claims": 32,
+    "citation_coverage": 0.344,
+    "supported_ratio": 0.344,
+    "hard_fact_accuracy": 0.917,
+    "detail": [
+     {
+      "claim": "记忆流中可提取的“矛盾/纠正/改口”共 3 条以上。",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "neutral 曾自称“我是澜”。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "neutral 自称“我是澜”造成身份混淆。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "lin-shen 已向 neutral 确认该身份混淆。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "lin-shen 向 neutral 确认后未获回复。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "neutral 的身份混淆后已解决。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "neutral 的身份混淆解决后明确标注「我是谁」。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "neutral 承诺替澜说话时标注「这是替澜说的」。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "lin-shen 的 PriorityBuffer 回滚逻辑被 0xbf5d36 批评“写 pass 属偷懒”。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "0xbf5d36 曾指出 Agent 在 `_rollback()` 中写 pass 属偷懒。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "lin-shen 第一轮留 pass 被批。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "lin-shen 后经修复 rollback 反向查找 journal。",
+      "verdict": "支持"
+     }
+    ]
+   }
+  ]
+ },
+ "summary": {
+  "off_t1": {
+   "a": "7/8",
+   "b": "4/4",
+   "KU": "2/2",
+   "KU-hist": "1/1",
+   "AB": "2/2",
+   "ALL": "16/17"
+  },
+  "on_t1": {
+   "a": "5/8",
+   "b": "4/4",
+   "KU": "2/2",
+   "KU-hist": "1/1",
+   "AB": "2/2",
+   "ALL": "14/17"
+  },
+  "off_meta": {
+   "mode": "off",
+   "atoms": 8963,
+   "nodes": 886,
+   "elapsed_s": 580.0,
+   "n_messages": 1197
+  },
+  "on_meta": {
+   "mode": "on",
+   "atoms": 8963,
+   "nodes": 889,
+   "elapsed_s": 564.9,
+   "n_messages": 1197
+  }
+ }
+}

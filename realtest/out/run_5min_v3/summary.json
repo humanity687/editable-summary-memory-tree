@@ -1,0 +1,58 @@
+{
+ "summary": {
+  "rounds": 32,
+  "elapsed_s": 311.3,
+  "story_chars": 27606,
+  "story_tokens": 24913,
+  "llm_calls": 32,
+  "completion_tokens": 20258,
+  "prompt_tokens": 223404,
+  "distill_seconds": 11.35,
+  "distill_calls": 5,
+  "tools": {
+   "append": 40,
+   "edit": 0,
+   "recall": 0
+  },
+  "duplicates": 199,
+  "config": {
+   "provider": "deepseek",
+   "model": "deepseek-chat",
+   "ollama": {
+    "base_url": "http://localhost:11434",
+    "model": "gemma4:12b",
+    "num_ctx": 32768,
+    "temperature": 0.8,
+    "timeout": 900
+   },
+   "deepseek": {
+    "base_url": "https://api.deepseek.com/v1",
+    "model": "deepseek-chat",
+    "api_key": "sk-REDACTED",
+    "temperature": 0.8,
+    "timeout": 600
+   },
+   "assembly_budget": 12000,
+   "max_append_chars": 1000,
+   "merge_every": 4,
+   "retrieval_budget": 6,
+   "decay": 5.0,
+   "hp_merge_threshold": 30.0,
+   "parent_init_hp": 70.0,
+   "hot_threshold": 60.0,
+   "recall_boost": 30.0,
+   "merge_cap_atoms": 500,
+   "merge_depth_diff": 1,
+   "promote_threshold": 3
+  }
+ },
+ "charts": [
+  "story",
+  "ctx",
+  "mem",
+  "events",
+  "latency",
+  "compose",
+  "tree"
+ ]
+}

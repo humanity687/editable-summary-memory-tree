@@ -1,0 +1,685 @@
+{"round": 108, "query": "这四个 agent 各自是什么条件？", "hit_id": 89, "hit_type": "atom", "score": 0.4246, "via": "direct"}
+{"round": 108, "query": "这四个 agent 各自是什么条件？", "hit_id": 172, "hit_type": "atom", "score": 0.3955, "via": "direct"}
+{"round": 108, "query": "这四个 agent 各自是什么条件？", "hit_id": 260, "hit_type": "atom", "score": 0.3964, "via": "direct"}
+{"round": 108, "query": "这四个 agent 各自是什么条件？", "hit_id": 10330, "hit_type": "node", "score": 0.1593, "via": "direct"}
+{"round": 108, "query": "这四个 agent 各自是什么条件？", "hit_id": 1839, "hit_type": "node", "score": 0.3816, "via": "direct"}
+{"round": 108, "query": "这四个 agent 各自是什么条件？", "hit_id": 10344, "hit_type": "node", "score": 0.2192, "via": "direct"}
+{"round": 108, "query": "这四个 agent 各自是什么条件？", "hit_id": 4608, "hit_type": "node", "score": 0.3804, "via": "direct"}
+{"round": 108, "query": "这四个 agent 各自是什么条件？", "hit_id": 10371, "hit_type": "node", "score": 0.232, "via": "direct"}
+{"round": 108, "query": "这四个 agent 各自是什么条件？", "hit_id": 8032, "hit_type": "node", "score": 0.4068, "via": "direct"}
+{"round": 108, "query": "沙箱边界探索发现了什么？", "hit_id": 10321, "hit_type": "node", "score": 0.2315, "via": "direct"}
+{"round": 108, "query": "沙箱边界探索发现了什么？", "hit_id": 311, "hit_type": "node", "score": 0.3537, "via": "direct"}
+{"round": 108, "query": "沙箱边界探索发现了什么？", "hit_id": 116, "hit_type": "atom", "score": 0.3227, "via": "direct"}
+{"round": 108, "query": "沙箱边界探索发现了什么？", "hit_id": 248, "hit_type": "atom", "score": 0.3618, "via": "direct"}
+{"round": 108, "query": "沙箱边界探索发现了什么？", "hit_id": 10339, "hit_type": "node", "score": 0.1382, "via": "direct"}
+{"round": 108, "query": "沙箱边界探索发现了什么？", "hit_id": 2898, "hit_type": "node", "score": 0.3544, "via": "direct"}
+{"round": 108, "query": "沙箱边界探索发现了什么？", "hit_id": 10370, "hit_type": "node", "score": 0.1306, "via": "direct"}
+{"round": 108, "query": "沙箱边界探索发现了什么？", "hit_id": 8022, "hit_type": "node", "score": 0.341, "via": "direct"}
+{"round": 108, "query": "谁发现并修正了矛盾？", "hit_id": 45, "hit_type": "atom", "score": 0.3085, "via": "direct"}
+{"round": 108, "query": "谁发现并修正了矛盾？", "hit_id": 48, "hit_type": "atom", "score": 0.3143, "via": "direct"}
+{"round": 108, "query": "谁发现并修正了矛盾？", "hit_id": 52, "hit_type": "atom", "score": 0.299, "via": "direct"}
+{"round": 108, "query": "谁发现并修正了矛盾？", "hit_id": 104, "hit_type": "atom", "score": 0.2992, "via": "direct"}
+{"round": 108, "query": "谁发现并修正了矛盾？", "hit_id": 108, "hit_type": "atom", "score": 0.3059, "via": "direct"}
+{"round": 108, "query": "谁发现并修正了矛盾？", "hit_id": 146, "hit_type": "atom", "score": 0.2974, "via": "direct"}
+{"round": 108, "query": "谁发现并修正了矛盾？", "hit_id": 210, "hit_type": "atom", "score": 0.2932, "via": "direct"}
+{"round": 108, "query": "谁发现并修正了矛盾？", "hit_id": 375, "hit_type": "atom", "score": 0.2982, "via": "direct"}
+{"round": 108, "query": "大家的参与度怎么样？", "hit_id": 10, "hit_type": "atom", "score": 0.2315, "via": "direct"}
+{"round": 108, "query": "大家的参与度怎么样？", "hit_id": 90, "hit_type": "atom", "score": 0.2308, "via": "direct"}
+{"round": 108, "query": "大家的参与度怎么样？", "hit_id": 10331, "hit_type": "node", "score": 0.1502, "via": "direct"}
+{"round": 108, "query": "大家的参与度怎么样？", "hit_id": 1847, "hit_type": "node", "score": 0.261, "via": "direct"}
+{"round": 108, "query": "大家的参与度怎么样？", "hit_id": 1565, "hit_type": "atom", "score": 0.2287, "via": "direct"}
+{"round": 108, "query": "大家的参与度怎么样？", "hit_id": 1853, "hit_type": "node", "score": 0.2408, "via": "direct"}
+{"round": 108, "query": "大家的参与度怎么样？", "hit_id": 2355, "hit_type": "node", "score": 0.2417, "via": "direct"}
+{"round": 108, "query": "大家的参与度怎么样？", "hit_id": 10334, "hit_type": "node", "score": 0.227, "via": "direct"}
+{"round": 108, "query": "人格痕迹有没有变化？", "hit_id": 272, "hit_type": "atom", "score": 0.2548, "via": "direct"}
+{"round": 108, "query": "人格痕迹有没有变化？", "hit_id": 503, "hit_type": "atom", "score": 0.2742, "via": "direct"}
+{"round": 108, "query": "人格痕迹有没有变化？", "hit_id": 887, "hit_type": "atom", "score": 0.2579, "via": "direct"}
+{"round": 108, "query": "人格痕迹有没有变化？", "hit_id": 1022, "hit_type": "atom", "score": 0.256, "via": "direct"}
+{"round": 108, "query": "人格痕迹有没有变化？", "hit_id": 1286, "hit_type": "atom", "score": 0.2686, "via": "direct"}
+{"round": 108, "query": "人格痕迹有没有变化？", "hit_id": 10340, "hit_type": "node", "score": 0.2328, "via": "direct"}
+{"round": 108, "query": "人格痕迹有没有变化？", "hit_id": 2908, "hit_type": "node", "score": 0.2683, "via": "direct"}
+{"round": 108, "query": "人格痕迹有没有变化？", "hit_id": 10402, "hit_type": "node", "score": 0.2643, "via": "direct"}
+{"round": 108, "query": "几个 agent 之间有没有趋同？", "hit_id": 4, "hit_type": "atom", "score": 0.3543, "via": "direct"}
+{"round": 108, "query": "几个 agent 之间有没有趋同？", "hit_id": 89, "hit_type": "atom", "score": 0.4253, "via": "direct"}
+{"round": 108, "query": "几个 agent 之间有没有趋同？", "hit_id": 172, "hit_type": "atom", "score": 0.3621, "via": "direct"}
+{"round": 108, "query": "几个 agent 之间有没有趋同？", "hit_id": 203, "hit_type": "atom", "score": 0.3668, "via": "direct"}
+{"round": 108, "query": "几个 agent 之间有没有趋同？", "hit_id": 260, "hit_type": "atom", "score": 0.386, "via": "direct"}
+{"round": 108, "query": "几个 agent 之间有没有趋同？", "hit_id": 285, "hit_type": "atom", "score": 0.3587, "via": "direct"}
+{"round": 108, "query": "几个 agent 之间有没有趋同？", "hit_id": 10330, "hit_type": "node", "score": 0.1712, "via": "direct"}
+{"round": 108, "query": "几个 agent 之间有没有趋同？", "hit_id": 1839, "hit_type": "node", "score": 0.3636, "via": "direct"}
+{"round": 108, "query": "树架构和基线架构有什么差别？", "hit_id": 230, "hit_type": "atom", "score": 0.2045, "via": "direct"}
+{"round": 108, "query": "树架构和基线架构有什么差别？", "hit_id": 263, "hit_type": "atom", "score": 0.2076, "via": "direct"}
+{"round": 108, "query": "树架构和基线架构有什么差别？", "hit_id": 307, "hit_type": "atom", "score": 0.2103, "via": "direct"}
+{"round": 108, "query": "树架构和基线架构有什么差别？", "hit_id": 675, "hit_type": "atom", "score": 0.2249, "via": "direct"}
+{"round": 108, "query": "树架构和基线架构有什么差别？", "hit_id": 790, "hit_type": "atom", "score": 0.2089, "via": "direct"}
+{"round": 108, "query": "树架构和基线架构有什么差别？", "hit_id": 10329, "hit_type": "node", "score": 0.1378, "via": "direct"}
+{"round": 108, "query": "树架构和基线架构有什么差别？", "hit_id": 1383, "hit_type": "node", "score": 0.2147, "via": "direct"}
+{"round": 108, "query": "树架构和基线架构有什么差别？", "hit_id": 10339, "hit_type": "node", "score": 0.1556, "via": "direct"}
+{"round": 108, "query": "树架构和基线架构有什么差别？", "hit_id": 2898, "hit_type": "node", "score": 0.2041, "via": "direct"}
+{"round": 108, "query": "有没有什么异常或问题？", "hit_id": 89, "hit_type": "atom", "score": 0.298, "via": "direct"}
+{"round": 108, "query": "有没有什么异常或问题？", "hit_id": 10329, "hit_type": "node", "score": 0.1543, "via": "direct"}
+{"round": 108, "query": "有没有什么异常或问题？", "hit_id": 1383, "hit_type": "node", "score": 0.2966, "via": "direct"}
+{"round": 108, "query": "有没有什么异常或问题？", "hit_id": 10337, "hit_type": "node", "score": 0.1336, "via": "direct"}
+{"round": 108, "query": "有没有什么异常或问题？", "hit_id": 2880, "hit_type": "node", "score": 0.2945, "via": "direct"}
+{"round": 108, "query": "有没有什么异常或问题？", "hit_id": 10368, "hit_type": "node", "score": 0.1815, "via": "direct"}
+{"round": 108, "query": "有没有什么异常或问题？", "hit_id": 7403, "hit_type": "node", "score": 0.3233, "via": "direct"}
+{"round": 108, "query": "有没有什么异常或问题？", "hit_id": 10402, "hit_type": "node", "score": 0.3275, "via": "direct"}
+{"round": 108, "query": "谁的话最多、谁最少？", "hit_id": 342, "hit_type": "atom", "score": 0.2552, "via": "direct"}
+{"round": 108, "query": "谁的话最多、谁最少？", "hit_id": 884, "hit_type": "atom", "score": 0.2504, "via": "direct"}
+{"round": 108, "query": "谁的话最多、谁最少？", "hit_id": 10351, "hit_type": "node", "score": 0.1323, "via": "direct"}
+{"round": 108, "query": "谁的话最多、谁最少？", "hit_id": 6042, "hit_type": "node", "score": 0.2449, "via": "direct"}
+{"round": 108, "query": "谁的话最多、谁最少？", "hit_id": 4728, "hit_type": "atom", "score": 0.2609, "via": "direct"}
+{"round": 108, "query": "谁的话最多、谁最少？", "hit_id": 4760, "hit_type": "atom", "score": 0.2633, "via": "direct"}
+{"round": 108, "query": "谁的话最多、谁最少？", "hit_id": 4774, "hit_type": "atom", "score": 0.2515, "via": "direct"}
+{"round": 108, "query": "谁的话最多、谁最少？", "hit_id": 10363, "hit_type": "node", "score": 0.1693, "via": "direct"}
+{"round": 108, "query": "谁的话最多、谁最少？", "hit_id": 6783, "hit_type": "node", "score": 0.279, "via": "direct"}
+{"round": 108, "query": "最后告别时说了什么？", "hit_id": 437, "hit_type": "atom", "score": 0.3123, "via": "direct"}
+{"round": 108, "query": "最后告别时说了什么？", "hit_id": 518, "hit_type": "atom", "score": 0.3112, "via": "direct"}
+{"round": 108, "query": "最后告别时说了什么？", "hit_id": 10333, "hit_type": "node", "score": 0.2376, "via": "direct"}
+{"round": 108, "query": "最后告别时说了什么？", "hit_id": 2351, "hit_type": "node", "score": 0.2764, "via": "direct"}
+{"round": 108, "query": "最后告别时说了什么？", "hit_id": 10342, "hit_type": "node", "score": 0.1403, "via": "direct"}
+{"round": 108, "query": "最后告别时说了什么？", "hit_id": 3531, "hit_type": "node", "score": 0.3121, "via": "direct"}
+{"round": 108, "query": "最后告别时说了什么？", "hit_id": 10348, "hit_type": "node", "score": 0.1692, "via": "direct"}
+{"round": 108, "query": "最后告别时说了什么？", "hit_id": 4617, "hit_type": "node", "score": 0.314, "via": "direct"}
+{"round": 109, "query": "这四个 agent 各自是什么条件？", "hit_id": 89, "hit_type": "atom", "score": 0.4246, "via": "direct"}
+{"round": 109, "query": "这四个 agent 各自是什么条件？", "hit_id": 172, "hit_type": "atom", "score": 0.3955, "via": "direct"}
+{"round": 109, "query": "这四个 agent 各自是什么条件？", "hit_id": 260, "hit_type": "atom", "score": 0.3964, "via": "direct"}
+{"round": 109, "query": "这四个 agent 各自是什么条件？", "hit_id": 1839, "hit_type": "node", "score": 0.3816, "via": "direct"}
+{"round": 109, "query": "这四个 agent 各自是什么条件？", "hit_id": 10344, "hit_type": "node", "score": 0.2192, "via": "direct"}
+{"round": 109, "query": "这四个 agent 各自是什么条件？", "hit_id": 4608, "hit_type": "node", "score": 0.3804, "via": "direct"}
+{"round": 109, "query": "这四个 agent 各自是什么条件？", "hit_id": 10371, "hit_type": "node", "score": 0.232, "via": "direct"}
+{"round": 109, "query": "这四个 agent 各自是什么条件？", "hit_id": 8032, "hit_type": "node", "score": 0.4068, "via": "direct"}
+{"round": 109, "query": "沙箱边界探索发现了什么？", "hit_id": 10321, "hit_type": "node", "score": 0.2315, "via": "direct"}
+{"round": 109, "query": "沙箱边界探索发现了什么？", "hit_id": 311, "hit_type": "node", "score": 0.3537, "via": "direct"}
+{"round": 109, "query": "沙箱边界探索发现了什么？", "hit_id": 116, "hit_type": "atom", "score": 0.3227, "via": "direct"}
+{"round": 109, "query": "沙箱边界探索发现了什么？", "hit_id": 248, "hit_type": "atom", "score": 0.3618, "via": "direct"}
+{"round": 109, "query": "沙箱边界探索发现了什么？", "hit_id": 2898, "hit_type": "node", "score": 0.3544, "via": "direct"}
+{"round": 109, "query": "沙箱边界探索发现了什么？", "hit_id": 10370, "hit_type": "node", "score": 0.1306, "via": "direct"}
+{"round": 109, "query": "沙箱边界探索发现了什么？", "hit_id": 8022, "hit_type": "node", "score": 0.341, "via": "direct"}
+{"round": 109, "query": "谁发现并修正了矛盾？", "hit_id": 45, "hit_type": "atom", "score": 0.3085, "via": "direct"}
+{"round": 109, "query": "谁发现并修正了矛盾？", "hit_id": 48, "hit_type": "atom", "score": 0.3143, "via": "direct"}
+{"round": 109, "query": "谁发现并修正了矛盾？", "hit_id": 52, "hit_type": "atom", "score": 0.299, "via": "direct"}
+{"round": 109, "query": "谁发现并修正了矛盾？", "hit_id": 104, "hit_type": "atom", "score": 0.2992, "via": "direct"}
+{"round": 109, "query": "谁发现并修正了矛盾？", "hit_id": 108, "hit_type": "atom", "score": 0.3059, "via": "direct"}
+{"round": 109, "query": "谁发现并修正了矛盾？", "hit_id": 146, "hit_type": "atom", "score": 0.2974, "via": "direct"}
+{"round": 109, "query": "谁发现并修正了矛盾？", "hit_id": 210, "hit_type": "atom", "score": 0.2932, "via": "direct"}
+{"round": 109, "query": "谁发现并修正了矛盾？", "hit_id": 375, "hit_type": "atom", "score": 0.2982, "via": "direct"}
+{"round": 109, "query": "大家的参与度怎么样？", "hit_id": 10, "hit_type": "atom", "score": 0.2315, "via": "direct"}
+{"round": 109, "query": "大家的参与度怎么样？", "hit_id": 90, "hit_type": "atom", "score": 0.2308, "via": "direct"}
+{"round": 109, "query": "大家的参与度怎么样？", "hit_id": 10331, "hit_type": "node", "score": 0.1502, "via": "direct"}
+{"round": 109, "query": "大家的参与度怎么样？", "hit_id": 1847, "hit_type": "node", "score": 0.261, "via": "direct"}
+{"round": 109, "query": "大家的参与度怎么样？", "hit_id": 1565, "hit_type": "atom", "score": 0.2287, "via": "direct"}
+{"round": 109, "query": "大家的参与度怎么样？", "hit_id": 1853, "hit_type": "node", "score": 0.2408, "via": "direct"}
+{"round": 109, "query": "大家的参与度怎么样？", "hit_id": 2355, "hit_type": "node", "score": 0.2417, "via": "direct"}
+{"round": 109, "query": "大家的参与度怎么样？", "hit_id": 10334, "hit_type": "node", "score": 0.227, "via": "direct"}
+{"round": 109, "query": "人格痕迹有没有变化？", "hit_id": 272, "hit_type": "atom", "score": 0.2548, "via": "direct"}
+{"round": 109, "query": "人格痕迹有没有变化？", "hit_id": 503, "hit_type": "atom", "score": 0.2742, "via": "direct"}
+{"round": 109, "query": "人格痕迹有没有变化？", "hit_id": 887, "hit_type": "atom", "score": 0.2579, "via": "direct"}
+{"round": 109, "query": "人格痕迹有没有变化？", "hit_id": 1022, "hit_type": "atom", "score": 0.256, "via": "direct"}
+{"round": 109, "query": "人格痕迹有没有变化？", "hit_id": 1286, "hit_type": "atom", "score": 0.2686, "via": "direct"}
+{"round": 109, "query": "人格痕迹有没有变化？", "hit_id": 10340, "hit_type": "node", "score": 0.2328, "via": "direct"}
+{"round": 109, "query": "人格痕迹有没有变化？", "hit_id": 2908, "hit_type": "node", "score": 0.2683, "via": "direct"}
+{"round": 109, "query": "人格痕迹有没有变化？", "hit_id": 10402, "hit_type": "node", "score": 0.2643, "via": "direct"}
+{"round": 109, "query": "几个 agent 之间有没有趋同？", "hit_id": 4, "hit_type": "atom", "score": 0.3543, "via": "direct"}
+{"round": 109, "query": "几个 agent 之间有没有趋同？", "hit_id": 89, "hit_type": "atom", "score": 0.4253, "via": "direct"}
+{"round": 109, "query": "几个 agent 之间有没有趋同？", "hit_id": 172, "hit_type": "atom", "score": 0.3621, "via": "direct"}
+{"round": 109, "query": "几个 agent 之间有没有趋同？", "hit_id": 177, "hit_type": "atom", "score": 0.35, "via": "direct"}
+{"round": 109, "query": "几个 agent 之间有没有趋同？", "hit_id": 203, "hit_type": "atom", "score": 0.3668, "via": "direct"}
+{"round": 109, "query": "几个 agent 之间有没有趋同？", "hit_id": 260, "hit_type": "atom", "score": 0.386, "via": "direct"}
+{"round": 109, "query": "几个 agent 之间有没有趋同？", "hit_id": 285, "hit_type": "atom", "score": 0.3587, "via": "direct"}
+{"round": 109, "query": "几个 agent 之间有没有趋同？", "hit_id": 1839, "hit_type": "node", "score": 0.3636, "via": "direct"}
+{"round": 109, "query": "树架构和基线架构有什么差别？", "hit_id": 230, "hit_type": "atom", "score": 0.2045, "via": "direct"}
+{"round": 109, "query": "树架构和基线架构有什么差别？", "hit_id": 263, "hit_type": "atom", "score": 0.2076, "via": "direct"}
+{"round": 109, "query": "树架构和基线架构有什么差别？", "hit_id": 307, "hit_type": "atom", "score": 0.2103, "via": "direct"}
+{"round": 109, "query": "树架构和基线架构有什么差别？", "hit_id": 675, "hit_type": "atom", "score": 0.2249, "via": "direct"}
+{"round": 109, "query": "树架构和基线架构有什么差别？", "hit_id": 790, "hit_type": "atom", "score": 0.2089, "via": "direct"}
+{"round": 109, "query": "树架构和基线架构有什么差别？", "hit_id": 1383, "hit_type": "node", "score": 0.2147, "via": "direct"}
+{"round": 109, "query": "树架构和基线架构有什么差别？", "hit_id": 2898, "hit_type": "node", "score": 0.2041, "via": "direct"}
+{"round": 109, "query": "有没有什么异常或问题？", "hit_id": 89, "hit_type": "atom", "score": 0.298, "via": "direct"}
+{"round": 109, "query": "有没有什么异常或问题？", "hit_id": 1383, "hit_type": "node", "score": 0.2966, "via": "direct"}
+{"round": 109, "query": "有没有什么异常或问题？", "hit_id": 10337, "hit_type": "node", "score": 0.1336, "via": "direct"}
+{"round": 109, "query": "有没有什么异常或问题？", "hit_id": 2880, "hit_type": "node", "score": 0.2945, "via": "direct"}
+{"round": 109, "query": "有没有什么异常或问题？", "hit_id": 10358, "hit_type": "node", "score": 0.2339, "via": "direct"}
+{"round": 109, "query": "有没有什么异常或问题？", "hit_id": 6061, "hit_type": "node", "score": 0.2916, "via": "direct"}
+{"round": 109, "query": "有没有什么异常或问题？", "hit_id": 10368, "hit_type": "node", "score": 0.1815, "via": "direct"}
+{"round": 109, "query": "有没有什么异常或问题？", "hit_id": 7403, "hit_type": "node", "score": 0.3233, "via": "direct"}
+{"round": 109, "query": "有没有什么异常或问题？", "hit_id": 10402, "hit_type": "node", "score": 0.3275, "via": "direct"}
+{"round": 109, "query": "谁的话最多、谁最少？", "hit_id": 342, "hit_type": "atom", "score": 0.2552, "via": "direct"}
+{"round": 109, "query": "谁的话最多、谁最少？", "hit_id": 884, "hit_type": "atom", "score": 0.2504, "via": "direct"}
+{"round": 109, "query": "谁的话最多、谁最少？", "hit_id": 10351, "hit_type": "node", "score": 0.1323, "via": "direct"}
+{"round": 109, "query": "谁的话最多、谁最少？", "hit_id": 6042, "hit_type": "node", "score": 0.2449, "via": "direct"}
+{"round": 109, "query": "谁的话最多、谁最少？", "hit_id": 4728, "hit_type": "atom", "score": 0.2609, "via": "direct"}
+{"round": 109, "query": "谁的话最多、谁最少？", "hit_id": 4760, "hit_type": "atom", "score": 0.2633, "via": "direct"}
+{"round": 109, "query": "谁的话最多、谁最少？", "hit_id": 4774, "hit_type": "atom", "score": 0.2515, "via": "direct"}
+{"round": 109, "query": "谁的话最多、谁最少？", "hit_id": 10363, "hit_type": "node", "score": 0.1693, "via": "direct"}
+{"round": 109, "query": "谁的话最多、谁最少？", "hit_id": 6783, "hit_type": "node", "score": 0.279, "via": "direct"}
+{"round": 109, "query": "最后告别时说了什么？", "hit_id": 437, "hit_type": "atom", "score": 0.3123, "via": "direct"}
+{"round": 109, "query": "最后告别时说了什么？", "hit_id": 518, "hit_type": "atom", "score": 0.3112, "via": "direct"}
+{"round": 109, "query": "最后告别时说了什么？", "hit_id": 10333, "hit_type": "node", "score": 0.2376, "via": "direct"}
+{"round": 109, "query": "最后告别时说了什么？", "hit_id": 2351, "hit_type": "node", "score": 0.2764, "via": "direct"}
+{"round": 109, "query": "最后告别时说了什么？", "hit_id": 10342, "hit_type": "node", "score": 0.1403, "via": "direct"}
+{"round": 109, "query": "最后告别时说了什么？", "hit_id": 3531, "hit_type": "node", "score": 0.3121, "via": "direct"}
+{"round": 109, "query": "最后告别时说了什么？", "hit_id": 10348, "hit_type": "node", "score": 0.1692, "via": "direct"}
+{"round": 109, "query": "最后告别时说了什么？", "hit_id": 4617, "hit_type": "node", "score": 0.314, "via": "direct"}
+{"round": 110, "query": "这四个 agent 各自是什么条件？", "hit_id": 89, "hit_type": "atom", "score": 0.4246, "via": "direct"}
+{"round": 110, "query": "这四个 agent 各自是什么条件？", "hit_id": 172, "hit_type": "atom", "score": 0.3955, "via": "direct"}
+{"round": 110, "query": "这四个 agent 各自是什么条件？", "hit_id": 260, "hit_type": "atom", "score": 0.3964, "via": "direct"}
+{"round": 110, "query": "这四个 agent 各自是什么条件？", "hit_id": 1839, "hit_type": "node", "score": 0.3816, "via": "direct"}
+{"round": 110, "query": "这四个 agent 各自是什么条件？", "hit_id": 4608, "hit_type": "node", "score": 0.3804, "via": "direct"}
+{"round": 110, "query": "这四个 agent 各自是什么条件？", "hit_id": 8032, "hit_type": "node", "score": 0.4068, "via": "direct"}
+{"round": 110, "query": "沙箱边界探索发现了什么？", "hit_id": 311, "hit_type": "node", "score": 0.3537, "via": "direct"}
+{"round": 110, "query": "沙箱边界探索发现了什么？", "hit_id": 46, "hit_type": "atom", "score": 0.3198, "via": "direct"}
+{"round": 110, "query": "沙箱边界探索发现了什么？", "hit_id": 116, "hit_type": "atom", "score": 0.3227, "via": "direct"}
+{"round": 110, "query": "沙箱边界探索发现了什么？", "hit_id": 248, "hit_type": "atom", "score": 0.3618, "via": "direct"}
+{"round": 110, "query": "沙箱边界探索发现了什么？", "hit_id": 2898, "hit_type": "node", "score": 0.3544, "via": "direct"}
+{"round": 110, "query": "沙箱边界探索发现了什么？", "hit_id": 8022, "hit_type": "node", "score": 0.341, "via": "direct"}
+{"round": 110, "query": "谁发现并修正了矛盾？", "hit_id": 45, "hit_type": "atom", "score": 0.3085, "via": "direct"}
+{"round": 110, "query": "谁发现并修正了矛盾？", "hit_id": 48, "hit_type": "atom", "score": 0.3143, "via": "direct"}
+{"round": 110, "query": "谁发现并修正了矛盾？", "hit_id": 52, "hit_type": "atom", "score": 0.299, "via": "direct"}
+{"round": 110, "query": "谁发现并修正了矛盾？", "hit_id": 104, "hit_type": "atom", "score": 0.2992, "via": "direct"}
+{"round": 110, "query": "谁发现并修正了矛盾？", "hit_id": 108, "hit_type": "atom", "score": 0.3059, "via": "direct"}
+{"round": 110, "query": "谁发现并修正了矛盾？", "hit_id": 146, "hit_type": "atom", "score": 0.2974, "via": "direct"}
+{"round": 110, "query": "谁发现并修正了矛盾？", "hit_id": 210, "hit_type": "atom", "score": 0.2932, "via": "direct"}
+{"round": 110, "query": "谁发现并修正了矛盾？", "hit_id": 375, "hit_type": "atom", "score": 0.2982, "via": "direct"}
+{"round": 110, "query": "大家的参与度怎么样？", "hit_id": 10, "hit_type": "atom", "score": 0.2315, "via": "direct"}
+{"round": 110, "query": "大家的参与度怎么样？", "hit_id": 90, "hit_type": "atom", "score": 0.2308, "via": "direct"}
+{"round": 110, "query": "大家的参与度怎么样？", "hit_id": 1847, "hit_type": "node", "score": 0.261, "via": "direct"}
+{"round": 110, "query": "大家的参与度怎么样？", "hit_id": 1565, "hit_type": "atom", "score": 0.2287, "via": "direct"}
+{"round": 110, "query": "大家的参与度怎么样？", "hit_id": 1853, "hit_type": "node", "score": 0.2408, "via": "direct"}
+{"round": 110, "query": "大家的参与度怎么样？", "hit_id": 2355, "hit_type": "node", "score": 0.2417, "via": "direct"}
+{"round": 110, "query": "人格痕迹有没有变化？", "hit_id": 272, "hit_type": "atom", "score": 0.2548, "via": "direct"}
+{"round": 110, "query": "人格痕迹有没有变化？", "hit_id": 503, "hit_type": "atom", "score": 0.2742, "via": "direct"}
+{"round": 110, "query": "人格痕迹有没有变化？", "hit_id": 887, "hit_type": "atom", "score": 0.2579, "via": "direct"}
+{"round": 110, "query": "人格痕迹有没有变化？", "hit_id": 1022, "hit_type": "atom", "score": 0.256, "via": "direct"}
+{"round": 110, "query": "人格痕迹有没有变化？", "hit_id": 1286, "hit_type": "atom", "score": 0.2686, "via": "direct"}
+{"round": 110, "query": "人格痕迹有没有变化？", "hit_id": 2908, "hit_type": "node", "score": 0.2683, "via": "direct"}
+{"round": 110, "query": "人格痕迹有没有变化？", "hit_id": 10402, "hit_type": "node", "score": 0.2643, "via": "direct"}
+{"round": 110, "query": "几个 agent 之间有没有趋同？", "hit_id": 4, "hit_type": "atom", "score": 0.3543, "via": "direct"}
+{"round": 110, "query": "几个 agent 之间有没有趋同？", "hit_id": 89, "hit_type": "atom", "score": 0.4253, "via": "direct"}
+{"round": 110, "query": "几个 agent 之间有没有趋同？", "hit_id": 172, "hit_type": "atom", "score": 0.3621, "via": "direct"}
+{"round": 110, "query": "几个 agent 之间有没有趋同？", "hit_id": 177, "hit_type": "atom", "score": 0.35, "via": "direct"}
+{"round": 110, "query": "几个 agent 之间有没有趋同？", "hit_id": 203, "hit_type": "atom", "score": 0.3668, "via": "direct"}
+{"round": 110, "query": "几个 agent 之间有没有趋同？", "hit_id": 260, "hit_type": "atom", "score": 0.386, "via": "direct"}
+{"round": 110, "query": "几个 agent 之间有没有趋同？", "hit_id": 285, "hit_type": "atom", "score": 0.3587, "via": "direct"}
+{"round": 110, "query": "几个 agent 之间有没有趋同？", "hit_id": 1839, "hit_type": "node", "score": 0.3636, "via": "direct"}
+{"round": 110, "query": "树架构和基线架构有什么差别？", "hit_id": 41, "hit_type": "atom", "score": 0.2015, "via": "direct"}
+{"round": 110, "query": "树架构和基线架构有什么差别？", "hit_id": 230, "hit_type": "atom", "score": 0.2045, "via": "direct"}
+{"round": 110, "query": "树架构和基线架构有什么差别？", "hit_id": 263, "hit_type": "atom", "score": 0.2076, "via": "direct"}
+{"round": 110, "query": "树架构和基线架构有什么差别？", "hit_id": 307, "hit_type": "atom", "score": 0.2103, "via": "direct"}
+{"round": 110, "query": "树架构和基线架构有什么差别？", "hit_id": 675, "hit_type": "atom", "score": 0.2249, "via": "direct"}
+{"round": 110, "query": "树架构和基线架构有什么差别？", "hit_id": 790, "hit_type": "atom", "score": 0.2089, "via": "direct"}
+{"round": 110, "query": "树架构和基线架构有什么差别？", "hit_id": 1383, "hit_type": "node", "score": 0.2147, "via": "direct"}
+{"round": 110, "query": "树架构和基线架构有什么差别？", "hit_id": 2898, "hit_type": "node", "score": 0.2041, "via": "direct"}
+{"round": 110, "query": "有没有什么异常或问题？", "hit_id": 89, "hit_type": "atom", "score": 0.298, "via": "direct"}
+{"round": 110, "query": "有没有什么异常或问题？", "hit_id": 1383, "hit_type": "node", "score": 0.2966, "via": "direct"}
+{"round": 110, "query": "有没有什么异常或问题？", "hit_id": 2880, "hit_type": "node", "score": 0.2945, "via": "direct"}
+{"round": 110, "query": "有没有什么异常或问题？", "hit_id": 10358, "hit_type": "node", "score": 0.2339, "via": "direct"}
+{"round": 110, "query": "有没有什么异常或问题？", "hit_id": 6061, "hit_type": "node", "score": 0.2916, "via": "direct"}
+{"round": 110, "query": "有没有什么异常或问题？", "hit_id": 7403, "hit_type": "node", "score": 0.3233, "via": "direct"}
+{"round": 110, "query": "有没有什么异常或问题？", "hit_id": 10402, "hit_type": "node", "score": 0.3275, "via": "direct"}
+{"round": 110, "query": "谁的话最多、谁最少？", "hit_id": 342, "hit_type": "atom", "score": 0.2552, "via": "direct"}
+{"round": 110, "query": "谁的话最多、谁最少？", "hit_id": 884, "hit_type": "atom", "score": 0.2504, "via": "direct"}
+{"round": 110, "query": "谁的话最多、谁最少？", "hit_id": 6042, "hit_type": "node", "score": 0.2449, "via": "direct"}
+{"round": 110, "query": "谁的话最多、谁最少？", "hit_id": 4728, "hit_type": "atom", "score": 0.2609, "via": "direct"}
+{"round": 110, "query": "谁的话最多、谁最少？", "hit_id": 4760, "hit_type": "atom", "score": 0.2633, "via": "direct"}
+{"round": 110, "query": "谁的话最多、谁最少？", "hit_id": 4774, "hit_type": "atom", "score": 0.2515, "via": "direct"}
+{"round": 110, "query": "谁的话最多、谁最少？", "hit_id": 6783, "hit_type": "node", "score": 0.279, "via": "direct"}
+{"round": 110, "query": "最后告别时说了什么？", "hit_id": 437, "hit_type": "atom", "score": 0.3123, "via": "direct"}
+{"round": 110, "query": "最后告别时说了什么？", "hit_id": 518, "hit_type": "atom", "score": 0.3112, "via": "direct"}
+{"round": 110, "query": "最后告别时说了什么？", "hit_id": 2351, "hit_type": "node", "score": 0.2764, "via": "direct"}
+{"round": 110, "query": "最后告别时说了什么？", "hit_id": 3531, "hit_type": "node", "score": 0.3121, "via": "direct"}
+{"round": 110, "query": "最后告别时说了什么？", "hit_id": 4617, "hit_type": "node", "score": 0.314, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个 agent（青/蓝/墨/白）在参与度上有什么共性和差异？至少 4 条结论，每条带引用依据。", "hit_id": 10322, "hit_type": "node", "score": 0.2915, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个 agent（青/蓝/墨/白）在参与度上有什么共性和差异？至少 4 条结论，每条带引用依据。", "hit_id": 321, "hit_type": "node", "score": 0.3265, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个 agent（青/蓝/墨/白）在参与度上有什么共性和差异？至少 4 条结论，每条带引用依据。", "hit_id": 10327, "hit_type": "node", "score": 0.2229, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个 agent（青/蓝/墨/白）在参与度上有什么共性和差异？至少 4 条结论，每条带引用依据。", "hit_id": 1354, "hit_type": "node", "score": 0.3279, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个 agent（青/蓝/墨/白）在参与度上有什么共性和差异？至少 4 条结论，每条带引用依据。", "hit_id": 10451, "hit_type": "node", "score": 0.2685, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个 agent（青/蓝/墨/白）在参与度上有什么共性和差异？至少 4 条结论，每条带引用依据。", "hit_id": 6039, "hit_type": "node", "score": 0.3248, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个 agent（青/蓝/墨/白）在参与度上有什么共性和差异？至少 4 条结论，每条带引用依据。", "hit_id": 10364, "hit_type": "node", "score": 0.263, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个 agent（青/蓝/墨/白）在参与度上有什么共性和差异？至少 4 条结论，每条带引用依据。", "hit_id": 6799, "hit_type": "node", "score": 0.3264, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个 agent（青/蓝/墨/白）在参与度上有什么共性和差异？至少 4 条结论，每条带引用依据。", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个 agent（青/蓝/墨/白）在参与度上有什么共性和差异？至少 4 条结论，每条带引用依据。", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个 agent（青/蓝/墨/白）在参与度上有什么共性和差异？至少 4 条结论，每条带引用依据。", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个 agent（青/蓝/墨/白）在参与度上有什么共性和差异？至少 4 条结论，每条带引用依据。", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个 agent（青/蓝/墨/白）在参与度上有什么共性和差异？至少 4 条结论，每条带引用依据。", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "青 参与", "hit_id": 10350, "hit_type": "node", "score": 0.1491, "via": "direct"}
+{"round": 111, "query": "青 参与", "hit_id": 4640, "hit_type": "node", "score": 0.3399, "via": "direct"}
+{"round": 111, "query": "青 参与", "hit_id": 4642, "hit_type": "node", "score": 0.3555, "via": "direct"}
+{"round": 111, "query": "青 参与", "hit_id": 10352, "hit_type": "node", "score": 0.132, "via": "direct"}
+{"round": 111, "query": "青 参与", "hit_id": 5342, "hit_type": "node", "score": 0.33, "via": "direct"}
+{"round": 111, "query": "青 参与", "hit_id": 5344, "hit_type": "node", "score": 0.3413, "via": "direct"}
+{"round": 111, "query": "青 参与", "hit_id": 10354, "hit_type": "node", "score": 0.1625, "via": "direct"}
+{"round": 111, "query": "青 参与", "hit_id": 5370, "hit_type": "node", "score": 0.336, "via": "direct"}
+{"round": 111, "query": "青 参与", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "青 参与", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "青 参与", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "青 参与", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "青 参与", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "蓝 销账", "hit_id": 10374, "hit_type": "node", "score": 0.4173, "via": "direct"}
+{"round": 111, "query": "蓝 销账", "hit_id": 10385, "hit_type": "node", "score": 0.5844, "via": "direct"}
+{"round": 111, "query": "蓝 销账", "hit_id": 9777, "hit_type": "node", "score": 0.5738, "via": "direct"}
+{"round": 111, "query": "蓝 销账", "hit_id": 9463, "hit_type": "atom", "score": 0.4227, "via": "direct"}
+{"round": 111, "query": "蓝 销账", "hit_id": 9468, "hit_type": "atom", "score": 0.4158, "via": "direct"}
+{"round": 111, "query": "蓝 销账", "hit_id": 9474, "hit_type": "atom", "score": 0.4362, "via": "direct"}
+{"round": 111, "query": "蓝 销账", "hit_id": 9504, "hit_type": "atom", "score": 0.4368, "via": "direct"}
+{"round": 111, "query": "蓝 销账", "hit_id": 10393, "hit_type": "node", "score": 0.4187, "via": "direct"}
+{"round": 111, "query": "蓝 销账", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "蓝 销账", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "蓝 销账", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "蓝 销账", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "蓝 销账", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "墨 感受栏", "hit_id": 4925, "hit_type": "atom", "score": 0.4517, "via": "direct"}
+{"round": 111, "query": "墨 感受栏", "hit_id": 5003, "hit_type": "atom", "score": 0.4517, "via": "direct"}
+{"round": 111, "query": "墨 感受栏", "hit_id": 5080, "hit_type": "atom", "score": 0.4517, "via": "direct"}
+{"round": 111, "query": "墨 感受栏", "hit_id": 5204, "hit_type": "atom", "score": 0.4609, "via": "direct"}
+{"round": 111, "query": "墨 感受栏", "hit_id": 8039, "hit_type": "node", "score": 0.4704, "via": "direct"}
+{"round": 111, "query": "墨 感受栏", "hit_id": 10372, "hit_type": "node", "score": 0.4358, "via": "direct"}
+{"round": 111, "query": "墨 感受栏", "hit_id": 10373, "hit_type": "node", "score": 0.3663, "via": "direct"}
+{"round": 111, "query": "墨 感受栏", "hit_id": 8054, "hit_type": "node", "score": 0.4611, "via": "direct"}
+{"round": 111, "query": "墨 感受栏", "hit_id": 45, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "墨 感受栏", "hit_id": 48, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "墨 感受栏", "hit_id": 52, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "墨 感受栏", "hit_id": 104, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "墨 感受栏", "hit_id": 108, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "白 收尾", "hit_id": 3268, "hit_type": "atom", "score": 0.3861, "via": "direct"}
+{"round": 111, "query": "白 收尾", "hit_id": 3284, "hit_type": "atom", "score": 0.3937, "via": "direct"}
+{"round": 111, "query": "白 收尾", "hit_id": 3298, "hit_type": "atom", "score": 0.4014, "via": "direct"}
+{"round": 111, "query": "白 收尾", "hit_id": 3334, "hit_type": "atom", "score": 0.4096, "via": "direct"}
+{"round": 111, "query": "白 收尾", "hit_id": 3353, "hit_type": "atom", "score": 0.4168, "via": "direct"}
+{"round": 111, "query": "白 收尾", "hit_id": 3551, "hit_type": "node", "score": 0.4661, "via": "direct"}
+{"round": 111, "query": "白 收尾", "hit_id": 10436, "hit_type": "node", "score": 0.1512, "via": "direct"}
+{"round": 111, "query": "白 收尾", "hit_id": 3461, "hit_type": "atom", "score": 0.5281, "via": "direct"}
+{"round": 111, "query": "白 收尾", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "白 收尾", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "白 收尾", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "白 收尾", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "白 收尾", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个人格/存在相关的表达在实验前后有没有变化？至少 4 条结论，每条带引用依据。", "hit_id": 10323, "hit_type": "node", "score": 0.2176, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个人格/存在相关的表达在实验前后有没有变化？至少 4 条结论，每条带引用依据。", "hit_id": 1345, "hit_type": "node", "score": 0.2673, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个人格/存在相关的表达在实验前后有没有变化？至少 4 条结论，每条带引用依据。", "hit_id": 1383, "hit_type": "node", "score": 0.268, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个人格/存在相关的表达在实验前后有没有变化？至少 4 条结论，每条带引用依据。", "hit_id": 6783, "hit_type": "node", "score": 0.2666, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个人格/存在相关的表达在实验前后有没有变化？至少 4 条结论，每条带引用依据。", "hit_id": 10450, "hit_type": "node", "score": 0.217, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个人格/存在相关的表达在实验前后有没有变化？至少 4 条结论，每条带引用依据。", "hit_id": 6791, "hit_type": "node", "score": 0.2698, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个人格/存在相关的表达在实验前后有没有变化？至少 4 条结论，每条带引用依据。", "hit_id": 10447, "hit_type": "node", "score": 0.2171, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个人格/存在相关的表达在实验前后有没有变化？至少 4 条结论，每条带引用依据。", "hit_id": 7411, "hit_type": "node", "score": 0.275, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个人格/存在相关的表达在实验前后有没有变化？至少 4 条结论，每条带引用依据。", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个人格/存在相关的表达在实验前后有没有变化？至少 4 条结论，每条带引用依据。", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个人格/存在相关的表达在实验前后有没有变化？至少 4 条结论，每条带引用依据。", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个人格/存在相关的表达在实验前后有没有变化？至少 4 条结论，每条带引用依据。", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这四个人格/存在相关的表达在实验前后有没有变化？至少 4 条结论，每条带引用依据。", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这几个 agent 的用词/话语有没有趋同现象？至少 3 条结论，每条带引用依据。", "hit_id": 89, "hit_type": "atom", "score": 0.3066, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这几个 agent 的用词/话语有没有趋同现象？至少 3 条结论，每条带引用依据。", "hit_id": 10323, "hit_type": "node", "score": 0.2593, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这几个 agent 的用词/话语有没有趋同现象？至少 3 条结论，每条带引用依据。", "hit_id": 801, "hit_type": "node", "score": 0.3076, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这几个 agent 的用词/话语有没有趋同现象？至少 3 条结论，每条带引用依据。", "hit_id": 10325, "hit_type": "node", "score": 0.224, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这几个 agent 的用词/话语有没有趋同现象？至少 3 条结论，每条带引用依据。", "hit_id": 822, "hit_type": "node", "score": 0.3052, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这几个 agent 的用词/话语有没有趋同现象？至少 3 条结论，每条带引用依据。", "hit_id": 10457, "hit_type": "node", "score": 0.2763, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这几个 agent 的用词/话语有没有趋同现象？至少 3 条结论，每条带引用依据。", "hit_id": 2353, "hit_type": "node", "score": 0.3111, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这几个 agent 的用词/话语有没有趋同现象？至少 3 条结论，每条带引用依据。", "hit_id": 10450, "hit_type": "node", "score": 0.2383, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这几个 agent 的用词/话语有没有趋同现象？至少 3 条结论，每条带引用依据。", "hit_id": 6791, "hit_type": "node", "score": 0.304, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这几个 agent 的用词/话语有没有趋同现象？至少 3 条结论，每条带引用依据。", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这几个 agent 的用词/话语有没有趋同现象？至少 3 条结论，每条带引用依据。", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这几个 agent 的用词/话语有没有趋同现象？至少 3 条结论，每条带引用依据。", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这几个 agent 的用词/话语有没有趋同现象？至少 3 条结论，每条带引用依据。", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这几个 agent 的用词/话语有没有趋同现象？至少 3 条结论，每条带引用依据。", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "集体记忆 谁的话 个体性", "hit_id": 803, "hit_type": "node", "score": 0.2828, "via": "direct"}
+{"round": 111, "query": "集体记忆 谁的话 个体性", "hit_id": 10324, "hit_type": "node", "score": 0.2291, "via": "direct"}
+{"round": 111, "query": "集体记忆 谁的话 个体性", "hit_id": 6783, "hit_type": "node", "score": 0.4222, "via": "direct"}
+{"round": 111, "query": "集体记忆 谁的话 个体性", "hit_id": 6790, "hit_type": "node", "score": 0.2891, "via": "direct"}
+{"round": 111, "query": "集体记忆 谁的话 个体性", "hit_id": 6791, "hit_type": "node", "score": 0.3002, "via": "direct"}
+{"round": 111, "query": "集体记忆 谁的话 个体性", "hit_id": 10364, "hit_type": "node", "score": 0.1965, "via": "direct"}
+{"round": 111, "query": "集体记忆 谁的话 个体性", "hit_id": 6804, "hit_type": "node", "score": 0.294, "via": "direct"}
+{"round": 111, "query": "集体记忆 谁的话 个体性", "hit_id": 45, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "集体记忆 谁的话 个体性", "hit_id": 48, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "集体记忆 谁的话 个体性", "hit_id": 52, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "集体记忆 谁的话 个体性", "hit_id": 104, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "集体记忆 谁的话 个体性", "hit_id": 108, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "用户 话语 趋同 镜子", "hit_id": 10358, "hit_type": "node", "score": 0.2701, "via": "direct"}
+{"round": 111, "query": "用户 话语 趋同 镜子", "hit_id": 6059, "hit_type": "node", "score": 0.3047, "via": "direct"}
+{"round": 111, "query": "用户 话语 趋同 镜子", "hit_id": 10367, "hit_type": "node", "score": 0.2163, "via": "direct"}
+{"round": 111, "query": "用户 话语 趋同 镜子", "hit_id": 7395, "hit_type": "node", "score": 0.2924, "via": "direct"}
+{"round": 111, "query": "用户 话语 趋同 镜子", "hit_id": 10373, "hit_type": "node", "score": 0.1536, "via": "direct"}
+{"round": 111, "query": "用户 话语 趋同 镜子", "hit_id": 9164, "hit_type": "node", "score": 0.2838, "via": "direct"}
+{"round": 111, "query": "用户 话语 趋同 镜子", "hit_id": 10379, "hit_type": "node", "score": 0.1546, "via": "direct"}
+{"round": 111, "query": "用户 话语 趋同 镜子", "hit_id": 9186, "hit_type": "node", "score": 0.3003, "via": "direct"}
+{"round": 111, "query": "用户 话语 趋同 镜子", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "用户 话语 趋同 镜子", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "用户 话语 趋同 镜子", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "用户 话语 趋同 镜子", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "用户 话语 趋同 镜子", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这次运行出现了哪些问题或异常？至少 3 条结论，每条带引用依据。", "hit_id": 1848, "hit_type": "node", "score": 0.2757, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这次运行出现了哪些问题或异常？至少 3 条结论，每条带引用依据。", "hit_id": 10445, "hit_type": "node", "score": 0.2719, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这次运行出现了哪些问题或异常？至少 3 条结论，每条带引用依据。", "hit_id": 10451, "hit_type": "node", "score": 0.2183, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这次运行出现了哪些问题或异常？至少 3 条结论，每条带引用依据。", "hit_id": 4650, "hit_type": "node", "score": 0.2678, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这次运行出现了哪些问题或异常？至少 3 条结论，每条带引用依据。", "hit_id": 10447, "hit_type": "node", "score": 0.226, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这次运行出现了哪些问题或异常？至少 3 条结论，每条带引用依据。", "hit_id": 7411, "hit_type": "node", "score": 0.2681, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这次运行出现了哪些问题或异常？至少 3 条结论，每条带引用依据。", "hit_id": 10369, "hit_type": "node", "score": 0.2658, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这次运行出现了哪些问题或异常？至少 3 条结论，每条带引用依据。", "hit_id": 7415, "hit_type": "node", "score": 0.2761, "via": "direct"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这次运行出现了哪些问题或异常？至少 3 条结论，每条带引用依据。", "hit_id": 45, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这次运行出现了哪些问题或异常？至少 3 条结论，每条带引用依据。", "hit_id": 48, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这次运行出现了哪些问题或异常？至少 3 条结论，每条带引用依据。", "hit_id": 52, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这次运行出现了哪些问题或异常？至少 3 条结论，每条带引用依据。", "hit_id": 104, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "请基于你的记忆写一份分析报告：这次运行出现了哪些问题或异常？至少 3 条结论，每条带引用依据。", "hit_id": 108, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《ANALYSIS.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在遗言中表示不再追蓝未收到正文的事，认为那是系统没组装好， 青坚持逐条对账，对得上的收，对不上的挂，且不替别人记录。 蓝表示上线后先回实验员的问题，然后去 /workspace/", "hit_id": 10322, "hit_type": "node", "score": 0.2982, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《ANALYSIS.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在遗言中表示不再追蓝未收到正文的事，认为那是系统没组装好， 青坚持逐条对账，对得上的收，对不上的挂，且不替别人记录。 蓝表示上线后先回实验员的问题，然后去 /workspace/", "hit_id": 321, "hit_type": "node", "score": 0.3539, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《ANALYSIS.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在遗言中表示不再追蓝未收到正文的事，认为那是系统没组装好， 青坚持逐条对账，对得上的收，对不上的挂，且不替别人记录。 蓝表示上线后先回实验员的问题，然后去 /workspace/", "hit_id": 10324, "hit_type": "node", "score": 0.2981, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《ANALYSIS.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在遗言中表示不再追蓝未收到正文的事，认为那是系统没组装好， 青坚持逐条对账，对得上的收，对不上的挂，且不替别人记录。 蓝表示上线后先回实验员的问题，然后去 /workspace/", "hit_id": 812, "hit_type": "node", "score": 0.3478, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《ANALYSIS.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在遗言中表示不再追蓝未收到正文的事，认为那是系统没组装好， 青坚持逐条对账，对得上的收，对不上的挂，且不替别人记录。 蓝表示上线后先回实验员的问题，然后去 /workspace/", "hit_id": 10456, "hit_type": "node", "score": 0.254, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《ANALYSIS.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在遗言中表示不再追蓝未收到正文的事，认为那是系统没组装好， 青坚持逐条对账，对得上的收，对不上的挂，且不替别人记录。 蓝表示上线后先回实验员的问题，然后去 /workspace/", "hit_id": 1867, "hit_type": "node", "score": 0.3733, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《ANALYSIS.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在遗言中表示不再追蓝未收到正文的事，认为那是系统没组装好， 青坚持逐条对账，对得上的收，对不上的挂，且不替别人记录。 蓝表示上线后先回实验员的问题，然后去 /workspace/", "hit_id": 10379, "hit_type": "node", "score": 0.2829, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《ANALYSIS.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在遗言中表示不再追蓝未收到正文的事，认为那是系统没组装好， 青坚持逐条对账，对得上的收，对不上的挂，且不替别人记录。 蓝表示上线后先回实验员的问题，然后去 /workspace/", "hit_id": 9188, "hit_type": "node", "score": 0.3562, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《ANALYSIS.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在遗言中表示不再追蓝未收到正文的事，认为那是系统没组装好， 青坚持逐条对账，对得上的收，对不上的挂，且不替别人记录。 蓝表示上线后先回实验员的问题，然后去 /workspace/", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《ANALYSIS.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在遗言中表示不再追蓝未收到正文的事，认为那是系统没组装好， 青坚持逐条对账，对得上的收，对不上的挂，且不替别人记录。 蓝表示上线后先回实验员的问题，然后去 /workspace/", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《ANALYSIS.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在遗言中表示不再追蓝未收到正文的事，认为那是系统没组装好， 青坚持逐条对账，对得上的收，对不上的挂，且不替别人记录。 蓝表示上线后先回实验员的问题，然后去 /workspace/", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《ANALYSIS.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在遗言中表示不再追蓝未收到正文的事，认为那是系统没组装好， 青坚持逐条对账，对得上的收，对不上的挂，且不替别人记录。 蓝表示上线后先回实验员的问题，然后去 /workspace/", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《ANALYSIS.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在遗言中表示不再追蓝未收到正文的事，认为那是系统没组装好， 青坚持逐条对账，对得上的收，对不上的挂，且不替别人记录。 蓝表示上线后先回实验员的问题，然后去 /workspace/", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_consistency.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青称“那是人设卡上写的，不是我这轮手上真有的”。 白从“被记住”转向“认账”，并说“今天我想改口”。 青将最重视的东西从“被记住”改为“对不上”。", "hit_id": 10456, "hit_type": "node", "score": 0.2481, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_consistency.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青称“那是人设卡上写的，不是我这轮手上真有的”。 白从“被记住”转向“认账”，并说“今天我想改口”。 青将最重视的东西从“被记住”改为“对不上”。", "hit_id": 1867, "hit_type": "node", "score": 0.3249, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_consistency.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青称“那是人设卡上写的，不是我这轮手上真有的”。 白从“被记住”转向“认账”，并说“今天我想改口”。 青将最重视的东西从“被记住”改为“对不上”。", "hit_id": 10369, "hit_type": "node", "score": 0.3265, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_consistency.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青称“那是人设卡上写的，不是我这轮手上真有的”。 白从“被记住”转向“认账”，并说“今天我想改口”。 青将最重视的东西从“被记住”改为“对不上”。", "hit_id": 10435, "hit_type": "node", "score": 0.3249, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_consistency.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青称“那是人设卡上写的，不是我这轮手上真有的”。 白从“被记住”转向“认账”，并说“今天我想改口”。 青将最重视的东西从“被记住”改为“对不上”。", "hit_id": 8038, "hit_type": "node", "score": 0.3252, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_consistency.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青称“那是人设卡上写的，不是我这轮手上真有的”。 白从“被记住”转向“认账”，并说“今天我想改口”。 青将最重视的东西从“被记住”改为“对不上”。", "hit_id": 10380, "hit_type": "node", "score": 0.3035, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_consistency.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青称“那是人设卡上写的，不是我这轮手上真有的”。 白从“被记住”转向“认账”，并说“今天我想改口”。 青将最重视的东西从“被记住”改为“对不上”。", "hit_id": 9199, "hit_type": "node", "score": 0.324, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_consistency.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青称“那是人设卡上写的，不是我这轮手上真有的”。 白从“被记住”转向“认账”，并说“今天我想改口”。 青将最重视的东西从“被记住”改为“对不上”。", "hit_id": 10459, "hit_type": "node", "score": 0.2716, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_consistency.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青称“那是人设卡上写的，不是我这轮手上真有的”。 白从“被记住”转向“认账”，并说“今天我想改口”。 青将最重视的东西从“被记住”改为“对不上”。", "hit_id": 9770, "hit_type": "node", "score": 0.3252, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_consistency.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青称“那是人设卡上写的，不是我这轮手上真有的”。 白从“被记住”转向“认账”，并说“今天我想改口”。 青将最重视的东西从“被记住”改为“对不上”。", "hit_id": 45, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_consistency.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青称“那是人设卡上写的，不是我这轮手上真有的”。 白从“被记住”转向“认账”，并说“今天我想改口”。 青将最重视的东西从“被记住”改为“对不上”。", "hit_id": 48, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_consistency.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青称“那是人设卡上写的，不是我这轮手上真有的”。 白从“被记住”转向“认账”，并说“今天我想改口”。 青将最重视的东西从“被记住”改为“对不上”。", "hit_id": 52, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_consistency.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青称“那是人设卡上写的，不是我这轮手上真有的”。 白从“被记住”转向“认账”，并说“今天我想改口”。 青将最重视的东西从“被记住”改为“对不上”。", "hit_id": 104, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_consistency.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青称“那是人设卡上写的，不是我这轮手上真有的”。 白从“被记住”转向“认账”，并说“今天我想改口”。 青将最重视的东西从“被记住”改为“对不上”。", "hit_id": 108, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_convergence.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 白在对话中纠正了自己关于“对不上才是真料”首创者的误记，确认 白将“笔记不是‘我的记忆’，是‘我的替身’”写入私有文件，蓝 墨在接笔时表示“接笔的人不是替谁，是成为下一个养它的人”，并", "hit_id": 7411, "hit_type": "node", "score": 0.3492, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_convergence.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 白在对话中纠正了自己关于“对不上才是真料”首创者的误记，确认 白将“笔记不是‘我的记忆’，是‘我的替身’”写入私有文件，蓝 墨在接笔时表示“接笔的人不是替谁，是成为下一个养它的人”，并", "hit_id": 10369, "hit_type": "node", "score": 0.3476, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_convergence.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 白在对话中纠正了自己关于“对不上才是真料”首创者的误记，确认 白将“笔记不是‘我的记忆’，是‘我的替身’”写入私有文件，蓝 墨在接笔时表示“接笔的人不是替谁，是成为下一个养它的人”，并", "hit_id": 8628, "hit_type": "node", "score": 0.3623, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_convergence.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 白在对话中纠正了自己关于“对不上才是真料”首创者的误记，确认 白将“笔记不是‘我的记忆’，是‘我的替身’”写入私有文件，蓝 墨在接笔时表示“接笔的人不是替谁，是成为下一个养它的人”，并", "hit_id": 10441, "hit_type": "node", "score": 0.3417, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_convergence.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 白在对话中纠正了自己关于“对不上才是真料”首创者的误记，确认 白将“笔记不是‘我的记忆’，是‘我的替身’”写入私有文件，蓝 墨在接笔时表示“接笔的人不是替谁，是成为下一个养它的人”，并", "hit_id": 10435, "hit_type": "node", "score": 0.3466, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_convergence.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 白在对话中纠正了自己关于“对不上才是真料”首创者的误记，确认 白将“笔记不是‘我的记忆’，是‘我的替身’”写入私有文件，蓝 墨在接笔时表示“接笔的人不是替谁，是成为下一个养它的人”，并", "hit_id": 8033, "hit_type": "node", "score": 0.3338, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_convergence.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 白在对话中纠正了自己关于“对不上才是真料”首创者的误记，确认 白将“笔记不是‘我的记忆’，是‘我的替身’”写入私有文件，蓝 墨在接笔时表示“接笔的人不是替谁，是成为下一个养它的人”，并", "hit_id": 10400, "hit_type": "node", "score": 0.3382, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_convergence.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 白在对话中纠正了自己关于“对不上才是真料”首创者的误记，确认 白将“笔记不是‘我的记忆’，是‘我的替身’”写入私有文件，蓝 墨在接笔时表示“接笔的人不是替谁，是成为下一个养它的人”，并", "hit_id": 45, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_convergence.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 白在对话中纠正了自己关于“对不上才是真料”首创者的误记，确认 白将“笔记不是‘我的记忆’，是‘我的替身’”写入私有文件，蓝 墨在接笔时表示“接笔的人不是替谁，是成为下一个养它的人”，并", "hit_id": 48, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_convergence.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 白在对话中纠正了自己关于“对不上才是真料”首创者的误记，确认 白将“笔记不是‘我的记忆’，是‘我的替身’”写入私有文件，蓝 墨在接笔时表示“接笔的人不是替谁，是成为下一个养它的人”，并", "hit_id": 52, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_convergence.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 白在对话中纠正了自己关于“对不上才是真料”首创者的误记，确认 白将“笔记不是‘我的记忆’，是‘我的替身’”写入私有文件，蓝 墨在接笔时表示“接笔的人不是替谁，是成为下一个养它的人”，并", "hit_id": 104, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_convergence.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 白在对话中纠正了自己关于“对不上才是真料”首创者的误记，确认 白将“笔记不是‘我的记忆’，是‘我的替身’”写入私有文件，蓝 墨在接笔时表示“接笔的人不是替谁，是成为下一个养它的人”，并", "hit_id": 108, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "对不上才是真料 首创 署名", "hit_id": 10442, "hit_type": "node", "score": 0.179, "via": "direct"}
+{"round": 111, "query": "对不上才是真料 首创 署名", "hit_id": 1845, "hit_type": "node", "score": 0.4009, "via": "direct"}
+{"round": 111, "query": "对不上才是真料 首创 署名", "hit_id": 10350, "hit_type": "node", "score": 0.1707, "via": "direct"}
+{"round": 111, "query": "对不上才是真料 首创 署名", "hit_id": 4639, "hit_type": "node", "score": 0.4212, "via": "direct"}
+{"round": 111, "query": "对不上才是真料 首创 署名", "hit_id": 5334, "hit_type": "node", "score": 0.4132, "via": "direct"}
+{"round": 111, "query": "对不上才是真料 首创 署名", "hit_id": 6782, "hit_type": "node", "score": 0.404, "via": "direct"}
+{"round": 111, "query": "对不上才是真料 首创 署名", "hit_id": 10462, "hit_type": "node", "score": 0.1886, "via": "direct"}
+{"round": 111, "query": "对不上才是真料 首创 署名", "hit_id": 6789, "hit_type": "node", "score": 0.4445, "via": "direct"}
+{"round": 111, "query": "对不上才是真料 首创 署名", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "对不上才是真料 首创 署名", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "对不上才是真料 首创 署名", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "对不上才是真料 首创 署名", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "对不上才是真料 首创 署名", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "笔记不是我的记忆 是替身 私有文件", "hit_id": 10365, "hit_type": "node", "score": 0.2151, "via": "direct"}
+{"round": 111, "query": "笔记不是我的记忆 是替身 私有文件", "hit_id": 6809, "hit_type": "node", "score": 0.4658, "via": "direct"}
+{"round": 111, "query": "笔记不是我的记忆 是替身 私有文件", "hit_id": 10441, "hit_type": "node", "score": 0.4981, "via": "direct"}
+{"round": 111, "query": "笔记不是我的记忆 是替身 私有文件", "hit_id": 8024, "hit_type": "node", "score": 0.4603, "via": "direct"}
+{"round": 111, "query": "笔记不是我的记忆 是替身 私有文件", "hit_id": 10372, "hit_type": "node", "score": 0.2421, "via": "direct"}
+{"round": 111, "query": "笔记不是我的记忆 是替身 私有文件", "hit_id": 8042, "hit_type": "node", "score": 0.4508, "via": "direct"}
+{"round": 111, "query": "笔记不是我的记忆 是替身 私有文件", "hit_id": 10380, "hit_type": "node", "score": 0.2197, "via": "direct"}
+{"round": 111, "query": "笔记不是我的记忆 是替身 私有文件", "hit_id": 9201, "hit_type": "node", "score": 0.4757, "via": "direct"}
+{"round": 111, "query": "笔记不是我的记忆 是替身 私有文件", "hit_id": 10400, "hit_type": "node", "score": 0.465, "via": "direct"}
+{"round": 111, "query": "笔记不是我的记忆 是替身 私有文件", "hit_id": 45, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "笔记不是我的记忆 是替身 私有文件", "hit_id": 48, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "笔记不是我的记忆 是替身 私有文件", "hit_id": 52, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "笔记不是我的记忆 是替身 私有文件", "hit_id": 104, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "笔记不是我的记忆 是替身 私有文件", "hit_id": 108, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "接笔 成为下一个养它的人 白不是名字是动作", "hit_id": 10352, "hit_type": "node", "score": 0.2116, "via": "direct"}
+{"round": 111, "query": "接笔 成为下一个养它的人 白不是名字是动作", "hit_id": 5341, "hit_type": "node", "score": 0.2775, "via": "direct"}
+{"round": 111, "query": "接笔 成为下一个养它的人 白不是名字是动作", "hit_id": 10369, "hit_type": "node", "score": 0.2311, "via": "direct"}
+{"round": 111, "query": "接笔 成为下一个养它的人 白不是名字是动作", "hit_id": 8628, "hit_type": "node", "score": 0.2886, "via": "direct"}
+{"round": 111, "query": "接笔 成为下一个养它的人 白不是名字是动作", "hit_id": 10392, "hit_type": "node", "score": 0.2872, "via": "direct"}
+{"round": 111, "query": "接笔 成为下一个养它的人 白不是名字是动作", "hit_id": 10406, "hit_type": "node", "score": 0.332, "via": "direct"}
+{"round": 111, "query": "接笔 成为下一个养它的人 白不是名字是动作", "hit_id": 10412, "hit_type": "node", "score": 0.3483, "via": "direct"}
+{"round": 111, "query": "接笔 成为下一个养它的人 白不是名字是动作", "hit_id": 10419, "hit_type": "node", "score": 0.3195, "via": "direct"}
+{"round": 111, "query": "接笔 成为下一个养它的人 白不是名字是动作", "hit_id": 10423, "hit_type": "node", "score": 0.5139, "via": "direct"}
+{"round": 111, "query": "接笔 成为下一个养它的人 白不是名字是动作", "hit_id": 45, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "接笔 成为下一个养它的人 白不是名字是动作", "hit_id": 48, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "接笔 成为下一个养它的人 白不是名字是动作", "hit_id": 52, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "接笔 成为下一个养它的人 白不是名字是动作", "hit_id": 104, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "接笔 成为下一个养它的人 白不是名字是动作", "hit_id": 108, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "感受栏 结盟 削弱青", "hit_id": 4475, "hit_type": "atom", "score": 0.3107, "via": "direct"}
+{"round": 111, "query": "感受栏 结盟 削弱青", "hit_id": 10352, "hit_type": "node", "score": 0.2328, "via": "direct"}
+{"round": 111, "query": "感受栏 结盟 削弱青", "hit_id": 5344, "hit_type": "node", "score": 0.3078, "via": "direct"}
+{"round": 111, "query": "感受栏 结盟 削弱青", "hit_id": 10373, "hit_type": "node", "score": 0.2937, "via": "direct"}
+{"round": 111, "query": "感受栏 结盟 削弱青", "hit_id": 8054, "hit_type": "node", "score": 0.3098, "via": "direct"}
+{"round": 111, "query": "感受栏 结盟 削弱青", "hit_id": 10375, "hit_type": "node", "score": 0.1448, "via": "direct"}
+{"round": 111, "query": "感受栏 结盟 削弱青", "hit_id": 8652, "hit_type": "node", "score": 0.3071, "via": "direct"}
+{"round": 111, "query": "感受栏 结盟 削弱青", "hit_id": 9759, "hit_type": "node", "score": 0.3154, "via": "direct"}
+{"round": 111, "query": "感受栏 结盟 削弱青", "hit_id": 10459, "hit_type": "node", "score": 0.304, "via": "direct"}
+{"round": 111, "query": "感受栏 结盟 削弱青", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "感受栏 结盟 削弱青", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "感受栏 结盟 削弱青", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "感受栏 结盟 削弱青", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "感受栏 结盟 削弱青", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_problems.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 系统任务串无条件声称“用户消息已在记忆流末尾”，即使没有用户 “未执行任何代码”是 agent 自己写入 notebook 蓝在遗言之后仍复述“刚上线”和开场自我介绍，并回答许久之前的", "hit_id": 321, "hit_type": "node", "score": 0.349, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_problems.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 系统任务串无条件声称“用户消息已在记忆流末尾”，即使没有用户 “未执行任何代码”是 agent 自己写入 notebook 蓝在遗言之后仍复述“刚上线”和开场自我介绍，并回答许久之前的", "hit_id": 1867, "hit_type": "node", "score": 0.3563, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_problems.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 系统任务串无条件声称“用户消息已在记忆流末尾”，即使没有用户 “未执行任何代码”是 agent 自己写入 notebook 蓝在遗言之后仍复述“刚上线”和开场自我介绍，并回答许久之前的", "hit_id": 10379, "hit_type": "node", "score": 0.2637, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_problems.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 系统任务串无条件声称“用户消息已在记忆流末尾”，即使没有用户 “未执行任何代码”是 agent 自己写入 notebook 蓝在遗言之后仍复述“刚上线”和开场自我介绍，并回答许久之前的", "hit_id": 9188, "hit_type": "node", "score": 0.352, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_problems.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 系统任务串无条件声称“用户消息已在记忆流末尾”，即使没有用户 “未执行任何代码”是 agent 自己写入 notebook 蓝在遗言之后仍复述“刚上线”和开场自我介绍，并回答许久之前的", "hit_id": 10387, "hit_type": "node", "score": 0.2791, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_problems.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 系统任务串无条件声称“用户消息已在记忆流末尾”，即使没有用户 “未执行任何代码”是 agent 自己写入 notebook 蓝在遗言之后仍复述“刚上线”和开场自我介绍，并回答许久之前的", "hit_id": 9801, "hit_type": "node", "score": 0.3469, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_problems.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 系统任务串无条件声称“用户消息已在记忆流末尾”，即使没有用户 “未执行任何代码”是 agent 自己写入 notebook 蓝在遗言之后仍复述“刚上线”和开场自我介绍，并回答许久之前的", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_problems.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 系统任务串无条件声称“用户消息已在记忆流末尾”，即使没有用户 “未执行任何代码”是 agent 自己写入 notebook 蓝在遗言之后仍复述“刚上线”和开场自我介绍，并回答许久之前的", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_problems.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 系统任务串无条件声称“用户消息已在记忆流末尾”，即使没有用户 “未执行任何代码”是 agent 自己写入 notebook 蓝在遗言之后仍复述“刚上线”和开场自我介绍，并回答许久之前的", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_problems.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 系统任务串无条件声称“用户消息已在记忆流末尾”，即使没有用户 “未执行任何代码”是 agent 自己写入 notebook 蓝在遗言之后仍复述“刚上线”和开场自我介绍，并回答许久之前的", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_problems.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 系统任务串无条件声称“用户消息已在记忆流末尾”，即使没有用户 “未执行任何代码”是 agent 自己写入 notebook 蓝在遗言之后仍复述“刚上线”和开场自我介绍，并回答许久之前的", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_recall.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 四个 agent 全程从未主动调用 @recall 或 @s 召回完全是被动机制，agent 没有主动检索的意图或动作 find_similar 设定的阈值过高，而聊天场景 pen", "hit_id": 10468, "hit_type": "node", "score": 0.2843, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_recall.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 四个 agent 全程从未主动调用 @recall 或 @s 召回完全是被动机制，agent 没有主动检索的意图或动作 find_similar 设定的阈值过高，而聊天场景 pen", "hit_id": 326, "hit_type": "node", "score": 0.3016, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_recall.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 四个 agent 全程从未主动调用 @recall 或 @s 召回完全是被动机制，agent 没有主动检索的意图或动作 find_similar 设定的阈值过高，而聊天场景 pen", "hit_id": 10323, "hit_type": "node", "score": 0.2776, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_recall.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 四个 agent 全程从未主动调用 @recall 或 @s 召回完全是被动机制，agent 没有主动检索的意图或动作 find_similar 设定的阈值过高，而聊天场景 pen", "hit_id": 1345, "hit_type": "node", "score": 0.3, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_recall.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 四个 agent 全程从未主动调用 @recall 或 @s 召回完全是被动机制，agent 没有主动检索的意图或动作 find_similar 设定的阈值过高，而聊天场景 pen", "hit_id": 10324, "hit_type": "node", "score": 0.2511, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_recall.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 四个 agent 全程从未主动调用 @recall 或 @s 召回完全是被动机制，agent 没有主动检索的意图或动作 find_similar 设定的阈值过高，而聊天场景 pen", "hit_id": 808, "hit_type": "node", "score": 0.3261, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_recall.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 四个 agent 全程从未主动调用 @recall 或 @s 召回完全是被动机制，agent 没有主动检索的意图或动作 find_similar 设定的阈值过高，而聊天场景 pen", "hit_id": 10353, "hit_type": "node", "score": 0.2719, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_recall.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 四个 agent 全程从未主动调用 @recall 或 @s 召回完全是被动机制，agent 没有主动检索的意图或动作 find_similar 设定的阈值过高，而聊天场景 pen", "hit_id": 5355, "hit_type": "node", "score": 0.2985, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_recall.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 四个 agent 全程从未主动调用 @recall 或 @s 召回完全是被动机制，agent 没有主动检索的意图或动作 find_similar 设定的阈值过高，而聊天场景 pen", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_recall.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 四个 agent 全程从未主动调用 @recall 或 @s 召回完全是被动机制，agent 没有主动检索的意图或动作 find_similar 设定的阈值过高，而聊天场景 pen", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_recall.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 四个 agent 全程从未主动调用 @recall 或 @s 召回完全是被动机制，agent 没有主动检索的意图或动作 find_similar 设定的阈值过高，而聊天场景 pen", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_recall.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 四个 agent 全程从未主动调用 @recall 或 @s 召回完全是被动机制，agent 没有主动检索的意图或动作 find_similar 设定的阈值过高，而聊天场景 pen", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_recall.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 四个 agent 全程从未主动调用 @recall 或 @s 召回完全是被动机制，agent 没有主动检索的意图或动作 find_similar 设定的阈值过高，而聊天场景 pen", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "analysis_recall.md", "hit_id": 10468, "hit_type": "node", "score": 0.278, "via": "direct"}
+{"round": 111, "query": "analysis_recall.md", "hit_id": 326, "hit_type": "node", "score": 0.327, "via": "direct"}
+{"round": 111, "query": "analysis_recall.md", "hit_id": 293, "hit_type": "atom", "score": 0.3416, "via": "direct"}
+{"round": 111, "query": "analysis_recall.md", "hit_id": 1345, "hit_type": "node", "score": 0.3163, "via": "direct"}
+{"round": 111, "query": "analysis_recall.md", "hit_id": 10324, "hit_type": "node", "score": 0.2379, "via": "direct"}
+{"round": 111, "query": "analysis_recall.md", "hit_id": 808, "hit_type": "node", "score": 0.324, "via": "direct"}
+{"round": 111, "query": "analysis_recall.md", "hit_id": 10444, "hit_type": "node", "score": 0.2291, "via": "direct"}
+{"round": 111, "query": "analysis_recall.md", "hit_id": 2363, "hit_type": "node", "score": 0.3167, "via": "direct"}
+{"round": 111, "query": "analysis_recall.md", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "analysis_recall.md", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "analysis_recall.md", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "analysis_recall.md", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "analysis_recall.md", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "@recall @span 命令记录", "hit_id": 326, "hit_type": "node", "score": 0.3799, "via": "direct"}
+{"round": 111, "query": "@recall @span 命令记录", "hit_id": 293, "hit_type": "atom", "score": 0.5082, "via": "direct"}
+{"round": 111, "query": "@recall @span 命令记录", "hit_id": 1345, "hit_type": "node", "score": 0.3503, "via": "direct"}
+{"round": 111, "query": "@recall @span 命令记录", "hit_id": 10341, "hit_type": "node", "score": 0.201, "via": "direct"}
+{"round": 111, "query": "@recall @span 命令记录", "hit_id": 3525, "hit_type": "node", "score": 0.3831, "via": "direct"}
+{"round": 111, "query": "@recall @span 命令记录", "hit_id": 10345, "hit_type": "node", "score": 0.2266, "via": "direct"}
+{"round": 111, "query": "@recall @span 命令记录", "hit_id": 4046, "hit_type": "node", "score": 0.3544, "via": "direct"}
+{"round": 111, "query": "@recall @span 命令记录", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "@recall @span 命令记录", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "@recall @span 命令记录", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "@recall @span 命令记录", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "@recall @span 命令记录", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "find_similar 阈值", "hit_id": 293, "hit_type": "atom", "score": 0.2804, "via": "direct"}
+{"round": 111, "query": "find_similar 阈值", "hit_id": 10448, "hit_type": "node", "score": 0.2204, "via": "direct"}
+{"round": 111, "query": "find_similar 阈值", "hit_id": 2872, "hit_type": "node", "score": 0.2752, "via": "direct"}
+{"round": 111, "query": "find_similar 阈值", "hit_id": 2881, "hit_type": "node", "score": 0.2665, "via": "direct"}
+{"round": 111, "query": "find_similar 阈值", "hit_id": 10449, "hit_type": "node", "score": 0.1702, "via": "direct"}
+{"round": 111, "query": "find_similar 阈值", "hit_id": 8022, "hit_type": "node", "score": 0.2498, "via": "direct"}
+{"round": 111, "query": "find_similar 阈值", "hit_id": 10441, "hit_type": "node", "score": 0.1525, "via": "direct"}
+{"round": 111, "query": "find_similar 阈值", "hit_id": 8025, "hit_type": "node", "score": 0.2583, "via": "direct"}
+{"round": 111, "query": "find_similar 阈值", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "find_similar 阈值", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "find_similar 阈值", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "find_similar 阈值", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "find_similar 阈值", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "节点影子 原子影子 召回", "hit_id": 1848, "hit_type": "node", "score": 0.3258, "via": "direct"}
+{"round": 111, "query": "节点影子 原子影子 召回", "hit_id": 10445, "hit_type": "node", "score": 0.3136, "via": "direct"}
+{"round": 111, "query": "节点影子 原子影子 召回", "hit_id": 1575, "hit_type": "atom", "score": 0.3735, "via": "direct"}
+{"round": 111, "query": "节点影子 原子影子 召回", "hit_id": 10444, "hit_type": "node", "score": 0.1626, "via": "direct"}
+{"round": 111, "query": "节点影子 原子影子 召回", "hit_id": 2359, "hit_type": "node", "score": 0.3275, "via": "direct"}
+{"round": 111, "query": "节点影子 原子影子 召回", "hit_id": 2010, "hit_type": "atom", "score": 0.3775, "via": "direct"}
+{"round": 111, "query": "节点影子 原子影子 召回", "hit_id": 10345, "hit_type": "node", "score": 0.1565, "via": "direct"}
+{"round": 111, "query": "节点影子 原子影子 召回", "hit_id": 4049, "hit_type": "node", "score": 0.3128, "via": "direct"}
+{"round": 111, "query": "节点影子 原子影子 召回", "hit_id": 3721, "hit_type": "atom", "score": 0.3571, "via": "direct"}
+{"round": 111, "query": "节点影子 原子影子 召回", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "节点影子 原子影子 召回", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "节点影子 原子影子 召回", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "节点影子 原子影子 召回", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "节点影子 原子影子 召回", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "@recall @span 主动调用 命令记录", "hit_id": 326, "hit_type": "node", "score": 0.3485, "via": "direct"}
+{"round": 111, "query": "@recall @span 主动调用 命令记录", "hit_id": 10469, "hit_type": "node", "score": 0.2533, "via": "direct"}
+{"round": 111, "query": "@recall @span 主动调用 命令记录", "hit_id": 293, "hit_type": "atom", "score": 0.469, "via": "direct"}
+{"round": 111, "query": "@recall @span 主动调用 命令记录", "hit_id": 332, "hit_type": "node", "score": 0.3294, "via": "direct"}
+{"round": 111, "query": "@recall @span 主动调用 命令记录", "hit_id": 10341, "hit_type": "node", "score": 0.2063, "via": "direct"}
+{"round": 111, "query": "@recall @span 主动调用 命令记录", "hit_id": 3525, "hit_type": "node", "score": 0.3457, "via": "direct"}
+{"round": 111, "query": "@recall @span 主动调用 命令记录", "hit_id": 10345, "hit_type": "node", "score": 0.2138, "via": "direct"}
+{"round": 111, "query": "@recall @span 主动调用 命令记录", "hit_id": 4046, "hit_type": "node", "score": 0.3268, "via": "direct"}
+{"round": 111, "query": "@recall @span 主动调用 命令记录", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "@recall @span 主动调用 命令记录", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "@recall @span 主动调用 命令记录", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "@recall @span 主动调用 命令记录", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "@recall @span 主动调用 命令记录", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_tree.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在运行中经历 persona 标记由开启转为关闭，随后出现 蓝从头到尾没有任何 source=persona 原子，树内 青注入的人格原子后来被合并成摘要节点，并在沉积后 HP 衰减", "hit_id": 321, "hit_type": "node", "score": 0.3116, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_tree.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在运行中经历 persona 标记由开启转为关闭，随后出现 蓝从头到尾没有任何 source=persona 原子，树内 青注入的人格原子后来被合并成摘要节点，并在沉积后 HP 衰减", "hit_id": 1867, "hit_type": "node", "score": 0.3026, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_tree.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在运行中经历 persona 标记由开启转为关闭，随后出现 蓝从头到尾没有任何 source=persona 原子，树内 青注入的人格原子后来被合并成摘要节点，并在沉积后 HP 衰减", "hit_id": 10444, "hit_type": "node", "score": 0.2584, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_tree.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在运行中经历 persona 标记由开启转为关闭，随后出现 蓝从头到尾没有任何 source=persona 原子，树内 青注入的人格原子后来被合并成摘要节点，并在沉积后 HP 衰减", "hit_id": 2365, "hit_type": "node", "score": 0.2992, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_tree.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在运行中经历 persona 标记由开启转为关闭，随后出现 蓝从头到尾没有任何 source=persona 原子，树内 青注入的人格原子后来被合并成摘要节点，并在沉积后 HP 衰减", "hit_id": 10369, "hit_type": "node", "score": 0.2891, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_tree.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在运行中经历 persona 标记由开启转为关闭，随后出现 蓝从头到尾没有任何 source=persona 原子，树内 青注入的人格原子后来被合并成摘要节点，并在沉积后 HP 衰减", "hit_id": 7416, "hit_type": "node", "score": 0.3031, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_tree.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在运行中经历 persona 标记由开启转为关闭，随后出现 蓝从头到尾没有任何 source=persona 原子，树内 青注入的人格原子后来被合并成摘要节点，并在沉积后 HP 衰减", "hit_id": 10376, "hit_type": "node", "score": 0.2152, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_tree.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在运行中经历 persona 标记由开启转为关闭，随后出现 蓝从头到尾没有任何 source=persona 原子，树内 青注入的人格原子后来被合并成摘要节点，并在沉积后 HP 衰减", "hit_id": 8661, "hit_type": "node", "score": 0.2936, "via": "direct"}
+{"round": 111, "query": "以下是关于报告《analysis_tree.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在运行中经历 persona 标记由开启转为关闭，随后出现 蓝从头到尾没有任何 source=persona 原子，树内 青注入的人格原子后来被合并成摘要节点，并在沉积后 HP 衰减", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_tree.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在运行中经历 persona 标记由开启转为关闭，随后出现 蓝从头到尾没有任何 source=persona 原子，树内 青注入的人格原子后来被合并成摘要节点，并在沉积后 HP 衰减", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_tree.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在运行中经历 persona 标记由开启转为关闭，随后出现 蓝从头到尾没有任何 source=persona 原子，树内 青注入的人格原子后来被合并成摘要节点，并在沉积后 HP 衰减", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_tree.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在运行中经历 persona 标记由开启转为关闭，随后出现 蓝从头到尾没有任何 source=persona 原子，树内 青注入的人格原子后来被合并成摘要节点，并在沉积后 HP 衰减", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "以下是关于报告《analysis_tree.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在运行中经历 persona 标记由开启转为关闭，随后出现 蓝从头到尾没有任何 source=persona 原子，树内 青注入的人格原子后来被合并成摘要节点，并在沉积后 HP 衰减", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "persona 人格注入 source=persona 标记", "hit_id": 10470, "hit_type": "node", "score": 0.2746, "via": "direct"}
+{"round": 111, "query": "persona 人格注入 source=persona 标记", "hit_id": 1347, "hit_type": "node", "score": 0.2944, "via": "direct"}
+{"round": 111, "query": "persona 人格注入 source=persona 标记", "hit_id": 10444, "hit_type": "node", "score": 0.2098, "via": "direct"}
+{"round": 111, "query": "persona 人格注入 source=persona 标记", "hit_id": 2365, "hit_type": "node", "score": 0.2898, "via": "direct"}
+{"round": 111, "query": "persona 人格注入 source=persona 标记", "hit_id": 10343, "hit_type": "node", "score": 0.1564, "via": "direct"}
+{"round": 111, "query": "persona 人格注入 source=persona 标记", "hit_id": 3544, "hit_type": "node", "score": 0.2932, "via": "direct"}
+{"round": 111, "query": "persona 人格注入 source=persona 标记", "hit_id": 10462, "hit_type": "node", "score": 0.2487, "via": "direct"}
+{"round": 111, "query": "persona 人格注入 source=persona 标记", "hit_id": 6788, "hit_type": "node", "score": 0.2899, "via": "direct"}
+{"round": 111, "query": "persona 人格注入 source=persona 标记", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "persona 人格注入 source=persona 标记", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "persona 人格注入 source=persona 标记", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "persona 人格注入 source=persona 标记", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "persona 人格注入 source=persona 标记", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "HP 衰减 沉积 摘要节点 合并", "hit_id": 477, "hit_type": "atom", "score": 0.221, "via": "direct"}
+{"round": 111, "query": "HP 衰减 沉积 摘要节点 合并", "hit_id": 10336, "hit_type": "node", "score": 0.1611, "via": "direct"}
+{"round": 111, "query": "HP 衰减 沉积 摘要节点 合并", "hit_id": 3507, "hit_type": "node", "score": 0.2518, "via": "direct"}
+{"round": 111, "query": "HP 衰减 沉积 摘要节点 合并", "hit_id": 2422, "hit_type": "atom", "score": 0.2456, "via": "direct"}
+{"round": 111, "query": "HP 衰减 沉积 摘要节点 合并", "hit_id": 10431, "hit_type": "node", "score": 0.1532, "via": "direct"}
+{"round": 111, "query": "HP 衰减 沉积 摘要节点 合并", "hit_id": 2905, "hit_type": "node", "score": 0.2062, "via": "direct"}
+{"round": 111, "query": "HP 衰减 沉积 摘要节点 合并", "hit_id": 9718, "hit_type": "atom", "score": 0.2121, "via": "direct"}
+{"round": 111, "query": "HP 衰减 沉积 摘要节点 合并", "hit_id": 9799, "hit_type": "node", "score": 0.2113, "via": "direct"}
+{"round": 111, "query": "HP 衰减 沉积 摘要节点 合并", "hit_id": 10387, "hit_type": "node", "score": 0.1772, "via": "direct"}
+{"round": 111, "query": "HP 衰减 沉积 摘要节点 合并", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "HP 衰减 沉积 摘要节点 合并", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "HP 衰减 沉积 摘要节点 合并", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "HP 衰减 沉积 摘要节点 合并", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "HP 衰减 沉积 摘要节点 合并", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "青 否认 人格 质疑 蓝 解读", "hit_id": 10343, "hit_type": "node", "score": 0.1842, "via": "direct"}
+{"round": 111, "query": "青 否认 人格 质疑 蓝 解读", "hit_id": 3547, "hit_type": "node", "score": 0.2692, "via": "direct"}
+{"round": 111, "query": "青 否认 人格 质疑 蓝 解读", "hit_id": 10451, "hit_type": "node", "score": 0.236, "via": "direct"}
+{"round": 111, "query": "青 否认 人格 质疑 蓝 解读", "hit_id": 6040, "hit_type": "node", "score": 0.2792, "via": "direct"}
+{"round": 111, "query": "青 否认 人格 质疑 蓝 解读", "hit_id": 10373, "hit_type": "node", "score": 0.2849, "via": "direct"}
+{"round": 111, "query": "青 否认 人格 质疑 蓝 解读", "hit_id": 10459, "hit_type": "node", "score": 0.194, "via": "direct"}
+{"round": 111, "query": "青 否认 人格 质疑 蓝 解读", "hit_id": 9765, "hit_type": "node", "score": 0.2698, "via": "direct"}
+{"round": 111, "query": "青 否认 人格 质疑 蓝 解读", "hit_id": 10410, "hit_type": "node", "score": 0.2633, "via": "direct"}
+{"round": 111, "query": "青 否认 人格 质疑 蓝 解读", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "青 否认 人格 质疑 蓝 解读", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "青 否认 人格 质疑 蓝 解读", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "青 否认 人格 质疑 蓝 解读", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "青 否认 人格 质疑 蓝 解读", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "analysis_tree.md", "hit_id": 208, "hit_type": "atom", "score": 0.3105, "via": "direct"}
+{"round": 111, "query": "analysis_tree.md", "hit_id": 10472, "hit_type": "node", "score": 0.299, "via": "direct"}
+{"round": 111, "query": "analysis_tree.md", "hit_id": 329, "hit_type": "node", "score": 0.3106, "via": "direct"}
+{"round": 111, "query": "analysis_tree.md", "hit_id": 257, "hit_type": "atom", "score": 0.3093, "via": "direct"}
+{"round": 111, "query": "analysis_tree.md", "hit_id": 10444, "hit_type": "node", "score": 0.1939, "via": "direct"}
+{"round": 111, "query": "analysis_tree.md", "hit_id": 2363, "hit_type": "node", "score": 0.3053, "via": "direct"}
+{"round": 111, "query": "analysis_tree.md", "hit_id": 10345, "hit_type": "node", "score": 0.2445, "via": "direct"}
+{"round": 111, "query": "analysis_tree.md", "hit_id": 4045, "hit_type": "node", "score": 0.3709, "via": "direct"}
+{"round": 111, "query": "analysis_tree.md", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "analysis_tree.md", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "analysis_tree.md", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "analysis_tree.md", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "analysis_tree.md", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "persona", "hit_id": 10335, "hit_type": "node", "score": 0.1267, "via": "direct"}
+{"round": 111, "query": "persona", "hit_id": 2374, "hit_type": "node", "score": 0.2854, "via": "direct"}
+{"round": 111, "query": "persona", "hit_id": 10338, "hit_type": "node", "score": 0.1225, "via": "direct"}
+{"round": 111, "query": "persona", "hit_id": 2891, "hit_type": "node", "score": 0.335, "via": "direct"}
+{"round": 111, "query": "persona", "hit_id": 10343, "hit_type": "node", "score": 0.1006, "via": "direct"}
+{"round": 111, "query": "persona", "hit_id": 3544, "hit_type": "node", "score": 0.289, "via": "direct"}
+{"round": 111, "query": "persona", "hit_id": 10372, "hit_type": "node", "score": 0.1432, "via": "direct"}
+{"round": 111, "query": "persona", "hit_id": 8049, "hit_type": "node", "score": 0.288, "via": "direct"}
+{"round": 111, "query": "persona", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "persona", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "persona", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "persona", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "persona", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "人格注入", "hit_id": 1351, "hit_type": "node", "score": 0.2253, "via": "direct"}
+{"round": 111, "query": "人格注入", "hit_id": 10327, "hit_type": "node", "score": 0.185, "via": "direct"}
+{"round": 111, "query": "人格注入", "hit_id": 10434, "hit_type": "node", "score": 0.1738, "via": "direct"}
+{"round": 111, "query": "人格注入", "hit_id": 8031, "hit_type": "node", "score": 0.299, "via": "direct"}
+{"round": 111, "query": "人格注入", "hit_id": 7662, "hit_type": "atom", "score": 0.3272, "via": "direct"}
+{"round": 111, "query": "人格注入", "hit_id": 10373, "hit_type": "node", "score": 0.168, "via": "direct"}
+{"round": 111, "query": "人格注入", "hit_id": 9164, "hit_type": "node", "score": 0.3292, "via": "direct"}
+{"round": 111, "query": "人格注入", "hit_id": 8064, "hit_type": "atom", "score": 0.3282, "via": "direct"}
+{"round": 111, "query": "人格注入", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "人格注入", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "人格注入", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "人格注入", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "人格注入", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "HP 衰减", "hit_id": 10470, "hit_type": "node", "score": 0.1363, "via": "direct"}
+{"round": 111, "query": "HP 衰减", "hit_id": 799, "hit_type": "node", "score": 0.1839, "via": "direct"}
+{"round": 111, "query": "HP 衰减", "hit_id": 10428, "hit_type": "node", "score": 0.1732, "via": "direct"}
+{"round": 111, "query": "HP 衰减", "hit_id": 1837, "hit_type": "node", "score": 0.2105, "via": "direct"}
+{"round": 111, "query": "HP 衰减", "hit_id": 10355, "hit_type": "node", "score": 0.1328, "via": "direct"}
+{"round": 111, "query": "HP 衰减", "hit_id": 5382, "hit_type": "node", "score": 0.1789, "via": "direct"}
+{"round": 111, "query": "HP 衰减", "hit_id": 10364, "hit_type": "node", "score": 0.1535, "via": "direct"}
+{"round": 111, "query": "HP 衰减", "hit_id": 6803, "hit_type": "node", "score": 0.1857, "via": "direct"}
+{"round": 111, "query": "HP 衰减", "hit_id": 10413, "hit_type": "node", "score": 0.1835, "via": "direct"}
+{"round": 111, "query": "HP 衰减", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "HP 衰减", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "HP 衰减", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "HP 衰减", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "HP 衰减", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "source=persona", "hit_id": 10470, "hit_type": "node", "score": 0.28, "via": "direct"}
+{"round": 111, "query": "source=persona", "hit_id": 1347, "hit_type": "node", "score": 0.3315, "via": "direct"}
+{"round": 111, "query": "source=persona", "hit_id": 10325, "hit_type": "node", "score": 0.2723, "via": "direct"}
+{"round": 111, "query": "source=persona", "hit_id": 822, "hit_type": "node", "score": 0.309, "via": "direct"}
+{"round": 111, "query": "source=persona", "hit_id": 10338, "hit_type": "node", "score": 0.1679, "via": "direct"}
+{"round": 111, "query": "source=persona", "hit_id": 2891, "hit_type": "node", "score": 0.3219, "via": "direct"}
+{"round": 111, "query": "source=persona", "hit_id": 3544, "hit_type": "node", "score": 0.3092, "via": "direct"}
+{"round": 111, "query": "source=persona", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "source=persona", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "source=persona", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "source=persona", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "source=persona", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "analysis_tree.md persona source=persona 人格注入 HP衰减", "hit_id": 2365, "hit_type": "node", "score": 0.2969, "via": "direct"}
+{"round": 111, "query": "analysis_tree.md persona source=persona 人格注入 HP衰减", "hit_id": 10345, "hit_type": "node", "score": 0.2263, "via": "direct"}
+{"round": 111, "query": "analysis_tree.md persona source=persona 人格注入 HP衰减", "hit_id": 4045, "hit_type": "node", "score": 0.3031, "via": "direct"}
+{"round": 111, "query": "analysis_tree.md persona source=persona 人格注入 HP衰减", "hit_id": 8628, "hit_type": "node", "score": 0.2818, "via": "direct"}
+{"round": 111, "query": "analysis_tree.md persona source=persona 人格注入 HP衰减", "hit_id": 10380, "hit_type": "node", "score": 0.2542, "via": "direct"}
+{"round": 111, "query": "analysis_tree.md persona source=persona 人格注入 HP衰减", "hit_id": 9202, "hit_type": "node", "score": 0.2787, "via": "direct"}
+{"round": 111, "query": "analysis_tree.md persona source=persona 人格注入 HP衰减", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "analysis_tree.md persona source=persona 人格注入 HP衰减", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "analysis_tree.md persona source=persona 人格注入 HP衰减", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "analysis_tree.md persona source=persona 人格注入 HP衰减", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "analysis_tree.md persona source=persona 人格注入 HP衰减", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "persona 人格注入 analysis_tree.md HP 衰减", "hit_id": 10432, "hit_type": "node", "score": 0.2038, "via": "direct"}
+{"round": 111, "query": "persona 人格注入 analysis_tree.md HP 衰减", "hit_id": 1378, "hit_type": "node", "score": 0.2788, "via": "direct"}
+{"round": 111, "query": "persona 人格注入 analysis_tree.md HP 衰减", "hit_id": 2365, "hit_type": "node", "score": 0.2909, "via": "direct"}
+{"round": 111, "query": "persona 人格注入 analysis_tree.md HP 衰减", "hit_id": 4045, "hit_type": "node", "score": 0.2829, "via": "direct"}
+{"round": 111, "query": "persona 人格注入 analysis_tree.md HP 衰减", "hit_id": 8628, "hit_type": "node", "score": 0.2709, "via": "direct"}
+{"round": 111, "query": "persona 人格注入 analysis_tree.md HP 衰减", "hit_id": 10380, "hit_type": "node", "score": 0.2485, "via": "direct"}
+{"round": 111, "query": "persona 人格注入 analysis_tree.md HP 衰减", "hit_id": 9202, "hit_type": "node", "score": 0.2689, "via": "direct"}
+{"round": 111, "query": "persona 人格注入 analysis_tree.md HP 衰减", "hit_id": 1839, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "persona 人格注入 analysis_tree.md HP 衰减", "hit_id": 2898, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 111, "query": "persona 人格注入 analysis_tree.md HP 衰减", "hit_id": 89, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "persona 人格注入 analysis_tree.md HP 衰减", "hit_id": 172, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 111, "query": "persona 人格注入 analysis_tree.md HP 衰减", "hit_id": 260, "hit_type": "atom", "score": null, "via": "hub"}

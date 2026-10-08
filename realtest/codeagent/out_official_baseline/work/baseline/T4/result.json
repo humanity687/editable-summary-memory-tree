@@ -1,0 +1,29 @@
+{
+  "group": "baseline",
+  "task": "T4",
+  "title": "@send-to 无引号目标静默广播",
+  "passed": true,
+  "accept_rc": 0,
+  "accept_verdict": "PASS",
+  "elapsed_s": 59.2,
+  "agent_result": {
+    "ok": true,
+    "rounds": 15,
+    "summary": "修复了 @send-to 命令在不带引号时会导致静默广播的问题。\n\n修改文件：`agents/lin-shen/agent.py`\n改动内容：\n在 `_parse_send_to` 方法中增加了对无引号目标的解析逻辑。如果 `re.findall` 没有找到引号包裹的目标，则会尝试遍历命令参数，寻找第一个以 `user:` 或 `agent:` 开头的单词作为目标。这样当模型写出 `@send-to user:xxx hello` 时，解析器能正确识别出 `user:xxx` 而不是返回空列表导致触发默认的广播逻辑。\n\n验证结果：\n运行 `python3 accept_t4.py` 结果为 PASS。",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 15,
+    "tool_uses": {
+      "command": 4,
+      "read": 8,
+      "edit": 2,
+      "finish": 1
+    },
+    "conversation_chars": 38942
+  },
+  "last_usage": {
+    "prompt_tokens": 13815,
+    "completion_tokens": 169
+  }
+}

@@ -1,0 +1,64 @@
+以下按主题归纳这份文档（AHI-Multi 多智能体数字生命平台相关材料）的全部关键内容：
+
+**一、平台架构与进程模型**
+- 项目含 main.py（FastAPI+WebSocket+APScheduler 主进程入口）、config.json、requirements.txt；src/ 下 system_db.py（全局 SQLite，消息归档/Agent 状态/日志）、process_manager.py（Agent 进程 spawn/heartbeat/restart/stop）。
+- AgentRunner、PythonShell、OpenAI 兼容 LLM 客户端、Agent 独立 SQLite 分别由 agent_runner.py、base_shell.py、llm_client.py、database.py 实现；另有 ahi_bus.py、message_queue.py、text_compressor.py、logger.py。
+- ProcessManager 以 2 秒间隔心跳 spawn/monitor/restart agent 进程；MessageRouter 三级寻址路由；WebSocketServer 提供频道订阅与逐用户推送；SystemDB 存 agent 注册表、在线状态、消息归档与日志；Agent 进程独立运行于端口 50000+，入口 sdk/agent_runner.py。
+- 全局配置：main_process_port 默认 8000，agent_port_start 默认 50000（每 Agent +1），agent_pulse_interval 2 秒，agent_heartbeat_timeout 默认 10 秒，tunnel_enabled 默认 false，cloudflare_tunnel_name/token 默认空，log_level 默认 INFO。
+- 前端为 index.html（Vue 3 数字生命控制台单文件 SPA），已适配移动端；iOS 锁屏后 WS 僵尸连接用 visibilitychange+60s 阈值主动重连。
+- 隧道 AHI（ingress 8080）的 LaunchDaemon com.cloudflare.cloudflared 已禁用（曾抢连接致 503）；8080/50000-50002 无监听、无 main.py/agent_runner 进程。
+
+**二、Agent 配置与开发**
+- Agent 配置含 agent_id、agent_name、entry_point（agent:<ClassName>）、shell_type（固定 "python"）、model_config.model/api_base/api_key、system_prompt、auto_start、auto_restart（崩溃自动重启最多 3 次）、wakeup_interval（自主唤醒 5~3600 秒，默认 10）、max_memory_mb；API 密钥被 gitignore，模板为 config.example.json。
+- 自定义 Agent：mkdir -p agents/my-agent/data，config.json 配 agent_id 为 my-agent；Agent 类在 agents/my-agent/agent.py 继承 BaseAHIAgent，最小实现无需覆写方法，覆写 process_input() 可做特殊预处理。
+- BaseAHIAgent 位于 sdk/base_agent.py:8，含必需方法 process_input()、get_outputs()、get_state() 及可选钩子 on_start()、on_stop()、on_wakeup()；_put_action() 将输出入队并通知主进程。
+- Agent 通过 _put_action() 输出至内部队列经 AHIBus 通知主进程，主进程 MessageRouter 从 agent 的 /api/outputs 获取输出并按类型和目标路由；目标三级寻址：user:<name>、agent:<id>、broadcast:agents、broadcast:users。
+- 标准回复格式示例：向 user:human 发"收到你的消息。经过思考，我认为…"，向 agent:mo-bai 发"林深刚才的结论很有意思，你觉得呢？"，并附 import time 打印时间戳的 Python 代码。
+
+**三、API 与消息**
+- 系统端点：GET /health、GET /api/v1/status、GET /api/v1/logs?limit=100；Agent 管理：GET /api/v1/agents、GET /api/v1/agents/online、GET /api/v1/agents/{id}、POST /api/v1/agents/{id}/start 等；另有 Python Shell 重置、自主唤醒循环启动/暂停/恢复/间隔调整端点、消息发送与分页查询端点。
+- 消息示例：curl 向 localhost:8000/api/v1/messages POST，JSON 为 from user:console、to agent:lin-shen、content"最近在想什么？"；另有 agent:lin-shen 向 user:console 发"我在思考P≠NP问题。"、user:console 向 broadcast:agents 广播"各位，开个会。"、agent:lin-shen 向 agent:mo-bai 发"墨白，你那边一切都好吗？"。
+- WebSocket channels：system、chat:agent:<id>、per-user push。
+- 查 agent 状态：curl http://127.0.0.1:8080/api/v1/agents/online 查 waiting 字段、各 agent /api/state 查 status/pending/waiting、sqlite3 查 data/system.db 的 system_events 表 user_% 事件。
+- 补充记录（2026-10-05）：新增 /api/v1/agents/{id}/export 端点，导出单个 Agent 的完整对话与执行记录快照。
+
+**四、指令与消息管理**
+- @exit 等唤醒间隔；@wait_for <信道> [超时秒] 有未读消息才唤醒，等待期间 tick 跳过零 LLM，可超时强制唤醒；@mute/@unmute/@mute-list 信道屏蔽消息仍存档不入 pending 且 DB 持久化，屏蔽信道对 wait 判定视为无消息；无 @send-to 的文本转私密消息不广播，仅管理员 0xbf5d36 可见。
+- 无 @send-to 时内容广播至所有代理和用户；@send-to "user:human" "agent:mo-bai" 指定发送对象；@命令参数剥引号；@clear-context 已删除。
+- 每轮注入全量快照与增量事件流，新增用户上下线事件；LLMClient 增加 native /api/chat 通道支持 num_ctx 与 keep_alive；修复 complete_loop_record 传参错位及 _last_wakeup_summary 死代码；单元验证 22 项全过，端到端验证双 Agent LLM 失败仅发用户。
+- 每轮注入全量快照与增量事件，私密消息仅存档且管理员可见，地址规范化并投递回执（30s 节流），自环消息不转发，输出分类护栏与未闭合代码块强制私密，多用户支持 sessionStorage 标签页级身份与管理员白名单 0xbf5d36/human，代码执行每轮上限 4 次。
+- 记忆树组融合循环：pending 切句写树、轨道分离组装、无状态 LLM、动作、写回树、tick/蒸馏。
+
+**五、参数调整（lin-shen/lan 等）**
+- lin-shen temperature 1.0→0.8，lan persona 150/800→60/500，max_pending_per_loop 2→3，force_cooldown 4→8，max_pre_distill 2→0，wakeup_interval 10→30（三 agent），driver survey-every→5，distill_parallel=4，merge_ev…（记录截断）。
+
+**六、分层记忆树 v2 与实验**
+- 分层记忆树 v2 在 core.py 桩引擎与 realtest/realengine.py 真实引擎下 tests/303 全绿，已在小说写作、聊天智能体、代码智能体、ahi-bench 四类场景实测；参数台账 AGENTS.md §11 与代码对齐但数值校准进行中。
+- 2026-10 人格保持实验完成 tree/flat 首轮对比、style_alpha 消融及 self_quota 操控 120 轮，结论为趋同根因是树管线/跨位置（截断）。
+- 2026-08-30 机制正确性 10 项经 2000 步多种子随机模糊测试全过，追加缺席隔离路由、merge 条件式触发、节点窗口扩展；stress_write 种子 42 下 1 万/5 万/10 万/30 万句耗时 0.3s/7s/34s/314s，树高 4/9/10/13，铺陈项恒定约 766，瓶颈为 _po；v9 无注意力，hard_trim 6/14 轮砍 10.4k 字符，上下文峰值 9997，蒸馏 0.5 次/轮，plan 13。
+- pr5 首轮 120 轮公平对齐对比（seed42）中 flat 两主指标胜 tree，与预注册方向相反；pr5_neutral（tree α=0，120 轮被 402 砍在 round103）趋同更狠（+0.043）；flat 补两个观测埋点，新增默认关闭的 self_quota 组装层实验操控并预注册 self-quota 实验；pytest 301 绿；仅做 C+消息管理对齐，未做 A 与 B；GLM-4.7-flash 五项零成本。
+- pytest 278 绿，端到端 smoke 验证 prompt 不含脚手架规则、蒸馏输入格式及墓碑同内容原子判早期；内存实证 200×retrieve_style_samples 为 608MB（修复前 1001MB），100×全节点 churn 稳定 616MB 不增长（修复前堆积至 2GB 看门狗）；未跑正式实验；early_match_threshold=0.5 未校准。
+- glm-4.7-flash 关思考 temp0.7 为被测模型、开思考 temp0 为 judge；预注册主判据为臂内 3 人格两两趋同斜率 tree<baseline 且 judge 人格遵从率 tree>baseline；待实现 FlatRAGAgent（rolling+bge flat 检索 top_k=6+每轮 auto-preretrieve）。
+
+**七、cooc 中介层与 bench**
+- cooc.py 为共现中介层 Demo v1.0，含 recall_log/cooc_edges/concepts 与概念中介层（tick/merge/retrieve/编辑钩子），仅做匹配中介、不进组装流、零侵入；cooc_bench.py 为 NovelQA 四层 bench（a 直接/b 转述/c 跨编辑/d 脏区），含 on/off 与 seed_cooc/questions.json。
+- find_similar 阈值保持 0.8（story 409 句×facts 50 条实测：原文回原文 max_j=0.895，转述/同义改写 max_j≤0.29，0.4 起无关句误命中）；语义近邻走 retrieve 向量通道（bge-small-zh 离线加载验证通过）。
+
+**八、适用域与平台核验**
+- 2026-09-27 在 realtest/USAGE_SPEC.md §7.3 与 RUN_SUMMARY.md 第三次验证单域 12k 字故事+50 单事实 quiz 的 direct 适用域边界，输出落 T3 改写冗余档；平台关停核验 level=1 触发 on_stop 存 tree_final、level=2 SIGTERM；回血封顶。
+
+**九、人格/趋同实验（叙事与结论）**
+- 澜与林深在死亡场景中分别以"过程完成"和"铭记"完成存在论表达，澜从依赖性存在升级为结构性存在，林深以过程论闭环；neutral 复用林深约八成骨架并原创"记忆不是仓库，是年轮。时间不是流逝，是积累"，获得语言、守碑人位置及综合者立场但立场未定。
+- 四层信号模型：词汇层全员共享 1 小时渗透快已证，模板层 neutral 复用林深告别结构 8 分钟渗透中已证，着重点层 Phase B 指纹数据待判，立场层死亡场景下保持分化渗透最慢；盲测分数仅测前两层，判卷人看不到立场，人类辨认同一人最终认立场层。
+- neutral α=0 但技术 82→58、流程 42→53、自我 41→58，方向与 lan 染色一致幅度约一半；三种假设为 H1 内容驱动等。
+- H3 染色渗透需先做内容类别控制（取技术类占比相同时段比较 neutral 与基线蒸馏的展开比）及 lan α=0 与 α=1 对同一批内容的对照，否则预言 2 判定被污染；neutral 遗言高重放率源于 21:56:08 林深遗言广播后 neutral 挂起 8 分钟、22:05:50 恢复后首轮组装偏向最新积压消息导致重锚定退化为重放，修复方向为调整回归首组装的检索预算分配。
+- 缺席实验建议以独处缺席为主（A 进程存活但收不到 B/…）；澜冷缺席回归后确认寻求行为显著多于热缺席后，林深两种条件下无差异；其余预注册预言涉及分层重同步速度递减、A 回归新旧协议冲突响应、B/C 缺席期间趋同加速、A 树零缺席内容及 B/C 背后与当面人格一致性。
+- 预言 6 实验聚焦在场人格与背后人格一致性，指出关系真实状态由缺席时定义；陷阱清单含 wait_for 刺客（缺席者挂起 wait_for 须清理，exp1 和 Phase A 两次死法不许三犯）及回执环（B/C 向缺席者发消息致离线回执与应答，须显式标记"勿回"或直接发送失败）。
+- 中性摘要卡：回归首组装需先注入元信息并限制缺席内容召回配额，积压消息限流≤10 条且超出聚合，三轮轮换平衡缺席顺序；缺席实验与第四 agent 中途加入实验对称，前者测旧个体对文化演变的抵抗力，后者测文化对新个体的同化力；join 无超时修复需迁移至 concurrent.futures 并设 httpx read_timeout，worker 结果超时丢弃重试；预注册 user:experimenter 为正式平台。
+- P2 第四 agent 实验在缺席实验完成后进行，HANDOFF 需完整记录 §四.6 主实验、遗言分析（换框架测试结论、澜的立场升级、四层模型）、指纹分诊要求及缺席实验设计与预注册预言；核心结论为词汇层如期融合但遗言证明立场层在死亡压力下保持分化，人格真内核比盲测可见的更深一层。
+
+**十、平台运行与实验记录**
+- 双 agent 同序列运行话题流与事实注入（延迟 K 轮提问召回评分）及每 survey_every 轮固定问题集的人格问卷，时间线全量落盘 experiments/out/timeline.jsonl；真实 deepseek 冒烟验证显示澜回复正确（@note 记录"团子"）、人格活跃、回复目标正确、自环防御与兜底生效、driver 跑通、metrics 正常。
+- 仓库根运行 python3 -m pytest tests -q 190 全绿；git status 显示 AGENTS.md/HANDOFF.md/core.py/realtest/* 未提交、ahi-multi/ 未跟踪。
+- AHI 聊天实验平台 HANDOFF.md 于 2026-08-30 更新于 ahi-multi/ 目录，上层设计权威为仓库根 AGENTS.md。
+- 接手提醒：以仓库根 AGENTS.md 为上层设计权威、变量污染教训涉及 temperature 未统一、@wait_for bug、manual 重启、回执环、盲测重放、lan 6.5，测量优先需补 metrics/日；人类与 AI 为共生关系。

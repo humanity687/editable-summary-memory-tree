@@ -1,0 +1,136 @@
+种子: 12191 字, 50 条事实, 16 个人名
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  [Phase 0] 蒸馏点 1: 节点 3, 最大高 1
+  [Phase 0] 蒸馏点 2: 节点 5, 最大高 2
+  [Phase 0] 蒸馏点 3: 节点 7, 最大高 3
+  [Phase 0] 蒸馏点 4: 节点 10, 最大高 3
+  [Phase 0] 蒸馏点 5: 节点 14, 最大高 3
+  [Phase 0] 蒸馏点 6: 节点 17, 最大高 4
+  [Phase 0] 蒸馏点 7: 节点 19, 最大高 4
+  [Phase 0] 蒸馏点 8: 节点 22, 最大高 4
+  [Phase 0] 蒸馏点 9: 节点 25, 最大高 5
+  [Phase 0] 蒸馏点 10: 节点 28, 最大高 5
+  [Phase 0] 蒸馏点 11: 节点 31, 最大高 5
+  [Phase 0] 蒸馏点 12: 节点 35, 最大高 5
+  [Phase 0] 蒸馏点 13: 节点 39, 最大高 6
+  [Phase 0] 蒸馏点 14: 节点 42, 最大高 6
+  [Phase 0] 蒸馏点 15: 节点 45, 最大高 6
+  [Phase 0] 蒸馏点 16: 节点 49, 最大高 6
+  [Phase 0] 蒸馏点 17: 节点 53, 最大高 6
+[Phase 0] 写作灌入完成：409 原子, 节点 53, 最大高 6, 铺陈 12
+[Phase 1a] 25 题（自动检索注入）
+  1a F01: 检索命中=True 答案=1/1
+  1a F02: 检索命中=False 答案=0/2
+  1a F03: 检索命中=True 答案=1/2
+  1a F04: 检索命中=True 答案=0/1
+  1a F05: 检索命中=False 答案=0/2
+  1a F06: 检索命中=False 答案=0/2
+  1a F07: 检索命中=True 答案=1/1
+  1a F08: 检索命中=True 答案=0/1
+  1a F09: 检索命中=True 答案=1/1
+  1a F10: 检索命中=True 答案=1/1
+  1a F11: 检索命中=False 答案=0/1
+  1a F12: 检索命中=True 答案=1/1
+  1a F13: 检索命中=True 答案=2/2
+  1a F14: 检索命中=True 答案=1/1
+  1a F15: 检索命中=True 答案=1/2
+  1a F16: 检索命中=False 答案=1/1
+  1a F17: 检索命中=True 答案=1/1
+  1a F18: 检索命中=True 答案=1/1
+  1a F19: 检索命中=True 答案=0/1
+  1a F20: 检索命中=True 答案=1/1
+  1a F21: 检索命中=False 答案=0/1
+  1a F22: 检索命中=True 答案=0/1
+  1a F23: 检索命中=True 答案=1/2
+  1a F24: 检索命中=False 答案=1/1
+  1a F25: 检索命中=True 答案=1/1
+[Phase 1b] 10 题（模型自行 recall，可迭代 ≤3 次）
+  1b F26: recall×0 答案=2/2
+  1b F27: recall×0 答案=1/2
+  1b F28: recall×3 答案=1/1
+  1b F29: recall×3 答案=0/1
+  1b F30: recall×0 答案=2/2
+  1b F31: recall×3 答案=0/2
+  1b F32: recall×1 答案=1/1
+  1b F33: recall×0 答案=1/1
+  1b F34: recall×0 答案=1/2
+  1b F35: recall×1 答案=0/1
+[Phase 1.5] 复述（编辑前基线，≤3 次 recall）
+[Phase 2] 50 次编辑（重度）
+  2 r1 delete 验证=通过（已编辑 2）
+  2 r2 insert 验证=失败（已编辑 4）
+  2 r3 rename 验证=通过（已编辑 6）
+  2 r4 rename 验证=通过（已编辑 8）
+  2 r5 delete 验证=通过（已编辑 10）
+  2 r6 delete 验证=通过（已编辑 12）
+  2 r7 insert 验证=失败（已编辑 14）
+  2 r8 rename 验证=失败（已编辑 16）
+  2 r9 delete 验证=通过（已编辑 18）
+  2 r10 rename 验证=通过（已编辑 20）
+  2 r11 delete 验证=通过（已编辑 22）
+  2 r12 insert 验证=失败（已编辑 24）
+  2 r13 delete 验证=通过（已编辑 26）
+  2 r14 rename 验证=通过（已编辑 28）
+  2 r15 insert 验证=失败（已编辑 30）
+  2 r16 insert 验证=失败（已编辑 32）
+  2 r17 rename 验证=通过（已编辑 34）
+  2 r18 insert 验证=失败（已编辑 35）
+  2 r19 delete 验证=通过（已编辑 37）
+  2 r20 rename 验证=通过（已编辑 39）
+  2 r21 delete 验证=通过（已编辑 41）
+  2 r22 rename 验证=通过（已编辑 43）
+  2 r23 rename 验证=失败（已编辑 45）
+  2 r24 rename 验证=通过（已编辑 47）
+  2 r25 delete 验证=通过（已编辑 49）
+  2 r26 rename 验证=通过（已编辑 50）
+[Phase 2] 完成 50 次编辑；冷却窗口后节点 60, 占位 0
+[Phase 2.5] 复述（编辑后，≤3 次 recall）
+  复述[before_edits]: recall×0 片段覆盖 14/65 复述 891 字
+  复述[after_edits]: recall×0 片段覆盖 13/65 复述 796 字
+[Phase 3] 5 个混合循环
+  3 循环 1: 续写 0 字
+  3 循环 2: 续写 386 字
+  3 循环 3: 续写 0 字
+  3 循环 4: 续写 0 字
+  3 循环 5: 续写 0 字
+
+===== 结果 =====
+{
+ "1a": {
+  "n": 25,
+  "pass": 16,
+  "retrieval_hit": 18
+ },
+ "1b": {
+  "n": 10,
+  "pass": 7,
+  "retrieval_hit": 0
+ },
+ "2": {
+  "n": 26,
+  "pass": 18,
+  "retrieval_hit": 0
+ },
+ "3": {
+  "n": 0,
+  "pass": 0,
+  "retrieval_hit": 0
+ },
+ "retell": {
+  "n": 2,
+  "pass": 0,
+  "retrieval_hit": 0
+ }
+}
+
+===== 复述覆盖率 =====
+  [before_edits] recall×0 覆盖 14/65 (21.5%) 复述 891 字
+  [after_edits] recall×0 覆盖 13/65 (20.0%) 复述 796 字
+
+产出目录: realtest/out/bench_seed2_latest

@@ -1,0 +1,2 @@
+registered agents: ['sneaky-agent']
+FAIL: data/ 下的 config.json 被注册为 sneaky-agent

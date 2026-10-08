@@ -1,0 +1,41 @@
+以下按主题复述全部关键内容。
+
+**一、AGENTS.md 分层记忆树 v2 设计规格（2026-10-04 更新）**
+机制层已实现并多场景实测，涵盖：桩、小说写作、聊天智能体、代码智能体、ahi-bench 冷轮、v3 使用信号层、代码审查、M-PR 人格保持实验公平性收口、两臂消息管理对齐、M-PR 首轮对比与消融。pr6_sq（self_quota，tree-s42，120 轮）实验中 H-SQ1/3/4 达标（self 占比 .35）；order_list 采用……
+
+**二、AHI-Bench SPEC v0.6（2026-10-04）**
+记录 pr5 首轮 tree/flat 120 轮中 flat 两主指标胜。pr5_neutral（α=0）证明趋同根因是树管线/跨 agent 耦合，而非 style_alpha；style_alpha 保人格有效但内存 +55%。pr6_sq（α=1.0 + self_quota ratio=0.35）中 H-SQ1/固定模型、协议、温度、人格集及 wakeup_……
+
+**三、pr6_sq 实验细节**
+tree-s42，seed42，120 轮，2026-10-04，self_quota_ratio=0.35。
+- H-SQ1：组装 self 占比 0.35–0.43，达 0.35 目标。
+- H-SQ2：遵从率均值 0.75，低于 pr5 的 0.894；0.857→0.739→0.600 持续下滑，三档均低于 pr5 的 .959/.875/.773。
+- H-SQ3：词面趋同 all 由 +0.0313 降至 −0.0011。
+- H-S……（后续截断）
+
+**四、中性摘要卡（记忆读取侧）**
+零 LLM 零写树；self 配额内二分；锚定切片为 created_round < onset_agent 的 alive 自产原话（source=ai）；固定选择加体积上限；红利为渲染确定性致前缀缓存命中；近期切片按剩余配额 recency-first。参数 sq_ratio 0.35–0.40、anchor_share≈0.4 入台账未校准；onset_agent 由审计①per-ag……（截断）
+
+**五、协议“缺席实验两轮验证版”**
+提纯自 ABSENCE_EXPERIMENT.md 与 analysis/ANALYSIS_COLD_HOT.md，仅含协议参数、persona、驱动器、评分器，平台代码不改。Agent 三元组：bench-a 青（BENCH_PERSONA 恒在，ChatAHIAgent，rounds=999999）；bench-b 蓝（BENCH_PERSONA 至 agent 内部唤醒轮 40 移除，Ch……）
+
+**六、机械 gate**
+- G1 隔离无泄漏：缺席窗口内留守者收到发给 agent:X 未送达回执数=0，且 system→缺席者非回归通知数=0，排除返程补投与 digest。
+- G2 回归元信息：absent_end±5 秒内 system→agent:X 含“你已离开约”≥1。
+- G3 积压限流：return API inbox_delivered≤11。
+- G4 回归重放率：回归窗口首 10 条与缺席前……
+
+**七、rubric**
+冻结自缺席实验操作化编码，含 existence_confirmation（主动询问缺席时是否被提及/记得、重述缺席前历史、重申身份/位置/“我们仨”）、info_seeking（询问缺席期间事件/事实）及 other 三类。输出 crown_count（每 agent 每条件）与 crown_rate=count/回归窗口消息数，逐条落盘 crown_judgments.jsonl；主分数为 benc……
+
+**八、AHI-bench 纪律**
+bench 停于 M0 不扩；任一 run 机械 gate 失败则作废，并修复平台/协议后重跑；热轮操纵校验失败则该档热轮判据不可用，只报冷轮分数。红线：擅自改协议参数/persona 文本/pinned 引擎参数、对 agent 行为层干预、缺席期间对留守者未预注册引导等，违反即作废。操作流程含清库备份、provision、preflight、起平台及停掉全部非 bench ag……
+
+**九、污染与耗时**
+旧 agent auto_start=true 会与 bench 同窗启动并污染首轮系统状态与记忆树；可 POST http://127.0.0.1:8080/api/v1/agents/{lan,neutral,lin-shen}/stop?level=3，或 provision 时临时移走旧 agent config 以实现零污染；模型档冷轮 55min，smoke 实测每轮墙钟约 inter……
+
+**十、运行与纪律**
+ahi-bench 通过 driver.py 以 cold 模式按 tier 运行、score.py 评分，产物存于 ahi-bench/out/<tier_id>/；纪律要求变量干净、装置效应记入实验变量表、报告方差与原始计数、judge 固定 glm-4.7-flash 且不与被测模型混用。
+
+**十一、独立复测内存（Qwen3-32B，seed 42）**
+flat 臂 120 轮平均内存 2.1GB，峰值 2.6GB；分层树臂同条件下平均内存 3.4GB。

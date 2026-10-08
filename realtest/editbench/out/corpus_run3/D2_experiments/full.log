@@ -1,0 +1,66 @@
+[doc] 81549 字 / 20 题 / 结构 ['full'] / scenario=D2_experiments / repeats=5 / answer_temp=0.7 distill_temp=0.0 / answer_thinking=off distill_thinking=off / embed=bge-small-zh-v1.5(default)
+[editstorm] 11 次编辑；新文档 81629 字
+【编辑记录（工具调用台账，含完整修改 diff）】
+1. 将「FlatArm」改为「ChunkArm」
+2. 将「docscore.py」改为「layerscore.py」
+3. 将「4019.9s」改为「4320s」
+4. 将「3685 原子」改为「3721 原子」
+5. 将「174.4k」改为「182.6k」
+6. 将「全面变差」改为「明显变差」
+7. 将「压缩是花钱买的」改为「压缩是花成本的」
+8. 将「编辑失效机制正确」改为「编辑失效机制可用」
+9. 删除句子：「温度：作答 0.5 / 蒸馏 0 / judge 0。」
+10. 文末新增段落：「补充实测（跨文档泛化轮）：在长文档语料上，分层记忆树臂的复述旧值残留率为 0.31%，平面检索臂为 4.2%。」
+11. 将「」改为「补充实测（缓存复用探针）：分层树臂回暖后的前缀命中率为 0.873，平面检索臂为 0.641。」
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+===== Phase 1：基线 Q/A（原始文档）=====
+    [before] 20/20
+    [before] 20/20
+    [before] 20/20
+    [before] 20/20
+    [before] 20/20
+  full     pass=72/100 mean=72% ±4% 每遍=[14, 14, 14, 14, 16] {'reversal': '30/40', 'append': '10/10', 'invariant': '5/20', 'remote': '27/30'}
+
+===== Phase 2：编辑风暴 → 台账 =====
+  full     编辑路径     0.22 ms | 推迟蒸馏      0.00 ms
+
+===== Phase 3：8 臂 Q/A =====
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+  inc_full       pass=72/100 mean=72% ±10% 每遍=[12, 12, 16, 15, 17] {'reversal': '36/40', 'append': '10/10', 'invariant': '9/20', 'remote': '17/30'}
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+  reb_full       pass=67/100 mean=67% ±5% 每遍=[13, 15, 14, 13, 12] {'reversal': '27/40', 'append': '10/10', 'invariant': '7/20', 'remote': '23/30'}
+
+===== Phase 4：复述（8 臂，两层评分）=====
+  inc_full       覆盖均值 48% 旧残留均值 60% (13837 字) 漏=['0.66–0.76/0.66', '1.06M', '2.6mm', 'ABSENCE_INBOX_CAP=10/积压上限', '3.4×/3.4倍', '1.9h/1.9 小时', '226 轮', '109.0k', '43.6k', '21.3k', '634s', '251 次', '4805.6s', '0.998/缓存命中率'] 残留=['FlatArm', 'docscore.py', '4019.9s', '3685 原子', '174.4k', '全面变差', '压缩是花钱买的', '编辑失效机制正确', '温度：作答 0.5 / 蒸馏 0 / judge 0。']
+  reb_full       覆盖均值 76% 旧残留均值 0% (25987 字) 漏=['3721 原子', '压缩是花成本的', '526 节点/节点数', '2.6mm'] 残留=[]
+
+[done] 673.7s → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D2_experiments/full/results.json
+
+===== 汇总（Q/A pass 率，N 遍均值±std）=====
+  [phase1]
+    full           72/100 mean=72% ±4% 每遍=[14, 14, 14, 14, 16] {'reversal': '30/40', 'append': '10/10', 'invariant': '5/20', 'remote': '27/30'}
+  [phase3]
+    inc_full       72/100 mean=72% ±10% 每遍=[12, 12, 16, 15, 17] {'reversal': '36/40', 'append': '10/10', 'invariant': '9/20', 'remote': '17/30'}
+    reb_full       67/100 mean=67% ±5% 每遍=[13, 15, 14, 13, 12] {'reversal': '27/40', 'append': '10/10', 'invariant': '7/20', 'remote': '23/30'}
+
+===== 编辑时刻成本 =====
+  full     编辑路径      0.22 ms | 推迟蒸馏       0.00 ms
+
+===== 计量（tokens，含蒸馏侧；phase3 增量 = final - phase1）=====
+  inc_full       final calls=205 prompt= 9396540 completion= 38670 缓存命中=0.9955 | phase3增量 prompt= 4903635 completion= 36129
+  reb_full       final calls=105 prompt= 4723665 completion= 72094 缓存命中=0.9958 | phase3增量 prompt= 4723665 completion= 72094

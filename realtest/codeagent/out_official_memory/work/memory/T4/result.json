@@ -1,0 +1,34 @@
+{
+  "group": "memory",
+  "task": "T4",
+  "title": "@send-to 无引号目标静默广播",
+  "passed": true,
+  "accept_rc": 0,
+  "accept_verdict": "PASS",
+  "elapsed_s": 96.9,
+  "agent_result": {
+    "ok": true,
+    "rounds": 10,
+    "summary": "修复了 @send-to 命令在不带引号时无法正确解析目标的问题。\n\n**修改内容：**\n- 修改了 `agents/lin-shen/agent.py` 中的 `_parse_send_to` 函数。\n- 原逻辑仅使用正则匹配双引号内的内容，导致不带引号的目标（如 `@send-to user:probe`）解析结果为空，从而触发了 `_parse_structured_response` 中的默认广播逻辑。\n- 新逻辑增加了对不带引号目标的兼容：如果正则未匹配到引号，则尝试通过空格切分字符串，并提取以 `user:` 或 `agent:` 开头的单词作为目标。\n\n**验证结果：**\n- 运行 `python3 accept_t4.py`，测试用例 `@send-to user:probe 你好` 的解析结果为 `['user:probe']`，不再触发广播，验收通过（PASS）。",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 10,
+    "atoms_alive": 73,
+    "nodes_alive": 5,
+    "tiling": 47,
+    "distill_calls": 5,
+    "distill_seconds": 6.6,
+    "tool_uses": {
+      "command": 3,
+      "read": 5,
+      "edit": 1,
+      "finish": 1
+    },
+    "notebook": 1
+  },
+  "last_usage": {
+    "prompt_tokens": 16744,
+    "completion_tokens": 213
+  }
+}

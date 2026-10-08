@@ -1,0 +1,29 @@
+{
+  "group": "baseline",
+  "task": "T1",
+  "title": "thinking 配置不生效",
+  "passed": true,
+  "accept_rc": 0,
+  "accept_verdict": "PASS",
+  "elapsed_s": 9.7,
+  "agent_result": {
+    "ok": true,
+    "rounds": 7,
+    "summary": "修复了 LLMClient 不传递 thinking 配置的问题。\n\n在 `sdk/llm_client.py` 的 `send_message` 方法中，添加了对 `self.thinking` 属性的判断。如果 `thinking` 为 `True`，则在调用 API 时通过 `extra_body={\"thinking\": True}` 将参数传递给 LLM。\n\n验证：通过 `python3 accept_t1.py` 验收，确认 `extra_body` 中包含了正确的 `thinking` 参数。",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 7,
+    "tool_uses": {
+      "command": 3,
+      "read": 2,
+      "edit": 1,
+      "finish": 1
+    },
+    "conversation_chars": 7878
+  },
+  "last_usage": {
+    "prompt_tokens": 3766,
+    "completion_tokens": 123
+  }
+}

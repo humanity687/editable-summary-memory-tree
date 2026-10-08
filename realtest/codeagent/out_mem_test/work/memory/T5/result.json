@@ -1,0 +1,34 @@
+{
+  "group": "memory",
+  "task": "T5",
+  "title": "PythonShell 并发命令结果错配/丢失",
+  "passed": false,
+  "accept_rc": 1,
+  "accept_verdict": "FAIL: 并发命令结果缺失/错配/串扰",
+  "elapsed_s": 35.2,
+  "agent_result": {
+    "ok": false,
+    "rounds": 0,
+    "summary": "崩溃：list index out of range",
+    "notes": [
+      "list index out of range"
+    ]
+  },
+  "metrics": {
+    "rounds": 8,
+    "atoms_alive": 91,
+    "nodes_alive": 1,
+    "tiling": 90,
+    "distill_calls": 1,
+    "distill_seconds": 0.7,
+    "tool_uses": {
+      "command": 3,
+      "read": 4
+    },
+    "notebook": 0
+  },
+  "last_usage": {
+    "prompt_tokens": 9508,
+    "completion_tokens": 23
+  }
+}

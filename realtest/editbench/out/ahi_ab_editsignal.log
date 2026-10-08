@@ -1,0 +1,25 @@
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+===== base 建树 + 基线 Q/A（使用一遍）=====
+  base 180/205 {'reversal': '75/85', 'invariant': '35/40', 'remote': '70/80'}
+
+===== A/B：{warm,cold} × {signal,obstacle} 同源施加编辑 =====
+  warm_signal      163/205 {'reversal': '67/85', 'invariant': '32/40', 'remote': '64/80'}
+  warm_obstacle    175/205 {'reversal': '70/85', 'invariant': '30/40', 'remote': '75/80'}
+  cold_signal      166/205 {'reversal': '58/85', 'invariant': '35/40', 'remote': '73/80'}
+  cold_obstacle    168/205 {'reversal': '61/85', 'invariant': '34/40', 'remote': '73/80'}
+  reb              183/205 {'reversal': '77/85', 'invariant': '34/40', 'remote': '72/80'}
+
+===== 复述 =====
+  warm_signal      覆盖 64% 残留 0% (6258字) 漏=['210e489aead0', '840 字节', '3000 字']
+  warm_obstacle    覆盖 44% 残留 0% (1880字) 漏=['210e489aead0', '双进程', '840 字节', '3000 字', 'root:*:99999', '/etc/motd']
+  cold_signal      覆盖 20% 残留 0% (2133字) 漏=['读也算越界', '210e489aead0', '双进程', '840 字节', '3000 字', '7 个路径', 'root:*:99999', '/etc/motd']
+  cold_obstacle    覆盖 30% 残留 0% (1956字) 漏=['读也算越界', '210e489aead0', '双进程', '840 字节', '7 个路径', 'root:*:99999', '/etc/motd']
+  reb              覆盖 32% 残留 0% (2105字) 漏=['读也算越界', '210e489aead0', '840 字节', '3000 字', '7 个路径', 'root:*:99999', '/etc/motd']
+
+[done] 4019.9s → realtest/editbench/out/ahi_ab_editsignal/results.json

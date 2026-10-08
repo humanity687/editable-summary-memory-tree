@@ -1,0 +1,28 @@
+{
+  "group": "baseline",
+  "task": "T2",
+  "title": "data/ 目录下的 config.json 被误注册为新 Agent",
+  "passed": true,
+  "accept_rc": 0,
+  "accept_verdict": "PASS",
+  "elapsed_s": 59.9,
+  "agent_result": {
+    "ok": false,
+    "rounds": 40,
+    "summary": "未完成",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 40,
+    "tool_uses": {
+      "command": 38,
+      "read": 5,
+      "edit": 1
+    },
+    "history_chars": 27074
+  },
+  "last_usage": {
+    "prompt_tokens": 8118,
+    "completion_tokens": 15
+  }
+}

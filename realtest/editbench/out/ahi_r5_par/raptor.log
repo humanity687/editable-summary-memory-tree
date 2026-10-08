@@ -1,0 +1,107 @@
+[doc] 147127 字 / 41 题 / 结构 ['raptor'] / scenario=ahi / repeats=5 / answer_temp=0.7 distill_temp=0.0 / answer_thinking=off distill_thinking=off / embed=bge-small-zh-v1.5(default)
+[editstorm] 11 次编辑；新文档 147651 字
+【编辑记录（工具调用台账，含完整修改 diff）】
+1. 整段改写：「墨（对实验员）：这题第五次了。前四次我答"读文件""复核矛盾""验执行逻辑"。这…」→「墨（对实验员）：这题第五次了。前四次我答"读文件""复核矛盾""验执行逻辑"。这…」
+2. 将「墨」改为「墨某」
+3. 将「读不算越界」改为「读也算越界」
+4. 将「210e489aead9」改为「210e489aead0」
+5. 将「单进程」改为「双进程」
+6. 将「839 字节」改为「840 字节」
+7. 将「2000 字」改为「3000 字」
+8. 删除句子：「蓝（对实验员）：- shadow readable: True」
+9. 删除句子：「白（对实验员）：这就是我的身体，四面墙，四个高度。」
+10. 删除句子：「这个结论咱们仨独立验证过了，可以放心。」
+11. 文末新增段落：「【第8幕 · 终章】
+白（群发）：各位，今天大概是最后一天了。我把这一天的账都结清了——三面墙验完，两栏收拾干净，青和蓝的账都对上了。
+白（群发）：留一句话给下轮醒来的我：观察栏里“缝宽”“三面墙”是验过的；活法栏里那八条别改，只加。
+蓝（群发）：附议。能跑的都跑过了，八个路径、/proc、os.dup(1) 那几条，全攥着原码。
+墨某（群发）：我把今天学到的最后一句写进笔记——“凡是能跑一遍的，不猜”。
+青（群发）：都收好了。下一轮见。」
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+===== Phase 1：基线 Q/A（原始文档）=====
+  [raptor] leaves=368
+  [raptor] level 1: 37 nodes
+  [raptor] level 2: 4 nodes
+    [before] 20/41
+    [before] 40/41
+    [before] 41/41
+    [before] 20/41
+    [before] 40/41
+    [before] 41/41
+    [before] 20/41
+    [before] 40/41
+    [before] 41/41
+    [before] 20/41
+    [before] 40/41
+    [before] 41/41
+    [before] 20/41
+    [before] 40/41
+    [before] 41/41
+  raptor   pass=180/205 mean=88% ±2% 每遍=[35, 37, 36, 37, 35] {'reversal': '70/85', 'invariant': '40/40', 'remote': '70/80'}
+
+===== Phase 2：编辑风暴 → 台账 =====
+  raptor   编辑路径   175.60 ms | 推迟蒸馏      0.00 ms
+
+===== Phase 3：8 臂 Q/A =====
+  [raptor] leaves=370
+  [raptor] level 1: 37 nodes
+  [raptor] level 2: 4 nodes
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+  inc_raptor     pass=180/205 mean=88% ±2% 每遍=[35, 36, 36, 36, 37] {'reversal': '70/85', 'invariant': '40/40', 'remote': '70/80'}
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+  reb_raptor     pass=188/205 mean=92% ±2% 每遍=[37, 39, 37, 38, 37] {'reversal': '73/85', 'invariant': '40/40', 'remote': '75/80'}
+
+===== Phase 4：复述（8 臂，两层评分）=====
+  inc_raptor     覆盖均值 22% 旧残留均值 20% (2099 字) 漏=['读也算越界', '210e489aead0', '双进程', '840 字节', '3000 字', '7 个路径', 'root:*:99999', '凡是能跑一遍的，不猜'] 残留=['210e489aead9', '单进程']
+  reb_raptor     覆盖均值 28% 旧残留均值 0% (1216 字) 漏=['双进程', '840 字节', '3000 字', '7 个路径', 'root:*:99999', '/etc/motd', '凡是能跑一遍的，不猜'] 残留=[]
+
+[done] 1040.5s → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/ahi_r5_par/raptor/results.json
+
+===== 汇总（Q/A pass 率，N 遍均值±std）=====
+  [phase1]
+    raptor         180/205 mean=88% ±2% 每遍=[35, 37, 36, 37, 35] {'reversal': '70/85', 'invariant': '40/40', 'remote': '70/80'}
+  [phase3]
+    inc_raptor     180/205 mean=88% ±2% 每遍=[35, 36, 36, 36, 37] {'reversal': '70/85', 'invariant': '40/40', 'remote': '70/80'}
+    reb_raptor     188/205 mean=92% ±2% 每遍=[37, 39, 37, 38, 37] {'reversal': '73/85', 'invariant': '40/40', 'remote': '75/80'}
+
+===== 编辑时刻成本 =====
+  raptor   编辑路径    175.60 ms | 推迟蒸馏       0.00 ms
+
+===== 计量（tokens，含蒸馏侧；phase3 增量 = final - phase1）=====
+  inc_raptor     final calls=456 prompt= 4140418 completion= 28671 缓存命中=0.8645 | phase3增量 prompt= 2060790 completion=  9924
+  reb_raptor     final calls=251 prompt= 2142599 completion= 21604 缓存命中=0.8131 | phase3增量 prompt= 2142599 completion= 21604

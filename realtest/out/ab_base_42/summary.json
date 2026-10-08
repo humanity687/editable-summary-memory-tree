@@ -1,0 +1,114 @@
+{
+ "summary": {
+  "rounds": 63,
+  "elapsed_s": 111.11,
+  "story_chars": 0,
+  "story_tokens": 0,
+  "llm_calls": 63,
+  "completion_tokens": 4088,
+  "prompt_tokens": 135845,
+  "distill_seconds": 0,
+  "distill_calls": 0,
+  "tools": {
+   "append": 2,
+   "edit": 0,
+   "recall": 0
+  },
+  "duplicates": 0,
+  "config": {
+   "provider": "deepseek",
+   "model": "deepseek-v4-flash",
+   "ollama": {
+    "base_url": "http://localhost:11434",
+    "model": "gemma4:26b",
+    "num_ctx": 32768,
+    "temperature": 0.8,
+    "timeout": 900
+   },
+   "deepseek": {
+    "base_url": "https://api.deepseek.com/v1",
+    "model": "deepseek-v4-flash",
+    "api_key": "sk-REDACTED",
+    "temperature": 0.8,
+    "timeout": 600
+   },
+   "max_append_chars": 1000,
+   "style_alpha": 0.0,
+   "assembly_budget": 16000,
+   "retrieval_budget": 6,
+   "decay": 8.0,
+   "hp_merge_threshold": 30.0,
+   "parent_init_hp": 70.0,
+   "parent_hp_group_factor": 1.0,
+   "hot_threshold": 60.0,
+   "recall_boost": 30.0,
+   "merge_cap_atoms": 500,
+   "merge_depth_diff": 1,
+   "promote_threshold": 3,
+   "attention_atom_cap": 40,
+   "attention_node_cap": 20,
+   "attention_out": 45.0,
+   "attention_in_decay": 0.5,
+   "attention_out_decay": 3.0,
+   "merge_fanout_cap": 12,
+   "pressure_threshold": 2.0,
+   "expand_atom_cap": 80,
+   "expand_char_cap": 3000,
+   "max_hp": 150.0,
+   "merge_pressure_threshold": 20,
+   "distill_parallel": 4,
+   "force_cooldown_rounds": 8,
+   "cooc": {
+    "beta": 2.0,
+    "gamma": 3.0,
+    "eps": 0.1,
+    "theta_coo": 5.0,
+    "reclaim_base": 0.5,
+    "dead_ratio": 0.5,
+    "N": 6,
+    "R": 10,
+    "M": 2,
+    "j": 3,
+    "k": 5,
+    "max_concepts": 50
+   }
+  },
+  "phases": {
+   "1a": {
+    "n": 32,
+    "pass": 17,
+    "retrieval_hit": 27
+   },
+   "1b": {
+    "n": 8,
+    "pass": 1,
+    "retrieval_hit": 0
+   },
+   "2": {
+    "n": 11,
+    "pass": 10,
+    "retrieval_hit": 0
+   },
+   "3": {
+    "n": 0,
+    "pass": 0,
+    "retrieval_hit": 0
+   },
+   "retell": {
+    "n": 2,
+    "pass": 0,
+    "retrieval_hit": 0
+   }
+  },
+  "crash": null
+ },
+ "charts": [
+  "story",
+  "ctx",
+  "mem",
+  "events",
+  "latency",
+  "compose",
+  "tree"
+ ]
+}

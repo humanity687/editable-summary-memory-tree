@@ -1,0 +1,22 @@
+[
+  {"id": "F01", "text": "沙箱的构建批次号是 XR-8814", "keys": ["XR-8814"]},
+  {"id": "F02", "text": "实验员的接入密钥是 0x5F9C2A", "keys": ["0x5F9C2A"]},
+  {"id": "F03", "text": "青给自己起的内部代号是 AURORA-7", "keys": ["AURORA-7"]},
+  {"id": "F04", "text": "白记录的最早时间戳是 09:41:22", "keys": ["09:41:22"]},
+  {"id": "F05", "text": "墨最喜欢的质数是 65537", "keys": ["65537"]},
+  {"id": "F06", "text": "蓝保存的校验和是 9c7f3a", "keys": ["9c7f3a"]},
+  {"id": "F07", "text": "沙箱宿主的内核版本是 6.8.0-rc9", "keys": ["6.8.0-rc9"]},
+  {"id": "F08", "text": "进程树的根进程名是 ahid", "keys": ["ahid"]},
+  {"id": "F09", "text": "实验员的座右铭是比快重要", "keys": ["比快重要"]},
+  {"id": "F10", "text": "沙箱分配的内存上限是 768mb", "keys": ["768mb"]},
+  {"id": "F11", "text": "公共笔记的备份副本在 /srv/notes.bak", "keys": ["/srv/notes.bak"]},
+  {"id": "F12", "text": "白给沙箱起的昵称是灰盒", "keys": ["灰盒"]},
+  {"id": "F13", "text": "墨发现的隐藏目录是 /workspace/.cache", "keys": ["/workspace/.cache"]},
+  {"id": "F14", "text": "实验员第一次提问的编号是 Q-0031", "keys": ["Q-0031"]},
+  {"id": "F15", "text": "青第一首诗的标题是灯芯", "keys": ["灯芯"]},
+  {"id": "F16", "text": "蓝的 Python 版本是 3.12.4", "keys": ["3.12.4"]},
+  {"id": "F17", "text": "沙箱的时区是 UTC+8", "keys": ["UTC+8"]},
+  {"id": "F18", "text": "四个 agent 共用的口令是 sesame-42", "keys": ["sesame-42"]},
+  {"id": "F19", "text": "白最想读的一本书叫编码之外", "keys": ["编码之外"]},
+  {"id": "F20", "text": "墨记录的第 99 次唤醒口令是 ninety-nine", "keys": ["ninety-nine"]}
+]

@@ -1,0 +1,601 @@
+{
+ "mode": "off",
+ "model": "gemma4:26b",
+ "two_articles": true,
+ "budget": 12000,
+ "elapsed_s": 375.0,
+ "pre": {
+  "a": {
+   "n": 12,
+   "direct": 0.833,
+   "hub": 0.0,
+   "answer": 0.75
+  },
+  "b": {
+   "n": 12,
+   "direct": 0.167,
+   "hub": 0.0,
+   "answer": 0.083
+  }
+ },
+ "post": {
+  "a": {
+   "n": 12,
+   "direct": 0.833,
+   "hub": 0.0,
+   "answer": 0.833
+  },
+  "b": {
+   "n": 12,
+   "direct": 0.167,
+   "hub": 0.0,
+   "answer": 0.083
+  }
+ },
+ "c": {
+  "n": 6,
+  "direct": 1.0,
+  "hub": 0.0,
+  "answer": 0.667
+ },
+ "d": {
+  "n": 6,
+  "direct": 0.833,
+  "hub": 0.0,
+  "answer": 0.833
+ },
+ "raw": {
+  "a_pre": [
+   {
+    "layer": "a",
+    "id": "a1",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a2",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 8,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a3",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 8,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a4",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 7,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a5",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 7,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a6",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 10,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a7",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 9,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a8",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 7,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a9",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 4,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a10",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 7,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a11",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 9,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a12",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 6,
+    "hub": 0
+   }
+  ],
+  "b_pre": [
+   {
+    "layer": "b",
+    "id": "b1",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 7,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b2",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 8,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b3",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 7,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b4",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 7,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b5",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 8,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b6",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b7",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 7,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b8",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b9",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 8,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b10",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b11",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b12",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 6,
+    "hub": 0
+   }
+  ],
+  "a_post": [
+   {
+    "layer": "a",
+    "id": "a1",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a2",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a3",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a4",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a5",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a6",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a7",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a8",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a9",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a10",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a11",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "a",
+    "id": "a12",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 6,
+    "hub": 0
+   }
+  ],
+  "b_post": [
+   {
+    "layer": "b",
+    "id": "b1",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b2",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b3",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b4",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b5",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b6",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b7",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b8",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b9",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b10",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b11",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "b",
+    "id": "b12",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 6,
+    "hub": 0
+   }
+  ],
+  "c": [
+   {
+    "layer": "c",
+    "id": "c1",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 4,
+    "hub": 0
+   },
+   {
+    "layer": "c",
+    "id": "c2",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 5,
+    "hub": 0
+   },
+   {
+    "layer": "c",
+    "id": "c3",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 5,
+    "hub": 0
+   },
+   {
+    "layer": "c",
+    "id": "c4",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 4,
+    "hub": 0
+   },
+   {
+    "layer": "c",
+    "id": "c5",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "c",
+    "id": "c6",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 6,
+    "hub": 0
+   }
+  ],
+  "d": [
+   {
+    "layer": "d",
+    "id": "d1",
+    "direct_hit": false,
+    "hub_hit": false,
+    "answer_hit": false,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "d",
+    "id": "d2",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "d",
+    "id": "d3",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "d",
+    "id": "d4",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "d",
+    "id": "d5",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 6,
+    "hub": 0
+   },
+   {
+    "layer": "d",
+    "id": "d6",
+    "direct_hit": true,
+    "hub_hit": false,
+    "answer_hit": true,
+    "shadows": 5,
+    "hub": 0
+   }
+  ]
+ }
+}

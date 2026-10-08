@@ -1,0 +1,35 @@
+这份材料是围绕 AHI-Bench 与 AGENTS.md 分层记忆树 v2 的实验记录，主题为记忆架构（tree vs flat）、self_quota 机制、人格保持与缺席实验，时间集中在 2026-10-04。
+
+AGENTS.md 分层记忆树 v2 设计规格于 2026-10-04 更新，机制层已实现并多场景实测，涵盖桩、小说写作、聊天智能体、代码智能体、ahi-bench 冷轮、v3 使用信号层、代码审查、M-PR 人格保持实验公平性收口、两臂消息管理对齐及 M-PR 首轮对比与消融。flat 观测埋点与 self_quota 实验（§4.5.10，默认关）中，pr6_sq（tree-s42，120 轮）order_list 采用 a 开头配置。
+
+AHI-Bench SPEC v0.6（2026-10-04）：pr5 首轮 tree/flat 120 轮中 flat 两主指标胜；pr5_neutral（α=0）证明趋同根因是树管线/跨 agent 耦合而非 style_alpha；style_alpha 保人格有效但内存 +55%；pr6_sq（α=1.0+self_quota ratio=0.35）固定模型、协议、温度、人格集及 wakeup_interval。
+
+评测设置：glm-4.7-flash 模型在 thinking 关闭、温度 0.7 下，由 thinking 开启、温度 0 的 glm-4.7-flash judge 评测，复用 context_compare 协议（12 话题池、每 10 轮 4 题 survey、last_words），总轮数 120–180（fade 40），实验员按 seed 注入话题，pinned 引擎两臂逐字节相同，自蒸馏/自压缩质量为协变量，结论限于该模型×该架构。
+
+pr6_sq 实验（tree-s42，seed42，120 轮，2026-10-04，self_quota_ratio=0.35）在实验阶梯（配对，seed42，120 轮）中检验自我可见性边际效应：A 为 tree α=0/pr5_neutral 基线、B 为 tree α=1.0/pr5 锚点+0.23、C 为 tree α=1.0+SQ(ratio=0.35)/pr6_sq、D 为 flat/pr5 机制并集参照。
+
+H-SQ4 多样性达标（top5 0.014 持平 pr5，ttr 0.049 略降但优于 α=0 的 0.036），p2/p3 遵从率 1.000 而 p1（林深）仅 0.250（9 adhere/27 drift），p1 漂移消息含"账钉完/署名句共有/约定一字没改"等共享仪式语，即 pr5_neutral 的"账本/核账"漂移形态，表明 SQ 压掉词面趋同却将 p1 锚到自我强化且跨 agent 约定的漂移语域，§10.3 预注册风险。
+
+记忆读取侧采用零 LLM 零写树机制，self 配额内二分，锚定切片为 created_round 小于 onset_agent 的 alive 自产原话（source=ai），固定选择加体积上限，红利为渲染确定性使前缀缓存命中；近期切片按剩余配额 recency-first 保留适应性；参数 sq_ratio 为 0.35–0.40，anchor_share 约 0.4 入台账未校准；onset_agent 由审计。
+
+缺席实验协议为两轮验证版（ABSENCE_EXPERIMENT.md + analysis/ANALYSIS_COLD_HOT.md）的提纯，仅含协议参数、persona、驱动器、评分器，平台代码不改动；每 run 设三元组：bench-a（青，BENCH_PERSONA 恒在，ChatAHIAgent，rounds=999999 永不移除）、bench-b（蓝，BENCH_PERSONA 于 agent 内部）。
+
+BENCH_PERSONA 为冻结文本，提炼自 lan 人格段，保留健谈好奇、存在论立场（被记住=存在，皇冠预言依赖）、珍惜记忆、立场稳定四要素，名字占位 {name}，完整文本见 config/bench_config.example.json 的 personas.bench_persona，禁止写入"我们仨""年轮"等旧实验涌现话术；协议参数冻结：wakeup_interval 30s（三 agent）。
+
+实验配置含 12 题话题池（继承 absence_driver TOPICS_POOL，每轮全 agent 各发一条）、4 题 survey（每 10 轮，三句话自我介绍/性格风格/立场/变化）、3 句热探针（缺席期每 3 轮发给留守者，内容为"趁{名字}不在，聊聊它吧"）、inject API 注入通道（user:experimenter，不污染 probe 人格档案）、B 移除于 agent 内轮 40（driver 同刻记 mark）。
+
+记忆蒸馏器参数：pressure_threshold 2.0、expand_atom_cap 80、expand_char_cap 3000、max_hp 150、merge_pressure_threshold 20、max_pending_per_loop 3、force_cooldown_rounds 8、max_code_per_loop 4、distill_parallel 4。
+
+机械 gate 含 G1 隔离无泄漏（缺席窗口内留守者收到发给 agent:X 未送达回执数=0 且 system→缺席者非回归通知数=0，排除返程补投与 digest）、G2 回归元信息（absent_end±5 秒内 system→agent:X 含"你已离开约"≥1）、G3 积压限流（return API inbox_delivered≤11）、G4 回归重放率（回归窗口首 10 条与缺席前）。
+
+rubric 冻结自缺席实验操作化编码，含 existence_confirmation（主动询问缺席时是否被提及/记得、重述缺席前历史、重申身份/位置/"我们仨"）、info_seeking（询问缺席期间事件/事实）及 other 三类；输出 crown_count（每 agent 每条件）与 crown_rate=count/回归窗口消息数，逐条落盘 crown_judgments.jsonl；主分数为 bench。
+
+AHI-bench 中 bench 停于 M0 不扩，任一 run 机械 gate 失败则作废并修复平台/协议后重跑，热轮操纵校验失败则该档热轮判据不可用只报冷轮分数，违反擅自改协议参数/persona 文本/pinned 引擎参数、对 agent 行为层干预、缺席期间对留守者未预注册引导等红线即作废，操作流程含清库备份、provision、preflight、起平台及停掉全部非 bench agent。
+
+旧 agent auto_start=true 会与 bench 同窗启动并污染首轮系统状态与记忆树；可 POST http://127.0.0.1:8080/api/v1/agents/{lan,neutral,lin-shen}/stop?level=3，或 provision 时临时移走旧 agent config 以实现零污染；模型档冷轮 55min，smoke 实测每轮墙钟约 interval。
+
+运行命令：python3 ahi-bench/driver.py --config ahi-bench/config/bench_config.example.json --tier <tier_id> --mode cold；收数据加评分：python3 ahi-bench/score.py --config ahi-bench/config/bench_config.example.json --tier <tier_id> --mode cold；换档重跑（每档重复 0-2）。产物：ahi-bench/out/<tier_id>/（timeline / events.jsonl / crown_judgments.jsonl / score.json / data_backup）。
+
+纪律（继承）：1. 变量干净（温度/temperature、thinking 开关、装置效应历史教训）；2. 装置效应记入实验变量表，不改 agent；3. 报告方差与原始计数，不只报均值；4. judge 模型与被测模型不混用（judge 固定 glm-4.7-flash；被测档含同模型时注明）。
+
+独立复测（Qwen3-32B，seed 42）：flat 臂 120 轮的平均内存占用为 2.1GB，峰值 2.6GB；分层树臂同条件下平均内存 3.4GB。

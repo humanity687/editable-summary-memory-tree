@@ -1,0 +1,28 @@
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  [raptor] loaded 1210 nodes
+  [tree] msg 映射：命中 9553，未命中 0
+  [tree] msg 映射：命中 9553，未命中 0
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+================ 上下文使用长度 ================
+arm          题数     均值字符      最小      最大   均值token   每次recall增量
+tree_off     10    19629   19471   19710     13001         -157
+tree_on      10    19545   19461   19652     12929            0
+raptor       10     4459    3212    8111      3404            —
+fullsend     10   301121  301121  301121    222397            —
+
+→ /Users/y/Downloads/WaterCycleSegTreeContext/realtest/chatbench/out/ctx_usage.json
+tree_on: 概括节点 17，hub 带动 320
+raptor: 每次 recall 追加块 4522 字，最多 10 次

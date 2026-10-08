@@ -1,0 +1,53 @@
+[doc] 12191 字 / 40 题 / 结构 ['tree_v2'] / scenario=seed2 / repeats=3 / answer_temp=0.7 distill_temp=0.0
+[editstorm] 7 次编辑；新文档 12260 字
+【编辑记录（工具调用台账，含完整修改 diff）】
+1. 将「何倚笙」改为「何某笙」
+2. 将「七年前就烧光了」改为「三年前就塌了」
+3. 将「一家五口人」改为「一家三口人」
+4. 将「两枚银圆」改为「三枚银圆」
+5. 将「枣木拐杖」改为「梨木拐杖」
+6. 删除句子：「沈寒舟去年冬天替他治过风寒，知道他住在码头边的船屋里。」
+7. 文末新增段落：「三天后，沈寒舟收到一封从省城寄来的信。写信人自称是唐敬棠的旧友，名叫顾在川，信中说济生堂当年在省城还有一处从未启用的货栈，地址在望江门外。沈寒舟把信收进樟木箱，决定等七月十五之后再作打算。」
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+===== Phase 1：基线 Q/A（原始文档）=====
+  tree_v2  pass=106/120 mean=88% ±3% 每遍=[37, 35, 34] {'reversal': '39/45', 'invariant': '13/15', 'remote': '54/60'}
+
+===== Phase 2：编辑风暴 → 台账 =====
+  tree_v2  编辑路径     1.45 ms | 推迟蒸馏  34767.91 ms
+  inc_cold 编辑路径     0.90 ms | 推迟蒸馏  53331.88 ms
+
+===== Phase 3：8 臂 Q/A =====
+  inc_tree_v2    pass=106/120 mean=88% ±1% 每遍=[35, 36, 35] {'reversal': '42/45', 'invariant': '10/15', 'remote': '54/60'}
+  reb_tree_v2    pass=106/120 mean=88% ±1% 每遍=[35, 35, 36] {'reversal': '43/45', 'invariant': '9/15', 'remote': '54/60'}
+  inc_cold_tree_v2 pass=95/120 mean=79% ±3% 每遍=[32, 30, 33] {'reversal': '33/45', 'invariant': '9/15', 'remote': '53/60'}
+
+===== Phase 4：复述（8 臂，两层评分）=====
+  inc_tree_v2    覆盖均值 86% 旧残留均值 0% (4682 字) 漏=['三年前就塌了'] 残留=[]
+  reb_tree_v2    覆盖均值 86% 旧残留均值 0% (2346 字) 漏=['三年前就塌了'] 残留=[]
+  inc_cold_tree_v2 覆盖均值 71% 旧残留均值 0% (1802 字) 漏=['三年前就塌了', '一家三口'] 残留=[]
+
+[done] 772.2s → realtest/editbench/out/seed2_tree_obstacle_r3/results.json
+
+===== 汇总（Q/A pass 率，N 遍均值±std）=====
+  [phase1]
+    tree_v2        106/120 mean=88% ±3% 每遍=[37, 35, 34] {'reversal': '39/45', 'invariant': '13/15', 'remote': '54/60'}
+  [phase3]
+    inc_tree_v2    106/120 mean=88% ±1% 每遍=[35, 36, 35] {'reversal': '42/45', 'invariant': '10/15', 'remote': '54/60'}
+    reb_tree_v2    106/120 mean=88% ±1% 每遍=[35, 35, 36] {'reversal': '43/45', 'invariant': '9/15', 'remote': '54/60'}
+    inc_cold_tree_v2 95/120 mean=79% ±3% 每遍=[32, 30, 33] {'reversal': '33/45', 'invariant': '9/15', 'remote': '53/60'}
+
+===== 编辑时刻成本 =====
+  tree_v2  编辑路径      1.45 ms | 推迟蒸馏   34767.91 ms
+  inc_cold_tree_v2 编辑路径      0.90 ms | 推迟蒸馏   53331.88 ms
+
+===== 计量（tokens，含蒸馏侧；phase3 增量 = final - phase1）=====
+  inc_tree_v2    final calls=324 prompt= 1111277 completion= 28415 缓存命中=0.7031 | phase3增量 prompt=  613207 completion= 17177
+  reb_tree_v2    final calls=174 prompt=  529444 completion= 17079 缓存命中=0.673 | phase3增量 prompt=  529444 completion= 17079
+  inc_cold_tree_v2 final calls=211 prompt=  492333 completion= 23435 缓存命中=0.6674 | phase3增量 prompt=  492333 completion= 23435

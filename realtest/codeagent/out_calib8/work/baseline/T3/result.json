@@ -1,0 +1,29 @@
+{
+  "group": "baseline",
+  "task": "T3",
+  "title": "未闭合的代码块被当作可执行代码",
+  "passed": true,
+  "accept_rc": 0,
+  "accept_verdict": "PASS",
+  "elapsed_s": 30.5,
+  "agent_result": {
+    "ok": true,
+    "rounds": 10,
+    "summary": "修复了 Agent 解析器在处理未闭合代码块时，会将截断的内容误当作可执行代码或消息广播的问题。\n\n修改内容：\n- 在 `agents/lin-shen/agent.py` 的 `_parse_structured_response` 方法中，移除了对未闭合代码块（`in_code_block` 为 True 且循环结束）的自动处理逻辑。现在，如果代码块没有以 ` ``` ` 结尾，解析器将不再将其提取为 `code` 动作或通过 `_emit_message` 发送，从而避免了因回复截断导致的意外执行或错误消息。\n\n验证结果：\n- 运行 `python3 accept_t3.py` 结果为 `PASS`。",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 10,
+    "tool_uses": {
+      "command": 4,
+      "read": 4,
+      "edit": 1,
+      "finish": 1
+    },
+    "conversation_chars": 29705
+  },
+  "last_usage": {
+    "prompt_tokens": 10391,
+    "completion_tokens": 177
+  }
+}

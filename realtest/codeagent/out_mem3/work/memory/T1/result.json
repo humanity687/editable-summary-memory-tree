@@ -1,0 +1,34 @@
+{
+  "group": "memory",
+  "task": "T1",
+  "title": "thinking 配置不生效",
+  "passed": true,
+  "accept_rc": 0,
+  "accept_verdict": "PASS",
+  "elapsed_s": 27.9,
+  "agent_result": {
+    "ok": true,
+    "rounds": 7,
+    "summary": "修复了 `sdk/llm_client.py` 中 `thinking` 配置未传递给 LLM API 的 bug。\n\n在 `send_message` 方法中，原先的代码逻辑忽略了 `self.thinking` 属性。通过在构建 `kwargs` 时，根据 `self.thinking` 的布尔值动态添加 `extra_body={\"thinking\": True}`，确保了配置能够正确传递给 OpenAI 兼容的 API（如 DeepSeek）。\n\n验证：运行 `python3 accept_t1.py` 结果为 `PASS`。",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 7,
+    "atoms_alive": 21,
+    "nodes_alive": 0,
+    "tiling": 21,
+    "distill_calls": 0,
+    "distill_seconds": 0.0,
+    "tool_uses": {
+      "command": 3,
+      "read": 2,
+      "edit": 1,
+      "finish": 1
+    },
+    "notebook": 1
+  },
+  "last_usage": {
+    "prompt_tokens": 7038,
+    "completion_tokens": 134
+  }
+}

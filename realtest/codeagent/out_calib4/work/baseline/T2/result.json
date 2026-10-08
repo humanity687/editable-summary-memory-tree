@@ -1,0 +1,27 @@
+{
+  "group": "baseline",
+  "task": "T2",
+  "title": "data/ 目录下的 config.json 被误注册为新 Agent",
+  "passed": false,
+  "accept_rc": 1,
+  "accept_verdict": "FAIL: data/ 下的 config.json 被注册为 sneaky-agent",
+  "elapsed_s": 36.7,
+  "agent_result": {
+    "ok": false,
+    "rounds": 40,
+    "summary": "未完成",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 40,
+    "tool_uses": {
+      "command": 37,
+      "read": 3
+    },
+    "history_chars": 42951
+  },
+  "last_usage": {
+    "prompt_tokens": 8340,
+    "completion_tokens": 20
+  }
+}

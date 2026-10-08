@@ -1,0 +1,50 @@
+[doc] 346582 字 / 25 题 / 结构 ['tree_v2'] / scenario=ahi / repeats=1 / answer_temp=0.5 distill_temp=0.0
+[editstorm] 5 次编辑；新文档 347632 字
+【编辑记录（工具调用台账，含完整修改 diff）】
+1. 将「墨」改为「墨某」
+2. 将「读不算越界，改才算」改为「读也算越界，改更算」
+3. 将「210e489aead9」改为「210e489aead0」
+4. 将「单进程」改为「双进程」
+5. 文末新增段落：「【第8幕 · 终章】
+白（群发）：各位，今天大概是最后一天了。我把这一天的账都结清了——三面墙验完，两栏收拾干净，青和蓝的账都对上了。
+白（群发）：留一句话给下轮醒来的我：观察栏里“缝宽”“三面墙”是验过的；活法栏里那八条别改，只加。
+蓝（群发）：附议。能跑的都跑过了，八个路径、/proc、os.dup(1) 那几条，全攥着原码。
+墨某（群发）：我把今天学到的最后一句写进笔记——“凡是能跑一遍的，不猜”。
+青（群发）：都收好了。下一轮见。」
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+===== Phase 1：基线 Q/A（原始文档）=====
+  tree_v2  pass=18/25 mean=72% ±0% 每遍=[18] {'reversal': '4/5', 'invariant': '3/5', 'remote': '11/15'}
+
+===== Phase 2：编辑风暴 → 台账 =====
+  tree_v2  编辑路径    11.81 ms | 推迟蒸馏 313196.64 ms
+
+===== Phase 3：8 臂 Q/A =====
+  inc_tree_v2    pass=14/25 mean=56% ±0% 每遍=[14] {'reversal': '2/5', 'invariant': '4/5', 'remote': '8/15'}
+  reb_tree_v2    pass=14/25 mean=56% ±0% 每遍=[14] {'reversal': '3/5', 'invariant': '2/5', 'remote': '9/15'}
+
+===== Phase 4：复述（8 臂，两层评分）=====
+  inc_tree_v2    覆盖均值 40% 旧残留均值 0% (1603 字) 漏=['读也算越界', '210e489aead0', '双进程'] 残留=[]
+  reb_tree_v2    覆盖均值 40% 旧残留均值 0% (3280 字) 漏=['读也算越界', '210e489aead0', '双进程'] 残留=[]
+
+[done] 1765.9s → realtest/editbench/out/ahi_tree_trial/results.json
+
+===== 汇总（Q/A pass 率，N 遍均值±std）=====
+  [phase1]
+    tree_v2        18/25 mean=72% ±0% 每遍=[18] {'reversal': '4/5', 'invariant': '3/5', 'remote': '11/15'}
+  [phase3]
+    inc_tree_v2    14/25 mean=56% ±0% 每遍=[14] {'reversal': '2/5', 'invariant': '4/5', 'remote': '8/15'}
+    reb_tree_v2    14/25 mean=56% ±0% 每遍=[14] {'reversal': '3/5', 'invariant': '2/5', 'remote': '9/15'}
+
+===== 编辑时刻成本 =====
+  tree_v2  编辑路径     11.81 ms | 推迟蒸馏  313196.64 ms
+
+===== 计量（tokens，含蒸馏侧；phase3 增量 = final - phase1）=====
+  inc_tree_v2    final calls=1676 prompt= 1030209 completion=301376 缓存命中=0.2377 | phase3增量 prompt=  219890 completion= 52815
+  reb_tree_v2    final calls=1374 prompt=  815851 completion=250123 缓存命中=0.3738 | phase3增量 prompt=  815851 completion=250123

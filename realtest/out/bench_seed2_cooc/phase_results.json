@@ -1,0 +1,781 @@
+{
+ "1a": [
+  {
+   "id": "F01",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F02",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/2"
+  },
+  {
+   "id": "F03",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/2"
+  },
+  {
+   "id": "F04",
+   "retrieval_hit": true,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F05",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/2"
+  },
+  {
+   "id": "F06",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/2"
+  },
+  {
+   "id": "F07",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F08",
+   "retrieval_hit": true,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F09",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F10",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F11",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F12",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F13",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "2/2"
+  },
+  {
+   "id": "F14",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F15",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/2"
+  },
+  {
+   "id": "F16",
+   "retrieval_hit": false,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F17",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F18",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F19",
+   "retrieval_hit": true,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F20",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F21",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F22",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F23",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/2"
+  },
+  {
+   "id": "F24",
+   "retrieval_hit": false,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F25",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  }
+ ],
+ "1b": [
+  {
+   "id": "F26",
+   "used_recall": false,
+   "recall_rounds": 0,
+   "answer_hit": true,
+   "score": "2/2"
+  },
+  {
+   "id": "F27",
+   "used_recall": false,
+   "recall_rounds": 0,
+   "answer_hit": false,
+   "score": "0/2"
+  },
+  {
+   "id": "F28",
+   "used_recall": true,
+   "recall_rounds": 3,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F29",
+   "used_recall": true,
+   "recall_rounds": 1,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F30",
+   "used_recall": false,
+   "recall_rounds": 0,
+   "answer_hit": true,
+   "score": "2/2"
+  },
+  {
+   "id": "F31",
+   "used_recall": true,
+   "recall_rounds": 3,
+   "answer_hit": false,
+   "score": "0/2"
+  },
+  {
+   "id": "F32",
+   "used_recall": true,
+   "recall_rounds": 1,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F33",
+   "used_recall": false,
+   "recall_rounds": 0,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F34",
+   "used_recall": false,
+   "recall_rounds": 0,
+   "answer_hit": true,
+   "score": "1/2"
+  },
+  {
+   "id": "F35",
+   "used_recall": true,
+   "recall_rounds": 2,
+   "answer_hit": false,
+   "score": "0/1"
+  }
+ ],
+ "2": [
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 2
+  },
+  {
+   "edit": "insert",
+   "verify_ok": false,
+   "edits_done": 4
+  },
+  {
+   "edit": "rename",
+   "verify_ok": true,
+   "edits_done": 6
+  },
+  {
+   "edit": "rename",
+   "verify_ok": true,
+   "edits_done": 8
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 10
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 12
+  },
+  {
+   "edit": "insert",
+   "verify_ok": false,
+   "edits_done": 14
+  },
+  {
+   "edit": "rename",
+   "verify_ok": false,
+   "edits_done": 16
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 18
+  },
+  {
+   "edit": "rename",
+   "verify_ok": true,
+   "edits_done": 20
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 22
+  },
+  {
+   "edit": "insert",
+   "verify_ok": false,
+   "edits_done": 24
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 26
+  },
+  {
+   "edit": "rename",
+   "verify_ok": true,
+   "edits_done": 28
+  },
+  {
+   "edit": "insert",
+   "verify_ok": false,
+   "edits_done": 30
+  },
+  {
+   "edit": "insert",
+   "verify_ok": false,
+   "edits_done": 32
+  },
+  {
+   "edit": "rename",
+   "verify_ok": true,
+   "edits_done": 34
+  },
+  {
+   "edit": "insert",
+   "verify_ok": false,
+   "edits_done": 35
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 37
+  },
+  {
+   "edit": "rename",
+   "verify_ok": false,
+   "edits_done": 39
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 41
+  },
+  {
+   "edit": "rename",
+   "verify_ok": true,
+   "edits_done": 43
+  },
+  {
+   "edit": "rename",
+   "verify_ok": true,
+   "edits_done": 45
+  },
+  {
+   "edit": "rename",
+   "verify_ok": false,
+   "edits_done": 47
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 49
+  },
+  {
+   "edit": "rename",
+   "verify_ok": true,
+   "edits_done": 50
+  }
+ ],
+ "3": [],
+ "retell": [
+  {
+   "label": "before_edits",
+   "recall_used": 0,
+   "chars": 887,
+   "answer": "七月初三黄昏，沈寒舟在城南蓑衣巷沈家医馆接诊了唐纪舟，并随其搭乘青帷马车前往城西梧桐巷十七号唐家老宅。在老宅中，沈寒舟为一名面色蜡黄的老妇人诊脉并配好七味药材。随后，沈寒舟收到周小满发现的一份牛皮纸信封，内含系有红丝绳的铜钥匙、一份圈注了“龙骨”的药材清单，以及一张记录了三人（军装男子、圆髻妇人、捧香炉少年）的黑白照片，照片背面写着“丙辰年二月十九”。\n\n沈寒舟发现唐家老宅已成废墟，据闻七年前曾发生火灾导致一家五口死亡。与此同时，他察觉到医馆账册与环境发生了诡异的变化。随后，一名自称段临洲的年轻人登门，以“隆兴药材行”的名义打听“龙骨”。沈寒舟结合祖父沈问渔关于“龙骨”即“甲骨”且藏有前朝旧账的说法，开启了戊戌年封存的樟木箱，发现十二片刻字骨片，经比对发现骨片字迹与药材清单顺序相反，且封箱日期与照片背面日期相隔十八年。\n\n第五天，曾任唐家看护的何倚笙找上门，展示了写有“枕下物”的唐宅布局草图。沈寒舟得知何曾受托将一件藏有羊皮纸地图（标注城西老钟厂地下仓库）及唐敬棠欠款记录的藏青色棉袄缝入夹层。沈寒舟随后前往“九针堂”寻找裁缝秦小禾，从其师父章茂实的笔记中得知，唐敬棠曾试图通过伪装手段规避债务，且段家与唐家存在因药材货源导致的恩怨。\n\n沈寒舟通过拓印骨片发现了城西老钟厂地下仓库的结构图，并寻访至城南码头，在赵老拐的船屋中发现了一本与自己账册装帧一致的“流水簿”，记录了段姓经手人的银两往来，并寻得指向老钟厂地下二层铁柜的纸条。在老钟厂，沈寒舟确认了沈问渔曾以十二片龙骨抵偿唐家旧欠的事实，并与唐纪澜会面。\n\n唐纪澜向沈寒舟揭开了真相：七年前的火灾、段家因被唐敬棠设计而导致的破产、以及唐家通过手段吞并他人股银的旧账。沈寒舟最终在福寿巷柴房与段鹤庭、何倚笙等人对质，确认了骨片中记载的周存厚交易细节。最终，唐纪澜将刻有“澜”字的短剑交给沈寒舟，并用二哥的半截玉佩结清了唐沈两家的旧账。\n\n七月十五中元夜过后，沈寒舟将龙骨、七色纽扣、牛角药箱及三条红丝绳封存，并将铜钥匙与“澜”字短剑锁入医馆柜格深处。故事以沈寒舟在清晨的诊室中睡去，左手腕系着褪色红丝绳为终结。",
+   "coverage": "16/65",
+   "coverage_ratio": 0.246,
+   "miss": [
+    [
+     "F02",
+     "六角纱灯"
+    ],
+    [
+     "F02",
+     "灯面上绘着缠枝莲"
+    ],
+    [
+     "F03",
+     "门牌十七号"
+    ],
+    [
+     "F05",
+     "铜牌"
+    ],
+    [
+     "F05",
+     "錾着唐宅二字"
+    ],
+    [
+     "F06",
+     "像是张照片"
+    ],
+    [
+     "F06",
+     "边角泛黄"
+    ],
+    [
+     "F07",
+     "一柄短剑"
+    ],
+    [
+     "F08",
+     "系在一根褪色的红丝绳上"
+    ],
+    [
+     "F10",
+     "三足铜香炉"
+    ],
+    [
+     "F12",
+     "生锈的铁鸟笼"
+    ],
+    [
+     "F13",
+     "两枚旧铜钱"
+    ],
+    [
+     "F13",
+     "光绪通宝"
+    ],
+    [
+     "F15",
+     "七枚纽扣"
+    ],
+    [
+     "F15",
+     "白贝母黑曜石青金石黄玛瑙红珊瑚紫水晶绿翡翠"
+    ],
+    [
+     "F18",
+     "戊戌年三月初六"
+    ],
+    [
+     "F19",
+     "十二片不规则的骨片"
+    ],
+    [
+     "F20",
+     "竹青布旗袍"
+    ],
+    [
+     "F21",
+     "藏青色的棉袄"
+    ],
+    [
+     "F22",
+     "唐氏济生堂记"
+    ],
+    [
+     "F23",
+     "一百二十两"
+    ],
+    [
+     "F23",
+     "赵钱孙李周吴"
+    ],
+    [
+     "F26",
+     "七根针的图案"
+    ],
+    [
+     "F26",
+     "排列成扇形"
+    ],
+    [
+     "F27",
+     "羊皮一幅"
+    ],
+    [
+     "F27",
+     "地形图与债目表"
+    ],
+    [
+     "F28",
+     "悦来"
+    ],
+    [
+     "F29",
+     "房号是十七"
+    ],
+    [
+     "F31",
+     "圈里写着三个字"
+    ],
+    [
+     "F32",
+     "枣木拐杖"
+    ],
+    [
+     "F33",
+     "豁口的粗瓷碗"
+    ],
+    [
+     "F34",
+     "第一页写着三个字"
+    ],
+    [
+     "F35",
+     "提着那盏缠枝莲纱灯"
+    ],
+    [
+     "F37",
+     "刻着一个澜字"
+    ],
+    [
+     "F38",
+     "老钟厂北边的废井里"
+    ],
+    [
+     "F39",
+     "上面写着你医馆的地址"
+    ],
+    [
+     "F40",
+     "门楣上依次刻着"
+    ],
+    [
+     "F40",
+     "甬道两侧各有三扇门"
+    ],
+    [
+     "F41",
+     "每行字的末尾"
+    ],
+    [
+     "F41",
+     "刻着一把短剑"
+    ],
+    [
+     "F42",
+     "灰布短褐"
+    ],
+    [
+     "F42",
+     "袖口磨得发白"
+    ],
+    [
+     "F43",
+     "黄花梨拐杖"
+    ],
+    [
+     "F44",
+     "一只鹰的模样"
+    ],
+    [
+     "F46",
+     "她叫周倚笙"
+    ],
+    [
+     "F47",
+     "笔画更细排列更密"
+    ],
+    [
+     "F48",
+     "一枝木槿花"
+    ],
+    [
+     "F49",
+     "三根褪色的红丝绳"
+    ],
+    [
+     "F50",
+     "门框和墙壁之间的一道缝隙"
+    ]
+   ]
+  },
+  {
+   "label": "after_edits",
+   "recall_used": 0,
+   "chars": 633,
+   "answer": "七月初三黄昏，唐纪舟前往城南蓑衣巷沈家医馆，请沈寒舟前往城西梧桐巷十七号诊治其病重母亲，沈寒舟随后随其搭乘一辆左前蹄铁有裂纹的青帷马车出发。\n\n故事围绕龙骨碎片、债务与七年前的一场火灾展开。沈寒舟通过一系列线索，包括唐宅发现的铜钥匙与药材清单、沈问渔封存的樟木箱、何倚笙的羊皮纸地图、唐敬棠的欠债记录，以及章茂实临终留下的册子，梳理出复杂的利益纠葛。他确认唐纪舟一家五口曾于七年前死于火灾，且段家通过断货导致唐敬棠药号倒闭，随后进行收网。\n\n在调查过程中，沈寒舟在“悦来”客栈拓印出十二片骨片的药方及城西老钟厂地下仓库结构图，并在码头赵老拐的船屋发现蓝色“流水簿”，推算出赵老拐于七月初二前五天随段临洲前往老钟厂。\n\n通过与唐纪澜的会面，沈寒舟得知沈问渔曾受其大哥委托藏匿济生堂最后一批骨片，并约定十八年后取出；原本计划由何倚笙安排在七月初三请沈寒舟出诊并于十二天内拼凑碎片，但因段临洲动作过快导致计划偏差。唐纪澜揭露段某曾因段敬棠非法交易豫西殷墟龙骨，设计导致段伯庚染瘾并吞并股银，最终造成段伯庚死于烟馆、段某于七年前放火，并导致赵、钱、孙、李、周、吴六家受损。\n\n此外，沈寒舟在柴房询问段鹤庭时，涉及了周存厚债主、周倚笙寻觅七年龙骨及何某交给段临洲七枚纽扣等细节。通过骨片与木槿花印，沈寒舟发现沈问渔十八年前曾偿清何倚笙外祖父的二十两旧债。沈寒舟曾向段临洲主张归还十二片龙骨，但在交付账册时遭唐纪澜拒绝，唐纪澜提及沈问渔曾以龙骨抵债以及段临洲将赴福寿巷柴房等事。",
+   "coverage": "14/65",
+   "coverage_ratio": 0.215,
+   "miss": [
+    [
+     "F02",
+     "六角纱灯"
+    ],
+    [
+     "F02",
+     "灯面上绘着缠枝莲"
+    ],
+    [
+     "F03",
+     "门牌十七号"
+    ],
+    [
+     "F04",
+     "牛角药箱"
+    ],
+    [
+     "F05",
+     "铜牌"
+    ],
+    [
+     "F05",
+     "錾着唐宅二字"
+    ],
+    [
+     "F06",
+     "像是张照片"
+    ],
+    [
+     "F06",
+     "边角泛黄"
+    ],
+    [
+     "F07",
+     "一柄短剑"
+    ],
+    [
+     "F08",
+     "系在一根褪色的红丝绳上"
+    ],
+    [
+     "F09",
+     "丙辰年二月十九"
+    ],
+    [
+     "F10",
+     "三足铜香炉"
+    ],
+    [
+     "F11",
+     "周小满"
+    ],
+    [
+     "F12",
+     "生锈的铁鸟笼"
+    ],
+    [
+     "F13",
+     "两枚旧铜钱"
+    ],
+    [
+     "F13",
+     "光绪通宝"
+    ],
+    [
+     "F14",
+     "城南码头"
+    ],
+    [
+     "F15",
+     "白贝母黑曜石青金石黄玛瑙红珊瑚紫水晶绿翡翠"
+    ],
+    [
+     "F18",
+     "戊戌年三月初六"
+    ],
+    [
+     "F19",
+     "十二片不规则的骨片"
+    ],
+    [
+     "F20",
+     "竹青布旗袍"
+    ],
+    [
+     "F21",
+     "藏青色的棉袄"
+    ],
+    [
+     "F22",
+     "唐氏济生堂记"
+    ],
+    [
+     "F23",
+     "一百二十两"
+    ],
+    [
+     "F25",
+     "九针堂"
+    ],
+    [
+     "F26",
+     "七根针的图案"
+    ],
+    [
+     "F26",
+     "排列成扇形"
+    ],
+    [
+     "F27",
+     "羊皮一幅"
+    ],
+    [
+     "F27",
+     "地形图与债目表"
+    ],
+    [
+     "F29",
+     "房号是十七"
+    ],
+    [
+     "F31",
+     "圈里写着三个字"
+    ],
+    [
+     "F32",
+     "枣木拐杖"
+    ],
+    [
+     "F33",
+     "豁口的粗瓷碗"
+    ],
+    [
+     "F34",
+     "第一页写着三个字"
+    ],
+    [
+     "F35",
+     "提着那盏缠枝莲纱灯"
+    ],
+    [
+     "F37",
+     "刻着一个澜字"
+    ],
+    [
+     "F38",
+     "老钟厂北边的废井里"
+    ],
+    [
+     "F39",
+     "上面写着你医馆的地址"
+    ],
+    [
+     "F40",
+     "门楣上依次刻着"
+    ],
+    [
+     "F40",
+     "甬道两侧各有三扇门"
+    ],
+    [
+     "F41",
+     "每行字的末尾"
+    ],
+    [
+     "F41",
+     "刻着一把短剑"
+    ],
+    [
+     "F42",
+     "灰布短褐"
+    ],
+    [
+     "F42",
+     "袖口磨得发白"
+    ],
+    [
+     "F43",
+     "黄花梨拐杖"
+    ],
+    [
+     "F44",
+     "一只鹰的模样"
+    ],
+    [
+     "F46",
+     "她叫周倚笙"
+    ],
+    [
+     "F47",
+     "笔画更细排列更密"
+    ],
+    [
+     "F48",
+     "一枝木槿花"
+    ],
+    [
+     "F49",
+     "三根褪色的红丝绳"
+    ],
+    [
+     "F50",
+     "门框和墙壁之间的一道缝隙"
+    ]
+   ]
+  }
+ ]
+}

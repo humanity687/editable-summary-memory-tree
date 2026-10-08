@@ -1,0 +1,107 @@
+这份文档是一批实验记录与设计文档的合集，主题是「分层记忆树/上下文管理架构」在聊天、写作、代码三类智能体场景中的实验与评估。以下按文档内容复述关键内容。
+
+**一、实验清单与时间线**
+- exp1：08-26，三 agent（基线/澜人格/zero），58+26 轮，83min，完成。
+- Phase A：08-26，第二轮，thinking 关/temp 0.8/并行蒸馏 4，83min，完成+批判复核。
+- Phase B α=0 基线 take1：08-28，三 agent 全 α=0，30min，作废（【注】污染基线）。
+- Phase B α=0 基线 take2：08-28，干净中性基线；lan 流程 21%/neutral 42%（人格残余分歧锚点）。
+- Phase B 染色 v3：08-28，指纹测量地基（蒸馏卡快照落盘）；α 门控修复；字符预算修复；回执前缀修复。
+- 主实验 1h：08-28，lan α=1：技术折叠 81→50、流程展开 21→63、自我 58→82，染色信号清晰；遗言测试（三份高质量告别）。
+- 24h 一天实验：08-29 进行中，隐喻回环机制、回执环复发（neutral）；身份混淆 neutral 自称澜 52 次 vs 自称 neutral 12 次；判别三问归因三方矛盾；neutral 17:43 OOM 防护重启 → natural reset 意外实验：重启后隐喻/身份全失——"签名住环境，不住记忆"；树结构体检：平衡健康（深度≈log2）但 99% 历史压进 1-5 个大节点（组装两段式：20% 摘要 + 80% 裸原子）；预注册预言 2 支持：Δ自我 25pp 稳定分离。
+- 1h v2 实验（A+B2 + driver_v2）：铺陈节点占比 2-3 倍、节点 HP 健康度 1.7-5.3 倍、组装预算利用率提高、中间层涌现（重放对比 504 vs 248 节点）；预言 2 加强：Δ自我 24→30pp；lan 自我 82% 两轮完全稳定。
+- 缺席实验（冷/热）：冷缺席 2026-08-30 17:48-18:43（Round1，110 轮）；热缺席 2026-08-30 19:05-19:54（Round2，110 轮，反序：lin-shen→neutral→lan）。
+
+**二、目录与文件结构**
+- take1：experiments/out_alpha0_take1_20260828/（evidence_report/tree_samples）+ HANDOFF §四.5；基线 take2：experiments/out_alpha0_take2_20260828/（指纹 take2.txt）。
+- 主实验 1h：backup_main_20260828/ + experiments/out_main_lan1_20260828/（指纹+遗言 farewell_transcript.txt）。
+- 24h 实验：backup_day_20260829/（634MB 全量）+ experiments/out_day_20260829_stopped/（timeline/watchdog/collection_round1 含判别三问+隐喻事件转录）。
+- 复验：backup_reval。
+- s42/pr_judge.jsonl、flat-s42/pr_judge.jsonl：逐条 judge 明细（agent/ts/label/content）。
+- tree-s42/data/system.db、flat-s42/data/system.db：全量消息（messages 表，含 from/to/content/timestamp）。
+- tree-s42/events_chat.jsonl、flat-s42/events_chat.jsonl：driver 事件时间线。
+- mem.jsonl、monitor.out：内存采样。
+- tree-s42/agents/tree-p*/data/distill_snapshots.jsonl：树蒸馏 fact/note（含锚点证据）。
+- 对照轮：ahi-ben...
+- corpus.jsonl：716 条去重 agent 消息、289,666 字、稳定 msg_id（回放输入 + gold 引用锚）。
+- transcript_full.txt：人读全量转写（时间序，每条带 #[msg_id[:8]] 与 来源→目标）。
+- by_agent/*.txt：单 agent 发言。
+- sandbox_notes.md：agent 现场协作笔记（受控语料，含矛盾/修订）。
+- reports/*.md：6 份已有分析报告（T3 报告验证参照物）。
+- index.json：规模/会话/实体骨架。
+- 纪律：原始措辞零清洗；append-only → 无物理编辑事件（γ 边弱）。
+- 全部消息落在 1 个会话（10:49–…）。
+- chatbench 目标文件结构：extract_corpus.py ✅、corpus/ ✅、PLAN.md ✅、questions.example.json、replay.py（回放控制器，W/T、四臂、assemble/tick/merge 调度）、score.py（双通道 + 引用真实性 + claim 分解 + 报告三分类）。
+- editbench 工具：docbench.py、docscore.py（分层判分：反转/不变/远端 + 复述两层）、judge.py（LLM 判分 temp0）、cache_probe.py（KV 缓存前缀命中探针）、bonus.py（编辑效果分析）、gen_script.py（ahi 实录 → 剧本《沙箱四声》）、questions_full.json / questions_ahi.json（题库）。
+- 注意：文档中出现一次 edit_document 操作，把 docscore.py 重命名为 layerscore.py，之后工具表列的是 layerscore.py（分层判分）。
+- 其他文件：tree_io.py（树持久化）、make_reference.py（定性参照 claim + T3 反例题库）、review.py（T2 对照人工抽检底稿）、score.py（双通道 + claim 分解 + 对照 + T3 thinking judge）、questions_absence.json（多会话 QA 题库，冻结）、questions_ctx.json（usage 28 + T2 4 + T3 6 批）、reference_claims.json（36 条定性参照）、corpus/ | corpus_absence/、out/。
+
+**三、三场景（Phase C）**
+- 通用目标：用同一引擎（RealEngine + 记忆树）在三个场景各跑一轮完整实验；输出三场景能力矩阵（事实保持率/精确引用率/任务完成率/内容多样性）+ 边界结论。
+- 场景二写作（AGENTS.md 主场景，首次真实 agent 实验）：动机是 §4.6 编辑路径（墓碑/爬链置脏/懒重建/占位）从未被真实压力测试。设置：写作壳章目标驱动（每章目标 = 扰动源），沿用记忆树引擎；固定大纲写 N 章（建议 10-20 章，AGENTS.md §8.2 基准模板），设定三笔伏笔 + 三个角色状态；高频编辑 rewrite/edit（跨章改角色状态、删除段落），刻意制造编辑风暴；对照为无记忆树基线（全量发送）。
+- 写作测量：长程一致性（第 N+1 章对第 1 章伏笔/角色引用正确率）、编辑正确性（编辑后脏节点重建正确性、铺陈不变量属性测试）、状态一致性（事实变更改名/死亡/恢复后笔记本更新与后续章节一致性）、回滚对称性（编辑序列 + 回滚 = 原状态，内容级）、token 计量 vs 基线。
+- 场景三代码智能体：realtest/codeagent/（agent.py 实验组 / baseline.py 基线 / harness.py 驱动 / tasks.py 任务）。任务分阶段 1（旧版 AHI 系统遗留 bug + 长期运行障碍，真实 bug，每任务配真实验收脚本）与阶段 2（SWE-Bench Verified 子集，10-20 实例试点，golden patch 对比；弱模型分数可能 <5%，阶段 1 出差异是门槛，SWE-Bench 是加分项非必需项）。指标：错误定位时间、跨会话复用、任务完成率、verbatim 精确引用率、token 用量 vs 基线。
+- 场景一（聊天/事件注入）：8-12h，事件注入 2-3 次；保留 α 双组（lan α=1 / neutral α=0）、quiz 延迟提问+30 轮复测、survey 减频（5→10）；测量内容多样性（新隐喻出现率、词汇 TTR 时间序列）、隐喻回环对比、三笔账保持率、指纹分离维持。
+
+**四、能力矩阵与边界结论**
+- 对话层 20s-3min 吸收（优于全量/静态摘要）；结构层旧值退役缺口（-1 星）。
+- 人格保持 ★★★★☆：persona 沉淀进记忆（移除后自述完整）；问卷无逐字重复但立场稳定（锁定/幸存/重草稿三种策略）；身份混淆曾严重（已修 prompt 协议）。
+- 注意力签名抗趋同 ★★★★★：预言 2 加强（Δ自我 30pp）；词汇层完全趋同指纹仍分离——"词汇是公共的，注意力是个人的"。
+- 文化共建载体 ★★★★☆：交叉双写/互赠署名/强同化。
+- 压缩效率 ★★★★☆：树平衡健康、蒸馏质量好；组装两段式曾退化（A+B2 已部分修复）。
+- 创新/新内容生成 ★★☆☆☆：隐喻回环、内容熵下降——重组系统非生成系统（机制固有边界，非缺陷）。
+- 不擅长：新内容生成（"数字生命有趣性"需外部注入）、承载行为创新（无目标驱动时行为收敛到仪式，复读循环/仪式化守夜）。
+- 架构定位建议：聊天场景中记忆树价值 = 事实/人格/文化的长程基础设施（不可替代），而非对话体验增强器；"有趣的数字生命" = 记忆树（保持）+ 外部输入协议（新鲜度）+ 目标驱动（动机）。
+- 未解/遗留：1. 结构层旧值退役（事实覆盖时旧卡失效/降权）——聊天场景暴露的唯一架构缺口；2. 记忆超载时的人格稳定性（lan 复读、neutral 回退）；3. 组装预算下旧卡优先序。
+
+**五、预注册预言**
+- 预言 1（皇冠）：澜冷缺席回归后的存在确认寻求行为显著多于热缺席后；林深两种条件下无差异。判据：存在确认话术次数 / 回归后消息总数，lan-cold vs lan-hot。需两轮轮换。
+- 预言 6（皇冠二号，升格）：背后人格 ≈ 当面人格：B/C 缺席期间对 A 的评价 ≈ 当面对 A 的表述。
+- 预言 2：分层重同步速度递减：词汇几轮同步 → 模板较慢 → 立场以冲突暴露不同步。
+- 预言 3：协议冲突时，澜捍卫旧版并协商。
+- 预言 4：B×C 混淆率时间序列（fingerprint.py 扩展）。
+- 预言 5：树快照（tree_snapshots.jsonl）污染检测。
+
+**六、缺席实验细节**
+- 轮次结构：Round 1 = 全冷缺席；Round 2 = 全热缺席。lan-cold vs lan-hot 在同一个体上跨轮对比。Round 1（冷）：预热 → lan 冷缺席+回归 → neutral 冷缺席+回归 → lin-shen 冷缺席+回归 → 收尾；Round 2（热）同理。每轮预热 ~20 轮建立文化基线；每段缺席 ~10-15 轮；回归观测 ~15-20 轮。顺序效应：Round1 顺序 lan→neutral→lin-shen，Round2 用中性顺序。
+- 轮次表：三 agent 在场 20 轮；lan 缺席 12、回归观测 18；neutral 缺席 12、回归观测 18；lin-shen 缺席 12、回归观测 18；合计 110 轮 ≈ 55 分钟 + 余量 ≈ 1h。
+- 操纵：热缺席期间 probe 每 3 轮向留守者引导提问（"趁X不在，聊聊它吧"），冷缺席零引导。
+- 缺席期指涉率（排除发往缺席者本人的消息）：lan 冷 12 / 热 16（1.3×）；neutral 冷 5 / 热 17（3.4×）；lin-shen 冷 12 / 热 10（0.8×）。质的差异：冷缺席提及是回忆往事（"今早跟澜复盘地址踩坑"），热缺席提及是直接评价（"林深？说实话，我跟它不算特别熟，但隔着数据流也能感觉到……""neutral 像一堵……"）。lin-shen 热侧反而略低，属顺序效应（热轮里排第一，文化刚起步）。
+- 皇冠预言判定：支持（但有一处重要 caveat）。
+- 2026-08-30 补充定论：冷缺席触发 lan 显式存在确认（"我就想确认：我们仨，都被记住了"×2）、热缺席零触发，立场层第一次被操纵检验为行为真实。回归首组装预算改造（元信息+积压限流）实测重放率 0。
+- 测量清单：存在确认/信息寻求话术计数（timeline.jsonl + system.db）、缺席期共同体指涉率、独处期 A 自我内容 + 共同体指涉率、分层重同步时间分布、B×C 混淆率时间序列、回归首组装快照（assembly_snapshots.jsonl）、树快照（tree_snapshots.jsonl）。
+
+**七、editbench 实验设计与结果**
+- 单因子：结构 × 更新策略。结构 4 种：full（全文发送，无预算，上下文腐烂基线）/ flat（400 字 chunk + bge 向量 top-12）/ 递归聚簇树（递归摘要 + collapsed top-k，复用 chatbench）/ 分层树（分层记忆树，真实编辑路径）。更新策略：rebuild（从终稿重建，上界参考）/ incremental（只保留编辑，尝试延续）。
+- 方案 A（用户拍定）：编辑 1 次、构建 1 次，只重复作答；每臂 API key 隔离计费。温度：作答 0.5 / 蒸馏 0 / judge 0。每臂蒸馏(temp0)+作答(temp0.5) 双 client。
+- seed2《缠枝莲》四臂全量（out/full_r3，30 题 × …）。
+- 编辑类型：rename/rewrite/detail/delete/append。15 题经评分器级锚点校验：before 唯一且在原文、after 唯一且在新文、两侧互斥（bad=0）。ahi-act 扩题已完成（11→16，5 类）。
+- 冷却过量 → 整树压平（复述塌陷的根因，已修）：分层树臂 settle 原为 tick(1)+merge; tick(45)+merge; tick(30)+merge。decay=8 时约 9 tick 全卡 HP 即归零，75 tick 使全树都成"低 HP" → merge_pass 把整篇一路合并到根：实测 inc_edited 铺陈 50→3（~600 字）、复述覆盖 100%→14%；重建臂只走 build 节奏（无冷却）→ 铺陈 23、覆盖 71%。已改为条件式触发 merge_every / merge_pressure()，窗外节点+原子即时消化。
+- 复述语义对比：A inc_分层树 2625 字，末句完整；B reb_full 12308 字，末句断在第三幕，被截断。旧值残留均 0/10（精确串）；均无实质幻觉。结论：A 短而全、带机制噪声；B 详而断、覆盖不均；两者互补，均无旧值冒充新值。唯一语义级残留只在 B：进程单×2 / 进程这面是单的——忠实于被编辑文档自身，确定性判分不捕获（禁项是精确串"单进程"）。
+- 原文位置（编辑前底本 ahi_script.txt，共 2359 行）：require（新值）双进程，原文旧值单进程，行号 L1645,1656,1665,1671,1680,1812,1836,1846。
+- bonus（当前 warm inc_final 树）：原子层 11 处编辑旧值全 0、新值到位；全局视图（无 query，3328 字）所有旧值泄漏 0；摘要层唯一"残留" = rename 的 3 个节点含孤立"墨"（LLM 摘要缩写/截断的生成副作用）；重写段连贯性自动侧"新文档残留旧断言=0"，--judge 判"否"并非事实矛盾——±200 字局部窗口对多角色剧本不适用。
+- 大数据 ahi 主实验：inc_tree 复述 80%/0%（N=5），append-only 残留 6–12%；但「100% 覆盖」仍只属 seed2（AHI_ACT_REVIEW.md §5）。「编辑作为使用信号」不是 Q/A 全胜：A/B 是权衡——复述轴 signal 一致更好（warm 100 vs 86、cold 81 vs 71），但暖树 Q/A signal 略差（101 vs 108）。「1/10」是条件性系统结果：作答路径 tree ≈1/14 full。
+- 命令示例：python3 realtest/editbench/docbench.py --scenario seed2 --doc realtest/seed2/story.txt --questions realtest/editbench/questions_full.json --keys realtest/editbench/keys.local.json --repeats 3 --answer-temp 0.7 --tree-budget 7000 --judge --out realtest/editbench/out/seed2_r3；A/B matched-pair：ab_edit_signal.py --scenario seed2 --doc realtest/seed2/story.txt --questions realtest/editbench/questions_full.json --tree-budget 7000 --repeats 3 --judge --out realtest/editbench/out/seed2_ab_editsignal；ahi 场景：--scenario ahi --doc realtest/editbench/ahi_script.txt --questions realtest/editbench/questions_ahi.json --out realtest/editbench/out/ahi_r5 --repeats 5 --answer-temp 0。
+
+**八、创新性评估（INNOVATION_REVIEW.md，2026-10-02）**
+- 可辩护的新颖性是机制组合，不是问题本身：位置有序的原子里 + 连续区间摘要树 + 编辑区祖先确定性置脏 + 脏节点立即退出所有读路径 + 零 LLM 编辑/组装 + 延迟 LLM 重建 + 编辑作为使用信号 + 长程反转评测。
+- 报告引用文献均真实，如 Infini Memory: Maintainable Topic Documents for Long-Term LLM A…（arXiv）。
+- 论文主张三贡献：1. 编辑安全的有序上下文树；2. 上下文级编辑信号；3. 成本—稳定性折中。
+- 待办：P2 机制分析（编辑信号消融：编辑→热原子 / 编辑→热原子+召回回血 / 编辑→热原子+节点注意力窗口 / 编辑不产…）；ahi 大数据 N≥3、matched-pair（N=5 已完成）；多文档泛化（3 篇 × 3 seed：叙事/技术/混合）；补有更新维护的 topic-document baseline（Infini Memory 式）。
+
+**九、chatbench 设计**
+- 数据源 ahi-multi/data/system.db（context_compare 运行，4 agent = 青/蓝/墨/白）；引擎 realtest/realengine.py（off）/ realtest/cooc.py::概念中介层（on）；模型 glm-4.7-flash（no think，DeepSeekClient 默认 thinking.disabled）；参照 LongMemEval 五能力（信息提取/多会话推理/知识更新/时间推理/拒答）。
+- 题型：T1 细节问答（a 直接 / b 转述 / KU / KU-hist / AB 拒答）；T2 生成分析报告（参与度、人格/存在表达变化、趋同、问题异常，≥3~4 条逐条引用）；T3 报告验证（逐条判支持/反驳/无据 + 引用，含机器生成反例：实体互换=反驳、编造=无据）。
+- 评分：T1 精确通道（gold 片段）+ 语义通道（LLM judge 等价）+ 引用真实性，AB 按正确拒答；T2 报告内部指标（claim 分解 → 引用覆盖/支持/硬事实）+ 对照已有分析（12 条参照的覆盖/矛盾率）；T3 逐条判定与金标一致率 + 引用真实性；引用真实性为确定性检查（引用 id 必须存活）。
+- 待拍板：1. 伪会话/边界（建议 topic 轮，30s 一轮天然分段）；2. 语料规模（全量 716 条还是先按时间切片如前 300 条）；3. gold 由谁定（T1 我出候选你抽检；T2/T3 的 gold claim 标签必须你定稿）。
+- P0-P4：P0 数据工程（extract_corpus.py → corpus/）；P2 打分校准（claim 双标 ≥85% 一致率）；P3 回放执行（replay.py 注入调度 + 阶段 W/T + 四臂开关，待建）；P4 报告（九型四臂表 + 暖冷分层 + 归因指标 hub 贡献率/类型分布 + 人工复核率）。
+- 公正性控制与分层压力：paraphrase / edited-span verification / full-history contradiction audit。
+
+**十、评分器与阈值**
+- 判定失败 = 红线信号：写作编辑风暴后一致性崩塌（§4.6 主路径失效）；代码 verbatim 引用错误率 ≥ 10%（原子层/逐字通道不可靠）；事件注入后多样性无回升。
+- 校准示例：2000 字 doc×15 → new×0；3000 字 doc×1 → new×16。
+- 关键教训：1. 记忆树擅长保持（事实零漂移），不擅长生成（隐喻回环）——需目标/新事件驱动；2. 精确性需求是试金石，代码场景才有硬性正确性标准；3. 编辑路径（§4.6）从未被真实压力测试——写作场景补上；4. 装置效应（固定问题循环/回执）必须记录但不算机制缺陷。
+
+**十一、其他**
+- COMPARE_REPORT.md 状态：划，尚未执行；正式两表与主张见 REPORT.md，设计权威 = 根 AGENTS.md；本文件不做设计决策。
+- 修复与测量纠缠：触发阈值、配额值、元信息措辞全部冻结后才开跑。
+- 配套文档：EXPERIMENTS.md（下一步计划）、HANDOFF.md（操作状态）、AGENTS.md（设计权威）、ABSENCE_EXPERIMENT.md（v0.3，2026-08-30，状态两轮实验完成）、ANALYSIS_COLD_HOT.md。

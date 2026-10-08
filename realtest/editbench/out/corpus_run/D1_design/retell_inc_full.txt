@@ -1,0 +1,1 @@
+文档不是叙事作品，没有人物、地点、物品、事件顺序与结局；它是三份技术设计规格：`AGENTS.md`（分层记忆树 v2 运行时设计，含设计哲学、铁律、数据模型、轨道A/B/C 机制、检索、编辑失效、使用信号层、参数台账、实施步骤与风险）、`realtest/USAGE_SPEC.md`（使用信号层规格：T1/T2/T3 三档信号、Phase A 实证、Phase B 记录层、Phase C 负结果、主题层协同、适用域边界）与 `ahi-bench/PERSONA_RETENTION.md`、`ahi-bench/SPEC.md`（人格保持实验与 M0 缺席/皇冠 pilot 的协议、判据与红线）。因此无法复述"人物、地点、物品、事件顺序与结局"。

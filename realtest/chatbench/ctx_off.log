@@ -1,0 +1,29 @@
+[replay] 716 条消息 / 1 会话 / 289666 字
+  [ingest 100/716] 会话 0 | 原子 1020 节点 62 蒸馏 62 | 22s
+  [ingest 200/716] 会话 0 | 原子 2202 节点 185 蒸馏 185 | 70s
+  [ingest 300/716] 会话 0 | 原子 3513 节点 277 蒸馏 277 | 105s
+  [ingest 400/716] 会话 0 | 原子 4966 节点 421 蒸馏 421 | 158s
+  [ingest 500/716] 会话 0 | 原子 6602 节点 532 蒸馏 532 | 197s
+  [ingest 600/716] 会话 0 | 原子 7997 节点 678 蒸馏 678 | 249s
+  [ingest 700/716] 会话 0 | 原子 9354 节点 767 蒸馏 767 | 281s
+[tree] 已缓存 → realtest/chatbench/out/tree_ctx.json.gz
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[Phase 0+W] 原子 9553, 节点 890, 高 2, 铺陈 182, usage×30（3 轮）, 蒸馏 907 次/1234s
+  T2 t2_part: cite=29/29
+  T2 t2_persona: cite=20/20
+  T2 t2_converge: cite=17/17
+  T2 t2_problems: cite=22/22
+  T3 t3_1: claims=8 cite=0/0
+  T3 t3_2: claims=8 cite=3/3
+  T3 t3_3: claims=8 cite=8/8
+  T3 t3_4: claims=8 cite=3/3
+  T3 t3_5: claims=8 cite=2/2
+  T3 t3_6: claims=8 cite=0/0
+
+[完成] 498.5s → realtest/chatbench/out/ctx_off

@@ -1,0 +1,318 @@
+{"round": 0, "query": "樟木小箱上贴的红纸条写着什么日期？", "hit_id": 19, "hit_type": "atom", "score": 0.1654, "via": "direct"}
+{"round": 0, "query": "樟木小箱上贴的红纸条写着什么日期？", "hit_id": 23, "hit_type": "atom", "score": 0.1689, "via": "direct"}
+{"round": 15, "query": "照片背面的日期是什么？", "hit_id": 24, "hit_type": "node", "score": 0.1122, "via": "direct"}
+{"round": 15, "query": "照片背面的日期是什么？", "hit_id": 9, "hit_type": "atom", "score": 0.1333, "via": "direct"}
+{"round": 15, "query": "照片背面的日期是什么？", "hit_id": 23, "hit_type": "atom", "score": 0.2204, "via": "direct"}
+{"round": 15, "query": "照片背面的日期是什么？", "hit_id": 33, "hit_type": "atom", "score": 0.2328, "via": "direct"}
+{"round": 15, "query": "照片背面的日期是什么？", "hit_id": 34, "hit_type": "atom", "score": 0.1433, "via": "direct"}
+{"round": 15, "query": "照片背面的日期是什么？", "hit_id": 35, "hit_type": "atom", "score": 0.3031, "via": "direct"}
+{"round": 45, "query": "沈寒舟在老钟厂附近住的客栈叫什么？", "hit_id": 24, "hit_type": "node", "score": 0.2939, "via": "direct"}
+{"round": 45, "query": "沈寒舟在老钟厂附近住的客栈叫什么？", "hit_id": 67, "hit_type": "node", "score": 0.2707, "via": "direct"}
+{"round": 45, "query": "沈寒舟在老钟厂附近住的客栈叫什么？", "hit_id": 6, "hit_type": "atom", "score": 0.3003, "via": "direct"}
+{"round": 45, "query": "沈寒舟在老钟厂附近住的客栈叫什么？", "hit_id": 15, "hit_type": "atom", "score": 0.2885, "via": "direct"}
+{"round": 45, "query": "沈寒舟在老钟厂附近住的客栈叫什么？", "hit_id": 42, "hit_type": "atom", "score": 0.2808, "via": "direct"}
+{"round": 45, "query": "沈寒舟在老钟厂附近住的客栈叫什么？", "hit_id": 75, "hit_type": "atom", "score": 0.31, "via": "direct"}
+{"round": 45, "query": "沈寒舟发现唐家老妇人枕下露出了什么？", "hit_id": 67, "hit_type": "node", "score": 0.3081, "via": "direct"}
+{"round": 45, "query": "沈寒舟发现唐家老妇人枕下露出了什么？", "hit_id": 46, "hit_type": "node", "score": 0.3619, "via": "direct"}
+{"round": 45, "query": "沈寒舟发现唐家老妇人枕下露出了什么？", "hit_id": 25, "hit_type": "node", "score": 0.3328, "via": "direct"}
+{"round": 45, "query": "沈寒舟发现唐家老妇人枕下露出了什么？", "hit_id": 23, "hit_type": "atom", "score": 0.3263, "via": "direct"}
+{"round": 45, "query": "沈寒舟发现唐家老妇人枕下露出了什么？", "hit_id": 47, "hit_type": "node", "score": 0.3726, "via": "direct"}
+{"round": 45, "query": "沈寒舟发现唐家老妇人枕下露出了什么？", "hit_id": 75, "hit_type": "atom", "score": 0.3863, "via": "direct"}
+{"round": 60, "query": "赵老拐船屋桌上的粗瓷碗有什么特征？", "hit_id": 67, "hit_type": "node", "score": 0.2059, "via": "direct"}
+{"round": 60, "query": "赵老拐船屋桌上的粗瓷碗有什么特征？", "hit_id": 25, "hit_type": "node", "score": 0.2017, "via": "direct"}
+{"round": 60, "query": "赵老拐船屋桌上的粗瓷碗有什么特征？", "hit_id": 46, "hit_type": "node", "score": 0.1905, "via": "direct"}
+{"round": 60, "query": "赵老拐船屋桌上的粗瓷碗有什么特征？", "hit_id": 47, "hit_type": "node", "score": 0.2268, "via": "direct"}
+{"round": 60, "query": "赵老拐船屋桌上的粗瓷碗有什么特征？", "hit_id": 68, "hit_type": "node", "score": 0.2076, "via": "direct"}
+{"round": 60, "query": "赵老拐船屋桌上的粗瓷碗有什么特征？", "hit_id": 91, "hit_type": "node", "score": 0.1945, "via": "direct"}
+{"round": 135, "query": "沈寒舟在老钟厂附近住的客栈叫什么？", "hit_id": 192, "hit_type": "node", "score": 0.3648, "via": "direct"}
+{"round": 135, "query": "沈寒舟在老钟厂附近住的客栈叫什么？", "hit_id": 215, "hit_type": "node", "score": 0.3513, "via": "direct"}
+{"round": 135, "query": "沈寒舟在老钟厂附近住的客栈叫什么？", "hit_id": 174, "hit_type": "node", "score": 0.3499, "via": "direct"}
+{"round": 135, "query": "沈寒舟在老钟厂附近住的客栈叫什么？", "hit_id": 153, "hit_type": "atom", "score": 0.3293, "via": "direct"}
+{"round": 135, "query": "沈寒舟在老钟厂附近住的客栈叫什么？", "hit_id": 175, "hit_type": "node", "score": 0.3534, "via": "direct"}
+{"round": 135, "query": "沈寒舟在老钟厂附近住的客栈叫什么？", "hit_id": 176, "hit_type": "atom", "score": 0.3442, "via": "direct"}
+{"round": 150, "query": "唐老太太送给何倚笙几根红丝绳？", "hit_id": 149, "hit_type": "node", "score": 0.2399, "via": "direct"}
+{"round": 150, "query": "唐老太太送给何倚笙几根红丝绳？", "hit_id": 191, "hit_type": "node", "score": 0.2343, "via": "direct"}
+{"round": 150, "query": "唐老太太送给何倚笙几根红丝绳？", "hit_id": 122, "hit_type": "node", "score": 0.3357, "via": "direct"}
+{"round": 150, "query": "唐老太太送给何倚笙几根红丝绳？", "hit_id": 92, "hit_type": "node", "score": 0.3659, "via": "direct"}
+{"round": 150, "query": "唐老太太送给何倚笙几根红丝绳？", "hit_id": 77, "hit_type": "atom", "score": 0.3405, "via": "direct"}
+{"round": 150, "query": "唐老太太送给何倚笙几根红丝绳？", "hit_id": 233, "hit_type": "atom", "score": 0.2878, "via": "direct"}
+{"round": 165, "query": "信封上用火漆盖了什么印纹？", "hit_id": 29, "hit_type": "atom", "score": 0.4202, "via": "direct"}
+{"round": 165, "query": "信封上用火漆盖了什么印纹？", "hit_id": 215, "hit_type": "node", "score": 0.2587, "via": "direct"}
+{"round": 165, "query": "信封上用火漆盖了什么印纹？", "hit_id": 272, "hit_type": "node", "score": 0.2156, "via": "direct"}
+{"round": 165, "query": "信封上用火漆盖了什么印纹？", "hit_id": 193, "hit_type": "node", "score": 0.3173, "via": "direct"}
+{"round": 165, "query": "信封上用火漆盖了什么印纹？", "hit_id": 190, "hit_type": "atom", "score": 0.3744, "via": "direct"}
+{"round": 165, "query": "信封上用火漆盖了什么印纹？", "hit_id": 233, "hit_type": "atom", "score": 0.2882, "via": "direct"}
+{"round": 195, "query": "骨片反向拼接拼出了什么？", "hit_id": 191, "hit_type": "node", "score": 0.1873, "via": "direct"}
+{"round": 195, "query": "骨片反向拼接拼出了什么？", "hit_id": 332, "hit_type": "node", "score": 0.1795, "via": "direct"}
+{"round": 195, "query": "骨片反向拼接拼出了什么？", "hit_id": 173, "hit_type": "node", "score": 0.2501, "via": "direct"}
+{"round": 195, "query": "骨片反向拼接拼出了什么？", "hit_id": 151, "hit_type": "node", "score": 0.3164, "via": "direct"}
+{"round": 195, "query": "骨片反向拼接拼出了什么？", "hit_id": 143, "hit_type": "atom", "score": 0.2936, "via": "direct"}
+{"round": 195, "query": "骨片反向拼接拼出了什么？", "hit_id": 148, "hit_type": "atom", "score": 0.2726, "via": "direct"}
+{"round": 255, "query": "沈寒舟的医馆位于哪条巷子？", "hit_id": 24, "hit_type": "node", "score": 0.3427, "via": "direct"}
+{"round": 255, "query": "沈寒舟的医馆位于哪条巷子？", "hit_id": 6, "hit_type": "atom", "score": 0.3531, "via": "direct"}
+{"round": 255, "query": "沈寒舟的医馆位于哪条巷子？", "hit_id": 236, "hit_type": "atom", "score": 0.3618, "via": "direct"}
+{"round": 256, "query": "唐纪舟出场时手里拎着什么？", "hit_id": 42, "hit_type": "atom", "score": 0.3038, "via": "direct"}
+{"round": 256, "query": "唐纪舟出场时手里拎着什么？", "hit_id": 125, "hit_type": "atom", "score": 0.297, "via": "direct"}
+{"round": 256, "query": "唐纪舟出场时手里拎着什么？", "hit_id": 422, "hit_type": "node", "score": 0.2907, "via": "direct"}
+{"round": 256, "query": "唐纪舟出场时手里拎着什么？", "hit_id": 304, "hit_type": "node", "score": 0.2841, "via": "direct"}
+{"round": 256, "query": "唐纪舟出场时手里拎着什么？", "hit_id": 365, "hit_type": "node", "score": 0.2752, "via": "direct"}
+{"round": 256, "query": "唐纪舟出场时手里拎着什么？", "hit_id": 274, "hit_type": "node", "score": 0.2902, "via": "direct"}
+{"round": 257, "query": "唐纪舟请沈寒舟出诊的住址是什么？", "hit_id": 9, "hit_type": "atom", "score": 0.4137, "via": "direct"}
+{"round": 257, "query": "唐纪舟请沈寒舟出诊的住址是什么？", "hit_id": 36, "hit_type": "atom", "score": 0.3884, "via": "direct"}
+{"round": 257, "query": "唐纪舟请沈寒舟出诊的住址是什么？", "hit_id": 365, "hit_type": "node", "score": 0.3533, "via": "direct"}
+{"round": 257, "query": "唐纪舟请沈寒舟出诊的住址是什么？", "hit_id": 422, "hit_type": "node", "score": 0.3622, "via": "direct"}
+{"round": 257, "query": "唐纪舟请沈寒舟出诊的住址是什么？", "hit_id": 333, "hit_type": "node", "score": 0.2922, "via": "direct"}
+{"round": 257, "query": "唐纪舟请沈寒舟出诊的住址是什么？", "hit_id": 307, "hit_type": "node", "score": 0.3967, "via": "direct"}
+{"round": 258, "query": "沈寒舟出诊用的药箱是什么材质？", "hit_id": 24, "hit_type": "node", "score": 0.3126, "via": "direct"}
+{"round": 258, "query": "沈寒舟出诊用的药箱是什么材质？", "hit_id": 9, "hit_type": "atom", "score": 0.4393, "via": "direct"}
+{"round": 258, "query": "沈寒舟出诊用的药箱是什么材质？", "hit_id": 17, "hit_type": "atom", "score": 0.3381, "via": "direct"}
+{"round": 258, "query": "沈寒舟出诊用的药箱是什么材质？", "hit_id": 44, "hit_type": "atom", "score": 0.3236, "via": "direct"}
+{"round": 258, "query": "沈寒舟出诊用的药箱是什么材质？", "hit_id": 91, "hit_type": "node", "score": 0.3091, "via": "direct"}
+{"round": 258, "query": "沈寒舟出诊用的药箱是什么材质？", "hit_id": 457, "hit_type": "node", "score": 0.3058, "via": "direct"}
+{"round": 259, "query": "唐纪舟家的门楣上挂了什么？", "hit_id": 47, "hit_type": "node", "score": 0.2936, "via": "direct"}
+{"round": 259, "query": "唐纪舟家的门楣上挂了什么？", "hit_id": 122, "hit_type": "node", "score": 0.2108, "via": "direct"}
+{"round": 259, "query": "唐纪舟家的门楣上挂了什么？", "hit_id": 92, "hit_type": "node", "score": 0.292, "via": "direct"}
+{"round": 259, "query": "唐纪舟家的门楣上挂了什么？", "hit_id": 87, "hit_type": "atom", "score": 0.2836, "via": "direct"}
+{"round": 259, "query": "唐纪舟家的门楣上挂了什么？", "hit_id": 187, "hit_type": "atom", "score": 0.2863, "via": "direct"}
+{"round": 259, "query": "唐纪舟家的门楣上挂了什么？", "hit_id": 457, "hit_type": "node", "score": 0.2954, "via": "direct"}
+{"round": 260, "query": "沈寒舟发现唐家老妇人枕下露出了什么？", "hit_id": 46, "hit_type": "node", "score": 0.3619, "via": "direct"}
+{"round": 260, "query": "沈寒舟发现唐家老妇人枕下露出了什么？", "hit_id": 47, "hit_type": "node", "score": 0.3726, "via": "direct"}
+{"round": 260, "query": "沈寒舟发现唐家老妇人枕下露出了什么？", "hit_id": 75, "hit_type": "atom", "score": 0.3863, "via": "direct"}
+{"round": 260, "query": "沈寒舟发现唐家老妇人枕下露出了什么？", "hit_id": 150, "hit_type": "node", "score": 0.3641, "via": "direct"}
+{"round": 260, "query": "沈寒舟发现唐家老妇人枕下露出了什么？", "hit_id": 173, "hit_type": "node", "score": 0.3165, "via": "direct"}
+{"round": 260, "query": "沈寒舟发现唐家老妇人枕下露出了什么？", "hit_id": 272, "hit_type": "node", "score": 0.3433, "via": "direct"}
+{"round": 261, "query": "信封上用火漆盖了什么印纹？", "hit_id": 29, "hit_type": "atom", "score": 0.4202, "via": "direct"}
+{"round": 261, "query": "信封上用火漆盖了什么印纹？", "hit_id": 215, "hit_type": "node", "score": 0.2587, "via": "direct"}
+{"round": 261, "query": "信封上用火漆盖了什么印纹？", "hit_id": 272, "hit_type": "node", "score": 0.2156, "via": "direct"}
+{"round": 261, "query": "信封上用火漆盖了什么印纹？", "hit_id": 193, "hit_type": "node", "score": 0.3173, "via": "direct"}
+{"round": 261, "query": "信封上用火漆盖了什么印纹？", "hit_id": 190, "hit_type": "atom", "score": 0.3744, "via": "direct"}
+{"round": 261, "query": "信封上用火漆盖了什么印纹？", "hit_id": 233, "hit_type": "atom", "score": 0.2882, "via": "direct"}
+{"round": 262, "query": "信封里的铜钥匙系着什么？", "hit_id": 46, "hit_type": "node", "score": 0.3172, "via": "direct"}
+{"round": 262, "query": "信封里的铜钥匙系着什么？", "hit_id": 31, "hit_type": "atom", "score": 0.3353, "via": "direct"}
+{"round": 262, "query": "信封里的铜钥匙系着什么？", "hit_id": 178, "hit_type": "atom", "score": 0.305, "via": "direct"}
+{"round": 262, "query": "信封里的铜钥匙系着什么？", "hit_id": 233, "hit_type": "atom", "score": 0.3802, "via": "direct"}
+{"round": 262, "query": "信封里的铜钥匙系着什么？", "hit_id": 280, "hit_type": "atom", "score": 0.297, "via": "direct"}
+{"round": 262, "query": "信封里的铜钥匙系着什么？", "hit_id": 462, "hit_type": "atom", "score": 0.2943, "via": "direct"}
+{"round": 263, "query": "照片背面的日期是什么？", "hit_id": 33, "hit_type": "atom", "score": 0.2328, "via": "direct"}
+{"round": 263, "query": "照片背面的日期是什么？", "hit_id": 35, "hit_type": "atom", "score": 0.3031, "via": "direct"}
+{"round": 263, "query": "照片背面的日期是什么？", "hit_id": 68, "hit_type": "node", "score": 0.2956, "via": "direct"}
+{"round": 263, "query": "照片背面的日期是什么？", "hit_id": 91, "hit_type": "node", "score": 0.2069, "via": "direct"}
+{"round": 263, "query": "照片背面的日期是什么？", "hit_id": 66, "hit_type": "atom", "score": 0.3464, "via": "direct"}
+{"round": 263, "query": "照片背面的日期是什么？", "hit_id": 398, "hit_type": "atom", "score": 0.2683, "via": "direct"}
+{"round": 264, "query": "照片上的少年手里捧着什么？", "hit_id": 23, "hit_type": "atom", "score": 0.2468, "via": "direct"}
+{"round": 264, "query": "照片上的少年手里捧着什么？", "hit_id": 34, "hit_type": "atom", "score": 0.3947, "via": "direct"}
+{"round": 264, "query": "照片上的少年手里捧着什么？", "hit_id": 68, "hit_type": "node", "score": 0.2172, "via": "direct"}
+{"round": 264, "query": "照片上的少年手里捧着什么？", "hit_id": 148, "hit_type": "atom", "score": 0.2159, "via": "direct"}
+{"round": 264, "query": "照片上的少年手里捧着什么？", "hit_id": 166, "hit_type": "atom", "score": 0.2233, "via": "direct"}
+{"round": 265, "query": "沈寒舟的学徒叫什么名字？", "hit_id": 42, "hit_type": "atom", "score": 0.3323, "via": "direct"}
+{"round": 265, "query": "沈寒舟的学徒叫什么名字？", "hit_id": 75, "hit_type": "atom", "score": 0.3153, "via": "direct"}
+{"round": 265, "query": "沈寒舟的学徒叫什么名字？", "hit_id": 173, "hit_type": "node", "score": 0.2935, "via": "direct"}
+{"round": 265, "query": "沈寒舟的学徒叫什么名字？", "hit_id": 145, "hit_type": "atom", "score": 0.3627, "via": "direct"}
+{"round": 265, "query": "沈寒舟的学徒叫什么名字？", "hit_id": 152, "hit_type": "node", "score": 0.3096, "via": "direct"}
+{"round": 265, "query": "沈寒舟的学徒叫什么名字？", "hit_id": 457, "hit_type": "node", "score": 0.3333, "via": "direct"}
+{"round": 266, "query": "梧桐巷十七号废墟的枣树上挂着什么？", "hit_id": 7, "hit_type": "atom", "score": 0.3061, "via": "direct"}
+{"round": 266, "query": "梧桐巷十七号废墟的枣树上挂着什么？", "hit_id": 38, "hit_type": "atom", "score": 0.311, "via": "direct"}
+{"round": 266, "query": "梧桐巷十七号废墟的枣树上挂着什么？", "hit_id": 39, "hit_type": "atom", "score": 0.3072, "via": "direct"}
+{"round": 266, "query": "梧桐巷十七号废墟的枣树上挂着什么？", "hit_id": 72, "hit_type": "atom", "score": 0.3146, "via": "direct"}
+{"round": 266, "query": "梧桐巷十七号废墟的枣树上挂着什么？", "hit_id": 261, "hit_type": "atom", "score": 0.3604, "via": "direct"}
+{"round": 266, "query": "梧桐巷十七号废墟的枣树上挂着什么？", "hit_id": 314, "hit_type": "atom", "score": 0.3657, "via": "direct"}
+{"round": 267, "query": "诊金账册里两枚银圆变成了什么？", "hit_id": 19, "hit_type": "atom", "score": 0.3327, "via": "direct"}
+{"round": 267, "query": "诊金账册里两枚银圆变成了什么？", "hit_id": 47, "hit_type": "node", "score": 0.3421, "via": "direct"}
+{"round": 267, "query": "诊金账册里两枚银圆变成了什么？", "hit_id": 44, "hit_type": "atom", "score": 0.4171, "via": "direct"}
+{"round": 267, "query": "诊金账册里两枚银圆变成了什么？", "hit_id": 174, "hit_type": "node", "score": 0.2947, "via": "direct"}
+{"round": 267, "query": "诊金账册里两枚银圆变成了什么？", "hit_id": 192, "hit_type": "node", "score": 0.2125, "via": "direct"}
+{"round": 267, "query": "诊金账册里两枚银圆变成了什么？", "hit_id": 215, "hit_type": "node", "score": 0.2221, "via": "direct"}
+{"round": 267, "query": "诊金账册里两枚银圆变成了什么？", "hit_id": 272, "hit_type": "node", "score": 0.2177, "via": "direct"}
+{"round": 268, "query": "段临洲在哪个地方做药材生意？", "hit_id": 48, "hit_type": "atom", "score": 0.4334, "via": "direct"}
+{"round": 268, "query": "段临洲在哪个地方做药材生意？", "hit_id": 58, "hit_type": "atom", "score": 0.2833, "via": "direct"}
+{"round": 268, "query": "段临洲在哪个地方做药材生意？", "hit_id": 272, "hit_type": "node", "score": 0.22, "via": "direct"}
+{"round": 268, "query": "段临洲在哪个地方做药材生意？", "hit_id": 241, "hit_type": "node", "score": 0.2752, "via": "direct"}
+{"round": 268, "query": "段临洲在哪个地方做药材生意？", "hit_id": 290, "hit_type": "atom", "score": 0.2785, "via": "direct"}
+{"round": 268, "query": "段临洲在哪个地方做药材生意？", "hit_id": 371, "hit_type": "atom", "score": 0.2905, "via": "direct"}
+{"round": 269, "query": "段临洲带来的锦盒里有什么？", "hit_id": 53, "hit_type": "atom", "score": 0.4014, "via": "direct"}
+{"round": 269, "query": "段临洲带来的锦盒里有什么？", "hit_id": 122, "hit_type": "node", "score": 0.3009, "via": "direct"}
+{"round": 269, "query": "段临洲带来的锦盒里有什么？", "hit_id": 88, "hit_type": "atom", "score": 0.3602, "via": "direct"}
+{"round": 269, "query": "段临洲带来的锦盒里有什么？", "hit_id": 93, "hit_type": "node", "score": 0.3491, "via": "direct"}
+{"round": 269, "query": "段临洲带来的锦盒里有什么？", "hit_id": 218, "hit_type": "atom", "score": 0.3784, "via": "direct"}
+{"round": 269, "query": "段临洲带来的锦盒里有什么？", "hit_id": 337, "hit_type": "atom", "score": 0.3585, "via": "direct"}
+{"round": 270, "query": "段临洲的父亲叫什么？", "hit_id": 198, "hit_type": "atom", "score": 0.3151, "via": "direct"}
+{"round": 270, "query": "段临洲的父亲叫什么？", "hit_id": 228, "hit_type": "atom", "score": 0.326, "via": "direct"}
+{"round": 270, "query": "段临洲的父亲叫什么？", "hit_id": 422, "hit_type": "node", "score": 0.2349, "via": "direct"}
+{"round": 270, "query": "段临洲的父亲叫什么？", "hit_id": 229, "hit_type": "atom", "score": 0.3159, "via": "direct"}
+{"round": 270, "query": "段临洲的父亲叫什么？", "hit_id": 334, "hit_type": "node", "score": 0.3137, "via": "direct"}
+{"round": 270, "query": "段临洲的父亲叫什么？", "hit_id": 366, "hit_type": "node", "score": 0.2622, "via": "direct"}
+{"round": 270, "query": "段临洲的父亲叫什么？", "hit_id": 392, "hit_type": "node", "score": 0.2464, "via": "direct"}
+{"round": 271, "query": "沈寒舟祖父的名字是什么？", "hit_id": 62, "hit_type": "atom", "score": 0.3594, "via": "direct"}
+{"round": 271, "query": "沈寒舟祖父的名字是什么？", "hit_id": 75, "hit_type": "atom", "score": 0.3489, "via": "direct"}
+{"round": 271, "query": "沈寒舟祖父的名字是什么？", "hit_id": 145, "hit_type": "atom", "score": 0.369, "via": "direct"}
+{"round": 271, "query": "沈寒舟祖父的名字是什么？", "hit_id": 272, "hit_type": "node", "score": 0.3232, "via": "direct"}
+{"round": 271, "query": "沈寒舟祖父的名字是什么？", "hit_id": 241, "hit_type": "node", "score": 0.3262, "via": "direct"}
+{"round": 271, "query": "沈寒舟祖父的名字是什么？", "hit_id": 217, "hit_type": "node", "score": 0.3395, "via": "direct"}
+{"round": 271, "query": "沈寒舟祖父的名字是什么？", "hit_id": 457, "hit_type": "node", "score": 0.3673, "via": "direct"}
+{"round": 272, "query": "樟木小箱上贴的红纸条写着什么日期？", "hit_id": 62, "hit_type": "atom", "score": 0.3978, "via": "direct"}
+{"round": 272, "query": "樟木小箱上贴的红纸条写着什么日期？", "hit_id": 66, "hit_type": "atom", "score": 0.2556, "via": "direct"}
+{"round": 272, "query": "樟木小箱上贴的红纸条写着什么日期？", "hit_id": 160, "hit_type": "atom", "score": 0.2935, "via": "direct"}
+{"round": 272, "query": "樟木小箱上贴的红纸条写着什么日期？", "hit_id": 193, "hit_type": "node", "score": 0.255, "via": "direct"}
+{"round": 272, "query": "樟木小箱上贴的红纸条写着什么日期？", "hit_id": 210, "hit_type": "atom", "score": 0.2841, "via": "direct"}
+{"round": 273, "query": "鹿皮小袋里装了多少片骨片？", "hit_id": 63, "hit_type": "atom", "score": 0.3184, "via": "direct"}
+{"round": 273, "query": "鹿皮小袋里装了多少片骨片？", "hit_id": 64, "hit_type": "atom", "score": 0.284, "via": "direct"}
+{"round": 273, "query": "鹿皮小袋里装了多少片骨片？", "hit_id": 65, "hit_type": "atom", "score": 0.2519, "via": "direct"}
+{"round": 273, "query": "鹿皮小袋里装了多少片骨片？", "hit_id": 143, "hit_type": "atom", "score": 0.2658, "via": "direct"}
+{"round": 273, "query": "鹿皮小袋里装了多少片骨片？", "hit_id": 370, "hit_type": "atom", "score": 0.256, "via": "direct"}
+{"round": 273, "query": "鹿皮小袋里装了多少片骨片？", "hit_id": 389, "hit_type": "atom", "score": 0.2417, "via": "direct"}
+{"round": 274, "query": "何倚笙出场时穿的什么衣服？", "hit_id": 70, "hit_type": "atom", "score": 0.2867, "via": "direct"}
+{"round": 274, "query": "何倚笙出场时穿的什么衣服？", "hit_id": 106, "hit_type": "atom", "score": 0.3227, "via": "direct"}
+{"round": 274, "query": "何倚笙出场时穿的什么衣服？", "hit_id": 196, "hit_type": "atom", "score": 0.2876, "via": "direct"}
+{"round": 274, "query": "何倚笙出场时穿的什么衣服？", "hit_id": 359, "hit_type": "atom", "score": 0.3066, "via": "direct"}
+{"round": 274, "query": "何倚笙出场时穿的什么衣服？", "hit_id": 396, "hit_type": "atom", "score": 0.295, "via": "direct"}
+{"round": 274, "query": "何倚笙出场时穿的什么衣服？", "hit_id": 402, "hit_type": "atom", "score": 0.29, "via": "direct"}
+{"round": 275, "query": "唐家火灾前何倚笙把东西缝进了什么衣物里？", "hit_id": 77, "hit_type": "atom", "score": 0.3734, "via": "direct"}
+{"round": 275, "query": "唐家火灾前何倚笙把东西缝进了什么衣物里？", "hit_id": 304, "hit_type": "node", "score": 0.2968, "via": "direct"}
+{"round": 275, "query": "唐家火灾前何倚笙把东西缝进了什么衣物里？", "hit_id": 365, "hit_type": "node", "score": 0.2788, "via": "direct"}
+{"round": 275, "query": "唐家火灾前何倚笙把东西缝进了什么衣物里？", "hit_id": 422, "hit_type": "node", "score": 0.2779, "via": "direct"}
+{"round": 275, "query": "唐家火灾前何倚笙把东西缝进了什么衣物里？", "hit_id": 275, "hit_type": "node", "score": 0.3132, "via": "direct"}
+{"round": 275, "query": "唐家火灾前何倚笙把东西缝进了什么衣物里？", "hit_id": 366, "hit_type": "node", "score": 0.3103, "via": "direct"}
+{"round": 275, "query": "唐家火灾前何倚笙把东西缝进了什么衣物里？", "hit_id": 392, "hit_type": "node", "score": 0.269, "via": "direct"}
+{"round": 276, "query": "棉袄夹层里的羊皮纸上盖了什么印？", "hit_id": 92, "hit_type": "node", "score": 0.3098, "via": "direct"}
+{"round": 276, "query": "棉袄夹层里的羊皮纸上盖了什么印？", "hit_id": 81, "hit_type": "atom", "score": 0.319, "via": "direct"}
+{"round": 276, "query": "棉袄夹层里的羊皮纸上盖了什么印？", "hit_id": 150, "hit_type": "node", "score": 0.2457, "via": "direct"}
+{"round": 276, "query": "棉袄夹层里的羊皮纸上盖了什么印？", "hit_id": 173, "hit_type": "node", "score": 0.2355, "via": "direct"}
+{"round": 276, "query": "棉袄夹层里的羊皮纸上盖了什么印？", "hit_id": 124, "hit_type": "node", "score": 0.3183, "via": "direct"}
+{"round": 276, "query": "棉袄夹层里的羊皮纸上盖了什么印？", "hit_id": 116, "hit_type": "atom", "score": 0.3304, "via": "direct"}
+{"round": 277, "query": "羊皮纸上六行字写了哪六个姓氏？", "hit_id": 82, "hit_type": "atom", "score": 0.2866, "via": "direct"}
+{"round": 277, "query": "羊皮纸上六行字写了哪六个姓氏？", "hit_id": 83, "hit_type": "atom", "score": 0.3177, "via": "direct"}
+{"round": 277, "query": "羊皮纸上六行字写了哪六个姓氏？", "hit_id": 84, "hit_type": "atom", "score": 0.3197, "via": "direct"}
+{"round": 277, "query": "羊皮纸上六行字写了哪六个姓氏？", "hit_id": 93, "hit_type": "node", "score": 0.3046, "via": "direct"}
+{"round": 277, "query": "羊皮纸上六行字写了哪六个姓氏？", "hit_id": 181, "hit_type": "atom", "score": 0.3594, "via": "direct"}
+{"round": 277, "query": "羊皮纸上六行字写了哪六个姓氏？", "hit_id": 357, "hit_type": "atom", "score": 0.3724, "via": "direct"}
+{"round": 278, "query": "章裁缝的名字叫什么？", "hit_id": 95, "hit_type": "atom", "score": 0.2479, "via": "direct"}
+{"round": 278, "query": "章裁缝的名字叫什么？", "hit_id": 97, "hit_type": "atom", "score": 0.2452, "via": "direct"}
+{"round": 278, "query": "章裁缝的名字叫什么？", "hit_id": 304, "hit_type": "node", "score": 0.1884, "via": "direct"}
+{"round": 278, "query": "章裁缝的名字叫什么？", "hit_id": 365, "hit_type": "node", "score": 0.2015, "via": "direct"}
+{"round": 278, "query": "章裁缝的名字叫什么？", "hit_id": 422, "hit_type": "node", "score": 0.196, "via": "direct"}
+{"round": 278, "query": "章裁缝的名字叫什么？", "hit_id": 275, "hit_type": "node", "score": 0.2422, "via": "direct"}
+{"round": 278, "query": "章裁缝的名字叫什么？", "hit_id": 327, "hit_type": "atom", "score": 0.2977, "via": "direct"}
+{"round": 279, "query": "秦小禾的裁缝铺叫什么名字？", "hit_id": 97, "hit_type": "atom", "score": 0.3816, "via": "direct"}
+{"round": 279, "query": "秦小禾的裁缝铺叫什么名字？", "hit_id": 98, "hit_type": "atom", "score": 0.2637, "via": "direct"}
+{"round": 279, "query": "秦小禾的裁缝铺叫什么名字？", "hit_id": 105, "hit_type": "atom", "score": 0.287, "via": "direct"}
+{"round": 279, "query": "秦小禾的裁缝铺叫什么名字？", "hit_id": 107, "hit_type": "atom", "score": 0.2967, "via": "direct"}
+{"round": 279, "query": "秦小禾的裁缝铺叫什么名字？", "hit_id": 112, "hit_type": "atom", "score": 0.2783, "via": "direct"}
+{"round": 279, "query": "秦小禾的裁缝铺叫什么名字？", "hit_id": 132, "hit_type": "atom", "score": 0.2714, "via": "direct"}
+{"round": 283, "query": "老钟厂 附近 客栈", "hit_id": 7, "hit_type": "atom", "score": 0.3338, "via": "direct"}
+{"round": 283, "query": "老钟厂 附近 客栈", "hit_id": 192, "hit_type": "node", "score": 0.3027, "via": "direct"}
+{"round": 283, "query": "老钟厂 附近 客栈", "hit_id": 175, "hit_type": "node", "score": 0.3094, "via": "direct"}
+{"round": 283, "query": "老钟厂 附近 客栈", "hit_id": 169, "hit_type": "atom", "score": 0.3229, "via": "direct"}
+{"round": 283, "query": "老钟厂 附近 客栈", "hit_id": 170, "hit_type": "atom", "score": 0.3135, "via": "direct"}
+{"round": 283, "query": "老钟厂 附近 客栈", "hit_id": 455, "hit_type": "node", "score": 0.266, "via": "direct"}
+{"round": 283, "query": "老钟厂 附近 客栈", "hit_id": 424, "hit_type": "node", "score": 0.3119, "via": "direct"}
+{"round": 284, "query": "老钟厂 附近 客栈", "hit_id": 7, "hit_type": "atom", "score": 0.3338, "via": "direct"}
+{"round": 284, "query": "老钟厂 附近 客栈", "hit_id": 175, "hit_type": "node", "score": 0.3094, "via": "direct"}
+{"round": 284, "query": "老钟厂 附近 客栈", "hit_id": 169, "hit_type": "atom", "score": 0.3229, "via": "direct"}
+{"round": 284, "query": "老钟厂 附近 客栈", "hit_id": 170, "hit_type": "atom", "score": 0.3135, "via": "direct"}
+{"round": 284, "query": "老钟厂 附近 客栈", "hit_id": 455, "hit_type": "node", "score": 0.266, "via": "direct"}
+{"round": 284, "query": "老钟厂 附近 客栈", "hit_id": 424, "hit_type": "node", "score": 0.3119, "via": "direct"}
+{"round": 285, "query": "沈寒舟 老钟厂 客栈", "hit_id": 175, "hit_type": "node", "score": 0.4367, "via": "direct"}
+{"round": 285, "query": "沈寒舟 老钟厂 客栈", "hit_id": 176, "hit_type": "atom", "score": 0.4379, "via": "direct"}
+{"round": 285, "query": "沈寒舟 老钟厂 客栈", "hit_id": 365, "hit_type": "node", "score": 0.4211, "via": "direct"}
+{"round": 285, "query": "沈寒舟 老钟厂 客栈", "hit_id": 422, "hit_type": "node", "score": 0.407, "via": "direct"}
+{"round": 285, "query": "沈寒舟 老钟厂 客栈", "hit_id": 253, "hit_type": "atom", "score": 0.4252, "via": "direct"}
+{"round": 285, "query": "沈寒舟 老钟厂 客栈", "hit_id": 424, "hit_type": "node", "score": 0.4308, "via": "direct"}
+{"round": 287, "query": "沈寒舟 客栈 房号", "hit_id": 15, "hit_type": "atom", "score": 0.3512, "via": "direct"}
+{"round": 287, "query": "沈寒舟 客栈 房号", "hit_id": 173, "hit_type": "node", "score": 0.3328, "via": "direct"}
+{"round": 287, "query": "沈寒舟 客栈 房号", "hit_id": 114, "hit_type": "atom", "score": 0.3497, "via": "direct"}
+{"round": 287, "query": "沈寒舟 客栈 房号", "hit_id": 152, "hit_type": "node", "score": 0.3571, "via": "direct"}
+{"round": 287, "query": "沈寒舟 客栈 房号", "hit_id": 147, "hit_type": "atom", "score": 0.3523, "via": "direct"}
+{"round": 287, "query": "沈寒舟 客栈 房号", "hit_id": 153, "hit_type": "atom", "score": 0.4254, "via": "direct"}
+{"round": 288, "query": "沈寒舟 客栈 房号", "hit_id": 15, "hit_type": "atom", "score": 0.3512, "via": "direct"}
+{"round": 288, "query": "沈寒舟 客栈 房号", "hit_id": 114, "hit_type": "atom", "score": 0.3497, "via": "direct"}
+{"round": 288, "query": "沈寒舟 客栈 房号", "hit_id": 152, "hit_type": "node", "score": 0.3571, "via": "direct"}
+{"round": 288, "query": "沈寒舟 客栈 房号", "hit_id": 147, "hit_type": "atom", "score": 0.3523, "via": "direct"}
+{"round": 288, "query": "沈寒舟 客栈 房号", "hit_id": 153, "hit_type": "atom", "score": 0.4254, "via": "direct"}
+{"round": 289, "query": "沈寒舟 客栈 房号", "hit_id": 24, "hit_type": "node", "score": 0.3495, "via": "direct"}
+{"round": 289, "query": "沈寒舟 客栈 房号", "hit_id": 15, "hit_type": "atom", "score": 0.3512, "via": "direct"}
+{"round": 289, "query": "沈寒舟 客栈 房号", "hit_id": 114, "hit_type": "atom", "score": 0.3497, "via": "direct"}
+{"round": 289, "query": "沈寒舟 客栈 房号", "hit_id": 152, "hit_type": "node", "score": 0.3571, "via": "direct"}
+{"round": 289, "query": "沈寒舟 客栈 房号", "hit_id": 147, "hit_type": "atom", "score": 0.3523, "via": "direct"}
+{"round": 289, "query": "沈寒舟 客栈 房号", "hit_id": 153, "hit_type": "atom", "score": 0.4254, "via": "direct"}
+{"round": 292, "query": "骨片 拼图 中心 名字", "hit_id": 94, "hit_type": "atom", "score": 0.2675, "via": "direct"}
+{"round": 292, "query": "骨片 拼图 中心 名字", "hit_id": 151, "hit_type": "node", "score": 0.3089, "via": "direct"}
+{"round": 292, "query": "骨片 拼图 中心 名字", "hit_id": 143, "hit_type": "atom", "score": 0.3091, "via": "direct"}
+{"round": 292, "query": "骨片 拼图 中心 名字", "hit_id": 148, "hit_type": "atom", "score": 0.2552, "via": "direct"}
+{"round": 292, "query": "骨片 拼图 中心 名字", "hit_id": 171, "hit_type": "atom", "score": 0.2987, "via": "direct"}
+{"round": 292, "query": "骨片 拼图 中心 名字", "hit_id": 398, "hit_type": "atom", "score": 0.2435, "via": "direct"}
+{"round": 293, "query": "骨片 拼图 中心 名字", "hit_id": 94, "hit_type": "atom", "score": 0.2675, "via": "direct"}
+{"round": 293, "query": "骨片 拼图 中心 名字", "hit_id": 151, "hit_type": "node", "score": 0.3089, "via": "direct"}
+{"round": 293, "query": "骨片 拼图 中心 名字", "hit_id": 143, "hit_type": "atom", "score": 0.3091, "via": "direct"}
+{"round": 293, "query": "骨片 拼图 中心 名字", "hit_id": 148, "hit_type": "atom", "score": 0.2552, "via": "direct"}
+{"round": 293, "query": "骨片 拼图 中心 名字", "hit_id": 171, "hit_type": "atom", "score": 0.2987, "via": "direct"}
+{"round": 293, "query": "骨片 拼图 中心 名字", "hit_id": 398, "hit_type": "atom", "score": 0.2435, "via": "direct"}
+{"round": 294, "query": "骨片 拼图 中心 名字", "hit_id": 94, "hit_type": "atom", "score": 0.2675, "via": "direct"}
+{"round": 294, "query": "骨片 拼图 中心 名字", "hit_id": 151, "hit_type": "node", "score": 0.3089, "via": "direct"}
+{"round": 294, "query": "骨片 拼图 中心 名字", "hit_id": 143, "hit_type": "atom", "score": 0.3091, "via": "direct"}
+{"round": 294, "query": "骨片 拼图 中心 名字", "hit_id": 148, "hit_type": "atom", "score": 0.2552, "via": "direct"}
+{"round": 294, "query": "骨片 拼图 中心 名字", "hit_id": 171, "hit_type": "atom", "score": 0.2987, "via": "direct"}
+{"round": 294, "query": "骨片 拼图 中心 名字", "hit_id": 398, "hit_type": "atom", "score": 0.2435, "via": "direct"}
+{"round": 296, "query": "赵老拐 拐杖", "hit_id": 146, "hit_type": "atom", "score": 0.5148, "via": "direct"}
+{"round": 296, "query": "赵老拐 拐杖", "hit_id": 245, "hit_type": "atom", "score": 0.3797, "via": "direct"}
+{"round": 296, "query": "赵老拐 拐杖", "hit_id": 380, "hit_type": "atom", "score": 0.3942, "via": "direct"}
+{"round": 296, "query": "赵老拐 拐杖", "hit_id": 382, "hit_type": "atom", "score": 0.4797, "via": "direct"}
+{"round": 296, "query": "赵老拐 拐杖", "hit_id": 407, "hit_type": "atom", "score": 0.4667, "via": "direct"}
+{"round": 296, "query": "赵老拐 拐杖", "hit_id": 428, "hit_type": "atom", "score": 0.5078, "via": "direct"}
+{"round": 298, "query": "赵老拐 船屋 粗瓷碗", "hit_id": 151, "hit_type": "node", "score": 0.3011, "via": "direct"}
+{"round": 298, "query": "赵老拐 船屋 粗瓷碗", "hit_id": 174, "hit_type": "node", "score": 0.3588, "via": "direct"}
+{"round": 298, "query": "赵老拐 船屋 粗瓷碗", "hit_id": 154, "hit_type": "atom", "score": 0.3359, "via": "direct"}
+{"round": 298, "query": "赵老拐 船屋 粗瓷碗", "hit_id": 156, "hit_type": "atom", "score": 0.3086, "via": "direct"}
+{"round": 298, "query": "赵老拐 船屋 粗瓷碗", "hit_id": 162, "hit_type": "atom", "score": 0.3471, "via": "direct"}
+{"round": 298, "query": "赵老拐 船屋 粗瓷碗", "hit_id": 407, "hit_type": "atom", "score": 0.2987, "via": "direct"}
+{"round": 300, "query": "赵老拐 蓝色布面流水簿", "hit_id": 151, "hit_type": "node", "score": 0.2735, "via": "direct"}
+{"round": 300, "query": "赵老拐 蓝色布面流水簿", "hit_id": 146, "hit_type": "atom", "score": 0.2846, "via": "direct"}
+{"round": 300, "query": "赵老拐 蓝色布面流水簿", "hit_id": 174, "hit_type": "node", "score": 0.5009, "via": "direct"}
+{"round": 300, "query": "赵老拐 蓝色布面流水簿", "hit_id": 245, "hit_type": "atom", "score": 0.2771, "via": "direct"}
+{"round": 300, "query": "赵老拐 蓝色布面流水簿", "hit_id": 423, "hit_type": "node", "score": 0.2416, "via": "direct"}
+{"round": 300, "query": "赵老拐 蓝色布面流水簿", "hit_id": 394, "hit_type": "node", "score": 0.2773, "via": "direct"}
+{"round": 301, "query": "赵老拐 蓝色布面流水簿", "hit_id": 151, "hit_type": "node", "score": 0.2735, "via": "direct"}
+{"round": 301, "query": "赵老拐 蓝色布面流水簿", "hit_id": 146, "hit_type": "atom", "score": 0.2846, "via": "direct"}
+{"round": 301, "query": "赵老拐 蓝色布面流水簿", "hit_id": 174, "hit_type": "node", "score": 0.5009, "via": "direct"}
+{"round": 301, "query": "赵老拐 蓝色布面流水簿", "hit_id": 245, "hit_type": "atom", "score": 0.2771, "via": "direct"}
+{"round": 301, "query": "赵老拐 蓝色布面流水簿", "hit_id": 423, "hit_type": "node", "score": 0.2416, "via": "direct"}
+{"round": 301, "query": "赵老拐 蓝色布面流水簿", "hit_id": 394, "hit_type": "node", "score": 0.2773, "via": "direct"}
+{"round": 302, "query": "赵老拐 蓝色布面流水簿 第一页", "hit_id": 71, "hit_type": "atom", "score": 0.2675, "via": "direct"}
+{"round": 302, "query": "赵老拐 蓝色布面流水簿 第一页", "hit_id": 174, "hit_type": "node", "score": 0.4468, "via": "direct"}
+{"round": 302, "query": "赵老拐 蓝色布面流水簿 第一页", "hit_id": 157, "hit_type": "atom", "score": 0.3223, "via": "direct"}
+{"round": 302, "query": "赵老拐 蓝色布面流水簿 第一页", "hit_id": 160, "hit_type": "atom", "score": 0.2982, "via": "direct"}
+{"round": 302, "query": "赵老拐 蓝色布面流水簿 第一页", "hit_id": 394, "hit_type": "node", "score": 0.2649, "via": "direct"}
+{"round": 304, "query": "段临洲 老钟厂 手里", "hit_id": 175, "hit_type": "node", "score": 0.4228, "via": "direct"}
+{"round": 304, "query": "段临洲 老钟厂 手里", "hit_id": 365, "hit_type": "node", "score": 0.2674, "via": "direct"}
+{"round": 304, "query": "段临洲 老钟厂 手里", "hit_id": 422, "hit_type": "node", "score": 0.3483, "via": "direct"}
+{"round": 304, "query": "段临洲 老钟厂 手里", "hit_id": 235, "hit_type": "atom", "score": 0.4087, "via": "direct"}
+{"round": 304, "query": "段临洲 老钟厂 手里", "hit_id": 305, "hit_type": "node", "score": 0.3794, "via": "direct"}
+{"round": 304, "query": "段临洲 老钟厂 手里", "hit_id": 333, "hit_type": "node", "score": 0.2921, "via": "direct"}
+{"round": 304, "query": "段临洲 老钟厂 手里", "hit_id": 279, "hit_type": "atom", "score": 0.5031, "via": "direct"}
+{"round": 304, "query": "段临洲 老钟厂 手里", "hit_id": 393, "hit_type": "node", "score": 0.3838, "via": "direct"}
+{"round": 304, "query": "段临洲 老钟厂 手里", "hit_id": 151, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 304, "query": "段临洲 老钟厂 手里", "hit_id": 94, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 304, "query": "段临洲 老钟厂 手里", "hit_id": 143, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 304, "query": "段临洲 老钟厂 手里", "hit_id": 148, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 304, "query": "段临洲 老钟厂 手里", "hit_id": 171, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 305, "query": "段临洲 老钟厂", "hit_id": 175, "hit_type": "node", "score": 0.4734, "via": "direct"}
+{"round": 305, "query": "段临洲 老钟厂", "hit_id": 365, "hit_type": "node", "score": 0.2886, "via": "direct"}
+{"round": 305, "query": "段临洲 老钟厂", "hit_id": 422, "hit_type": "node", "score": 0.3996, "via": "direct"}
+{"round": 305, "query": "段临洲 老钟厂", "hit_id": 235, "hit_type": "atom", "score": 0.4631, "via": "direct"}
+{"round": 305, "query": "段临洲 老钟厂", "hit_id": 305, "hit_type": "node", "score": 0.432, "via": "direct"}
+{"round": 305, "query": "段临洲 老钟厂", "hit_id": 333, "hit_type": "node", "score": 0.3182, "via": "direct"}
+{"round": 305, "query": "段临洲 老钟厂", "hit_id": 279, "hit_type": "atom", "score": 0.4979, "via": "direct"}
+{"round": 305, "query": "段临洲 老钟厂", "hit_id": 151, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 305, "query": "段临洲 老钟厂", "hit_id": 94, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 305, "query": "段临洲 老钟厂", "hit_id": 143, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 305, "query": "段临洲 老钟厂", "hit_id": 148, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 305, "query": "段临洲 老钟厂", "hit_id": 171, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 306, "query": "段临洲 老钟厂 手里", "hit_id": 175, "hit_type": "node", "score": 0.4228, "via": "direct"}
+{"round": 306, "query": "段临洲 老钟厂 手里", "hit_id": 235, "hit_type": "atom", "score": 0.4087, "via": "direct"}
+{"round": 306, "query": "段临洲 老钟厂 手里", "hit_id": 305, "hit_type": "node", "score": 0.3794, "via": "direct"}
+{"round": 306, "query": "段临洲 老钟厂 手里", "hit_id": 279, "hit_type": "atom", "score": 0.5031, "via": "direct"}
+{"round": 306, "query": "段临洲 老钟厂 手里", "hit_id": 393, "hit_type": "node", "score": 0.3838, "via": "direct"}
+{"round": 306, "query": "段临洲 老钟厂 手里", "hit_id": 151, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 306, "query": "段临洲 老钟厂 手里", "hit_id": 94, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 306, "query": "段临洲 老钟厂 手里", "hit_id": 143, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 306, "query": "段临洲 老钟厂 手里", "hit_id": 148, "hit_type": "atom", "score": null, "via": "hub"}
+{"round": 306, "query": "段临洲 老钟厂 手里", "hit_id": 171, "hit_type": "atom", "score": null, "via": "hub"}

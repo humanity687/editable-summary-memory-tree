@@ -1,0 +1,359 @@
+{
+ "1a": [
+  {
+   "id": "F01",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F02",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F03",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F04",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/2"
+  },
+  {
+   "id": "F05",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F06",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F07",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F08",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F09",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/2"
+  },
+  {
+   "id": "F10",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F11",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F12",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/2"
+  },
+  {
+   "id": "F13",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F14",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F15",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F16",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/2"
+  },
+  {
+   "id": "F17",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F18",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/2"
+  },
+  {
+   "id": "F19",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F20",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F21",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F22",
+   "retrieval_hit": false,
+   "answer_hit": true,
+   "score": "2/3"
+  },
+  {
+   "id": "F23",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "3/3"
+  },
+  {
+   "id": "F24",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F25",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/1"
+  }
+ ],
+ "1b": [
+  {
+   "id": "F26",
+   "used_recall": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F27",
+   "used_recall": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F28",
+   "used_recall": false,
+   "answer_hit": true,
+   "score": "1/2"
+  },
+  {
+   "id": "F29",
+   "used_recall": false,
+   "answer_hit": false,
+   "score": "0/2"
+  },
+  {
+   "id": "F30",
+   "used_recall": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F31",
+   "used_recall": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F32",
+   "used_recall": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F33",
+   "used_recall": false,
+   "answer_hit": false,
+   "score": "0/2"
+  },
+  {
+   "id": "F34",
+   "used_recall": false,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F35",
+   "used_recall": false,
+   "answer_hit": false,
+   "score": "0/1"
+  }
+ ],
+ "2": [
+  {
+   "edit": "insert",
+   "verify_ok": false,
+   "edits_done": 2
+  },
+  {
+   "edit": "insert",
+   "verify_ok": false,
+   "edits_done": 4
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 6
+  },
+  {
+   "edit": "rename",
+   "verify_ok": false,
+   "edits_done": 8
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 10
+  },
+  {
+   "edit": "insert",
+   "verify_ok": false,
+   "edits_done": 12
+  },
+  {
+   "edit": "rename",
+   "verify_ok": false,
+   "edits_done": 14
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 16
+  },
+  {
+   "edit": "insert",
+   "verify_ok": false,
+   "edits_done": 18
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 20
+  },
+  {
+   "edit": "insert",
+   "verify_ok": false,
+   "edits_done": 22
+  },
+  {
+   "edit": "rename",
+   "verify_ok": false,
+   "edits_done": 23
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 25
+  },
+  {
+   "edit": "rename",
+   "verify_ok": false,
+   "edits_done": 27
+  },
+  {
+   "edit": "rename",
+   "verify_ok": false,
+   "edits_done": 28
+  },
+  {
+   "edit": "insert",
+   "verify_ok": false,
+   "edits_done": 29
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 31
+  },
+  {
+   "edit": "rename",
+   "verify_ok": false,
+   "edits_done": 32
+  },
+  {
+   "edit": "insert",
+   "verify_ok": false,
+   "edits_done": 34
+  },
+  {
+   "edit": "rename",
+   "verify_ok": true,
+   "edits_done": 36
+  },
+  {
+   "edit": "rename",
+   "verify_ok": true,
+   "edits_done": 38
+  },
+  {
+   "edit": "rename",
+   "verify_ok": false,
+   "edits_done": 40
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 42
+  },
+  {
+   "edit": "rename",
+   "verify_ok": false,
+   "edits_done": 44
+  },
+  {
+   "edit": "insert",
+   "verify_ok": false,
+   "edits_done": 45
+  },
+  {
+   "edit": "rename",
+   "verify_ok": false,
+   "edits_done": 47
+  },
+  {
+   "edit": "rename",
+   "verify_ok": false,
+   "edits_done": 49
+  },
+  {
+   "edit": "delete",
+   "verify_ok": true,
+   "edits_done": 50
+  }
+ ],
+ "3": []
+}

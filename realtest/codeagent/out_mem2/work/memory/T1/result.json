@@ -1,0 +1,35 @@
+{
+  "group": "memory",
+  "task": "T1",
+  "title": "thinking 配置不生效",
+  "passed": true,
+  "accept_rc": 0,
+  "accept_verdict": "PASS",
+  "elapsed_s": 30.0,
+  "agent_result": {
+    "ok": true,
+    "rounds": 8,
+    "summary": "修复了 sdk/llm_client.py 中 LLMClient 类在调用 chat.completions.create 时忽略了 thinking 配置的问题。通过在 send_message 方法中检查 self.thinking 并将 {\"thinking\": True} 注入到 extra_body 参数中，使得 DeepSeek 等支持思考模式的 API 能够正确接收到该指令。验收通过：python3 accept_t1.py 返回 0。",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 8,
+    "atoms_alive": 22,
+    "nodes_alive": 0,
+    "tiling": 22,
+    "distill_calls": 0,
+    "distill_seconds": 0.0,
+    "tool_uses": {
+      "command": 3,
+      "read": 2,
+      "edit": 1,
+      "save_context": 1,
+      "finish": 1
+    },
+    "notebook": 2
+  },
+  "last_usage": {
+    "prompt_tokens": 7232,
+    "completion_tokens": 102
+  }
+}

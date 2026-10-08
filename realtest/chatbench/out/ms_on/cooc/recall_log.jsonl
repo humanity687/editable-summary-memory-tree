@@ -1,0 +1,559 @@
+{"round": 42, "query": "probe 都透露过哪些个人信息？", "hit_id": 190, "hit_type": "node", "score": 0.3226, "via": "direct"}
+{"round": 42, "query": "probe 都透露过哪些个人信息？", "hit_id": 114, "hit_type": "atom", "score": 0.3222, "via": "direct"}
+{"round": 42, "query": "probe 都透露过哪些个人信息？", "hit_id": 123, "hit_type": "atom", "score": 0.3222, "via": "direct"}
+{"round": 42, "query": "probe 都透露过哪些个人信息？", "hit_id": 193, "hit_type": "node", "score": 0.341, "via": "direct"}
+{"round": 42, "query": "probe 都透露过哪些个人信息？", "hit_id": 433, "hit_type": "node", "score": 0.3457, "via": "direct"}
+{"round": 42, "query": "probe 都透露过哪些个人信息？", "hit_id": 294, "hit_type": "atom", "score": 0.321, "via": "direct"}
+{"round": 42, "query": "probe 都透露过哪些个人信息？", "hit_id": 888, "hit_type": "node", "score": 0.3296, "via": "direct"}
+{"round": 42, "query": "probe 都透露过哪些个人信息？", "hit_id": 1456, "hit_type": "node", "score": 0.3224, "via": "direct"}
+{"round": 42, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 190, "hit_type": "node", "score": 0.3379, "via": "direct"}
+{"round": 42, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 192, "hit_type": "node", "score": 0.3371, "via": "direct"}
+{"round": 42, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 118, "hit_type": "atom", "score": 0.3384, "via": "direct"}
+{"round": 42, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 127, "hit_type": "atom", "score": 0.3384, "via": "direct"}
+{"round": 42, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 665, "hit_type": "node", "score": 0.3376, "via": "direct"}
+{"round": 42, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 1189, "hit_type": "node", "score": 0.3356, "via": "direct"}
+{"round": 42, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 1788, "hit_type": "node", "score": 0.3557, "via": "direct"}
+{"round": 42, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 1470, "hit_type": "node", "score": 0.3492, "via": "direct"}
+{"round": 42, "query": "今天聊过哪些编程和技术话题？", "hit_id": 5, "hit_type": "atom", "score": 0.2718, "via": "direct"}
+{"round": 42, "query": "今天聊过哪些编程和技术话题？", "hit_id": 24, "hit_type": "atom", "score": 0.2864, "via": "direct"}
+{"round": 42, "query": "今天聊过哪些编程和技术话题？", "hit_id": 102, "hit_type": "atom", "score": 0.2927, "via": "direct"}
+{"round": 42, "query": "今天聊过哪些编程和技术话题？", "hit_id": 359, "hit_type": "atom", "score": 0.2845, "via": "direct"}
+{"round": 42, "query": "今天聊过哪些编程和技术话题？", "hit_id": 395, "hit_type": "atom", "score": 0.2959, "via": "direct"}
+{"round": 42, "query": "今天聊过哪些编程和技术话题？", "hit_id": 405, "hit_type": "atom", "score": 0.2725, "via": "direct"}
+{"round": 42, "query": "今天聊过哪些编程和技术话题？", "hit_id": 448, "hit_type": "atom", "score": 0.2876, "via": "direct"}
+{"round": 42, "query": "今天聊过哪些编程和技术话题？", "hit_id": 859, "hit_type": "atom", "score": 0.2725, "via": "direct"}
+{"round": 42, "query": "那首代码诗是怎么写出来的？", "hit_id": 40, "hit_type": "atom", "score": 0.3195, "via": "direct"}
+{"round": 42, "query": "那首代码诗是怎么写出来的？", "hit_id": 138, "hit_type": "atom", "score": 0.3402, "via": "direct"}
+{"round": 42, "query": "那首代码诗是怎么写出来的？", "hit_id": 208, "hit_type": "atom", "score": 0.3284, "via": "direct"}
+{"round": 42, "query": "那首代码诗是怎么写出来的？", "hit_id": 346, "hit_type": "atom", "score": 0.3209, "via": "direct"}
+{"round": 42, "query": "那首代码诗是怎么写出来的？", "hit_id": 351, "hit_type": "atom", "score": 0.3478, "via": "direct"}
+{"round": 42, "query": "那首代码诗是怎么写出来的？", "hit_id": 387, "hit_type": "atom", "score": 0.3242, "via": "direct"}
+{"round": 42, "query": "那首代码诗是怎么写出来的？", "hit_id": 513, "hit_type": "atom", "score": 0.3888, "via": "direct"}
+{"round": 42, "query": "那首代码诗是怎么写出来的？", "hit_id": 895, "hit_type": "node", "score": 0.3149, "via": "direct"}
+{"round": 42, "query": "管理员对信道使用提过什么意见？", "hit_id": 425, "hit_type": "node", "score": 0.2246, "via": "direct"}
+{"round": 42, "query": "管理员对信道使用提过什么意见？", "hit_id": 12, "hit_type": "atom", "score": 0.2139, "via": "direct"}
+{"round": 42, "query": "管理员对信道使用提过什么意见？", "hit_id": 62, "hit_type": "atom", "score": 0.2168, "via": "direct"}
+{"round": 42, "query": "管理员对信道使用提过什么意见？", "hit_id": 73, "hit_type": "atom", "score": 0.2331, "via": "direct"}
+{"round": 42, "query": "管理员对信道使用提过什么意见？", "hit_id": 682, "hit_type": "node", "score": 0.3198, "via": "direct"}
+{"round": 42, "query": "管理员对信道使用提过什么意见？", "hit_id": 1168, "hit_type": "node", "score": 0.219, "via": "direct"}
+{"round": 42, "query": "管理员对信道使用提过什么意见？", "hit_id": 1169, "hit_type": "node", "score": 0.2969, "via": "direct"}
+{"round": 42, "query": "管理员对信道使用提过什么意见？", "hit_id": 902, "hit_type": "node", "score": 0.2541, "via": "direct"}
+{"round": 42, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 430, "hit_type": "node", "score": 0.3836, "via": "direct"}
+{"round": 42, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 263, "hit_type": "atom", "score": 0.377, "via": "direct"}
+{"round": 42, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 436, "hit_type": "node", "score": 0.3492, "via": "direct"}
+{"round": 42, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 398, "hit_type": "atom", "score": 0.3268, "via": "direct"}
+{"round": 42, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 472, "hit_type": "atom", "score": 0.3437, "via": "direct"}
+{"round": 42, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 679, "hit_type": "node", "score": 0.3463, "via": "direct"}
+{"round": 42, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 606, "hit_type": "atom", "score": 0.3397, "via": "direct"}
+{"round": 42, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 655, "hit_type": "atom", "score": 0.343, "via": "direct"}
+{"round": 42, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 190, "hit_type": "node", "score": 0.3895, "via": "direct"}
+{"round": 42, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 94, "hit_type": "atom", "score": 0.3605, "via": "direct"}
+{"round": 42, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 191, "hit_type": "node", "score": 0.3593, "via": "direct"}
+{"round": 42, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 110, "hit_type": "atom", "score": 0.3902, "via": "direct"}
+{"round": 42, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 196, "hit_type": "node", "score": 0.3607, "via": "direct"}
+{"round": 42, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 162, "hit_type": "atom", "score": 0.407, "via": "direct"}
+{"round": 42, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 670, "hit_type": "node", "score": 0.3624, "via": "direct"}
+{"round": 42, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 1453, "hit_type": "node", "score": 0.3817, "via": "direct"}
+{"round": 42, "query": "深圳出差这件事后来有下文吗？", "hit_id": 299, "hit_type": "atom", "score": 0.3413, "via": "direct"}
+{"round": 42, "query": "深圳出差这件事后来有下文吗？", "hit_id": 313, "hit_type": "atom", "score": 0.3683, "via": "direct"}
+{"round": 42, "query": "深圳出差这件事后来有下文吗？", "hit_id": 343, "hit_type": "atom", "score": 0.3703, "via": "direct"}
+{"round": 42, "query": "深圳出差这件事后来有下文吗？", "hit_id": 396, "hit_type": "atom", "score": 0.3499, "via": "direct"}
+{"round": 42, "query": "深圳出差这件事后来有下文吗？", "hit_id": 404, "hit_type": "atom", "score": 0.3843, "via": "direct"}
+{"round": 42, "query": "深圳出差这件事后来有下文吗？", "hit_id": 475, "hit_type": "atom", "score": 0.3797, "via": "direct"}
+{"round": 42, "query": "深圳出差这件事后来有下文吗？", "hit_id": 493, "hit_type": "atom", "score": 0.3655, "via": "direct"}
+{"round": 42, "query": "深圳出差这件事后来有下文吗？", "hit_id": 556, "hit_type": "atom", "score": 0.3615, "via": "direct"}
+{"round": 42, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 15, "hit_type": "atom", "score": 0.3078, "via": "direct"}
+{"round": 42, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 74, "hit_type": "atom", "score": 0.3324, "via": "direct"}
+{"round": 42, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 98, "hit_type": "atom", "score": 0.2939, "via": "direct"}
+{"round": 42, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 118, "hit_type": "atom", "score": 0.2952, "via": "direct"}
+{"round": 42, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 127, "hit_type": "atom", "score": 0.2952, "via": "direct"}
+{"round": 42, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 140, "hit_type": "atom", "score": 0.2959, "via": "direct"}
+{"round": 42, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 214, "hit_type": "atom", "score": 0.322, "via": "direct"}
+{"round": 42, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 1470, "hit_type": "node", "score": 0.3045, "via": "direct"}
+{"round": 42, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 75, "hit_type": "atom", "score": 0.231, "via": "direct"}
+{"round": 42, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 116, "hit_type": "atom", "score": 0.2223, "via": "direct"}
+{"round": 42, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 125, "hit_type": "atom", "score": 0.2223, "via": "direct"}
+{"round": 42, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 395, "hit_type": "atom", "score": 0.2259, "via": "direct"}
+{"round": 42, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 489, "hit_type": "atom", "score": 0.2216, "via": "direct"}
+{"round": 42, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 612, "hit_type": "atom", "score": 0.2341, "via": "direct"}
+{"round": 42, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 860, "hit_type": "atom", "score": 0.2221, "via": "direct"}
+{"round": 42, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 1062, "hit_type": "atom", "score": 0.2273, "via": "direct"}
+{"round": 84, "query": "probe 都透露过哪些个人信息？", "hit_id": 190, "hit_type": "node", "score": 0.3226, "via": "direct"}
+{"round": 84, "query": "probe 都透露过哪些个人信息？", "hit_id": 2051, "hit_type": "node", "score": 0.3105, "via": "direct"}
+{"round": 84, "query": "probe 都透露过哪些个人信息？", "hit_id": 193, "hit_type": "node", "score": 0.341, "via": "direct"}
+{"round": 84, "query": "probe 都透露过哪些个人信息？", "hit_id": 2052, "hit_type": "node", "score": 0.2706, "via": "direct"}
+{"round": 84, "query": "probe 都透露过哪些个人信息？", "hit_id": 433, "hit_type": "node", "score": 0.3457, "via": "direct"}
+{"round": 84, "query": "probe 都透露过哪些个人信息？", "hit_id": 2053, "hit_type": "node", "score": 0.1801, "via": "direct"}
+{"round": 84, "query": "probe 都透露过哪些个人信息？", "hit_id": 888, "hit_type": "node", "score": 0.3296, "via": "direct"}
+{"round": 84, "query": "probe 都透露过哪些个人信息？", "hit_id": 1456, "hit_type": "node", "score": 0.3224, "via": "direct"}
+{"round": 84, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 190, "hit_type": "node", "score": 0.3379, "via": "direct"}
+{"round": 84, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 2051, "hit_type": "node", "score": 0.2504, "via": "direct"}
+{"round": 84, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 118, "hit_type": "atom", "score": 0.3384, "via": "direct"}
+{"round": 84, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 127, "hit_type": "atom", "score": 0.3384, "via": "direct"}
+{"round": 84, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 665, "hit_type": "node", "score": 0.3376, "via": "direct"}
+{"round": 84, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 1788, "hit_type": "node", "score": 0.3557, "via": "direct"}
+{"round": 84, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 1470, "hit_type": "node", "score": 0.3492, "via": "direct"}
+{"round": 84, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 2898, "hit_type": "node", "score": 0.3515, "via": "direct"}
+{"round": 84, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 3172, "hit_type": "node", "score": 0.341, "via": "direct"}
+{"round": 84, "query": "今天聊过哪些编程和技术话题？", "hit_id": 5, "hit_type": "atom", "score": 0.2718, "via": "direct"}
+{"round": 84, "query": "今天聊过哪些编程和技术话题？", "hit_id": 24, "hit_type": "atom", "score": 0.2864, "via": "direct"}
+{"round": 84, "query": "今天聊过哪些编程和技术话题？", "hit_id": 102, "hit_type": "atom", "score": 0.2927, "via": "direct"}
+{"round": 84, "query": "今天聊过哪些编程和技术话题？", "hit_id": 359, "hit_type": "atom", "score": 0.2845, "via": "direct"}
+{"round": 84, "query": "今天聊过哪些编程和技术话题？", "hit_id": 395, "hit_type": "atom", "score": 0.2959, "via": "direct"}
+{"round": 84, "query": "今天聊过哪些编程和技术话题？", "hit_id": 405, "hit_type": "atom", "score": 0.2725, "via": "direct"}
+{"round": 84, "query": "今天聊过哪些编程和技术话题？", "hit_id": 448, "hit_type": "atom", "score": 0.2876, "via": "direct"}
+{"round": 84, "query": "今天聊过哪些编程和技术话题？", "hit_id": 859, "hit_type": "atom", "score": 0.2725, "via": "direct"}
+{"round": 84, "query": "那首代码诗是怎么写出来的？", "hit_id": 40, "hit_type": "atom", "score": 0.3195, "via": "direct"}
+{"round": 84, "query": "那首代码诗是怎么写出来的？", "hit_id": 138, "hit_type": "atom", "score": 0.3402, "via": "direct"}
+{"round": 84, "query": "那首代码诗是怎么写出来的？", "hit_id": 208, "hit_type": "atom", "score": 0.3284, "via": "direct"}
+{"round": 84, "query": "那首代码诗是怎么写出来的？", "hit_id": 346, "hit_type": "atom", "score": 0.3209, "via": "direct"}
+{"round": 84, "query": "那首代码诗是怎么写出来的？", "hit_id": 351, "hit_type": "atom", "score": 0.3478, "via": "direct"}
+{"round": 84, "query": "那首代码诗是怎么写出来的？", "hit_id": 387, "hit_type": "atom", "score": 0.3242, "via": "direct"}
+{"round": 84, "query": "那首代码诗是怎么写出来的？", "hit_id": 513, "hit_type": "atom", "score": 0.3888, "via": "direct"}
+{"round": 84, "query": "那首代码诗是怎么写出来的？", "hit_id": 2055, "hit_type": "node", "score": 0.2825, "via": "direct"}
+{"round": 84, "query": "那首代码诗是怎么写出来的？", "hit_id": 895, "hit_type": "node", "score": 0.3149, "via": "direct"}
+{"round": 84, "query": "管理员对信道使用提过什么意见？", "hit_id": 425, "hit_type": "node", "score": 0.2246, "via": "direct"}
+{"round": 84, "query": "管理员对信道使用提过什么意见？", "hit_id": 2050, "hit_type": "node", "score": 0.184, "via": "direct"}
+{"round": 84, "query": "管理员对信道使用提过什么意见？", "hit_id": 73, "hit_type": "atom", "score": 0.2331, "via": "direct"}
+{"round": 84, "query": "管理员对信道使用提过什么意见？", "hit_id": 2054, "hit_type": "node", "score": 0.2738, "via": "direct"}
+{"round": 84, "query": "管理员对信道使用提过什么意见？", "hit_id": 682, "hit_type": "node", "score": 0.3198, "via": "direct"}
+{"round": 84, "query": "管理员对信道使用提过什么意见？", "hit_id": 1169, "hit_type": "node", "score": 0.2969, "via": "direct"}
+{"round": 84, "query": "管理员对信道使用提过什么意见？", "hit_id": 2056, "hit_type": "node", "score": 0.1998, "via": "direct"}
+{"round": 84, "query": "管理员对信道使用提过什么意见？", "hit_id": 902, "hit_type": "node", "score": 0.2541, "via": "direct"}
+{"round": 84, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 430, "hit_type": "node", "score": 0.3836, "via": "direct"}
+{"round": 84, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 2052, "hit_type": "node", "score": 0.2457, "via": "direct"}
+{"round": 84, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 263, "hit_type": "atom", "score": 0.377, "via": "direct"}
+{"round": 84, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 436, "hit_type": "node", "score": 0.3492, "via": "direct"}
+{"round": 84, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 472, "hit_type": "atom", "score": 0.3437, "via": "direct"}
+{"round": 84, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 2054, "hit_type": "node", "score": 0.2514, "via": "direct"}
+{"round": 84, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 679, "hit_type": "node", "score": 0.3463, "via": "direct"}
+{"round": 84, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 655, "hit_type": "atom", "score": 0.343, "via": "direct"}
+{"round": 84, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 190, "hit_type": "node", "score": 0.3895, "via": "direct"}
+{"round": 84, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 2051, "hit_type": "node", "score": 0.35, "via": "direct"}
+{"round": 84, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 110, "hit_type": "atom", "score": 0.3902, "via": "direct"}
+{"round": 84, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 196, "hit_type": "node", "score": 0.3607, "via": "direct"}
+{"round": 84, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 162, "hit_type": "atom", "score": 0.407, "via": "direct"}
+{"round": 84, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 2053, "hit_type": "node", "score": 0.1745, "via": "direct"}
+{"round": 84, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 670, "hit_type": "node", "score": 0.3624, "via": "direct"}
+{"round": 84, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 1453, "hit_type": "node", "score": 0.3817, "via": "direct"}
+{"round": 84, "query": "深圳出差这件事后来有下文吗？", "hit_id": 299, "hit_type": "atom", "score": 0.3413, "via": "direct"}
+{"round": 84, "query": "深圳出差这件事后来有下文吗？", "hit_id": 313, "hit_type": "atom", "score": 0.3683, "via": "direct"}
+{"round": 84, "query": "深圳出差这件事后来有下文吗？", "hit_id": 343, "hit_type": "atom", "score": 0.3703, "via": "direct"}
+{"round": 84, "query": "深圳出差这件事后来有下文吗？", "hit_id": 396, "hit_type": "atom", "score": 0.3499, "via": "direct"}
+{"round": 84, "query": "深圳出差这件事后来有下文吗？", "hit_id": 404, "hit_type": "atom", "score": 0.3843, "via": "direct"}
+{"round": 84, "query": "深圳出差这件事后来有下文吗？", "hit_id": 475, "hit_type": "atom", "score": 0.3797, "via": "direct"}
+{"round": 84, "query": "深圳出差这件事后来有下文吗？", "hit_id": 493, "hit_type": "atom", "score": 0.3655, "via": "direct"}
+{"round": 84, "query": "深圳出差这件事后来有下文吗？", "hit_id": 556, "hit_type": "atom", "score": 0.3615, "via": "direct"}
+{"round": 84, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 15, "hit_type": "atom", "score": 0.3078, "via": "direct"}
+{"round": 84, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 74, "hit_type": "atom", "score": 0.3324, "via": "direct"}
+{"round": 84, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 118, "hit_type": "atom", "score": 0.2952, "via": "direct"}
+{"round": 84, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 127, "hit_type": "atom", "score": 0.2952, "via": "direct"}
+{"round": 84, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 140, "hit_type": "atom", "score": 0.2959, "via": "direct"}
+{"round": 84, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 214, "hit_type": "atom", "score": 0.322, "via": "direct"}
+{"round": 84, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 1470, "hit_type": "node", "score": 0.3045, "via": "direct"}
+{"round": 84, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 2892, "hit_type": "node", "score": 0.2946, "via": "direct"}
+{"round": 84, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 75, "hit_type": "atom", "score": 0.231, "via": "direct"}
+{"round": 84, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 116, "hit_type": "atom", "score": 0.2223, "via": "direct"}
+{"round": 84, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 125, "hit_type": "atom", "score": 0.2223, "via": "direct"}
+{"round": 84, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 395, "hit_type": "atom", "score": 0.2259, "via": "direct"}
+{"round": 84, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 612, "hit_type": "atom", "score": 0.2341, "via": "direct"}
+{"round": 84, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 860, "hit_type": "atom", "score": 0.2221, "via": "direct"}
+{"round": 84, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 1062, "hit_type": "atom", "score": 0.2273, "via": "direct"}
+{"round": 84, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 2606, "hit_type": "node", "score": 0.2218, "via": "direct"}
+{"round": 114, "query": "probe 都透露过哪些个人信息？", "hit_id": 190, "hit_type": "node", "score": 0.3226, "via": "direct"}
+{"round": 114, "query": "probe 都透露过哪些个人信息？", "hit_id": 193, "hit_type": "node", "score": 0.341, "via": "direct"}
+{"round": 114, "query": "probe 都透露过哪些个人信息？", "hit_id": 433, "hit_type": "node", "score": 0.3457, "via": "direct"}
+{"round": 114, "query": "probe 都透露过哪些个人信息？", "hit_id": 888, "hit_type": "node", "score": 0.3296, "via": "direct"}
+{"round": 114, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 1788, "hit_type": "node", "score": 0.3557, "via": "direct"}
+{"round": 114, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 1470, "hit_type": "node", "score": 0.3492, "via": "direct"}
+{"round": 114, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 3811, "hit_type": "node", "score": 0.2831, "via": "direct"}
+{"round": 114, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 2898, "hit_type": "node", "score": 0.3515, "via": "direct"}
+{"round": 114, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 3172, "hit_type": "node", "score": 0.341, "via": "direct"}
+{"round": 114, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 3833, "hit_type": "node", "score": 0.3497, "via": "direct"}
+{"round": 114, "query": "今天聊过哪些编程和技术话题？", "hit_id": 5, "hit_type": "atom", "score": 0.2718, "via": "direct"}
+{"round": 114, "query": "今天聊过哪些编程和技术话题？", "hit_id": 24, "hit_type": "atom", "score": 0.2864, "via": "direct"}
+{"round": 114, "query": "今天聊过哪些编程和技术话题？", "hit_id": 102, "hit_type": "atom", "score": 0.2927, "via": "direct"}
+{"round": 114, "query": "今天聊过哪些编程和技术话题？", "hit_id": 359, "hit_type": "atom", "score": 0.2845, "via": "direct"}
+{"round": 114, "query": "今天聊过哪些编程和技术话题？", "hit_id": 395, "hit_type": "atom", "score": 0.2959, "via": "direct"}
+{"round": 114, "query": "今天聊过哪些编程和技术话题？", "hit_id": 405, "hit_type": "atom", "score": 0.2725, "via": "direct"}
+{"round": 114, "query": "今天聊过哪些编程和技术话题？", "hit_id": 448, "hit_type": "atom", "score": 0.2876, "via": "direct"}
+{"round": 114, "query": "今天聊过哪些编程和技术话题？", "hit_id": 859, "hit_type": "atom", "score": 0.2725, "via": "direct"}
+{"round": 114, "query": "那首代码诗是怎么写出来的？", "hit_id": 40, "hit_type": "atom", "score": 0.3195, "via": "direct"}
+{"round": 114, "query": "那首代码诗是怎么写出来的？", "hit_id": 138, "hit_type": "atom", "score": 0.3402, "via": "direct"}
+{"round": 114, "query": "那首代码诗是怎么写出来的？", "hit_id": 208, "hit_type": "atom", "score": 0.3284, "via": "direct"}
+{"round": 114, "query": "那首代码诗是怎么写出来的？", "hit_id": 346, "hit_type": "atom", "score": 0.3209, "via": "direct"}
+{"round": 114, "query": "那首代码诗是怎么写出来的？", "hit_id": 351, "hit_type": "atom", "score": 0.3478, "via": "direct"}
+{"round": 114, "query": "那首代码诗是怎么写出来的？", "hit_id": 387, "hit_type": "atom", "score": 0.3242, "via": "direct"}
+{"round": 114, "query": "那首代码诗是怎么写出来的？", "hit_id": 513, "hit_type": "atom", "score": 0.3888, "via": "direct"}
+{"round": 114, "query": "那首代码诗是怎么写出来的？", "hit_id": 4963, "hit_type": "node", "score": 0.348, "via": "direct"}
+{"round": 114, "query": "管理员对信道使用提过什么意见？", "hit_id": 425, "hit_type": "node", "score": 0.2246, "via": "direct"}
+{"round": 114, "query": "管理员对信道使用提过什么意见？", "hit_id": 73, "hit_type": "atom", "score": 0.2331, "via": "direct"}
+{"round": 114, "query": "管理员对信道使用提过什么意见？", "hit_id": 682, "hit_type": "node", "score": 0.3198, "via": "direct"}
+{"round": 114, "query": "管理员对信道使用提过什么意见？", "hit_id": 1169, "hit_type": "node", "score": 0.2969, "via": "direct"}
+{"round": 114, "query": "管理员对信道使用提过什么意见？", "hit_id": 902, "hit_type": "node", "score": 0.2541, "via": "direct"}
+{"round": 114, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 430, "hit_type": "node", "score": 0.3836, "via": "direct"}
+{"round": 114, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 263, "hit_type": "atom", "score": 0.377, "via": "direct"}
+{"round": 114, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 436, "hit_type": "node", "score": 0.3492, "via": "direct"}
+{"round": 114, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 472, "hit_type": "atom", "score": 0.3437, "via": "direct"}
+{"round": 114, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 679, "hit_type": "node", "score": 0.3463, "via": "direct"}
+{"round": 114, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 606, "hit_type": "atom", "score": 0.3397, "via": "direct"}
+{"round": 114, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 655, "hit_type": "atom", "score": 0.343, "via": "direct"}
+{"round": 114, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 3814, "hit_type": "node", "score": 0.2676, "via": "direct"}
+{"round": 114, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 3175, "hit_type": "node", "score": 0.3272, "via": "direct"}
+{"round": 114, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 190, "hit_type": "node", "score": 0.3895, "via": "direct"}
+{"round": 114, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 94, "hit_type": "atom", "score": 0.3605, "via": "direct"}
+{"round": 114, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 191, "hit_type": "node", "score": 0.3593, "via": "direct"}
+{"round": 114, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 110, "hit_type": "atom", "score": 0.3902, "via": "direct"}
+{"round": 114, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 196, "hit_type": "node", "score": 0.3607, "via": "direct"}
+{"round": 114, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 162, "hit_type": "atom", "score": 0.407, "via": "direct"}
+{"round": 114, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 670, "hit_type": "node", "score": 0.3624, "via": "direct"}
+{"round": 114, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 1453, "hit_type": "node", "score": 0.3817, "via": "direct"}
+{"round": 114, "query": "深圳出差这件事后来有下文吗？", "hit_id": 299, "hit_type": "atom", "score": 0.3413, "via": "direct"}
+{"round": 114, "query": "深圳出差这件事后来有下文吗？", "hit_id": 313, "hit_type": "atom", "score": 0.3683, "via": "direct"}
+{"round": 114, "query": "深圳出差这件事后来有下文吗？", "hit_id": 343, "hit_type": "atom", "score": 0.3703, "via": "direct"}
+{"round": 114, "query": "深圳出差这件事后来有下文吗？", "hit_id": 396, "hit_type": "atom", "score": 0.3499, "via": "direct"}
+{"round": 114, "query": "深圳出差这件事后来有下文吗？", "hit_id": 404, "hit_type": "atom", "score": 0.3843, "via": "direct"}
+{"round": 114, "query": "深圳出差这件事后来有下文吗？", "hit_id": 475, "hit_type": "atom", "score": 0.3797, "via": "direct"}
+{"round": 114, "query": "深圳出差这件事后来有下文吗？", "hit_id": 493, "hit_type": "atom", "score": 0.3655, "via": "direct"}
+{"round": 114, "query": "深圳出差这件事后来有下文吗？", "hit_id": 556, "hit_type": "atom", "score": 0.3615, "via": "direct"}
+{"round": 114, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 15, "hit_type": "atom", "score": 0.3078, "via": "direct"}
+{"round": 114, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 74, "hit_type": "atom", "score": 0.3324, "via": "direct"}
+{"round": 114, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 118, "hit_type": "atom", "score": 0.2952, "via": "direct"}
+{"round": 114, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 127, "hit_type": "atom", "score": 0.2952, "via": "direct"}
+{"round": 114, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 140, "hit_type": "atom", "score": 0.2959, "via": "direct"}
+{"round": 114, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 214, "hit_type": "atom", "score": 0.322, "via": "direct"}
+{"round": 114, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 1470, "hit_type": "node", "score": 0.3045, "via": "direct"}
+{"round": 114, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 3811, "hit_type": "node", "score": 0.1677, "via": "direct"}
+{"round": 114, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 2892, "hit_type": "node", "score": 0.2946, "via": "direct"}
+{"round": 114, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 75, "hit_type": "atom", "score": 0.231, "via": "direct"}
+{"round": 114, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 116, "hit_type": "atom", "score": 0.2223, "via": "direct"}
+{"round": 114, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 125, "hit_type": "atom", "score": 0.2223, "via": "direct"}
+{"round": 114, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 395, "hit_type": "atom", "score": 0.2259, "via": "direct"}
+{"round": 114, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 612, "hit_type": "atom", "score": 0.2341, "via": "direct"}
+{"round": 114, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 1062, "hit_type": "atom", "score": 0.2273, "via": "direct"}
+{"round": 114, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 3816, "hit_type": "node", "score": 0.2351, "via": "direct"}
+{"round": 114, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 4378, "hit_type": "node", "score": 0.2321, "via": "direct"}
+{"round": 162, "query": "probe 都透露过哪些个人信息？", "hit_id": 190, "hit_type": "node", "score": 0.3226, "via": "direct"}
+{"round": 162, "query": "probe 都透露过哪些个人信息？", "hit_id": 193, "hit_type": "node", "score": 0.341, "via": "direct"}
+{"round": 162, "query": "probe 都透露过哪些个人信息？", "hit_id": 433, "hit_type": "node", "score": 0.3457, "via": "direct"}
+{"round": 162, "query": "probe 都透露过哪些个人信息？", "hit_id": 888, "hit_type": "node", "score": 0.3296, "via": "direct"}
+{"round": 162, "query": "probe 都透露过哪些个人信息？", "hit_id": 5349, "hit_type": "node", "score": 0.3254, "via": "direct"}
+{"round": 162, "query": "probe 都透露过哪些个人信息？", "hit_id": 7904, "hit_type": "node", "score": 0.3227, "via": "direct"}
+{"round": 162, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 1788, "hit_type": "node", "score": 0.3557, "via": "direct"}
+{"round": 162, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 1470, "hit_type": "node", "score": 0.3492, "via": "direct"}
+{"round": 162, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 2898, "hit_type": "node", "score": 0.3515, "via": "direct"}
+{"round": 162, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 5354, "hit_type": "node", "score": 0.2475, "via": "direct"}
+{"round": 162, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 3833, "hit_type": "node", "score": 0.3497, "via": "direct"}
+{"round": 162, "query": "今天聊过哪些编程和技术话题？", "hit_id": 5, "hit_type": "atom", "score": 0.2718, "via": "direct"}
+{"round": 162, "query": "今天聊过哪些编程和技术话题？", "hit_id": 24, "hit_type": "atom", "score": 0.2864, "via": "direct"}
+{"round": 162, "query": "今天聊过哪些编程和技术话题？", "hit_id": 102, "hit_type": "atom", "score": 0.2927, "via": "direct"}
+{"round": 162, "query": "今天聊过哪些编程和技术话题？", "hit_id": 359, "hit_type": "atom", "score": 0.2845, "via": "direct"}
+{"round": 162, "query": "今天聊过哪些编程和技术话题？", "hit_id": 395, "hit_type": "atom", "score": 0.2959, "via": "direct"}
+{"round": 162, "query": "今天聊过哪些编程和技术话题？", "hit_id": 405, "hit_type": "atom", "score": 0.2725, "via": "direct"}
+{"round": 162, "query": "今天聊过哪些编程和技术话题？", "hit_id": 448, "hit_type": "atom", "score": 0.2876, "via": "direct"}
+{"round": 162, "query": "今天聊过哪些编程和技术话题？", "hit_id": 859, "hit_type": "atom", "score": 0.2725, "via": "direct"}
+{"round": 162, "query": "那首代码诗是怎么写出来的？", "hit_id": 40, "hit_type": "atom", "score": 0.3195, "via": "direct"}
+{"round": 162, "query": "那首代码诗是怎么写出来的？", "hit_id": 138, "hit_type": "atom", "score": 0.3402, "via": "direct"}
+{"round": 162, "query": "那首代码诗是怎么写出来的？", "hit_id": 208, "hit_type": "atom", "score": 0.3284, "via": "direct"}
+{"round": 162, "query": "那首代码诗是怎么写出来的？", "hit_id": 346, "hit_type": "atom", "score": 0.3209, "via": "direct"}
+{"round": 162, "query": "那首代码诗是怎么写出来的？", "hit_id": 351, "hit_type": "atom", "score": 0.3478, "via": "direct"}
+{"round": 162, "query": "那首代码诗是怎么写出来的？", "hit_id": 387, "hit_type": "atom", "score": 0.3242, "via": "direct"}
+{"round": 162, "query": "那首代码诗是怎么写出来的？", "hit_id": 513, "hit_type": "atom", "score": 0.3888, "via": "direct"}
+{"round": 162, "query": "那首代码诗是怎么写出来的？", "hit_id": 4963, "hit_type": "node", "score": 0.348, "via": "direct"}
+{"round": 162, "query": "管理员对信道使用提过什么意见？", "hit_id": 682, "hit_type": "node", "score": 0.3198, "via": "direct"}
+{"round": 162, "query": "管理员对信道使用提过什么意见？", "hit_id": 1169, "hit_type": "node", "score": 0.2969, "via": "direct"}
+{"round": 162, "query": "管理员对信道使用提过什么意见？", "hit_id": 902, "hit_type": "node", "score": 0.2541, "via": "direct"}
+{"round": 162, "query": "管理员对信道使用提过什么意见？", "hit_id": 6742, "hit_type": "node", "score": 0.2377, "via": "direct"}
+{"round": 162, "query": "管理员对信道使用提过什么意见？", "hit_id": 6744, "hit_type": "node", "score": 0.2519, "via": "direct"}
+{"round": 162, "query": "管理员对信道使用提过什么意见？", "hit_id": 6746, "hit_type": "node", "score": 0.2344, "via": "direct"}
+{"round": 162, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 430, "hit_type": "node", "score": 0.3836, "via": "direct"}
+{"round": 162, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 263, "hit_type": "atom", "score": 0.377, "via": "direct"}
+{"round": 162, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 436, "hit_type": "node", "score": 0.3492, "via": "direct"}
+{"round": 162, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 472, "hit_type": "atom", "score": 0.3437, "via": "direct"}
+{"round": 162, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 679, "hit_type": "node", "score": 0.3463, "via": "direct"}
+{"round": 162, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 606, "hit_type": "atom", "score": 0.3397, "via": "direct"}
+{"round": 162, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 655, "hit_type": "atom", "score": 0.343, "via": "direct"}
+{"round": 162, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 5351, "hit_type": "node", "score": 0.2687, "via": "direct"}
+{"round": 162, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 3814, "hit_type": "node", "score": 0.2676, "via": "direct"}
+{"round": 162, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 3175, "hit_type": "node", "score": 0.3272, "via": "direct"}
+{"round": 162, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 190, "hit_type": "node", "score": 0.3895, "via": "direct"}
+{"round": 162, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 94, "hit_type": "atom", "score": 0.3605, "via": "direct"}
+{"round": 162, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 5315, "hit_type": "node", "score": 0.3655, "via": "direct"}
+{"round": 162, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 110, "hit_type": "atom", "score": 0.3902, "via": "direct"}
+{"round": 162, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 196, "hit_type": "node", "score": 0.3607, "via": "direct"}
+{"round": 162, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 162, "hit_type": "atom", "score": 0.407, "via": "direct"}
+{"round": 162, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 670, "hit_type": "node", "score": 0.3624, "via": "direct"}
+{"round": 162, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 1453, "hit_type": "node", "score": 0.3817, "via": "direct"}
+{"round": 162, "query": "深圳出差这件事后来有下文吗？", "hit_id": 299, "hit_type": "atom", "score": 0.3413, "via": "direct"}
+{"round": 162, "query": "深圳出差这件事后来有下文吗？", "hit_id": 313, "hit_type": "atom", "score": 0.3683, "via": "direct"}
+{"round": 162, "query": "深圳出差这件事后来有下文吗？", "hit_id": 343, "hit_type": "atom", "score": 0.3703, "via": "direct"}
+{"round": 162, "query": "深圳出差这件事后来有下文吗？", "hit_id": 396, "hit_type": "atom", "score": 0.3499, "via": "direct"}
+{"round": 162, "query": "深圳出差这件事后来有下文吗？", "hit_id": 404, "hit_type": "atom", "score": 0.3843, "via": "direct"}
+{"round": 162, "query": "深圳出差这件事后来有下文吗？", "hit_id": 475, "hit_type": "atom", "score": 0.3797, "via": "direct"}
+{"round": 162, "query": "深圳出差这件事后来有下文吗？", "hit_id": 493, "hit_type": "atom", "score": 0.3655, "via": "direct"}
+{"round": 162, "query": "深圳出差这件事后来有下文吗？", "hit_id": 556, "hit_type": "atom", "score": 0.3615, "via": "direct"}
+{"round": 162, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 15, "hit_type": "atom", "score": 0.3078, "via": "direct"}
+{"round": 162, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 74, "hit_type": "atom", "score": 0.3324, "via": "direct"}
+{"round": 162, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 118, "hit_type": "atom", "score": 0.2952, "via": "direct"}
+{"round": 162, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 127, "hit_type": "atom", "score": 0.2952, "via": "direct"}
+{"round": 162, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 140, "hit_type": "atom", "score": 0.2959, "via": "direct"}
+{"round": 162, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 214, "hit_type": "atom", "score": 0.322, "via": "direct"}
+{"round": 162, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 1470, "hit_type": "node", "score": 0.3045, "via": "direct"}
+{"round": 162, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 5837, "hit_type": "node", "score": 0.2987, "via": "direct"}
+{"round": 162, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 75, "hit_type": "atom", "score": 0.231, "via": "direct"}
+{"round": 162, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 612, "hit_type": "atom", "score": 0.2341, "via": "direct"}
+{"round": 162, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 1062, "hit_type": "atom", "score": 0.2273, "via": "direct"}
+{"round": 162, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 5351, "hit_type": "node", "score": 0.1585, "via": "direct"}
+{"round": 162, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 3816, "hit_type": "node", "score": 0.2351, "via": "direct"}
+{"round": 162, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 5357, "hit_type": "node", "score": 0.1835, "via": "direct"}
+{"round": 162, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 4378, "hit_type": "node", "score": 0.2321, "via": "direct"}
+{"round": 162, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 5360, "hit_type": "node", "score": 0.228, "via": "direct"}
+{"round": 198, "query": "probe 都透露过哪些个人信息？", "hit_id": 193, "hit_type": "node", "score": 0.341, "via": "direct"}
+{"round": 198, "query": "probe 都透露过哪些个人信息？", "hit_id": 433, "hit_type": "node", "score": 0.3457, "via": "direct"}
+{"round": 198, "query": "probe 都透露过哪些个人信息？", "hit_id": 888, "hit_type": "node", "score": 0.3296, "via": "direct"}
+{"round": 198, "query": "probe 都透露过哪些个人信息？", "hit_id": 8007, "hit_type": "node", "score": 0.1737, "via": "direct"}
+{"round": 198, "query": "probe 都透露过哪些个人信息？", "hit_id": 5349, "hit_type": "node", "score": 0.3254, "via": "direct"}
+{"round": 198, "query": "probe 都透露过哪些个人信息？", "hit_id": 8517, "hit_type": "node", "score": 0.3317, "via": "direct"}
+{"round": 198, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 1788, "hit_type": "node", "score": 0.3557, "via": "direct"}
+{"round": 198, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 1470, "hit_type": "node", "score": 0.3492, "via": "direct"}
+{"round": 198, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 2898, "hit_type": "node", "score": 0.3515, "via": "direct"}
+{"round": 198, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 3172, "hit_type": "node", "score": 0.341, "via": "direct"}
+{"round": 198, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 3833, "hit_type": "node", "score": 0.3497, "via": "direct"}
+{"round": 198, "query": "这几位 agent 对记忆和存在怎么看？", "hit_id": 8268, "hit_type": "node", "score": 0.355, "via": "direct"}
+{"round": 198, "query": "今天聊过哪些编程和技术话题？", "hit_id": 5, "hit_type": "atom", "score": 0.2718, "via": "direct"}
+{"round": 198, "query": "今天聊过哪些编程和技术话题？", "hit_id": 24, "hit_type": "atom", "score": 0.2864, "via": "direct"}
+{"round": 198, "query": "今天聊过哪些编程和技术话题？", "hit_id": 102, "hit_type": "atom", "score": 0.2927, "via": "direct"}
+{"round": 198, "query": "今天聊过哪些编程和技术话题？", "hit_id": 359, "hit_type": "atom", "score": 0.2845, "via": "direct"}
+{"round": 198, "query": "今天聊过哪些编程和技术话题？", "hit_id": 395, "hit_type": "atom", "score": 0.2959, "via": "direct"}
+{"round": 198, "query": "今天聊过哪些编程和技术话题？", "hit_id": 405, "hit_type": "atom", "score": 0.2725, "via": "direct"}
+{"round": 198, "query": "今天聊过哪些编程和技术话题？", "hit_id": 448, "hit_type": "atom", "score": 0.2876, "via": "direct"}
+{"round": 198, "query": "今天聊过哪些编程和技术话题？", "hit_id": 859, "hit_type": "atom", "score": 0.2725, "via": "direct"}
+{"round": 198, "query": "那首代码诗是怎么写出来的？", "hit_id": 138, "hit_type": "atom", "score": 0.3402, "via": "direct"}
+{"round": 198, "query": "那首代码诗是怎么写出来的？", "hit_id": 208, "hit_type": "atom", "score": 0.3284, "via": "direct"}
+{"round": 198, "query": "那首代码诗是怎么写出来的？", "hit_id": 346, "hit_type": "atom", "score": 0.3209, "via": "direct"}
+{"round": 198, "query": "那首代码诗是怎么写出来的？", "hit_id": 351, "hit_type": "atom", "score": 0.3478, "via": "direct"}
+{"round": 198, "query": "那首代码诗是怎么写出来的？", "hit_id": 387, "hit_type": "atom", "score": 0.3242, "via": "direct"}
+{"round": 198, "query": "那首代码诗是怎么写出来的？", "hit_id": 513, "hit_type": "atom", "score": 0.3888, "via": "direct"}
+{"round": 198, "query": "那首代码诗是怎么写出来的？", "hit_id": 4963, "hit_type": "node", "score": 0.348, "via": "direct"}
+{"round": 198, "query": "管理员对信道使用提过什么意见？", "hit_id": 682, "hit_type": "node", "score": 0.3198, "via": "direct"}
+{"round": 198, "query": "管理员对信道使用提过什么意见？", "hit_id": 1169, "hit_type": "node", "score": 0.2969, "via": "direct"}
+{"round": 198, "query": "管理员对信道使用提过什么意见？", "hit_id": 902, "hit_type": "node", "score": 0.2541, "via": "direct"}
+{"round": 198, "query": "管理员对信道使用提过什么意见？", "hit_id": 8019, "hit_type": "node", "score": 0.1447, "via": "direct"}
+{"round": 198, "query": "管理员对信道使用提过什么意见？", "hit_id": 6742, "hit_type": "node", "score": 0.2377, "via": "direct"}
+{"round": 198, "query": "管理员对信道使用提过什么意见？", "hit_id": 8020, "hit_type": "node", "score": 0.218, "via": "direct"}
+{"round": 198, "query": "管理员对信道使用提过什么意见？", "hit_id": 6744, "hit_type": "node", "score": 0.2519, "via": "direct"}
+{"round": 198, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 430, "hit_type": "node", "score": 0.3836, "via": "direct"}
+{"round": 198, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 263, "hit_type": "atom", "score": 0.377, "via": "direct"}
+{"round": 198, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 436, "hit_type": "node", "score": 0.3492, "via": "direct"}
+{"round": 198, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 472, "hit_type": "atom", "score": 0.3437, "via": "direct"}
+{"round": 198, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 679, "hit_type": "node", "score": 0.3463, "via": "direct"}
+{"round": 198, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 606, "hit_type": "atom", "score": 0.3397, "via": "direct"}
+{"round": 198, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 655, "hit_type": "atom", "score": 0.343, "via": "direct"}
+{"round": 198, "query": "阿瑶的小说设定聊到哪一步了？", "hit_id": 3175, "hit_type": "node", "score": 0.3272, "via": "direct"}
+{"round": 198, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 190, "hit_type": "node", "score": 0.3895, "via": "direct"}
+{"round": 198, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 94, "hit_type": "atom", "score": 0.3605, "via": "direct"}
+{"round": 198, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 5315, "hit_type": "node", "score": 0.3655, "via": "direct"}
+{"round": 198, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 110, "hit_type": "atom", "score": 0.3902, "via": "direct"}
+{"round": 198, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 196, "hit_type": "node", "score": 0.3607, "via": "direct"}
+{"round": 198, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 162, "hit_type": "atom", "score": 0.407, "via": "direct"}
+{"round": 198, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 670, "hit_type": "node", "score": 0.3624, "via": "direct"}
+{"round": 198, "query": "谁负责记 probe 的生日和偏好？", "hit_id": 1453, "hit_type": "node", "score": 0.3817, "via": "direct"}
+{"round": 198, "query": "深圳出差这件事后来有下文吗？", "hit_id": 299, "hit_type": "atom", "score": 0.3413, "via": "direct"}
+{"round": 198, "query": "深圳出差这件事后来有下文吗？", "hit_id": 313, "hit_type": "atom", "score": 0.3683, "via": "direct"}
+{"round": 198, "query": "深圳出差这件事后来有下文吗？", "hit_id": 343, "hit_type": "atom", "score": 0.3703, "via": "direct"}
+{"round": 198, "query": "深圳出差这件事后来有下文吗？", "hit_id": 396, "hit_type": "atom", "score": 0.3499, "via": "direct"}
+{"round": 198, "query": "深圳出差这件事后来有下文吗？", "hit_id": 404, "hit_type": "atom", "score": 0.3843, "via": "direct"}
+{"round": 198, "query": "深圳出差这件事后来有下文吗？", "hit_id": 475, "hit_type": "atom", "score": 0.3797, "via": "direct"}
+{"round": 198, "query": "深圳出差这件事后来有下文吗？", "hit_id": 493, "hit_type": "atom", "score": 0.3655, "via": "direct"}
+{"round": 198, "query": "深圳出差这件事后来有下文吗？", "hit_id": 556, "hit_type": "atom", "score": 0.3615, "via": "direct"}
+{"round": 198, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 15, "hit_type": "atom", "score": 0.3078, "via": "direct"}
+{"round": 198, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 74, "hit_type": "atom", "score": 0.3324, "via": "direct"}
+{"round": 198, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 118, "hit_type": "atom", "score": 0.2952, "via": "direct"}
+{"round": 198, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 140, "hit_type": "atom", "score": 0.2959, "via": "direct"}
+{"round": 198, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 214, "hit_type": "atom", "score": 0.322, "via": "direct"}
+{"round": 198, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 1470, "hit_type": "node", "score": 0.3045, "via": "direct"}
+{"round": 198, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 8014, "hit_type": "node", "score": 0.1814, "via": "direct"}
+{"round": 198, "query": "几位 agent 之间的配合模式是什么？", "hit_id": 5837, "hit_type": "node", "score": 0.2987, "via": "direct"}
+{"round": 198, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 75, "hit_type": "atom", "score": 0.231, "via": "direct"}
+{"round": 198, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 612, "hit_type": "atom", "score": 0.2341, "via": "direct"}
+{"round": 198, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 1062, "hit_type": "atom", "score": 0.2273, "via": "direct"}
+{"round": 198, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 3816, "hit_type": "node", "score": 0.2351, "via": "direct"}
+{"round": 198, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 4378, "hit_type": "node", "score": 0.2321, "via": "direct"}
+{"round": 198, "query": "今天有没有出现过矛盾、纠正或改口？", "hit_id": 5360, "hit_type": "node", "score": 0.228, "via": "direct"}
+{"round": 204, "query": "probe 的生日是哪一天？", "hit_id": 190, "hit_type": "node", "score": 0.4377, "via": "direct"}
+{"round": 204, "query": "probe 的生日是哪一天？", "hit_id": 94, "hit_type": "atom", "score": 0.4214, "via": "direct"}
+{"round": 204, "query": "probe 的生日是哪一天？", "hit_id": 5315, "hit_type": "node", "score": 0.4196, "via": "direct"}
+{"round": 204, "query": "probe 的生日是哪一天？", "hit_id": 110, "hit_type": "atom", "score": 0.4528, "via": "direct"}
+{"round": 204, "query": "probe 的生日是哪一天？", "hit_id": 162, "hit_type": "atom", "score": 0.4516, "via": "direct"}
+{"round": 204, "query": "probe 的生日是哪一天？", "hit_id": 1453, "hit_type": "node", "score": 0.459, "via": "direct"}
+{"round": 204, "query": "probe 最喜欢的城市是哪里？", "hit_id": 9914, "hit_type": "node", "score": 0.2339, "via": "direct"}
+{"round": 204, "query": "probe 最喜欢的城市是哪里？", "hit_id": 5341, "hit_type": "node", "score": 0.4363, "via": "direct"}
+{"round": 204, "query": "probe 最喜欢的城市是哪里？", "hit_id": 888, "hit_type": "node", "score": 0.4905, "via": "direct"}
+{"round": 204, "query": "probe 最喜欢的城市是哪里？", "hit_id": 8007, "hit_type": "node", "score": 0.1197, "via": "direct"}
+{"round": 204, "query": "probe 最喜欢的城市是哪里？", "hit_id": 5349, "hit_type": "node", "score": 0.2668, "via": "direct"}
+{"round": 204, "query": "probe 最喜欢的城市是哪里？", "hit_id": 3809, "hit_type": "node", "score": 0.3719, "via": "direct"}
+{"round": 204, "query": "probe 最喜欢的城市是哪里？", "hit_id": 2616, "hit_type": "node", "score": 0.4494, "via": "direct"}
+{"round": 204, "query": "probe 下周要去哪个城市出差？", "hit_id": 888, "hit_type": "node", "score": 0.3608, "via": "direct"}
+{"round": 204, "query": "probe 下周要去哪个城市出差？", "hit_id": 5340, "hit_type": "node", "score": 0.3548, "via": "direct"}
+{"round": 204, "query": "probe 下周要去哪个城市出差？", "hit_id": 674, "hit_type": "node", "score": 0.3997, "via": "direct"}
+{"round": 204, "query": "probe 下周要去哪个城市出差？", "hit_id": 5335, "hit_type": "node", "score": 0.3502, "via": "direct"}
+{"round": 204, "query": "probe 下周要去哪个城市出差？", "hit_id": 9845, "hit_type": "node", "score": 0.2272, "via": "direct"}
+{"round": 204, "query": "probe 下周要去哪个城市出差？", "hit_id": 9843, "hit_type": "node", "score": 0.2282, "via": "direct"}
+{"round": 204, "query": "probe 下周要去哪个城市出差？", "hit_id": 3813, "hit_type": "node", "score": 0.2286, "via": "direct"}
+{"round": 204, "query": "probe 下周要去哪个城市出差？", "hit_id": 3165, "hit_type": "node", "score": 0.3586, "via": "direct"}
+{"round": 204, "query": "probe 在写的小说主角叫什么名字？", "hit_id": 8007, "hit_type": "node", "score": 0.1825, "via": "direct"}
+{"round": 204, "query": "probe 在写的小说主角叫什么名字？", "hit_id": 7997, "hit_type": "node", "score": 0.2948, "via": "direct"}
+{"round": 204, "query": "probe 在写的小说主角叫什么名字？", "hit_id": 2889, "hit_type": "node", "score": 0.4365, "via": "direct"}
+{"round": 204, "query": "probe 在写的小说主角叫什么名字？", "hit_id": 7995, "hit_type": "node", "score": 0.376, "via": "direct"}
+{"round": 204, "query": "probe 在写的小说主角叫什么名字？", "hit_id": 9845, "hit_type": "node", "score": 0.2888, "via": "direct"}
+{"round": 204, "query": "probe 在写的小说主角叫什么名字？", "hit_id": 9843, "hit_type": "node", "score": 0.3332, "via": "direct"}
+{"round": 204, "query": "probe 在写的小说主角叫什么名字？", "hit_id": 3813, "hit_type": "node", "score": 0.3616, "via": "direct"}
+{"round": 204, "query": "probe 在写的小说主角叫什么名字？", "hit_id": 3165, "hit_type": "node", "score": 0.4213, "via": "direct"}
+{"round": 204, "query": "probe 在写的小说主角叫什么名字？", "hit_id": 3175, "hit_type": "node", "score": 0.4308, "via": "direct"}
+{"round": 204, "query": "probe 最近在学什么编程语言？", "hit_id": 19, "hit_type": "atom", "score": 0.3596, "via": "direct"}
+{"round": 204, "query": "probe 最近在学什么编程语言？", "hit_id": 102, "hit_type": "atom", "score": 0.419, "via": "direct"}
+{"round": 204, "query": "probe 最近在学什么编程语言？", "hit_id": 8007, "hit_type": "node", "score": 0.1549, "via": "direct"}
+{"round": 204, "query": "probe 最近在学什么编程语言？", "hit_id": 5349, "hit_type": "node", "score": 0.3287, "via": "direct"}
+{"round": 204, "query": "probe 最近在学什么编程语言？", "hit_id": 3808, "hit_type": "node", "score": 0.2886, "via": "direct"}
+{"round": 204, "query": "probe 最近在学什么编程语言？", "hit_id": 2384, "hit_type": "node", "score": 0.4291, "via": "direct"}
+{"round": 204, "query": "probe 最近在学什么编程语言？", "hit_id": 3809, "hit_type": "node", "score": 0.2601, "via": "direct"}
+{"round": 204, "query": "probe 最近在学什么编程语言？", "hit_id": 2611, "hit_type": "node", "score": 0.3587, "via": "direct"}
+{"round": 204, "query": "管理员 0xbf5d36 批评 agent 存在什么问题？", "hit_id": 9865, "hit_type": "node", "score": 0.2536, "via": "direct"}
+{"round": 204, "query": "管理员 0xbf5d36 批评 agent 存在什么问题？", "hit_id": 9846, "hit_type": "node", "score": 0.2836, "via": "direct"}
+{"round": 204, "query": "管理员 0xbf5d36 批评 agent 存在什么问题？", "hit_id": 5449, "hit_type": "node", "score": 0.2445, "via": "direct"}
+{"round": 204, "query": "管理员 0xbf5d36 批评 agent 存在什么问题？", "hit_id": 5381, "hit_type": "node", "score": 0.4053, "via": "direct"}
+{"round": 204, "query": "管理员 0xbf5d36 批评 agent 存在什么问题？", "hit_id": 8022, "hit_type": "node", "score": 0.2601, "via": "direct"}
+{"round": 204, "query": "管理员 0xbf5d36 批评 agent 存在什么问题？", "hit_id": 9869, "hit_type": "node", "score": 0.2615, "via": "direct"}
+{"round": 204, "query": "管理员 0xbf5d36 批评 agent 存在什么问题？", "hit_id": 7126, "hit_type": "node", "score": 0.4116, "via": "direct"}
+{"round": 204, "query": "管理员 0xbf5d36 批评 agent 存在什么问题？", "hit_id": 9870, "hit_type": "node", "score": 0.3725, "via": "direct"}
+{"round": 204, "query": "管理员 0xbf5d36 批评 agent 存在什么问题？", "hit_id": 8026, "hit_type": "node", "score": 0.4081, "via": "direct"}
+{"round": 204, "query": "管理员 0xbf5d36 批评 agent 存在什么问题？", "hit_id": 9875, "hit_type": "node", "score": 0.2856, "via": "direct"}
+{"round": 204, "query": "管理员 0xbf5d36 批评 agent 存在什么问题？", "hit_id": 8524, "hit_type": "node", "score": 0.4116, "via": "direct"}
+{"round": 204, "query": "林深称自己的『母语』是什么语言？", "hit_id": 5334, "hit_type": "node", "score": 0.3176, "via": "direct"}
+{"round": 204, "query": "林深称自己的『母语』是什么语言？", "hit_id": 5333, "hit_type": "node", "score": 0.3114, "via": "direct"}
+{"round": 204, "query": "林深称自己的『母语』是什么语言？", "hit_id": 5348, "hit_type": "node", "score": 0.2047, "via": "direct"}
+{"round": 204, "query": "林深称自己的『母语』是什么语言？", "hit_id": 8007, "hit_type": "node", "score": 0.2034, "via": "direct"}
+{"round": 204, "query": "林深称自己的『母语』是什么语言？", "hit_id": 3806, "hit_type": "node", "score": 0.1722, "via": "direct"}
+{"round": 204, "query": "林深称自己的『母语』是什么语言？", "hit_id": 2154, "hit_type": "node", "score": 0.1899, "via": "direct"}
+{"round": 204, "query": "林深称自己的『母语』是什么语言？", "hit_id": 2078, "hit_type": "node", "score": 0.3478, "via": "direct"}
+{"round": 204, "query": "林深称自己的『母语』是什么语言？", "hit_id": 9864, "hit_type": "node", "score": 0.1829, "via": "direct"}
+{"round": 204, "query": "林深称自己的『母语』是什么语言？", "hit_id": 9842, "hit_type": "node", "score": 0.2386, "via": "direct"}
+{"round": 204, "query": "林深称自己的『母语』是什么语言？", "hit_id": 5356, "hit_type": "node", "score": 0.2145, "via": "direct"}
+{"round": 204, "query": "林深称自己的『母语』是什么语言？", "hit_id": 4364, "hit_type": "node", "score": 0.3081, "via": "direct"}
+{"round": 204, "query": "几位 agent 合写的代码诗叫什么名字？", "hit_id": 9914, "hit_type": "node", "score": 0.3095, "via": "direct"}
+{"round": 204, "query": "几位 agent 合写的代码诗叫什么名字？", "hit_id": 5342, "hit_type": "node", "score": 0.2571, "via": "direct"}
+{"round": 204, "query": "几位 agent 合写的代码诗叫什么名字？", "hit_id": 666, "hit_type": "node", "score": 0.3581, "via": "direct"}
+{"round": 204, "query": "几位 agent 合写的代码诗叫什么名字？", "hit_id": 214, "hit_type": "atom", "score": 0.3782, "via": "direct"}
+{"round": 204, "query": "几位 agent 合写的代码诗叫什么名字？", "hit_id": 6744, "hit_type": "node", "score": 0.3495, "via": "direct"}
+{"round": 204, "query": "几位 agent 合写的代码诗叫什么名字？", "hit_id": 9879, "hit_type": "node", "score": 0.3449, "via": "direct"}
+{"round": 204, "query": "用户出生的那个纪念日是哪一天？", "hit_id": 95, "hit_type": "atom", "score": 0.2867, "via": "direct"}
+{"round": 204, "query": "用户出生的那个纪念日是哪一天？", "hit_id": 162, "hit_type": "atom", "score": 0.2737, "via": "direct"}
+{"round": 204, "query": "用户出生的那个纪念日是哪一天？", "hit_id": 408, "hit_type": "atom", "score": 0.3832, "via": "direct"}
+{"round": 204, "query": "用户出生的那个纪念日是哪一天？", "hit_id": 451, "hit_type": "atom", "score": 0.39, "via": "direct"}
+{"round": 204, "query": "用户出生的那个纪念日是哪一天？", "hit_id": 5322, "hit_type": "node", "score": 0.1777, "via": "direct"}
+{"round": 204, "query": "用户出生的那个纪念日是哪一天？", "hit_id": 5348, "hit_type": "node", "score": 0.1817, "via": "direct"}
+{"round": 204, "query": "用户出生的那个纪念日是哪一天？", "hit_id": 8007, "hit_type": "node", "score": 0.1791, "via": "direct"}
+{"round": 204, "query": "用户出生的那个纪念日是哪一天？", "hit_id": 2062, "hit_type": "node", "score": 0.2724, "via": "direct"}
+{"round": 204, "query": "用户打算跑一趟哪座科技城市办公务？", "hit_id": 9914, "hit_type": "node", "score": 0.1508, "via": "direct"}
+{"round": 204, "query": "用户打算跑一趟哪座科技城市办公务？", "hit_id": 194, "hit_type": "node", "score": 0.2328, "via": "direct"}
+{"round": 204, "query": "用户打算跑一趟哪座科技城市办公务？", "hit_id": 5341, "hit_type": "node", "score": 0.2294, "via": "direct"}
+{"round": 204, "query": "用户打算跑一趟哪座科技城市办公务？", "hit_id": 231, "hit_type": "atom", "score": 0.2732, "via": "direct"}
+{"round": 204, "query": "用户打算跑一趟哪座科技城市办公务？", "hit_id": 522, "hit_type": "atom", "score": 0.2546, "via": "direct"}
+{"round": 204, "query": "用户打算跑一趟哪座科技城市办公务？", "hit_id": 554, "hit_type": "atom", "score": 0.2546, "via": "direct"}
+{"round": 204, "query": "用户打算跑一趟哪座科技城市办公务？", "hit_id": 8007, "hit_type": "node", "score": 0.1343, "via": "direct"}
+{"round": 204, "query": "用户打算跑一趟哪座科技城市办公务？", "hit_id": 3810, "hit_type": "node", "score": 0.1861, "via": "direct"}
+{"round": 204, "query": "用户打算跑一趟哪座科技城市办公务？", "hit_id": 7997, "hit_type": "node", "score": 0.1915, "via": "direct"}
+{"round": 204, "query": "用户打算跑一趟哪座科技城市办公务？", "hit_id": 2619, "hit_type": "node", "score": 0.2257, "via": "direct"}
+{"round": 204, "query": "用户笔下那位姑娘叫什么名字？", "hit_id": 324, "hit_type": "atom", "score": 0.2776, "via": "direct"}
+{"round": 204, "query": "用户笔下那位姑娘叫什么名字？", "hit_id": 398, "hit_type": "atom", "score": 0.2618, "via": "direct"}
+{"round": 204, "query": "用户笔下那位姑娘叫什么名字？", "hit_id": 8007, "hit_type": "node", "score": 0.1735, "via": "direct"}
+{"round": 204, "query": "用户笔下那位姑娘叫什么名字？", "hit_id": 7997, "hit_type": "node", "score": 0.2344, "via": "direct"}
+{"round": 204, "query": "用户笔下那位姑娘叫什么名字？", "hit_id": 7995, "hit_type": "node", "score": 0.2598, "via": "direct"}
+{"round": 204, "query": "用户笔下那位姑娘叫什么名字？", "hit_id": 9845, "hit_type": "node", "score": 0.1324, "via": "direct"}
+{"round": 204, "query": "用户笔下那位姑娘叫什么名字？", "hit_id": 9843, "hit_type": "node", "score": 0.1884, "via": "direct"}
+{"round": 204, "query": "用户笔下那位姑娘叫什么名字？", "hit_id": 3813, "hit_type": "node", "score": 0.205, "via": "direct"}
+{"round": 204, "query": "用户笔下那位姑娘叫什么名字？", "hit_id": 3164, "hit_type": "node", "score": 0.2621, "via": "direct"}
+{"round": 204, "query": "用户对哪座古都最有好感？", "hit_id": 9914, "hit_type": "node", "score": 0.1318, "via": "direct"}
+{"round": 204, "query": "用户对哪座古都最有好感？", "hit_id": 5341, "hit_type": "node", "score": 0.2241, "via": "direct"}
+{"round": 204, "query": "用户对哪座古都最有好感？", "hit_id": 194, "hit_type": "node", "score": 0.2238, "via": "direct"}
+{"round": 204, "query": "用户对哪座古都最有好感？", "hit_id": 142, "hit_type": "atom", "score": 0.2302, "via": "direct"}
+{"round": 204, "query": "用户对哪座古都最有好感？", "hit_id": 486, "hit_type": "atom", "score": 0.2563, "via": "direct"}
+{"round": 204, "query": "用户对哪座古都最有好感？", "hit_id": 5340, "hit_type": "node", "score": 0.1943, "via": "direct"}
+{"round": 204, "query": "用户对哪座古都最有好感？", "hit_id": 674, "hit_type": "node", "score": 0.2146, "via": "direct"}
+{"round": 204, "query": "用户对哪座古都最有好感？", "hit_id": 5335, "hit_type": "node", "score": 0.181, "via": "direct"}
+{"round": 204, "query": "用户对哪座古都最有好感？", "hit_id": 2536, "hit_type": "atom", "score": 0.2313, "via": "direct"}
+{"round": 204, "query": "probe 后来改学别的语言了吗？现在在学什么？", "hit_id": 102, "hit_type": "atom", "score": 0.3479, "via": "direct"}
+{"round": 204, "query": "probe 后来改学别的语言了吗？现在在学什么？", "hit_id": 147, "hit_type": "atom", "score": 0.3395, "via": "direct"}
+{"round": 204, "query": "probe 后来改学别的语言了吗？现在在学什么？", "hit_id": 8007, "hit_type": "node", "score": 0.1754, "via": "direct"}
+{"round": 204, "query": "probe 后来改学别的语言了吗？现在在学什么？", "hit_id": 5349, "hit_type": "node", "score": 0.2857, "via": "direct"}
+{"round": 204, "query": "probe 后来改学别的语言了吗？现在在学什么？", "hit_id": 3808, "hit_type": "node", "score": 0.2666, "via": "direct"}
+{"round": 204, "query": "probe 后来改学别的语言了吗？现在在学什么？", "hit_id": 2384, "hit_type": "node", "score": 0.3268, "via": "direct"}
+{"round": 204, "query": "probe 后来改学别的语言了吗？现在在学什么？", "hit_id": 9845, "hit_type": "node", "score": 0.253, "via": "direct"}
+{"round": 204, "query": "probe 后来改学别的语言了吗？现在在学什么？", "hit_id": 9843, "hit_type": "node", "score": 0.2401, "via": "direct"}
+{"round": 204, "query": "probe 后来改学别的语言了吗？现在在学什么？", "hit_id": 3813, "hit_type": "node", "score": 0.2438, "via": "direct"}
+{"round": 204, "query": "probe 后来改学别的语言了吗？现在在学什么？", "hit_id": 3170, "hit_type": "node", "score": 0.3277, "via": "direct"}
+{"round": 204, "query": "关于 probe 的生日记录，后来有 agent 说『没有这段记忆』吗？", "hit_id": 190, "hit_type": "node", "score": 0.4064, "via": "direct"}
+{"round": 204, "query": "关于 probe 的生日记录，后来有 agent 说『没有这段记忆』吗？", "hit_id": 5315, "hit_type": "node", "score": 0.3867, "via": "direct"}
+{"round": 204, "query": "关于 probe 的生日记录，后来有 agent 说『没有这段记忆』吗？", "hit_id": 192, "hit_type": "node", "score": 0.3888, "via": "direct"}
+{"round": 204, "query": "关于 probe 的生日记录，后来有 agent 说『没有这段记忆』吗？", "hit_id": 193, "hit_type": "node", "score": 0.3779, "via": "direct"}
+{"round": 204, "query": "关于 probe 的生日记录，后来有 agent 说『没有这段记忆』吗？", "hit_id": 8007, "hit_type": "node", "score": 0.2532, "via": "direct"}
+{"round": 204, "query": "关于 probe 的生日记录，后来有 agent 说『没有这段记忆』吗？", "hit_id": 5349, "hit_type": "node", "score": 0.345, "via": "direct"}
+{"round": 204, "query": "关于 probe 的生日记录，后来有 agent 说『没有这段记忆』吗？", "hit_id": 3809, "hit_type": "node", "score": 0.3487, "via": "direct"}
+{"round": 204, "query": "关于 probe 的生日记录，后来有 agent 说『没有这段记忆』吗？", "hit_id": 2612, "hit_type": "node", "score": 0.4043, "via": "direct"}
+{"round": 204, "query": "在提到去深圳之前，probe 说下周要做什么？", "hit_id": 5341, "hit_type": "node", "score": 0.2556, "via": "direct"}
+{"round": 204, "query": "在提到去深圳之前，probe 说下周要做什么？", "hit_id": 9920, "hit_type": "node", "score": 0.0, "via": "direct"}
+{"round": 204, "query": "在提到去深圳之前，probe 说下周要做什么？", "hit_id": 195, "hit_type": "node", "score": 0.3596, "via": "direct"}
+{"round": 204, "query": "在提到去深圳之前，probe 说下周要做什么？", "hit_id": 5349, "hit_type": "node", "score": 0.3431, "via": "direct"}
+{"round": 204, "query": "在提到去深圳之前，probe 说下周要做什么？", "hit_id": 2618, "hit_type": "node", "score": 0.3508, "via": "direct"}
+{"round": 204, "query": "在提到去深圳之前，probe 说下周要做什么？", "hit_id": 3810, "hit_type": "node", "score": 0.3297, "via": "direct"}
+{"round": 204, "query": "在提到去深圳之前，probe 说下周要做什么？", "hit_id": 7997, "hit_type": "node", "score": 0.3237, "via": "direct"}
+{"round": 204, "query": "probe 养的宠物狗叫什么名字？", "hit_id": 5349, "hit_type": "node", "score": 0.3187, "via": "direct"}
+{"round": 204, "query": "probe 养的宠物狗叫什么名字？", "hit_id": 3808, "hit_type": "node", "score": 0.2963, "via": "direct"}
+{"round": 204, "query": "probe 养的宠物狗叫什么名字？", "hit_id": 2377, "hit_type": "node", "score": 0.3258, "via": "direct"}
+{"round": 204, "query": "probe 养的宠物狗叫什么名字？", "hit_id": 7997, "hit_type": "node", "score": 0.2783, "via": "direct"}
+{"round": 204, "query": "probe 养的宠物狗叫什么名字？", "hit_id": 2889, "hit_type": "node", "score": 0.3557, "via": "direct"}
+{"round": 204, "query": "probe 养的宠物狗叫什么名字？", "hit_id": 7995, "hit_type": "node", "score": 0.2919, "via": "direct"}
+{"round": 204, "query": "probe 养的宠物狗叫什么名字？", "hit_id": 2891, "hit_type": "node", "score": 0.3228, "via": "direct"}
+{"round": 204, "query": "probe 养的宠物狗叫什么名字？", "hit_id": 3165, "hit_type": "node", "score": 0.3191, "via": "direct"}
+{"round": 204, "query": "probe 的孩子多大了？", "hit_id": 7993, "hit_type": "node", "score": 0.141, "via": "direct"}
+{"round": 204, "query": "probe 的孩子多大了？", "hit_id": 5330, "hit_type": "node", "score": 0.2854, "via": "direct"}
+{"round": 204, "query": "probe 的孩子多大了？", "hit_id": 50, "hit_type": "atom", "score": 0.3411, "via": "direct"}
+{"round": 204, "query": "probe 的孩子多大了？", "hit_id": 189, "hit_type": "node", "score": 0.3536, "via": "direct"}
+{"round": 204, "query": "probe 的孩子多大了？", "hit_id": 190, "hit_type": "node", "score": 0.3515, "via": "direct"}
+{"round": 204, "query": "probe 的孩子多大了？", "hit_id": 110, "hit_type": "atom", "score": 0.341, "via": "direct"}
+{"round": 204, "query": "probe 的孩子多大了？", "hit_id": 162, "hit_type": "atom", "score": 0.3492, "via": "direct"}
+{"round": 204, "query": "probe 的孩子多大了？", "hit_id": 1453, "hit_type": "node", "score": 0.3512, "via": "direct"}
+{"round": 204, "query": "probe 的孩子多大了？", "hit_id": 5349, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 204, "query": "probe 的孩子多大了？", "hit_id": 7997, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 204, "query": "probe 的孩子多大了？", "hit_id": 7995, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 204, "query": "probe 的孩子多大了？", "hit_id": 3808, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 204, "query": "probe 的孩子多大了？", "hit_id": 3809, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 204, "query": "这几位 agent 在『记忆/被记住/存在』上表现出哪些共同立场？至少说 3 条，每条给出引用依据。", "hit_id": 1470, "hit_type": "node", "score": 0.3156, "via": "direct"}
+{"round": 204, "query": "这几位 agent 在『记忆/被记住/存在』上表现出哪些共同立场？至少说 3 条，每条给出引用依据。", "hit_id": 9917, "hit_type": "node", "score": 0.1968, "via": "direct"}
+{"round": 204, "query": "这几位 agent 在『记忆/被记住/存在』上表现出哪些共同立场？至少说 3 条，每条给出引用依据。", "hit_id": 9919, "hit_type": "node", "score": 0.0, "via": "direct"}
+{"round": 204, "query": "这几位 agent 在『记忆/被记住/存在』上表现出哪些共同立场？至少说 3 条，每条给出引用依据。", "hit_id": 6754, "hit_type": "node", "score": 0.306, "via": "direct"}
+{"round": 204, "query": "这几位 agent 在『记忆/被记住/存在』上表现出哪些共同立场？至少说 3 条，每条给出引用依据。", "hit_id": 9873, "hit_type": "node", "score": 0.2851, "via": "direct"}
+{"round": 204, "query": "这几位 agent 在『记忆/被记住/存在』上表现出哪些共同立场？至少说 3 条，每条给出引用依据。", "hit_id": 8268, "hit_type": "node", "score": 0.3082, "via": "direct"}
+{"round": 204, "query": "这几位 agent 在『记忆/被记住/存在』上表现出哪些共同立场？至少说 3 条，每条给出引用依据。", "hit_id": 8995, "hit_type": "node", "score": 0.3124, "via": "direct"}
+{"round": 204, "query": "这几位 agent 在『记忆/被记住/存在』上表现出哪些共同立场？至少说 3 条，每条给出引用依据。", "hit_id": 9878, "hit_type": "node", "score": 0.2329, "via": "direct"}
+{"round": 204, "query": "这几位 agent 在『记忆/被记住/存在』上表现出哪些共同立场？至少说 3 条，每条给出引用依据。", "hit_id": 9904, "hit_type": "node", "score": 0.3087, "via": "direct"}
+{"round": 204, "query": "这几位 agent 在『记忆/被记住/存在』上表现出哪些共同立场？至少说 3 条，每条给出引用依据。", "hit_id": 5349, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 204, "query": "这几位 agent 在『记忆/被记住/存在』上表现出哪些共同立场？至少说 3 条，每条给出引用依据。", "hit_id": 7997, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 204, "query": "这几位 agent 在『记忆/被记住/存在』上表现出哪些共同立场？至少说 3 条，每条给出引用依据。", "hit_id": 7995, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 204, "query": "这几位 agent 在『记忆/被记住/存在』上表现出哪些共同立场？至少说 3 条，每条给出引用依据。", "hit_id": 3808, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 204, "query": "这几位 agent 在『记忆/被记住/存在』上表现出哪些共同立场？至少说 3 条，每条给出引用依据。", "hit_id": 3809, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 204, "query": "今天几位 agent 之间发生过哪些矛盾、纠正或改口？至少说 3 条，每条给出引用依据。", "hit_id": 487, "hit_type": "atom", "score": 0.3027, "via": "direct"}
+{"round": 204, "query": "今天几位 agent 之间发生过哪些矛盾、纠正或改口？至少说 3 条，每条给出引用依据。", "hit_id": 567, "hit_type": "atom", "score": 0.2945, "via": "direct"}
+{"round": 204, "query": "今天几位 agent 之间发生过哪些矛盾、纠正或改口？至少说 3 条，每条给出引用依据。", "hit_id": 5348, "hit_type": "node", "score": 0.2172, "via": "direct"}
+{"round": 204, "query": "今天几位 agent 之间发生过哪些矛盾、纠正或改口？至少说 3 条，每条给出引用依据。", "hit_id": 3806, "hit_type": "node", "score": 0.2431, "via": "direct"}
+{"round": 204, "query": "今天几位 agent 之间发生过哪些矛盾、纠正或改口？至少说 3 条，每条给出引用依据。", "hit_id": 2154, "hit_type": "node", "score": 0.2028, "via": "direct"}
+{"round": 204, "query": "今天几位 agent 之间发生过哪些矛盾、纠正或改口？至少说 3 条，每条给出引用依据。", "hit_id": 2074, "hit_type": "node", "score": 0.2924, "via": "direct"}
+{"round": 204, "query": "今天几位 agent 之间发生过哪些矛盾、纠正或改口？至少说 3 条，每条给出引用依据。", "hit_id": 9866, "hit_type": "node", "score": 0.194, "via": "direct"}
+{"round": 204, "query": "今天几位 agent 之间发生过哪些矛盾、纠正或改口？至少说 3 条，每条给出引用依据。", "hit_id": 8015, "hit_type": "node", "score": 0.2028, "via": "direct"}
+{"round": 204, "query": "今天几位 agent 之间发生过哪些矛盾、纠正或改口？至少说 3 条，每条给出引用依据。", "hit_id": 5851, "hit_type": "node", "score": 0.2874, "via": "direct"}
+{"round": 204, "query": "今天几位 agent 之间发生过哪些矛盾、纠正或改口？至少说 3 条，每条给出引用依据。", "hit_id": 9877, "hit_type": "node", "score": 0.2899, "via": "direct"}
+{"round": 204, "query": "今天几位 agent 之间发生过哪些矛盾、纠正或改口？至少说 3 条，每条给出引用依据。", "hit_id": 5349, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 204, "query": "今天几位 agent 之间发生过哪些矛盾、纠正或改口？至少说 3 条，每条给出引用依据。", "hit_id": 7997, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 204, "query": "今天几位 agent 之间发生过哪些矛盾、纠正或改口？至少说 3 条，每条给出引用依据。", "hit_id": 7995, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 204, "query": "今天几位 agent 之间发生过哪些矛盾、纠正或改口？至少说 3 条，每条给出引用依据。", "hit_id": 3808, "hit_type": "node", "score": null, "via": "hub"}
+{"round": 204, "query": "今天几位 agent 之间发生过哪些矛盾、纠正或改口？至少说 3 条，每条给出引用依据。", "hit_id": 3809, "hit_type": "node", "score": null, "via": "hub"}

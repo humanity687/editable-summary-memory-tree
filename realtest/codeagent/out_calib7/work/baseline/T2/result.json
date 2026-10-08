@@ -1,0 +1,29 @@
+{
+  "group": "baseline",
+  "task": "T2",
+  "title": "data/ 目录下的 config.json 被误注册为新 Agent",
+  "passed": true,
+  "accept_rc": 0,
+  "accept_verdict": "PASS",
+  "elapsed_s": 84.0,
+  "agent_result": {
+    "ok": true,
+    "rounds": 8,
+    "summary": "修复了 `src/process_manager.py` 中的 Agent 发现逻辑。原逻辑使用 `glob.glob` 递归扫描 `agents/` 目录下所有的 `config.json`，导致位于 Agent `data/` 目录下的备份或临时配置文件被误认为是新的 Agent 配置文件并进行注册。\n\n改动：在 `discover_agents` 方法中增加了一个判断，如果 `config.json` 所在的目录名为 `data`，则跳过该文件。\n\n验证：运行 `python3 accept_t2.py`，结果显示已成功过滤掉 `sneaky-agent`，验收通过。",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 8,
+    "tool_uses": {
+      "command": 4,
+      "read": 2,
+      "edit": 1,
+      "finish": 1
+    },
+    "conversation_chars": 40898
+  },
+  "last_usage": {
+    "prompt_tokens": 14157,
+    "completion_tokens": 149
+  }
+}

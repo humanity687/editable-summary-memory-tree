@@ -1,0 +1,35 @@
+{
+  "group": "baseline",
+  "task": "T5",
+  "title": "PythonShell 并发命令结果错配/丢失",
+  "passed": true,
+  "accept_rc": 0,
+  "accept_verdict": "PASS",
+  "elapsed_s": 637.8,
+  "agent_result": {
+    "ok": true,
+    "rounds": 37,
+    "summary": "修复了 PythonShell 在并发提交命令时，由于多个线程竞争同一个 output_queue 导致的结果错配、丢失和误报超时问题。\n\n改动点：\n1. 引入了中央分发机制（Dispatcher）：在 PythonShell 中增加了一个 `_dispatch_loop` 线程，专门负责从 `_output_queue` 中读取所有来自工作进程的消息。\n2. 使用消息映射表（Dispatch Map）：为每个命令创建一个专用的 `cmd_result_queue`，并在分发循环中根据 `recv_id` 将消息准确投递到对应的命令队列中。\n3. 线程安全优化：引入了 `_pending_lock` 和 `_dispatch_lock` 等锁，确保在并发环境下对状态和映射表的修改是安全的。\n4. 修复了原代码中的语法错误（IndentationError）。\n\n验证结果：\n运行 `python3 accept_t5.py` 验收脚本，结果为 `PASS`。",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 37,
+    "tool_uses": {
+      "command": 7,
+      "read": 18,
+      "edit": 7,
+      "write": 2,
+      "finish": 1
+    },
+    "conversation_chars": 28767,
+    "total_tokens": {
+      "prompt": 439145,
+      "completion": 30295
+    },
+    "llm_seconds": 606.9
+  },
+  "last_usage": {
+    "prompt_tokens": 17671,
+    "completion_tokens": 225
+  }
+}

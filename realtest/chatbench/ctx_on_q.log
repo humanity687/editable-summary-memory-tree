@@ -1,0 +1,22 @@
+[replay] 716 条消息 / 1 会话 / 289666 字
+[tree] 载入缓存树 realtest/chatbench/out/tree_ctx.json.gz: 原子 9553, 节点 874, 轮 108
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[Phase 0+W] 原子 9553, 节点 890, 高 2, 铺陈 182, usage×30（3 轮）, 蒸馏 34 次/77s
+  T2 t2_part: cite=29/29
+  T2 t2_persona: cite=15/15
+  T2 t2_converge: cite=12/12
+  T2 t2_problems: cite=18/18
+  T3 t3_1: claims=8 recall×0 cite=9/9
+  T3 t3_2: claims=6 recall×0 cite=5/5
+  T3 t3_3: claims=8 recall×0 cite=11/11
+  T3 t3_4: claims=6 recall×0 cite=8/8
+  T3 t3_5: claims=6 recall×1 cite=6/6
+  T3 t3_6: claims=6 recall×0 cite=0/0
+
+[完成] 148.2s → realtest/chatbench/out/ctx_on_q

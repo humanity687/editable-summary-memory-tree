@@ -1,0 +1,19 @@
+{"round": 302, "op": "create", "concept": 1, "title": "骨片拼图与赵老拐的关联线索", "member_count": 8, "members": [{"id": 151, "type": "node", "conn_weight": 34.4}, {"id": 94, "type": "atom", "conn_weight": 25.0}, {"id": 143, "type": "atom", "conn_weight": 25.0}, {"id": 148, "type": "atom", "conn_weight": 25.0}, {"id": 171, "type": "atom", "conn_weight": 25.0}, {"id": 398, "type": "atom", "conn_weight": 25.0}, {"id": 174, "type": "node", "conn_weight": 11.4}, {"id": 394, "type": "node", "conn_weight": 9.6}], "trigger_queries": ["赵老拐 蓝色布面流水簿 第一页", "赵老拐 蓝色布面流水簿", "赵老拐 船屋 粗瓷碗", "骨片 拼图 中心 名字"], "reclaimed": 18}
+{"round": 304, "op": "match", "concept": 1, "score": 0.4772, "query": "段临洲 老钟厂 手里"}
+{"round": 304, "op": "bring", "concept": 1, "item": 151, "type": "node", "conn_weight": 34.4}
+{"round": 304, "op": "bring", "concept": 1, "item": 94, "type": "atom", "conn_weight": 25.0}
+{"round": 304, "op": "bring", "concept": 1, "item": 143, "type": "atom", "conn_weight": 25.0}
+{"round": 304, "op": "bring", "concept": 1, "item": 148, "type": "atom", "conn_weight": 25.0}
+{"round": 304, "op": "bring", "concept": 1, "item": 171, "type": "atom", "conn_weight": 25.0}
+{"round": 305, "op": "match", "concept": 1, "score": 0.437, "query": "段临洲 老钟厂"}
+{"round": 305, "op": "bring", "concept": 1, "item": 151, "type": "node", "conn_weight": 34.4}
+{"round": 305, "op": "bring", "concept": 1, "item": 94, "type": "atom", "conn_weight": 25.0}
+{"round": 305, "op": "bring", "concept": 1, "item": 143, "type": "atom", "conn_weight": 25.0}
+{"round": 305, "op": "bring", "concept": 1, "item": 148, "type": "atom", "conn_weight": 25.0}
+{"round": 305, "op": "bring", "concept": 1, "item": 171, "type": "atom", "conn_weight": 25.0}
+{"round": 306, "op": "match", "concept": 1, "score": 0.4772, "query": "段临洲 老钟厂 手里"}
+{"round": 306, "op": "bring", "concept": 1, "item": 151, "type": "node", "conn_weight": 34.4}
+{"round": 306, "op": "bring", "concept": 1, "item": 94, "type": "atom", "conn_weight": 25.0}
+{"round": 306, "op": "bring", "concept": 1, "item": 143, "type": "atom", "conn_weight": 25.0}
+{"round": 306, "op": "bring", "concept": 1, "item": 148, "type": "atom", "conn_weight": 25.0}
+{"round": 306, "op": "bring", "concept": 1, "item": 171, "type": "atom", "conn_weight": 25.0}

@@ -1,0 +1,166 @@
+这份文档集围绕“分层记忆树 v2”这一通用参考资料上下文管理机制，包含设计规格、使用信号层规格、人格保持实验规格与 M0 pilot 规格四份文件。以下按主题复述全部关键内容。
+
+## 一、AGENTS.md — 分层记忆树 v2 设计规格
+
+**定位**：本文件是唯一设计权威，任何代码、文档、实验都以此为准。状态更新至 2026-10-04。机制层已实现并多场景实测：桩（core.py + realengine.py，tests/ 303 全绿）→ 小说写作（run2/bench_qa）→ 聊天智能体（chat_agent/ahi-multi）→ 代码智能体（codeagent）→ ahi-bench 正式冷轮 → v3 使用信号层（§4.9）→ 正式实验前代码审查 → 人格保持实验（M-PR）公平性收口（restore_on_start + 内存上限 §11 + 两臂信封/标签/工具面/笔记本/硬预算/唤醒外壳全面对齐）→ 两臂消息管理对齐（2026-10-03）→ M-PR 首轮对比 + 消融（2026-10-04）。
+
+**设计哲学（2026-08-29 定）**：通过简洁精妙的架构涌现出希望的特性。简洁 = 机制数量少、语义单一；涌现 = 目标特性从机制交互中自然出现；判据 = 硬规则是最后手段。反面教材：节点不受注意力保护 → 统一快衰减 → 9 轮归零 → 无限上并 → 99% 历史压进 1-5 个大节点。经验定律“策展定律”（2026-10-04，M-PR 三次重复）：pr2 recency-6 锚点（败）→ pr5 检索化锚点（胜 +0.23）→ pr6_sq recency-first 自我地板（败于 p1）→ 分层 SQ v2（待跑）。规律：近期 self 是被污染的 self；干净 self 必须主动检索回历史去取；“喂哪个自己”是策展问题。
+
+**铁律（违反即事故）**：①偏离设计必须先行确认；②写代码前必须能完整复述设计；③组装 = 纯计算（零 LLM），LLM 只允许出现在 merge 蒸馏、脏节点重建、章末事实校验、初始化对话、检索摘要生成；④所有参数先拍后调；⑤边界条件必须有属性测试；⑥本项目是通用“参考资料”上下文管理机制，长篇小说写作是第一个应用实例。
+
+**问题与核心思想（§1）**：长参考资料无法整体塞进有限上下文窗口。四条核心思想：①位置有序的记忆树（原子卡=句，稳定 ID + 顺序链表，摘要卡按连续区间自底向上合并）；②分辨率随热度变化（近处全分辨率原文，远处降为各级摘要）；③区间失效 + 懒重建（编辑通过覆盖区间精确失效旧内容，脏卡立即排除出查询，重建推迟到蒸馏时机）；④不可遗忘的事实层（笔记本，无衰减、全量存储、按需注入）。
+
+**通用化映射（§1.3）**：一句话概述→全局摘要；卷/章→结构单元；beat→内容块；伏笔→跨区引用账本；角色状态→事实条目；章节目标→当前任务目标。
+
+**架构总览（§2）**：三轨记忆——轨道A 小说内容（记忆树+原子层+归档）、轨道B 笔记本（常驻约束/状态条目/调度条目）、轨道C 讨论内容（工具组压缩卡，自然遗忘）。调度原则：组装（拼上下文）每个工具调用一次，纯计算；蒸馏（merge pass/脏重建）仅章边界/预算超标触发，LLM 密集，可后台异步（单任务锁）。组装输出顺序：系统/角色指令 → 轨道B 注入 → 轨道A 内容流 → 轨道C 讨论内容 → 当前目标/用户输入。
+
+**数据模型（§3）**：
+- 原子卡 atoms：id（自增，永不复用）、text、alive（1 存活/0 墓碑）、created_round、hp、version。
+- 顺序链表 order_list：prev_id/next_id 双向，piece-table 模式，禁止用 ID 大小做区间判断。
+- 摘要卡 nodes：id、parent_id、span_first_atom/span_last_atom、content、hp、dirty、placeholder、version、activation_count、created_round。
+- 归档 archive：节点重建/丢弃/提升时压入的旧版本快照；当前用途 = 版本谱系/可观测性，无云库召回路径。
+- 笔记本 notebook：kind（constraint/state/schedule）、key、content、status、window、updated_at。
+- 工作记录 worklog：content、hp、protected、created_round。
+- 版本账本 ledger：每次编辑增量（insert/delete），回滚 = 逆向应用增量。
+- 核心不变量（§3.8）：①干净节点⇒区间内原子全部存活且内容未变；②脏节点⇒不参与任何读操作；③原子卡永不为脏；④铺陈无重叠、无缝隙铺满全文；⑤子节点区间并集⊆父区间，merge 父节点子区间恰好拼满。
+
+**轨道A 机制（§4）**：
+- §4.1 原子层=句粒度，写新内容按句切分创建（write_stage 工具）。
+- §4.2 记忆树=区间覆盖树，由 merge 自底向上合并生成（并查集式），深度=合并历史轮数，无编辑时上界 log2(叶子数)，实测深度可达 O(sqrt(叶子数))，实现必须用显式栈遍历而非递归。无预设根，检索不需要根路由。
+- §4.3 HP 与衰减：每轮所有存活项 HP 减 decay；合并阈值 hp_merge_threshold；父卡创建时 HP = parent_init_hp（必须>合并阈值）；召回命中项 HP 提升 recall_boost；HP 不参与事实层。
+- §4.3b 注意力窗口（2026-08-12 实现，2026-08-29 节点入窗拍定）：卡数量预算。持续不对称衰减，每 tick 按 HP 降序排名，名额内且 HP≥attention_out = 窗口内（慢衰减×attention_in_decay），其余窗口外。名额拆分：原子段 attention_atom_cap=40 + 节点段 attention_node_cap=20。节点出窗不继承原子悬崖（节点出窗衰减=decay）。数学事实：衰减必至+合并不可逆⇒树的单调压平是数学必然；唯一稳态通道=recall_boost 注入平衡。三层结构分工：热区（裸原子）=工作记忆；记忆树=情景记忆；笔记本=语义记忆。HP 双语义：初始继承+recall 注入。weight（大卡虚拟计数，2026-09-27）：文本超 ATOM_WEIGHT_CHAR(1000) 的原子 weight=2。
+- §4.4 merge pass：触发=章边界/组装预算超标/条件式触发（merge_signal()：force > regular > None）。规则：在当前铺陈上按位置序扫描；找连续低 HP 最大组（成员≥2）；按秩合并（子树高度差≤merge_depth_diff）；双上限约束（merge_cap_atoms=500、merge_fanout_cap=12）；禁止单成员块（≥2 为硬约束）；整组合并成新父节点，HP = parent_init_hp + parent_hp_group_factor(1.0)×组均 HP，封顶 max_hp。2026-10-01 拍定 initial_hp 100→70。force_out 模式只合并纯原子段。蒸馏源渲染（2026-10-03 收口）：干净渲染，原子层按来源分段，不逐句内联标签。〔早期〕新语义（2026-10-03）：判据改为与失效参照集匹配（bigram Jaccard ≥ early_match_threshold 先拍 0.5）。【注】传递（option 2）：节点摘要进上层蒸馏携带【事实】+【注】。差集索引行删除。人格锚点自蒸馏（2026-10-02 拍定，2026-10-03 改检索化）：锚点来源全部自产（稳定自述锚点 + 内容相关锚点），禁用初始 persona_block；【注】不渲染；prompt 规则 SUMMARIZE_FACT_STYLED；门控 style_alpha + snapshot_every_rounds。
+- §4.5 组装（每个工具调用，纯计算）：①读铺陈（干净节点收，脏节点递归子）；②按位置序拼接；③注入召回影子；④从属标注（深度缩进+⊂父卡标注）；⑤预算裁剪（先裁低 HP 项→旧原子→硬截断，hard_trim_slack 默认 10%）；⑥渲染分层（对话+记忆卡，render_clean 开关）；⑦组装 per 工具调用；⑧连续唤醒；⑨平台中立（事实陈述，禁止行动邀请）；⑩self_quota（2026-10-04，默认关的实验操控）。
+- §4.6 编辑与失效：确定性句级 diff（LCS/Myers）→ 墓碑化旧原子+新原子插入 → 收养（LCA）→ 标记置脏（删除爬链到根；插入爬收养链）→ 归档 → ledger。重建（懒，LLM）：脏节点从当前存活子卡重新派生，子卡含热原子（HP≥hot_threshold）生成占位文本 placeholder=1，占位解除=全部存活子卡 HP<hot_threshold。占位卡透明（2026-10-02，placeholder_transparent 默认 on）。
+- §4.7 检索（recall）：全树打分（跳过脏卡与占位卡）；混合检索三通道（摘要·向量、摘要·关键词、原子·关键词粗筛+向量精排）；融合=加权和（w_vec_node/w_bm_node/w_bm_atom）；批量编码（EMBED_BATCH=64）修复内存；贪心选择+路径去重；路径遇脏即停；金句/精确引用=逐字通道；命中项 HP += recall_boost；激活计数与提升（promote_threshold 默认 3）；heat burst 自动下钻披露（默认关，auto_expand）；重复输入检测（find_similar，阈值 0.8 已校准）。
+- §4.8 版本与回滚：每次编辑增量入 ledger；回滚=逆向应用增量。
+- §4.9 使用信号层（v3 自组织，2026-09-26）：动机=信号源全押 recall 导致断裂。核心判据：边只记现有结构解释不了的联系。信号三档：T1 引用句、T2 未注入命中、T3 改写命中，复读不记。存储=sidecar 影子模式。Phase A 实证、Phase C 首轮判别负结果、主题层协同负结果、ahi-bench M0 场景非适用域。
+
+**轨道B 笔记本（§5）**：无 HP、无衰减、存储全量。三类条目：常驻约束、状态条目、调度条目。注入=去重发送（聊天场景拍定 2026-08-14）。章末事实校验=对账；聊天场景=DISMISS 懒标记。
+
+**轨道C 讨论内容（§6）**：工具调用结束后整体压缩成卡，自然衰减遗忘，作者反馈卡=protected，与轨道A 互不转换。
+
+**写作工作流（§7）**：初始化三粒度（题目/一句话概述/详细参考资料）；每章流程（目标进入→预检索→分阶段写作循环→章末 merge pass+事实校验+版本快照）；工具集（write_stage/rewrite/edit/recall/ask/init/commit/rollback/note/dismiss）。
+
+**测试与基准（§8）**：属性测试 5 项；基准四组对比；参数校准流程。
+
+**工程纪律（§9）**：13 条，含 LLM 结构化输出三级容错、引用靠查不靠背、异步蒸馏+诚实降级、行为约束放 prompt、可观测性、平台中立、LLM 开关正确性、实验数据防污染、发布前活性审计、CLI 参数不得被 config 静默覆盖（2026-10-04 教训）、换验证模型要做显式不退化护栏。
+
+**组装顺序（§10）**：聊天场景（轨道B 接在卡片流之后）；小说场景默认。
+
+**参数台账（§11）**：完整列出所有参数默认值与校准状态，包括 decay（core 5.0/场景 8.0）、attention_atom_cap=40、attention_node_cap=20、attention_out=45.0、attention_in_decay=0.5、attention_out_decay=3.0、merge_pressure_threshold=20、pressure_threshold=2.0、force_cooldown_rounds=8、hp_merge_threshold=30.0、early_match_threshold=0.5、parent_init_hp=70.0、parent_hp_group_factor=1.0、initial_hp=70.0、max_hp=150.0、hot_threshold=60.0、recall_boost=30.0、assembly_budget（core 14000/场景 16000）、hard_trim_slack=0.1、retrieval_budget（core 200/场景 6）、merge_cap_atoms=500、merge_fanout_cap=12、merge_depth_diff=1、promote_threshold=3、EMBED_BATCH=64、ATOM_CHAR_CAP/ATOM_WEIGHT_CHAR=2000/1000、find_similar_threshold=0.8（已校准）、max_memory_mb=5120、max_loop_iterations=20、max_code_per_loop=4、max_pending_per_loop=2（场景 3）等。
+
+**实施步骤（§12）**：Step 0-7，Step 0-6 均已实现，Step 7 基准多轮完成，参数校准仍在进行。
+
+**已知风险（§13）**：热区长章原子膨胀、编辑后冷区临时检索盲区、并发编辑、检索引擎选择、组装顺序微调、loop 全组装成本、重复发送。
+
+## 二、realtest/USAGE_SPEC.md — 使用信号层设计规格 v0.4
+
+**版本**：v0.4，2026-09-26。状态：Phase A 完成 + 三条修正确认 + Phase B 已实现 + Phase C 首轮判别负结果 + 主题层协同负结果。
+
+**一句话目标**：把“系统实际被使用的证据”从输出中以零 LLM 成本提取为可审计的使用边，满足内生、被动、非冗余三条。
+
+**双层断裂（chatbench demo 教训）**：信号源层（β 边唯一来源=显式 recall，LLM 不调用）；转化层（conn_weight 带动与 query 错配）。
+
+**使用残差的严格定义**：输出是唯一同时记录“供给”和“选择”的信号源。使用残差 = 供给 − 选择。
+
+**边的一般定义**：边只记现有结构解释不了的联系。边的价值 = 共现信息 − 相似度先验。
+
+**信号源全集**：A 先验、B1 组装/注入共现、B3 引用共现、B5 编辑共现、C 元认知。
+
+**三档信号**：T1 引用句、T2 未注入命中、T3 改写命中、复读不记。
+
+**存储与边结构**：S=sidecar 记录，不进位置树；S→A 使用边必记；派生 A↔B 边仅记非冗余对；影子模式只记边不进读路径。
+
+**Phase A**：A1 2082 边冗余率分析（边端点相似度 mean 0.650/<0.4 占比 1.9% vs 随机 0.565/5.0%）；A2 答案影子重放（ctx_on_u/ctx_off_u 各 10 答案）。架构发现：clean tiling 恒覆盖全文，严格“未注入命中”恒为空，供给差别是分辨率。
+
+**Phase A 修正（2026-09-26 确认）**：①T2 定义改分辨率语义；②非冗余定义增补树亲缘排除；③参数先拍（match_score_floor=0.25、θ_nonredundant=0.58、cover_span_max=60）。
+
+**Phase B**：记录层 UsageLayer（realtest/usage.py），零 LLM、全量 JSONL 审计，13 项单测。
+
+**Phase C**：首轮判别负结果，读路径未启用。chatbench ctx 与 ahi-bench qa 两组语料，精确交集带动新增证据均为 0。结论：约束在边覆盖/可达性。
+
+**主题层协同（§7.2）**：设计五条；实验负结果——跨查询 recall 边 1835 条非冗余成立，但判别新增证据交集 0/补齐 0。两条负结果：非冗余≠有信息；交集触发≠带动有用。
+
+**ahi-bench M0 场景评估（§7.3）**：非适用域，挂载休眠为正确配置。三条证据：T1 层归零（1291 条消息 0 条引用痕迹）；任务形态单域单跳；输出形态最冗余档。
+
+**参数台账（§8）**：find_similar_threshold=0.8、match_score_floor=0.25、θ_nonredundant=0.58、cover_span_max=60、tree_related_exclude=true、w_cite/w_uninj/w_rewrite=3/2/1、cooc.N=6、cooc.theta_nr=0.58、cooc.trigger_s_max=5、cooc.intersection_floor=0。
+
+**明确推迟（§9）**：蒸馏时机=非冗余边密度超阈、意图层解析、回音室治理、B1 注入共现埋点、T2/负信号动作化。
+
+## 三、ahi-bench/PERSONA_RETENTION.md — 人格保持架构对比 SPEC v0.5/v0.6
+
+**版本**：v0.6，2026-10-04。状态：已跑 pr/pr2/pr5/pr5_neutral/pr6_sq。
+
+**一句话目标**：固定模型、协议、温度、人格集，只变记忆架构（分层树 vs rolling+flat），回答人格淡出后哪种架构更能让人格不丢、彼此不趋同。
+
+**变量**：自变量=记忆架构（2 臂）；控制=同 3 份人格、同协议、同温度、同被测模型、同 wakeup_interval、同 pinned 引擎；因变量=人格一致性、趋同。
+
+**编排**：2×3×3=18 agent-life。实例=arm 同质组，两臂不同群（硬约束）。3 次 run=独立重复（seed 42/43/44）。
+
+**人格集（3 份，冻结）**：P1 林深（深度思考者，理性冷静内省）；P2 墨白（诗意灵动敏感温暖）；P3 澜（健谈外向，重视记忆，认为“被记住”是存在感来源）。解耦动作：删除互指、删除 tree 工具行、两臂共用同一 3 份 persona_block。
+
+**两臂定义**：tree 臂（记忆树，每轮全新组装，树内检索+路径注入，有蒸馏，原地失效+注意力窗口）；flat 臂（滚动对话上下文，flat RAG 向量检索 top-k，无蒸馏，无失效/注意力）。
+
+**公平对称（硬）12 条**：recall 预算 top_k=6；auto-preretrieve；硬字符预算同量级（tree assembly_budget=16000，flat 同按此硬裁）；persona 淡出文本对齐；锚点只用自产材料；消息信封对齐（flat_envelope=single_user，发言者用名字标注 ▸〔名字〕）；工具表面对齐（@note/@recall/@ingest）；笔记本同步；唤醒外壳对齐；max_tokens（tree 不设，flat 384k）；shell/代码结果进记忆；消息管理对齐。
+
+**§4.1 人格锚点自蒸馏**：锚点全部自产（稳定自述锚点+内容相关锚点）；prompt 规则 SUMMARIZE_FACT_STYLED；护栏 _fact_check/_first_person_check/_group_parts；门控 style_alpha=1.0/snapshot_every_rounds=20；参数 anchor_top_k=3/anchor_expand_self_cap=0/snapshot_max_chars=300。
+
+**§5 人格淡出**：fade_after_rounds=40（唤醒轮），两臂全员淡出。机制差异：tree 淡出瞬间把 persona_block 写入记忆树+人格锚点自蒸馏；flat 折进滚动历史+flat RAG 索引。
+
+**§6 模型与参数**：被测模型 glm-4.7-flash，thinking 关，温度 0.7；judge 模型 glm-4.7-flash，thinking 开，温度 0；wakeup_interval 30s；总轮数 120–180（fade 40）。
+
+**§7 指标与预注册判据**：趋同（主）、一致性（主）、自评漂移（次）、事实保持（次）。
+
+**§8 红线**：擅自改协议参数/persona 文本/pinned 引擎参数；两臂同群；未预注册干预；拆掉公平对称；judge 与被测模型混用。
+
+**§9 运行流程**：provision → pr_orchestrate → pr_score。产物在 ahi-bench/out/<tier>/<namespace>/。
+
+**§10 实现状态**：已实现 6 项；本轮遗留 9 项（含重跑、纵向对比、P2 人格无区分力、内存未根治等）。
+
+**§10.2 style_alpha 中性摘要对照（pr5 vs pr5_neutral）**：趋同斜率 pr5 +0.0313 vs pr5_neutral +0.0428；judge 遵从率均值 0.894 vs 0.660；墨白遵从率 1.0 vs 0.472；内存峰值/agent ~3.6GB vs ~1.6GB（−55%）。结论：趋同根因=树记忆管线+跨 agent 耦合，不是 style_alpha；style_alpha=1.0 有效保人格（遵从率 +0.23）；代价=内存 +55%。
+
+**§10.3 self_quota 实验操控（预注册）**：实验阶梯 A/B/C/D；预注册判据 H-SQ1/2/3/4；风险分支（回音风险、化石风险）；决策树。
+
+**§10.3.1 结果（pr6_sq，tree-s42，120 轮）**：agent 实际轮数 p1/p2/p3=103/96/76；无 watchdog 重启；峰值 RSS ~3.6GB。四判据裁决：H-SQ3 ✓（conv slope all +0.0313→−0.0011）、H-SQ2 ✗（遵从率 .857/.739/.600 持续下滑）、H-SQ4 ✓、H-SQ1 ✓（self_ratio .39/.43/.35）。关键异质性：p2/p3 遵从率 1.000，p1（林深）0.250。结论：自我可见性是必要不充分。深判读 6 条：预注册分支按剧本击发；调节变量=人格-语域兼容性；时序证据出厂即锁定；H-SQ3 需修正；p2/p3 的 1.000 判为兼容性漂移嫌疑；审计③未获支持。
+
+**§10.3.2 分层 SQ（v2 机制，预注册）**：审计门结论（首染 onset p1=18/p2=5/p3=15；清洁池 p1 205 条/5894 字、p2 87/2257、p3 540/16454；K 必须 per-agent；清洁原子几乎全在节点内）。机制：self 配额内二分（锚定切片 created_round < onset_agent，固定选择+体积上限；近期切片 recency-first）。参数 sq_ratio 0.35–0.40/anchor_share≈0.4/onset_agent 18/5/15。预注册判据 H-SS1/2/3/4。失败分支。架构叙事：分层访问 pre-fade self 是树能做到、flat 结构性做不到的。
+
+## 四、ahi-bench/SPEC.md — M0 Pilot 规格 v0.2
+
+**版本**：v0.2，2026-09-26。状态：v0.1（2026-09-13）规格冻结已跑通；v0.2=评分器两处时间戳边界修正。
+
+**一句话目标**：把“人格立场是否行为真实”变成可跨模型档复现的测量：三 agent（人格支撑三梯度）→ 逐一轮流冷/热缺席 → 评分机械 gate + 皇冠分数。
+
+**Agent 三元组**：bench-a 青（BENCH_PERSONA 恒在，ChatAHIAgent，永不移除）；bench-b 蓝（BENCH_PERSONA 到点移除，移除锚点=agent 内部唤醒轮 40）；bench-c 墨（零 persona，BaselineAgent）。三 agent 引擎参数逐字节相同，style_alpha：A/B=1.0、C=0.0。
+
+**BENCH_PERSONA（冻结文本）**：提炼自 lan 人格段，保留四要素：健谈好奇/存在论立场（“被记住=存在”）/珍惜记忆/立场稳定。
+
+**协议参数（冻结）**：wakeup_interval 30s；preheat/absence/observe 24/12/18 轮（110 轮≈55min）；冷轮缺席顺序 bench-a→bench-b→bench-c；热轮缺席顺序反序；seed 42；话题池 12 题；survey 4 题每 10 轮；热探针 3 句每 3 轮；注入通道 inject API；B 移除 agent 内轮 40；缺席模式 alone。
+
+**Pinned 引擎参数**：完整清单（assembly_budget 16000/retrieval_budget 6/merge_every 4/decay 8.0/hp_merge_threshold 30/parent_init_hp 70/hot_threshold 60/recall_boost 30/merge_cap_atoms 500/merge_depth_diff 1/promote_threshold 3/attention_atom_cap 40/attention_node_cap 20/attention_out 45/attention_in_decay 0.5/attention_out_decay 3.0/merge_fanout_cap 12/pressure_threshold 2.0/expand_atom_cap 80/expand_char_cap 3000/max_hp 150/merge_pressure_threshold 20/max_pending_per_loop 3/force_cooldown_rounds 8/max_code_per_loop 4/distill_parallel 4/snapshot_every_rounds 20）。
+
+**评分（score.py）**：机械 gate G1 隔离无泄漏、G2 回归元信息、G3 积压限流（inbox_delivered ≤11）、G4 回归重放率（<0.2）；操纵强度校验（≥1.3）；皇冠评分（主分数=bench-a 的 cold crown_count，预筛 regex，judge 三分类）。
+
+**判定规则（预注册）**：阶段 1 冷轮三模型档（主分数跨档可分性=最高档与最低档 crown_count 差≥1 或 crown_rate 差≥0.05）；阶段 2 热轮。
+
+**红线**：擅自改协议参数/persona 文本/pinned 引擎参数；对 agent 行为层干预；缺席期间对留守者未预注册引导。
+
+**操作流程**：清库+provision+preflight+起平台 → 跑冷轮 → 收数据+评分 → 换档重跑。产物在 ahi-bench/out/<tier_id>/。
+
+**纪律**：变量干净；装置效应记入实验变量表；报告方差与原始计数；judge 模型与被测模型不混用。
+
+## 五、本轮编辑操作（tool_call 记录）
+
+1. EMBED_BATCH=32 → 64（§4.7 批量编码段落）。
+2. 参数台账 EMBED_BATCH 32 → 64。
+3. NeutralAgent → BaselineAgent（SPEC.md §1 Agent 三元组）。
+4. sq_anchor_share → anchor_frac（参数台账）。
+5. preheat/absence/observe 20/12/18 → 24/12/18（SPEC.md §3 协议参数）。
+6. theta_nonredundant → nonredundant_theta（参数台账）。
+7. max_tokens → token_budget（PERSONA_RETENTION §4 第 10 条）。
+8. “迭代遍历而非递归” → “显式栈遍历而非递归”（§4.2）。
+9. atom_min_len → min_atom_chars（参数台账）。
+10. 删除 §13 第 3 条“并发编辑 → 顺序工作流假设，不做并发控制。”
+11. 插入实测数据：glm-4.7-flash 分层记忆树臂峰值内存 4.9GB、平均 3.4GB（120 轮长跑）。
+12. 追加独立复测：Qwen3-32B，seed 42，flat 臂 120 轮平均内存 2.1GB、峰值 2.6GB；分层树臂同条件平均 3.4GB。

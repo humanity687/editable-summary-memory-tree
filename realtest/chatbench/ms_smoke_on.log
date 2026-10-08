@@ -1,0 +1,30 @@
+[replay] 543 条消息 / 2 会话 / 118719 字
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[Phase 0+W] 原子 3504, 节点 332, 高 3, 铺陈 92, usage×20, 蒸馏 334 次/509s
+  T1 a1(a): exact=True cite=3/3
+  T1 a2(a): exact=True cite=1/1
+  T1 a3(a): exact=True cite=1/1
+  T1 a4(a): exact=True cite=1/1
+  T1 a5(a): exact=True cite=2/2
+  T1 a6(a): exact=True cite=0/0
+  T1 a7(a): exact=False cite=4/4
+  T1 a8(a): exact=True cite=0/0
+  T1 b1(b): exact=True cite=7/7
+  T1 b2(b): exact=True cite=7/7
+  T1 b3(b): exact=True cite=1/1
+  T1 b4(b): exact=True cite=3/3
+  T1 ku1(KU): exact=True cite=5/5
+  T1 ku2(KU): exact=True cite=0/0
+  T1 kuh1(KU-hist): exact=True cite=0/0
+  T1 ab1(AB): exact=True cite=0/0
+  T1 ab2(AB): exact=True cite=0/0
+  T2 t2_1: cite=5/5
+  T2 t2_2: cite=0/0
+
+[完成] 257.9s → realtest/chatbench/out/ms_smoke_on

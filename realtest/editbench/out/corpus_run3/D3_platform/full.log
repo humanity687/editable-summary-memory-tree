@@ -1,0 +1,65 @@
+[doc] 138479 字 / 20 题 / 结构 ['full'] / scenario=D3_platform / repeats=5 / answer_temp=0.7 distill_temp=0.0 / answer_thinking=off distill_thinking=off / embed=bge-small-zh-v1.5(default)
+[editstorm] 10 次编辑；新文档 138574 字
+【编辑记录（工具调用台账，含完整修改 diff）】
+1. 将「attention_node_cap」改为「attention_node_budget」
+2. 将「find_similar_threshold」改为「find_dup_threshold」
+3. 将「ABORT」改为「HALT」
+4. 将「2947cbf」改为「2948abc」
+5. 将「agent_heartbeat_interval」改为「agent_pulse_interval」
+6. 将「ABSENCE_INBOX_CAP=10」改为「ABSENCE_INBOX_CAP=12」
+7. 将「每章恒定 ~14k 字符上下文预算」改为「每章恒定 ~16k 字符上下文预算」
+8. 删除句子：「前端私密消息标注：管理员视角显示 `[私密]`」
+9. 将「」改为「补充实测（glm-4.7-flash）：连续唤醒下单轮平均工具调用 17.4 次。」
+10. 文末新增段落：「补充记录（2026-10-05）：平台新增 `/api/v1/agents/{id}/export` 端点，用于导出单个 Agent 的完整对话与执行记录快照。」
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+===== Phase 1：基线 Q/A（原始文档）=====
+    [before] 20/20
+    [before] 20/20
+    [before] 20/20
+    [before] 20/20
+    [before] 20/20
+  full     pass=85/100 mean=85% ±0% 每遍=[17, 17, 17, 17, 17] {'reversal': '40/40', 'append': '0/10', 'invariant': '20/20', 'remote': '25/30'}
+
+===== Phase 2：编辑风暴 → 台账 =====
+  full     编辑路径     0.21 ms | 推迟蒸馏      0.00 ms
+
+===== Phase 3：8 臂 Q/A =====
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+  inc_full       pass=89/100 mean=89% ±4% 每遍=[17, 18, 19, 17, 18] {'reversal': '38/40', 'append': '10/10', 'invariant': '20/20', 'remote': '21/30'}
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+  reb_full       pass=95/100 mean=95% ±3% 每遍=[18, 20, 19, 19, 19] {'reversal': '40/40', 'append': '10/10', 'invariant': '20/20', 'remote': '25/30'}
+
+===== Phase 4：复述（8 臂，两层评分）=====
+  inc_full       覆盖均值 48% 旧残留均值 52% (15270 字) 漏=['HALT', 'ABSENCE_INBOX_CAP=12', '~16k 字符', 'AHI_INSTANCE_ROOT/实例根目录', 'max_pending_per_loop/待处理', 'broadcast:agents/广播', 'system.db/数据库', 'SystemDB/数据库类', 'Process/进程类', 'tree_final/终态', '8080', 'process_manager/进程管理'] 残留=['attention_node_cap', 'find_similar_threshold', 'agent_heartbeat_interval']
+  reb_full       覆盖均值 38% 旧残留均值 0% (13328 字) 漏=['attention_node_budget', 'HALT', '2948abc', 'agent_pulse_interval', 'agent_port_start', 'AHI_INSTANCE_ROOT/实例根目录', 'agent_port_start/端口起始', 'agent_heartbeat_timeout/心跳超时', 'SystemDB/数据库类', 'Process/进程类', '0xbf5d36/管理员编号', 'tree_final/终态', 'max_memory_mb/内存看门狗', 'monitor_mem/内存监控', 'process_manager/进程管理', 'main_process_port/主进程端口'] 残留=[]
+
+[done] 526.8s → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D3_platform/full/results.json
+
+===== 汇总（Q/A pass 率，N 遍均值±std）=====
+  [phase1]
+    full           85/100 mean=85% ±0% 每遍=[17, 17, 17, 17, 17] {'reversal': '40/40', 'append': '0/10', 'invariant': '20/20', 'remote': '25/30'}
+  [phase3]
+    inc_full       89/100 mean=89% ±4% 每遍=[17, 18, 19, 17, 18] {'reversal': '38/40', 'append': '10/10', 'invariant': '20/20', 'remote': '21/30'}
+    reb_full       95/100 mean=95% ±3% 每遍=[18, 20, 19, 19, 19] {'reversal': '40/40', 'append': '10/10', 'invariant': '20/20', 'remote': '25/30'}
+
+===== 编辑时刻成本 =====
+  full     编辑路径      0.21 ms | 推迟蒸馏       0.00 ms
+
+===== 计量（tokens，含蒸馏侧；phase3 增量 = final - phase1）=====
+  inc_full       final calls=205 prompt=14685440 completion= 30788 缓存命中=0.9974 | phase3增量 prompt= 7617295 completion= 28984
+  reb_full       final calls=105 prompt= 7426825 completion= 27656 缓存命中=0.9971 | phase3增量 prompt= 7426825 completion= 27656

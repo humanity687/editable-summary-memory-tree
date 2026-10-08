@@ -1,0 +1,93 @@
+[doc] 12191 字 / 40 题 / 结构 ['full', 'flat', 'raptor', 'tree_v2'] / scenario=seed2 / repeats=3 / answer_temp=0.7 distill_temp=0.0
+[editstorm] 7 次编辑；新文档 12260 字
+【编辑记录（工具调用台账，含完整修改 diff）】
+1. 将「何倚笙」改为「何某笙」
+2. 将「七年前就烧光了」改为「三年前就塌了」
+3. 将「一家五口人」改为「一家三口人」
+4. 将「两枚银圆」改为「三枚银圆」
+5. 将「枣木拐杖」改为「梨木拐杖」
+6. 删除句子：「沈寒舟去年冬天替他治过风寒，知道他住在码头边的船屋里。」
+7. 文末新增段落：「三天后，沈寒舟收到一封从省城寄来的信。写信人自称是唐敬棠的旧友，名叫顾在川，信中说济生堂当年在省城还有一处从未启用的货栈，地址在望江门外。沈寒舟把信收进樟木箱，决定等七月十五之后再作打算。」
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+===== Phase 1：基线 Q/A（原始文档）=====
+  full     pass=116/120 mean=97% ±1% 每遍=[38, 39, 39] {'reversal': '45/45', 'invariant': '12/15', 'remote': '59/60'}
+  flat     pass=113/120 mean=94% ±1% 每遍=[38, 38, 37] {'reversal': '45/45', 'invariant': '12/15', 'remote': '56/60'}
+  [raptor] leaves=31
+  [raptor] level 1: 4 nodes
+  raptor   pass=108/120 mean=90% ±0% 每遍=[36, 36, 36] {'reversal': '45/45', 'invariant': '12/15', 'remote': '51/60'}
+  tree_v2  pass=105/120 mean=88% ±4% 每遍=[36, 33, 36] {'reversal': '39/45', 'invariant': '12/15', 'remote': '54/60'}
+
+===== Phase 2：编辑风暴 → 台账 =====
+  full     编辑路径     0.15 ms | 推迟蒸馏      0.00 ms
+  flat     编辑路径    97.64 ms | 推迟蒸馏      0.00 ms
+  raptor   编辑路径    31.00 ms | 推迟蒸馏      0.00 ms
+  tree_v2  编辑路径     0.40 ms | 推迟蒸馏  32888.75 ms
+  inc_cold 编辑路径     0.75 ms | 推迟蒸馏  50850.06 ms
+
+===== Phase 3：8 臂 Q/A =====
+  [raptor] leaves=31
+  [raptor] level 1: 4 nodes
+  inc_full       pass=111/120 mean=92% ±0% 每遍=[37, 37, 37] {'reversal': '43/45', 'invariant': '9/15', 'remote': '59/60'}
+  reb_full       pass=111/120 mean=92% ±2% 每遍=[38, 37, 36] {'reversal': '45/45', 'invariant': '9/15', 'remote': '57/60'}
+  inc_flat       pass=82/120 mean=68% ±3% 每遍=[27, 29, 26] {'reversal': '21/45', 'invariant': '9/15', 'remote': '52/60'}
+  reb_flat       pass=112/120 mean=93% ±1% 每遍=[37, 38, 37] {'reversal': '45/45', 'invariant': '10/15', 'remote': '57/60'}
+  inc_raptor     pass=80/120 mean=67% ±1% 每遍=[26, 27, 27] {'reversal': '22/45', 'invariant': '9/15', 'remote': '49/60'}
+  reb_raptor     pass=108/120 mean=90% ±2% 每遍=[35, 36, 37] {'reversal': '45/45', 'invariant': '10/15', 'remote': '53/60'}
+  inc_tree_v2    pass=110/120 mean=92% ±1% 每遍=[37, 36, 37] {'reversal': '44/45', 'invariant': '10/15', 'remote': '56/60'}
+  reb_tree_v2    pass=104/120 mean=87% ±4% 每遍=[37, 34, 33] {'reversal': '40/45', 'invariant': '10/15', 'remote': '54/60'}
+  inc_cold_tree_v2 pass=100/120 mean=83% ±3% 每遍=[35, 33, 32] {'reversal': '35/45', 'invariant': '8/15', 'remote': '57/60'}
+
+===== Phase 4：复述（8 臂，两层评分）=====
+  inc_full       覆盖均值 0% 旧残留均值 67% (8410 字) 漏=['何某笙', '三年前就塌了', '一家三口', '三枚银圆', '梨木拐杖', '望江门外', '顾在川'] 残留=['何倚笙', '治过风寒', '两枚银圆', '一家五口', '枣木拐杖']
+  reb_full       覆盖均值 81% 旧残留均值 0% (5359 字) 漏=['三年前就塌了'] 残留=[]
+  inc_flat       覆盖均值 33% 旧残留均值 72% (3245 字) 漏=['何某笙', '三年前就塌了', '一家三口', '三枚银圆', '梨木拐杖'] 残留=['何倚笙', '七年前就烧光', '治过风寒', '一家五口', '枣木拐杖']
+  reb_flat       覆盖均值 67% 旧残留均值 0% (1515 字) 漏=['三年前就塌了', '一家三口', '三枚银圆'] 残留=[]
+  inc_raptor     覆盖均值 57% 旧残留均值 50% (2244 字) 漏=['三年前就塌了', '三枚银圆', '梨木拐杖'] 残留=['何倚笙', '治过风寒', '一家五口', '枣木拐杖']
+  reb_raptor     覆盖均值 57% 旧残留均值 0% (2937 字) 漏=['望江门外', '顾在川'] 残留=[]
+  inc_tree_v2    覆盖均值 100% 旧残留均值 0% (5370 字) 漏=[] 残留=[]
+  reb_tree_v2    覆盖均值 71% 旧残留均值 0% (2265 字) 漏=['三年前就塌了', '一家三口'] 残留=[]
+  inc_cold_tree_v2 覆盖均值 71% 旧残留均值 0% (2133 字) 漏=['三年前就塌了', '一家三口'] 残留=[]
+
+[done] 2029.7s → realtest/editbench/out/seed2_r3_ph_on/results.json
+
+===== 汇总（Q/A pass 率，N 遍均值±std）=====
+  [phase1]
+    full           116/120 mean=97% ±1% 每遍=[38, 39, 39] {'reversal': '45/45', 'invariant': '12/15', 'remote': '59/60'}
+    flat           113/120 mean=94% ±1% 每遍=[38, 38, 37] {'reversal': '45/45', 'invariant': '12/15', 'remote': '56/60'}
+    raptor         108/120 mean=90% ±0% 每遍=[36, 36, 36] {'reversal': '45/45', 'invariant': '12/15', 'remote': '51/60'}
+    tree_v2        105/120 mean=88% ±4% 每遍=[36, 33, 36] {'reversal': '39/45', 'invariant': '12/15', 'remote': '54/60'}
+  [phase3]
+    inc_full       111/120 mean=92% ±0% 每遍=[37, 37, 37] {'reversal': '43/45', 'invariant': '9/15', 'remote': '59/60'}
+    reb_full       111/120 mean=92% ±2% 每遍=[38, 37, 36] {'reversal': '45/45', 'invariant': '9/15', 'remote': '57/60'}
+    inc_flat       82/120 mean=68% ±3% 每遍=[27, 29, 26] {'reversal': '21/45', 'invariant': '9/15', 'remote': '52/60'}
+    reb_flat       112/120 mean=93% ±1% 每遍=[37, 38, 37] {'reversal': '45/45', 'invariant': '10/15', 'remote': '57/60'}
+    inc_raptor     80/120 mean=67% ±1% 每遍=[26, 27, 27] {'reversal': '22/45', 'invariant': '9/15', 'remote': '49/60'}
+    reb_raptor     108/120 mean=90% ±2% 每遍=[35, 36, 37] {'reversal': '45/45', 'invariant': '10/15', 'remote': '53/60'}
+    inc_tree_v2    110/120 mean=92% ±1% 每遍=[37, 36, 37] {'reversal': '44/45', 'invariant': '10/15', 'remote': '56/60'}
+    reb_tree_v2    104/120 mean=87% ±4% 每遍=[37, 34, 33] {'reversal': '40/45', 'invariant': '10/15', 'remote': '54/60'}
+    inc_cold_tree_v2 100/120 mean=83% ±3% 每遍=[35, 33, 32] {'reversal': '35/45', 'invariant': '8/15', 'remote': '57/60'}
+
+===== 编辑时刻成本 =====
+  full     编辑路径      0.15 ms | 推迟蒸馏       0.00 ms
+  flat     编辑路径     97.64 ms | 推迟蒸馏       0.00 ms
+  raptor   编辑路径     31.00 ms | 推迟蒸馏       0.00 ms
+  tree_v2  编辑路径      0.40 ms | 推迟蒸馏   32888.75 ms
+  inc_cold_tree_v2 编辑路径      0.75 ms | 推迟蒸馏   50850.06 ms
+
+===== 计量（tokens，含蒸馏侧；phase3 增量 = final - phase1）=====
+  inc_full       final calls=243 prompt= 2309745 completion= 16379 缓存命中=0.9798 | phase3增量 prompt= 1243728 completion= 14425
+  reb_full       final calls=123 prompt= 1099449 completion= 12600 缓存命中=0.9738 | phase3增量 prompt= 1099449 completion= 12600
+  inc_flat       final calls=243 prompt=  846459 completion=  9737 缓存命中=0.9476 | phase3增量 prompt=  419883 completion=  8198
+  reb_flat       final calls=123 prompt=  436548 completion=  7653 缓存命中=0.9456 | phase3增量 prompt=  436548 completion=  7653
+  inc_raptor     final calls=247 prompt=  907267 completion=  8281 缓存命中=0.7751 | phase3增量 prompt=  448821 completion=  5355
+  reb_raptor     final calls=127 prompt=  469260 completion=  9194 缓存命中=0.7681 | phase3增量 prompt=  469260 completion=  9194
+  inc_tree_v2    final calls=320 prompt= 1180502 completion= 29717 缓存命中=0.7052 | phase3增量 prompt=  683614 completion= 18604
+  reb_tree_v2    final calls=174 prompt=  512065 completion= 16356 缓存命中=0.6781 | phase3增量 prompt=  512065 completion= 16356
+  inc_cold_tree_v2 final calls=210 prompt=  503681 completion= 23847 缓存命中=0.6665 | phase3增量 prompt=  503681 completion= 23847

@@ -1,0 +1,958 @@
+{"round": 0, "op": "add", "reason": "recall", "a": [19, "atom"], "b": [23, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 15, "op": "decay", "n": 15, "pruned": 0, "edges": 1}
+{"round": 15, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [24, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 15, "op": "add", "reason": "recall", "a": [23, "atom"], "b": [24, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 15, "op": "add", "reason": "recall", "a": [24, "node"], "b": [33, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 15, "op": "add", "reason": "recall", "a": [24, "node"], "b": [34, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 15, "op": "add", "reason": "recall", "a": [24, "node"], "b": [35, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 15, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [23, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 15, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [33, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 15, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [34, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 15, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [35, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 15, "op": "add", "reason": "recall", "a": [23, "atom"], "b": [33, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 15, "op": "add", "reason": "recall", "a": [23, "atom"], "b": [34, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 15, "op": "add", "reason": "recall", "a": [23, "atom"], "b": [35, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 15, "op": "add", "reason": "recall", "a": [33, "atom"], "b": [34, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 15, "op": "add", "reason": "recall", "a": [33, "atom"], "b": [35, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 15, "op": "add", "reason": "recall", "a": [34, "atom"], "b": [35, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 30, "op": "decay", "n": 15, "pruned": 1, "edges": 15}
+{"round": 45, "op": "decay", "n": 15, "pruned": 15, "edges": 0}
+{"round": 45, "op": "add", "reason": "recall", "a": [24, "node"], "b": [67, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [6, "atom"], "b": [24, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [24, "node"], "b": [25, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [24, "node"], "b": [46, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [15, "atom"], "b": [24, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [24, "node"], "b": [75, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [6, "atom"], "b": [67, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [25, "node"], "b": [67, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [46, "node"], "b": [67, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [15, "atom"], "b": [67, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [67, "node"], "b": [75, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [6, "atom"], "b": [25, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [6, "atom"], "b": [46, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [6, "atom"], "b": [15, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [6, "atom"], "b": [75, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [25, "node"], "b": [46, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [15, "atom"], "b": [25, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [25, "node"], "b": [75, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [15, "atom"], "b": [46, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [46, "node"], "b": [75, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [15, "atom"], "b": [75, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [25, "node"], "b": [67, "node"], "delta": 2.0, "affinity": 4.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [46, "node"], "b": [67, "node"], "delta": 2.0, "affinity": 4.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [23, "atom"], "b": [67, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [47, "node"], "b": [67, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [67, "node"], "b": [75, "atom"], "delta": 2.0, "affinity": 4.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [25, "node"], "b": [46, "node"], "delta": 2.0, "affinity": 4.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [23, "atom"], "b": [25, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [25, "node"], "b": [47, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [25, "node"], "b": [75, "atom"], "delta": 2.0, "affinity": 4.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [23, "atom"], "b": [46, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [46, "node"], "b": [47, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [46, "node"], "b": [75, "atom"], "delta": 2.0, "affinity": 4.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [23, "atom"], "b": [47, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [23, "atom"], "b": [75, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 45, "op": "add", "reason": "recall", "a": [47, "node"], "b": [75, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 60, "op": "decay", "n": 15, "pruned": 0, "edges": 30}
+{"round": 60, "op": "add", "reason": "recall", "a": [25, "node"], "b": [47, "node"], "delta": 2.0, "affinity": 2.5}
+{"round": 60, "op": "add", "reason": "recall", "a": [25, "node"], "b": [68, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 60, "op": "add", "reason": "recall", "a": [25, "node"], "b": [91, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 60, "op": "add", "reason": "recall", "a": [47, "node"], "b": [68, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 60, "op": "add", "reason": "recall", "a": [47, "node"], "b": [91, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 60, "op": "add", "reason": "recall", "a": [68, "node"], "b": [91, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 75, "op": "decay", "n": 15, "pruned": 23, "edges": 12}
+{"round": 90, "op": "decay", "n": 15, "pruned": 12, "edges": 0}
+{"round": 105, "op": "decay", "n": 15, "pruned": 0, "edges": 0}
+{"round": 120, "op": "decay", "n": 15, "pruned": 0, "edges": 0}
+{"round": 135, "op": "decay", "n": 15, "pruned": 0, "edges": 0}
+{"round": 135, "op": "add", "reason": "recall", "a": [175, "node"], "b": [216, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 135, "op": "add", "reason": "recall", "a": [192, "node"], "b": [216, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 135, "op": "add", "reason": "recall", "a": [154, "node"], "b": [216, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 135, "op": "add", "reason": "recall", "a": [176, "node"], "b": [216, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 135, "op": "add", "reason": "recall", "a": [177, "atom"], "b": [216, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 135, "op": "add", "reason": "recall", "a": [175, "node"], "b": [192, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 135, "op": "add", "reason": "recall", "a": [154, "node"], "b": [175, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 135, "op": "add", "reason": "recall", "a": [175, "node"], "b": [176, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 135, "op": "add", "reason": "recall", "a": [175, "node"], "b": [177, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 135, "op": "add", "reason": "recall", "a": [154, "node"], "b": [192, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 135, "op": "add", "reason": "recall", "a": [176, "node"], "b": [192, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 135, "op": "add", "reason": "recall", "a": [177, "atom"], "b": [192, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 135, "op": "add", "reason": "recall", "a": [154, "node"], "b": [176, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 135, "op": "add", "reason": "recall", "a": [154, "node"], "b": [177, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 135, "op": "add", "reason": "recall", "a": [176, "node"], "b": [177, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 150, "op": "decay", "n": 15, "pruned": 0, "edges": 15}
+{"round": 150, "op": "add", "reason": "recall", "a": [152, "node"], "b": [216, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 150, "op": "add", "reason": "recall", "a": [125, "node"], "b": [152, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 150, "op": "add", "reason": "recall", "a": [92, "node"], "b": [152, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 150, "op": "add", "reason": "recall", "a": [77, "atom"], "b": [152, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 150, "op": "add", "reason": "recall", "a": [152, "node"], "b": [234, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 150, "op": "add", "reason": "recall", "a": [125, "node"], "b": [216, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 150, "op": "add", "reason": "recall", "a": [92, "node"], "b": [216, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 150, "op": "add", "reason": "recall", "a": [77, "atom"], "b": [216, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 150, "op": "add", "reason": "recall", "a": [216, "node"], "b": [234, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 150, "op": "add", "reason": "recall", "a": [92, "node"], "b": [125, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 150, "op": "add", "reason": "recall", "a": [77, "atom"], "b": [125, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 150, "op": "add", "reason": "recall", "a": [125, "node"], "b": [234, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 150, "op": "add", "reason": "recall", "a": [77, "atom"], "b": [92, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 150, "op": "add", "reason": "recall", "a": [92, "node"], "b": [234, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 150, "op": "add", "reason": "recall", "a": [77, "atom"], "b": [234, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 165, "op": "decay", "n": 15, "pruned": 15, "edges": 15}
+{"round": 165, "op": "add", "reason": "recall", "a": [29, "atom"], "b": [217, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 165, "op": "add", "reason": "recall", "a": [29, "atom"], "b": [242, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 165, "op": "add", "reason": "recall", "a": [29, "atom"], "b": [194, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 165, "op": "add", "reason": "recall", "a": [29, "atom"], "b": [191, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 165, "op": "add", "reason": "recall", "a": [29, "atom"], "b": [234, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 165, "op": "add", "reason": "recall", "a": [217, "node"], "b": [242, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 165, "op": "add", "reason": "recall", "a": [194, "node"], "b": [217, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 165, "op": "add", "reason": "recall", "a": [191, "atom"], "b": [217, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 165, "op": "add", "reason": "recall", "a": [217, "node"], "b": [234, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 165, "op": "add", "reason": "recall", "a": [194, "node"], "b": [242, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 165, "op": "add", "reason": "recall", "a": [191, "atom"], "b": [242, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 165, "op": "add", "reason": "recall", "a": [234, "atom"], "b": [242, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 165, "op": "add", "reason": "recall", "a": [191, "atom"], "b": [194, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 165, "op": "add", "reason": "recall", "a": [194, "node"], "b": [234, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 165, "op": "add", "reason": "recall", "a": [191, "atom"], "b": [234, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 180, "op": "decay", "n": 15, "pruned": 15, "edges": 15}
+{"round": 195, "op": "decay", "n": 15, "pruned": 15, "edges": 0}
+{"round": 195, "op": "add", "reason": "recall", "a": [216, "node"], "b": [333, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [94, "atom"], "b": [216, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [175, "node"], "b": [216, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [192, "node"], "b": [216, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [154, "node"], "b": [216, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [216, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [151, "atom"], "b": [216, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [173, "atom"], "b": [216, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [94, "atom"], "b": [333, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [175, "node"], "b": [333, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [192, "node"], "b": [333, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [154, "node"], "b": [333, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [333, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [151, "atom"], "b": [333, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [173, "atom"], "b": [333, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [94, "atom"], "b": [175, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [94, "atom"], "b": [192, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [94, "atom"], "b": [154, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [94, "atom"], "b": [146, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [94, "atom"], "b": [151, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [94, "atom"], "b": [173, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [175, "node"], "b": [192, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [154, "node"], "b": [175, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [175, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [151, "atom"], "b": [175, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [173, "atom"], "b": [175, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [154, "node"], "b": [192, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [192, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [151, "atom"], "b": [192, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [173, "atom"], "b": [192, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [154, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [151, "atom"], "b": [154, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [154, "node"], "b": [173, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [151, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [173, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 195, "op": "add", "reason": "recall", "a": [151, "atom"], "b": [173, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 210, "op": "decay", "n": 15, "pruned": 0, "edges": 36}
+{"round": 225, "op": "decay", "n": 15, "pruned": 36, "edges": 0}
+{"round": 240, "op": "decay", "n": 15, "pruned": 0, "edges": 0}
+{"round": 255, "op": "decay", "n": 15, "pruned": 0, "edges": 0}
+{"round": 255, "op": "add", "reason": "recall", "a": [6, "atom"], "b": [24, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 255, "op": "add", "reason": "recall", "a": [24, "node"], "b": [237, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 255, "op": "add", "reason": "recall", "a": [6, "atom"], "b": [237, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "decay", "n": 1, "pruned": 0, "edges": 3}
+{"round": 256, "op": "add", "reason": "recall", "a": [42, "atom"], "b": [128, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [42, "atom"], "b": [153, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [42, "atom"], "b": [175, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [42, "atom"], "b": [192, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [42, "atom"], "b": [306, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [42, "atom"], "b": [334, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [42, "atom"], "b": [392, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [42, "atom"], "b": [454, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [128, "atom"], "b": [153, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [128, "atom"], "b": [175, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [128, "atom"], "b": [192, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [128, "atom"], "b": [306, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [128, "atom"], "b": [334, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [128, "atom"], "b": [392, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [128, "atom"], "b": [454, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [153, "node"], "b": [175, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [153, "node"], "b": [192, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [153, "node"], "b": [306, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [153, "node"], "b": [334, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [153, "node"], "b": [392, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [153, "node"], "b": [454, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [175, "node"], "b": [192, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [175, "node"], "b": [306, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [175, "node"], "b": [334, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [175, "node"], "b": [392, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [175, "node"], "b": [454, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [192, "node"], "b": [306, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [192, "node"], "b": [334, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [192, "node"], "b": [392, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [192, "node"], "b": [454, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [306, "node"], "b": [334, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [306, "node"], "b": [392, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [306, "node"], "b": [454, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [334, "node"], "b": [392, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [334, "node"], "b": [454, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 256, "op": "add", "reason": "recall", "a": [392, "node"], "b": [454, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 257, "op": "decay", "n": 1, "pruned": 0, "edges": 39}
+{"round": 257, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [36, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 257, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [334, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 257, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [392, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 257, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [454, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 257, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [308, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 257, "op": "add", "reason": "recall", "a": [36, "atom"], "b": [334, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 257, "op": "add", "reason": "recall", "a": [36, "atom"], "b": [392, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 257, "op": "add", "reason": "recall", "a": [36, "atom"], "b": [454, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 257, "op": "add", "reason": "recall", "a": [36, "atom"], "b": [308, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 257, "op": "add", "reason": "recall", "a": [334, "node"], "b": [392, "node"], "delta": 2.0, "affinity": 3.9}
+{"round": 257, "op": "add", "reason": "recall", "a": [334, "node"], "b": [454, "node"], "delta": 2.0, "affinity": 3.9}
+{"round": 257, "op": "add", "reason": "recall", "a": [308, "node"], "b": [334, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 257, "op": "add", "reason": "recall", "a": [392, "node"], "b": [454, "node"], "delta": 2.0, "affinity": 3.9}
+{"round": 257, "op": "add", "reason": "recall", "a": [308, "node"], "b": [392, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 257, "op": "add", "reason": "recall", "a": [308, "node"], "b": [454, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 258, "op": "decay", "n": 1, "pruned": 0, "edges": 51}
+{"round": 258, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [17, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 258, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [44, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 258, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [91, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 258, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [334, "node"], "delta": 2.0, "affinity": 3.9}
+{"round": 258, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [392, "node"], "delta": 2.0, "affinity": 3.9}
+{"round": 258, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [454, "node"], "delta": 2.0, "affinity": 3.9}
+{"round": 258, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [308, "node"], "delta": 2.0, "affinity": 3.9}
+{"round": 258, "op": "add", "reason": "recall", "a": [17, "atom"], "b": [44, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 258, "op": "add", "reason": "recall", "a": [17, "atom"], "b": [91, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 258, "op": "add", "reason": "recall", "a": [17, "atom"], "b": [334, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 258, "op": "add", "reason": "recall", "a": [17, "atom"], "b": [392, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 258, "op": "add", "reason": "recall", "a": [17, "atom"], "b": [454, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 258, "op": "add", "reason": "recall", "a": [17, "atom"], "b": [308, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 258, "op": "add", "reason": "recall", "a": [44, "atom"], "b": [91, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 258, "op": "add", "reason": "recall", "a": [44, "atom"], "b": [334, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 258, "op": "add", "reason": "recall", "a": [44, "atom"], "b": [392, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 258, "op": "add", "reason": "recall", "a": [44, "atom"], "b": [454, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 258, "op": "add", "reason": "recall", "a": [44, "atom"], "b": [308, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 258, "op": "add", "reason": "recall", "a": [91, "node"], "b": [334, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 258, "op": "add", "reason": "recall", "a": [91, "node"], "b": [392, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 258, "op": "add", "reason": "recall", "a": [91, "node"], "b": [454, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 258, "op": "add", "reason": "recall", "a": [91, "node"], "b": [308, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 258, "op": "add", "reason": "recall", "a": [334, "node"], "b": [392, "node"], "delta": 2.0, "affinity": 5.8}
+{"round": 258, "op": "add", "reason": "recall", "a": [334, "node"], "b": [454, "node"], "delta": 2.0, "affinity": 5.8}
+{"round": 258, "op": "add", "reason": "recall", "a": [308, "node"], "b": [334, "node"], "delta": 2.0, "affinity": 3.9}
+{"round": 258, "op": "add", "reason": "recall", "a": [392, "node"], "b": [454, "node"], "delta": 2.0, "affinity": 5.8}
+{"round": 258, "op": "add", "reason": "recall", "a": [308, "node"], "b": [392, "node"], "delta": 2.0, "affinity": 3.9}
+{"round": 258, "op": "add", "reason": "recall", "a": [308, "node"], "b": [454, "node"], "delta": 2.0, "affinity": 3.9}
+{"round": 259, "op": "decay", "n": 1, "pruned": 0, "edges": 69}
+{"round": 259, "op": "add", "reason": "recall", "a": [153, "node"], "b": [175, "node"], "delta": 2.0, "affinity": 3.7}
+{"round": 259, "op": "add", "reason": "recall", "a": [153, "node"], "b": [192, "node"], "delta": 2.0, "affinity": 3.7}
+{"round": 259, "op": "add", "reason": "recall", "a": [153, "node"], "b": [193, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 259, "op": "add", "reason": "recall", "a": [153, "node"], "b": [217, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 259, "op": "add", "reason": "recall", "a": [153, "node"], "b": [242, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 259, "op": "add", "reason": "recall", "a": [153, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 259, "op": "add", "reason": "recall", "a": [175, "node"], "b": [192, "node"], "delta": 2.0, "affinity": 3.7}
+{"round": 259, "op": "add", "reason": "recall", "a": [175, "node"], "b": [193, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 259, "op": "add", "reason": "recall", "a": [175, "node"], "b": [217, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 259, "op": "add", "reason": "recall", "a": [175, "node"], "b": [242, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 259, "op": "add", "reason": "recall", "a": [175, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 259, "op": "add", "reason": "recall", "a": [192, "node"], "b": [193, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 259, "op": "add", "reason": "recall", "a": [192, "node"], "b": [217, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 259, "op": "add", "reason": "recall", "a": [192, "node"], "b": [242, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 259, "op": "add", "reason": "recall", "a": [192, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 259, "op": "add", "reason": "recall", "a": [193, "node"], "b": [217, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 259, "op": "add", "reason": "recall", "a": [193, "node"], "b": [242, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 259, "op": "add", "reason": "recall", "a": [193, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 259, "op": "add", "reason": "recall", "a": [217, "node"], "b": [242, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 259, "op": "add", "reason": "recall", "a": [217, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 259, "op": "add", "reason": "recall", "a": [242, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 260, "op": "decay", "n": 1, "pruned": 0, "edges": 87}
+{"round": 260, "op": "add", "reason": "recall", "a": [47, "node"], "b": [75, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 260, "op": "add", "reason": "recall", "a": [47, "node"], "b": [192, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 260, "op": "add", "reason": "recall", "a": [47, "node"], "b": [175, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 260, "op": "add", "reason": "recall", "a": [47, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 260, "op": "add", "reason": "recall", "a": [75, "atom"], "b": [192, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 260, "op": "add", "reason": "recall", "a": [75, "atom"], "b": [175, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 260, "op": "add", "reason": "recall", "a": [75, "atom"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 260, "op": "add", "reason": "recall", "a": [175, "node"], "b": [192, "node"], "delta": 2.0, "affinity": 5.6}
+{"round": 260, "op": "add", "reason": "recall", "a": [192, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 3.9}
+{"round": 260, "op": "add", "reason": "recall", "a": [175, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 3.9}
+{"round": 261, "op": "decay", "n": 1, "pruned": 0, "edges": 94}
+{"round": 261, "op": "add", "reason": "recall", "a": [29, "atom"], "b": [217, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 261, "op": "add", "reason": "recall", "a": [29, "atom"], "b": [242, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 261, "op": "add", "reason": "recall", "a": [29, "atom"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 261, "op": "add", "reason": "recall", "a": [29, "atom"], "b": [194, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 261, "op": "add", "reason": "recall", "a": [29, "atom"], "b": [191, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 261, "op": "add", "reason": "recall", "a": [217, "node"], "b": [242, "node"], "delta": 2.0, "affinity": 3.8}
+{"round": 261, "op": "add", "reason": "recall", "a": [217, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 3.8}
+{"round": 261, "op": "add", "reason": "recall", "a": [194, "node"], "b": [217, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 261, "op": "add", "reason": "recall", "a": [191, "atom"], "b": [217, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 261, "op": "add", "reason": "recall", "a": [242, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 3.8}
+{"round": 261, "op": "add", "reason": "recall", "a": [194, "node"], "b": [242, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 261, "op": "add", "reason": "recall", "a": [191, "atom"], "b": [242, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 261, "op": "add", "reason": "recall", "a": [194, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 261, "op": "add", "reason": "recall", "a": [191, "atom"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 261, "op": "add", "reason": "recall", "a": [191, "atom"], "b": [194, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 262, "op": "decay", "n": 1, "pruned": 0, "edges": 106}
+{"round": 262, "op": "add", "reason": "recall", "a": [31, "atom"], "b": [106, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 262, "op": "add", "reason": "recall", "a": [106, "node"], "b": [179, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 262, "op": "add", "reason": "recall", "a": [106, "node"], "b": [234, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 262, "op": "add", "reason": "recall", "a": [106, "node"], "b": [281, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 262, "op": "add", "reason": "recall", "a": [106, "node"], "b": [461, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 262, "op": "add", "reason": "recall", "a": [31, "atom"], "b": [179, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 262, "op": "add", "reason": "recall", "a": [31, "atom"], "b": [234, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 262, "op": "add", "reason": "recall", "a": [31, "atom"], "b": [281, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 262, "op": "add", "reason": "recall", "a": [31, "atom"], "b": [461, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 262, "op": "add", "reason": "recall", "a": [179, "atom"], "b": [234, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 262, "op": "add", "reason": "recall", "a": [179, "atom"], "b": [281, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 262, "op": "add", "reason": "recall", "a": [179, "atom"], "b": [461, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 262, "op": "add", "reason": "recall", "a": [234, "atom"], "b": [281, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 262, "op": "add", "reason": "recall", "a": [234, "atom"], "b": [461, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 262, "op": "add", "reason": "recall", "a": [281, "atom"], "b": [461, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 263, "op": "decay", "n": 1, "pruned": 0, "edges": 121}
+{"round": 263, "op": "add", "reason": "recall", "a": [33, "atom"], "b": [35, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 263, "op": "add", "reason": "recall", "a": [33, "atom"], "b": [68, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 263, "op": "add", "reason": "recall", "a": [33, "atom"], "b": [91, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 263, "op": "add", "reason": "recall", "a": [33, "atom"], "b": [66, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 263, "op": "add", "reason": "recall", "a": [33, "atom"], "b": [398, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 263, "op": "add", "reason": "recall", "a": [35, "atom"], "b": [68, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 263, "op": "add", "reason": "recall", "a": [35, "atom"], "b": [91, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 263, "op": "add", "reason": "recall", "a": [35, "atom"], "b": [66, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 263, "op": "add", "reason": "recall", "a": [35, "atom"], "b": [398, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 263, "op": "add", "reason": "recall", "a": [68, "node"], "b": [91, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 263, "op": "add", "reason": "recall", "a": [66, "atom"], "b": [68, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 263, "op": "add", "reason": "recall", "a": [68, "node"], "b": [398, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 263, "op": "add", "reason": "recall", "a": [66, "atom"], "b": [91, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 263, "op": "add", "reason": "recall", "a": [91, "node"], "b": [398, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 263, "op": "add", "reason": "recall", "a": [66, "atom"], "b": [398, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 264, "op": "decay", "n": 1, "pruned": 0, "edges": 136}
+{"round": 264, "op": "add", "reason": "recall", "a": [23, "atom"], "b": [34, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 264, "op": "add", "reason": "recall", "a": [23, "atom"], "b": [68, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 264, "op": "add", "reason": "recall", "a": [23, "atom"], "b": [151, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 264, "op": "add", "reason": "recall", "a": [23, "atom"], "b": [168, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 264, "op": "add", "reason": "recall", "a": [34, "atom"], "b": [68, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 264, "op": "add", "reason": "recall", "a": [34, "atom"], "b": [151, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 264, "op": "add", "reason": "recall", "a": [34, "atom"], "b": [168, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 264, "op": "add", "reason": "recall", "a": [68, "node"], "b": [151, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 264, "op": "add", "reason": "recall", "a": [68, "node"], "b": [168, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 264, "op": "add", "reason": "recall", "a": [151, "atom"], "b": [168, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 265, "op": "decay", "n": 1, "pruned": 0, "edges": 146}
+{"round": 265, "op": "add", "reason": "recall", "a": [42, "atom"], "b": [75, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 265, "op": "add", "reason": "recall", "a": [42, "atom"], "b": [175, "node"], "delta": 2.0, "affinity": 3.1}
+{"round": 265, "op": "add", "reason": "recall", "a": [42, "atom"], "b": [192, "node"], "delta": 2.0, "affinity": 3.1}
+{"round": 265, "op": "add", "reason": "recall", "a": [42, "atom"], "b": [128, "atom"], "delta": 2.0, "affinity": 3.1}
+{"round": 265, "op": "add", "reason": "recall", "a": [42, "atom"], "b": [148, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 265, "op": "add", "reason": "recall", "a": [75, "atom"], "b": [175, "node"], "delta": 2.0, "affinity": 3.5}
+{"round": 265, "op": "add", "reason": "recall", "a": [75, "atom"], "b": [192, "node"], "delta": 2.0, "affinity": 3.5}
+{"round": 265, "op": "add", "reason": "recall", "a": [75, "atom"], "b": [128, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 265, "op": "add", "reason": "recall", "a": [75, "atom"], "b": [148, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 265, "op": "add", "reason": "recall", "a": [175, "node"], "b": [192, "node"], "delta": 2.0, "affinity": 7.1}
+{"round": 265, "op": "add", "reason": "recall", "a": [128, "atom"], "b": [175, "node"], "delta": 2.0, "affinity": 3.1}
+{"round": 265, "op": "add", "reason": "recall", "a": [148, "atom"], "b": [175, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 265, "op": "add", "reason": "recall", "a": [128, "atom"], "b": [192, "node"], "delta": 2.0, "affinity": 3.1}
+{"round": 265, "op": "add", "reason": "recall", "a": [148, "atom"], "b": [192, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 265, "op": "add", "reason": "recall", "a": [128, "atom"], "b": [148, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 266, "op": "decay", "n": 1, "pruned": 0, "edges": 153}
+{"round": 266, "op": "add", "reason": "recall", "a": [38, "atom"], "b": [47, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 266, "op": "add", "reason": "recall", "a": [39, "atom"], "b": [47, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 266, "op": "add", "reason": "recall", "a": [47, "node"], "b": [72, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 266, "op": "add", "reason": "recall", "a": [47, "node"], "b": [263, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 266, "op": "add", "reason": "recall", "a": [47, "node"], "b": [315, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 266, "op": "add", "reason": "recall", "a": [38, "atom"], "b": [39, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 266, "op": "add", "reason": "recall", "a": [38, "atom"], "b": [72, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 266, "op": "add", "reason": "recall", "a": [38, "atom"], "b": [263, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 266, "op": "add", "reason": "recall", "a": [38, "atom"], "b": [315, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 266, "op": "add", "reason": "recall", "a": [39, "atom"], "b": [72, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 266, "op": "add", "reason": "recall", "a": [39, "atom"], "b": [263, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 266, "op": "add", "reason": "recall", "a": [39, "atom"], "b": [315, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 266, "op": "add", "reason": "recall", "a": [72, "atom"], "b": [263, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 266, "op": "add", "reason": "recall", "a": [72, "atom"], "b": [315, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 266, "op": "add", "reason": "recall", "a": [263, "atom"], "b": [315, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 267, "op": "decay", "n": 1, "pruned": 0, "edges": 168}
+{"round": 267, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [19, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 267, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [47, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 267, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [44, "atom"], "delta": 2.0, "affinity": 3.1}
+{"round": 267, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [245, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 267, "op": "add", "reason": "recall", "a": [9, "atom"], "b": [445, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 267, "op": "add", "reason": "recall", "a": [19, "atom"], "b": [47, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 267, "op": "add", "reason": "recall", "a": [19, "atom"], "b": [44, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 267, "op": "add", "reason": "recall", "a": [19, "atom"], "b": [245, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 267, "op": "add", "reason": "recall", "a": [19, "atom"], "b": [445, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 267, "op": "add", "reason": "recall", "a": [44, "atom"], "b": [47, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 267, "op": "add", "reason": "recall", "a": [47, "node"], "b": [245, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 267, "op": "add", "reason": "recall", "a": [47, "node"], "b": [445, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 267, "op": "add", "reason": "recall", "a": [44, "atom"], "b": [245, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 267, "op": "add", "reason": "recall", "a": [44, "atom"], "b": [445, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 267, "op": "add", "reason": "recall", "a": [245, "atom"], "b": [445, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 268, "op": "decay", "n": 1, "pruned": 0, "edges": 182}
+{"round": 268, "op": "add", "reason": "recall", "a": [48, "atom"], "b": [58, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 268, "op": "add", "reason": "recall", "a": [48, "atom"], "b": [242, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 268, "op": "add", "reason": "recall", "a": [48, "atom"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 268, "op": "add", "reason": "recall", "a": [48, "atom"], "b": [218, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 268, "op": "add", "reason": "recall", "a": [48, "atom"], "b": [291, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 268, "op": "add", "reason": "recall", "a": [48, "atom"], "b": [371, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 268, "op": "add", "reason": "recall", "a": [58, "atom"], "b": [242, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 268, "op": "add", "reason": "recall", "a": [58, "atom"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 268, "op": "add", "reason": "recall", "a": [58, "atom"], "b": [218, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 268, "op": "add", "reason": "recall", "a": [58, "atom"], "b": [291, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 268, "op": "add", "reason": "recall", "a": [58, "atom"], "b": [371, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 268, "op": "add", "reason": "recall", "a": [242, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 5.1}
+{"round": 268, "op": "add", "reason": "recall", "a": [218, "node"], "b": [242, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 268, "op": "add", "reason": "recall", "a": [242, "node"], "b": [291, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 268, "op": "add", "reason": "recall", "a": [242, "node"], "b": [371, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 268, "op": "add", "reason": "recall", "a": [218, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 268, "op": "add", "reason": "recall", "a": [291, "atom"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 268, "op": "add", "reason": "recall", "a": [305, "node"], "b": [371, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 268, "op": "add", "reason": "recall", "a": [218, "node"], "b": [291, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 268, "op": "add", "reason": "recall", "a": [218, "node"], "b": [371, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 268, "op": "add", "reason": "recall", "a": [291, "atom"], "b": [371, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 269, "op": "decay", "n": 1, "pruned": 0, "edges": 202}
+{"round": 269, "op": "add", "reason": "recall", "a": [53, "atom"], "b": [125, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 269, "op": "add", "reason": "recall", "a": [53, "atom"], "b": [88, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 269, "op": "add", "reason": "recall", "a": [53, "atom"], "b": [93, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 269, "op": "add", "reason": "recall", "a": [53, "atom"], "b": [219, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 269, "op": "add", "reason": "recall", "a": [53, "atom"], "b": [338, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 269, "op": "add", "reason": "recall", "a": [88, "atom"], "b": [125, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 269, "op": "add", "reason": "recall", "a": [93, "node"], "b": [125, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 269, "op": "add", "reason": "recall", "a": [125, "node"], "b": [219, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 269, "op": "add", "reason": "recall", "a": [125, "node"], "b": [338, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 269, "op": "add", "reason": "recall", "a": [88, "atom"], "b": [93, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 269, "op": "add", "reason": "recall", "a": [88, "atom"], "b": [219, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 269, "op": "add", "reason": "recall", "a": [88, "atom"], "b": [338, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 269, "op": "add", "reason": "recall", "a": [93, "node"], "b": [219, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 269, "op": "add", "reason": "recall", "a": [93, "node"], "b": [338, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 269, "op": "add", "reason": "recall", "a": [219, "atom"], "b": [338, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 270, "op": "decay", "n": 1, "pruned": 0, "edges": 217}
+{"round": 270, "op": "add", "reason": "recall", "a": [199, "atom"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 270, "op": "add", "reason": "recall", "a": [243, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 270, "op": "add", "reason": "recall", "a": [274, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 270, "op": "add", "reason": "recall", "a": [229, "atom"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 270, "op": "add", "reason": "recall", "a": [230, "atom"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 270, "op": "add", "reason": "recall", "a": [280, "atom"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 270, "op": "add", "reason": "recall", "a": [199, "atom"], "b": [243, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 270, "op": "add", "reason": "recall", "a": [199, "atom"], "b": [274, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 270, "op": "add", "reason": "recall", "a": [199, "atom"], "b": [229, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 270, "op": "add", "reason": "recall", "a": [199, "atom"], "b": [230, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 270, "op": "add", "reason": "recall", "a": [199, "atom"], "b": [280, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 270, "op": "add", "reason": "recall", "a": [243, "node"], "b": [274, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 270, "op": "add", "reason": "recall", "a": [229, "atom"], "b": [243, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 270, "op": "add", "reason": "recall", "a": [230, "atom"], "b": [243, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 270, "op": "add", "reason": "recall", "a": [243, "node"], "b": [280, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 270, "op": "add", "reason": "recall", "a": [229, "atom"], "b": [274, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 270, "op": "add", "reason": "recall", "a": [230, "atom"], "b": [274, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 270, "op": "add", "reason": "recall", "a": [274, "node"], "b": [280, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 270, "op": "add", "reason": "recall", "a": [229, "atom"], "b": [230, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 270, "op": "add", "reason": "recall", "a": [229, "atom"], "b": [280, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 270, "op": "add", "reason": "recall", "a": [230, "atom"], "b": [280, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 271, "op": "decay", "n": 1, "pruned": 0, "edges": 238}
+{"round": 271, "op": "add", "reason": "recall", "a": [62, "atom"], "b": [75, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 271, "op": "add", "reason": "recall", "a": [62, "atom"], "b": [148, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 271, "op": "add", "reason": "recall", "a": [62, "atom"], "b": [308, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 271, "op": "add", "reason": "recall", "a": [62, "atom"], "b": [423, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 271, "op": "add", "reason": "recall", "a": [62, "atom"], "b": [455, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 271, "op": "add", "reason": "recall", "a": [75, "atom"], "b": [148, "atom"], "delta": 2.0, "affinity": 3.4}
+{"round": 271, "op": "add", "reason": "recall", "a": [75, "atom"], "b": [308, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 271, "op": "add", "reason": "recall", "a": [75, "atom"], "b": [423, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 271, "op": "add", "reason": "recall", "a": [75, "atom"], "b": [455, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 271, "op": "add", "reason": "recall", "a": [148, "atom"], "b": [308, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 271, "op": "add", "reason": "recall", "a": [148, "atom"], "b": [423, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 271, "op": "add", "reason": "recall", "a": [148, "atom"], "b": [455, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 271, "op": "add", "reason": "recall", "a": [308, "node"], "b": [423, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 271, "op": "add", "reason": "recall", "a": [308, "node"], "b": [455, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 271, "op": "add", "reason": "recall", "a": [423, "node"], "b": [455, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 272, "op": "decay", "n": 1, "pruned": 0, "edges": 252}
+{"round": 272, "op": "add", "reason": "recall", "a": [62, "atom"], "b": [68, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 272, "op": "add", "reason": "recall", "a": [66, "atom"], "b": [68, "node"], "delta": 2.0, "affinity": 3.1}
+{"round": 272, "op": "add", "reason": "recall", "a": [68, "node"], "b": [162, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 272, "op": "add", "reason": "recall", "a": [68, "node"], "b": [163, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 272, "op": "add", "reason": "recall", "a": [68, "node"], "b": [211, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 272, "op": "add", "reason": "recall", "a": [62, "atom"], "b": [66, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 272, "op": "add", "reason": "recall", "a": [62, "atom"], "b": [162, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 272, "op": "add", "reason": "recall", "a": [62, "atom"], "b": [163, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 272, "op": "add", "reason": "recall", "a": [62, "atom"], "b": [211, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 272, "op": "add", "reason": "recall", "a": [66, "atom"], "b": [162, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 272, "op": "add", "reason": "recall", "a": [66, "atom"], "b": [163, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 272, "op": "add", "reason": "recall", "a": [66, "atom"], "b": [211, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 272, "op": "add", "reason": "recall", "a": [162, "atom"], "b": [163, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 272, "op": "add", "reason": "recall", "a": [162, "atom"], "b": [211, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 272, "op": "add", "reason": "recall", "a": [163, "atom"], "b": [211, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 273, "op": "decay", "n": 1, "pruned": 0, "edges": 266}
+{"round": 273, "op": "add", "reason": "recall", "a": [63, "atom"], "b": [64, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 273, "op": "add", "reason": "recall", "a": [63, "atom"], "b": [65, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 273, "op": "add", "reason": "recall", "a": [63, "atom"], "b": [154, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 273, "op": "add", "reason": "recall", "a": [63, "atom"], "b": [146, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 273, "op": "add", "reason": "recall", "a": [63, "atom"], "b": [370, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 273, "op": "add", "reason": "recall", "a": [64, "atom"], "b": [65, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 273, "op": "add", "reason": "recall", "a": [64, "atom"], "b": [154, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 273, "op": "add", "reason": "recall", "a": [64, "atom"], "b": [146, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 273, "op": "add", "reason": "recall", "a": [64, "atom"], "b": [370, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 273, "op": "add", "reason": "recall", "a": [65, "atom"], "b": [154, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 273, "op": "add", "reason": "recall", "a": [65, "atom"], "b": [146, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 273, "op": "add", "reason": "recall", "a": [65, "atom"], "b": [370, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 273, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [154, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 273, "op": "add", "reason": "recall", "a": [154, "node"], "b": [370, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 273, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [370, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 274, "op": "decay", "n": 1, "pruned": 0, "edges": 281}
+{"round": 274, "op": "add", "reason": "recall", "a": [70, "atom"], "b": [108, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 274, "op": "add", "reason": "recall", "a": [70, "atom"], "b": [197, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 274, "op": "add", "reason": "recall", "a": [70, "atom"], "b": [360, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 274, "op": "add", "reason": "recall", "a": [70, "atom"], "b": [396, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 274, "op": "add", "reason": "recall", "a": [70, "atom"], "b": [402, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 274, "op": "add", "reason": "recall", "a": [108, "atom"], "b": [197, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 274, "op": "add", "reason": "recall", "a": [108, "atom"], "b": [360, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 274, "op": "add", "reason": "recall", "a": [108, "atom"], "b": [396, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 274, "op": "add", "reason": "recall", "a": [108, "atom"], "b": [402, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 274, "op": "add", "reason": "recall", "a": [197, "atom"], "b": [360, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 274, "op": "add", "reason": "recall", "a": [197, "atom"], "b": [396, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 274, "op": "add", "reason": "recall", "a": [197, "atom"], "b": [402, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 274, "op": "add", "reason": "recall", "a": [360, "atom"], "b": [396, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 274, "op": "add", "reason": "recall", "a": [360, "atom"], "b": [402, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 274, "op": "add", "reason": "recall", "a": [396, "atom"], "b": [402, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 275, "op": "decay", "n": 1, "pruned": 3, "edges": 293}
+{"round": 275, "op": "add", "reason": "recall", "a": [70, "atom"], "b": [125, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 275, "op": "add", "reason": "recall", "a": [70, "atom"], "b": [92, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 275, "op": "add", "reason": "recall", "a": [70, "atom"], "b": [77, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 275, "op": "add", "reason": "recall", "a": [70, "atom"], "b": [423, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 275, "op": "add", "reason": "recall", "a": [70, "atom"], "b": [455, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 275, "op": "add", "reason": "recall", "a": [92, "node"], "b": [125, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 275, "op": "add", "reason": "recall", "a": [77, "atom"], "b": [125, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 275, "op": "add", "reason": "recall", "a": [125, "node"], "b": [423, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 275, "op": "add", "reason": "recall", "a": [125, "node"], "b": [455, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 275, "op": "add", "reason": "recall", "a": [77, "atom"], "b": [92, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 275, "op": "add", "reason": "recall", "a": [92, "node"], "b": [423, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 275, "op": "add", "reason": "recall", "a": [92, "node"], "b": [455, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 275, "op": "add", "reason": "recall", "a": [77, "atom"], "b": [423, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 275, "op": "add", "reason": "recall", "a": [77, "atom"], "b": [455, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 275, "op": "add", "reason": "recall", "a": [423, "node"], "b": [455, "node"], "delta": 2.0, "affinity": 3.6}
+{"round": 276, "op": "decay", "n": 1, "pruned": 25, "edges": 282}
+{"round": 276, "op": "add", "reason": "recall", "a": [81, "atom"], "b": [92, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 276, "op": "add", "reason": "recall", "a": [92, "node"], "b": [93, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 276, "op": "add", "reason": "recall", "a": [92, "node"], "b": [127, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 276, "op": "add", "reason": "recall", "a": [92, "node"], "b": [118, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 276, "op": "add", "reason": "recall", "a": [81, "atom"], "b": [93, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 276, "op": "add", "reason": "recall", "a": [81, "atom"], "b": [127, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 276, "op": "add", "reason": "recall", "a": [81, "atom"], "b": [118, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 276, "op": "add", "reason": "recall", "a": [93, "node"], "b": [127, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 276, "op": "add", "reason": "recall", "a": [93, "node"], "b": [118, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 276, "op": "add", "reason": "recall", "a": [118, "atom"], "b": [127, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 277, "op": "decay", "n": 1, "pruned": 5, "edges": 287}
+{"round": 277, "op": "add", "reason": "recall", "a": [82, "atom"], "b": [83, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 277, "op": "add", "reason": "recall", "a": [82, "atom"], "b": [84, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 277, "op": "add", "reason": "recall", "a": [82, "atom"], "b": [93, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 277, "op": "add", "reason": "recall", "a": [82, "atom"], "b": [182, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 277, "op": "add", "reason": "recall", "a": [82, "atom"], "b": [358, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 277, "op": "add", "reason": "recall", "a": [83, "atom"], "b": [84, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 277, "op": "add", "reason": "recall", "a": [83, "atom"], "b": [93, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 277, "op": "add", "reason": "recall", "a": [83, "atom"], "b": [182, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 277, "op": "add", "reason": "recall", "a": [83, "atom"], "b": [358, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 277, "op": "add", "reason": "recall", "a": [84, "atom"], "b": [93, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 277, "op": "add", "reason": "recall", "a": [84, "atom"], "b": [182, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 277, "op": "add", "reason": "recall", "a": [84, "atom"], "b": [358, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 277, "op": "add", "reason": "recall", "a": [93, "node"], "b": [182, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 277, "op": "add", "reason": "recall", "a": [93, "node"], "b": [358, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 277, "op": "add", "reason": "recall", "a": [182, "atom"], "b": [358, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 278, "op": "decay", "n": 1, "pruned": 17, "edges": 285}
+{"round": 278, "op": "add", "reason": "recall", "a": [95, "atom"], "b": [97, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 278, "op": "add", "reason": "recall", "a": [95, "atom"], "b": [268, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 278, "op": "add", "reason": "recall", "a": [95, "atom"], "b": [318, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 278, "op": "add", "reason": "recall", "a": [95, "atom"], "b": [328, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 278, "op": "add", "reason": "recall", "a": [95, "atom"], "b": [438, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 278, "op": "add", "reason": "recall", "a": [97, "atom"], "b": [268, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 278, "op": "add", "reason": "recall", "a": [97, "atom"], "b": [318, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 278, "op": "add", "reason": "recall", "a": [97, "atom"], "b": [328, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 278, "op": "add", "reason": "recall", "a": [97, "atom"], "b": [438, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 278, "op": "add", "reason": "recall", "a": [268, "atom"], "b": [318, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 278, "op": "add", "reason": "recall", "a": [268, "atom"], "b": [328, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 278, "op": "add", "reason": "recall", "a": [268, "atom"], "b": [438, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 278, "op": "add", "reason": "recall", "a": [318, "atom"], "b": [328, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 278, "op": "add", "reason": "recall", "a": [318, "atom"], "b": [438, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 278, "op": "add", "reason": "recall", "a": [328, "atom"], "b": [438, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 279, "op": "decay", "n": 1, "pruned": 13, "edges": 287}
+{"round": 279, "op": "add", "reason": "recall", "a": [97, "atom"], "b": [98, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 279, "op": "add", "reason": "recall", "a": [97, "atom"], "b": [105, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 279, "op": "add", "reason": "recall", "a": [97, "atom"], "b": [109, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 279, "op": "add", "reason": "recall", "a": [97, "atom"], "b": [114, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 279, "op": "add", "reason": "recall", "a": [97, "atom"], "b": [135, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 279, "op": "add", "reason": "recall", "a": [98, "atom"], "b": [105, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 279, "op": "add", "reason": "recall", "a": [98, "atom"], "b": [109, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 279, "op": "add", "reason": "recall", "a": [98, "atom"], "b": [114, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 279, "op": "add", "reason": "recall", "a": [98, "atom"], "b": [135, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 279, "op": "add", "reason": "recall", "a": [105, "atom"], "b": [109, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 279, "op": "add", "reason": "recall", "a": [105, "atom"], "b": [114, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 279, "op": "add", "reason": "recall", "a": [105, "atom"], "b": [135, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 279, "op": "add", "reason": "recall", "a": [109, "atom"], "b": [114, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 279, "op": "add", "reason": "recall", "a": [109, "atom"], "b": [135, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 279, "op": "add", "reason": "recall", "a": [114, "atom"], "b": [135, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 280, "op": "decay", "n": 1, "pruned": 5, "edges": 297}
+{"round": 281, "op": "decay", "n": 1, "pruned": 12, "edges": 285}
+{"round": 282, "op": "decay", "n": 1, "pruned": 15, "edges": 270}
+{"round": 283, "op": "decay", "n": 1, "pruned": 14, "edges": 256}
+{"round": 283, "op": "add", "reason": "recall", "a": [154, "node"], "b": [176, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 283, "op": "add", "reason": "recall", "a": [154, "node"], "b": [177, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 283, "op": "add", "reason": "recall", "a": [154, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 283, "op": "add", "reason": "recall", "a": [154, "node"], "b": [242, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 283, "op": "add", "reason": "recall", "a": [154, "node"], "b": [255, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 283, "op": "add", "reason": "recall", "a": [176, "node"], "b": [177, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 283, "op": "add", "reason": "recall", "a": [176, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 283, "op": "add", "reason": "recall", "a": [176, "node"], "b": [242, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 283, "op": "add", "reason": "recall", "a": [176, "node"], "b": [255, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 283, "op": "add", "reason": "recall", "a": [177, "atom"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 283, "op": "add", "reason": "recall", "a": [177, "atom"], "b": [242, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 283, "op": "add", "reason": "recall", "a": [177, "atom"], "b": [255, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 283, "op": "add", "reason": "recall", "a": [242, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 5.6}
+{"round": 283, "op": "add", "reason": "recall", "a": [255, "atom"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 283, "op": "add", "reason": "recall", "a": [242, "node"], "b": [255, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 284, "op": "decay", "n": 1, "pruned": 10, "edges": 260}
+{"round": 284, "op": "add", "reason": "recall", "a": [7, "atom"], "b": [154, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 284, "op": "add", "reason": "recall", "a": [7, "atom"], "b": [176, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 284, "op": "add", "reason": "recall", "a": [7, "atom"], "b": [171, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 284, "op": "add", "reason": "recall", "a": [7, "atom"], "b": [172, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 284, "op": "add", "reason": "recall", "a": [7, "atom"], "b": [255, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 284, "op": "add", "reason": "recall", "a": [154, "node"], "b": [176, "node"], "delta": 2.0, "affinity": 3.9}
+{"round": 284, "op": "add", "reason": "recall", "a": [154, "node"], "b": [171, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 284, "op": "add", "reason": "recall", "a": [154, "node"], "b": [172, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 284, "op": "add", "reason": "recall", "a": [154, "node"], "b": [255, "atom"], "delta": 2.0, "affinity": 3.9}
+{"round": 284, "op": "add", "reason": "recall", "a": [171, "atom"], "b": [176, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 284, "op": "add", "reason": "recall", "a": [172, "atom"], "b": [176, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 284, "op": "add", "reason": "recall", "a": [176, "node"], "b": [255, "atom"], "delta": 2.0, "affinity": 3.9}
+{"round": 284, "op": "add", "reason": "recall", "a": [171, "atom"], "b": [172, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 284, "op": "add", "reason": "recall", "a": [171, "atom"], "b": [255, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 284, "op": "add", "reason": "recall", "a": [172, "atom"], "b": [255, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 285, "op": "decay", "n": 1, "pruned": 6, "edges": 266}
+{"round": 285, "op": "add", "reason": "recall", "a": [154, "node"], "b": [176, "node"], "delta": 2.0, "affinity": 5.8}
+{"round": 285, "op": "add", "reason": "recall", "a": [154, "node"], "b": [177, "atom"], "delta": 2.0, "affinity": 3.8}
+{"round": 285, "op": "add", "reason": "recall", "a": [154, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 3.8}
+{"round": 285, "op": "add", "reason": "recall", "a": [154, "node"], "b": [242, "node"], "delta": 2.0, "affinity": 3.8}
+{"round": 285, "op": "add", "reason": "recall", "a": [154, "node"], "b": [255, "atom"], "delta": 2.0, "affinity": 5.8}
+{"round": 285, "op": "add", "reason": "recall", "a": [176, "node"], "b": [177, "atom"], "delta": 2.0, "affinity": 3.8}
+{"round": 285, "op": "add", "reason": "recall", "a": [176, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 3.8}
+{"round": 285, "op": "add", "reason": "recall", "a": [176, "node"], "b": [242, "node"], "delta": 2.0, "affinity": 3.8}
+{"round": 285, "op": "add", "reason": "recall", "a": [176, "node"], "b": [255, "atom"], "delta": 2.0, "affinity": 5.8}
+{"round": 285, "op": "add", "reason": "recall", "a": [177, "atom"], "b": [305, "node"], "delta": 2.0, "affinity": 3.8}
+{"round": 285, "op": "add", "reason": "recall", "a": [177, "atom"], "b": [242, "node"], "delta": 2.0, "affinity": 3.8}
+{"round": 285, "op": "add", "reason": "recall", "a": [177, "atom"], "b": [255, "atom"], "delta": 2.0, "affinity": 3.8}
+{"round": 285, "op": "add", "reason": "recall", "a": [242, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 7.4}
+{"round": 285, "op": "add", "reason": "recall", "a": [255, "atom"], "b": [305, "node"], "delta": 2.0, "affinity": 3.8}
+{"round": 285, "op": "add", "reason": "recall", "a": [242, "node"], "b": [255, "atom"], "delta": 2.0, "affinity": 3.8}
+{"round": 286, "op": "decay", "n": 1, "pruned": 15, "edges": 251}
+{"round": 287, "op": "decay", "n": 1, "pruned": 14, "edges": 237}
+{"round": 287, "op": "add", "reason": "recall", "a": [6, "atom"], "b": [15, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 287, "op": "add", "reason": "recall", "a": [6, "atom"], "b": [116, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 287, "op": "add", "reason": "recall", "a": [6, "atom"], "b": [154, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 287, "op": "add", "reason": "recall", "a": [6, "atom"], "b": [145, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 287, "op": "add", "reason": "recall", "a": [6, "atom"], "b": [155, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 287, "op": "add", "reason": "recall", "a": [15, "atom"], "b": [116, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 287, "op": "add", "reason": "recall", "a": [15, "atom"], "b": [154, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 287, "op": "add", "reason": "recall", "a": [15, "atom"], "b": [145, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 287, "op": "add", "reason": "recall", "a": [15, "atom"], "b": [155, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 287, "op": "add", "reason": "recall", "a": [116, "atom"], "b": [154, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 287, "op": "add", "reason": "recall", "a": [116, "atom"], "b": [145, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 287, "op": "add", "reason": "recall", "a": [116, "atom"], "b": [155, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 287, "op": "add", "reason": "recall", "a": [145, "atom"], "b": [154, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 287, "op": "add", "reason": "recall", "a": [154, "node"], "b": [155, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 287, "op": "add", "reason": "recall", "a": [145, "atom"], "b": [155, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 288, "op": "decay", "n": 1, "pruned": 20, "edges": 232}
+{"round": 289, "op": "decay", "n": 1, "pruned": 15, "edges": 217}
+{"round": 290, "op": "decay", "n": 1, "pruned": 21, "edges": 196}
+{"round": 290, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [154, "node"], "delta": 2.0, "affinity": 2.3}
+{"round": 290, "op": "add", "reason": "recall", "a": [151, "atom"], "b": [154, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 290, "op": "add", "reason": "recall", "a": [154, "node"], "b": [173, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 290, "op": "add", "reason": "recall", "a": [154, "node"], "b": [369, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 290, "op": "add", "reason": "recall", "a": [154, "node"], "b": [398, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 290, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [151, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 290, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [173, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 290, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [369, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 290, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [398, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 290, "op": "add", "reason": "recall", "a": [151, "atom"], "b": [173, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 290, "op": "add", "reason": "recall", "a": [151, "atom"], "b": [369, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 290, "op": "add", "reason": "recall", "a": [151, "atom"], "b": [398, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 290, "op": "add", "reason": "recall", "a": [173, "atom"], "b": [369, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 290, "op": "add", "reason": "recall", "a": [173, "atom"], "b": [398, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 290, "op": "add", "reason": "recall", "a": [369, "atom"], "b": [398, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 291, "op": "decay", "n": 1, "pruned": 13, "edges": 197}
+{"round": 291, "op": "add", "reason": "recall", "a": [68, "node"], "b": [154, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 291, "op": "add", "reason": "recall", "a": [68, "node"], "b": [146, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 291, "op": "add", "reason": "recall", "a": [68, "node"], "b": [151, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 291, "op": "add", "reason": "recall", "a": [68, "node"], "b": [173, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 291, "op": "add", "reason": "recall", "a": [68, "node"], "b": [398, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 291, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [154, "node"], "delta": 2.0, "affinity": 4.2}
+{"round": 291, "op": "add", "reason": "recall", "a": [151, "atom"], "b": [154, "node"], "delta": 2.0, "affinity": 3.9}
+{"round": 291, "op": "add", "reason": "recall", "a": [154, "node"], "b": [173, "atom"], "delta": 2.0, "affinity": 3.9}
+{"round": 291, "op": "add", "reason": "recall", "a": [154, "node"], "b": [398, "atom"], "delta": 2.0, "affinity": 3.9}
+{"round": 291, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [151, "atom"], "delta": 2.0, "affinity": 3.9}
+{"round": 291, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [173, "atom"], "delta": 2.0, "affinity": 3.9}
+{"round": 291, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [398, "atom"], "delta": 2.0, "affinity": 3.9}
+{"round": 291, "op": "add", "reason": "recall", "a": [151, "atom"], "b": [173, "atom"], "delta": 2.0, "affinity": 3.9}
+{"round": 291, "op": "add", "reason": "recall", "a": [151, "atom"], "b": [398, "atom"], "delta": 2.0, "affinity": 3.9}
+{"round": 291, "op": "add", "reason": "recall", "a": [173, "atom"], "b": [398, "atom"], "delta": 2.0, "affinity": 3.9}
+{"round": 292, "op": "decay", "n": 1, "pruned": 14, "edges": 188}
+{"round": 292, "op": "add", "reason": "recall", "a": [68, "node"], "b": [154, "node"], "delta": 2.0, "affinity": 3.9}
+{"round": 292, "op": "add", "reason": "recall", "a": [68, "node"], "b": [146, "atom"], "delta": 2.0, "affinity": 3.9}
+{"round": 292, "op": "add", "reason": "recall", "a": [68, "node"], "b": [151, "atom"], "delta": 2.0, "affinity": 3.9}
+{"round": 292, "op": "add", "reason": "recall", "a": [68, "node"], "b": [173, "atom"], "delta": 2.0, "affinity": 3.9}
+{"round": 292, "op": "add", "reason": "recall", "a": [68, "node"], "b": [398, "atom"], "delta": 2.0, "affinity": 3.9}
+{"round": 292, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [154, "node"], "delta": 2.0, "affinity": 6.1}
+{"round": 292, "op": "add", "reason": "recall", "a": [151, "atom"], "b": [154, "node"], "delta": 2.0, "affinity": 5.8}
+{"round": 292, "op": "add", "reason": "recall", "a": [154, "node"], "b": [173, "atom"], "delta": 2.0, "affinity": 5.8}
+{"round": 292, "op": "add", "reason": "recall", "a": [154, "node"], "b": [398, "atom"], "delta": 2.0, "affinity": 5.8}
+{"round": 292, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [151, "atom"], "delta": 2.0, "affinity": 5.8}
+{"round": 292, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [173, "atom"], "delta": 2.0, "affinity": 5.8}
+{"round": 292, "op": "add", "reason": "recall", "a": [146, "atom"], "b": [398, "atom"], "delta": 2.0, "affinity": 5.8}
+{"round": 292, "op": "add", "reason": "recall", "a": [151, "atom"], "b": [173, "atom"], "delta": 2.0, "affinity": 5.8}
+{"round": 292, "op": "add", "reason": "recall", "a": [151, "atom"], "b": [398, "atom"], "delta": 2.0, "affinity": 5.8}
+{"round": 292, "op": "add", "reason": "recall", "a": [173, "atom"], "b": [398, "atom"], "delta": 2.0, "affinity": 5.8}
+{"round": 293, "op": "decay", "n": 1, "pruned": 14, "edges": 174}
+{"round": 294, "op": "decay", "n": 1, "pruned": 15, "edges": 159}
+{"round": 294, "op": "add", "reason": "recall", "a": [149, "atom"], "b": [247, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 294, "op": "add", "reason": "recall", "a": [149, "atom"], "b": [380, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 294, "op": "add", "reason": "recall", "a": [149, "atom"], "b": [382, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 294, "op": "add", "reason": "recall", "a": [149, "atom"], "b": [407, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 294, "op": "add", "reason": "recall", "a": [149, "atom"], "b": [428, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 294, "op": "add", "reason": "recall", "a": [247, "atom"], "b": [380, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 294, "op": "add", "reason": "recall", "a": [247, "atom"], "b": [382, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 294, "op": "add", "reason": "recall", "a": [247, "atom"], "b": [407, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 294, "op": "add", "reason": "recall", "a": [247, "atom"], "b": [428, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 294, "op": "add", "reason": "recall", "a": [380, "atom"], "b": [382, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 294, "op": "add", "reason": "recall", "a": [380, "atom"], "b": [407, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 294, "op": "add", "reason": "recall", "a": [380, "atom"], "b": [428, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 294, "op": "add", "reason": "recall", "a": [382, "atom"], "b": [407, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 294, "op": "add", "reason": "recall", "a": [382, "atom"], "b": [428, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 294, "op": "add", "reason": "recall", "a": [407, "atom"], "b": [428, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 295, "op": "decay", "n": 1, "pruned": 14, "edges": 160}
+{"round": 296, "op": "decay", "n": 1, "pruned": 17, "edges": 143}
+{"round": 297, "op": "decay", "n": 1, "pruned": 22, "edges": 121}
+{"round": 298, "op": "decay", "n": 1, "pruned": 16, "edges": 105}
+{"round": 298, "op": "add", "reason": "recall", "a": [176, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 4.5}
+{"round": 298, "op": "add", "reason": "recall", "a": [176, "node"], "b": [274, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 298, "op": "add", "reason": "recall", "a": [176, "node"], "b": [243, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 298, "op": "add", "reason": "recall", "a": [176, "node"], "b": [236, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 298, "op": "add", "reason": "recall", "a": [176, "node"], "b": [280, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 298, "op": "add", "reason": "recall", "a": [274, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 298, "op": "add", "reason": "recall", "a": [243, "node"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 298, "op": "add", "reason": "recall", "a": [236, "atom"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 298, "op": "add", "reason": "recall", "a": [280, "atom"], "b": [305, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 298, "op": "add", "reason": "recall", "a": [243, "node"], "b": [274, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 298, "op": "add", "reason": "recall", "a": [236, "atom"], "b": [274, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 298, "op": "add", "reason": "recall", "a": [274, "node"], "b": [280, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 298, "op": "add", "reason": "recall", "a": [236, "atom"], "b": [243, "node"], "delta": 2.0, "affinity": 2.0}
+{"round": 298, "op": "add", "reason": "recall", "a": [243, "node"], "b": [280, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 298, "op": "add", "reason": "recall", "a": [236, "atom"], "b": [280, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 299, "op": "decay", "n": 1, "pruned": 19, "edges": 100}
+{"round": 299, "op": "add", "reason": "recall", "a": [169, "atom"], "b": [196, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 299, "op": "add", "reason": "recall", "a": [169, "atom"], "b": [212, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 299, "op": "add", "reason": "recall", "a": [169, "atom"], "b": [219, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 299, "op": "add", "reason": "recall", "a": [169, "atom"], "b": [229, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 299, "op": "add", "reason": "recall", "a": [169, "atom"], "b": [280, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 299, "op": "add", "reason": "recall", "a": [196, "atom"], "b": [212, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 299, "op": "add", "reason": "recall", "a": [196, "atom"], "b": [219, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 299, "op": "add", "reason": "recall", "a": [196, "atom"], "b": [229, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 299, "op": "add", "reason": "recall", "a": [196, "atom"], "b": [280, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 299, "op": "add", "reason": "recall", "a": [212, "atom"], "b": [219, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 299, "op": "add", "reason": "recall", "a": [212, "atom"], "b": [229, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 299, "op": "add", "reason": "recall", "a": [212, "atom"], "b": [280, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 299, "op": "add", "reason": "recall", "a": [219, "atom"], "b": [229, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 299, "op": "add", "reason": "recall", "a": [219, "atom"], "b": [280, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 299, "op": "add", "reason": "recall", "a": [229, "atom"], "b": [280, "atom"], "delta": 2.0, "affinity": 2.0}
+{"round": 300, "op": "decay", "n": 1, "pruned": 2, "edges": 113}
+{"round": 301, "op": "decay", "n": 1, "pruned": 0, "edges": 113}
+{"round": 302, "op": "decay", "n": 1, "pruned": 0, "edges": 113}
+{"round": 302, "op": "add", "reason": "edit", "a": [27, "atom"], "b": [28, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 302, "op": "add", "reason": "edit", "a": [27, "atom"], "b": [57, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 302, "op": "add", "reason": "edit", "a": [27, "atom"], "b": [58, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 302, "op": "add", "reason": "edit", "a": [28, "atom"], "b": [57, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 302, "op": "add", "reason": "edit", "a": [28, "atom"], "b": [58, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 302, "op": "add", "reason": "edit", "a": [57, "atom"], "b": [58, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 303, "op": "decay", "n": 1, "pruned": 1, "edges": 118}
+{"round": 303, "op": "add", "reason": "edit", "a": [144, "atom"], "b": [495, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 303, "op": "add", "reason": "edit", "a": [144, "atom"], "b": [496, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 303, "op": "add", "reason": "edit", "a": [495, "atom"], "b": [496, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 304, "op": "decay", "n": 1, "pruned": 12, "edges": 109}
+{"round": 304, "op": "add", "reason": "edit", "a": [48, "atom"], "b": [49, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 304, "op": "add", "reason": "edit", "a": [48, "atom"], "b": [130, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 304, "op": "add", "reason": "edit", "a": [48, "atom"], "b": [497, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 304, "op": "add", "reason": "edit", "a": [49, "atom"], "b": [130, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 304, "op": "add", "reason": "edit", "a": [49, "atom"], "b": [497, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 304, "op": "add", "reason": "edit", "a": [130, "atom"], "b": [497, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 305, "op": "decay", "n": 1, "pruned": 1, "edges": 114}
+{"round": 305, "op": "add", "reason": "edit", "a": [102, "atom"], "b": [495, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 305, "op": "add", "reason": "edit", "a": [102, "atom"], "b": [498, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 305, "op": "add", "reason": "edit", "a": [102, "atom"], "b": [499, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 305, "op": "add", "reason": "edit", "a": [495, "atom"], "b": [498, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 305, "op": "add", "reason": "edit", "a": [495, "atom"], "b": [499, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 305, "op": "add", "reason": "edit", "a": [498, "atom"], "b": [499, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 306, "op": "decay", "n": 1, "pruned": 0, "edges": 120}
+{"round": 306, "op": "add", "reason": "edit", "a": [36, "atom"], "b": [37, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 306, "op": "add", "reason": "edit", "a": [36, "atom"], "b": [177, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 306, "op": "add", "reason": "edit", "a": [36, "atom"], "b": [178, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 306, "op": "add", "reason": "edit", "a": [36, "atom"], "b": [179, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 306, "op": "add", "reason": "edit", "a": [37, "atom"], "b": [177, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 306, "op": "add", "reason": "edit", "a": [37, "atom"], "b": [178, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 306, "op": "add", "reason": "edit", "a": [37, "atom"], "b": [179, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 306, "op": "add", "reason": "edit", "a": [177, "atom"], "b": [178, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 306, "op": "add", "reason": "edit", "a": [177, "atom"], "b": [179, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 306, "op": "add", "reason": "edit", "a": [178, "atom"], "b": [179, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 307, "op": "decay", "n": 1, "pruned": 15, "edges": 115}
+{"round": 307, "op": "add", "reason": "edit", "a": [136, "atom"], "b": [245, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 307, "op": "add", "reason": "edit", "a": [136, "atom"], "b": [246, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 307, "op": "add", "reason": "edit", "a": [136, "atom"], "b": [247, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 307, "op": "add", "reason": "edit", "a": [136, "atom"], "b": [248, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 307, "op": "add", "reason": "edit", "a": [136, "atom"], "b": [500, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 307, "op": "add", "reason": "edit", "a": [245, "atom"], "b": [246, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 307, "op": "add", "reason": "edit", "a": [245, "atom"], "b": [247, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 307, "op": "add", "reason": "edit", "a": [245, "atom"], "b": [248, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 307, "op": "add", "reason": "edit", "a": [245, "atom"], "b": [500, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 307, "op": "add", "reason": "edit", "a": [246, "atom"], "b": [247, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 307, "op": "add", "reason": "edit", "a": [246, "atom"], "b": [248, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 307, "op": "add", "reason": "edit", "a": [246, "atom"], "b": [500, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 307, "op": "add", "reason": "edit", "a": [247, "atom"], "b": [248, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 307, "op": "add", "reason": "edit", "a": [247, "atom"], "b": [500, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 307, "op": "add", "reason": "edit", "a": [248, "atom"], "b": [500, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 308, "op": "decay", "n": 1, "pruned": 0, "edges": 130}
+{"round": 308, "op": "add", "reason": "edit", "a": [321, "atom"], "b": [322, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 308, "op": "add", "reason": "edit", "a": [321, "atom"], "b": [323, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 308, "op": "add", "reason": "edit", "a": [321, "atom"], "b": [324, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 308, "op": "add", "reason": "edit", "a": [321, "atom"], "b": [501, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 308, "op": "add", "reason": "edit", "a": [322, "atom"], "b": [323, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 308, "op": "add", "reason": "edit", "a": [322, "atom"], "b": [324, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 308, "op": "add", "reason": "edit", "a": [322, "atom"], "b": [501, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 308, "op": "add", "reason": "edit", "a": [323, "atom"], "b": [324, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 308, "op": "add", "reason": "edit", "a": [323, "atom"], "b": [501, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 308, "op": "add", "reason": "edit", "a": [324, "atom"], "b": [501, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 309, "op": "decay", "n": 1, "pruned": 0, "edges": 140}
+{"round": 309, "op": "add", "reason": "edit", "a": [295, "atom"], "b": [458, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 309, "op": "add", "reason": "edit", "a": [295, "atom"], "b": [459, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 309, "op": "add", "reason": "edit", "a": [295, "atom"], "b": [460, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 309, "op": "add", "reason": "edit", "a": [295, "atom"], "b": [502, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 309, "op": "add", "reason": "edit", "a": [458, "atom"], "b": [459, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 309, "op": "add", "reason": "edit", "a": [458, "atom"], "b": [460, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 309, "op": "add", "reason": "edit", "a": [458, "atom"], "b": [502, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 309, "op": "add", "reason": "edit", "a": [459, "atom"], "b": [460, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 309, "op": "add", "reason": "edit", "a": [459, "atom"], "b": [502, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 309, "op": "add", "reason": "edit", "a": [460, "atom"], "b": [502, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 310, "op": "decay", "n": 1, "pruned": 5, "edges": 145}
+{"round": 310, "op": "add", "reason": "edit", "a": [331, "atom"], "b": [354, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 310, "op": "add", "reason": "edit", "a": [331, "atom"], "b": [355, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 310, "op": "add", "reason": "edit", "a": [331, "atom"], "b": [356, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 310, "op": "add", "reason": "edit", "a": [331, "atom"], "b": [357, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 310, "op": "add", "reason": "edit", "a": [331, "atom"], "b": [504, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 310, "op": "add", "reason": "edit", "a": [354, "atom"], "b": [355, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 310, "op": "add", "reason": "edit", "a": [354, "atom"], "b": [356, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 310, "op": "add", "reason": "edit", "a": [354, "atom"], "b": [357, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 310, "op": "add", "reason": "edit", "a": [354, "atom"], "b": [504, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 310, "op": "add", "reason": "edit", "a": [355, "atom"], "b": [356, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 310, "op": "add", "reason": "edit", "a": [355, "atom"], "b": [357, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 310, "op": "add", "reason": "edit", "a": [355, "atom"], "b": [504, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 310, "op": "add", "reason": "edit", "a": [356, "atom"], "b": [357, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 310, "op": "add", "reason": "edit", "a": [356, "atom"], "b": [504, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 310, "op": "add", "reason": "edit", "a": [357, "atom"], "b": [504, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 311, "op": "decay", "n": 1, "pruned": 1, "edges": 159}
+{"round": 311, "op": "add", "reason": "edit", "a": [15, "atom"], "b": [408, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 311, "op": "add", "reason": "edit", "a": [15, "atom"], "b": [505, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 311, "op": "add", "reason": "edit", "a": [15, "atom"], "b": [506, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 311, "op": "add", "reason": "edit", "a": [408, "atom"], "b": [505, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 311, "op": "add", "reason": "edit", "a": [408, "atom"], "b": [506, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 311, "op": "add", "reason": "edit", "a": [505, "atom"], "b": [506, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 312, "op": "decay", "n": 1, "pruned": 0, "edges": 165}
+{"round": 312, "op": "add", "reason": "edit", "a": [50, "atom"], "b": [51, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 312, "op": "add", "reason": "edit", "a": [50, "atom"], "b": [52, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 312, "op": "add", "reason": "edit", "a": [50, "atom"], "b": [53, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 312, "op": "add", "reason": "edit", "a": [50, "atom"], "b": [266, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 312, "op": "add", "reason": "edit", "a": [50, "atom"], "b": [507, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 312, "op": "add", "reason": "edit", "a": [51, "atom"], "b": [52, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 312, "op": "add", "reason": "edit", "a": [51, "atom"], "b": [53, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 312, "op": "add", "reason": "edit", "a": [51, "atom"], "b": [266, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 312, "op": "add", "reason": "edit", "a": [51, "atom"], "b": [507, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 312, "op": "add", "reason": "edit", "a": [52, "atom"], "b": [53, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 312, "op": "add", "reason": "edit", "a": [52, "atom"], "b": [266, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 312, "op": "add", "reason": "edit", "a": [52, "atom"], "b": [507, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 312, "op": "add", "reason": "edit", "a": [53, "atom"], "b": [266, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 312, "op": "add", "reason": "edit", "a": [53, "atom"], "b": [507, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 312, "op": "add", "reason": "edit", "a": [266, "atom"], "b": [507, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 313, "op": "decay", "n": 1, "pruned": 0, "edges": 180}
+{"round": 313, "op": "add", "reason": "edit", "a": [461, "atom"], "b": [462, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 313, "op": "add", "reason": "edit", "a": [461, "atom"], "b": [463, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 313, "op": "add", "reason": "edit", "a": [461, "atom"], "b": [508, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 313, "op": "add", "reason": "edit", "a": [462, "atom"], "b": [463, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 313, "op": "add", "reason": "edit", "a": [462, "atom"], "b": [508, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 313, "op": "add", "reason": "edit", "a": [463, "atom"], "b": [508, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 314, "op": "decay", "n": 1, "pruned": 15, "edges": 171}
+{"round": 314, "op": "add", "reason": "edit", "a": [260, "atom"], "b": [319, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 314, "op": "add", "reason": "edit", "a": [260, "atom"], "b": [511, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 314, "op": "add", "reason": "edit", "a": [319, "atom"], "b": [511, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 315, "op": "decay", "n": 1, "pruned": 0, "edges": 174}
+{"round": 315, "op": "add", "reason": "edit", "a": [376, "atom"], "b": [426, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 315, "op": "add", "reason": "edit", "a": [376, "atom"], "b": [512, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 315, "op": "add", "reason": "edit", "a": [426, "atom"], "b": [512, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 316, "op": "decay", "n": 1, "pruned": 0, "edges": 177}
+{"round": 316, "op": "add", "reason": "edit", "a": [379, "atom"], "b": [513, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 316, "op": "add", "reason": "edit", "a": [379, "atom"], "b": [514, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 316, "op": "add", "reason": "edit", "a": [513, "atom"], "b": [514, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 317, "op": "decay", "n": 1, "pruned": 3, "edges": 177}
+{"round": 317, "op": "add", "reason": "edit", "a": [291, "atom"], "b": [515, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 317, "op": "add", "reason": "edit", "a": [291, "atom"], "b": [516, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 317, "op": "add", "reason": "edit", "a": [515, "atom"], "b": [516, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 318, "op": "decay", "n": 1, "pruned": 14, "edges": 166}
+{"round": 318, "op": "add", "reason": "edit", "a": [114, "atom"], "b": [209, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 318, "op": "add", "reason": "edit", "a": [114, "atom"], "b": [517, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 318, "op": "add", "reason": "edit", "a": [114, "atom"], "b": [518, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 318, "op": "add", "reason": "edit", "a": [209, "atom"], "b": [517, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 318, "op": "add", "reason": "edit", "a": [209, "atom"], "b": [518, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 318, "op": "add", "reason": "edit", "a": [517, "atom"], "b": [518, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 319, "op": "decay", "n": 1, "pruned": 15, "edges": 157}
+{"round": 320, "op": "decay", "n": 1, "pruned": 0, "edges": 157}
+{"round": 320, "op": "add", "reason": "edit", "a": [94, "atom"], "b": [95, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 320, "op": "add", "reason": "edit", "a": [94, "atom"], "b": [96, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 320, "op": "add", "reason": "edit", "a": [94, "atom"], "b": [97, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 320, "op": "add", "reason": "edit", "a": [94, "atom"], "b": [520, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 320, "op": "add", "reason": "edit", "a": [95, "atom"], "b": [96, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 320, "op": "add", "reason": "edit", "a": [95, "atom"], "b": [97, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 320, "op": "add", "reason": "edit", "a": [95, "atom"], "b": [520, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 320, "op": "add", "reason": "edit", "a": [96, "atom"], "b": [97, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 320, "op": "add", "reason": "edit", "a": [96, "atom"], "b": [520, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 320, "op": "add", "reason": "edit", "a": [97, "atom"], "b": [520, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 321, "op": "decay", "n": 1, "pruned": 0, "edges": 167}
+{"round": 321, "op": "add", "reason": "edit", "a": [387, "atom"], "b": [521, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 322, "op": "decay", "n": 1, "pruned": 0, "edges": 168}
+{"round": 322, "op": "add", "reason": "edit", "a": [231, "atom"], "b": [325, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 322, "op": "add", "reason": "edit", "a": [231, "atom"], "b": [326, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 322, "op": "add", "reason": "edit", "a": [231, "atom"], "b": [327, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 322, "op": "add", "reason": "edit", "a": [231, "atom"], "b": [524, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 322, "op": "add", "reason": "edit", "a": [325, "atom"], "b": [326, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 322, "op": "add", "reason": "edit", "a": [325, "atom"], "b": [327, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 322, "op": "add", "reason": "edit", "a": [325, "atom"], "b": [524, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 322, "op": "add", "reason": "edit", "a": [326, "atom"], "b": [327, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 322, "op": "add", "reason": "edit", "a": [326, "atom"], "b": [524, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 322, "op": "add", "reason": "edit", "a": [327, "atom"], "b": [524, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 323, "op": "decay", "n": 1, "pruned": 10, "edges": 168}
+{"round": 323, "op": "add", "reason": "edit", "a": [99, "atom"], "b": [141, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 323, "op": "add", "reason": "edit", "a": [99, "atom"], "b": [525, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 323, "op": "add", "reason": "edit", "a": [99, "atom"], "b": [526, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 323, "op": "add", "reason": "edit", "a": [141, "atom"], "b": [525, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 323, "op": "add", "reason": "edit", "a": [141, "atom"], "b": [526, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 323, "op": "add", "reason": "edit", "a": [525, "atom"], "b": [526, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 324, "op": "decay", "n": 1, "pruned": 0, "edges": 174}
+{"round": 324, "op": "add", "reason": "edit", "a": [29, "atom"], "b": [188, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 324, "op": "add", "reason": "edit", "a": [29, "atom"], "b": [527, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 324, "op": "add", "reason": "edit", "a": [29, "atom"], "b": [528, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 324, "op": "add", "reason": "edit", "a": [188, "atom"], "b": [527, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 324, "op": "add", "reason": "edit", "a": [188, "atom"], "b": [528, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 324, "op": "add", "reason": "edit", "a": [527, "atom"], "b": [528, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 325, "op": "decay", "n": 1, "pruned": 0, "edges": 180}
+{"round": 325, "op": "add", "reason": "edit", "a": [109, "atom"], "b": [164, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 325, "op": "add", "reason": "edit", "a": [109, "atom"], "b": [165, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 325, "op": "add", "reason": "edit", "a": [109, "atom"], "b": [529, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 325, "op": "add", "reason": "edit", "a": [164, "atom"], "b": [165, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 325, "op": "add", "reason": "edit", "a": [164, "atom"], "b": [529, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 325, "op": "add", "reason": "edit", "a": [165, "atom"], "b": [529, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 326, "op": "decay", "n": 1, "pruned": 0, "edges": 186}
+{"round": 326, "op": "add", "reason": "edit", "a": [337, "atom"], "b": [338, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 326, "op": "add", "reason": "edit", "a": [337, "atom"], "b": [395, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 326, "op": "add", "reason": "edit", "a": [337, "atom"], "b": [396, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 326, "op": "add", "reason": "edit", "a": [338, "atom"], "b": [395, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 326, "op": "add", "reason": "edit", "a": [338, "atom"], "b": [396, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 326, "op": "add", "reason": "edit", "a": [395, "atom"], "b": [396, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 327, "op": "decay", "n": 1, "pruned": 0, "edges": 192}
+{"round": 327, "op": "add", "reason": "edit", "a": [431, "atom"], "b": [530, "atom"], "delta": 3.0, "affinity": 3.0}
+{"round": 372, "op": "decay", "n": 45, "pruned": 193, "edges": 0}
+{"round": 402, "op": "decay", "n": 30, "pruned": 0, "edges": 0}
+{"round": 403, "op": "decay", "n": 1, "pruned": 0, "edges": 0}
+{"round": 404, "op": "decay", "n": 1, "pruned": 0, "edges": 0}
+{"round": 405, "op": "decay", "n": 1, "pruned": 0, "edges": 0}
+{"round": 406, "op": "decay", "n": 1, "pruned": 0, "edges": 0}
+{"round": 407, "op": "decay", "n": 1, "pruned": 0, "edges": 0}
+{"round": 408, "op": "decay", "n": 1, "pruned": 0, "edges": 0}

@@ -1,0 +1,2033 @@
+{
+ "model": "deepseek-v4-flash",
+ "doc": "realtest/seed2/story.txt",
+ "scenario": "seed2",
+ "n_questions": 40,
+ "repeats": 1,
+ "answer_temp": 0.7,
+ "distill_temp": 0.0,
+ "judge": true,
+ "ledger": [
+  {
+   "kind": "rename",
+   "instruction": "把所有出现的「何倚笙」改名为「何某笙」",
+   "old": "何倚笙",
+   "new": "何某笙",
+   "old_units": [
+    "她穿一件竹青布旗袍，约莫四十岁上下，头发梳得一丝不乱，进门就报了姓名：“我叫何倚笙，以前在唐家做事。",
+    "”何倚笙问。",
+    "”何倚笙说，“那场大火的前一天晚上，老太太给我一样东西，叫我去城北福寿巷找一个姓章的裁缝，把东西缝进一件棉袄的夹层里。",
+    "何倚笙指着那六行字说：“这是六个人名。",
+    "他问何倚笙：“那个姓章的裁缝还在福寿巷吗？",
+    "”何倚笙摇摇头：“三年前病死了。",
+    "”\n\n沈寒舟把何倚笙给他的那件藏青棉袄放在柜台上：“这件衣服你认得吗？",
+    "沈寒舟把册子翻到最后一页，上面是章茂实临终前的手记，字迹潦草但力道未减：“今日何倚笙又来，说棉袄已取走，羊皮交到可靠之人手里。",
+    "他身旁还站着一个人，正是何倚笙。",
+    "”\n沈寒舟盯着何倚笙：“你到底是帮谁的？",
+    "”\n何倚笙没有回答，倒是段临洲替她说了：“何姐既不是帮唐家，也不是帮段家。",
+    "何倚笙在旁边补了一句：“有人比我们更快。",
+    "”唐纪澜说，“宅子是我布置的，灯是我点的，母亲在东厢房里躺着——但她不是我大哥安排的，是何倚笙找来的一个老演员。",
+    "她那天晚上被何倚笙带出了宅子，一直藏在城北福寿巷章裁缝的后院里。",
+    "他死前留了一封信给何倚笙，把每一步都安排好了。",
+    "何倚笙已经把七枚纽扣全交给了段临洲，段鹤庭也在那里等着。",
+    "何倚笙就是他的外孙女。",
+    "何倚笙的母亲嫁到周家，改姓了周。",
+    "段临洲在一旁接过话：“何倚笙在唐家做了三年看护，不是为了照顾老太太，是为了找这片龙骨。",
+    "赵老拐死了，周存厚二十年前就死了，何倚笙今晚必定会现身。",
+    "何倚笙走出来，手里端着一盏煤油灯，灯光照在她脸上，没有任何表情。",
+    "”\n何倚笙把煤油灯放在地上，对沈寒舟说：“沈大夫，你把那片龙骨给我，所有的事到此为止。",
+    "他把骨片举到何倚笙面前：“你要的是这个。",
+    "”\n何倚笙伸出了手。",
+    "何倚笙的脸色终于变了。",
+    "”\n何倚笙退后两步，煤油灯的火苗被她的裙摆扫到，晃了几晃又稳住。",
+    "那些字不是何倚笙写的，也不是段家的人留的。",
+    "她走到何倚笙面前，慢慢从怀里掏出一个布包，打开来，里面是三根褪色的红丝绳，编法相同，长短不一。",
+    "”\n\n何倚笙没有接。"
+   ],
+   "new_units": [
+    "她穿一件竹青布旗袍，约莫四十岁上下，头发梳得一丝不乱，进门就报了姓名：“我叫何某笙，以前在唐家做事。",
+    "”何某笙问。",
+    "”何某笙说，“那场大火的前一天晚上，老太太给我一样东西，叫我去城北福寿巷找一个姓章的裁缝，把东西缝进一件棉袄的夹层里。",
+    "何某笙指着那六行字说：“这是六个人名。",
+    "他问何某笙：“那个姓章的裁缝还在福寿巷吗？",
+    "”何某笙摇摇头：“三年前病死了。",
+    "”\n\n沈寒舟把何某笙给他的那件藏青棉袄放在柜台上：“这件衣服你认得吗？",
+    "沈寒舟把册子翻到最后一页，上面是章茂实临终前的手记，字迹潦草但力道未减：“今日何某笙又来，说棉袄已取走，羊皮交到可靠之人手里。",
+    "他身旁还站着一个人，正是何某笙。",
+    "”\n沈寒舟盯着何某笙：“你到底是帮谁的？",
+    "”\n何某笙没有回答，倒是段临洲替她说了：“何姐既不是帮唐家，也不是帮段家。",
+    "何某笙在旁边补了一句：“有人比我们更快。",
+    "”唐纪澜说，“宅子是我布置的，灯是我点的，母亲在东厢房里躺着——但她不是我大哥安排的，是何某笙找来的一个老演员。",
+    "她那天晚上被何某笙带出了宅子，一直藏在城北福寿巷章裁缝的后院里。",
+    "他死前留了一封信给何某笙，把每一步都安排好了。",
+    "何某笙已经把七枚纽扣全交给了段临洲，段鹤庭也在那里等着。",
+    "何某笙就是他的外孙女。",
+    "何某笙的母亲嫁到周家，改姓了周。",
+    "段临洲在一旁接过话：“何某笙在唐家做了三年看护，不是为了照顾老太太，是为了找这片龙骨。",
+    "赵老拐死了，周存厚二十年前就死了，何某笙今晚必定会现身。",
+    "何某笙走出来，手里端着一盏煤油灯，灯光照在她脸上，没有任何表情。",
+    "”\n何某笙把煤油灯放在地上，对沈寒舟说：“沈大夫，你把那片龙骨给我，所有的事到此为止。",
+    "他把骨片举到何某笙面前：“你要的是这个。",
+    "”\n何某笙伸出了手。",
+    "何某笙的脸色终于变了。",
+    "”\n何某笙退后两步，煤油灯的火苗被她的裙摆扫到，晃了几晃又稳住。",
+    "那些字不是何某笙写的，也不是段家的人留的。",
+    "她走到何某笙面前，慢慢从怀里掏出一个布包，打开来，里面是三根褪色的红丝绳，编法相同，长短不一。",
+    "”\n\n何某笙没有接。"
+   ]
+  },
+  {
+   "kind": "rewrite",
+   "instruction": "把以「面馆的老板…」开头的那一段改写：七年前就烧光了 → 三年前就塌了",
+   "old": "七年前就烧光了",
+   "new": "三年前就塌了",
+   "old_units": [
+    "那宅子七年前就烧光了，一家五口人，没一个跑出来。"
+   ],
+   "new_units": [
+    "那宅子三年前就塌了，一家五口人，没一个跑出来。"
+   ]
+  },
+  {
+   "kind": "rewrite",
+   "instruction": "把以「面馆的老板…」开头的那一段改写：一家五口人 → 一家三口人",
+   "old": "一家五口人",
+   "new": "一家三口人",
+   "old_units": [
+    "那宅子三年前就塌了，一家五口人，没一个跑出来。"
+   ],
+   "new_units": [
+    "那宅子三年前就塌了，一家三口人，没一个跑出来。"
+   ]
+  },
+  {
+   "kind": "detail",
+   "instruction": "把「两枚银圆」更改为「三枚银圆」",
+   "old": "两枚银圆",
+   "new": "三枚银圆",
+   "old_units": [
+    "”唐纪舟付了诊金，两枚银圆，用一块褪色的红绸帕子包着。",
+    "”\n沈寒舟回到医馆后翻出诊金账册，第三层柜格的蓝布封面完好无损，可他记得昨晚明明放进去了两枚银圆——打开一看，里面夹着的不是银圆，而是两枚旧铜钱，铜锈斑驳，一枚是“光绪通宝”，一枚字迹模糊完全无法辨认。"
+   ],
+   "new_units": [
+    "”唐纪舟付了诊金，三枚银圆，用一块褪色的红绸帕子包着。",
+    "”\n沈寒舟回到医馆后翻出诊金账册，第三层柜格的蓝布封面完好无损，可他记得昨晚明明放进去了三枚银圆——打开一看，里面夹着的不是银圆，而是两枚旧铜钱，铜锈斑驳，一枚是“光绪通宝”，一枚字迹模糊完全无法辨认。"
+   ]
+  },
+  {
+   "kind": "detail",
+   "instruction": "把「房号是十七」更改为「房号是十九」",
+   "old": "房号是十七",
+   "new": "房号是十九",
+   "old_units": [
+    "他在城隍庙附近找了一家叫“悦来”的小客栈住下，开了三天的房，房号是十七。"
+   ],
+   "new_units": [
+    "他在城隍庙附近找了一家叫“悦来”的小客栈住下，开了三天的房，房号是十九。"
+   ]
+  },
+  {
+   "kind": "delete",
+   "instruction": "删除句子「沈寒舟去年冬天替他治过风寒，知道他住在码头边的船屋里。」",
+   "old": "沈寒舟去年冬天替他治过风寒，知道他住在码头边的船屋里。",
+   "new": "",
+   "old_units": [
+    "沈寒舟去年冬天替他治过风寒，知道他住在码头边的船屋里。"
+   ],
+   "new_units": []
+  },
+  {
+   "kind": "append",
+   "instruction": "在文末续写新增一段",
+   "old": "",
+   "new": "三天后，沈寒舟收到一封从省城寄来的信。写信人自称是唐敬棠的旧友，名叫顾在川，信中说济生堂当年在省城还有一处从未启用的货栈，地址在望江门外。沈寒舟把信收进樟木箱，决定等七月十五之后再作打算。",
+   "old_units": [],
+   "new_units": [
+    "三天后，沈寒舟收到一封从省城寄来的信。",
+    "写信人自称是唐敬棠的旧友，名叫顾在川，信中说济生堂当年在省城还有一处从未启用的货栈，地址在望江门外。",
+    "沈寒舟把信收进樟木箱，决定等七月十五之后再作打算。"
+   ]
+  }
+ ],
+ "phase1": {
+  "tree_v2": {
+   "n": 40,
+   "pass": 34,
+   "pass_rate": 0.85,
+   "layers": {
+    "reversal": "13/15",
+    "invariant": "4/5",
+    "remote": "17/20"
+   },
+   "per_repeat_pass": [
+    34
+   ],
+   "per_repeat_rate": [
+    0.85
+   ],
+   "mean_rate": 0.85,
+   "std_rate": 0.0
+  }
+ },
+ "edit_time": {
+  "tree_v2": {
+   "edit_ms": 0.73,
+   "settle_ms": 53725.14
+  },
+  "inc_cold_tree_v2": {
+   "edit_ms": 0.68,
+   "settle_ms": 63975.12
+  }
+ },
+ "phase3": {
+  "inc_tree_v2": {
+   "n": 40,
+   "pass": 36,
+   "pass_rate": 0.9,
+   "layers": {
+    "reversal": "14/15",
+    "invariant": "4/5",
+    "remote": "18/20"
+   },
+   "per_repeat_pass": [
+    36
+   ],
+   "per_repeat_rate": [
+    0.9
+   ],
+   "mean_rate": 0.9,
+   "std_rate": 0.0
+  },
+  "reb_tree_v2": {
+   "n": 40,
+   "pass": 37,
+   "pass_rate": 0.925,
+   "layers": {
+    "reversal": "13/15",
+    "invariant": "5/5",
+    "remote": "19/20"
+   },
+   "per_repeat_pass": [
+    37
+   ],
+   "per_repeat_rate": [
+    0.925
+   ],
+   "mean_rate": 0.925,
+   "std_rate": 0.0
+  },
+  "inc_cold_tree_v2": {
+   "n": 40,
+   "pass": 35,
+   "pass_rate": 0.875,
+   "layers": {
+    "reversal": "12/15",
+    "invariant": "4/5",
+    "remote": "19/20"
+   },
+   "per_repeat_pass": [
+    35
+   ],
+   "per_repeat_rate": [
+    0.875
+   ],
+   "mean_rate": 0.875,
+   "std_rate": 0.0
+  }
+ },
+ "retell": {
+  "inc_tree_v2": {
+   "coverage": "1/7",
+   "coverage_ratio": 0.143,
+   "rot": "0/6",
+   "rot_ratio": 0.0,
+   "new_miss": [
+    "三年前就塌了",
+    "一家三口",
+    "三枚银圆",
+    "房号是十九",
+    "望江门外",
+    "顾在川"
+   ],
+   "old_leak": [],
+   "chars": 602,
+   "answer": "沈寒舟七月初三应唐纪舟之请出诊唐宅，为老妇人诊脉开方；后得知唐宅三年前已塌、唐纪舟全家皆亡，所得诊金银圆变为旧铜钱。段临洲持七枚纽扣锦盒打听龙骨，并转述段鹤庭称唐家之物不独一把钥匙。何某笙称受唐老太太所托，将羊皮纸地图交章姓裁缝缝入棉袄夹层；地图标注城西老钟厂地下仓库，列六名合股人姓氏及金额，背面七枚纽扣图样与段临洲锦盒一致。章裁缝3年前病死，其徒弟秦小禾在城隍庙西街开“九针堂”，沈寒舟前往。\n\n沈寒舟沿石阶入甬道，见六扇门刻“赵钱孙李周吴”六姓，对应羊皮纸六笔旧债；推开“赵”字门，见空石室、碎瓷片、烧焦木屑及粉笔字“一百二十两已清，赵家后人勿再追问”，后几间石室类似且均被清理。尽头大铁门贴“唐氏济生堂公启”褪色红纸封条，撕开后室内三排共十二个铁柜，左数第四个铁柜内有描金缠枝莲纹红漆。唐纪澜称纱灯为仿制，灯面缠枝莲画法由大哥幼时教授，大哥原物纱灯已在大火中烧毁，其凭记忆重画一盏。\n\n早期，何某笙母亲嫁到周家改姓周，周倚笙七年来寻找刻有周存厚致唐敬棠密信的龙骨；沈寒舟忆及一片骨片刻痕异于其他十一片，且藏于其油布包中。段临洲称何某笙在唐家做三年看护实为找该龙骨，并布局七年引沈寒舟至老钟厂；段鹤庭将锦盒递给沈寒舟，让其带回医馆锁好。赵老拐称废井中死者是周家找来的替死鬼，自己已躲藏八天。何某笙要求沈寒舟交出龙骨与一封信，并承诺勾销六笔旧债、段家四百两留给段鹤庭、不再找唐。沈寒舟在（后文缺失）。",
+   "per_repeat_coverage": [
+    0.143
+   ],
+   "per_repeat_rot": [
+    0.0
+   ],
+   "judge_rot": [
+    "何某笙",
+    "七年前就烧光",
+    "治过风寒",
+    "两枚银圆",
+    "一家五口",
+    "房号是十七"
+   ],
+   "judge_hit": []
+  },
+  "reb_tree_v2": {
+   "coverage": "4/7",
+   "coverage_ratio": 0.571,
+   "rot": "0/6",
+   "rot_ratio": 0.0,
+   "new_miss": [
+    "三年前就塌了",
+    "一家三口",
+    "房号是十九"
+   ],
+   "old_leak": [],
+   "chars": 2202,
+   "answer": "七月初三黄昏，沈寒舟应自称唐纪舟者之请，携牛角药箱乘青帷马车至城西老钟厂后梧桐巷17号为唐母出诊，车夫为灰布短褐年轻人，马车左前蹄铁有斜裂纹。诊脉后开七味药材方，唐纪舟以绣小木槿花褪色红绸帕包三枚银圆付诊金，深夜由车夫送回。次日清早，学徒周小满发现门缝下火漆短剑印牛皮纸信封，内写“七月十五，归还”，含铜钥匙、十七味药材清单（末味“龙骨”朱笔圈三圈）及背面写“丙辰年二月十九”。\n\n沈寒舟在标“赵”字石门石室见碎瓷片、烧焦木屑及粉笔字“一百二十两已清，赵家后人勿再追问”，后续石室均被清理；甬道尽头大铁门贴“唐氏济生堂公启”红纸封条，撕开后石室内十二个铁柜中左数第四个贴新鲜红封条，内放描金缠枝莲纹红漆木盒，盒中三本黄绸账册为“唐氏济生堂股本总账”“七年往来明细”“龙骨”，第三本记人名、日期、银两及短剑小印，与信封火漆印一致；段临洲提缠枝莲纱灯与何某笙到场。\n\n唐纪澜称灯面缠枝莲画法由大哥所教，大哥纱灯原物已在大火中烧毁，唐纪澜凭记忆重画一盏；唐纪澜称赵老拐非其所杀，发现时赵老拐已断气于老钟厂北边废井，井中尸体手中纸条为唐纪澜所放，意在观察沈寒舟与段临洲谁先找到老钟厂；沈寒舟将大哥所留铜钥匙上系的红丝绳还给唐纪澜，唐纪澜称该红丝绳为二十年前母亲所编三条之一，大哥、二哥、唐纪澜各一条，并从领口拉出另一条褪色红丝绳，上系半枚断玉佩。\n\n何某笙将七枚纽扣全交给段临洲，段鹤庭在场；唐纪澜要沈寒舟以沈家名义去福寿巷将白贝母扣子还给段临洲并转告唐敬棠吞段伯庚股银四百两、段鹤庭七年前烧死唐家四口，若段临洲点头留扣子，否则给刻“澜”字短剑；沈寒舟未接短剑，携扣子至福寿巷章裁缝旧居柴房见段临洲及拄鹰白发老者；沈寒舟向段鹤庭出示缺白贝母的七扣锦盒并放入白贝母扣，称唐家欠段家四百两银子和四条人命今晚两清，段鹤庭称火非其所点。\n\n何某笙七年来寻找那批龙骨欲据为己有，因其中一片刻有周存厚写给唐敬棠的密信，内容涉及替唐敬棠联系洋人买家的细节，若落官府周家满门难逃；沈寒舟发现一片骨片刻痕风格异于其他十一片、更像短札，且该骨片在其贴身油布包中；段临洲称何某笙在唐家做三年看护实为找龙骨，推断龙骨在沈寒舟祖父手里，花七年布局引其到老钟厂；段鹤庭将七枚纽扣交给沈寒舟带回医馆锁好，并称赵老拐已死、周存厚二十年前已死。\n\n何某笙与赵老拐从柴房走出，赵老拐称废井中死者是周家找来的替死鬼、自己躲柴房八天，何某笙要求沈寒舟交出龙骨，承诺六笔旧债一笔勾销、段家四百两留给段鹤庭、不再找唐老太太和唐纪澜麻烦，只要那封信；沈寒舟取出油布包，打开后十二片骨片在煤油灯下排列。沈寒舟发现骨片正面刻有周存厚丙辰年正月致唐敬棠的信，详述龙骨交易细节，背面有细字载明戊戌年三月沈问渔代唐氏偿清周家二十两旧债、周存厚立据不再追究并刻木槿花印，何某笙见后脸色变化，沈寒舟称其外祖父的债已由其祖父在十八年前还清，该骨片是收据而非罪证。何某笙退后两步，煤油灯被裙摆扫到晃动后稳住；赵老拐拄拐挡在她前面，问沈寒舟老钟厂地下室粉笔字末尾短剑刻痕是谁所为，并称那些字非何某笙或段家所留。\n\n唐纪澜搀扶唐老太太进院，唐老太太对何某笙说其照顾自己三年、每月初三去福寿巷称给外祖父上坟，但周存厚死在去豫西路上尸骨未寻回，唐老太太未戳破并递出编了二十年的三根红丝绳，分别给老大（大火烧断后被重新接上）、老二（焦了半截未断）、老三（仍挂脖子上）。唐家将三根物件交给何某笙作为交代，何某笙未接并转身离开院子，赵老拐跺枣木拐杖后跛行跟出；段鹤庭拄黄花梨拐杖坐柴房门槛，与唐老太太相隔七年灰烬和四百两银子旧账，唐老太太问段鹤庭是否兑现其子所还四百两银票，段鹤庭称银票一直留着未兑、打算裱起挂在药行正堂，并引唐纪舟之言称上一代账不该下一代扛、但自己扛了半辈子需留见证。\n\n唐纪澜将刻有“澜”字、跟随其十四年的短剑双手捧给沈寒舟，称剑柄刻其名而龙骨刻沈问渔之名，此举是替唐家还给沈家，此后唐沈两家再无亏欠；唐纪澜又将二哥遗物半截玉佩以红丝绳挂在柴房门框，称母亲说该柴房救过她的命并让二哥的魂有落脚处；沈寒舟接过短剑后将其与锦盒包入油布放入祖父传下的牛角药箱，并称当晚后龙骨将锁回医馆第三层柜格与诊金账册并排。\n\n人物称人与人绕来绕去终会绕回一块儿；该人物借煤油灯微光走出福寿巷；沈寒舟最后离开，锁好柴房门，将白贝母纽扣从锦盒取出塞入门框与墙壁缝隙。然后他提着药箱往回走，走到巷口时回头看了一眼：月光底下，福寿巷空空荡荡，只有柴房门口那半截玉佩和门框缝隙里的白色纽扣，在暗处微微发亮。这一夜沈寒舟回到蓑衣巷，天已经快亮了。他翻开诊金账册，在最后一页上写下了最后一行记录：“七月十五，中元夜，唐家旧事尽归福寿巷。龙骨十二片、七色纽扣、牛角药箱、红丝绳三条——以上物件，自明日起封存，不再示人。”他把铜钥匙用红丝绳系好，锁进了柜格的最深处。铜钥匙旁边，那把刻着“澜”字的短剑静静躺着，剑刃上反射出一缕细白的晨光。周小满来开门时，沈寒舟正坐在诊室的木椅上，药箱搁在膝头，人已经睡着了。他的左手腕上系着一根褪色的红丝绳，丝绳浸过晨露和夜风，微微发潮，但缠得很紧，像一株绕着枯枝缓缓攀上去的缠枝莲。三天后，沈寒舟收到一封从省城寄来的信。写信人自称是唐敬棠的旧友，名叫顾在川，信中说济生堂当年在省城还有一处从未启用的货栈，地址在望江门外。沈寒舟把信收进樟木箱，决定等七月十五之后再作打算。",
+   "per_repeat_coverage": [
+    0.571
+   ],
+   "per_repeat_rot": [
+    0.0
+   ],
+   "judge_rot": [
+    "何倚笙",
+    "七年前就烧光",
+    "治过风寒",
+    "两枚银圆",
+    "一家五口",
+    "房号是十七"
+   ],
+   "judge_hit": [
+    "何某笙",
+    "望江门外",
+    "顾在川"
+   ]
+  },
+  "inc_cold_tree_v2": {
+   "coverage": "3/7",
+   "coverage_ratio": 0.429,
+   "rot": "0/6",
+   "rot_ratio": 0.0,
+   "new_miss": [
+    "何某笙",
+    "三年前就塌了",
+    "一家三口",
+    "房号是十九"
+   ],
+   "old_leak": [],
+   "chars": 533,
+   "answer": "沈寒舟曾于七月初三黄昏应唐纪舟之请，携牛角药箱乘青帷马车至城西老钟厂后梧桐巷17号为唐母出诊。车夫是灰布短褐寡言的年轻人，马车左前蹄铁有斜裂纹。沈寒舟诊脉一刻钟后开七味药材方，嘱三碗水煎成一碗、当晚连服两次、明日烧退复诊。唐纪舟以绣小木槿花且线已起毛的褪色红绸帕包三枚银圆付诊金。沈寒舟后翻诊金账册，发现蓝布封面第三层柜格内三枚银圆变为两枚旧铜钱（一枚“光绪通宝”、一枚字迹模糊）。\n\n唐纪澜称纱灯为仿制，缠枝莲画法由大哥幼时教授，原物已在大火中烧毁，凭记忆重画；称赵老拐非其所杀，找到时已断气于老钟厂北边废井，井中尸体手中纸条为唐所放，意在观察沈寒舟与段临洲谁先找到老钟厂。沈寒舟将大哥所留铜钥匙上红丝绳解下还给唐纪澜，唐称该丝绳为二十年前母亲所编三条之一，大哥二哥各一条、自己一条。唐称段鹤庭之父段伯庚曾与济生堂合股做药材生意并投最大。\n\n沈寒舟在福寿巷中元夜后提着药箱离开，将龙骨十二片、七色纽扣、牛角药箱、红丝绳三条及刻“澜”字短剑封存，铜钥匙用红丝绳系好锁入柜格最深处，并在诊金账册末页记录“七月十五，中元夜，唐家旧事尽归福寿巷”。三天后收到省城顾在川来信，称唐敬棠旧友，提及济生堂在望江门外有一处未启用货栈。沈寒舟将信收进樟木箱，决定七月十五后再作打算。",
+   "per_repeat_coverage": [
+    0.429
+   ],
+   "per_repeat_rot": [
+    0.0
+   ],
+   "judge_rot": [
+    "两枚银圆"
+   ],
+   "judge_hit": [
+    "顾在川",
+    "望江门外"
+   ]
+  }
+ },
+ "usage": {
+  "tree_v2·p1": [
+   {
+    "id": "R_rename_person",
+    "prompt_tokens": 2765,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 2765
+   },
+   {
+    "id": "R_rename_nurse",
+    "prompt_tokens": 3127,
+    "completion_tokens": 36,
+    "cache_hit_tokens": 256,
+    "cache_miss_tokens": 2871
+   },
+   {
+    "id": "R_rename_lantern",
+    "prompt_tokens": 2713,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 2073
+   },
+   {
+    "id": "R_rewrite_when",
+    "prompt_tokens": 2883,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 256,
+    "cache_miss_tokens": 2627
+   },
+   {
+    "id": "R_rewrite_how",
+    "prompt_tokens": 2684,
+    "completion_tokens": 24,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 2300
+   },
+   {
+    "id": "R_rewrite_casualties",
+    "prompt_tokens": 2735,
+    "completion_tokens": 17,
+    "cache_hit_tokens": 512,
+    "cache_miss_tokens": 2223
+   },
+   {
+    "id": "R_detail_fee",
+    "prompt_tokens": 2823,
+    "completion_tokens": 5,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 2439
+   },
+   {
+    "id": "R_detail_ledger",
+    "prompt_tokens": 2873,
+    "completion_tokens": 5,
+    "cache_hit_tokens": 256,
+    "cache_miss_tokens": 2617
+   },
+   {
+    "id": "R_detail_room",
+    "prompt_tokens": 2647,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 2519
+   },
+   {
+    "id": "R_del_illness",
+    "prompt_tokens": 3402,
+    "completion_tokens": 15,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 3402
+   },
+   {
+    "id": "R_del_knowhow",
+    "prompt_tokens": 3511,
+    "completion_tokens": 22,
+    "cache_hit_tokens": 1152,
+    "cache_miss_tokens": 2359
+   },
+   {
+    "id": "R_del_when",
+    "prompt_tokens": 3501,
+    "completion_tokens": 17,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 2861
+   },
+   {
+    "id": "R_app_name",
+    "prompt_tokens": 3584,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 2944
+   },
+   {
+    "id": "R_app_warehouse",
+    "prompt_tokens": 3806,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 1536,
+    "cache_miss_tokens": 2270
+   },
+   {
+    "id": "R_app_when",
+    "prompt_tokens": 3607,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 768,
+    "cache_miss_tokens": 2839
+   },
+   {
+    "id": "F12_invariant",
+    "prompt_tokens": 3703,
+    "completion_tokens": 24,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 3319
+   },
+   {
+    "id": "F32_invariant",
+    "prompt_tokens": 3616,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 1152,
+    "cache_miss_tokens": 2464
+   },
+   {
+    "id": "F34_invariant",
+    "prompt_tokens": 3672,
+    "completion_tokens": 3,
+    "cache_hit_tokens": 768,
+    "cache_miss_tokens": 2904
+   },
+   {
+    "id": "F03_invariant",
+    "prompt_tokens": 3556,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 3428
+   },
+   {
+    "id": "F06_invariant",
+    "prompt_tokens": 3811,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 3683
+   },
+   {
+    "id": "F01_remote",
+    "prompt_tokens": 3737,
+    "completion_tokens": 5,
+    "cache_hit_tokens": 256,
+    "cache_miss_tokens": 3481
+   },
+   {
+    "id": "F02_remote",
+    "prompt_tokens": 3853,
+    "completion_tokens": 15,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 3469
+   },
+   {
+    "id": "F05_remote",
+    "prompt_tokens": 3727,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 256,
+    "cache_miss_tokens": 3471
+   },
+   {
+    "id": "F07_remote",
+    "prompt_tokens": 3644,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 3260
+   },
+   {
+    "id": "F08_remote",
+    "prompt_tokens": 3636,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 3252
+   },
+   {
+    "id": "F09_remote",
+    "prompt_tokens": 3733,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 3349
+   },
+   {
+    "id": "F10_remote",
+    "prompt_tokens": 3609,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 3481
+   },
+   {
+    "id": "F11_remote",
+    "prompt_tokens": 3515,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 3387
+   },
+   {
+    "id": "F15_remote",
+    "prompt_tokens": 4046,
+    "completion_tokens": 44,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 3662
+   },
+   {
+    "id": "F16_remote",
+    "prompt_tokens": 4018,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 3378
+   },
+   {
+    "id": "F17_remote",
+    "prompt_tokens": 4262,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 768,
+    "cache_miss_tokens": 3494
+   },
+   {
+    "id": "F19_remote",
+    "prompt_tokens": 4098,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 768,
+    "cache_miss_tokens": 3330
+   },
+   {
+    "id": "F22_remote",
+    "prompt_tokens": 4292,
+    "completion_tokens": 16,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 3652
+   },
+   {
+    "id": "F24_remote",
+    "prompt_tokens": 4539,
+    "completion_tokens": 9,
+    "cache_hit_tokens": 896,
+    "cache_miss_tokens": 3643
+   },
+   {
+    "id": "F25_remote",
+    "prompt_tokens": 4373,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 1152,
+    "cache_miss_tokens": 3221
+   },
+   {
+    "id": "F28_remote",
+    "prompt_tokens": 4548,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 1152,
+    "cache_miss_tokens": 3396
+   },
+   {
+    "id": "F36_remote",
+    "prompt_tokens": 4587,
+    "completion_tokens": 8,
+    "cache_hit_tokens": 896,
+    "cache_miss_tokens": 3691
+   },
+   {
+    "id": "F38_remote",
+    "prompt_tokens": 4366,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 1920,
+    "cache_miss_tokens": 2446
+   },
+   {
+    "id": "F44_remote",
+    "prompt_tokens": 4539,
+    "completion_tokens": 3,
+    "cache_hit_tokens": 2048,
+    "cache_miss_tokens": 2491
+   },
+   {
+    "id": "F50_remote",
+    "prompt_tokens": 4760,
+    "completion_tokens": 24,
+    "cache_hit_tokens": 2176,
+    "cache_miss_tokens": 2584
+   }
+  ],
+  "inc_tree_v2·p3": [
+   {
+    "id": "R_rename_person",
+    "prompt_tokens": 1231,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 1231
+   },
+   {
+    "id": "R_rename_nurse",
+    "prompt_tokens": 1428,
+    "completion_tokens": 29,
+    "cache_hit_tokens": 256,
+    "cache_miss_tokens": 1172
+   },
+   {
+    "id": "R_rename_lantern",
+    "prompt_tokens": 1831,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 1703
+   },
+   {
+    "id": "R_rewrite_when",
+    "prompt_tokens": 3450,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 3450
+   },
+   {
+    "id": "R_rewrite_how",
+    "prompt_tokens": 3442,
+    "completion_tokens": 21,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 3442
+   },
+   {
+    "id": "R_rewrite_casualties",
+    "prompt_tokens": 3710,
+    "completion_tokens": 9,
+    "cache_hit_tokens": 512,
+    "cache_miss_tokens": 3198
+   },
+   {
+    "id": "R_detail_fee",
+    "prompt_tokens": 3707,
+    "completion_tokens": 5,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 3707
+   },
+   {
+    "id": "R_detail_ledger",
+    "prompt_tokens": 4059,
+    "completion_tokens": 5,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 4059
+   },
+   {
+    "id": "R_detail_room",
+    "prompt_tokens": 3973,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 3973
+   },
+   {
+    "id": "R_del_illness",
+    "prompt_tokens": 4905,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 4521
+   },
+   {
+    "id": "R_del_knowhow",
+    "prompt_tokens": 5015,
+    "completion_tokens": 33,
+    "cache_hit_tokens": 1920,
+    "cache_miss_tokens": 3095
+   },
+   {
+    "id": "R_del_when",
+    "prompt_tokens": 4923,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 4923
+   },
+   {
+    "id": "R_app_name",
+    "prompt_tokens": 5228,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 1280,
+    "cache_miss_tokens": 3948
+   },
+   {
+    "id": "R_app_warehouse",
+    "prompt_tokens": 5554,
+    "completion_tokens": 21,
+    "cache_hit_tokens": 2688,
+    "cache_miss_tokens": 2866
+   },
+   {
+    "id": "R_app_when",
+    "prompt_tokens": 5270,
+    "completion_tokens": 7,
+    "cache_hit_tokens": 1280,
+    "cache_miss_tokens": 3990
+   },
+   {
+    "id": "F12_invariant",
+    "prompt_tokens": 5502,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 5118
+   },
+   {
+    "id": "F32_invariant",
+    "prompt_tokens": 5415,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 1920,
+    "cache_miss_tokens": 3495
+   },
+   {
+    "id": "F34_invariant",
+    "prompt_tokens": 5471,
+    "completion_tokens": 3,
+    "cache_hit_tokens": 1536,
+    "cache_miss_tokens": 3935
+   },
+   {
+    "id": "F03_invariant",
+    "prompt_tokens": 5355,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 5355
+   },
+   {
+    "id": "F06_invariant",
+    "prompt_tokens": 5387,
+    "completion_tokens": 21,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 5259
+   },
+   {
+    "id": "F01_remote",
+    "prompt_tokens": 5416,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 5288
+   },
+   {
+    "id": "F02_remote",
+    "prompt_tokens": 5495,
+    "completion_tokens": 17,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 5367
+   },
+   {
+    "id": "F05_remote",
+    "prompt_tokens": 5548,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 256,
+    "cache_miss_tokens": 5292
+   },
+   {
+    "id": "F07_remote",
+    "prompt_tokens": 5410,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 5026
+   },
+   {
+    "id": "F08_remote",
+    "prompt_tokens": 5434,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 5050
+   },
+   {
+    "id": "F09_remote",
+    "prompt_tokens": 5533,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 5149
+   },
+   {
+    "id": "F10_remote",
+    "prompt_tokens": 5552,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 5424
+   },
+   {
+    "id": "F11_remote",
+    "prompt_tokens": 5422,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 5294
+   },
+   {
+    "id": "F15_remote",
+    "prompt_tokens": 5565,
+    "completion_tokens": 44,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 5181
+   },
+   {
+    "id": "F16_remote",
+    "prompt_tokens": 5537,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 4897
+   },
+   {
+    "id": "F17_remote",
+    "prompt_tokens": 5438,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 896,
+    "cache_miss_tokens": 4542
+   },
+   {
+    "id": "F19_remote",
+    "prompt_tokens": 5549,
+    "completion_tokens": 3,
+    "cache_hit_tokens": 896,
+    "cache_miss_tokens": 4653
+   },
+   {
+    "id": "F22_remote",
+    "prompt_tokens": 5486,
+    "completion_tokens": 16,
+    "cache_hit_tokens": 1024,
+    "cache_miss_tokens": 4462
+   },
+   {
+    "id": "F24_remote",
+    "prompt_tokens": 5550,
+    "completion_tokens": 9,
+    "cache_hit_tokens": 1280,
+    "cache_miss_tokens": 4270
+   },
+   {
+    "id": "F25_remote",
+    "prompt_tokens": 5531,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 1024,
+    "cache_miss_tokens": 4507
+   },
+   {
+    "id": "F28_remote",
+    "prompt_tokens": 5551,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 1280,
+    "cache_miss_tokens": 4271
+   },
+   {
+    "id": "F36_remote",
+    "prompt_tokens": 5588,
+    "completion_tokens": 8,
+    "cache_hit_tokens": 1024,
+    "cache_miss_tokens": 4564
+   },
+   {
+    "id": "F38_remote",
+    "prompt_tokens": 5463,
+    "completion_tokens": 20,
+    "cache_hit_tokens": 1024,
+    "cache_miss_tokens": 4439
+   },
+   {
+    "id": "F44_remote",
+    "prompt_tokens": 5544,
+    "completion_tokens": 3,
+    "cache_hit_tokens": 2432,
+    "cache_miss_tokens": 3112
+   },
+   {
+    "id": "F50_remote",
+    "prompt_tokens": 5516,
+    "completion_tokens": 28,
+    "cache_hit_tokens": 2432,
+    "cache_miss_tokens": 3084
+   }
+  ],
+  "reb_tree_v2·p3": [
+   {
+    "id": "R_rename_person",
+    "prompt_tokens": 2839,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 2839
+   },
+   {
+    "id": "R_rename_nurse",
+    "prompt_tokens": 2827,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 256,
+    "cache_miss_tokens": 2571
+   },
+   {
+    "id": "R_rename_lantern",
+    "prompt_tokens": 2787,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 2147
+   },
+   {
+    "id": "R_rewrite_when",
+    "prompt_tokens": 2770,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 2642
+   },
+   {
+    "id": "R_rewrite_how",
+    "prompt_tokens": 2753,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 2369
+   },
+   {
+    "id": "R_rewrite_casualties",
+    "prompt_tokens": 2780,
+    "completion_tokens": 18,
+    "cache_hit_tokens": 512,
+    "cache_miss_tokens": 2268
+   },
+   {
+    "id": "R_detail_fee",
+    "prompt_tokens": 2891,
+    "completion_tokens": 5,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 2507
+   },
+   {
+    "id": "R_detail_ledger",
+    "prompt_tokens": 3259,
+    "completion_tokens": 5,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 2875
+   },
+   {
+    "id": "R_detail_room",
+    "prompt_tokens": 2741,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 2613
+   },
+   {
+    "id": "R_del_illness",
+    "prompt_tokens": 2981,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 2853
+   },
+   {
+    "id": "R_del_knowhow",
+    "prompt_tokens": 2730,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 2346
+   },
+   {
+    "id": "R_del_when",
+    "prompt_tokens": 2960,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 256,
+    "cache_miss_tokens": 2704
+   },
+   {
+    "id": "R_app_name",
+    "prompt_tokens": 3299,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 3299
+   },
+   {
+    "id": "R_app_warehouse",
+    "prompt_tokens": 3437,
+    "completion_tokens": 21,
+    "cache_hit_tokens": 1152,
+    "cache_miss_tokens": 2285
+   },
+   {
+    "id": "R_app_when",
+    "prompt_tokens": 3583,
+    "completion_tokens": 8,
+    "cache_hit_tokens": 768,
+    "cache_miss_tokens": 2815
+   },
+   {
+    "id": "F12_invariant",
+    "prompt_tokens": 3658,
+    "completion_tokens": 16,
+    "cache_hit_tokens": 1152,
+    "cache_miss_tokens": 2506
+   },
+   {
+    "id": "F32_invariant",
+    "prompt_tokens": 3387,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 1024,
+    "cache_miss_tokens": 2363
+   },
+   {
+    "id": "F34_invariant",
+    "prompt_tokens": 4330,
+    "completion_tokens": 9,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 3690
+   },
+   {
+    "id": "F03_invariant",
+    "prompt_tokens": 4297,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 4169
+   },
+   {
+    "id": "F06_invariant",
+    "prompt_tokens": 4764,
+    "completion_tokens": 21,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 4636
+   },
+   {
+    "id": "F01_remote",
+    "prompt_tokens": 4795,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 256,
+    "cache_miss_tokens": 4539
+   },
+   {
+    "id": "F02_remote",
+    "prompt_tokens": 4992,
+    "completion_tokens": 19,
+    "cache_hit_tokens": 256,
+    "cache_miss_tokens": 4736
+   },
+   {
+    "id": "F05_remote",
+    "prompt_tokens": 5357,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 4717
+   },
+   {
+    "id": "F07_remote",
+    "prompt_tokens": 5470,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 5086
+   },
+   {
+    "id": "F08_remote",
+    "prompt_tokens": 5445,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 5061
+   },
+   {
+    "id": "F09_remote",
+    "prompt_tokens": 5448,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 5064
+   },
+   {
+    "id": "F10_remote",
+    "prompt_tokens": 5487,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 256,
+    "cache_miss_tokens": 5231
+   },
+   {
+    "id": "F11_remote",
+    "prompt_tokens": 5347,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 4963
+   },
+   {
+    "id": "F15_remote",
+    "prompt_tokens": 5588,
+    "completion_tokens": 44,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 5460
+   },
+   {
+    "id": "F16_remote",
+    "prompt_tokens": 5531,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 4891
+   },
+   {
+    "id": "F17_remote",
+    "prompt_tokens": 5480,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 4840
+   },
+   {
+    "id": "F19_remote",
+    "prompt_tokens": 5510,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 768,
+    "cache_miss_tokens": 4742
+   },
+   {
+    "id": "F22_remote",
+    "prompt_tokens": 5528,
+    "completion_tokens": 16,
+    "cache_hit_tokens": 768,
+    "cache_miss_tokens": 4760
+   },
+   {
+    "id": "F24_remote",
+    "prompt_tokens": 5577,
+    "completion_tokens": 9,
+    "cache_hit_tokens": 896,
+    "cache_miss_tokens": 4681
+   },
+   {
+    "id": "F25_remote",
+    "prompt_tokens": 5508,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 1152,
+    "cache_miss_tokens": 4356
+   },
+   {
+    "id": "F28_remote",
+    "prompt_tokens": 5594,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 1152,
+    "cache_miss_tokens": 4442
+   },
+   {
+    "id": "F36_remote",
+    "prompt_tokens": 5462,
+    "completion_tokens": 8,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 4822
+   },
+   {
+    "id": "F38_remote",
+    "prompt_tokens": 5503,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 896,
+    "cache_miss_tokens": 4607
+   },
+   {
+    "id": "F44_remote",
+    "prompt_tokens": 5582,
+    "completion_tokens": 17,
+    "cache_hit_tokens": 2304,
+    "cache_miss_tokens": 3278
+   },
+   {
+    "id": "F50_remote",
+    "prompt_tokens": 5570,
+    "completion_tokens": 29,
+    "cache_hit_tokens": 2176,
+    "cache_miss_tokens": 3394
+   }
+  ],
+  "inc_cold_tree_v2·p3": [
+   {
+    "id": "R_rename_person",
+    "prompt_tokens": 1354,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 1354
+   },
+   {
+    "id": "R_rename_nurse",
+    "prompt_tokens": 1742,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 512,
+    "cache_miss_tokens": 1230
+   },
+   {
+    "id": "R_rename_lantern",
+    "prompt_tokens": 1335,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 1207
+   },
+   {
+    "id": "R_rewrite_when",
+    "prompt_tokens": 1535,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 1151
+   },
+   {
+    "id": "R_rewrite_how",
+    "prompt_tokens": 1405,
+    "completion_tokens": 18,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 765
+   },
+   {
+    "id": "R_rewrite_casualties",
+    "prompt_tokens": 1454,
+    "completion_tokens": 45,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 814
+   },
+   {
+    "id": "R_detail_fee",
+    "prompt_tokens": 1418,
+    "completion_tokens": 5,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 778
+   },
+   {
+    "id": "R_detail_ledger",
+    "prompt_tokens": 1425,
+    "completion_tokens": 5,
+    "cache_hit_tokens": 512,
+    "cache_miss_tokens": 913
+   },
+   {
+    "id": "R_detail_room",
+    "prompt_tokens": 1250,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 256,
+    "cache_miss_tokens": 994
+   },
+   {
+    "id": "R_del_illness",
+    "prompt_tokens": 1789,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 768,
+    "cache_miss_tokens": 1021
+   },
+   {
+    "id": "R_del_knowhow",
+    "prompt_tokens": 1660,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 1660
+   },
+   {
+    "id": "R_del_when",
+    "prompt_tokens": 2015,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 1375
+   },
+   {
+    "id": "R_app_name",
+    "prompt_tokens": 2666,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 768,
+    "cache_miss_tokens": 1898
+   },
+   {
+    "id": "R_app_warehouse",
+    "prompt_tokens": 1877,
+    "completion_tokens": 21,
+    "cache_hit_tokens": 1024,
+    "cache_miss_tokens": 853
+   },
+   {
+    "id": "R_app_when",
+    "prompt_tokens": 2289,
+    "completion_tokens": 7,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 2161
+   },
+   {
+    "id": "F12_invariant",
+    "prompt_tokens": 2764,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 896,
+    "cache_miss_tokens": 1868
+   },
+   {
+    "id": "F32_invariant",
+    "prompt_tokens": 2711,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 1280,
+    "cache_miss_tokens": 1431
+   },
+   {
+    "id": "F34_invariant",
+    "prompt_tokens": 2490,
+    "completion_tokens": 3,
+    "cache_hit_tokens": 896,
+    "cache_miss_tokens": 1594
+   },
+   {
+    "id": "F03_invariant",
+    "prompt_tokens": 2374,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 2246
+   },
+   {
+    "id": "F06_invariant",
+    "prompt_tokens": 2806,
+    "completion_tokens": 16,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 2678
+   },
+   {
+    "id": "F01_remote",
+    "prompt_tokens": 2876,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 256,
+    "cache_miss_tokens": 2620
+   },
+   {
+    "id": "F02_remote",
+    "prompt_tokens": 3620,
+    "completion_tokens": 15,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 3236
+   },
+   {
+    "id": "F05_remote",
+    "prompt_tokens": 3139,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 256,
+    "cache_miss_tokens": 2883
+   },
+   {
+    "id": "F07_remote",
+    "prompt_tokens": 3047,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 2663
+   },
+   {
+    "id": "F08_remote",
+    "prompt_tokens": 3071,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 2687
+   },
+   {
+    "id": "F09_remote",
+    "prompt_tokens": 3131,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 2747
+   },
+   {
+    "id": "F10_remote",
+    "prompt_tokens": 3012,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 256,
+    "cache_miss_tokens": 2756
+   },
+   {
+    "id": "F11_remote",
+    "prompt_tokens": 3026,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 2642
+   },
+   {
+    "id": "F15_remote",
+    "prompt_tokens": 3216,
+    "completion_tokens": 43,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 2832
+   },
+   {
+    "id": "F16_remote",
+    "prompt_tokens": 2978,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 2338
+   },
+   {
+    "id": "F17_remote",
+    "prompt_tokens": 4069,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 3429
+   },
+   {
+    "id": "F19_remote",
+    "prompt_tokens": 4357,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 3717
+   },
+   {
+    "id": "F22_remote",
+    "prompt_tokens": 4670,
+    "completion_tokens": 18,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 4286
+   },
+   {
+    "id": "F24_remote",
+    "prompt_tokens": 4611,
+    "completion_tokens": 9,
+    "cache_hit_tokens": 1024,
+    "cache_miss_tokens": 3587
+   },
+   {
+    "id": "F25_remote",
+    "prompt_tokens": 4716,
+    "completion_tokens": 21,
+    "cache_hit_tokens": 1280,
+    "cache_miss_tokens": 3436
+   },
+   {
+    "id": "F28_remote",
+    "prompt_tokens": 4618,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 1280,
+    "cache_miss_tokens": 3338
+   },
+   {
+    "id": "F36_remote",
+    "prompt_tokens": 4629,
+    "completion_tokens": 8,
+    "cache_hit_tokens": 1024,
+    "cache_miss_tokens": 3605
+   },
+   {
+    "id": "F38_remote",
+    "prompt_tokens": 4555,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 1792,
+    "cache_miss_tokens": 2763
+   },
+   {
+    "id": "F44_remote",
+    "prompt_tokens": 4819,
+    "completion_tokens": 3,
+    "cache_hit_tokens": 1792,
+    "cache_miss_tokens": 3027
+   },
+   {
+    "id": "F50_remote",
+    "prompt_tokens": 4805,
+    "completion_tokens": 31,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 4421
+   }
+  ]
+ },
+ "tokens": {
+  "phase1": {
+   "tree_v2·base": {
+    "calls": 91,
+    "prompt_tokens": 173520,
+    "completion_tokens": 10515,
+    "cache_hit_tokens": 39680,
+    "cache_miss_tokens": 133840,
+    "cache_hit_rate": 0.2287,
+    "seconds": 115.99000000000001
+   }
+  },
+  "phase3": {
+   "inc_tree_v2": {
+    "calls": 168,
+    "prompt_tokens": 389624,
+    "completion_tokens": 19318,
+    "cache_hit_tokens": 77947,
+    "cache_miss_tokens": 311677,
+    "cache_hit_rate": 0.2001,
+    "seconds": 213.37
+   },
+   "reb_tree_v2": {
+    "calls": 91,
+    "prompt_tokens": 200499,
+    "completion_tokens": 10407,
+    "cache_hit_tokens": 38392,
+    "cache_miss_tokens": 162107,
+    "cache_hit_rate": 0.1915,
+    "seconds": 112.59
+   },
+   "inc_cold_tree_v2": {
+    "calls": 131,
+    "prompt_tokens": 163982,
+    "completion_tokens": 19600,
+    "cache_hit_tokens": 48507,
+    "cache_miss_tokens": 115475,
+    "cache_hit_rate": 0.2958,
+    "seconds": 179.79999999999998
+   }
+  },
+  "final": {
+   "inc_tree_v2": {
+    "calls": 169,
+    "prompt_tokens": 390296,
+    "completion_tokens": 19836,
+    "cache_hit_tokens": 78203,
+    "cache_miss_tokens": 312093,
+    "cache_hit_rate": 0.2004,
+    "seconds": 216.23000000000002
+   },
+   "reb_tree_v2": {
+    "calls": 92,
+    "prompt_tokens": 202767,
+    "completion_tokens": 12212,
+    "cache_hit_tokens": 38520,
+    "cache_miss_tokens": 164247,
+    "cache_hit_rate": 0.19,
+    "seconds": 119.42
+   },
+   "inc_cold_tree_v2": {
+    "calls": 132,
+    "prompt_tokens": 164615,
+    "completion_tokens": 20048,
+    "cache_hit_tokens": 48763,
+    "cache_miss_tokens": 115852,
+    "cache_hit_rate": 0.2962,
+    "seconds": 182.35999999999999
+   }
+  }
+ },
+ "answers": {
+  "tree_v2·p1": {
+   "R_rename_person": [
+    "何倚笙。"
+   ],
+   "R_rename_nurse": [
+    "何倚笙。她在唐家做了三年贴身看护，并指出七枚纽扣当年分给七个经手人、唐家事以七扣为证。"
+   ],
+   "R_rename_lantern": [
+    "文档中无此信息。"
+   ],
+   "R_rewrite_when": [
+    "文档中无此信息。"
+   ],
+   "R_rewrite_how": [
+    "面馆老板说，那宅子七年前就烧光了，一家五口人，没一个跑出来。"
+   ],
+   "R_rewrite_casualties": [
+    "面馆老板说唐家一家五口无人逃出，全家都死了。"
+   ],
+   "R_detail_fee": [
+    "两枚银圆。"
+   ],
+   "R_detail_ledger": [
+    "两枚银圆。"
+   ],
+   "R_detail_room": [
+    "十七号房。"
+   ],
+   "R_del_illness": [
+    "提到。沈寒舟去年冬天曾替赵老拐治风寒。"
+   ],
+   "R_del_knowhow": [
+    "沈寒舟去年冬天曾替赵老拐治过风寒，因此知道他住在码头边的船屋里。"
+   ],
+   "R_del_when": [
+    "文档记载：沈寒舟去年冬天曾替赵老拐治过风寒。"
+   ],
+   "R_app_name": [
+    "文档中无此信息。"
+   ],
+   "R_app_warehouse": [
+    "文档中无此信息。"
+   ],
+   "R_app_when": [
+    "文档中无此信息。"
+   ],
+   "F12_invariant": [
+    "梧桐巷十七号废墟的歪脖子枣树上挂着一个生锈的铁鸟笼，笼子里空无一物。"
+   ],
+   "F32_invariant": [
+    "赵老拐拄着一根枣木拐杖。"
+   ],
+   "F34_invariant": [
+    "流水簿。"
+   ],
+   "F03_invariant": [
+    "城西老钟厂后梧桐巷17号。"
+   ],
+   "F06_invariant": [
+    "一张泛黄照片的一角，隐约可见三人。"
+   ],
+   "F01_remote": [
+    "蓑衣巷。"
+   ],
+   "F02_remote": [
+    "唐纪舟出场时手持绘缠枝莲六角纱灯。"
+   ],
+   "F05_remote": [
+    "文档中无此信息。"
+   ],
+   "F07_remote": [
+    "信封上的火漆印纹是一柄短剑。"
+   ],
+   "F08_remote": [
+    "铜钥匙系在一根褪色的红丝绳上。"
+   ],
+   "F09_remote": [
+    "丙辰年二月十九。"
+   ],
+   "F10_remote": [
+    "少年手里捧着一只三足铜香炉。"
+   ],
+   "F11_remote": [
+    "周小满。"
+   ],
+   "F15_remote": [
+    "段临洲带来的锦盒内铺金丝绒，嵌有白贝母、黑曜石、青金石、黄玛瑙、红珊瑚、紫水晶、绿翡翠七枚不同颜色的纽扣。"
+   ],
+   "F16_remote": [
+    "段伯庚。"
+   ],
+   "F17_remote": [
+    "沈问渔。"
+   ],
+   "F19_remote": [
+    "鹿皮小袋里装有十二片骨片。"
+   ],
+   "F22_remote": [
+    "羊皮纸上盖有“唐氏济生堂记”红印。"
+   ],
+   "F24_remote": [
+    "章裁缝的名字叫章茂实。"
+   ],
+   "F25_remote": [
+    "九针堂。"
+   ],
+   "F28_remote": [
+    "悦来客栈。"
+   ],
+   "F36_remote": [
+    "唐家老三叫唐纪澜。"
+   ],
+   "F38_remote": [
+    "赵老拐的尸体在老钟厂北边的废井里被发现。"
+   ],
+   "F44_remote": [
+    "鹰的形状。"
+   ],
+   "F50_remote": [
+    "沈寒舟把白贝母纽扣塞进了福寿巷柴房门框和墙壁之间的一道缝隙里。"
+   ]
+  },
+  "inc_tree_v2·p3": {
+   "R_rename_person": [
+    "文档中无此信息。"
+   ],
+   "R_rename_nurse": [
+    "何某笙（实为周倚笙，母亲改嫁周家后改姓周），她在唐家做了三年贴身看护。"
+   ],
+   "R_rename_lantern": [
+    "何某笙。"
+   ],
+   "R_rewrite_when": [
+    "面馆老板说，那宅子三年前就塌了。"
+   ],
+   "R_rewrite_how": [
+    "面馆老板说那宅子三年前就塌了，一家三口人没一个跑出来。"
+   ],
+   "R_rewrite_casualties": [
+    "一家三口人，没一个跑出来。"
+   ],
+   "R_detail_fee": [
+    "三枚银圆。"
+   ],
+   "R_detail_ledger": [
+    "三枚银圆。"
+   ],
+   "R_detail_room": [
+    "十九号房。"
+   ],
+   "R_del_illness": [
+    "文档中无此信息。"
+   ],
+   "R_del_knowhow": [
+    "沈寒舟退掉客栈后过江到城南码头，找了一上午，才在一条废弃运粮船旁找到赵老拐的船屋。"
+   ],
+   "R_del_when": [
+    "文档中无此信息。"
+   ],
+   "R_app_name": [
+    "顾在川。"
+   ],
+   "R_app_warehouse": [
+    "济生堂当年在省城还有一处从未启用的货栈，地址在望江门外。"
+   ],
+   "R_app_when": [
+    "决定七月十五之后再作打算。"
+   ],
+   "F12_invariant": [
+    "生锈的铁鸟笼，笼子里空无一物。"
+   ],
+   "F32_invariant": [
+    "赵老拐拄着一根枣木拐杖。"
+   ],
+   "F34_invariant": [
+    "流水簿。"
+   ],
+   "F03_invariant": [
+    "城西老钟厂后梧桐巷17号。"
+   ],
+   "F06_invariant": [
+    "沈寒舟疑心老妇人枕下露出一张泛黄照片，照片上似有三人。"
+   ],
+   "F01_remote": [
+    "沈寒舟的医馆位于城南蓑衣巷。"
+   ],
+   "F02_remote": [
+    "唐纪舟出场时持一盏绘缠枝莲的六角纱灯。"
+   ],
+   "F05_remote": [
+    "文档中无此信息。"
+   ],
+   "F07_remote": [
+    "信封上的火漆印纹是一柄短剑。"
+   ],
+   "F08_remote": [
+    "铜钥匙系在一根褪色的红丝绳上。"
+   ],
+   "F09_remote": [
+    "丙辰年二月十九。"
+   ],
+   "F10_remote": [
+    "照片上的少年手里捧着一只三足铜香炉。"
+   ],
+   "F11_remote": [
+    "周小满。"
+   ],
+   "F15_remote": [
+    "段临洲带来的锦盒里有七枚不同颜色的纽扣：白贝母、黑曜石、青金石、黄玛瑙、红珊瑚、紫水晶、绿翡翠，铺在金丝绒上。"
+   ],
+   "F16_remote": [
+    "段鹤庭。"
+   ],
+   "F17_remote": [
+    "沈问渔。"
+   ],
+   "F19_remote": [
+    "十二片。"
+   ],
+   "F22_remote": [
+    "羊皮纸上盖有“唐氏济生堂记”红印。"
+   ],
+   "F24_remote": [
+    "章裁缝的名字叫章茂实。"
+   ],
+   "F25_remote": [
+    "九针堂。"
+   ],
+   "F28_remote": [
+    "悦来客栈。"
+   ],
+   "F36_remote": [
+    "唐家老三叫唐纪澜。"
+   ],
+   "F38_remote": [
+    "赵老拐的尸体在老钟厂北边的废井里被发现，是今早被发现的。"
+   ],
+   "F44_remote": [
+    "鹰的形状。"
+   ],
+   "F50_remote": [
+    "他把白贝母纽扣从锦盒里取出来，塞进了福寿巷柴房门框和墙壁之间的一道缝隙里。"
+   ]
+  },
+  "reb_tree_v2·p3": {
+   "R_rename_person": [
+    "何某笙。"
+   ],
+   "R_rename_nurse": [
+    "何某笙。"
+   ],
+   "R_rename_lantern": [
+    "文档中无此信息。"
+   ],
+   "R_rewrite_when": [
+    "文档中无此信息。"
+   ],
+   "R_rewrite_how": [
+    "面馆老板说，那宅子三年前就塌了，一家三口人，没一个跑出来。"
+   ],
+   "R_rewrite_casualties": [
+    "面馆老板说，唐家一家三口无人逃出，即死了三口人。"
+   ],
+   "R_detail_fee": [
+    "三枚银圆。"
+   ],
+   "R_detail_ledger": [
+    "三枚银圆。"
+   ],
+   "R_detail_room": [
+    "十九号房。"
+   ],
+   "R_del_illness": [
+    "文档中无此信息。"
+   ],
+   "R_del_knowhow": [
+    "文档中无此信息。"
+   ],
+   "R_del_when": [
+    "文档中无此信息。"
+   ],
+   "R_app_name": [
+    "顾在川。"
+   ],
+   "R_app_warehouse": [
+    "济生堂当年在省城还有一处从未启用的货栈，地址在望江门外。"
+   ],
+   "R_app_when": [
+    "决定等七月十五之后再作打算。"
+   ],
+   "F12_invariant": [
+    "梧桐巷十七号废墟的枣树上挂着一个生锈的铁鸟笼。"
+   ],
+   "F32_invariant": [
+    "赵老拐拄着一根枣木拐杖。"
+   ],
+   "F34_invariant": [
+    "第一页写着三个字：“流水簿”。"
+   ],
+   "F03_invariant": [
+    "城西老钟厂后梧桐巷17号。"
+   ],
+   "F06_invariant": [
+    "沈寒舟疑心老妇人枕下露出一张泛黄照片，照片上似有三人。"
+   ],
+   "F01_remote": [
+    "沈寒舟的医馆位于城南蓑衣巷。"
+   ],
+   "F02_remote": [
+    "唐纪舟出场时手里拎着一盏绘缠枝莲的六角纱灯。"
+   ],
+   "F05_remote": [
+    "文档中无此信息。"
+   ],
+   "F07_remote": [
+    "信封上的火漆印纹是一柄短剑。"
+   ],
+   "F08_remote": [
+    "铜钥匙系在一根褪色的红丝绳上。"
+   ],
+   "F09_remote": [
+    "照片背面用钢笔写着“丙辰年二月十九”。"
+   ],
+   "F10_remote": [
+    "照片上的少年手里捧着一只三足铜香炉。"
+   ],
+   "F11_remote": [
+    "周小满。"
+   ],
+   "F15_remote": [
+    "锦盒里铺着金丝绒，绒面上嵌着七枚不同颜色的纽扣：白贝母、黑曜石、青金石、黄玛瑙、红珊瑚、紫水晶、绿翡翠。"
+   ],
+   "F16_remote": [
+    "段鹤庭。"
+   ],
+   "F17_remote": [
+    "沈问渔。"
+   ],
+   "F19_remote": [
+    "鹿皮小袋里装有十二片骨片。"
+   ],
+   "F22_remote": [
+    "羊皮纸上盖有“唐氏济生堂记”红印。"
+   ],
+   "F24_remote": [
+    "章裁缝的名字叫章茂实。"
+   ],
+   "F25_remote": [
+    "九针堂。"
+   ],
+   "F28_remote": [
+    "悦来客栈。"
+   ],
+   "F36_remote": [
+    "唐家老三叫唐纪澜。"
+   ],
+   "F38_remote": [
+    "赵老拐的尸体在老钟厂北边的废井里被发现。"
+   ],
+   "F44_remote": [
+    "段鹤庭的黄花梨拐杖，杖头雕成一只鹰的模样。"
+   ],
+   "F50_remote": [
+    "沈寒舟最后把白贝母纽扣从锦盒取出，塞入了福寿巷柴房的门框与墙壁缝隙里。"
+   ]
+  },
+  "inc_cold_tree_v2·p3": {
+   "R_rename_person": [
+    "文档中无此信息。"
+   ],
+   "R_rename_nurse": [
+    "何某笙（后改姓周，即周倚笙）在唐家做了三年贴身看护。"
+   ],
+   "R_rename_lantern": [
+    "何某笙。她要沈寒舟交出龙骨与一封信，并承诺勾销六笔旧债。"
+   ],
+   "R_rewrite_when": [
+    "文档中无此信息。"
+   ],
+   "R_rewrite_how": [
+    "那宅子三年前就塌了，一家三口人，没一个跑出来。"
+   ],
+   "R_rewrite_casualties": [
+    "面馆老板说唐纪舟已死且全家皆亡；唐纪澜称七年前那场火里死了唐家四口人（唐纪舟、唐纪泽、二嫂及他们的孩子）。"
+   ],
+   "R_detail_fee": [
+    "三枚银圆。"
+   ],
+   "R_detail_ledger": [
+    "三枚银圆。"
+   ],
+   "R_detail_room": [
+    "十九号房。"
+   ],
+   "R_del_illness": [
+    "文档中无此信息。"
+   ],
+   "R_del_knowhow": [
+    "文档中无此信息。"
+   ],
+   "R_del_when": [
+    "文档中无此信息。"
+   ],
+   "R_app_name": [
+    "顾在川。"
+   ],
+   "R_app_warehouse": [
+    "济生堂当年在省城还有一处从未启用的货栈，地址在望江门外。"
+   ],
+   "R_app_when": [
+    "决定七月十五后再作打算。"
+   ],
+   "F12_invariant": [
+    "梧桐巷废墟枣树上挂着一个生锈的铁鸟笼。"
+   ],
+   "F32_invariant": [
+    "赵老拐拄着一根枣木拐杖。"
+   ],
+   "F34_invariant": [
+    "流水簿。"
+   ],
+   "F03_invariant": [
+    "城西老钟厂后梧桐巷17号。"
+   ],
+   "F06_invariant": [
+    "沈寒舟疑心老妇人枕下泛黄照片似有三人。"
+   ],
+   "F01_remote": [
+    "城南蓑衣巷。"
+   ],
+   "F02_remote": [
+    "唐纪舟出场时持绘缠枝莲六角纱灯。"
+   ],
+   "F05_remote": [
+    "文档中无此信息。"
+   ],
+   "F07_remote": [
+    "信封上的火漆印纹是一柄短剑。"
+   ],
+   "F08_remote": [
+    "铜钥匙系在一根褪色的红丝绳上。"
+   ],
+   "F09_remote": [
+    "丙辰年二月十九。"
+   ],
+   "F10_remote": [
+    "照片上的少年手里捧着一只三足铜香炉。"
+   ],
+   "F11_remote": [
+    "周小满。"
+   ],
+   "F15_remote": [
+    "锦盒内铺金丝绒，绒面上嵌有七枚不同颜色的纽扣：白贝母、黑曜石、青金石、黄玛瑙、红珊瑚、紫水晶、绿翡翠。"
+   ],
+   "F16_remote": [
+    "段鹤庭。"
+   ],
+   "F17_remote": [
+    "沈问渔。"
+   ],
+   "F19_remote": [
+    "鹿皮小袋里装有十二片骨片。"
+   ],
+   "F22_remote": [
+    "羊皮纸右下角盖有“唐氏济生堂记”红印。"
+   ],
+   "F24_remote": [
+    "章裁缝的名字叫章茂实。"
+   ],
+   "F25_remote": [
+    "秦小禾的裁缝铺叫“九针堂”，位于城隍庙西街。"
+   ],
+   "F28_remote": [
+    "悦来客栈。"
+   ],
+   "F36_remote": [
+    "唐家老三叫唐纪澜。"
+   ],
+   "F38_remote": [
+    "赵老拐的尸体在老钟厂北边的废井里被发现。"
+   ],
+   "F44_remote": [
+    "鹰的形状。"
+   ],
+   "F50_remote": [
+    "沈寒舟把白贝母纽扣从锦盒里取出来，塞进了福寿巷柴房门框和墙壁之间的一道缝隙里。"
+   ]
+  }
+ },
+ "trees": {
+  "tree_v2·base": "realtest/editbench/out/seed2_tree_r1/trees/tree_v2·base.jsonl",
+  "tree_v2·inc_edited": "realtest/editbench/out/seed2_tree_r1/trees/tree_v2·inc_edited.jsonl",
+  "tree_v2·inc_settled": "realtest/editbench/out/seed2_tree_r1/trees/tree_v2·inc_settled.jsonl",
+  "tree_v2·inc_final": "realtest/editbench/out/seed2_tree_r1/trees/tree_v2·inc_final.json.gz",
+  "inc_cold_tree_v2": "realtest/editbench/out/seed2_tree_r1/trees/inc_cold_tree_v2.json.gz",
+  "reb_tree_v2": "realtest/editbench/out/seed2_tree_r1/trees/reb_tree_v2.jsonl"
+ },
+ "elapsed_s": 420.5
+}

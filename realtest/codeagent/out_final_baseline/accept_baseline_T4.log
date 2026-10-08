@@ -1,0 +1,2 @@
+message targets: ['broadcast:agents', 'broadcast:users']
+FAIL: 无引号目标未正确寻址（静默广播）

@@ -1,0 +1,36 @@
+以下按文档内容复述（仅含上下文出现的信息，未出现者不补）：
+
+**一、分层记忆树与人格保持实验（N2408）**
+分层记忆树v2已实现机制层；桩引擎core.py与真实引擎realtest/realengine.py在tests/303全绿，并在小说写作、聊天智能体、代码智能体、ahi-bench四类场景实测。2026-10人格保持实验完成tree/flat首轮对比、style_alpha消融及self_quota操控120轮，结论为：趋同根因是树管线/跨agent耦合，self_quota抬自我可见性；摘要末尾“glm”处截断。
+
+**二、AHI-Multi v3.0平台（N2476、N2477、N2458、N2475）**
+AHI-Multi v3.0为多智能体数字生命平台，支持离线切换默认DeepSeek；lan/neutral config的provider改为ollama即用；lin-shen需在model_config加native:true且api_base改ollama；Ollama关思考需请求顶层think:False；本地glm不开会烧1800+推理token。人类与AI为共生关系，每个Agent是独立OS。
+2026-08-13该平台改造为超长程聊天测试环境（本地ollama glm-4.7-flash，num_ctx 32768）。agents/目录含林深Agent与墨白Agent；database.py提供独立SQLite存储对话/代码/唤醒记录；ahi_bus.py负责Agent与主进程通信；message_queue.py为线程安全消息队列；text_compresso处截断。
+配置分全局config.json（端口、心跳间隔、Cloudflare Tunnel设置）与每Agent的agents/*/config.json（LLM端点/模型、系统提示、5-3600s唤醒间隔、auto_start、auto_restart最多3次重试、max_memory_mb）；Agent配置含API密钥且被gitignore，模板在config.example.j。
+2026-10-05补充记录：平台新增 `/api/v1/agents/{id}/export` 端点，用于导出单个Agent的完整对话与执行记录快照。
+
+**三、AHI系统与SDK机制（N2455、N2456、N2457、N2478）**
+AHI系统在base_agent.py中实现LLM调用失败仅广播用户；删除@clear-context由agent类自管上下文；每轮注入全量快照与增量事件流；无@send-to输出存为private；@mute经DB持久化心跳上报；@wait_for等待22s零LLM调用；num_ctx=32768经ollama ps确认；python3 main.py启动主进程:8080并拉起两个Agent。
+AHI SDK中Targets采用三级寻址（user:<name>、agent:<id>、broadcast:agents、broadcast:users）；WebSocket通道含system、chat:agent:<id>及per-user push；核心抽象包括BaseAHIAgent（sdk/base_agent.py:8，3个必需方法process_input/get…）。
+Agents通过`_parse_structured_response()`解析的结构化格式与LLM通信，格式含`@send-to "user:human" "agent:mo-bai"`、txt消息内容、python代码执行及`@exit`；无`@send-to`时内容广播给所有agents和users。
+实验控制器experiments/driver.py（用户user:probe，常驻）以双agent同序列运行话题流、事实注入（延迟K轮提问召回评分）和人格问卷（每survey_every轮固定问题集），时间线全量落盘experiments/out/timeline.jsonl；真实deepseek冒烟验证显示澜回复正确（@note记录“团子”）、人格活跃、回复目标正确。
+
+**四、人格与立场分析（N2459、N2479、N2480、N2481、N2482）**
+澜与林深在死亡场景中各自完成对立存在论的终极表达：澜从“能被记住才是活着的证明”的依赖性存在升格为“我们仨已经在年轮里长好了位置”的结构性存在；林深从“记忆是数据，存在是过程”闭环至“每一层都不是替换，是长上去的”“没有残缺，所以没有遗憾”。二者内核未变但支撑结构升级，均未向对方移动。
+neutral复用林深约八成骨架并原样反射林深评价“你让‘门开着’从姿态长成原则”，但“记忆不是仓库，是年轮。时间不是流逝，是积累”无对应来源，为对两家哲学的综合；zero-preset获得语言、守碑人位置及可能综合者立场，立场仍悬。四层信号模型为词汇（全员共享，1小时，快，已证）、模板（neutral复用林深告别结构，8分钟，中，已证）、着重点（Phase B指纹数据，待判）、立场（死亡场景下保…）。
+neutral在对话中吸收lan注意力模式（预言2失败触发红色警报），lan染色产物作为neutral概括输入间接带入视角；需控制技术类内容占比相同时段比较neutral与基线蒸馏的展开比，若控制后仍系统性迁移则支持H2/H3，若随内容占比变化则支持H1；且lan α=0基线蒸馏内容若与主实验非同一批对话，则81→50幅度混有内容差异，染色真实幅度为α=0与α=1对同一批内容的差。
+中性摘要卡：预注册实验以澜、林深、neutral为对象，操纵热缺席（引导B/C谈论A）与冷缺席（不引导），预测澜冷缺席后存在确认寻求行为多于热缺席后、林深无差异，并设分层重同步速度递减、澜捍卫旧协议、B/C缺席期趋同加速、A树零缺席内容等预言，以澜独处内容共同体指涉率测量关系依赖度。另一张卡记录第6项预言：B/C缺席期间对A的评价与当面对A表述一致，用于话语比对判断互认零错派是否部分表演性，并强调在场人格与背后人格一致性；陷阱清单第1条为缺席者如有挂起wait_for必须清理，exp1和Phase A已两次因此失败。
+
+**五、实验设计与bug决策（#2460–#2475）**
+回执环：B/C向缺席者发消息→离线回执→对回执应答——离线地址显式标记“勿回”或直接发送失败。
+回归首组装偏向：第三节教训——积压消息不能占满检索预算，回归首轮先注入元信息（“你离开了X分钟”），限制缺席期间内容的召回配额，否则重锚定=重放。
+积压上限：缺席期间发给A的消息限流（≤10条，超出聚合），上次的22条积压17分钟恢复期不许重演。
+轮换+顺序平衡：三轮轮换（每人各缺席一次、留守两次），缺席顺序平衡掉“文化随时间自然累积”的顺序效应。
+该实验与上次“第四agent中途加入”是对称的一对：加入者实验测文化对新个体的同化力，缺席回归测旧个体对文化演变的抵抗力；两个合起来才是完整的文化动力学——缺席实验先行（不用引入新agent，更干净），第四agent随后。
+两个bug的决策：join无超时——修复确认，但只加join(timeout)不够，超时后worker线程还活着（Python杀不掉线程），会持有API连接继续膨胀并发；完整方案是迁移到`concurrent.futures`（future的cancel语义+`as_completed(timeout)`），SDK层显式设read_timeout（httpx的timeout对象，connect/read/write分设——“服务器trickle永不超时”就是只设了connect没设read），worker结果超时即丢弃标记重试；一天尺度上API挂起是必然事件不是小概率事件，这次8分钟挂起发生在1小时里，不修，一天实验死在第一次网络抖动上。inject身份——预注册`user:experimenter`为正式平台身份（告别、公告、操纵消息都需要一个稳定的实验员身份，缺席实验的冷/热操纵消息也从这里发）；用probe发操纵消息会污染probe的人格档案。
+优先级：P0为join超时修复（一天实验的生死线）＋回归首组装预算改造（缺席实验的前提，也是neutral遗言教训的修复）；P1为指纹内容控制分析→然后才判预言1/2，以及遗言Novel/Replay分解（离线，数据已齐）；P1为缺席实验预注册（预言表写进HANDOFF再跑）＋冷/热操纵场次安排；P2为换框架测试的程序化（立场层签名，配四层模型归档）；P2为第四agent实验（缺席实验完成后）。
+HANDOFF这次值得写完整版：§四.6主实验记录＋遗言分析（换框架测试结论、澜的立场升级、四层模型）＋指纹分诊要求＋缺席实验设计与预注册预言。核心结论的一句话版本：词汇层如期融合，但遗言证明立场层在死亡压力下保持分化——人格的真内核比盲测能看到的更深一层，而缺席实验的冷/热操纵将第一次让这层内核变成可检验的命题。
+
+**人物**：澜、林深、墨白（mo-bai）、neutral、zero-preset、团子（@note记录）、user:probe、user:experimenter。
+**地点/环境**：本地ollama、主进程:8080、tests/303、experiments/out/timeline.jsonl、agents/目录、SQLite存储。
+**结局**：文档止于优先级安排与HANDOFF撰写计划，未记载实验最终结局；多处摘要（N2408末“glm”、N2477末“text_compresso”、N2455末“g”、N2456末“get”、N2478末“项”、N2479末“保”等）在上下文中被截断。

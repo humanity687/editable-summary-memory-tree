@@ -1,0 +1,29 @@
+{
+  "group": "baseline",
+  "task": "T2",
+  "title": "data/ 目录下的 config.json 被误注册为新 Agent",
+  "passed": true,
+  "accept_rc": 0,
+  "accept_verdict": "PASS",
+  "elapsed_s": 38.4,
+  "agent_result": {
+    "ok": true,
+    "rounds": 22,
+    "summary": "修复了 `src/process_manager.py` 中 Agent 发现逻辑的缺陷。\n原因：原逻辑使用 `glob.glob(..., recursive=True)` 扫描 `agents/` 目录下所有的 `config.json`，导致位于 Agent `data/` 子目录下的备份或调试配置文件也被误识别为新的 Agent。\n改动：在 `discover_agents` 方法中增加了对 `agent_dir` 的检查，如果该目录名为 `data`，则跳过该配置文件。\n验证：通过运行 `python3 accept_t2.py` 验证，已成功拦截 `agents/lin-shen/data/config.json`，测试通过。",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 22,
+    "tool_uses": {
+      "command": 9,
+      "read": 9,
+      "edit": 3,
+      "finish": 1
+    },
+    "history_chars": 36406
+  },
+  "last_usage": {
+    "prompt_tokens": 6595,
+    "completion_tokens": 157
+  }
+}

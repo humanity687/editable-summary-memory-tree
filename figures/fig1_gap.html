@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>图1 · 位置有序可编辑摘要记忆树</title>
+<style>
+  :root{--bg:#eef1f4;--panel:#fff;--border:#d0d7de;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);font-family:"Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;padding:24px;}
+  .wrap{max-width:1280px;margin:0 auto;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:16px;}
+  .fig{border:1px solid var(--border);border-radius:8px;overflow:hidden;background:#fff;}
+  .fig svg{display:block;width:100%;height:auto;}
+  figcaption{margin-top:12px;font-size:14px;line-height:1.7;color:#1f2328;}
+  figcaption b{color:#1d6fb8;}
+  .en{color:#5b6672;font-size:13px;margin-top:4px;}
+  .note{margin-top:10px;font-size:12px;color:#7a8593;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <figure class="fig">
+    <object type="image/svg+xml" data="fig1_gap.svg" width="100%"></object>
+    <figcaption>
+      <b>图 1　位置有序可编辑摘要记忆树：粒度分层与区间精确失效。</b>
+      左列现有上下文/记忆栈按「可更新的最小单元」分层（token → 缓存块 → 轮次 → 事实），
+      各层均有代表系统，但均不具备「连续语义区间」这一粒度；中列为缺口——语义区间上的
+      <b>区间精确失效</b> 无人维护。右列为本文结构：原子卡由双向链表显式定序，摘要节点按连续区间自底向上合并成树；
+      编辑经确定性句级 diff 定位后，沿祖先链对区间相交的摘要节点精确置脏（完备性引理保证不漏不误），
+      脏卡立即退出一切读取路径，重建统一推迟到蒸馏时机——<b>编辑传播零大模型调用、零阻塞、恒定字符预算</b>；
+      版本账本记录增量，支持任意编辑序列回滚（回滚本身即一次编辑）。
+      <div class="en">Fig. 1. Position-ordered editable summary memory tree: granularity layers and interval-exact invalidation.</div>
+    </figcaption>
+  </figure>
+  <div class="note">独立矢量文件：figures/fig1_gap.svg（可转 PDF/EPS）。导出 PNG：<code>qlmanage -t -s 2560 -o . fig1_gap.svg</code>。</div>
+</div>
+</body>
+</html>

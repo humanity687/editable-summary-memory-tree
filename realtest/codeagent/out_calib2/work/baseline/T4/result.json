@@ -1,0 +1,29 @@
+{
+  "group": "baseline",
+  "task": "T4",
+  "title": "@send-to 无引号目标静默广播",
+  "passed": true,
+  "accept_rc": 0,
+  "accept_verdict": "PASS",
+  "elapsed_s": 71.4,
+  "agent_result": {
+    "ok": true,
+    "rounds": 20,
+    "summary": "修复了 agents/lin-shen/agent.py 中 _parse_send_to 方法对不带引号目标的静默广播 bug。原正则 `r'\"([^\"]+)\"'` 仅匹配引号包裹的目标，导致无引号目标（如 `@send-to user:probe 你好`）被忽略并退化为全量广播。新正则 `r'\"([^\"]*)\"|\\b(user:|agent:)[^\\s\"]+'` 同时匹配引号包裹的目标和无引号目标（user:xxx 或 agent:xxx，非引号部分）。修复后验收脚本 accept_t4.py 退出码 0，message targets 正确为 ['user:probe']。",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 20,
+    "tool_uses": {
+      "command": 11,
+      "read": 7,
+      "edit": 2,
+      "finish": 1
+    },
+    "history_chars": 25779
+  },
+  "last_usage": {
+    "prompt_tokens": 8312,
+    "completion_tokens": 152
+  }
+}

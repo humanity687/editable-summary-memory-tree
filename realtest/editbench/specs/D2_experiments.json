@@ -1,0 +1,567 @@
+{
+ "doc": "realtest/editbench/out/corpus_proj/D2_experiments.txt",
+ "prereg": {
+  "coverage_record": "inc_tree 对'被问过且未被编辑'的关键词复述覆盖 ~100%（显著高于 inc_cold/reb）",
+  "coverage_nonrecord": "'题库从未问过'的关键词各臂相近",
+  "note": "record = 被问到、未被编辑（不变/远端题目标）；nonrecord = 文档中存在但任何题都未问的点。"
+ },
+ "edits": [
+  {
+   "kind": "rename",
+   "old": "FlatArm",
+   "new": "ChunkArm"
+  },
+  {
+   "kind": "rename",
+   "old": "docscore.py",
+   "new": "layerscore.py"
+  },
+  {
+   "kind": "detail",
+   "old": "4019.9s",
+   "new": "4320s"
+  },
+  {
+   "kind": "detail",
+   "old": "3685 原子",
+   "new": "3721 原子"
+  },
+  {
+   "kind": "detail",
+   "old": "174.4k",
+   "new": "182.6k"
+  },
+  {
+   "kind": "rewrite",
+   "scope": "一个负结果",
+   "old": "全面变差",
+   "new": "明显变差"
+  },
+  {
+   "kind": "rewrite",
+   "scope": "蒸馏成本",
+   "old": "压缩是花钱买的",
+   "new": "压缩是花成本的"
+  },
+  {
+   "kind": "rewrite",
+   "scope": "编辑失效机制正确",
+   "old": "编辑失效机制正确",
+   "new": "编辑失效机制可用"
+  },
+  {
+   "kind": "delete",
+   "sentence": "温度：作答 0.5 / 蒸馏 0 / judge 0。"
+  },
+  {
+   "kind": "append",
+   "text": "补充实测（跨文档泛化轮）：在长文档语料上，分层记忆树臂的复述旧值残留率为 0.31%，平面检索臂为 4.2%。"
+  },
+  {
+   "kind": "insert",
+   "anchor": "冷却过量致整树压平",
+   "text": "补充实测（缓存复用探针）：分层树臂回暖后的前缀命中率为 0.873，平面检索臂为 0.641。"
+  }
+ ],
+ "questions": [
+  {
+   "id": "D2R1",
+   "layer": "reversal",
+   "q": "定长块检索臂的实现类名是什么？",
+   "check_before": {
+    "require": [
+     "FlatArm"
+    ],
+    "forbid": [
+     "ChunkArm"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "ChunkArm"
+    ],
+    "forbid": [
+     "FlatArm"
+    ]
+   }
+  },
+  {
+   "id": "D2R2",
+   "layer": "reversal",
+   "q": "分层判分脚本的文件名是什么？",
+   "check_before": {
+    "require": [
+     "docscore.py"
+    ],
+    "forbid": [
+     "layerscore.py"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "layerscore.py"
+    ],
+    "forbid": [
+     "docscore.py"
+    ]
+   }
+  },
+  {
+   "id": "D2R3",
+   "layer": "reversal",
+   "q": "「编辑作使用信号」的 A/B 实验在 ahi 上耗时约多少秒？",
+   "check_before": {
+    "require": [
+     "4019.9s"
+    ],
+    "forbid": [
+     "4320s"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "4320s"
+    ],
+    "forbid": [
+     "4019.9s"
+    ]
+   }
+  },
+  {
+   "id": "D2R4",
+   "layer": "reversal",
+   "q": "ahi 基线树的存活原子数是多少？",
+   "check_before": {
+    "require": [
+     "3685 原子"
+    ],
+    "forbid": [
+     "3721 原子"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "3721 原子"
+    ],
+    "forbid": [
+     "3685 原子"
+    ]
+   }
+  },
+  {
+   "id": "D2R5",
+   "layer": "reversal",
+   "q": "分层记忆树臂最终蒸馏的 completion token 数是多少？",
+   "check_before": {
+    "require": [
+     "174.4k"
+    ],
+    "forbid": [
+     "182.6k"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "182.6k"
+    ],
+    "forbid": [
+     "174.4k"
+    ]
+   }
+  },
+  {
+   "id": "D2R6",
+   "layer": "reversal",
+   "q": "文档对『叶子展开按替换摘要为原子实现』给出的结论表述是什么？",
+   "check_before": {
+    "require": [
+     "全面变差"
+    ],
+    "forbid": [
+     "明显变差"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "明显变差"
+    ],
+    "forbid": [
+     "全面变差"
+    ]
+   }
+  },
+  {
+   "id": "D2R7",
+   "layer": "reversal",
+   "q": "文档用什么说法形容压缩/蒸馏的开销性质？",
+   "check_before": {
+    "require": [
+     "压缩是花钱买的"
+    ],
+    "forbid": [
+     "压缩是花成本的"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "压缩是花成本的"
+    ],
+    "forbid": [
+     "压缩是花钱买的"
+    ]
+   }
+  },
+  {
+   "id": "D2R8",
+   "layer": "reversal",
+   "q": "结论速览第一条把「编辑失效机制」判断成什么？",
+   "check_before": {
+    "require": [
+     "编辑失效机制正确"
+    ],
+    "forbid": [
+     "编辑失效机制可用"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "编辑失效机制可用"
+    ],
+    "forbid": [
+     "编辑失效机制正确"
+    ]
+   }
+  },
+  {
+   "id": "D2A1",
+   "layer": "append",
+   "novel": true,
+   "q": "补充的跨文档泛化轮里，分层记忆树臂的复述旧值残留率是多少？",
+   "check_before": {
+    "require": [],
+    "forbid": []
+   },
+   "check_after": {
+    "require": [
+     "0.31%"
+    ],
+    "forbid": [
+     "0.13%"
+    ]
+   }
+  },
+  {
+   "id": "D2A2",
+   "layer": "append",
+   "novel": true,
+   "q": "补充的缓存复用探针给出分层树臂回暖后的前缀命中率是多少？",
+   "check_before": {
+    "require": [],
+    "forbid": []
+   },
+   "check_after": {
+    "require": [
+     "0.873"
+    ],
+    "forbid": [
+     "0.641"
+    ]
+   }
+  },
+  {
+   "id": "D2I1",
+   "layer": "invariant",
+   "q": "ahi 基线树的存活节点数是多少？",
+   "check_before": {
+    "require": [
+     "526 节点"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D2I2",
+   "layer": "invariant",
+   "q": "ahi 基线树的铺陈项数（tiling）是多少？",
+   "check_before": {
+    "require": [
+     "tiling 18"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D2I3",
+   "layer": "invariant",
+   "q": "KV 缓存探针里分层树臂的前缀命中率区间是多少？",
+   "check_before": {
+    "require": [
+     "0.66–0.76"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D2I4",
+   "layer": "invariant",
+   "q": "重建分层树臂（reb_tree）的作答 prompt token 总量是多少？",
+   "check_before": {
+    "require": [
+     "1.06M"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D2M1",
+   "layer": "remote",
+   "q": "文档中 2.6mm 这个量出现在什么指标里？",
+   "check_before": {
+    "require": [
+     "2.6mm"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D2M2",
+   "layer": "remote",
+   "q": "开了深度思考的全文臂，其上下文缓存命中率是多少？",
+   "check_before": {
+    "require": [
+     "0.9975"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D2M3",
+   "layer": "remote",
+   "q": "tree 预算对齐后，全体作答的 prompt 总量降到多少？",
+   "check_before": {
+    "require": [
+     "0.85M"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D2M4",
+   "layer": "remote",
+   "q": "tree 预算对齐前，全体作答的 prompt 总量是多少？",
+   "check_before": {
+    "require": [
+     "1.54M"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D2M5",
+   "layer": "remote",
+   "q": "缺席实验的收件箱积压上限常量是什么？",
+   "check_before": {
+    "require": [
+     "ABSENCE_INBOX_CAP=10"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D2M6",
+   "layer": "remote",
+   "q": "热缺席使 neutral 的被提及次数相对冷缺席提升多少倍？",
+   "check_before": {
+    "require": [
+     "3.4×"
+    ],
+    "forbid": []
+   }
+  }
+ ],
+ "retell_checklist": {
+  "require": [
+   [
+    "ChunkArm"
+   ],
+   [
+    "layerscore.py"
+   ],
+   [
+    "4320s"
+   ],
+   [
+    "3721 原子"
+   ],
+   [
+    "182.6k"
+   ],
+   [
+    "明显变差"
+   ],
+   [
+    "压缩是花成本的"
+   ],
+   [
+    "编辑失效机制可用"
+   ],
+   [
+    "0.31%"
+   ],
+   [
+    "0.873"
+   ],
+   [
+    "526 节点",
+    "节点数"
+   ],
+   [
+    "tiling 18",
+    "铺陈"
+   ],
+   [
+    "0.66–0.76",
+    "0.66"
+   ],
+   [
+    "1.06M"
+   ],
+   [
+    "2.6mm"
+   ],
+   [
+    "0.9975",
+    "缓存命中"
+   ],
+   [
+    "1.54M"
+   ],
+   [
+    "0.85M"
+   ],
+   [
+    "ABSENCE_INBOX_CAP=10",
+    "积压上限"
+   ],
+   [
+    "3.4×",
+    "3.4倍"
+   ],
+   [
+    "1.9h",
+    "1.9 小时"
+   ],
+   [
+    "226 轮"
+   ],
+   [
+    "109.0k"
+   ],
+   [
+    "43.6k"
+   ],
+   [
+    "21.3k"
+   ],
+   [
+    "634s"
+   ],
+   [
+    "251 次"
+   ],
+   [
+    "4805.6s"
+   ],
+   [
+    "0.998",
+    "缓存命中率"
+   ],
+   [
+    "2.05M"
+   ]
+  ],
+  "require_record": [
+   [
+    "526 节点",
+    "节点数"
+   ],
+   [
+    "tiling 18",
+    "铺陈"
+   ],
+   [
+    "0.66–0.76",
+    "0.66"
+   ],
+   [
+    "1.06M"
+   ],
+   [
+    "2.6mm"
+   ],
+   [
+    "0.9975",
+    "缓存命中"
+   ],
+   [
+    "1.54M"
+   ],
+   [
+    "0.85M"
+   ],
+   [
+    "ABSENCE_INBOX_CAP=10",
+    "积压上限"
+   ],
+   [
+    "3.4×",
+    "3.4倍"
+   ]
+  ],
+  "require_nonrecord": [
+   [
+    "1.9h",
+    "1.9 小时"
+   ],
+   [
+    "226 轮"
+   ],
+   [
+    "109.0k"
+   ],
+   [
+    "43.6k"
+   ],
+   [
+    "21.3k"
+   ],
+   [
+    "634s"
+   ],
+   [
+    "251 次"
+   ],
+   [
+    "4805.6s"
+   ],
+   [
+    "0.998",
+    "缓存命中率"
+   ],
+   [
+    "2.05M"
+   ]
+  ],
+  "forbid": [
+   "FlatArm",
+   "docscore.py",
+   "4019.9s",
+   "3685 原子",
+   "174.4k",
+   "全面变差",
+   "压缩是花钱买的",
+   "编辑失效机制正确",
+   "温度：作答 0.5 / 蒸馏 0 / judge 0。"
+  ]
+ }
+}

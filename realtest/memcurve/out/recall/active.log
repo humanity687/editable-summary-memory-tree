@@ -1,0 +1,31 @@
+[memcurve] recall_modes=['active'] facts=100 distractors=3679 mock=False
+[  t0] x=     0  tree-active=100
+[  r4] x=  1007  tree-active=100
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[  r8] x=  2118  tree-active=100
+[ r12] x=  3507  tree-active=100
+[ r16] x=  4794  tree-active=100
+[ r20] x=  5944  tree-active=100
+[ r24] x=  7183  tree-active=100
+[ r28] x=  8533  tree-active=100
+[ r32] x=  9887  tree-active= 99
+[ r36] x= 11264  tree-active=100
+[ r40] x= 12429  tree-active=100
+[ r44] x= 13704  tree-active=100
+[ r48] x= 14543  tree-active=100
+[ r52] x= 15686  tree-active=100
+[ r56] x= 16760  tree-active=100
+[ r60] x= 17891  tree-active=100
+[ r64] x= 19134  tree-active=100
+[ r68] x= 20608  tree-active=100
+[ r72] x= 22581  tree-active=100
+[ r76] x= 24530  tree-active=100
+[ r80] x= 25886  tree-active=100
+
+[done] → realtest/memcurve/out/recall/memcurve_active.json

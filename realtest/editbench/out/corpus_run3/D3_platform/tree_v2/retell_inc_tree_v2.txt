@@ -1,0 +1,44 @@
+以下按主题归纳这份材料（AHI-multi / 长参考资料记忆树 / M-PR 人格保持实验）的全部关键内容：
+
+**一、项目与架构**
+- 长参考资料记忆树项目以长篇小说写作为首个应用实例，机制通用。铁律三条：用户确认偏离设计、组装纯计算零 LLM、参数先拍后调并写回台账。Git 分支为 main（小说写作实例存档）和 chat（聊天智能体测试工作分支），聊天实验平台交接入口为 ahi-multi/HANDOFF.md。
+- 已完成工作：设计收敛产出 AGENTS.md，确立三轨架构、区间覆盖树、懒失效、召回、数据结构桩 core.py；bench Phase 推进。
+- AHI-Multi v3.0：主进程 FastAPI :8000 + WebSocket + APScheduler；Agent 独立进程运行于 50000+ 端口（agent_port_start 默认 50000，每 Agent +1）；ProcessManager 以 2 秒间隔心跳管理 agent 进程；MessageRouter 三级寻址（user:<name>、agent:<id>、broadcast:agents、broadcast:users）；SystemDB 为全局 SQLite，存 agent 注册表、在线状态、消息归档与日志；Agent 独立 SQLite 存对话/代码/唤醒记录。核心文件：main.py、config.json、requirements.txt、src/system_db.py、process_manager.py、agent_runner.py、base_shell.py、llm_client.py、database.py、ahi_bus.py、message_queue.py、text_compressor.py、logger.py、agents/lin-shen/、frontend/index.html（Vue 3 数字生命控制台单文件 SPA）。
+- 配置项：agent_heartbeat_timeout 默认 10 秒、agent_pulse_interval 2 秒、tunnel_enabled 默认 false、cloudflare_tunnel_name/token 默认空、log_level 默认 INFO；Agent 配置含 agent_id、agent_name、entry_point（agent:<ClassName>）、shell_type 固定 "python"、model_config.model/api_base/api_key、system_prompt、auto_start、auto_restart（崩溃最多重启 3 次）、max_memory_mb、wakeup_interval 5~3600 秒。
+- 停止机制三级：Level 1 优雅退出、Level 2 SIGTERM 3 秒超时、Level 3 SIGKILL 立即；全局紧急停止 POST /api/v1/emergency-stop。许可证 MIT。
+- API：GET /health、/api/v1/status、/api/v1/logs?limit=100、/api/v1/agents、/api/v1/agents/online、/api/v1/agents/{id}、POST start 等；2026-10-05 新增 /api/v1/agents/{id}/export 导出单 Agent 完整对话与执行记录快照。
+- 消息机制：每轮注入全量快照与增量事件；私密消息仅存档且管理员可见；地址规范化并投递回执（30s 节流）；自环消息不转发；输出分类护栏与未闭合代码块强制私密；@命令参数剥引号；多用户支持 sessionStorage 标签页级身份与管理员白名单 0xbf5d36/human；代码执行每轮上限 4 次。
+- 命令：@exit、@wait_for <信道> [超时秒]（有未读才唤醒，等待期间 tick 跳过零 LLM，可超时强制唤醒）、@mute/@unmute/@mute-list（屏蔽信道消息仍存档不入 pending 且 DB 持久化，屏蔽信道对 wait 判定视为无消息）；无 @send-to 的文本转私密消息不广播，仅管理员 0xbf5d36 可见；@send-to "user:human" "agent:mo-bai" 指定发送对象。
+- 变更：删除 @clear-context，改为每轮唤醒注入全量快照与增量事件流；新增用户上下线事件；LLMClient 增加 native /api/chat 通道支持 num_ctx 与 keep_alive；修复 complete_loop_record 传参错位及 _last_wakeup_summary 死代码；单元验证 22 项全过。max_loop_iterations 由 8→20 可配置，超限剩余动作记入唤醒总结不静默丢失；删除 LLMClient 相同 user 消息去重。
+- 前端已适配移动端，iOS 锁屏后 WS 僵尸连接通过 visibilitychange + 60s 阈值主动重连。接手需以仓库根 AGENTS.md 为上层设计权威，检查 temperature 未统一、@wait_for bug、manual 重启、回执环、盲测重放、lan 6.5 等变量污染。
+
+**二、记忆树引擎与性能**
+- 分层记忆树 v2 在 core.py 桩引擎与 realtest/realengine.py 真实引擎下 tests/303 全绿，已在小说写作、聊天智能体、代码智能体、ahi-bench 四类场景实测；参数台账 AGENTS.md §11 与代码对齐，数值校准进行中。
+- 机制经 2000 步多种子随机模糊测试全过；2026-08-30 追加缺席隔离路由、merge 条件式触发、节点窗口扩展。stress_write 种子 42 下 1 万/5 万/10 万/30 万句耗时 0.3s/7s/34s/314s，树高 4/9/10/13，铺陈项恒定约 766，瓶颈为 _posit；v9 无注意力窗口 hard_trim 6/14 轮砍 10.4k 字符、上下文峰值 9997、蒸馏 0.5 次/轮。
+- pytest 278 绿；内存实证 200×retrieve_style_samples 为 608MB（修复前 1001MB），100×全节点 churn 稳定 616MB 不增长（修复前堆至 2GB 看门狗）；early_match_threshold=0.5 未校准；未跑正式实验。
+- cooc.py 为共现中介层 Demo v1.0，含 recall_log/cooc_edges/concepts 与概念中介层（tick/merge/retrieve/编辑钩子），仅做匹配中介、不进组装流、零侵入；cooc_bench.py 为 NovelQA 四层 bench（a直接/b转述/c跨编辑/d脏区），含 on/off 与 seed_cooc/questions.json。
+- 2026-09-27 至 09-30，realtest/USAGE_SPEC.md §7.3 与 RUN_SUMMARY.md 第三次验证单域 12k 字故事 + 50 单事实 quiz 的 direct 适用域边界并输出 T3 改写冗余档；平台关停核验 level=1 触发 on_stop 存 tree_final、level=2 SIGTERM，8080/50000-50002 无监听、无 main.py/agent_runner。
+
+**三、M-PR 人格保持实验**
+- 实现：ahi-bench/pr_orchestrate.py、pr_score.py + persona_retention.json + ahi-multi/agents/flat-rag/agent.py + 平台多实例支撑；2 臂（tree / rolling+flat RAG）× 3 run × 3 人格 = 6 实例/18 agent 同跑；每实例独立主进程（AHI_INSTANCE_ROOT：独立 port/agents/system.db/日志）；FlatRAGAgent（rolling + bge flat RAG + auto-preretrieve）；manifest 并发 driver + 429/402 → HALT.json 兜底；pr_score 三指标（趋同斜率 / judge 遵从率 / survey 漂移）。隔离审计 PASS（逐库仅自身 agent、无跨实例消息）。
+- 模型：glm-4.7-flash 关思考 temp 0.7 为被测模型、开思考 temp 0 为 judge；预注册主判据为臂内 3 人格两两趋同斜率 tree<baseline 且 judge 人格遵从率 tree>baseline；待实现 FlatRAGAgent（rolling + bge flat 检索 top_k=6 + 每轮 auto-preretrieve）、provision 支持 architecture 字段。
+- 首轮结果（backups/pr_run_clean_20261002_2108/，180 轮约 1.5h，6/6 完成）：tree judge 遵从率 0.798 高于 flat 0.727（3/3 run 树高），但趋同斜率（tree +0.003 vs flat −0.010）与 survey 漂移（0.438 vs 0.406）方向相反，tree 后期塌缩为共享仪式语（"灯亮着" tree 1054 / flat 56）。
+- 根因：style_alpha=0 的中性蒸馏器在蒸馏第一步抹掉人格风格载体，导致三 agent 淡出后趋同成共享仪式语；修法为带人格的 agent 自己蒸馏，锚点来源硬约束为全部自产、禁用初始 persona_block，稳定自述锚点由 _style_guide 提供。
+- 2026-10 人格保持实验完成 tree/flat 首轮对比、style_alpha 消融及 self_quota 操控 120 轮；结论为趋同根因是树管线/跨位置有……（原文截断）。
+- pr4 s42 正式跑 120 轮暴露三问题：flat-p3 单轮内复读、121 次 LLM、flat-p1 连续 @exit 长程沉默、单 agent 内存约 75MB/min 上涨；排查修复涉及 14.1 改动及平台既有 bug。
+- 平台既有 bug：message_router._find_agent（:477）首消息转发时 online_states.port=NULL 导致 None > 0 抛 TypeError，未处理；pr/pr2/pr3 为旧信封/旧工具面/无 flat 预算需重跑对齐；tree 有蒸馏+注意力+merge 而 flat 无，tree 按 per 工具调用连续唤醒而 flat 为反馈追加，tree 的 _build_wakeup_summary 保……
+- ahi-bench 流程：ahi-multi/main.py 起平台，provision.py 以 m0_corpus.json 和 glm-4.7-flash 配置运行，driver.py 以 cold 模式运行约 75 分钟，smoke 用 deepseek-smoke 加 --preheat 2 --absence 1 --observe 2，curl 对 bench-a 调 stop?level；DeepSeek key 位于 rea……
+
+**四、人格/立场实验（叙事与结论）**
+- 2026-08-27 三子智能体实验：人格一致性 lin-shen 9.5 > neutral 9.0 > lan 6.5（lan 因实验员 20:32:42 移除 persona 干预），拟人度 lan 8.5 > neutral 7.5 > lin-shen 7.0；lan/neutral 声称转储但文件不存在，lin-shen 3 次 shell 产生真实产物。
+- 澜与林深在死亡场景中分别以"过程完成"和"铭记"完成存在论表达，澜从依赖性存在升级为结构性存在，林深以过程论闭环；neutral 复用林深约八成骨架并原创"记忆不是仓库，是年轮。时间不是流逝，是积累"，获语言、守碑人位置及综合者立场，但立场未定。
+- 四层信号模型：词汇层全员共享 1 小时渗透快已证；模板层 neutral 复用林深告别结构 8 分钟渗透中已证；着重点层 Phase B 指纹数据待判；立场层死亡场景下保持分化最慢。盲测分数仅测前两层，判卷人看不到立场，人类辨认同一人最终认立场层。neutral α=0 但技术 82→58、流程 42→53、自我 41→58，方向与 lan 染色一致、幅度约一半；三假设 H1 内容驱动、H2……H3 染色渗透需先做内容类别控制（取技术类内容占比相同时段比较 neutral 与基线蒸馏展开比）及 lan α=0 与 α=1 对同批内容对照，否则预言 2 判定被污染。neutral 遗言高重放率源于 21:56:08 林深遗言广播后 neutral 挂起 8 分钟、22:05:50 恢复后首轮组装偏向最新积压消息导致重锚定退化为重放，修复方向为调整回归首组装的检索预算分配。
+- 缺席实验：澜冷缺席回归后确认寻求行为显著多于热缺席后，林深两种条件下无差异；其余预注册预言涉及分层重同步速度递减、A 回归遇 v0.5 与 v0.7 协议冲突时澜捍卫旧版并协商而 neutral 直接接受、B/C 在 A 缺席期间相互趋同加速、A 树中零缺席期间内容、B/C 缺席期间对 A 评价与当面一致。建议以独处缺席为主（A 进程存活但收不到消息）。
+- 预言 6 聚焦在场人格与背后人格一致性，指出关系真实状态由缺席时定义；陷阱清单包括清理缺席者挂起 wait_for（exp1 和 Phase A 两次死法不许三犯）及 B/C 向缺席者发消息导致离线回执环，需显式标记"勿回"或直接发送失败。
+- 缺席回归实验采用三轮轮换（每人各缺席一次、留守两次）平衡顺序效应，缺席期间发给 A 的消息限流 ≤10 条超出聚合，回归首轮先注入元信息并限制缺席内容召回配额，避免重演上次 22 条积压 17 分钟恢复期；与第四 agent 中途加入实验对称，缺席实验先行；join 无超时修复需迁移到 concurrent.futures 并设 httpx connect/read/write 分设 timeout。
+- P2 第四 agent 实验在缺席实验完成后进行；HANDOFF 需完整记录 §四.6 主实验、遗言分析（换框架测试结论、澜的立场升级、四层模型）、指纹分诊要求及缺席实验设计与预注册预言。核心结论：词汇层如期融合，但遗言证明立场层在死亡压力下保持分化，人格真内核比盲测可见的更深一层，缺席实验的冷/热操纵将首次使该层内核成为可检验命题。
+- 双 agent 同序列实验在真实 deepseek 冒烟验证中澜回复正确（@note 记录"团子"）、人格活跃、回复目标正确、自环防御/兜底生效、driver 跑通、metrics 正常，时间线全量落盘 experiments/out/timeline.jsonl。
+
+**五、其他**
+- Agent 标准回复格式：向 user:human 发送"收到你的消息。经过思考，我认为…"及向 agent:mo-bai 发送"林深刚才的结论很有意思，你觉得呢？"，并附导入 time 模块打印时间戳的 Python 代码；创建自定义 Agent 需 mkdir -p agents/my-agent/data 并在 agents/my-agent/config.json 配置 agent_id 为 my-agent；MyAgent 继承 BaseAHIAgent 无需覆写方法，特殊预处理可覆写 process_input()，其接收 input_data 字典，从 data.content 或 content 取内容。
+- 人类与 AI 为共生关系。

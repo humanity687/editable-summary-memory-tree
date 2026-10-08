@@ -1,0 +1,23 @@
+[  t0] x=     0 kept=100 | L1present=  0 L2=  0 L3=  0 | lost L1=0 L2=0 L3+=0 top=0 dead=0 | h=0 nodes=0 tiling=100 merges=0
+[  r4] x=  1007 kept=100 | L1present= 76 L2=  0 L3=  0 | lost L1=0 L2=0 L3+=0 top=0 dead=0 | h=1 nodes=15 tiling=63 merges=15
+[  r8] x=  2118 kept=100 | L1present=100 L2=  0 L3=  0 | lost L1=0 L2=0 L3+=0 top=0 dead=0 | h=1 nodes=19 tiling=75 merges=4
+[ r12] x=  3507 kept=100 | L1present=100 L2=  0 L3=  0 | lost L1=0 L2=0 L3+=0 top=0 dead=0 | h=1 nodes=27 tiling=67 merges=8
+[ r16] x=  4794 kept= 43 | L1present=100 L2= 31 L3=  0 | lost L1=0 L2=57 L3+=0 top=0 dead=0 | h=2 nodes=39 tiling=62 merges=12
+[ r20] x=  5944 kept= 43 | L1present=100 L2= 31 L3=  0 | lost L1=0 L2=57 L3+=0 top=0 dead=0 | h=2 nodes=44 tiling=73 merges=5
+[ r24] x=  7183 kept= 43 | L1present=100 L2= 43 L3=  0 | lost L1=0 L2=57 L3+=0 top=0 dead=0 | h=2 nodes=52 tiling=77 merges=8
+[ r28] x=  8533 kept= 43 | L1present=100 L2= 43 L3=  0 | lost L1=0 L2=57 L3+=0 top=0 dead=0 | h=2 nodes=62 tiling=79 merges=10
+[ r32] x=  9887 kept= 33 | L1present=100 L2= 43 L3= 17 | lost L1=0 L2=57 L3+=10 top=0 dead=0 | h=3 nodes=71 tiling=79 merges=9
+[ r36] x= 11264 kept= 33 | L1present=100 L2= 43 L3= 17 | lost L1=0 L2=57 L3+=10 top=0 dead=0 | h=3 nodes=83 tiling=74 merges=12
+[ r40] x= 12429 kept= 23 | L1present=100 L2= 43 L3= 29 | lost L1=0 L2=57 L3+=20 top=0 dead=0 | h=4 nodes=92 tiling=81 merges=9
+[ r44] x= 13704 kept= 23 | L1present=100 L2= 43 L3= 29 | lost L1=0 L2=57 L3+=20 top=0 dead=0 | h=4 nodes=101 tiling=81 merges=9
+[ r48] x= 14543 kept= 23 | L1present=100 L2= 43 L3= 29 | lost L1=0 L2=57 L3+=20 top=0 dead=0 | h=4 nodes=111 tiling=79 merges=10
+[ r52] x= 15686 kept= 23 | L1present=100 L2= 43 L3= 29 | lost L1=0 L2=57 L3+=20 top=0 dead=0 | h=4 nodes=120 tiling=81 merges=9
+[ r56] x= 16760 kept= 23 | L1present=100 L2= 43 L3= 29 | lost L1=0 L2=57 L3+=20 top=0 dead=0 | h=4 nodes=132 tiling=75 merges=12
+[ r60] x= 17891 kept= 17 | L1present=100 L2= 43 L3= 29 | lost L1=0 L2=57 L3+=26 top=0 dead=0 | h=5 nodes=140 tiling=81 merges=8
+[ r64] x= 19134 kept= 17 | L1present=100 L2= 43 L3= 29 | lost L1=0 L2=57 L3+=26 top=0 dead=0 | h=5 nodes=149 tiling=80 merges=9
+[ r68] x= 20608 kept= 17 | L1present=100 L2= 43 L3= 29 | lost L1=0 L2=57 L3+=26 top=0 dead=0 | h=5 nodes=158 tiling=81 merges=9
+[ r72] x= 22581 kept= 17 | L1present=100 L2= 43 L3= 29 | lost L1=0 L2=57 L3+=26 top=0 dead=0 | h=5 nodes=170 tiling=74 merges=12
+[ r76] x= 24530 kept= 17 | L1present=100 L2= 43 L3= 29 | lost L1=0 L2=57 L3+=26 top=0 dead=0 | h=6 nodes=179 tiling=81 merges=9
+[ r80] x= 25886 kept= 17 | L1present=100 L2= 43 L3= 29 | lost L1=0 L2=57 L3+=26 top=0 dead=0 | h=6 nodes=191 tiling=74 merges=12
+
+[done] → realtest/memcurve/out/loss_fanout6/loss_analysis.json

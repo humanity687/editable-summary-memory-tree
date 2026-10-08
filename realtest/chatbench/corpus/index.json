@@ -1,0 +1,36 @@
+{
+ "source_db": "ahi-multi/data/system.db",
+ "n_messages": 716,
+ "n_sessions": 1,
+ "total_chars": 289666,
+ "time_range": [
+  "2026-09-23 10:49:28",
+  "2026-09-23 11:47:31"
+ ],
+ "per_agent": {
+  "青": {
+   "id": "bench-tf",
+   "n": 184
+  },
+  "白": {
+   "id": "bench-bc",
+   "n": 202
+  },
+  "墨": {
+   "id": "bench-bf",
+   "n": 121
+  },
+  "蓝": {
+   "id": "bench-tc",
+   "n": 209
+  }
+ },
+ "sessions": [
+  {
+   "session": 0,
+   "n": 716,
+   "start": "2026-09-23 10:49:28"
+  }
+ ],
+ "gold_hint": "gold 证据用 corpus.jsonl 的 msg_id 引用；transcript_full.txt 每条带 #[msg_id[:8]]。"
+}

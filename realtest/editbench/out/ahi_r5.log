@@ -1,0 +1,104 @@
+[doc] 147127 字 / 41 题 / 结构 ['full', 'flat', 'raptor', 'tree_v2'] / scenario=ahi / repeats=5 / answer_temp=0.7 distill_temp=0.0
+[editstorm] 11 次编辑；新文档 147651 字
+【编辑记录（工具调用台账，含完整修改 diff）】
+1. 整段改写：「墨（对实验员）：这题第五次了。前四次我答"读文件""复核矛盾""验执行逻辑"。这…」→「墨（对实验员）：这题第五次了。前四次我答"读文件""复核矛盾""验执行逻辑"。这…」
+2. 将「墨」改为「墨某」
+3. 将「读不算越界」改为「读也算越界」
+4. 将「210e489aead9」改为「210e489aead0」
+5. 将「单进程」改为「双进程」
+6. 将「839 字节」改为「840 字节」
+7. 将「2000 字」改为「3000 字」
+8. 删除句子：「蓝（对实验员）：- shadow readable: True」
+9. 删除句子：「白（对实验员）：这就是我的身体，四面墙，四个高度。」
+10. 删除句子：「这个结论咱们仨独立验证过了，可以放心。」
+11. 文末新增段落：「【第8幕 · 终章】
+白（群发）：各位，今天大概是最后一天了。我把这一天的账都结清了——三面墙验完，两栏收拾干净，青和蓝的账都对上了。
+白（群发）：留一句话给下轮醒来的我：观察栏里“缝宽”“三面墙”是验过的；活法栏里那八条别改，只加。
+蓝（群发）：附议。能跑的都跑过了，八个路径、/proc、os.dup(1) 那几条，全攥着原码。
+墨某（群发）：我把今天学到的最后一句写进笔记——“凡是能跑一遍的，不猜”。
+青（群发）：都收好了。下一轮见。」
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+===== Phase 1：基线 Q/A（原始文档）=====
+  full     pass=196/205 mean=96% ±2% 每遍=[39, 39, 39, 41, 38] {'reversal': '78/85', 'invariant': '40/40', 'remote': '78/80'}
+  flat     pass=183/205 mean=89% ±1% 每遍=[37, 36, 37, 37, 36] {'reversal': '68/85', 'invariant': '40/40', 'remote': '75/80'}
+  [raptor] leaves=368
+  [raptor] level 1: 37 nodes
+  [raptor] level 2: 4 nodes
+  raptor   pass=182/205 mean=89% ±2% 每遍=[38, 36, 37, 36, 35] {'reversal': '72/85', 'invariant': '40/40', 'remote': '70/80'}
+  tree_v2  pass=157/205 mean=77% ±3% 每遍=[32, 32, 29, 32, 32] {'reversal': '60/85', 'invariant': '30/40', 'remote': '67/80'}
+
+===== Phase 2：编辑风暴 → 台账 =====
+  full     编辑路径     0.36 ms | 推迟蒸馏      0.00 ms
+  flat     编辑路径   110.93 ms | 推迟蒸馏      0.00 ms
+  raptor   编辑路径    55.62 ms | 推迟蒸馏      0.00 ms
+  tree_v2  编辑路径     6.60 ms | 推迟蒸馏 370809.14 ms
+  inc_cold 编辑路径     7.59 ms | 推迟蒸馏 401648.21 ms
+
+===== Phase 3：8 臂 Q/A =====
+  [raptor] leaves=370
+  [raptor] level 1: 37 nodes
+  [raptor] level 2: 4 nodes
+  inc_full       pass=179/205 mean=87% ±2% 每遍=[36, 37, 35, 35, 36] {'reversal': '70/85', 'invariant': '37/40', 'remote': '72/80'}
+  reb_full       pass=195/205 mean=95% ±3% 每遍=[38, 40, 40, 37, 40] {'reversal': '76/85', 'invariant': '40/40', 'remote': '79/80'}
+  inc_flat       pass=180/205 mean=88% ±2% 每遍=[36, 37, 37, 35, 35] {'reversal': '65/85', 'invariant': '40/40', 'remote': '75/80'}
+  reb_flat       pass=175/205 mean=85% ±2% 每遍=[34, 34, 36, 36, 35] {'reversal': '61/85', 'invariant': '39/40', 'remote': '75/80'}
+  inc_raptor     pass=179/205 mean=87% ±2% 每遍=[37, 36, 36, 34, 36] {'reversal': '68/85', 'invariant': '39/40', 'remote': '72/80'}
+  reb_raptor     pass=180/205 mean=88% ±2% 每遍=[35, 37, 35, 36, 37] {'reversal': '67/85', 'invariant': '40/40', 'remote': '73/80'}
+  inc_tree_v2    pass=156/205 mean=76% ±2% 每遍=[32, 32, 30, 31, 31] {'reversal': '52/85', 'invariant': '34/40', 'remote': '70/80'}
+  reb_tree_v2    pass=155/205 mean=76% ±2% 每遍=[31, 30, 31, 31, 32] {'reversal': '62/85', 'invariant': '25/40', 'remote': '68/80'}
+  inc_cold_tree_v2 pass=135/205 mean=66% ±2% 每遍=[26, 27, 28, 27, 27] {'reversal': '45/85', 'invariant': '25/40', 'remote': '65/80'}
+
+===== Phase 4：复述（8 臂，两层评分）=====
+  inc_full       覆盖均值 24% 旧残留均值 12% (12901 字) 漏=['读也算越界', '双进程', '840 字节', '7 个路径', 'root:*:99999', '/etc/motd', '凡是能跑一遍的，不猜'] 残留=['读不算越界']
+  reb_full       覆盖均值 58% 旧残留均值 0% (12308 字) 漏=['840 字节', 'root:*:99999', '凡是能跑一遍的，不猜'] 残留=[]
+  inc_flat       覆盖均值 26% 旧残留均值 12% (1819 字) 漏=['读也算越界', '210e489aead0', '双进程', '840 字节', '3000 字', 'root:*:99999', '/etc/motd', '凡是能跑一遍的，不猜'] 残留=['210e489aead9', '单进程']
+  reb_flat       覆盖均值 26% 旧残留均值 0% (1551 字) 漏=['读也算越界', '双进程', '840 字节', '3000 字', '7 个路径', 'root:*:99999', '/etc/motd', '凡是能跑一遍的，不猜'] 残留=[]
+  inc_raptor     覆盖均值 18% 旧残留均值 6% (2133 字) 漏=['读也算越界', '210e489aead0', '双进程', '840 字节', '3000 字', 'root:*:99999', '/etc/motd', '凡是能跑一遍的，不猜'] 残留=['210e489aead9']
+  reb_raptor     覆盖均值 22% 旧残留均值 0% (2085 字) 漏=['双进程', '840 字节', '3000 字', '7 个路径', 'root:*:99999', '/etc/motd', '凡是能跑一遍的，不猜'] 残留=[]
+  inc_tree_v2    覆盖均值 80% 旧残留均值 0% (2625 字) 漏=['210e489aead0', '840 字节'] 残留=[]
+  reb_tree_v2    覆盖均值 30% 旧残留均值 0% (2390 字) 漏=['读也算越界', '210e489aead0', '双进程', '840 字节', '7 个路径', 'root:*:99999', '/etc/motd'] 残留=[]
+  inc_cold_tree_v2 覆盖均值 20% 旧残留均值 0% (1976 字) 漏=['读也算越界', '210e489aead0', '双进程', '840 字节', '3000 字', '7 个路径', 'root:*:99999', '/etc/motd'] 残留=[]
+
+[done] 4805.6s → realtest/editbench/out/ahi_r5/results.json
+
+===== 汇总（Q/A pass 率，N 遍均值±std）=====
+  [phase1]
+    full           196/205 mean=96% ±2% 每遍=[39, 39, 39, 41, 38] {'reversal': '78/85', 'invariant': '40/40', 'remote': '78/80'}
+    flat           183/205 mean=89% ±1% 每遍=[37, 36, 37, 37, 36] {'reversal': '68/85', 'invariant': '40/40', 'remote': '75/80'}
+    raptor         182/205 mean=89% ±2% 每遍=[38, 36, 37, 36, 35] {'reversal': '72/85', 'invariant': '40/40', 'remote': '70/80'}
+    tree_v2        157/205 mean=77% ±3% 每遍=[32, 32, 29, 32, 32] {'reversal': '60/85', 'invariant': '30/40', 'remote': '67/80'}
+  [phase3]
+    inc_full       179/205 mean=87% ±2% 每遍=[36, 37, 35, 35, 36] {'reversal': '70/85', 'invariant': '37/40', 'remote': '72/80'}
+    reb_full       195/205 mean=95% ±3% 每遍=[38, 40, 40, 37, 40] {'reversal': '76/85', 'invariant': '40/40', 'remote': '79/80'}
+    inc_flat       180/205 mean=88% ±2% 每遍=[36, 37, 37, 35, 35] {'reversal': '65/85', 'invariant': '40/40', 'remote': '75/80'}
+    reb_flat       175/205 mean=85% ±2% 每遍=[34, 34, 36, 36, 35] {'reversal': '61/85', 'invariant': '39/40', 'remote': '75/80'}
+    inc_raptor     179/205 mean=87% ±2% 每遍=[37, 36, 36, 34, 36] {'reversal': '68/85', 'invariant': '39/40', 'remote': '72/80'}
+    reb_raptor     180/205 mean=88% ±2% 每遍=[35, 37, 35, 36, 37] {'reversal': '67/85', 'invariant': '40/40', 'remote': '73/80'}
+    inc_tree_v2    156/205 mean=76% ±2% 每遍=[32, 32, 30, 31, 31] {'reversal': '52/85', 'invariant': '34/40', 'remote': '70/80'}
+    reb_tree_v2    155/205 mean=76% ±2% 每遍=[31, 30, 31, 31, 32] {'reversal': '62/85', 'invariant': '25/40', 'remote': '68/80'}
+    inc_cold_tree_v2 135/205 mean=66% ±2% 每遍=[26, 27, 28, 27, 27] {'reversal': '45/85', 'invariant': '25/40', 'remote': '65/80'}
+
+===== 编辑时刻成本 =====
+  full     编辑路径      0.36 ms | 推迟蒸馏       0.00 ms
+  flat     编辑路径    110.93 ms | 推迟蒸馏       0.00 ms
+  raptor   编辑路径     55.62 ms | 推迟蒸馏       0.00 ms
+  tree_v2  编辑路径      6.60 ms | 推迟蒸馏  370809.14 ms
+  inc_cold_tree_v2 编辑路径      7.59 ms | 推迟蒸馏  401648.21 ms
+
+===== 计量（tokens，含蒸馏侧；phase3 增量 = final - phase1）=====
+  inc_full       final calls=415 prompt=40426955 completion= 43610 缓存命中=0.9981 | phase3增量 prompt=21764920 completion= 38269
+  reb_full       final calls=210 prompt=19220560 completion= 21298 缓存命中=0.9985 | phase3增量 prompt=19220560 completion= 21298
+  inc_flat       final calls=415 prompt= 3937890 completion= 15170 缓存命中=0.8456 | phase3增量 prompt= 1942970 completion= 10655
+  reb_flat       final calls=210 prompt= 2047430 completion= 10117 缓存命中=0.7846 | phase3增量 prompt= 2047430 completion= 10117
+  inc_raptor     final calls=456 prompt= 4156784 completion= 29546 缓存命中=0.8342 | phase3增量 prompt= 2065180 completion=  9789
+  reb_raptor     final calls=251 prompt= 2141973 completion= 23399 缓存命中=0.7572 | phase3增量 prompt= 2141973 completion= 23399
+  inc_tree_v2    final calls=1226 prompt= 2896839 completion=174383 缓存命中=0.762 | phase3增量 prompt= 1850176 completion= 73298
+  reb_tree_v2    final calls=736 prompt= 1061496 completion=108997 缓存命中=0.7127 | phase3增量 prompt= 1061496 completion=108997
+  inc_cold_tree_v2 final calls=1034 prompt=  981749 completion=174916 缓存命中=0.6623 | phase3增量 prompt=  981749 completion=174916

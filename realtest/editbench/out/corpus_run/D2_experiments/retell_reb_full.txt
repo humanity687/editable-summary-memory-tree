@@ -1,0 +1,3 @@
+文档中无此信息。
+
+（说明：提供的上下文均为实验报告、bench 设计与分析文档，不含可复述的叙事性“文档全文”——没有统一的人物、地点、物品、事件顺序与结局。仅在 `realtest/editbench/EXPERIMENT_REPORT.md` 中提到一部剧本文档《沙箱四声》及其试跑数据，但未给出其剧情内容；`realtest/chatbench` 与 `ahi-multi` 涉及 agent 青/蓝/墨/白、澜/林深/neutral 等的实验记录，也非一份可复述的完整故事文本。）

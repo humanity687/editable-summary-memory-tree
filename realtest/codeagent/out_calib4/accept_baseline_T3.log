@@ -1,0 +1,2 @@
+action types: ['message', 'code']
+FAIL: 未闭合代码块被当作可执行代码

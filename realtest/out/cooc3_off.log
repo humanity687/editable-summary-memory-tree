@@ -1,0 +1,81 @@
+[Phase 0] 2 篇 / 51 段 / 498 原子, 节点 71, 高 7, 预算 12000
+[a_pre] layer a
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  a_pre a1: d/h/a=000 shadows=6 hub=0
+  a_pre a2: d/h/a=101 shadows=8 hub=0
+  a_pre a3: d/h/a=101 shadows=8 hub=0
+  a_pre a4: d/h/a=101 shadows=7 hub=0
+  a_pre a5: d/h/a=101 shadows=7 hub=0
+  a_pre a6: d/h/a=101 shadows=10 hub=0
+  a_pre a7: d/h/a=101 shadows=9 hub=0
+  a_pre a8: d/h/a=101 shadows=7 hub=0
+  a_pre a9: d/h/a=101 shadows=4 hub=0
+  a_pre a10: d/h/a=101 shadows=7 hub=0
+  a_pre a11: d/h/a=100 shadows=9 hub=0
+  a_pre a12: d/h/a=000 shadows=6 hub=0
+[b_pre] layer b
+  b_pre b1: d/h/a=000 shadows=7 hub=0
+  b_pre b2: d/h/a=000 shadows=8 hub=0
+  b_pre b3: d/h/a=000 shadows=7 hub=0
+  b_pre b4: d/h/a=000 shadows=7 hub=0
+  b_pre b5: d/h/a=000 shadows=8 hub=0
+  b_pre b6: d/h/a=000 shadows=6 hub=0
+  b_pre b7: d/h/a=000 shadows=7 hub=0
+  b_pre b8: d/h/a=100 shadows=6 hub=0
+  b_pre b9: d/h/a=000 shadows=8 hub=0
+  b_pre b10: d/h/a=101 shadows=6 hub=0
+  b_pre b11: d/h/a=000 shadows=6 hub=0
+  b_pre b12: d/h/a=000 shadows=6 hub=0
+[summarize] 预热 6 轮；本轮新建 0，概括节点 0
+[a_post] layer a
+  a_post a1: d/h/a=000 shadows=6 hub=0
+  a_post a2: d/h/a=101 shadows=6 hub=0
+  a_post a3: d/h/a=101 shadows=6 hub=0
+  a_post a4: d/h/a=101 shadows=6 hub=0
+  a_post a5: d/h/a=101 shadows=6 hub=0
+  a_post a6: d/h/a=101 shadows=6 hub=0
+  a_post a7: d/h/a=101 shadows=6 hub=0
+  a_post a8: d/h/a=101 shadows=6 hub=0
+  a_post a9: d/h/a=101 shadows=6 hub=0
+  a_post a10: d/h/a=101 shadows=6 hub=0
+  a_post a11: d/h/a=100 shadows=6 hub=0
+  a_post a12: d/h/a=001 shadows=6 hub=0
+[b_post] layer b
+  b_post b1: d/h/a=000 shadows=6 hub=0
+  b_post b2: d/h/a=000 shadows=6 hub=0
+  b_post b3: d/h/a=000 shadows=6 hub=0
+  b_post b4: d/h/a=000 shadows=6 hub=0
+  b_post b5: d/h/a=000 shadows=6 hub=0
+  b_post b6: d/h/a=000 shadows=6 hub=0
+  b_post b7: d/h/a=000 shadows=6 hub=0
+  b_post b8: d/h/a=100 shadows=6 hub=0
+  b_post b9: d/h/a=000 shadows=6 hub=0
+  b_post b10: d/h/a=101 shadows=6 hub=0
+  b_post b11: d/h/a=000 shadows=6 hub=0
+  b_post b12: d/h/a=000 shadows=6 hub=0
+  d d1: d/h/a=000 shadows=6 hub=0
+  d d2: d/h/a=101 shadows=6 hub=0
+  d d3: d/h/a=101 shadows=6 hub=0
+  d d4: d/h/a=101 shadows=6 hub=0
+  d d5: d/h/a=101 shadows=6 hub=0
+  d d6: d/h/a=101 shadows=5 hub=0
+[layer c] 编辑跨接
+  c c1: d/h/a=100 shadows=4 hub=0
+  c c2: d/h/a=101 shadows=5 hub=0
+  c c3: d/h/a=101 shadows=5 hub=0
+  c c4: d/h/a=100 shadows=4 hub=0
+  c c5: d/h/a=101 shadows=6 hub=0
+  c c6: d/h/a=101 shadows=6 hub=0
+
+===== 结果 (pre → post) =====
+  a: direct 0.833→0.833  hub 0.0→0.0  answer 0.75→0.833
+  b: direct 0.167→0.167  hub 0.0→0.0  answer 0.083→0.083
+  c/d: answer 0.667 / 0.833
+
+产出目录: realtest/out/cooc3_off

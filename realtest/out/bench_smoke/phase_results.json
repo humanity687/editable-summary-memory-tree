@@ -1,0 +1,60 @@
+{
+ "1a": [
+  {
+   "id": "F01",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F02",
+   "retrieval_hit": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F03",
+   "retrieval_hit": true,
+   "answer_hit": true,
+   "score": "1/1"
+  },
+  {
+   "id": "F04",
+   "retrieval_hit": true,
+   "answer_hit": false,
+   "score": "0/2"
+  }
+ ],
+ "1b": [
+  {
+   "id": "F05",
+   "used_recall": false,
+   "answer_hit": false,
+   "score": "0/1"
+  },
+  {
+   "id": "F06",
+   "used_recall": false,
+   "answer_hit": false,
+   "score": "0/2"
+  }
+ ],
+ "2": [
+  {
+   "edit": "rename",
+   "verify_ok": true,
+   "edits_done": 2
+  },
+  {
+   "edit": "rename",
+   "verify_ok": false,
+   "edits_done": 4
+  },
+  {
+   "edit": "rename",
+   "verify_ok": true,
+   "edits_done": 6
+  }
+ ],
+ "3": []
+}

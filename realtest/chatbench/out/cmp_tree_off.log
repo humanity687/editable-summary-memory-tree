@@ -1,0 +1,22 @@
+[tree_off] 716 条消息 / 289666 字
+  [tree] loaded 9553 atoms
+  [tree] msg 映射：命中 9553，未命中 0
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  [tree] W done, atoms=9553 nodes=912 cooc=0
+  T2 t2_part: cite={'citations': 19, 'valid_ids': 19, 'bad': [], 'quoted': 19, 'quote_in_cited': 2, 'quotes_total': 42, 'quote_any': 11, 'chars': 1660}
+  T2 t2_persona: cite={'citations': 19, 'valid_ids': 19, 'bad': [], 'quoted': 18, 'quote_in_cited': 7, 'quotes_total': 60, 'quote_any': 7, 'chars': 1991}
+  T2 t2_converge: cite={'citations': 16, 'valid_ids': 16, 'bad': [], 'quoted': 15, 'quote_in_cited': 9, 'quotes_total': 37, 'quote_any': 16, 'chars': 1343}
+  T2 t2_problems: cite={'citations': 13, 'valid_ids': 13, 'bad': [], 'quoted': 13, 'quote_in_cited': 3, 'quotes_total': 31, 'quote_any': 12, 'chars': 1420}
+  T3 t3_1: recall×0 cite={'citations': 8, 'valid_ids': 8, 'bad': [], 'quoted': 8, 'quote_in_cited': 0, 'quotes_total': 13, 'quote_any': 3, 'chars': 598}
+  T3 t3_2: recall×0 cite={'citations': 6, 'valid_ids': 6, 'bad': [], 'quoted': 6, 'quote_in_cited': 2, 'quotes_total': 19, 'quote_any': 8, 'chars': 562}
+  T3 t3_3: recall×0 cite={'citations': 8, 'valid_ids': 8, 'bad': [], 'quoted': 8, 'quote_in_cited': 6, 'quotes_total': 14, 'quote_any': 11, 'chars': 677}
+  T3 t3_4: recall×0 cite={'citations': 1, 'valid_ids': 1, 'bad': [], 'quoted': 1, 'quote_in_cited': 1, 'quotes_total': 1, 'quote_any': 1, 'chars': 89}
+  T3 t3_5: recall×0 cite={'citations': 6, 'valid_ids': 6, 'bad': [], 'quoted': 6, 'quote_in_cited': 5, 'quotes_total': 13, 'quote_any': 6, 'chars': 647}
+  T3 t3_6: recall×0 cite={'citations': 6, 'valid_ids': 6, 'bad': [], 'quoted': 6, 'quote_in_cited': 6, 'quotes_total': 25, 'quote_any': 7, 'chars': 728}
+[tree_off] done 235.0s → realtest/chatbench/out/cmp_tree_off

@@ -1,0 +1,23 @@
+{
+ "玉坠": {
+  "key": "玉坠",
+  "kind": "state",
+  "content": "已由玉器铺伙计送至顾七娘手中，雕鲤鱼，尾刻“顾”字，附黄纸写“腊月初八，井底取物”，其父亡于腊月初八",
+  "status": "current",
+  "updated_round": 0
+ },
+ "当物人": {
+  "key": "当物人",
+  "kind": "state",
+  "content": "戴旧毡帽、声音沙哑、左腿微跛，身份不明，留话“井底的东西，不是不响，是还没到响的时候”",
+  "status": "current",
+  "updated_round": 0
+ },
+ "枯井": {
+  "key": "枯井",
+  "kind": "state",
+  "content": "去年冬天响过一次后沉寂，现因玉坠与黄纸重提，疑与顾父之死有关",
+  "status": "current",
+  "updated_round": 0
+ }
+}

@@ -1,0 +1,46 @@
+[parallel] scenario=D2_experiments out=/Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D2_experiments repeats=5 tree=16000 retr=20 flat_topk=60 raptor_topk=60 extras=--splitter line --judge
+[launch] full pid=35775 → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D2_experiments/full.log
+[launch] flat pid=35776 → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D2_experiments/flat.log
+[launch] raptor pid=35777 → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D2_experiments/raptor.log
+[launch] tree_v2 pid=35778 → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D2_experiments/tree_v2.log
+[ok] full
+[ok] flat
+[ok] raptor
+[ok] tree_v2
+[merged] 4 份 → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D2_experiments/results.json
+
+===== 合并汇总（Q/A pass 率）=====
+  [phase1]
+    full             72/100 mean=72% ±4% 每遍=[14, 14, 14, 14, 16] {'reversal': '30/40', 'append': '10/10', 'invariant': '5/20', 'remote': '27/30'}
+    flat             55/100 mean=55% ±3% 每遍=[11, 12, 10, 11, 11] {'reversal': '23/40', 'append': '10/10', 'invariant': '6/20', 'remote': '16/30'}
+    raptor           59/100 mean=59% ±2% 每遍=[11, 12, 12, 12, 12] {'reversal': '24/40', 'append': '10/10', 'invariant': '5/20', 'remote': '20/30'}
+    tree_v2          58/100 mean=58% ±4% 每遍=[13, 11, 12, 11, 11] {'reversal': '24/40', 'append': '10/10', 'invariant': '1/20', 'remote': '23/30'}
+  [phase3]
+    inc_full         72/100 mean=72% ±10% 每遍=[12, 12, 16, 15, 17] {'reversal': '36/40', 'append': '10/10', 'invariant': '9/20', 'remote': '17/30'}
+    reb_full         67/100 mean=67% ±5% 每遍=[13, 15, 14, 13, 12] {'reversal': '27/40', 'append': '10/10', 'invariant': '7/20', 'remote': '23/30'}
+    inc_flat         44/100 mean=44% ±2% 每遍=[9, 9, 9, 9, 8] {'reversal': '20/40', 'append': '10/10', 'invariant': '5/20', 'remote': '9/30'}
+    reb_flat         54/100 mean=54% ±2% 每遍=[11, 10, 11, 11, 11] {'reversal': '28/40', 'append': '5/10', 'invariant': '10/20', 'remote': '11/30'}
+    inc_raptor       49/100 mean=49% ±2% 每遍=[10, 10, 10, 9, 10] {'reversal': '14/40', 'append': '10/10', 'invariant': '10/20', 'remote': '15/30'}
+    reb_raptor       44/100 mean=44% ±5% 每遍=[7, 9, 10, 9, 9] {'reversal': '21/40', 'append': '6/10', 'invariant': '4/20', 'remote': '13/30'}
+    inc_tree_v2      34/100 mean=34% ±5% 每遍=[6, 8, 8, 6, 6] {'reversal': '17/40', 'append': '5/10', 'invariant': '0/20', 'remote': '12/30'}
+    reb_tree_v2      38/100 mean=38% ±4% 每遍=[7, 7, 9, 8, 7] {'reversal': '20/40', 'append': '10/10', 'invariant': '1/20', 'remote': '7/30'}
+    inc_cold_tree_v2 16/100 mean=16% ±2% 每遍=[3, 4, 3, 3, 3] {'reversal': '5/40', 'append': '5/10', 'invariant': '0/20', 'remote': '6/30'}
+
+===== 复述（覆盖/残留）=====
+  inc_full         覆盖=48% 残留=60% 漏=['0.66–0.76/0.66', '1.06M', '2.6mm', 'ABSENCE_INBOX_CAP=10/积压上限', '3.4×/3.4倍', '1.9h/1.9 小时', '226 轮', '109.0k', '43.6k', '21.3k', '634s', '251 次', '4805.6s', '0.998/缓存命中率']
+  reb_full         覆盖=76% 残留=0% 漏=['3721 原子', '压缩是花成本的', '526 节点/节点数', '2.6mm']
+  inc_flat         覆盖=9% 残留=11% 漏=['ChunkArm', '4320s', '3721 原子', '182.6k', '明显变差', '压缩是花成本的', '编辑失效机制可用', '0.31%', '0.873', '526 节点/节点数', '0.66–0.76/0.66', '1.06M', '2.6mm', '0.9975/缓存命中', '1.54M', '0.85M', 'ABSENCE_INBOX_CAP=10/积压上限', '1.9h/1.9 小时', '226 轮', '109.0k', '43.6k', '21.3k', '634s', '251 次', '4805.6s', '0.998/缓存命中率', '2.05M']
+  reb_flat         覆盖=5% 残留=0% 漏=['ChunkArm', '4320s', '3721 原子', '182.6k', '明显变差', '压缩是花成本的', '编辑失效机制可用', '0.31%', '0.873', '526 节点/节点数', '0.66–0.76/0.66', '1.06M', '2.6mm', '0.9975/缓存命中', '1.54M', '0.85M', 'ABSENCE_INBOX_CAP=10/积压上限', '3.4×/3.4倍', '1.9h/1.9 小时', '226 轮', '109.0k', '43.6k', '21.3k', '634s', '251 次', '4805.6s', '0.998/缓存命中率', '2.05M']
+  inc_raptor       覆盖=10% 残留=13% 漏=['ChunkArm', '4320s', '3721 原子', '182.6k', '明显变差', '压缩是花成本的', '编辑失效机制可用', '0.31%', '0.873', '526 节点/节点数', '0.66–0.76/0.66', '1.06M', '2.6mm', '0.9975/缓存命中', '1.54M', '0.85M', 'ABSENCE_INBOX_CAP=10/积压上限', '1.9h/1.9 小时', '226 轮', '109.0k', '43.6k', '21.3k', '634s', '251 次', '4805.6s', '0.998/缓存命中率', '2.05M']
+  reb_raptor       覆盖=4% 残留=0% 漏=['ChunkArm', 'layerscore.py', '4320s', '3721 原子', '182.6k', '明显变差', '压缩是花成本的', '编辑失效机制可用', '0.31%', '0.873', '526 节点/节点数', 'tiling 18/铺陈', '0.66–0.76/0.66', '1.06M', '2.6mm', '0.9975/缓存命中', '1.54M', '0.85M', 'ABSENCE_INBOX_CAP=10/积压上限', '3.4×/3.4倍', '1.9h/1.9 小时', '226 轮', '109.0k', '43.6k', '21.3k', '634s', '251 次', '4805.6s', '0.998/缓存命中率', '2.05M']
+  inc_tree_v2      覆盖=25% 残留=0% 漏=['ChunkArm', '3721 原子', '182.6k', '明显变差', '压缩是花成本的', '编辑失效机制可用', '0.873', '526 节点/节点数', 'tiling 18/铺陈', '0.66–0.76/0.66', '1.06M', '2.6mm', '1.54M', '0.85M', 'ABSENCE_INBOX_CAP=10/积压上限', '1.9h/1.9 小时', '226 轮', '109.0k', '43.6k', '21.3k', '2.05M']
+  reb_tree_v2      覆盖=14% 残留=0% 漏=['ChunkArm', 'layerscore.py', '4320s', '3721 原子', '182.6k', '明显变差', '压缩是花成本的', '编辑失效机制可用', '0.873', '526 节点/节点数', 'tiling 18/铺陈', '0.66–0.76/0.66', '1.06M', '2.6mm', '0.9975/缓存命中', '1.54M', '0.85M', 'ABSENCE_INBOX_CAP=10/积压上限', '3.4×/3.4倍', '1.9h/1.9 小时', '226 轮', '109.0k', '43.6k', '21.3k', '4805.6s', '0.998/缓存命中率', '2.05M']
+  inc_cold_tree_v2 覆盖=11% 残留=0% 漏=['ChunkArm', 'layerscore.py', '4320s', '3721 原子', '182.6k', '明显变差', '压缩是花成本的', '编辑失效机制可用', '0.873', '526 节点/节点数', 'tiling 18/铺陈', '0.66–0.76/0.66', '1.06M', '2.6mm', '0.9975/缓存命中', '1.54M', '0.85M', 'ABSENCE_INBOX_CAP=10/积压上限', '3.4×/3.4倍', '1.9h/1.9 小时', '226 轮', '109.0k', '43.6k', '21.3k', '4805.6s', '0.998/缓存命中率', '2.05M']
+
+===== 编辑时刻成本 =====
+  full           编辑路径      0.22 ms | 推迟蒸馏       0.00 ms
+  flat           编辑路径    102.75 ms | 推迟蒸馏       0.00 ms
+  raptor         编辑路径    115.94 ms | 推迟蒸馏       0.00 ms
+  tree_v2        编辑路径      2.51 ms | 推迟蒸馏   37725.86 ms
+  inc_cold_tree_v2 编辑路径      2.50 ms | 推迟蒸馏   55803.35 ms
+[done] → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D2_experiments/results.json

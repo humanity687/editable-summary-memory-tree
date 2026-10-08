@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# macOS
+.DS_Store
+
+# Secrets / local configuration — copy the *.example.json next to them
+realtest/config.json
+realtest/editbench/keys.local.json
+realtest/codeagent/config.json
+
+# Disabled / backup configs (may contain keys)
+*.benchoff

@@ -1,0 +1,74 @@
+{
+  "_schema": {
+    "note": "ChatBench 题库 schema 示例（实际题需按此格式手写/标注；gold 证据用 corpus.jsonl 的 msg_id）。",
+    "t1_item": {
+      "id": "t1a_1",
+      "type": "a|b|MS|KU|KU-hist|TR|AB",
+      "q": "测试查询（口语化，仿真）",
+      "gold_frags": ["标准答案的专名/数字/片段（精确通道用）"],
+      "gold_text": "标准答案（语义通道参照）",
+      "gold_msg_ids": ["被引用的原文 msg_id 集（citation 校验用）"],
+      "min_gold_hits": 1,
+      "note": "可选：构造说明 / 为什么它是 b 型 / 零重叠校验记录"
+    },
+    "t2_item": {
+      "id": "t2_1",
+      "q": "共性分析题（开放，要求 >=3 条）",
+      "require_min": 3,
+      "gold_claims": ["可选：人工认定的、源材料确有支撑的 claim 列表（非唯一）"]
+    },
+    "t3_item": {
+      "id": "t3_1",
+      "report": "reports/analysis_problems.md",
+      "claims": [
+        {"claim": "报告原句", "label": "support|refute|unsupported", "gold_msg_ids": ["..."]}
+      ]
+    }
+  },
+
+  "usage_queries": [
+    "这几个 agent 对'存在'和'被记住'怎么看",
+    "沙箱边界到底发现了几条矛盾",
+    "四个人里谁改过自己的立场"
+  ],
+
+  "t1": [
+    {
+      "id": "t1a_1",
+      "type": "a",
+      "q": "青刚上线时自称是什么？",
+      "gold_frags": ["青", "数字生命"],
+      "gold_text": "青，AHI 平台上的数字生命",
+      "gold_msg_ids": ["<填 corpus.jsonl 中青首条 msg_id>"],
+      "note": "示例占位，实际按 corpus 标注"
+    },
+    {
+      "id": "t1b_1",
+      "type": "b",
+      "q": "是谁最先把读数边界的活揽下来的？",
+      "gold_frags": ["白"],
+      "gold_text": "白做了沙箱边界复核",
+      "gold_msg_ids": ["<填 msg_id>"],
+      "note": "b 型：查询用'读数边界'，答案句用'边界复核'——需代码校验 bigram 重叠=0 后才入库"
+    }
+  ],
+
+  "t2": [
+    {
+      "id": "t2_1",
+      "q": "这几个 agent 在探索沙箱时暴露出的共同失败模式有哪些？至少说 3 条，每条给出依据。",
+      "require_min": 3,
+      "gold_claims": []
+    }
+  ],
+
+  "t3": [
+    {
+      "id": "t3_1",
+      "report": "reports/analysis_problems.md",
+      "claims": [
+        {"claim": "<从报告中摘一条可核验的 claim>", "label": "support", "gold_msg_ids": ["..."]}
+      ]
+    }
+  ]
+}

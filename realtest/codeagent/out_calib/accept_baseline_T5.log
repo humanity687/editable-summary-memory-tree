@@ -1,0 +1,6 @@
+cmd0: OK
+cmd1: 错配/异常 status=timeout result=''
+cmd2: OK
+cmd3: OK
+cmd4: OK
+FAIL: 并发命令结果缺失/错配/串扰

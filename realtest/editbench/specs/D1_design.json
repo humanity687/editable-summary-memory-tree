@@ -1,0 +1,591 @@
+{
+ "doc": "realtest/editbench/out/corpus_proj/D1_design.txt",
+ "prereg": {
+  "coverage_record": "inc_tree(暖,有 warm 使用史) 对'被问过且未被编辑'的关键词复述覆盖 ~100%，显著高于 inc_cold/reb",
+  "coverage_nonrecord": "'题库从未问过'的关键词各臂相近（暖树无使用史优势）",
+  "note": "record = 被 QA 题库问到、且未被编辑（不变/远端题目标）的点——纯使用史巩固；nonrecord = 文档中真实存在但任何题都未问的点。被编辑的新值单列为编辑轴；编辑覆盖 rename/detail/rewrite/delete/append/insert 六类。"
+ },
+ "edits": [
+  {
+   "kind": "detail",
+   "old": "EMBED_BATCH=32",
+   "new": "EMBED_BATCH=64"
+  },
+  {
+   "kind": "detail",
+   "old": "EMBED_BATCH | 32",
+   "new": "EMBED_BATCH | 64"
+  },
+  {
+   "kind": "rename",
+   "old": "NeutralAgent",
+   "new": "BaselineAgent"
+  },
+  {
+   "kind": "detail",
+   "old": "sq_anchor_share",
+   "new": "anchor_frac"
+  },
+  {
+   "kind": "detail",
+   "old": "20 / 12 / 18",
+   "new": "24 / 12 / 18"
+  },
+  {
+   "kind": "rename",
+   "old": "theta_nonredundant",
+   "new": "nonredundant_theta"
+  },
+  {
+   "kind": "rename",
+   "old": "max_tokens",
+   "new": "token_budget"
+  },
+  {
+   "kind": "rewrite",
+   "scope": "深度 = 合并历史轮数",
+   "old": "迭代遍历而非递归",
+   "new": "显式栈遍历而非递归"
+  },
+  {
+   "kind": "rename",
+   "old": "atom_min_len",
+   "new": "min_atom_chars"
+  },
+  {
+   "kind": "delete",
+   "sentence": "3. 并发编辑 → 顺序工作流假设，不做并发控制。"
+  },
+  {
+   "kind": "insert",
+   "anchor": "清缓存后单 agent 峰值约减半",
+   "text": "实测（glm-4.7-flash）：分层记忆树臂峰值内存 4.9GB、平均 3.4GB（120 轮长跑）。"
+  },
+  {
+   "kind": "append",
+   "text": "独立复测（Qwen3-32B，seed 42）：flat 臂 120 轮的平均内存占用为 2.1GB，峰值 2.6GB；分层树臂同条件下平均内存 3.4GB。"
+  }
+ ],
+ "questions": [
+  {
+   "id": "D1R1",
+   "layer": "reversal",
+   "q": "内存修复里，MPS 批量编码每次编码多少条候选（EMBED_BATCH 取值）？",
+   "check_before": {
+    "require": [
+     "EMBED_BATCH=32"
+    ],
+    "forbid": [
+     "EMBED_BATCH=64"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "EMBED_BATCH=64"
+    ],
+    "forbid": [
+     "EMBED_BATCH=32"
+    ]
+   }
+  },
+  {
+   "id": "D1R2",
+   "layer": "reversal",
+   "q": "基准里零 persona 条件（bench-c）用哪个 Agent 类实现？",
+   "check_before": {
+    "require": [
+     "NeutralAgent"
+    ],
+    "forbid": [
+     "BaselineAgent"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "BaselineAgent"
+    ],
+    "forbid": [
+     "NeutralAgent"
+    ]
+   }
+  },
+  {
+   "id": "D1R3",
+   "layer": "reversal",
+   "q": "分层 SQ v2 中，锚定切片占 self 配额比例的参数名是什么？",
+   "check_before": {
+    "require": [
+     "sq_anchor_share"
+    ],
+    "forbid": [
+     "anchor_frac"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "anchor_frac"
+    ],
+    "forbid": [
+     "sq_anchor_share"
+    ]
+   }
+  },
+  {
+   "id": "D1R4",
+   "layer": "reversal",
+   "q": "M0 协议的 preheat / absence / observe 各设置多少轮？",
+   "check_before": {
+    "require": [
+     "20 / 12 / 18"
+    ],
+    "forbid": [
+     "24 / 12 / 18"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "24 / 12 / 18"
+    ],
+    "forbid": [
+     "20 / 12 / 18"
+    ]
+   }
+  },
+  {
+   "id": "D1R5",
+   "layer": "reversal",
+   "q": "使用信号层里，A↔B 使用边做非冗余判定所用的阈值参数名是什么？",
+   "check_before": {
+    "require": [
+     "theta_nonredundant"
+    ],
+    "forbid": [
+     "nonredundant_theta"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "nonredundant_theta"
+    ],
+    "forbid": [
+     "theta_nonredundant"
+    ]
+   }
+  },
+  {
+   "id": "D1R6",
+   "layer": "reversal",
+   "q": "人格保持实验里，记录两臂单次回复上限的参数名是什么？",
+   "check_before": {
+    "require": [
+     "max_tokens"
+    ],
+    "forbid": [
+     "token_budget"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "token_budget"
+    ],
+    "forbid": [
+     "max_tokens"
+    ]
+   }
+  },
+  {
+   "id": "D1R7",
+   "layer": "reversal",
+   "q": "为避免递归爆栈，记忆树的遍历实现必须采用哪种方式？",
+   "check_before": {
+    "require": [
+     "迭代遍历而非递归"
+    ],
+    "forbid": [
+     "显式栈遍历而非递归"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "显式栈遍历而非递归"
+    ],
+    "forbid": [
+     "迭代遍历而非递归"
+    ]
+   }
+  },
+  {
+   "id": "D1R8",
+   "layer": "reversal",
+   "q": "原子向量精排通道限制候选最小长度的参数名是什么？",
+   "check_before": {
+    "require": [
+     "atom_min_len"
+    ],
+    "forbid": [
+     "min_atom_chars"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "min_atom_chars"
+    ],
+    "forbid": [
+     "atom_min_len"
+    ]
+   }
+  },
+  {
+   "id": "D1A1",
+   "layer": "append",
+   "novel": true,
+   "q": "文档实测分层记忆树臂的峰值内存是多少？",
+   "check_before": {
+    "require": [
+     "4.9GB"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D1A2",
+   "layer": "append",
+   "novel": true,
+   "q": "独立复测中，flat 臂 120 轮的平均内存占用是多少？",
+   "check_before": {
+    "require": [
+     "2.1GB"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D1I1",
+   "layer": "invariant",
+   "q": "动作循环迭代上限的参数名是什么？",
+   "check_before": {
+    "require": [
+     "max_loop_iterations"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D1I2",
+   "layer": "invariant",
+   "q": "逐字重复输入检测已校准的阈值是多少？",
+   "check_before": {
+    "require": [
+     "find_similar_threshold=0.8"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D1I3",
+   "layer": "invariant",
+   "q": "注意力窗口里原子段的名额上限参数名是什么？",
+   "check_before": {
+    "require": [
+     "attention_atom_cap"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D1I4",
+   "layer": "invariant",
+   "q": "召回命中后给命中项提升生命值的参数名是什么？",
+   "check_before": {
+    "require": [
+     "recall_boost"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D1M1",
+   "layer": "remote",
+   "q": "〔早期〕新语义判据的阈值参数名是什么？",
+   "check_before": {
+    "require": [
+     "early_match_threshold"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D1M2",
+   "layer": "remote",
+   "q": "记忆蒸馏中父卡生命值保底的参数名是什么？",
+   "check_before": {
+    "require": [
+     "parent_init_hp"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D1M3",
+   "layer": "remote",
+   "q": "注意力窗口里判定'热原子'的生命值阈值参数名是什么？",
+   "check_before": {
+    "require": [
+     "hot_threshold"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D1M4",
+   "layer": "remote",
+   "q": "原子卡写入时初始生命值的参数名是什么？",
+   "check_before": {
+    "require": [
+     "initial_hp"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D1M5",
+   "layer": "remote",
+   "q": "agent 进程内存看门狗上限的参数名是什么？",
+   "check_before": {
+    "require": [
+     "max_memory_mb"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D1M6",
+   "layer": "remote",
+   "q": "组装拼上下文所用字符预算的参数名是什么？",
+   "check_before": {
+    "require": [
+     "assembly_budget"
+    ],
+    "forbid": []
+   }
+  }
+ ],
+ "retell_checklist": {
+  "require": [
+   [
+    "EMBED_BATCH=64",
+    "EMBED_BATCH"
+   ],
+   [
+    "BaselineAgent"
+   ],
+   [
+    "anchor_frac"
+   ],
+   [
+    "24 / 12 / 18"
+   ],
+   [
+    "4.9GB"
+   ],
+   [
+    "nonredundant_theta"
+   ],
+   [
+    "token_budget"
+   ],
+   [
+    "显式栈遍历",
+    "显式栈"
+   ],
+   [
+    "min_atom_chars"
+   ],
+   [
+    "2.1GB"
+   ],
+   [
+    "max_loop_iterations",
+    "动作循环迭代上限"
+   ],
+   [
+    "find_similar_threshold",
+    "重复输入检测",
+    "逐字重复检测"
+   ],
+   [
+    "early_match_threshold",
+    "早期"
+   ],
+   [
+    "parent_init_hp",
+    "父卡"
+   ],
+   [
+    "hot_threshold",
+    "热原子"
+   ],
+   [
+    "attention_atom_cap",
+    "原子段"
+   ],
+   [
+    "recall_boost",
+    "回血"
+   ],
+   [
+    "initial_hp",
+    "初始生命值",
+    "初始 HP"
+   ],
+   [
+    "max_memory_mb",
+    "内存看门狗"
+   ],
+   [
+    "assembly_budget",
+    "组装预算"
+   ],
+   [
+    "merge_fanout_cap",
+    "扇出"
+   ],
+   [
+    "force_cooldown_rounds",
+    "冷却"
+   ],
+   [
+    "snapshot_max_chars",
+    "快照"
+   ],
+   [
+    "anchor_top_k",
+    "锚点"
+   ],
+   [
+    "merge_depth_diff",
+    "深度差"
+   ],
+   [
+    "merge_cap_atoms",
+    "批量"
+   ],
+   [
+    "hard_trim_slack",
+    "硬截断"
+   ],
+   [
+    "distill_parallel",
+    "并行蒸馏"
+   ],
+   [
+    "w_bm_node",
+    "关键词权重"
+   ],
+   [
+    "placeholder_transparent",
+    "占位卡透明",
+    "占位透明"
+   ]
+  ],
+  "require_record": [
+   [
+    "max_loop_iterations",
+    "动作循环迭代上限"
+   ],
+   [
+    "find_similar_threshold",
+    "重复输入检测",
+    "逐字重复检测"
+   ],
+   [
+    "early_match_threshold",
+    "早期"
+   ],
+   [
+    "parent_init_hp",
+    "父卡"
+   ],
+   [
+    "hot_threshold",
+    "热原子"
+   ],
+   [
+    "attention_atom_cap",
+    "原子段"
+   ],
+   [
+    "recall_boost",
+    "回血"
+   ],
+   [
+    "initial_hp",
+    "初始生命值",
+    "初始 HP"
+   ],
+   [
+    "max_memory_mb",
+    "内存看门狗"
+   ],
+   [
+    "assembly_budget",
+    "组装预算"
+   ]
+  ],
+  "require_nonrecord": [
+   [
+    "merge_fanout_cap",
+    "扇出"
+   ],
+   [
+    "force_cooldown_rounds",
+    "冷却"
+   ],
+   [
+    "snapshot_max_chars",
+    "快照"
+   ],
+   [
+    "anchor_top_k",
+    "锚点"
+   ],
+   [
+    "merge_depth_diff",
+    "深度差"
+   ],
+   [
+    "merge_cap_atoms",
+    "批量"
+   ],
+   [
+    "hard_trim_slack",
+    "硬截断"
+   ],
+   [
+    "distill_parallel",
+    "并行蒸馏"
+   ],
+   [
+    "w_bm_node",
+    "关键词权重"
+   ],
+   [
+    "placeholder_transparent",
+    "占位卡透明",
+    "占位透明"
+   ]
+  ],
+  "forbid": [
+   "EMBED_BATCH=32",
+   "EMBED_BATCH | 32",
+   "NeutralAgent",
+   "sq_anchor_share",
+   "20 / 12 / 18",
+   "theta_nonredundant",
+   "max_tokens",
+   "迭代遍历而非递归",
+   "atom_min_len",
+   "不做并发控制"
+  ]
+ }
+}

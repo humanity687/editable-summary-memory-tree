@@ -1,0 +1,37 @@
+{
+ "玉坠": {
+  "key": "玉坠",
+  "kind": "state",
+  "content": "已由刘三昌夜送顾七娘，背面刻“井底三尺，欠债还钱”，系顾七娘爹遗留",
+  "status": "current",
+  "updated_round": 0
+ },
+ "刘三昌": {
+  "key": "刘三昌",
+  "kind": "state",
+  "content": "夜访告诫“别再往井里看”，知玉坠来历但不愿言明",
+  "status": "current",
+  "updated_round": 0
+ },
+ "枯井": {
+  "key": "枯井",
+  "kind": "state",
+  "content": "石板下三更传出极轻声响，疑似旧声重现",
+  "status": "current",
+  "updated_round": 0
+ },
+ "半张契纸": {
+  "key": "半张契纸",
+  "kind": "state",
+  "content": "刘三昌自芦苇滩井中油布包取出，带画押，系贺家另笔二百两私借凭据，已交七娘收好",
+  "status": "current",
+  "updated_round": 7
+ },
+ "半页纸": {
+  "key": "半页纸",
+  "kind": "state",
+  "content": "七娘回城后交玉器铺伙计贴身收存，约定若明日出不了文盛号，即送白杨庄邵记染坊老妇",
+  "status": "current",
+  "updated_round": 8
+ }
+}

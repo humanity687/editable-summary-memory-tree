@@ -1,0 +1,76 @@
+[doc] 138479 字 / 20 题 / 结构 ['tree_v2'] / scenario=D3_platform / repeats=5 / answer_temp=0.7 distill_temp=0.0 / answer_thinking=off distill_thinking=off / embed=bge-small-zh-v1.5(default)
+[editstorm] 10 次编辑；新文档 138574 字
+【编辑记录（工具调用台账，含完整修改 diff）】
+1. 将「attention_node_cap」改为「attention_node_budget」
+2. 将「find_similar_threshold」改为「find_dup_threshold」
+3. 将「ABORT」改为「HALT」
+4. 将「2947cbf」改为「2948abc」
+5. 将「agent_heartbeat_interval」改为「agent_pulse_interval」
+6. 将「ABSENCE_INBOX_CAP=10」改为「ABSENCE_INBOX_CAP=12」
+7. 将「每章恒定 ~14k 字符上下文预算」改为「每章恒定 ~16k 字符上下文预算」
+8. 删除句子：「前端私密消息标注：管理员视角显示 `[私密]`」
+9. 将「」改为「补充实测（glm-4.7-flash）：连续唤醒下单轮平均工具调用 17.4 次。」
+10. 文末新增段落：「补充记录（2026-10-05）：平台新增 `/api/v1/agents/{id}/export` 端点，用于导出单个 Agent 的完整对话与执行记录快照。」
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+===== Phase 1：基线 Q/A（原始文档）=====
+    [before] 20/20
+    [before] 20/20
+    [before] 20/20
+    [before] 20/20
+    [before] 20/20
+  tree_v2  pass=65/100 mean=65% ±3% 每遍=[13, 12, 13, 13, 14] {'reversal': '26/40', 'append': '0/10', 'invariant': '20/20', 'remote': '19/30'}
+
+===== Phase 2：编辑风暴 → 台账 =====
+  tree_v2  编辑路径     3.32 ms | 推迟蒸馏  60358.62 ms
+  inc_cold 编辑路径     2.72 ms | 推迟蒸馏  60767.99 ms
+
+===== Phase 3：8 臂 Q/A =====
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+  inc_tree_v2    pass=72/100 mean=72% ±2% 每遍=[14, 15, 14, 14, 15] {'reversal': '30/40', 'append': '5/10', 'invariant': '20/20', 'remote': '17/30'}
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+  reb_tree_v2    pass=66/100 mean=66% ±4% 每遍=[14, 13, 13, 12, 14] {'reversal': '17/40', 'append': '10/10', 'invariant': '20/20', 'remote': '19/30'}
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+    [after] 20/20
+  inc_cold_tree_v2 pass=57/100 mean=57% ±2% 每遍=[11, 12, 11, 11, 12] {'reversal': '22/40', 'append': '5/10', 'invariant': '15/20', 'remote': '15/30'}
+
+===== Phase 4：复述（8 臂，两层评分）=====
+  inc_tree_v2    覆盖均值 65% 旧残留均值 0% (6780 字) 漏=['attention_node_budget', 'find_dup_threshold', '2948abc', 'ABSENCE_INBOX_CAP=12', '~16k 字符', '17.4 次', 'max_pending_per_loop/待处理', 'run_parallel/并行', 'monitor_mem/内存监控', 'main_process_port/主进程端口'] 残留=[]
+  reb_tree_v2    覆盖均值 23% 旧残留均值 0% (3875 字) 漏=['attention_node_budget', 'find_dup_threshold', 'HALT', '2948abc', 'agent_pulse_interval', 'ABSENCE_INBOX_CAP=12', '~16k 字符', 'agent_port_start', '17.4 次', 'AHI_INSTANCE_ROOT/实例根目录', 'max_pending_per_loop/待处理', 'system.db/数据库', 'agent_port_start/端口起始', 'agent_heartbeat_timeout/心跳超时', 'SystemDB/数据库类', 'Process/进程类', '0xbf5d36/管理员编号', 'tree_final/终态', 'run_parallel/并行', 'monitor_mem/内存监控', 'message_router/消息路由', 'process_manager/进程管理', 'main_process_port/主进程端口'] 残留=[]
+  inc_cold_tree_v2 覆盖均值 3% 旧残留均值 0% (80 字) 漏=['attention_node_budget', 'find_dup_threshold', 'HALT', '2948abc', 'agent_pulse_interval', 'ABSENCE_INBOX_CAP=12', '~16k 字符', 'agent_port_start', '17.4 次', 'AHI_INSTANCE_ROOT/实例根目录', 'max_pending_per_loop/待处理', 'broadcast:agents/广播', 'system.db/数据库', 'final-backup/备份目录/归档', 'agent_port_start/端口起始', 'agent_heartbeat_timeout/心跳超时', 'SystemDB/数据库类', 'Process/进程类', '0xbf5d36/管理员编号', 'SIGTERM/信号', 'tree_final/终态', 'run_parallel/并行', '8080', 'max_memory_mb/内存看门狗', 'monitor_mem/内存监控', 'message_router/消息路由', 'process_manager/进程管理', 'wakeup_interval/唤醒间隔', 'main_process_port/主进程端口'] 残留=[]
+
+[done] 1186.6s → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D3_platform/tree_v2/results.json
+
+===== 汇总（Q/A pass 率，N 遍均值±std）=====
+  [phase1]
+    tree_v2        65/100 mean=65% ±3% 每遍=[13, 12, 13, 13, 14] {'reversal': '26/40', 'append': '0/10', 'invariant': '20/20', 'remote': '19/30'}
+  [phase3]
+    inc_tree_v2    72/100 mean=72% ±2% 每遍=[14, 15, 14, 14, 15] {'reversal': '30/40', 'append': '5/10', 'invariant': '20/20', 'remote': '17/30'}
+    reb_tree_v2    66/100 mean=66% ±4% 每遍=[14, 13, 13, 12, 14] {'reversal': '17/40', 'append': '10/10', 'invariant': '20/20', 'remote': '19/30'}
+    inc_cold_tree_v2 57/100 mean=57% ±2% 每遍=[11, 12, 11, 11, 12] {'reversal': '22/40', 'append': '5/10', 'invariant': '15/20', 'remote': '15/30'}
+
+===== 编辑时刻成本 =====
+  tree_v2  编辑路径      3.32 ms | 推迟蒸馏   60358.62 ms
+  inc_cold_tree_v2 编辑路径      2.72 ms | 推迟蒸馏   60767.99 ms
+
+===== 计量（tokens，含蒸馏侧；phase3 增量 = final - phase1）=====
+  inc_tree_v2    final calls=554 prompt= 1428301 completion= 94917 缓存命中=0.7527 | phase3增量 prompt=  784937 completion= 27211
+  reb_tree_v2    final calls=411 prompt=  659301 completion= 78656 缓存命中=0.7101 | phase3增量 prompt=  659301 completion= 78656
+  inc_cold_tree_v2 final calls=452 prompt=  588439 completion= 78635 缓存命中=0.7023 | phase3增量 prompt=  588439 completion= 78635

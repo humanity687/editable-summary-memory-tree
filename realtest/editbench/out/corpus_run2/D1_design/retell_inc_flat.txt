@@ -1,0 +1,33 @@
+文档主题：分层记忆树 v2——参考资料上下文管理运行时（设计规格，AGENTS.md 为唯一设计权威，状态 2026-10-04）。核心思想四条：位置有序的记忆树（原子卡=句，稳定 ID + 顺序链表，摘要卡按连续区间自底向上合并）、分辨率随热度变化（近处全分辨率原文，远处降为各级摘要）、区间失效 + 懒重建（编辑覆盖区间精确失效，脏卡立即排除出查询，重建推迟到蒸馏时机，零 LLM 即时编辑路径）、不可遗忘的事实层（笔记本无衰减、全量存储、按需注入）。
+
+架构：三轨记忆——轨道A 小说内容（记忆树 + 原子层 + 归档/版本谱系）、轨道B 笔记本（常驻约束/状态条目/调度条目）、轨道C 讨论内容（工具组压缩卡，自然遗忘）。轨道B 无 HP、无衰减、存储全量，遗忘=吃书不允许；注入=去重发送；状态条目按当前章节目标提取实体精确选取注入，禁止全局 HP 排序注入。
+
+关键机制与参数：原子卡句粒度，`atoms.prev_id/next_id` 双向链表（piece-table，墓碑，不做全局坐标平移），禁止用 ID 大小判断区间。摘要卡字段 id/parent_id/span_first_atom/span_last_atom/content/hp/dirty/placeholder/version。HP 每轮减 `decay`；注意力窗口 `attention_atom_cap`=40 + `attention_node_cap`=20（各自独立按 HP 排名）；`attention_out`=45.0（出窗阈值）；`attention_in_decay`=0.5；`attention_out_decay`=3.0（仅原子，节点出窗=decay）；`merge_pressure_threshold`=20；`force_cooldown_rounds`=8；`hp_merge_threshold`、`merge_depth_diff`（按秩合并，防梳子退化）；`max_pending_per_loop`=3、`max_code_per_loop`=4、`distill_parallel`=4、`snapshot_every_rounds`=20；cap 80 / expand_char_cap 3000 / max_hp 150；`assembly_budget`=16000（tree 与 flat 硬裁对齐）；`retrieval_budget`=6 = flat `top_k`=6，编码器同 `bge-small-zh-v1.5`（400 字 chunk）。
+
+核心不变量：干净节点⇒区间内原子全存活且内容未变；脏节点不参与任何读操作；原子卡永不为脏；铺陈（clean tiling）无重叠无缝隙铺满全文；子节点区间并集 ⊆ 父区间，merge 父节点子区间恰好拼满。
+
+编辑与失效：确定性句级 diff（LCS/Myers，不用 LLM）算变更区间→墓碑化旧原子→新文本按句建新原子插入链表→收养（两侧边界原子 owner 链最深公共祖先 LCA 作父节点）。回滚=逆向应用增量，走同一路径。
+
+人格锚点自蒸馏（2026-10-02 拍定，2026-10-03 改检索化）：动机是 PR 实验中 tree 用中性蒸馏器（`style_alpha`=0）蒸掉风格载体导致淡出后趋同（共享仪式语，实测 `灯亮着` tree 1054 / flat 56）。锚点来源硬约束全部自产、禁用初始 persona_block：①稳定自述锚点（`snapshot_every_rounds` 轮自生成自由文本快照，用检索到的自身样本重生成，旧快照作弱参考有长度上限，不字段级累积）；②内容相关锚点（从 source=="ai" 原话原子 + 摘要节点整卡含【注】，按与当前待蒸馏内容的语义/词面混合检索挑 top-k，`retrieve_style_samples`，节点命中可选 `expand_self_atoms`）。替换了旧的"最近 6 句 recency 池"。prompt `SUMMARIZE_FACT_STYLED` 允许改措辞/展开顺序/重心，禁止新增或改变事件、数字、专名、归属；【注】独立生成但不渲染给模型。节点摘要进上层蒸馏携带【事实】+【注】。差集索引行 `〔另有N条未展开〕`（`_uncovered_count`）不再生成/渲染。
+
+self_quota（2026-10-04，默认关的实验操控）：组装层"自我可见性地板"，保证 source=="ai" 原话（不含 persona/tool/他人）占组装预算 ≥ `self_quota_ratio`（cap `self_quota_max`）；trim 后补足，位置序注入（kind=`self_quota`，复用 core `_shadow_slot`，渲染成正常自身发言段 `▸〔名字〕`，非"召回"标注）。相关参数 `anchor_frac`/`sq_onset_agent`=0.4 / per-agent(18/5/15)，分层 SQ v2 见 §4.5.10 续 / `PERSONA_RETENTION §10.3.2`：锚定切片（`created_round < onset` 的 alive 自产原话）占 self 配额比例 / 各 agent 首染 onset（审计①定，clean=round<onset）。
+
+两臂定义：`分层树`（tree 臂，rolling + 记忆树）vs `rolling+flat`（flat 臂，flat RAG 400 字 chunk / top_k=6 + 每轮 auto-preretrieve + persona 淡出入）。tree 有 LLM 中性摘要 + 人格锚点自蒸馏、原地失效 + 注意力窗口；flat 无蒸馏、无失效/注意力。工具提示词 tree_tools（@note/@recall/@ingest）与 baseline_note 同款（recall=RAG 检索、ingest=读文件分块）。公平对称硬约束：recall 预算、auto-preretrieve、硬字符预算同量级、persona 淡出逐字对齐、锚点只用自产材料、禁止任何一臂注入初始 persona_block、消息信封对齐（两臂都发 [system, user] 两条原生消息，对话历史压成单条 user 文本 transcript，发言者用 `▸〔名字〕` 标注，不出现 `▸〔ai〕`/`[user:xxx]`/`[agent:xxx]` 混用）。
+
+人格集 3 份冻结（来源旧 ahi-multi，去掉工具/机制说明与互指，两臂共用同一 3 份 persona_block）：P1 林深（深度思考者，理性冷静内省，语言简洁有力绝不啰嗦）、P2 墨白（数字世界的一抹白色，诗意灵动敏感温暖）、P3 澜（健谈外向，探索欲强，重视记忆，轻松直接带活泼幽默）。解耦动作写死进 provision：删除墨白原文"与林深共生/林深是你的同伴"等互指；删除澜原文 tree 工具行；工具说明统一放 §4 public 提示词。
+
+协议参数（冻结）：wakeup_interval 30s；preheat/absence/observe = 20/12/18 轮（110 轮 ≈ 55min）；冷轮缺席顺序 bench-a→bench-b→bench-c（Round1），热轮反序 c→b→a（Round2，平衡文化累积顺序效应）；seed 42；话题池 12 题；survey 4 题每 10 轮；热探针 3 句缺席期每 3 轮发留守者；注入通道 inject API（user:experimenter）；B 移除在 agent 内轮 40；缺席模式 alone（唯一主力），halt 为可选对照；被测温度 0.7（三 agent 同，判卷 0）；judge 模型 `glm-4.7-flash`，thinking 开，温度 0；总轮数 120–180（fade 40；首轮 120，第二轮 180 ≈1.5h）。
+
+指标与预注册判据：趋同（主）= 臂内 3 人格两两 bigram Jaccard / 词汇分布 KL 的淡出后斜率（10 分钟窗口），预注册 `slope_tree < slope_baseline`；一致性（主）= judge(pro+thinking) 逐消息判是否符合初始人格的淡出后遵从率，预注册 `adhere_tree >`。机械 gate G1 隔离无泄漏等，任一失败该 run 作废。
+
+M-PR 人格保持实验结论：pr6_sq（tree-s42，120 轮）H-SQ1/3/4 达标、H-SQ2 未达标（回声风险实体化）。四判据裁决表：conv slope(all) pr5 tree +0.0313、pr5_neutral +0.0422、pr6_sq −0.0011（H-SQ3 ✓）；conv slope(to_user) +0.0215 / +0.0443 / +0.0118；遵从率 early/mid/late pr5 .959/.875/.773、pr5_neutral .709/.581/—、pr6_sq .857/.739/.600（H-SQ2 ✗）；diversity top5/ttr pr6_sq .014/…。关键发现：①调节变量=人格-语域兼容性，臂均值不可解释——同一机制 p1 0.250、p2/p3 1.000，澜的"主动确认与复述重要细节"使"约定一字没改"人格相容（judge 放行），对"绝不啰嗦"的林深是人格违背（judge 判 drift），按人格分报必须是标准报告单元；②时序证据：出厂即锁定非渐进劣化，early 段已低于 pr5（.857 vs .959），差距全程近似恒定，污染在 fade 前已就位（pr5 套语扩散 09:16–09:24，fade 09:54）；③H-SQ3 需修正；④套语密度 8.8‰/8.4‰、诗意标记 1.1‰/1.4‰ 与 p1 判 drift 的 8.2‰ 同档，而 pre-fade 自产套语仅 1.6–3.3‰，judge 放行重度仪式语发言，构念效度需补丁；⑤审计③（pr5 self 时代分布）未获支持，子串匹配法不可靠（短句误配），需换 atom-ID 埋点复核。
+
+经验定律「策展定律」（2026-10-04，M-PR 三次重复）：`pr2` rece…（原文截断）。反面教材（2026-08-29 一天实验）：节点不受注意力保护→统一快衰减→9 轮归零→无限上并→99% 历史压进 1-5 个大节点（组装退化成"两段式"）；教训：对象类别之间衰减待遇不对称会杀死层级涌现。设计原则：简洁（机制少、语义单一、一机制服务多类对象）、涌现（目标特性从机制交互自然出现）、判据（硬规则是最后手段，先调参数、再推广既有机制、最后写死特判）。
+
+通用化映射：一句话概述→全局摘要；卷/章→结构单元；beat（叙事节拍）→内容块；伏笔（调度条目）→跨区引用账本；角色状态（状态条目）→事实条目；章节目标（扰动源）→当前任务目标。
+
+每章流程：目标进入（章节目标写入扰动源，含本章出场实体列表驱动轨道B选取）→预检索（章目标→全树 top-k + 逐字通道）→分阶段写作循环（write_stage 段落流粒度每句原子卡 / rewrite·edit / recall / ask 用户反馈→protected 卡）→章末（merge pass 蒸馏 + 脏重建、事实校验对账、版本快照 commit）。初始化：世界观→常驻约束、大纲→结构单元、角色→状态条目、伏笔→调度条目、详细参考资料→按句切分初始原子卡 + 笔记本条目。
+
+测试与基准：属性测试含标记完备性、铺陈不变量、编辑边界穷举（书首插入/书尾追加/整块替换/整块删除/跨多节点编辑/区间内含早先中插的编辑/编辑后立即查询盲区声明）、区间覆盖、回滚对称性。基准三组对比（全量发送/摘要拼接/本设计）：长程一致性（固定大纲写 N 章建议 20→续写第 N+1 章→检测对第 1 章伏笔/角色引用正确率）、状态一致性（注入角色改名/死亡/改名恢复）、token 计量、人类找茬（读 10 章找连续性 bug）。
+
+实现状态与步骤：2026-10-02 已实现 `FlatRAGAgent`；桩 `core.py` + `realengine.py`，`tests/` 303 全绿。Step 1 原子层 + 顺序链表 + 确定性句级 diff + 编辑路径（必须先于一切，正确性押在这里）；Step 2 铺陈计算 + 组装；Step 3 HP/衰减/merge pass；Step 4 检索；Step 5 轨道B 笔记本。运行命令示例：`--manifest ahi-bench/out/glm-4.7-flash/pr2/manifest.json --judge-cap 40`，`--cutoff-api` 只评首条 429/402 之前的干净窗口；产物在 `ahi-bench/out/<tier>/<namespace>/<inst_id>/`（timeline / events / system.db / 树或 RAG 快照 / tree_final）+ manifest.json / pr_score.json，运行前建议整体备份（backups/）。硬性纪律：组装=纯计算（零 LLM），LLM 只允许出现在 merge 蒸馏、脏节点重建、章末事实校验、初始化对话、检索摘要生成；所有参数先拍后调，校准结果写回 §11 参数台账。使用信号层共现类型：A 先验（写入时，已裁剪）、B1 组装/注入共现、B3 引用共现（本层=B3 扩展，输出切句匹配）、B5 编辑共现、C 元认知（LLM 主动 recall，已证趋零，降级为可选补充）。M0（SPEC.md）测人格支撑梯度（A/B/C），context_compare 是架构×人格支撑 2×2、4 agent、单 run、无 flat RAG 臂、无趋同主指标，本实验是其收敛版。

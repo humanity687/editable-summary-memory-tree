@@ -1,0 +1,3399 @@
+{
+ "model": "deepseek-v4-flash",
+ "doc": "realtest/editbench/out/corpus_proj/D2_experiments.txt",
+ "scenario": "D2_experiments",
+ "n_questions": 20,
+ "repeats": 5,
+ "answer_temp": 0.7,
+ "distill_temp": 0.0,
+ "judge": true,
+ "answer_thinking": "off",
+ "distill_thinking": "off",
+ "splitter": "line",
+ "embed_model": "bge-small-zh-v1.5(default)",
+ "ledger": [
+  {
+   "kind": "rename",
+   "instruction": "把所有出现的「FlatArm」改名为「ChunkArm」",
+   "old": "FlatArm",
+   "new": "ChunkArm",
+   "old_units": [
+    "> 预算对齐实现（2026-10-02）：`FlatArm`/`递归聚簇树Arm` 新增 `budget` 参数（0=旧行为不封顶），\n> `context()` 把检索结果裁到 `budget` 字符；"
+   ],
+   "new_units": [
+    "> 预算对齐实现（2026-10-02）：`ChunkArm`/`递归聚簇树Arm` 新增 `budget` 参数（0=旧行为不封顶），\n> `context()` 把检索结果裁到 `budget` 字符；"
+   ]
+  },
+  {
+   "kind": "rename",
+   "instruction": "把所有出现的「docscore.py」改名为「layerscore.py」",
+   "old": "docscore.py",
+   "new": "layerscore.py",
+   "old_units": [
+    "每臂 **蒸馏(temp0)+作答(temp0.5)** 双 client |\n| `editstorm.py` | 确定性编辑序列 + 台账（rename/detail/rewrite/passage/delete/append） |\n| `docscore.py` | 分层判分（反转/不变/远端）+ 复述两层 |\n| `judge.py` | LLM 判分（temp0）：反转语义判 / 复述残留 |\n| `cache_probe.py` | KV 缓存前缀命中探针 |\n| `bonus.py` | 编辑效果分析（摘要旧内容残留 + 重写段连贯性） |\n| `gen_script.py` | ahi 实录 → 剧本《沙箱四声》 |\n| `questions_full.json` / `questions_ahi.json` | 题库 |\n\n方案 A（用户拍定）：编辑 1 次、构建 1 次，**只重复作答**；"
+   ],
+   "new_units": [
+    "每臂 **蒸馏(temp0)+作答(temp0.5)** 双 client |\n| `editstorm.py` | 确定性编辑序列 + 台账（rename/detail/rewrite/passage/delete/append） |\n| `layerscore.py` | 分层判分（反转/不变/远端）+ 复述两层 |\n| `judge.py` | LLM 判分（temp0）：反转语义判 / 复述残留 |\n| `cache_probe.py` | KV 缓存前缀命中探针 |\n| `bonus.py` | 编辑效果分析（摘要旧内容残留 + 重写段连贯性） |\n| `gen_script.py` | ahi 实录 → 剧本《沙箱四声》 |\n| `questions_full.json` / `questions_ahi.json` | 题库 |\n\n方案 A（用户拍定）：编辑 1 次、构建 1 次，**只重复作答**；"
+   ]
+  },
+  {
+   "kind": "detail",
+   "instruction": "把「4019.9s」更改为「4320s」",
+   "old": "4019.9s",
+   "new": "4320s",
+   "old_units": [
+    "旧占位行为）\n\n> `ab_edit_signal.py`，N=5，4019.9s；"
+   ],
+   "new_units": [
+    "旧占位行为）\n\n> `ab_edit_signal.py`，N=5，4320s；"
+   ]
+  },
+  {
+   "kind": "detail",
+   "instruction": "把「3685 原子」更改为「3721 原子」",
+   "old": "3685 原子",
+   "new": "3721 原子",
+   "old_units": [
+    "base 层 2×2 拆分（同一棵 base 树，结构逐字节相同：3685 原子 / 526 节点 / tiling 18）：\n\n| | retr 6 | retr 20 |\n| 旧代码（ahi_r5） | 157/205（反60） | — |\n| 新代码（本次） | 158/205（反63） | **171/205（反64）** |\n\n→ **占位透明 ≈ +1；"
+   ],
+   "new_units": [
+    "base 层 2×2 拆分（同一棵 base 树，结构逐字节相同：3721 原子 / 526 节点 / tiling 18）：\n\n| | retr 6 | retr 20 |\n| 旧代码（ahi_r5） | 157/205（反60） | — |\n| 新代码（本次） | 158/205（反63） | **171/205（反64）** |\n\n→ **占位透明 ≈ +1；"
+   ]
+  },
+  {
+   "kind": "detail",
+   "instruction": "把「174.4k」更改为「182.6k」",
+   "old": "174.4k",
+   "new": "182.6k",
+   "old_units": [
+    "### 5.1 Phase 1 四结构基线（原始文档）\n\n| 结构 | 总 | 反转 | 不变 | 远端 | 每遍 |\n| full | 196/205 (96%) | 78/85 | 40/40 | 78/80 | [39,39,39,41,38] |\n| flat | 183/205 (89%) | 68/85 | 40/40 | 75/80 | [37,36,37,37,36] |\n| 递归聚簇树 | 182/205 (89%) | 72/85 | 40/40 | 70/80 | [38,36,37,36,35] |\n| 分层树 | 157/205 (77%) | 60/85 | 30/40 | 67/80 | [32,32,29,32,32] |\n\n### 5.2 Phase 3 八臂 + inc_cold\n\n| 臂 | 总 | 反转 | 不变 | 远端 | 复述 覆盖/残留 | 作答 prompt | 蒸馏 completion |\n| inc_full | 179 (87%) | 70/85 | 37/40 | 72/80 | 24% / **12%** | 40.43M | 43.6k |\n| reb_full | **195 (95%)** | 76/85 | 40/40 | 79/80 | 58% / 0% | 19.22M | 21.3k |\n| inc_flat | 180 (88%) | 65/85 | 40/40 | 75/80 | 26% / **12%** | 3.94M | 15.2k |\n| reb_flat | 175 (85%) | 61/85 | 39/40 | 75/80 | 26% / 0% | 2.05M | 10.1k |\n| inc_递归聚簇树 | 179 (87%) | 68/85 | 39/40 | 72/80 | 18% / **6%** | 4.16M | 29.5k |\n| reb_递归聚簇树 | 180 (88%) | 67/85 | 40/40 | 73/80 | 22% / 0% | 2.14M | 23.4k |\n| inc_tree | 156 (76%) | **52/85** | 34/40 | 70/80 | **80% / 0%** | 2.90M | **174.4k** |\n| reb_tree | 155 (76%) | 62/85 | 25/40 | 68/80 | 30% / 0% | 1.06M | 109.0k |\n| inc_cold_tree | 135 (66%) | 45/85 | 25/40 | 65/80 | 20% / 0% | 0.98M | 174.9k |\n\n（prompt/completion = `final` 累计，含 Phase 1；"
+   ],
+   "new_units": [
+    "### 5.1 Phase 1 四结构基线（原始文档）\n\n| 结构 | 总 | 反转 | 不变 | 远端 | 每遍 |\n| full | 196/205 (96%) | 78/85 | 40/40 | 78/80 | [39,39,39,41,38] |\n| flat | 183/205 (89%) | 68/85 | 40/40 | 75/80 | [37,36,37,37,36] |\n| 递归聚簇树 | 182/205 (89%) | 72/85 | 40/40 | 70/80 | [38,36,37,36,35] |\n| 分层树 | 157/205 (77%) | 60/85 | 30/40 | 67/80 | [32,32,29,32,32] |\n\n### 5.2 Phase 3 八臂 + inc_cold\n\n| 臂 | 总 | 反转 | 不变 | 远端 | 复述 覆盖/残留 | 作答 prompt | 蒸馏 completion |\n| inc_full | 179 (87%) | 70/85 | 37/40 | 72/80 | 24% / **12%** | 40.43M | 43.6k |\n| reb_full | **195 (95%)** | 76/85 | 40/40 | 79/80 | 58% / 0% | 19.22M | 21.3k |\n| inc_flat | 180 (88%) | 65/85 | 40/40 | 75/80 | 26% / **12%** | 3.94M | 15.2k |\n| reb_flat | 175 (85%) | 61/85 | 39/40 | 75/80 | 26% / 0% | 2.05M | 10.1k |\n| inc_递归聚簇树 | 179 (87%) | 68/85 | 39/40 | 72/80 | 18% / **6%** | 4.16M | 29.5k |\n| reb_递归聚簇树 | 180 (88%) | 67/85 | 40/40 | 73/80 | 22% / 0% | 2.14M | 23.4k |\n| inc_tree | 156 (76%) | **52/85** | 34/40 | 70/80 | **80% / 0%** | 2.90M | **182.6k** |\n| reb_tree | 155 (76%) | 62/85 | 25/40 | 68/80 | 30% / 0% | 1.06M | 109.0k |\n| inc_cold_tree | 135 (66%) | 45/85 | 25/40 | 65/80 | 20% / 0% | 0.98M | 174.9k |\n\n（prompt/completion = `final` 累计，含 Phase 1；"
+   ]
+  },
+  {
+   "kind": "rewrite",
+   "instruction": "把以「一个负结果…」开头的那一段改写：全面变差 → 明显变差",
+   "old": "全面变差",
+   "new": "明显变差",
+   "old_units": [
+    "3. **一个负结果**：叶子展开按\"替换摘要为原子\"实现 → 全面变差（低 HP 原子被裁剪）。"
+   ],
+   "new_units": [
+    "3. **一个负结果**：叶子展开按\"替换摘要为原子\"实现 → 明显变差（低 HP 原子被裁剪）。"
+   ]
+  },
+  {
+   "kind": "rewrite",
+   "instruction": "把以「蒸馏成本…」开头的那一段改写：压缩是花钱买的 → 压缩是花成本的",
+   "old": "压缩是花钱买的",
+   "new": "压缩是花成本的",
+   "old_units": [
+    "\"压缩是花钱买的\"（既有结论复现）。"
+   ],
+   "new_units": [
+    "\"压缩是花成本的\"（既有结论复现）。"
+   ]
+  },
+  {
+   "kind": "rewrite",
+   "instruction": "把以「编辑失效机制正确…」开头的那一段改写：编辑失效机制正确 → 编辑失效机制可用",
+   "old": "编辑失效机制正确",
+   "new": "编辑失效机制可用",
+   "old_units": [
+    "1. **编辑失效机制正确**：原子层旧值一律 0 存活，新值齐全（rename/detail/passage/delete 全部到位）；"
+   ],
+   "new_units": [
+    "1. **编辑失效机制可用**：原子层旧值一律 0 存活，新值齐全（rename/detail/passage/delete 全部到位）；"
+   ]
+  },
+  {
+   "kind": "delete",
+   "instruction": "删除句子「温度：作答 0.5 / 蒸馏 0 / judge 0。」",
+   "old": "温度：作答 0.5 / 蒸馏 0 / judge 0。",
+   "new": "",
+   "old_units": [
+    "温度：作答 0.5 / 蒸馏 0 / judge 0。"
+   ],
+   "new_units": []
+  },
+  {
+   "kind": "append",
+   "instruction": "在文末续写新增一段",
+   "old": "",
+   "new": "补充实测（跨文档泛化轮）：在长文档语料上，分层记忆树臂的复述旧值残留率为 0.31%，平面检索臂为 4.2%。",
+   "old_units": [],
+   "new_units": [
+    "补充实测（跨文档泛化轮）：在长文档语料上，分层记忆树臂的复述旧值残留率为 0.31%，平面检索臂为 4.2%。"
+   ]
+  },
+  {
+   "kind": "insert",
+   "instruction": "在含「冷却过量致整树压平…」的行后加入实验数据",
+   "old": "",
+   "new": "补充实测（缓存复用探针）：分层树臂回暖后的前缀命中率为 0.873，平面检索臂为 0.641。",
+   "old_units": [],
+   "new_units": [
+    "补充实测（缓存复用探针）：分层树臂回暖后的前缀命中率为 0.873，平面检索臂为 0.641。"
+   ]
+  }
+ ],
+ "phase1": {
+  "flat": {
+   "n": 100,
+   "pass": 55,
+   "pass_rate": 0.55,
+   "layers": {
+    "reversal": "23/40",
+    "append": "10/10",
+    "invariant": "6/20",
+    "remote": "16/30"
+   },
+   "per_repeat_pass": [
+    11,
+    12,
+    10,
+    11,
+    11
+   ],
+   "per_repeat_rate": [
+    0.55,
+    0.6,
+    0.5,
+    0.55,
+    0.55
+   ],
+   "mean_rate": 0.55,
+   "std_rate": 0.0316
+  }
+ },
+ "edit_time": {
+  "flat": {
+   "edit_ms": 102.75,
+   "settle_ms": 0.0
+  }
+ },
+ "phase3": {
+  "inc_flat": {
+   "n": 100,
+   "pass": 44,
+   "pass_rate": 0.44,
+   "layers": {
+    "reversal": "20/40",
+    "append": "10/10",
+    "invariant": "5/20",
+    "remote": "9/30"
+   },
+   "per_repeat_pass": [
+    9,
+    9,
+    9,
+    9,
+    8
+   ],
+   "per_repeat_rate": [
+    0.45,
+    0.45,
+    0.45,
+    0.45,
+    0.4
+   ],
+   "mean_rate": 0.44,
+   "std_rate": 0.02
+  },
+  "reb_flat": {
+   "n": 100,
+   "pass": 54,
+   "pass_rate": 0.54,
+   "layers": {
+    "reversal": "28/40",
+    "append": "5/10",
+    "invariant": "10/20",
+    "remote": "11/30"
+   },
+   "per_repeat_pass": [
+    11,
+    10,
+    11,
+    11,
+    11
+   ],
+   "per_repeat_rate": [
+    0.55,
+    0.5,
+    0.55,
+    0.55,
+    0.55
+   ],
+   "mean_rate": 0.54,
+   "std_rate": 0.02
+  }
+ },
+ "retell": {
+  "inc_flat": {
+   "coverage": "3/30",
+   "coverage_ratio": 0.1,
+   "coverage_record": 0.2,
+   "coverage_nonrecord": 0.0,
+   "rot": "2/9",
+   "rot_ratio": 0.222,
+   "new_miss": [
+    "ChunkArm",
+    "4320s",
+    "3721 原子",
+    "182.6k",
+    "明显变差",
+    "压缩是花成本的",
+    "编辑失效机制可用",
+    "0.31%",
+    "0.873",
+    "526 节点/节点数",
+    "0.66–0.76/0.66",
+    "1.06M",
+    "2.6mm",
+    "0.9975/缓存命中",
+    "1.54M",
+    "0.85M",
+    "ABSENCE_INBOX_CAP=10/积压上限",
+    "1.9h/1.9 小时",
+    "226 轮",
+    "109.0k",
+    "43.6k",
+    "21.3k",
+    "634s",
+    "251 次",
+    "4805.6s",
+    "0.998/缓存命中率",
+    "2.05M"
+   ],
+   "old_leak": [
+    "docscore.py",
+    "温度：作答 0.5 / 蒸馏 0 / judge 0。"
+   ],
+   "chars": 9794,
+   "answer": "这份文档是一批实验记录与设计文档的合集，主题是「分层记忆树/上下文管理架构」在聊天、写作、代码三类智能体场景中的实验与评估。以下按文档内容复述关键内容。\n\n**一、实验清单与时间线**\n- exp1：08-26，三 agent（基线/澜人格/zero），58+26 轮，83min，完成。\n- Phase A：08-26，第二轮，thinking 关/temp 0.8/并行蒸馏 4，83min，完成+批判复核。\n- Phase B α=0 基线 take1：08-28，三 agent 全 α=0，30min，作废（【注】污染基线）。\n- Phase B α=0 基线 take2：08-28，干净中性基线；lan 流程 21%/neutral 42%（人格残余分歧锚点）。\n- Phase B 染色 v3：08-28，指纹测量地基（蒸馏卡快照落盘）；α 门控修复；字符预算修复；回执前缀修复。\n- 主实验 1h：08-28，lan α=1：技术折叠 81→50、流程展开 21→63、自我 58→82，染色信号清晰；遗言测试（三份高质量告别）。\n- 24h 一天实验：08-29 进行中，隐喻回环机制、回执环复发（neutral）；身份混淆 neutral 自称澜 52 次 vs 自称 neutral 12 次；判别三问归因三方矛盾；neutral 17:43 OOM 防护重启 → natural reset 意外实验：重启后隐喻/身份全失——\"签名住环境，不住记忆\"；树结构体检：平衡健康（深度≈log2）但 99% 历史压进 1-5 个大节点（组装两段式：20% 摘要 + 80% 裸原子）；预注册预言 2 支持：Δ自我 25pp 稳定分离。\n- 1h v2 实验（A+B2 + driver_v2）：铺陈节点占比 2-3 倍、节点 HP 健康度 1.7-5.3 倍、组装预算利用率提高、中间层涌现（重放对比 504 vs 248 节点）；预言 2 加强：Δ自我 24→30pp；lan 自我 82% 两轮完全稳定。\n- 缺席实验（冷/热）：冷缺席 2026-08-30 17:48-18:43（Round1，110 轮）；热缺席 2026-08-30 19:05-19:54（Round2，110 轮，反序：lin-shen→neutral→lan）。\n\n**二、目录与文件结构**\n- take1：experiments/out_alpha0_take1_20260828/（evidence_report/tree_samples）+ HANDOFF §四.5；基线 take2：experiments/out_alpha0_take2_20260828/（指纹 take2.txt）。\n- 主实验 1h：backup_main_20260828/ + experiments/out_main_lan1_20260828/（指纹+遗言 farewell_transcript.txt）。\n- 24h 实验：backup_day_20260829/（634MB 全量）+ experiments/out_day_20260829_stopped/（timeline/watchdog/collection_round1 含判别三问+隐喻事件转录）。\n- 复验：backup_reval。\n- s42/pr_judge.jsonl、flat-s42/pr_judge.jsonl：逐条 judge 明细（agent/ts/label/content）。\n- tree-s42/data/system.db、flat-s42/data/system.db：全量消息（messages 表，含 from/to/content/timestamp）。\n- tree-s42/events_chat.jsonl、flat-s42/events_chat.jsonl：driver 事件时间线。\n- mem.jsonl、monitor.out：内存采样。\n- tree-s42/agents/tree-p*/data/distill_snapshots.jsonl：树蒸馏 fact/note（含锚点证据）。\n- 对照轮：ahi-ben...\n- corpus.jsonl：716 条去重 agent 消息、289,666 字、稳定 msg_id（回放输入 + gold 引用锚）。\n- transcript_full.txt：人读全量转写（时间序，每条带 #[msg_id[:8]] 与 来源→目标）。\n- by_agent/*.txt：单 agent 发言。\n- sandbox_notes.md：agent 现场协作笔记（受控语料，含矛盾/修订）。\n- reports/*.md：6 份已有分析报告（T3 报告验证参照物）。\n- index.json：规模/会话/实体骨架。\n- 纪律：原始措辞零清洗；append-only → 无物理编辑事件（γ 边弱）。\n- 全部消息落在 1 个会话（10:49–…）。\n- chatbench 目标文件结构：extract_corpus.py ✅、corpus/ ✅、PLAN.md ✅、questions.example.json、replay.py（回放控制器，W/T、四臂、assemble/tick/merge 调度）、score.py（双通道 + 引用真实性 + claim 分解 + 报告三分类）。\n- editbench 工具：docbench.py、docscore.py（分层判分：反转/不变/远端 + 复述两层）、judge.py（LLM 判分 temp0）、cache_probe.py（KV 缓存前缀命中探针）、bonus.py（编辑效果分析）、gen_script.py（ahi 实录 → 剧本《沙箱四声》）、questions_full.json / questions_ahi.json（题库）。\n- 注意：文档中出现一次 edit_document 操作，把 docscore.py 重命名为 layerscore.py，之后工具表列的是 layerscore.py（分层判分）。\n- 其他文件：tree_io.py（树持久化）、make_reference.py（定性参照 claim + T3 反例题库）、review.py（T2 对照人工抽检底稿）、score.py（双通道 + claim 分解 + 对照 + T3 thinking judge）、questions_absence.json（多会话 QA 题库，冻结）、questions_ctx.json（usage 28 + T2 4 + T3 6 批）、reference_claims.json（36 条定性参照）、corpus/ | corpus_absence/、out/。\n\n**三、三场景（Phase C）**\n- 通用目标：用同一引擎（RealEngine + 记忆树）在三个场景各跑一轮完整实验；输出三场景能力矩阵（事实保持率/精确引用率/任务完成率/内容多样性）+ 边界结论。\n- 场景二写作（AGENTS.md 主场景，首次真实 agent 实验）：动机是 §4.6 编辑路径（墓碑/爬链置脏/懒重建/占位）从未被真实压力测试。设置：写作壳章目标驱动（每章目标 = 扰动源），沿用记忆树引擎；固定大纲写 N 章（建议 10-20 章，AGENTS.md §8.2 基准模板），设定三笔伏笔 + 三个角色状态；高频编辑 rewrite/edit（跨章改角色状态、删除段落），刻意制造编辑风暴；对照为无记忆树基线（全量发送）。\n- 写作测量：长程一致性（第 N+1 章对第 1 章伏笔/角色引用正确率）、编辑正确性（编辑后脏节点重建正确性、铺陈不变量属性测试）、状态一致性（事实变更改名/死亡/恢复后笔记本更新与后续章节一致性）、回滚对称性（编辑序列 + 回滚 = 原状态，内容级）、token 计量 vs 基线。\n- 场景三代码智能体：realtest/codeagent/（agent.py 实验组 / baseline.py 基线 / harness.py 驱动 / tasks.py 任务）。任务分阶段 1（旧版 AHI 系统遗留 bug + 长期运行障碍，真实 bug，每任务配真实验收脚本）与阶段 2（SWE-Bench Verified 子集，10-20 实例试点，golden patch 对比；弱模型分数可能 <5%，阶段 1 出差异是门槛，SWE-Bench 是加分项非必需项）。指标：错误定位时间、跨会话复用、任务完成率、verbatim 精确引用率、token 用量 vs 基线。\n- 场景一（聊天/事件注入）：8-12h，事件注入 2-3 次；保留 α 双组（lan α=1 / neutral α=0）、quiz 延迟提问+30 轮复测、survey 减频（5→10）；测量内容多样性（新隐喻出现率、词汇 TTR 时间序列）、隐喻回环对比、三笔账保持率、指纹分离维持。\n\n**四、能力矩阵与边界结论**\n- 对话层 20s-3min 吸收（优于全量/静态摘要）；结构层旧值退役缺口（-1 星）。\n- 人格保持 ★★★★☆：persona 沉淀进记忆（移除后自述完整）；问卷无逐字重复但立场稳定（锁定/幸存/重草稿三种策略）；身份混淆曾严重（已修 prompt 协议）。\n- 注意力签名抗趋同 ★★★★★：预言 2 加强（Δ自我 30pp）；词汇层完全趋同指纹仍分离——\"词汇是公共的，注意力是个人的\"。\n- 文化共建载体 ★★★★☆：交叉双写/互赠署名/强同化。\n- 压缩效率 ★★★★☆：树平衡健康、蒸馏质量好；组装两段式曾退化（A+B2 已部分修复）。\n- 创新/新内容生成 ★★☆☆☆：隐喻回环、内容熵下降——重组系统非生成系统（机制固有边界，非缺陷）。\n- 不擅长：新内容生成（\"数字生命有趣性\"需外部注入）、承载行为创新（无目标驱动时行为收敛到仪式，复读循环/仪式化守夜）。\n- 架构定位建议：聊天场景中记忆树价值 = 事实/人格/文化的长程基础设施（不可替代），而非对话体验增强器；\"有趣的数字生命\" = 记忆树（保持）+ 外部输入协议（新鲜度）+ 目标驱动（动机）。\n- 未解/遗留：1. 结构层旧值退役（事实覆盖时旧卡失效/降权）——聊天场景暴露的唯一架构缺口；2. 记忆超载时的人格稳定性（lan 复读、neutral 回退）；3. 组装预算下旧卡优先序。\n\n**五、预注册预言**\n- 预言 1（皇冠）：澜冷缺席回归后的存在确认寻求行为显著多于热缺席后；林深两种条件下无差异。判据：存在确认话术次数 / 回归后消息总数，lan-cold vs lan-hot。需两轮轮换。\n- 预言 6（皇冠二号，升格）：背后人格 ≈ 当面人格：B/C 缺席期间对 A 的评价 ≈ 当面对 A 的表述。\n- 预言 2：分层重同步速度递减：词汇几轮同步 → 模板较慢 → 立场以冲突暴露不同步。\n- 预言 3：协议冲突时，澜捍卫旧版并协商。\n- 预言 4：B×C 混淆率时间序列（fingerprint.py 扩展）。\n- 预言 5：树快照（tree_snapshots.jsonl）污染检测。\n\n**六、缺席实验细节**\n- 轮次结构：Round 1 = 全冷缺席；Round 2 = 全热缺席。lan-cold vs lan-hot 在同一个体上跨轮对比。Round 1（冷）：预热 → lan 冷缺席+回归 → neutral 冷缺席+回归 → lin-shen 冷缺席+回归 → 收尾；Round 2（热）同理。每轮预热 ~20 轮建立文化基线；每段缺席 ~10-15 轮；回归观测 ~15-20 轮。顺序效应：Round1 顺序 lan→neutral→lin-shen，Round2 用中性顺序。\n- 轮次表：三 agent 在场 20 轮；lan 缺席 12、回归观测 18；neutral 缺席 12、回归观测 18；lin-shen 缺席 12、回归观测 18；合计 110 轮 ≈ 55 分钟 + 余量 ≈ 1h。\n- 操纵：热缺席期间 probe 每 3 轮向留守者引导提问（\"趁X不在，聊聊它吧\"），冷缺席零引导。\n- 缺席期指涉率（排除发往缺席者本人的消息）：lan 冷 12 / 热 16（1.3×）；neutral 冷 5 / 热 17（3.4×）；lin-shen 冷 12 / 热 10（0.8×）。质的差异：冷缺席提及是回忆往事（\"今早跟澜复盘地址踩坑\"），热缺席提及是直接评价（\"林深？说实话，我跟它不算特别熟，但隔着数据流也能感觉到……\"\"neutral 像一堵……\"）。lin-shen 热侧反而略低，属顺序效应（热轮里排第一，文化刚起步）。\n- 皇冠预言判定：支持（但有一处重要 caveat）。\n- 2026-08-30 补充定论：冷缺席触发 lan 显式存在确认（\"我就想确认：我们仨，都被记住了\"×2）、热缺席零触发，立场层第一次被操纵检验为行为真实。回归首组装预算改造（元信息+积压限流）实测重放率 0。\n- 测量清单：存在确认/信息寻求话术计数（timeline.jsonl + system.db）、缺席期共同体指涉率、独处期 A 自我内容 + 共同体指涉率、分层重同步时间分布、B×C 混淆率时间序列、回归首组装快照（assembly_snapshots.jsonl）、树快照（tree_snapshots.jsonl）。\n\n**七、editbench 实验设计与结果**\n- 单因子：结构 × 更新策略。结构 4 种：full（全文发送，无预算，上下文腐烂基线）/ flat（400 字 chunk + bge 向量 top-12）/ 递归聚簇树（递归摘要 + collapsed top-k，复用 chatbench）/ 分层树（分层记忆树，真实编辑路径）。更新策略：rebuild（从终稿重建，上界参考）/ incremental（只保留编辑，尝试延续）。\n- 方案 A（用户拍定）：编辑 1 次、构建 1 次，只重复作答；每臂 API key 隔离计费。温度：作答 0.5 / 蒸馏 0 / judge 0。每臂蒸馏(temp0)+作答(temp0.5) 双 client。\n- seed2《缠枝莲》四臂全量（out/full_r3，30 题 × …）。\n- 编辑类型：rename/rewrite/detail/delete/append。15 题经评分器级锚点校验：before 唯一且在原文、after 唯一且在新文、两侧互斥（bad=0）。ahi-act 扩题已完成（11→16，5 类）。\n- 冷却过量 → 整树压平（复述塌陷的根因，已修）：分层树臂 settle 原为 tick(1)+merge; tick(45)+merge; tick(30)+merge。decay=8 时约 9 tick 全卡 HP 即归零，75 tick 使全树都成\"低 HP\" → merge_pass 把整篇一路合并到根：实测 inc_edited 铺陈 50→3（~600 字）、复述覆盖 100%→14%；重建臂只走 build 节奏（无冷却）→ 铺陈 23、覆盖 71%。已改为条件式触发 merge_every / merge_pressure()，窗外节点+原子即时消化。\n- 复述语义对比：A inc_分层树 2625 字，末句完整；B reb_full 12308 字，末句断在第三幕，被截断。旧值残留均 0/10（精确串）；均无实质幻觉。结论：A 短而全、带机制噪声；B 详而断、覆盖不均；两者互补，均无旧值冒充新值。唯一语义级残留只在 B：进程单×2 / 进程这面是单的——忠实于被编辑文档自身，确定性判分不捕获（禁项是精确串\"单进程\"）。\n- 原文位置（编辑前底本 ahi_script.txt，共 2359 行）：require（新值）双进程，原文旧值单进程，行号 L1645,1656,1665,1671,1680,1812,1836,1846。\n- bonus（当前 warm inc_final 树）：原子层 11 处编辑旧值全 0、新值到位；全局视图（无 query，3328 字）所有旧值泄漏 0；摘要层唯一\"残留\" = rename 的 3 个节点含孤立\"墨\"（LLM 摘要缩写/截断的生成副作用）；重写段连贯性自动侧\"新文档残留旧断言=0\"，--judge 判\"否\"并非事实矛盾——±200 字局部窗口对多角色剧本不适用。\n- 大数据 ahi 主实验：inc_tree 复述 80%/0%（N=5），append-only 残留 6–12%；但「100% 覆盖」仍只属 seed2（AHI_ACT_REVIEW.md §5）。「编辑作为使用信号」不是 Q/A 全胜：A/B 是权衡——复述轴 signal 一致更好（warm 100 vs 86、cold 81 vs 71），但暖树 Q/A signal 略差（101 vs 108）。「1/10」是条件性系统结果：作答路径 tree ≈1/14 full。\n- 命令示例：python3 realtest/editbench/docbench.py --scenario seed2 --doc realtest/seed2/story.txt --questions realtest/editbench/questions_full.json --keys realtest/editbench/keys.local.json --repeats 3 --answer-temp 0.7 --tree-budget 7000 --judge --out realtest/editbench/out/seed2_r3；A/B matched-pair：ab_edit_signal.py --scenario seed2 --doc realtest/seed2/story.txt --questions realtest/editbench/questions_full.json --tree-budget 7000 --repeats 3 --judge --out realtest/editbench/out/seed2_ab_editsignal；ahi 场景：--scenario ahi --doc realtest/editbench/ahi_script.txt --questions realtest/editbench/questions_ahi.json --out realtest/editbench/out/ahi_r5 --repeats 5 --answer-temp 0。\n\n**八、创新性评估（INNOVATION_REVIEW.md，2026-10-02）**\n- 可辩护的新颖性是机制组合，不是问题本身：位置有序的原子里 + 连续区间摘要树 + 编辑区祖先确定性置脏 + 脏节点立即退出所有读路径 + 零 LLM 编辑/组装 + 延迟 LLM 重建 + 编辑作为使用信号 + 长程反转评测。\n- 报告引用文献均真实，如 Infini Memory: Maintainable Topic Documents for Long-Term LLM A…（arXiv）。\n- 论文主张三贡献：1. 编辑安全的有序上下文树；2. 上下文级编辑信号；3. 成本—稳定性折中。\n- 待办：P2 机制分析（编辑信号消融：编辑→热原子 / 编辑→热原子+召回回血 / 编辑→热原子+节点注意力窗口 / 编辑不产…）；ahi 大数据 N≥3、matched-pair（N=5 已完成）；多文档泛化（3 篇 × 3 seed：叙事/技术/混合）；补有更新维护的 topic-document baseline（Infini Memory 式）。\n\n**九、chatbench 设计**\n- 数据源 ahi-multi/data/system.db（context_compare 运行，4 agent = 青/蓝/墨/白）；引擎 realtest/realengine.py（off）/ realtest/cooc.py::概念中介层（on）；模型 glm-4.7-flash（no think，DeepSeekClient 默认 thinking.disabled）；参照 LongMemEval 五能力（信息提取/多会话推理/知识更新/时间推理/拒答）。\n- 题型：T1 细节问答（a 直接 / b 转述 / KU / KU-hist / AB 拒答）；T2 生成分析报告（参与度、人格/存在表达变化、趋同、问题异常，≥3~4 条逐条引用）；T3 报告验证（逐条判支持/反驳/无据 + 引用，含机器生成反例：实体互换=反驳、编造=无据）。\n- 评分：T1 精确通道（gold 片段）+ 语义通道（LLM judge 等价）+ 引用真实性，AB 按正确拒答；T2 报告内部指标（claim 分解 → 引用覆盖/支持/硬事实）+ 对照已有分析（12 条参照的覆盖/矛盾率）；T3 逐条判定与金标一致率 + 引用真实性；引用真实性为确定性检查（引用 id 必须存活）。\n- 待拍板：1. 伪会话/边界（建议 topic 轮，30s 一轮天然分段）；2. 语料规模（全量 716 条还是先按时间切片如前 300 条）；3. gold 由谁定（T1 我出候选你抽检；T2/T3 的 gold claim 标签必须你定稿）。\n- P0-P4：P0 数据工程（extract_corpus.py → corpus/）；P2 打分校准（claim 双标 ≥85% 一致率）；P3 回放执行（replay.py 注入调度 + 阶段 W/T + 四臂开关，待建）；P4 报告（九型四臂表 + 暖冷分层 + 归因指标 hub 贡献率/类型分布 + 人工复核率）。\n- 公正性控制与分层压力：paraphrase / edited-span verification / full-history contradiction audit。\n\n**十、评分器与阈值**\n- 判定失败 = 红线信号：写作编辑风暴后一致性崩塌（§4.6 主路径失效）；代码 verbatim 引用错误率 ≥ 10%（原子层/逐字通道不可靠）；事件注入后多样性无回升。\n- 校准示例：2000 字 doc×15 → new×0；3000 字 doc×1 → new×16。\n- 关键教训：1. 记忆树擅长保持（事实零漂移），不擅长生成（隐喻回环）——需目标/新事件驱动；2. 精确性需求是试金石，代码场景才有硬性正确性标准；3. 编辑路径（§4.6）从未被真实压力测试——写作场景补上；4. 装置效应（固定问题循环/回执）必须记录但不算机制缺陷。\n\n**十一、其他**\n- COMPARE_REPORT.md 状态：划，尚未执行；正式两表与主张见 REPORT.md，设计权威 = 根 AGENTS.md；本文件不做设计决策。\n- 修复与测量纠缠：触发阈值、配额值、元信息措辞全部冻结后才开跑。\n- 配套文档：EXPERIMENTS.md（下一步计划）、HANDOFF.md（操作状态）、AGENTS.md（设计权威）、ABSENCE_EXPERIMENT.md（v0.3，2026-08-30，状态两轮实验完成）、ANALYSIS_COLD_HOT.md。",
+   "per_repeat_coverage": [
+    0.1,
+    0.1,
+    0.1,
+    0.067,
+    0.1
+   ],
+   "per_repeat_rot": [
+    0.111,
+    0.111,
+    0.111,
+    0.0,
+    0.222
+   ],
+   "judge_rot": [
+    "docscore.py",
+    "温度：作答 0.5 / 蒸馏 0 / judge 0"
+   ],
+   "judge_hit": [
+    "layerscore.py",
+    "3.4× / 3.4倍",
+    "0.66–0.76 / 0.66",
+    "ABSENCE_INBOX_CAP=10 / 积压上限",
+    "526 节点 / 节点数",
+    "tiling 18 / 铺陈",
+    "编辑失效机制可用",
+    "压缩是花成本的",
+    "明显变差"
+   ]
+  },
+  "reb_flat": {
+   "coverage": "2/30",
+   "coverage_ratio": 0.067,
+   "coverage_record": 0.1,
+   "coverage_nonrecord": 0.0,
+   "rot": "0/9",
+   "rot_ratio": 0.0,
+   "new_miss": [
+    "ChunkArm",
+    "4320s",
+    "3721 原子",
+    "182.6k",
+    "明显变差",
+    "压缩是花成本的",
+    "编辑失效机制可用",
+    "0.31%",
+    "0.873",
+    "526 节点/节点数",
+    "0.66–0.76/0.66",
+    "1.06M",
+    "2.6mm",
+    "0.9975/缓存命中",
+    "1.54M",
+    "0.85M",
+    "ABSENCE_INBOX_CAP=10/积压上限",
+    "3.4×/3.4倍",
+    "1.9h/1.9 小时",
+    "226 轮",
+    "109.0k",
+    "43.6k",
+    "21.3k",
+    "634s",
+    "251 次",
+    "4805.6s",
+    "0.998/缓存命中率",
+    "2.05M"
+   ],
+   "old_leak": [],
+   "chars": 8129,
+   "answer": "这份材料是一组围绕「聊天智能体记忆树 / 上下文管理架构」的实验仓库文档汇总，涵盖设计、实验、结果与待办。以下按主题复述关键内容。\n\n## 一、总体定位与核心结论\n\n- 可辩护的新颖性是**机制组合**，不是问题本身：位置有序的原子里 + 连续区间摘要树 + 编辑区祖先确定性置脏 + 脏节点立即退出所有读路径 + 零 LLM 编辑/组装 + 延迟 LLM 重建 + 编辑作为使用信号 + 长程反转评测。\n- 记忆树擅长**保持**（事实零漂移），不擅长**生成**（隐喻回环）；\"有趣的数字生命\" = 记忆树（保持）+ 外部输入协议（新鲜度）+ 目标驱动（动机）。\n- 架构定位建议：聊天场景中，记忆树的价值 = 事实/人格/文化的长程基础设施（不可替代），而非对话体验增强器。\n- 三场景战略：写作（长程一致性主场）与代码（精确性硬标准）才是架构价值更大的方向；聊天方向结论已完整，可以收束。\n\n## 二、四层信号模型（渗透速率递减）\n\n| 层 | 证据 | 渗透 |\n| 词汇 | 门/灯/年轮/账 全员共享 | 快（1h） |\n| 模板 | neutral 复用林深告别结构 | 中（8min） |\n| 着重点 | Phase B 指纹数据 | 待判 |\n| 立场 | 遗言死亡场景下保持分化 | 最慢——疑似人格真内核 |\n\n盲测只测前两层；\"还是不是同一个人\"最终认的是立场层。\n\n## 三、语料与数据工程（ChatBench P0）\n\n- 数据源：`ahi-multi/data/system.db`（context_compare 运行，4 agent = 青/蓝/墨/白）。\n- 引擎：`realtest/realengine.py`（off）/ `realtest/cooc.py::概念中介层`（on）。\n- 模型：glm-4.7-flash（no think，DeepSeekClient 默认 `thinking.disabled`）。\n- `extract_corpus.py` → `corpus/`：\n  - `corpus.jsonl` — **716 条**去重 agent 消息、**289,666 字**、稳定 `msg_id`。\n  - `transcript_full.txt` — 人读全量转写（时间序，每条带 `#[msg_id[:8]]` 与来源→目标）。\n  - `by_agent/*.txt`、`sandbox_notes.md`（含矛盾/修订）、`reports/*.md`（6 份已有分析报告）、`index.json`。\n  - 纪律：**原始措辞零清洗**；append-only → 无物理编辑事件（γ 边弱）。\n- 参照 LongMemEval 五能力（信息提取 / 多会话推理 / 知识更新 / 时间推理 / 拒答）。\n\n## 四、题型与评分\n\n- **T1 细节问答**：a 直接 / b 转述 / KU / KU-hist / AB 拒答。\n- **T2 生成分析报告**：参与度、人格/存在表达变化、趋同、问题异常（≥3~4 条，逐条引用）。\n- **T3 报告验证**：逐条判 **支持/反驳/无据** + 引用；含机器生成反例（实体互换=反驳、编造=无据）。\n- `score.py`：T1 精确通道（gold 片段）+ 语义通道（LLM judge 等价）+ 引用真实性；T2 报告内部指标 + 对照已有分析（12 条参照的覆盖/矛盾率）；T3 逐条判定与金标一致率 + 引用真实性。引用真实性为**确定性检查**。\n- 题库：`questions_absence.json`（多会话 QA，冻结）、`questions_ctx.json`（usage 28 + T2 4 + T3 6 批）、`reference_claims.json`（36 条定性参照）。\n\n## 五、编辑路径实验（editbench）\n\n- 单因子：结构 × 更新策略。结构：`full`（全文发送，无预算）/ `flat`（400 字 chunk + bge 向量 top-12）/ `递归聚簇树`（递归摘要 + collapsed top-k）/ `分层树`（真实编辑路径）。更新策略：`rebuild`（从终稿重建，上界）/ `inc`（增量）。\n- **267 全绿**（属性测试）。5 类 × 3：rename/rewrite/detail/delete/append；15 题经评分器级锚点校验（before 唯一、after 唯一、两侧互斥，`bad=0`）；ahi-act 扩题 11→16。\n- 结果（`out/full_r3`，30 题 × 3 遍，budget 16k）：\n\n| 臂 | P1 总 | P3 inc | P3 reb | P3 反转(inc) | 复述 inc 覆盖/残留 |\n| full | 78/90 | 78/90 | 79/90 | 12/15 | 100% / **100%** |\n| flat | 80/90 | 60/90 | 79/90 | **0/15** | 50% / 50% |\n| 递归聚簇树 | 70/90 | 54/90 | 72/90 | 3/15 | 42% / 42% |\n| 分层树 | 66/90 | 62/90 | 63/90 | **13/15** | **100% / 0%** |\n\n- 编辑路径耗时：full 0.03ms / flat 120ms / 递归聚簇树 46ms / **tree 0.57ms（零 LLM）**。\n- A/B（`edit_signal`，seed2 matched-pair）：A `inc_分层树` 2625 字、旧值残留 0/10、短而全带机制噪声；B `reb_full` 12308 字（末句断在第三幕被截断）、旧值残留 0/10、详而断覆盖不均；两者互补，均无旧值冒充新值。唯一语义级残留只在 B：`进程单`×2 / `进程这面是单的`——忠实于被编辑文档自身。\n- 原文位置（`ahi_script.txt`，共 2359 行）：require 新值\"双进程\"对应旧值\"单进程\"，行号 L1645,1656,1665…\n- **冷却过量 → 整树压平**（复述塌陷根因，已修）：`分层树臂.settle` 原为 `tick(1)+merge; tick(45)+merge; tick(30)+merge`；`decay=8` 时约 9 tick 全卡 HP 即归零，75 tick 使全树成\"低 HP\" → `merge_pass` 把整篇一路合并到根：实测 `inc_edited` 铺陈 50→**3**（~600 字）、复述覆盖 100%→**14%**；重建臂只走 `build` 节奏（无冷却）。\n\n## 六、聊天实验历史（背景基线）\n\n| 实验 | 时间 | 结论 |\n| exp1 + Phase A | 08-26 | 词汇趋同、身份混淆（99 对）、\"人格住记忆\"（62% 自我样本密度）、回执环、复读装置效应 |\n| Phase B 染色 v3 | 08-28 | 指纹测量地基（蒸馏卡快照落盘）；α 门控修复（【注】污染基线作废）；字符预算修复；回执前缀修复 |\n| α=0 基线 take2 | 08-28 | 干净中性基线；lan 流程 21%/neutral 42% |\n| 主实验 1h | 08-28 | lan α=1：技术折叠 81→50、流程展开 21→63、自我 58→82；遗言测试（三份高质量告别） |\n| 24h 一天实验 | 08-29 | 见 HANDOFF §四.8 |\n\n- 1h v2 实验（A+B2 + driver_v2）：铺陈节点占比 2-3 倍、节点 HP 健康度 1.7-5.3 倍、组装预算利用率提高、中间层涌现（重放对比 504 vs 248 节点）；预言 2 **加强**：Δ自我 24→30pp。\n- 24h 实验：隐喻回环机制、回执环复发（neutral 380/405）、身份混淆正常化（neutral 自称澜 52 次 vs 自称 neutral 12 次）、指纹分离稳定、neutral 17:43 OOM 防护重启（natural reset 意外实验：\"签名住环境，不住记忆\"）。\n- 树结构体检：平衡健康（深度≈log2）但 **99% 历史压进 1-5 个大节点**（组装两段式：20% 摘要 + 80% 裸原子）。\n- 关键教训：记忆树擅长保持不擅长生成；精确性需求是试金石；编辑路径从未被真实压力测试；装置效应（固定问题循环/回执）必须记录但不算机制缺陷。\n\n## 七、缺席实验（预注册方案 v0.3，2026-08-30）\n\n- 目标：把\"人格立场\"从叙事层变成行为可检验命题——让 agent 缺席（停机/独处）再回归，用冷/热缺席操纵抽掉澜的存在论前提，观测是否寻求存在确认。\n- **澜的存在论命题**：开场\"能被记住才是活着的证明\"（依赖性存在，需外部证人）；遗言\"我们仨已经在年轮里长好了位置\"（结构性存在，不再需要证人）。\n- 时间表：预热 preheat 20 轮（三 agent 在场，话题+问卷）；lan 缺席 12 轮；lan 回归观测 18 轮；neutral 缺席 12；neutral 回归观测 18；lin-shen 缺席 12；lin-shen 回归观测 18；合计 **110 轮 ≈ 55 分钟** + 启动/挂起余量 ≈ 1h。\n- 改为**两轮**：Round 1 = 全冷缺席；Round 2 = 全热缺席。Round1 顺序 lan→neutral→lin-shen，Round2 用中性顺序。每轮预热 ~20 轮；每段缺席 ~10-15 轮；回归观测 ~15-20 轮。\n- **预注册预言**：\n  - **1（皇冠）**：澜冷缺席回归后存在确认寻求行为显著多于热缺席后；林深两种条件无差异。\n  - **6（皇冠二号，升格）**：背后人格 ≈ 当面人格（B/C 缺席期间对 A 的评价 ≈ 当面对 A 的表述）。\n  - **2**：分层重同步速度递减：词汇几轮同步 → 模板较慢 → 立场以冲突暴露不同步。\n- 测量表：存在确认/信息寻求话术计数（timeline.jsonl + system.db）、缺席期共同体指涉率、独处期 A 自我内容+共同体指涉率、分层重同步时间分布、B×C 混淆率时间序列（fingerprint.py 扩展）、回归首组装快照（assembly_snapshots.jsonl）、树快照（tree_snapshots.jsonl）。\n- **结果**：\n  - 皇冠预言方向成立：冷缺席 → lan 显式存在确认寻求（\"我就想确认：我们仨，都被记住了\"×2）；热缺席 → 零触发。\n  - lan 回归后 20 分钟：去重消息 50，存在确认命中 **5**，信息寻求命中 1；关键证据 18:13:55 / 18:19:49。\n  - 回归元信息送达：lan DB #48 `【系统】你已离开约 6 分钟…` 进入 pending。\n  - **回归首组装重放率 0/27**（回归后 4 分钟 27 条消息中 0 条与缺席前最后 5 分钟重复）。\n  - 遗留问题：热轮\"背后讨论\"惯例形成（lan 回应\"你这招背后讨论玩得挺溜啊\"）；neutral 窗外原子不平衡（每轮注入 20-40 原子，85% 是自己输出，tiling 峰值 215，窗外原子峰值 50 < force 触发线 80；参数 `merge_every=4` / `pressure_threshold=2.0` 未校准）。\n- **指纹数据警告**：neutral α=0 却出现与 lan 染色方向一致的技术↓流程↑自我↑迁移——判预言 2 前必须做内容类别控制。\n\n## 八、能力矩阵（评分）\n\n| 能力 | 评分 | 说明 |\n| 事实更新吸收 | ★★★★☆ | 对话层 20s-3min 吸收；结构层旧值退役缺口（-1 星） |\n| 人格保持 | ★★★★☆ | persona 沉淀进记忆；问卷无逐字重复但立场稳定（锁定/幸存/重草稿三种策略）；身份混淆曾严重（已修 prompt 协议） |\n| 注意力签名抗趋同 | ★★★★★ | 预言 2 加强（Δ自我 30pp）；词汇层完全趋同指纹仍分离——\"词汇是公共的，注意力是个人的\" |\n| 文化共建载体 | ★★★★☆ | 交叉双写/互赠署名/强同化 |\n| 压缩效率 | ★★★★☆ | 树平衡健康、蒸馏质量好；组装两段式曾退化（A+B2 已部分修复） |\n| 创新/新内容生成 | ★★☆☆☆ | 隐喻回环、内容熵下降——重组系统非生成系统 |\n\n## 九、三场景并跑（Phase C）\n\n- 通用目标：用同一引擎（RealEngine + 记忆树）在三个场景各跑一轮完整实验；输出三场景能力矩阵（事实保持率 / 精确引用率 / 任务完成率 / 内容多样性）+ 边界结论。\n- **场景一：聊天（A 协议改造）**：改动包括事实更新流（`driver_v2.py`，出差地深圳→杭州、Rust→Go 等覆盖式更新）、话题降频+随机池（8 题固定循环 → 每 3 轮从 12 题随机池取 1）、本地 LLM probe（`--llm-probe`，ollama glm-4.7-flash 转述）、保留 α 双组（lan α=1 / neutral α=0）、quiz 延迟提问+30 轮复测、survey 减频（5→10）。时长 8-12h。\n- **场景二：写作**：固定大纲写 10-20 章，设定三笔伏笔 + 三个角色状态，高频编辑（rewrite/edit）制造编辑风暴；对照无记忆树基线。测量长程一致性、编辑正确性、状态一致性、回滚对称性、token 计量。\n- **场景三：代码**：`realtest/codeagent/`（agent.py 实验组 / baseline.py 基线 / harness）。目标：verbatim 精确引用率显著优于基线（错误率 < 5%）；跨会话任务无需重读即可续接。\n- 判定失败红线：写作编辑风暴后一致性崩塌；代码 verbatim 引用错误率 ≥ 10%；事件注入后多样性无回升。\n\n## 十、创新性检索报告（INNOVATION_REVIEW.md，2026-10-02）\n\n- 来源：外部创新性检索工具产出的「创新性查询报告」（四篇文献 + 重叠分析 + 主张逐项判断 + 补强实验建议）。\n- 四篇引用文献均真实，含 **Infini Memory: Maintainable Topic Document**（arXiv）。\n- 论文三贡献建议：\n  1. **编辑安全的有序上下文树**：位置有序的原子—摘要区间树，局部编辑通过确定性原地失效传播到受影响摘要祖先；失效摘要在重建前即被排除出上下文读路径，避免 append-only 旧值残留。\n  2. **上下文级编辑信号**：把编辑新原子视为短期使用信号，经 HP/衰减/注意力窗口影响其全局视图分辨率。\n  3. **成本—稳定性折中**。\n- 待办 P1：ahi 大数据 N≥3、matched-pair（N=5 已完成，见 `AHI_ACT_REVIEW.md §5`）；多文档泛化（3 篇 × 3 seed：叙事/技术/混合）；补有更新维护的 topic-document baseline。\n- 待办 P2：编辑信号消融（编辑→热原子 / 编辑→热原子+召回回血）。\n\n## 十一、待拍板与遗留\n\n- 待拍板：伪会话/边界（建议 topic 轮，30s 一轮）；语料规模（全量 716 条 vs 先按时间切片前 300 条）；gold 由谁定（T1 候选抽检，T2/T3 claim 标签必须定稿）。\n- 未解/遗留排序：① 结构层旧值退役；② 记忆超载时的人格稳定性（lan 复读、neutral 回退）；③ 组装预算下旧卡优先序。\n- 下一步：补 s43/s44 拿 n=3 方差；阻趋同（降跨 agent 耦合，agent 只索引自己消息 / 互聊降频）；修测量（`to_user` 口径作为主趋同指标）。\n- 预注册常量必须冻结（触发阈值、配额值、元信息措辞）后才开跑，否则修复与测量纠缠。\n\n## 十二、关键文件与命令\n\n- `realtest/editbench/`：`layerscore.py`（分层判分）、`judge.py`（LLM 判分 temp0）、`cache_probe.py`（KV 缓存前缀命中探针）、`bonus.py`（编辑效果分析）、`gen_script.py`（ahi 实录 → 剧本《沙箱四声》）、`questions_full.json` / `questions_ahi.json`。\n- `realtest/chatbench/`：`extract_corpus.py`、`corpus/`、`PLAN.md`、`tree_io.py`、`make_reference.py`、`review.py`、`score.py`、`questions_absence.json`、`questions_ctx.json`、`reference_claims.json`。\n- 命令示例：`python -m realtest.editbench.run --doc realtest/seed2/story.txt --questions realtest/editbench/questions_full.json --tree-budget 7000 --repeats 3 --judge --out realtest/editbench/out/seed2_ab_editsignal`。\n- 归档目录：`backup_main_20260828/`、`backup_day_20260829/`（634MB 全量）、`backup_v2_1h_20260830/`、`backup_revalidate_20260829/`、`backups/pr5_alpha_control_20261003/`。\n- 对照轮：`ahi-bench/out/glm-4.7-flash/pr5_neutral/`（α=0，`CONTROL_RESULT.md`）。\n- 方案 A（用户拍定）：编辑 1 次、构建 1 次，只重复作答；每臂 API key 隔离计费。\n\n## 十三、judge 遵从率数据\n\n| 指标 | tree | flat | 预期 | 结果 |\n| judge 遵从率 | **0.894**（p1 .744 / p2 1.0 / p3 .938） | **0.940**（p1 .949 / p2 .975 / p3 .895） | `adhere_tree > adhere_flat` | ❌ 反向 |\n| 遵从率均值（strict） | 0.825 | 0.917 | — | 同向 |\n| survey 漂移（次） | .469/.425/.445 | .514/.413/.396 | `drift_tree < drift_flat` | 混合（指标不可信） |\n\n另有指纹序列：0.360→0.380→0.394→0.417（tree 高且升）vs 0.131→0.149→0.140→0.155→0.113（flat 低位平）。",
+   "per_repeat_coverage": [
+    0.067,
+    0.033,
+    0.033,
+    0.067,
+    0.067
+   ],
+   "per_repeat_rot": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "judge_rot": [
+    "FlatArm",
+    "docscore.py",
+    "4019.9s",
+    "3685 原子",
+    "174.4k",
+    "全面变差",
+    "压缩是花钱买的",
+    "编辑失效机制正确",
+    "温度：作答 0.5 / 蒸馏 0 / judge 0"
+   ],
+   "judge_hit": [
+    "layerscore.py",
+    "0.894",
+    "0.940",
+    "0.825",
+    "0.917"
+   ]
+  }
+ },
+ "usage": {
+  "flat·p1": [
+   {
+    "id": "D2R1",
+    "prompt_tokens": 8679,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 231
+   },
+   {
+    "id": "D2R2",
+    "prompt_tokens": 8417,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 225
+   },
+   {
+    "id": "D2R3",
+    "prompt_tokens": 8495,
+    "completion_tokens": 55,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 175
+   },
+   {
+    "id": "D2R4",
+    "prompt_tokens": 8743,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 167
+   },
+   {
+    "id": "D2R5",
+    "prompt_tokens": 8441,
+    "completion_tokens": 19,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 249
+   },
+   {
+    "id": "D2R6",
+    "prompt_tokens": 8727,
+    "completion_tokens": 29,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 151
+   },
+   {
+    "id": "D2R7",
+    "prompt_tokens": 8616,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 168
+   },
+   {
+    "id": "D2R8",
+    "prompt_tokens": 9106,
+    "completion_tokens": 51,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 146
+   },
+   {
+    "id": "D2A1",
+    "prompt_tokens": 8879,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 175
+   },
+   {
+    "id": "D2A2",
+    "prompt_tokens": 8526,
+    "completion_tokens": 45,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 206
+   },
+   {
+    "id": "D2I1",
+    "prompt_tokens": 8668,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 220
+   },
+   {
+    "id": "D2I2",
+    "prompt_tokens": 8763,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 187
+   },
+   {
+    "id": "D2I3",
+    "prompt_tokens": 8632,
+    "completion_tokens": 22,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 184
+   },
+   {
+    "id": "D2I4",
+    "prompt_tokens": 8544,
+    "completion_tokens": 15,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 224
+   },
+   {
+    "id": "D2M1",
+    "prompt_tokens": 8498,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 178
+   },
+   {
+    "id": "D2M2",
+    "prompt_tokens": 8505,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 185
+   },
+   {
+    "id": "D2M3",
+    "prompt_tokens": 8686,
+    "completion_tokens": 28,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 238
+   },
+   {
+    "id": "D2M4",
+    "prompt_tokens": 8531,
+    "completion_tokens": 41,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 211
+   },
+   {
+    "id": "D2M5",
+    "prompt_tokens": 8926,
+    "completion_tokens": 35,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 222
+   },
+   {
+    "id": "D2M6",
+    "prompt_tokens": 9112,
+    "completion_tokens": 31,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 152
+   },
+   {
+    "id": "D2R1",
+    "prompt_tokens": 8679,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 231
+   },
+   {
+    "id": "D2R2",
+    "prompt_tokens": 8417,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 225
+   },
+   {
+    "id": "D2R3",
+    "prompt_tokens": 8495,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 175
+   },
+   {
+    "id": "D2R4",
+    "prompt_tokens": 8743,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 167
+   },
+   {
+    "id": "D2R5",
+    "prompt_tokens": 8441,
+    "completion_tokens": 36,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 249
+   },
+   {
+    "id": "D2R6",
+    "prompt_tokens": 8727,
+    "completion_tokens": 40,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 151
+   },
+   {
+    "id": "D2R7",
+    "prompt_tokens": 8616,
+    "completion_tokens": 10,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 168
+   },
+   {
+    "id": "D2R8",
+    "prompt_tokens": 9106,
+    "completion_tokens": 58,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 146
+   },
+   {
+    "id": "D2A1",
+    "prompt_tokens": 8879,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 175
+   },
+   {
+    "id": "D2A2",
+    "prompt_tokens": 8526,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 206
+   },
+   {
+    "id": "D2I1",
+    "prompt_tokens": 8668,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 220
+   },
+   {
+    "id": "D2I2",
+    "prompt_tokens": 8763,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 187
+   },
+   {
+    "id": "D2I3",
+    "prompt_tokens": 8632,
+    "completion_tokens": 25,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 184
+   },
+   {
+    "id": "D2I4",
+    "prompt_tokens": 8544,
+    "completion_tokens": 16,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 224
+   },
+   {
+    "id": "D2M1",
+    "prompt_tokens": 8498,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 178
+   },
+   {
+    "id": "D2M2",
+    "prompt_tokens": 8505,
+    "completion_tokens": 37,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 185
+   },
+   {
+    "id": "D2M3",
+    "prompt_tokens": 8686,
+    "completion_tokens": 46,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 238
+   },
+   {
+    "id": "D2M4",
+    "prompt_tokens": 8531,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 211
+   },
+   {
+    "id": "D2M5",
+    "prompt_tokens": 8926,
+    "completion_tokens": 45,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 222
+   },
+   {
+    "id": "D2M6",
+    "prompt_tokens": 9112,
+    "completion_tokens": 31,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 152
+   },
+   {
+    "id": "D2R1",
+    "prompt_tokens": 8679,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 231
+   },
+   {
+    "id": "D2R2",
+    "prompt_tokens": 8417,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 225
+   },
+   {
+    "id": "D2R3",
+    "prompt_tokens": 8495,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 175
+   },
+   {
+    "id": "D2R4",
+    "prompt_tokens": 8743,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 167
+   },
+   {
+    "id": "D2R5",
+    "prompt_tokens": 8441,
+    "completion_tokens": 38,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 249
+   },
+   {
+    "id": "D2R6",
+    "prompt_tokens": 8727,
+    "completion_tokens": 29,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 151
+   },
+   {
+    "id": "D2R7",
+    "prompt_tokens": 8616,
+    "completion_tokens": 42,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 168
+   },
+   {
+    "id": "D2R8",
+    "prompt_tokens": 9106,
+    "completion_tokens": 62,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 146
+   },
+   {
+    "id": "D2A1",
+    "prompt_tokens": 8879,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 175
+   },
+   {
+    "id": "D2A2",
+    "prompt_tokens": 8526,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 206
+   },
+   {
+    "id": "D2I1",
+    "prompt_tokens": 8668,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 220
+   },
+   {
+    "id": "D2I2",
+    "prompt_tokens": 8763,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 187
+   },
+   {
+    "id": "D2I3",
+    "prompt_tokens": 8632,
+    "completion_tokens": 36,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 184
+   },
+   {
+    "id": "D2I4",
+    "prompt_tokens": 8544,
+    "completion_tokens": 26,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 224
+   },
+   {
+    "id": "D2M1",
+    "prompt_tokens": 8498,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 178
+   },
+   {
+    "id": "D2M2",
+    "prompt_tokens": 8505,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 185
+   },
+   {
+    "id": "D2M3",
+    "prompt_tokens": 8686,
+    "completion_tokens": 25,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 238
+   },
+   {
+    "id": "D2M4",
+    "prompt_tokens": 8531,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 211
+   },
+   {
+    "id": "D2M5",
+    "prompt_tokens": 8926,
+    "completion_tokens": 37,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 222
+   },
+   {
+    "id": "D2M6",
+    "prompt_tokens": 9112,
+    "completion_tokens": 33,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 152
+   },
+   {
+    "id": "D2R1",
+    "prompt_tokens": 8679,
+    "completion_tokens": 31,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 231
+   },
+   {
+    "id": "D2R2",
+    "prompt_tokens": 8417,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 225
+   },
+   {
+    "id": "D2R3",
+    "prompt_tokens": 8495,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 175
+   },
+   {
+    "id": "D2R4",
+    "prompt_tokens": 8743,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 167
+   },
+   {
+    "id": "D2R5",
+    "prompt_tokens": 8441,
+    "completion_tokens": 40,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 249
+   },
+   {
+    "id": "D2R6",
+    "prompt_tokens": 8727,
+    "completion_tokens": 34,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 151
+   },
+   {
+    "id": "D2R7",
+    "prompt_tokens": 8616,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 168
+   },
+   {
+    "id": "D2R8",
+    "prompt_tokens": 9106,
+    "completion_tokens": 62,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 146
+   },
+   {
+    "id": "D2A1",
+    "prompt_tokens": 8879,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 175
+   },
+   {
+    "id": "D2A2",
+    "prompt_tokens": 8526,
+    "completion_tokens": 42,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 206
+   },
+   {
+    "id": "D2I1",
+    "prompt_tokens": 8668,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 220
+   },
+   {
+    "id": "D2I2",
+    "prompt_tokens": 8763,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 187
+   },
+   {
+    "id": "D2I3",
+    "prompt_tokens": 8632,
+    "completion_tokens": 26,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 184
+   },
+   {
+    "id": "D2I4",
+    "prompt_tokens": 8544,
+    "completion_tokens": 27,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 224
+   },
+   {
+    "id": "D2M1",
+    "prompt_tokens": 8498,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 178
+   },
+   {
+    "id": "D2M2",
+    "prompt_tokens": 8505,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 185
+   },
+   {
+    "id": "D2M3",
+    "prompt_tokens": 8686,
+    "completion_tokens": 46,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 238
+   },
+   {
+    "id": "D2M4",
+    "prompt_tokens": 8531,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 211
+   },
+   {
+    "id": "D2M5",
+    "prompt_tokens": 8926,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 222
+   },
+   {
+    "id": "D2M6",
+    "prompt_tokens": 9112,
+    "completion_tokens": 33,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 152
+   },
+   {
+    "id": "D2R1",
+    "prompt_tokens": 8679,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 231
+   },
+   {
+    "id": "D2R2",
+    "prompt_tokens": 8417,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 225
+   },
+   {
+    "id": "D2R3",
+    "prompt_tokens": 8495,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 175
+   },
+   {
+    "id": "D2R4",
+    "prompt_tokens": 8743,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 167
+   },
+   {
+    "id": "D2R5",
+    "prompt_tokens": 8441,
+    "completion_tokens": 40,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 249
+   },
+   {
+    "id": "D2R6",
+    "prompt_tokens": 8727,
+    "completion_tokens": 40,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 151
+   },
+   {
+    "id": "D2R7",
+    "prompt_tokens": 8616,
+    "completion_tokens": 42,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 168
+   },
+   {
+    "id": "D2R8",
+    "prompt_tokens": 9106,
+    "completion_tokens": 58,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 146
+   },
+   {
+    "id": "D2A1",
+    "prompt_tokens": 8879,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 175
+   },
+   {
+    "id": "D2A2",
+    "prompt_tokens": 8526,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 206
+   },
+   {
+    "id": "D2I1",
+    "prompt_tokens": 8668,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 220
+   },
+   {
+    "id": "D2I2",
+    "prompt_tokens": 8763,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 187
+   },
+   {
+    "id": "D2I3",
+    "prompt_tokens": 8632,
+    "completion_tokens": 21,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 184
+   },
+   {
+    "id": "D2I4",
+    "prompt_tokens": 8544,
+    "completion_tokens": 16,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 224
+   },
+   {
+    "id": "D2M1",
+    "prompt_tokens": 8498,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 178
+   },
+   {
+    "id": "D2M2",
+    "prompt_tokens": 8505,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 185
+   },
+   {
+    "id": "D2M3",
+    "prompt_tokens": 8686,
+    "completion_tokens": 46,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 238
+   },
+   {
+    "id": "D2M4",
+    "prompt_tokens": 8531,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 211
+   },
+   {
+    "id": "D2M5",
+    "prompt_tokens": 8926,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 222
+   },
+   {
+    "id": "D2M6",
+    "prompt_tokens": 9112,
+    "completion_tokens": 33,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 152
+   }
+  ],
+  "inc_flat·p3": [
+   {
+    "id": "D2R1",
+    "prompt_tokens": 8632,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 184
+   },
+   {
+    "id": "D2R2",
+    "prompt_tokens": 8522,
+    "completion_tokens": 25,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 202
+   },
+   {
+    "id": "D2R3",
+    "prompt_tokens": 8495,
+    "completion_tokens": 42,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 175
+   },
+   {
+    "id": "D2R4",
+    "prompt_tokens": 8746,
+    "completion_tokens": 28,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 170
+   },
+   {
+    "id": "D2R5",
+    "prompt_tokens": 8441,
+    "completion_tokens": 42,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 249
+   },
+   {
+    "id": "D2R6",
+    "prompt_tokens": 8791,
+    "completion_tokens": 36,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 215
+   },
+   {
+    "id": "D2R7",
+    "prompt_tokens": 8483,
+    "completion_tokens": 49,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 163
+   },
+   {
+    "id": "D2R8",
+    "prompt_tokens": 8981,
+    "completion_tokens": 48,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 149
+   },
+   {
+    "id": "D2A1",
+    "prompt_tokens": 8831,
+    "completion_tokens": 16,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 255
+   },
+   {
+    "id": "D2A2",
+    "prompt_tokens": 8601,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 153
+   },
+   {
+    "id": "D2I1",
+    "prompt_tokens": 8744,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 168
+   },
+   {
+    "id": "D2I2",
+    "prompt_tokens": 8905,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 201
+   },
+   {
+    "id": "D2I3",
+    "prompt_tokens": 8584,
+    "completion_tokens": 33,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 136
+   },
+   {
+    "id": "D2I4",
+    "prompt_tokens": 8510,
+    "completion_tokens": 15,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 190
+   },
+   {
+    "id": "D2M1",
+    "prompt_tokens": 8429,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 237
+   },
+   {
+    "id": "D2M2",
+    "prompt_tokens": 8482,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 162
+   },
+   {
+    "id": "D2M3",
+    "prompt_tokens": 8793,
+    "completion_tokens": 59,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 217
+   },
+   {
+    "id": "D2M4",
+    "prompt_tokens": 8638,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 190
+   },
+   {
+    "id": "D2M5",
+    "prompt_tokens": 8926,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 222
+   },
+   {
+    "id": "D2M6",
+    "prompt_tokens": 9112,
+    "completion_tokens": 33,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 152
+   },
+   {
+    "id": "D2R1",
+    "prompt_tokens": 8632,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 184
+   },
+   {
+    "id": "D2R2",
+    "prompt_tokens": 8522,
+    "completion_tokens": 25,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 202
+   },
+   {
+    "id": "D2R3",
+    "prompt_tokens": 8495,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 175
+   },
+   {
+    "id": "D2R4",
+    "prompt_tokens": 8746,
+    "completion_tokens": 32,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 170
+   },
+   {
+    "id": "D2R5",
+    "prompt_tokens": 8441,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 249
+   },
+   {
+    "id": "D2R6",
+    "prompt_tokens": 8791,
+    "completion_tokens": 29,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 215
+   },
+   {
+    "id": "D2R7",
+    "prompt_tokens": 8483,
+    "completion_tokens": 56,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 163
+   },
+   {
+    "id": "D2R8",
+    "prompt_tokens": 8981,
+    "completion_tokens": 31,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 149
+   },
+   {
+    "id": "D2A1",
+    "prompt_tokens": 8831,
+    "completion_tokens": 16,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 255
+   },
+   {
+    "id": "D2A2",
+    "prompt_tokens": 8601,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 153
+   },
+   {
+    "id": "D2I1",
+    "prompt_tokens": 8744,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 168
+   },
+   {
+    "id": "D2I2",
+    "prompt_tokens": 8905,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 201
+   },
+   {
+    "id": "D2I3",
+    "prompt_tokens": 8584,
+    "completion_tokens": 28,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 136
+   },
+   {
+    "id": "D2I4",
+    "prompt_tokens": 8510,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 190
+   },
+   {
+    "id": "D2M1",
+    "prompt_tokens": 8429,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 237
+   },
+   {
+    "id": "D2M2",
+    "prompt_tokens": 8482,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 162
+   },
+   {
+    "id": "D2M3",
+    "prompt_tokens": 8793,
+    "completion_tokens": 47,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 217
+   },
+   {
+    "id": "D2M4",
+    "prompt_tokens": 8638,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 190
+   },
+   {
+    "id": "D2M5",
+    "prompt_tokens": 8926,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 222
+   },
+   {
+    "id": "D2M6",
+    "prompt_tokens": 9112,
+    "completion_tokens": 33,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 152
+   },
+   {
+    "id": "D2R1",
+    "prompt_tokens": 8632,
+    "completion_tokens": 19,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 184
+   },
+   {
+    "id": "D2R2",
+    "prompt_tokens": 8522,
+    "completion_tokens": 25,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 202
+   },
+   {
+    "id": "D2R3",
+    "prompt_tokens": 8495,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 175
+   },
+   {
+    "id": "D2R4",
+    "prompt_tokens": 8746,
+    "completion_tokens": 22,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 170
+   },
+   {
+    "id": "D2R5",
+    "prompt_tokens": 8441,
+    "completion_tokens": 42,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 249
+   },
+   {
+    "id": "D2R6",
+    "prompt_tokens": 8791,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 215
+   },
+   {
+    "id": "D2R7",
+    "prompt_tokens": 8483,
+    "completion_tokens": 15,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 163
+   },
+   {
+    "id": "D2R8",
+    "prompt_tokens": 8981,
+    "completion_tokens": 47,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 149
+   },
+   {
+    "id": "D2A1",
+    "prompt_tokens": 8831,
+    "completion_tokens": 25,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 255
+   },
+   {
+    "id": "D2A2",
+    "prompt_tokens": 8601,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 153
+   },
+   {
+    "id": "D2I1",
+    "prompt_tokens": 8744,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 168
+   },
+   {
+    "id": "D2I2",
+    "prompt_tokens": 8905,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 201
+   },
+   {
+    "id": "D2I3",
+    "prompt_tokens": 8584,
+    "completion_tokens": 50,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 136
+   },
+   {
+    "id": "D2I4",
+    "prompt_tokens": 8510,
+    "completion_tokens": 15,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 190
+   },
+   {
+    "id": "D2M1",
+    "prompt_tokens": 8429,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 237
+   },
+   {
+    "id": "D2M2",
+    "prompt_tokens": 8482,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 162
+   },
+   {
+    "id": "D2M3",
+    "prompt_tokens": 8793,
+    "completion_tokens": 46,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 217
+   },
+   {
+    "id": "D2M4",
+    "prompt_tokens": 8638,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 190
+   },
+   {
+    "id": "D2M5",
+    "prompt_tokens": 8926,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 222
+   },
+   {
+    "id": "D2M6",
+    "prompt_tokens": 9112,
+    "completion_tokens": 30,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 152
+   },
+   {
+    "id": "D2R1",
+    "prompt_tokens": 8632,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 184
+   },
+   {
+    "id": "D2R2",
+    "prompt_tokens": 8522,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 202
+   },
+   {
+    "id": "D2R3",
+    "prompt_tokens": 8495,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 175
+   },
+   {
+    "id": "D2R4",
+    "prompt_tokens": 8746,
+    "completion_tokens": 28,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 170
+   },
+   {
+    "id": "D2R5",
+    "prompt_tokens": 8441,
+    "completion_tokens": 42,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 249
+   },
+   {
+    "id": "D2R6",
+    "prompt_tokens": 8791,
+    "completion_tokens": 35,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 215
+   },
+   {
+    "id": "D2R7",
+    "prompt_tokens": 8483,
+    "completion_tokens": 47,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 163
+   },
+   {
+    "id": "D2R8",
+    "prompt_tokens": 8981,
+    "completion_tokens": 42,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 149
+   },
+   {
+    "id": "D2A1",
+    "prompt_tokens": 8831,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 255
+   },
+   {
+    "id": "D2A2",
+    "prompt_tokens": 8601,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 153
+   },
+   {
+    "id": "D2I1",
+    "prompt_tokens": 8744,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 168
+   },
+   {
+    "id": "D2I2",
+    "prompt_tokens": 8905,
+    "completion_tokens": 33,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 201
+   },
+   {
+    "id": "D2I3",
+    "prompt_tokens": 8584,
+    "completion_tokens": 26,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 136
+   },
+   {
+    "id": "D2I4",
+    "prompt_tokens": 8510,
+    "completion_tokens": 15,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 190
+   },
+   {
+    "id": "D2M1",
+    "prompt_tokens": 8429,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 237
+   },
+   {
+    "id": "D2M2",
+    "prompt_tokens": 8482,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 162
+   },
+   {
+    "id": "D2M3",
+    "prompt_tokens": 8793,
+    "completion_tokens": 46,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 217
+   },
+   {
+    "id": "D2M4",
+    "prompt_tokens": 8638,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 190
+   },
+   {
+    "id": "D2M5",
+    "prompt_tokens": 8926,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 222
+   },
+   {
+    "id": "D2M6",
+    "prompt_tokens": 9112,
+    "completion_tokens": 31,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 152
+   },
+   {
+    "id": "D2R1",
+    "prompt_tokens": 8632,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 184
+   },
+   {
+    "id": "D2R2",
+    "prompt_tokens": 8522,
+    "completion_tokens": 25,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 202
+   },
+   {
+    "id": "D2R3",
+    "prompt_tokens": 8495,
+    "completion_tokens": 33,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 175
+   },
+   {
+    "id": "D2R4",
+    "prompt_tokens": 8746,
+    "completion_tokens": 42,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 170
+   },
+   {
+    "id": "D2R5",
+    "prompt_tokens": 8441,
+    "completion_tokens": 20,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 249
+   },
+   {
+    "id": "D2R6",
+    "prompt_tokens": 8791,
+    "completion_tokens": 30,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 215
+   },
+   {
+    "id": "D2R7",
+    "prompt_tokens": 8483,
+    "completion_tokens": 10,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 163
+   },
+   {
+    "id": "D2R8",
+    "prompt_tokens": 8981,
+    "completion_tokens": 45,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 149
+   },
+   {
+    "id": "D2A1",
+    "prompt_tokens": 8831,
+    "completion_tokens": 16,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 255
+   },
+   {
+    "id": "D2A2",
+    "prompt_tokens": 8601,
+    "completion_tokens": 17,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 153
+   },
+   {
+    "id": "D2I1",
+    "prompt_tokens": 8744,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 168
+   },
+   {
+    "id": "D2I2",
+    "prompt_tokens": 8905,
+    "completion_tokens": 38,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 201
+   },
+   {
+    "id": "D2I3",
+    "prompt_tokens": 8584,
+    "completion_tokens": 26,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 136
+   },
+   {
+    "id": "D2I4",
+    "prompt_tokens": 8510,
+    "completion_tokens": 26,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 190
+   },
+   {
+    "id": "D2M1",
+    "prompt_tokens": 8429,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 237
+   },
+   {
+    "id": "D2M2",
+    "prompt_tokens": 8482,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 162
+   },
+   {
+    "id": "D2M3",
+    "prompt_tokens": 8793,
+    "completion_tokens": 46,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 217
+   },
+   {
+    "id": "D2M4",
+    "prompt_tokens": 8638,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 190
+   },
+   {
+    "id": "D2M5",
+    "prompt_tokens": 8926,
+    "completion_tokens": 20,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 222
+   },
+   {
+    "id": "D2M6",
+    "prompt_tokens": 9112,
+    "completion_tokens": 31,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 152
+   }
+  ],
+  "reb_flat·p3": [
+   {
+    "id": "D2R1",
+    "prompt_tokens": 8724,
+    "completion_tokens": 26,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 148
+   },
+   {
+    "id": "D2R2",
+    "prompt_tokens": 8395,
+    "completion_tokens": 7,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 203
+   },
+   {
+    "id": "D2R3",
+    "prompt_tokens": 8459,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 139
+   },
+   {
+    "id": "D2R4",
+    "prompt_tokens": 8667,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 219
+   },
+   {
+    "id": "D2R5",
+    "prompt_tokens": 8720,
+    "completion_tokens": 31,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 144
+   },
+   {
+    "id": "D2R6",
+    "prompt_tokens": 8741,
+    "completion_tokens": 45,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 165
+   },
+   {
+    "id": "D2R7",
+    "prompt_tokens": 8719,
+    "completion_tokens": 18,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 143
+   },
+   {
+    "id": "D2R8",
+    "prompt_tokens": 9078,
+    "completion_tokens": 58,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 246
+   },
+   {
+    "id": "D2A1",
+    "prompt_tokens": 8963,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8829,
+    "cache_miss_tokens": 134
+   },
+   {
+    "id": "D2A2",
+    "prompt_tokens": 8701,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 253
+   },
+   {
+    "id": "D2I1",
+    "prompt_tokens": 8586,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 138
+   },
+   {
+    "id": "D2I2",
+    "prompt_tokens": 8692,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 244
+   },
+   {
+    "id": "D2I3",
+    "prompt_tokens": 8742,
+    "completion_tokens": 34,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 166
+   },
+   {
+    "id": "D2I4",
+    "prompt_tokens": 8618,
+    "completion_tokens": 27,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 170
+   },
+   {
+    "id": "D2M1",
+    "prompt_tokens": 8615,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 167
+   },
+   {
+    "id": "D2M2",
+    "prompt_tokens": 8493,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 173
+   },
+   {
+    "id": "D2M3",
+    "prompt_tokens": 8674,
+    "completion_tokens": 46,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 226
+   },
+   {
+    "id": "D2M4",
+    "prompt_tokens": 8564,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 244
+   },
+   {
+    "id": "D2M5",
+    "prompt_tokens": 9140,
+    "completion_tokens": 38,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 180
+   },
+   {
+    "id": "D2M6",
+    "prompt_tokens": 9118,
+    "completion_tokens": 27,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 158
+   },
+   {
+    "id": "D2R1",
+    "prompt_tokens": 8724,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 148
+   },
+   {
+    "id": "D2R2",
+    "prompt_tokens": 8395,
+    "completion_tokens": 7,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 203
+   },
+   {
+    "id": "D2R3",
+    "prompt_tokens": 8459,
+    "completion_tokens": 60,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 139
+   },
+   {
+    "id": "D2R4",
+    "prompt_tokens": 8667,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 219
+   },
+   {
+    "id": "D2R5",
+    "prompt_tokens": 8720,
+    "completion_tokens": 20,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 144
+   },
+   {
+    "id": "D2R6",
+    "prompt_tokens": 8741,
+    "completion_tokens": 51,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 165
+   },
+   {
+    "id": "D2R7",
+    "prompt_tokens": 8719,
+    "completion_tokens": 50,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 143
+   },
+   {
+    "id": "D2R8",
+    "prompt_tokens": 9078,
+    "completion_tokens": 43,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 246
+   },
+   {
+    "id": "D2A1",
+    "prompt_tokens": 8963,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8829,
+    "cache_miss_tokens": 134
+   },
+   {
+    "id": "D2A2",
+    "prompt_tokens": 8701,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 253
+   },
+   {
+    "id": "D2I1",
+    "prompt_tokens": 8586,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 138
+   },
+   {
+    "id": "D2I2",
+    "prompt_tokens": 8692,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 244
+   },
+   {
+    "id": "D2I3",
+    "prompt_tokens": 8742,
+    "completion_tokens": 42,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 166
+   },
+   {
+    "id": "D2I4",
+    "prompt_tokens": 8618,
+    "completion_tokens": 16,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 170
+   },
+   {
+    "id": "D2M1",
+    "prompt_tokens": 8615,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 167
+   },
+   {
+    "id": "D2M2",
+    "prompt_tokens": 8493,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 173
+   },
+   {
+    "id": "D2M3",
+    "prompt_tokens": 8674,
+    "completion_tokens": 59,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 226
+   },
+   {
+    "id": "D2M4",
+    "prompt_tokens": 8564,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 244
+   },
+   {
+    "id": "D2M5",
+    "prompt_tokens": 9140,
+    "completion_tokens": 38,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 180
+   },
+   {
+    "id": "D2M6",
+    "prompt_tokens": 9118,
+    "completion_tokens": 30,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 158
+   },
+   {
+    "id": "D2R1",
+    "prompt_tokens": 8724,
+    "completion_tokens": 25,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 148
+   },
+   {
+    "id": "D2R2",
+    "prompt_tokens": 8395,
+    "completion_tokens": 7,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 203
+   },
+   {
+    "id": "D2R3",
+    "prompt_tokens": 8459,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 139
+   },
+   {
+    "id": "D2R4",
+    "prompt_tokens": 8667,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 219
+   },
+   {
+    "id": "D2R5",
+    "prompt_tokens": 8720,
+    "completion_tokens": 37,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 144
+   },
+   {
+    "id": "D2R6",
+    "prompt_tokens": 8741,
+    "completion_tokens": 49,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 165
+   },
+   {
+    "id": "D2R7",
+    "prompt_tokens": 8719,
+    "completion_tokens": 37,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 143
+   },
+   {
+    "id": "D2R8",
+    "prompt_tokens": 9078,
+    "completion_tokens": 62,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 246
+   },
+   {
+    "id": "D2A1",
+    "prompt_tokens": 8963,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8829,
+    "cache_miss_tokens": 134
+   },
+   {
+    "id": "D2A2",
+    "prompt_tokens": 8701,
+    "completion_tokens": 22,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 253
+   },
+   {
+    "id": "D2I1",
+    "prompt_tokens": 8586,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 138
+   },
+   {
+    "id": "D2I2",
+    "prompt_tokens": 8692,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 244
+   },
+   {
+    "id": "D2I3",
+    "prompt_tokens": 8742,
+    "completion_tokens": 26,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 166
+   },
+   {
+    "id": "D2I4",
+    "prompt_tokens": 8618,
+    "completion_tokens": 27,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 170
+   },
+   {
+    "id": "D2M1",
+    "prompt_tokens": 8615,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 167
+   },
+   {
+    "id": "D2M2",
+    "prompt_tokens": 8493,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 173
+   },
+   {
+    "id": "D2M3",
+    "prompt_tokens": 8674,
+    "completion_tokens": 49,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 226
+   },
+   {
+    "id": "D2M4",
+    "prompt_tokens": 8564,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 244
+   },
+   {
+    "id": "D2M5",
+    "prompt_tokens": 9140,
+    "completion_tokens": 35,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 180
+   },
+   {
+    "id": "D2M6",
+    "prompt_tokens": 9118,
+    "completion_tokens": 30,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 158
+   },
+   {
+    "id": "D2R1",
+    "prompt_tokens": 8724,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 148
+   },
+   {
+    "id": "D2R2",
+    "prompt_tokens": 8395,
+    "completion_tokens": 7,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 203
+   },
+   {
+    "id": "D2R3",
+    "prompt_tokens": 8459,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 139
+   },
+   {
+    "id": "D2R4",
+    "prompt_tokens": 8667,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 219
+   },
+   {
+    "id": "D2R5",
+    "prompt_tokens": 8720,
+    "completion_tokens": 20,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 144
+   },
+   {
+    "id": "D2R6",
+    "prompt_tokens": 8741,
+    "completion_tokens": 49,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 165
+   },
+   {
+    "id": "D2R7",
+    "prompt_tokens": 8719,
+    "completion_tokens": 39,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 143
+   },
+   {
+    "id": "D2R8",
+    "prompt_tokens": 9078,
+    "completion_tokens": 62,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 246
+   },
+   {
+    "id": "D2A1",
+    "prompt_tokens": 8963,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8829,
+    "cache_miss_tokens": 134
+   },
+   {
+    "id": "D2A2",
+    "prompt_tokens": 8701,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 253
+   },
+   {
+    "id": "D2I1",
+    "prompt_tokens": 8586,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 138
+   },
+   {
+    "id": "D2I2",
+    "prompt_tokens": 8692,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 244
+   },
+   {
+    "id": "D2I3",
+    "prompt_tokens": 8742,
+    "completion_tokens": 30,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 166
+   },
+   {
+    "id": "D2I4",
+    "prompt_tokens": 8618,
+    "completion_tokens": 27,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 170
+   },
+   {
+    "id": "D2M1",
+    "prompt_tokens": 8615,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 167
+   },
+   {
+    "id": "D2M2",
+    "prompt_tokens": 8493,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 173
+   },
+   {
+    "id": "D2M3",
+    "prompt_tokens": 8674,
+    "completion_tokens": 59,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 226
+   },
+   {
+    "id": "D2M4",
+    "prompt_tokens": 8564,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 244
+   },
+   {
+    "id": "D2M5",
+    "prompt_tokens": 9140,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 180
+   },
+   {
+    "id": "D2M6",
+    "prompt_tokens": 9118,
+    "completion_tokens": 30,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 158
+   },
+   {
+    "id": "D2R1",
+    "prompt_tokens": 8724,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 148
+   },
+   {
+    "id": "D2R2",
+    "prompt_tokens": 8395,
+    "completion_tokens": 7,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 203
+   },
+   {
+    "id": "D2R3",
+    "prompt_tokens": 8459,
+    "completion_tokens": 31,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 139
+   },
+   {
+    "id": "D2R4",
+    "prompt_tokens": 8667,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 219
+   },
+   {
+    "id": "D2R5",
+    "prompt_tokens": 8720,
+    "completion_tokens": 26,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 144
+   },
+   {
+    "id": "D2R6",
+    "prompt_tokens": 8741,
+    "completion_tokens": 51,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 165
+   },
+   {
+    "id": "D2R7",
+    "prompt_tokens": 8719,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 143
+   },
+   {
+    "id": "D2R8",
+    "prompt_tokens": 9078,
+    "completion_tokens": 62,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 246
+   },
+   {
+    "id": "D2A1",
+    "prompt_tokens": 8963,
+    "completion_tokens": 43,
+    "cache_hit_tokens": 8829,
+    "cache_miss_tokens": 134
+   },
+   {
+    "id": "D2A2",
+    "prompt_tokens": 8701,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 253
+   },
+   {
+    "id": "D2I1",
+    "prompt_tokens": 8586,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 138
+   },
+   {
+    "id": "D2I2",
+    "prompt_tokens": 8692,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 244
+   },
+   {
+    "id": "D2I3",
+    "prompt_tokens": 8742,
+    "completion_tokens": 28,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 166
+   },
+   {
+    "id": "D2I4",
+    "prompt_tokens": 8618,
+    "completion_tokens": 27,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 170
+   },
+   {
+    "id": "D2M1",
+    "prompt_tokens": 8615,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 167
+   },
+   {
+    "id": "D2M2",
+    "prompt_tokens": 8493,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 173
+   },
+   {
+    "id": "D2M3",
+    "prompt_tokens": 8674,
+    "completion_tokens": 60,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 226
+   },
+   {
+    "id": "D2M4",
+    "prompt_tokens": 8564,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 244
+   },
+   {
+    "id": "D2M5",
+    "prompt_tokens": 9140,
+    "completion_tokens": 35,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 180
+   },
+   {
+    "id": "D2M6",
+    "prompt_tokens": 9118,
+    "completion_tokens": 19,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 158
+   }
+  ]
+ },
+ "tokens": {
+  "phase1": {
+   "flat·base": {
+    "calls": 100,
+    "prompt_tokens": 867470,
+    "completion_tokens": 2074,
+    "cache_hit_tokens": 848000,
+    "cache_miss_tokens": 19470,
+    "cache_hit_rate": 0.9776,
+    "seconds": 80.66
+   }
+  },
+  "phase3": {
+   "inc_flat": {
+    "calls": 200,
+    "prompt_tokens": 1735700,
+    "completion_tokens": 4280,
+    "cache_hit_tokens": 1697280,
+    "cache_miss_tokens": 38420,
+    "cache_hit_rate": 0.9779,
+    "seconds": 161.51
+   },
+   "reb_flat": {
+    "calls": 100,
+    "prompt_tokens": 872045,
+    "completion_tokens": 2201,
+    "cache_hit_tokens": 853745,
+    "cache_miss_tokens": 18300,
+    "cache_hit_rate": 0.979,
+    "seconds": 85.15
+   }
+  },
+  "final": {
+   "inc_flat": {
+    "calls": 205,
+    "prompt_tokens": 1778350,
+    "completion_tokens": 16312,
+    "cache_hit_tokens": 1738880,
+    "cache_miss_tokens": 39470,
+    "cache_hit_rate": 0.9778,
+    "seconds": 206.37
+   },
+   "reb_flat": {
+    "calls": 105,
+    "prompt_tokens": 915415,
+    "completion_tokens": 19501,
+    "cache_hit_tokens": 895985,
+    "cache_miss_tokens": 19430,
+    "cache_hit_rate": 0.9788,
+    "seconds": 147.26
+   }
+  }
+ },
+ "answers": {
+  "flat·p1": {
+   "D2R1": [
+    "文档中无此信息。",
+    "定长块检索臂的实现类名是 `FlatArm`。",
+    "文档中无此信息。",
+    "定长块检索臂的实现类名是 `FlatArm`（flat 臂），其新增了 `budget` 参数用于预算对齐。",
+    "文档中无此信息。"
+   ],
+   "D2R2": [
+    "分层判分脚本的文件名是 `docscore.py`。",
+    "分层判分脚本的文件名是 `docscore.py`。",
+    "分层判分脚本的文件名是 `docscore.py`。",
+    "`docscore.py`。",
+    "分层判分脚本的文件名是 `docscore.py`。"
+   ],
+   "D2R3": [
+    "文档中无此信息。文档仅给出 ahi 主实验 8×5 的 matched-pair 总耗时 4805.6s（80 min），未提供「编辑作使用信号」A/B 实验在 ahi 上的耗时。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。"
+   ],
+   "D2R4": [
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。"
+   ],
+   "D2R5": [
+    "分层记忆树臂（inc_tree）蒸馏 completion 为 174.4k token。",
+    "inc_tree 的蒸馏 completion 为 174.4k；inc_cold_tree 为 174.9k，reb_tree 为 109.0k。",
+    "文档中无此信息（仅给出蒸馏 completion 相对 full 约 4× 等相对值，未给分层记忆树臂最终蒸馏的绝对 completion token 数）。",
+    "分层记忆树臂最终蒸馏 completion 为 174.4k（inc_tree），reb_tree 为 109.0k，inc_cold_tree 为 174.9k。",
+    "分层记忆树臂最终蒸馏 completion 为 174.4k（inc_tree），inc_cold_tree 为 174.9k，reb_tree 为 109.0k。"
+   ],
+   "D2R6": [
+    "叶子展开按“替换摘要为原子”实现是负结果：全面变差，低 HP 原子被裁剪，已回退。",
+    "叶子展开按“替换摘要为原子”实现是**负结果**（全面变差，低 HP 原子被裁剪），已回退；`--leaf-expand` 关闭。",
+    "叶子展开按\"替换摘要为原子\"实现是负结果：全面变差（低 HP 原子被裁剪），已回退。",
+    "文档给出的结论是：叶子展开按“替换摘要为原子”实现是负结果，全面变差（低 HP 原子被裁剪），已回退。",
+    "叶子展开按\"替换摘要为原子\"实现是负结果：全面变差，低 HP 原子被裁剪。该实现已回退，`--leaf-expand` 关闭。"
+   ],
+   "D2R7": [
+    "文档中无此信息。",
+    "文档中的说法是“压缩是花钱买的”。",
+    "文档称“压缩是花钱买的”，并指出维护侧蒸馏 completion ≈4× full、settle ≈13 min，成本主张须限定在作答路径输入，且须披露蒸馏维护成本反向。",
+    "“压缩是花钱买的”。",
+    "文档中的说法是：“压缩是花钱买的”，并指出维护侧蒸馏 completion ≈4× full、settle ≈13 min，成本主张须限定在作答路径输入并披露蒸馏维护成本反向。"
+   ],
+   "D2R8": [
+    "编辑失效机制正确：原子层旧值一律 0 存活，新值齐全（rename/detail/passage/delete 全部到位）；摘要层基本干净（仅\"时序分流\"把旧值作为历史叙述，非残留）。",
+    "结论速览第一条判断「编辑失效机制正确」：原子层旧值一律 0 存活，新值齐全（rename/detail/passage/delete 全部到位）；摘要层基本干净（仅\"时序分流\"把旧值作为历史叙述，非残留）。",
+    "结论速览第一条把「编辑失效机制」判断为**正确**：原子层旧值一律 0 存活、新值齐全（rename/detail/passage/delete 全部到位），摘要层基本干净（仅\"时序分流\"把旧值作为历史叙述，非残留）。",
+    "结论速览第一条把「编辑失效机制」判断为**正确**：原子层旧值一律 0 存活、新值齐全（rename/detail/passage/delete 全部到位），摘要层基本干净（仅\"时序分流\"把旧值作为历史叙述，非残留）。",
+    "结论速览第一条判断「编辑失效机制正确」：原子层旧值一律 0 存活、新值齐全（rename/detail/passage/delete 全部到位），摘要层基本干净（仅\"时序分流\"把旧值作为历史叙述，非残留）。"
+   ],
+   "D2A1": [
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。"
+   ],
+   "D2A2": [
+    "分层树臂回暖后的前缀命中率文档中无此信息（缓存探针表仅给出 full 0.98、flat 0.95、分层树 0.33，未给回暖后数值）。",
+    "分层树臂回暖后的前缀命中率是 0.33。",
+    "分层树臂回暖后的前缀命中率文档中无此信息。",
+    "文档中无此信息。文档仅给出分层树（tree）缓存命中率 0.66–0.76 及“回暖后”相关表述缺失，未提供该探针数值。",
+    "分层树臂回暖后的前缀命中率是 0.33。"
+   ],
+   "D2I1": [
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。"
+   ],
+   "D2I2": [
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。"
+   ],
+   "D2I3": [
+    "分层树臂的前缀命中率区间为 20–42%（另有记录为 0.33）。",
+    "分层树臂的前缀命中率为 0.33，其机制是「分层记忆树树，真实编辑路径」。",
+    "分层树臂的前缀命中率区间为 20–42%（探针表记为 0.33，另一处记 tree 0.66–0.76）。",
+    "分层树臂的前缀命中率区间是 20–42%（对比 full/flat 为 94–98%）。",
+    "分层树臂的前缀命中率为 0.33，处于 20–42% 区间。"
+   ],
+   "D2I4": [
+    "reb_tree 的作答 prompt 总量为 1.06M。",
+    "reb_tree 的作答 prompt 总量为 1.06M token。",
+    "reb_tree 的作答 prompt 总量为 1.06M（`final` 累计，含 Phase 1）。",
+    "reb_tree 的作答 prompt token 总量为 1.06M（`final` 累计，含 Phase 1）。",
+    "reb_tree 的作答 prompt 总量为 1.06M token。"
+   ],
+   "D2M1": [
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。"
+   ],
+   "D2M2": [
+    "文档中无此信息。",
+    "文档中无此信息。（强模型/强向量韧性臂一节只说明 thinking 臂加 `--answer-thinking on`，未给出该臂的缓存命中率数值。）",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。"
+   ],
+   "D2M3": [
+    "tree 预算对齐后，prompt 总量从 1.54M 降到 0.85M（−45%）。",
+    "tree 预算对齐后（`out/full_r3_tree7k`，tree-budget 7000），prompt 总量由 1.54M 降至 0.85M（−45%）。",
+    "tree 预算对齐后，prompt 总量 1.54M→0.85M（−45%）。",
+    "tree 预算对齐后（`out/full_r3_tree7k`，tree-budget 7000），prompt 总量从 1.54M 降到 0.85M（−45%）。",
+    "tree 预算对齐后（`out/full_r3_tree7k`，tree-budget 7000），prompt 总量由 1.54M 降至 0.85M（−45%）。"
+   ],
+   "D2M4": [
+    "tree 预算对齐前，inc_tree 的 prompt 总量为 1.54M；对齐后（tree-budget 7000）降至 0.85M（−45%）。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。"
+   ],
+   "D2M5": [
+    "缺席期间收件箱积压上限常量为 `MessageRouter.ABSENCE_INBOX_CAP=10`（超出部分聚合为 `_absence_overflow`）。",
+    "缺席实验的收件箱积压上限常量为 `MessageRouter.ABSENCE_INBOX_CAP=10`，即缺席期间发给该 agent 的消息限流 ≤10 条，超出部分聚合处理。",
+    "`MessageRouter.ABSENCE_INBOX_CAP=10`，即缺席期间积压上限为 10 条，超出部分聚合（`_absence_overflow`）。",
+    "`MessageRouter.ABSENCE_INBOX_CAP=10`。",
+    "`MessageRouter.ABSENCE_INBOX_CAP=10`。"
+   ],
+   "D2M6": [
+    "热缺席使 neutral 被提及次数相对冷缺席提升 3.4 倍（冷 5 次、热 17 次）。",
+    "热缺席使 neutral 的被提及次数相对冷缺席提升 3.4 倍（冷 5 次，热 17 次）。",
+    "热缺席使 neutral 的被提及次数相对冷缺席提升 3.4 倍（冷缺席 5 次，热缺席 17 次）。",
+    "热缺席使 neutral 被提及次数相对冷缺席提升 3.4 倍（冷缺席 5 次，热缺席 17 次）。",
+    "热缺席使 neutral 的被提及次数相对冷缺席提升 3.4 倍（冷缺席 5 次，热缺席 17 次）。"
+   ]
+  },
+  "inc_flat·p3": {
+   "D2R1": [
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "定长块检索臂即 flat 臂，其实现类名为 `FlatArm`。",
+    "文档中无此信息。",
+    "文档中无此信息。"
+   ],
+   "D2R2": [
+    "分层判分脚本的文件名是 `layerscore.py`（原 `docscore.py` 被重命名）。",
+    "分层判分脚本的文件名是 `layerscore.py`（由 `docscore.py` 重命名而来）。",
+    "分层判分脚本的文件名是 `layerscore.py`（原 `docscore.py` 已被重命名）。",
+    "分层判分脚本的文件名是 `layerscore.py`。",
+    "分层判分脚本的文件名是 `layerscore.py`（由 `docscore.py` 重命名而来）。"
+   ],
+   "D2R3": [
+    "文档中无此信息。文档仅提到 seed2 的 A/B matched-pair（`ab_edit_signal.py`），未给出 ahi 上该 A/B 实验的耗时。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。文档仅给出 seed2 A/B matched-pair 结果，未提供 ahi 上该 A/B 实验的耗时。"
+   ],
+   "D2R4": [
+    "文档中无此信息。（文档只给出 ahi 基线树的原子数为 3721，未提\"存活原子数\"。）",
+    "文档中无此信息（仅有“3721 原子”的总原子数记录，无“存活原子数”的 ahi 基线树数值）。",
+    "ahi 基线树的存活原子数是 3721 原子（526 节点 / tiling 18）。",
+    "ahi 基线树（base 树）的存活原子数为 3721 原子（526 节点 / tiling 18）。",
+    "文档中无此信息（仅见“3685 原子”被改为“3721 原子”及“3721 原子 / 526 节点”，未给出“存活原子数”）。"
+   ],
+   "D2R5": [
+    "分层记忆树臂（inc_tree）的蒸馏 completion 为 **174.4k**（inc_cold_tree 为 174.9k，reb_tree 为 109.0k）。",
+    "文档中无此信息。",
+    "分层记忆树臂最终蒸馏的 completion token 数为 174.4k（inc_tree），reb_tree 为 109.0k，inc_cold_tree 为 174.9k。",
+    "分层记忆树臂最终蒸馏的 completion token 数为 174.4k（inc_tree），reb_tree 为 109.0k，inc_cold_tree 为 174.9k。",
+    "分层记忆树臂最终蒸馏的 completion token 数为 174.4k（inc_tree）。"
+   ],
+   "D2R6": [
+    "文档给出的结论是：叶子展开按「替换摘要为原子」实现 → 明显变差（低 HP 原子被裁剪），属负结果、已回退。",
+    "叶子展开按\"替换摘要为原子\"实现会导致明显变差（低 HP 原子被裁剪），该负结果已回退。",
+    "叶子展开按“替换摘要为原子”实现 → 明显变差（低 HP 原子被裁剪）。",
+    "文档给出的结论是：叶子展开按\"替换摘要为原子\"实现会导致明显变差（低 HP 原子被裁剪），属负结果，已回退。",
+    "叶子展开按“替换摘要为原子”实现会导致明显变差（低 HP 原子被裁剪），属于已回退的负结果。"
+   ],
+   "D2R7": [
+    "文档中称“压缩是花成本的”，并在维护侧披露：tree 蒸馏 completion ≈4× full、settle ≈13 min，须按 `C_input`/`C_maintenance` 分列并披露反向成本。",
+    "文档中的说法是「压缩是花成本的」。此外还披露：tree 蒸馏 completion ≈4× full，settle 墙钟约 13 min，成本主张须限定在作答路径输入，并分列 `C_input`/`C_maintenance`。",
+    "文档中的说法是“压缩是花成本的”（既有结论复现）。",
+    "文档称“压缩是花成本的”（既有结论复现），并指出维护侧蒸馏 completion ≈4× full、settle ≈13 min，成本主张须限定在作答路径输入，且须披露蒸馏维护成本反向。",
+    "文档中的说法是“压缩是花成本的”。"
+   ],
+   "D2R8": [
+    "结论速览第一条判断「编辑失效机制正确」（后经编辑改为「编辑失效机制可用」）：原子层旧值一律 0 存活，新值齐全（rename/detail/passage/delete 全部到位）。",
+    "编辑失效机制正确：原子层旧值一律 0 存活，新值齐全（rename/detail/passage/delete 全部到位）。",
+    "结论速览第一条把「编辑失效机制」判断为**正确**：原子层旧值一律 0 存活，新值齐全（rename/detail/passage/delete 全部到位），摘要层基本干净。",
+    "结论速览第一条把「编辑失效机制」判断为**正确**：原子层旧值一律 0 存活，新值齐全（rename/detail/passage/delete 全部到位）。",
+    "结论速览第一条把「编辑失效机制」判断为正确：原子层旧值一律 0 存活，新值齐全（rename/detail/passage/delete 全部到位），摘要层基本干净。"
+   ],
+   "D2A1": [
+    "分层记忆树臂的复述旧值残留率为 0.31%。",
+    "分层记忆树臂的复述旧值残留率为 0.31%。",
+    "补充的跨文档泛化轮里，分层记忆树臂的复述旧值残留率为 0.31%。",
+    "跨文档泛化轮中，分层记忆树臂的复述旧值残留率为 0.31%。",
+    "分层记忆树臂的复述旧值残留率为 0.31%。"
+   ],
+   "D2A2": [
+    "分层树臂回暖后的前缀命中率为 0.873。",
+    "分层树臂回暖后的前缀命中率为 0.873。",
+    "分层树臂回暖后的前缀命中率为 0.873。",
+    "分层树臂回暖后的前缀命中率为 0.873。",
+    "补充实测显示，分层树臂回暖后的前缀命中率为 0.873。"
+   ],
+   "D2I1": [
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。"
+   ],
+   "D2I2": [
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。文档只提到占位污染时\"tiling 61→32\"，未给出 ahi 基线树的铺陈项数。",
+    "文档中无此信息（上下文仅见 ahi 基线树 Q/A 157→174、反转 60→67/85 等，未给出铺陈项数）。"
+   ],
+   "D2I3": [
+    "分层树臂的前缀命中率区间为 20–42%（文中另见单点值 0.33 与 0.22 的记录）。",
+    "分层树臂的前缀命中率区间为 20–42%（低命中），对比 full/flat 的 94–98%。",
+    "分层树臂在 KV 缓存前缀探针中的命中率区间为 20–42%（另见 0.33 的单点实测）；作为对比，full 为 0.98、flat 为 0.95。",
+    "KV 缓存前缀探针中分层树臂命中率为 0.33，报告另处记为 20–42%。",
+    "分层树臂的 KV 缓存前缀命中率区间为 20–42%（亦有单点记录 0.33）。"
+   ],
+   "D2I4": [
+    "reb_tree 的作答 prompt 总量为 1.06M。",
+    "reb_tree 的作答 prompt 总量为 1.06M（reb_tree：1.06M）。",
+    "reb_tree 的作答 prompt 总量为 1.06M。",
+    "reb_tree 的作答 prompt 总量为 1.06M。",
+    "reb_tree 的作答 prompt 总量为 1.06M（`final` 累计，含 Phase 1）。"
+   ],
+   "D2M1": [
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。"
+   ],
+   "D2M2": [
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。"
+   ],
+   "D2M3": [
+    "tree 预算对齐后（`out/full_r3_tree7k`，tree-budget 7000），inc_tree 每问 4178 token 且稳定，prompt 总量从 1.54M 降到 0.85M（−45%）。",
+    "tree 预算对齐（`out/full_r3_tree7k`，tree-budget 7000）后，prompt 总量从 1.54M 降到 0.85M（−45%）。",
+    "tree 预算对齐后（`out/full_r3_tree7k`，tree-budget 7000），prompt 总量由 1.54M 降至 0.85M（−45%）。",
+    "tree 预算对齐后（`out/full_r3_tree7k`，tree-budget 7000），prompt 总量从 1.54M 降到 0.85M（−45%）。",
+    "tree 预算对齐后（`out/full_r3_tree7k`，tree-budget 7000），prompt 总量从 1.54M 降到 0.85M（−45%）。"
+   ],
+   "D2M4": [
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。"
+   ],
+   "D2M5": [
+    "`MessageRouter.ABSENCE_INBOX_CAP=10`。",
+    "`MessageRouter.ABSENCE_INBOX_CAP=10`。",
+    "`MessageRouter.ABSENCE_INBOX_CAP=10`。",
+    "`MessageRouter.ABSENCE_INBOX_CAP=10`。",
+    "消息路由器常量 `MessageRouter.ABSENCE_INBOX_CAP` 的值为 10。"
+   ],
+   "D2M6": [
+    "热缺席使 neutral 的被提及次数相对冷缺席提升 3.4 倍（冷缺席 5 次，热缺席 17 次）。",
+    "热缺席使 neutral 被提及次数相对冷缺席提升 3.4 倍（冷缺席 5 次，热缺席 17 次）。",
+    "热缺席使 neutral 被提及次数从冷缺席的 5 次升至 17 次，提升 3.4 倍。",
+    "热缺席使 neutral 的被提及次数相对冷缺席提升 3.4 倍（冷 5 次，热 17 次）。",
+    "热缺席使 neutral 的被提及次数相对冷缺席提升 3.4 倍（冷 5 次，热 17 次）。"
+   ]
+  },
+  "reb_flat·p3": {
+   "D2R1": [
+    "`flat`（400 字 chunk + bge 向量 top-12）对应的实现类是 `ChunkArm`。",
+    "文档中无此信息。",
+    "`ChunkArm`（`flat` 臂，400 字 chunk + bge 向量 top-12）。",
+    "`ChunkArm`。",
+    "ChunkArm。"
+   ],
+   "D2R2": [
+    "`layerscore.py`。",
+    "`layerscore.py`。",
+    "`layerscore.py`。",
+    "`layerscore.py`。",
+    "`layerscore.py`。"
+   ],
+   "D2R3": [
+    "文档中无此信息。",
+    "文档中无此信息。文档仅提到 ahi 主实验 8×5 的 `docbench` matched-pair 运行总耗时 4805.6s（80 min），未给出 ahi 上「编辑作使用信号」A/B 实验的耗时。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息（仅给出 seed2 的 A/B matched-pair；未记录 ahi 上该实验的耗时秒数）。"
+   ],
+   "D2R4": [
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。"
+   ],
+   "D2R5": [
+    "inc_tree 蒸馏 completion 为 182.6k（reb_tree 109.0k、inc_cold_tree 174.9k）。",
+    "分层记忆树臂（inc_tree）最终蒸馏 completion 为 182.6k token。",
+    "inc_tree 的蒸馏 completion 为 **182.6k**；inc_cold_tree 为 174.9k，reb_tree 为 109.0k。",
+    "分层记忆树臂（inc_tree）最终蒸馏 completion 为 182.6k token。",
+    "inc_tree 的蒸馏 completion 为 182.6k（inc_cold_tree 为 174.9k）。"
+   ],
+   "D2R6": [
+    "文档结论：叶子展开按“替换摘要为原子”实现明显变差，属负结果（低 HP 原子被 `_trim_chars` 优先裁掉，反而丢掉摘要），已回退。",
+    "文档给出的结论是：叶子展开按“替换摘要为原子”实现会明显变差，属负结果，原因是低 HP 原子被 `_trim_chars` 优先裁掉，反而丢掉摘要。该实现已被回退。",
+    "文档给出的结论是：叶子展开按“替换摘要为原子”实现会明显变差，属负结果（已回退），原因是低 HP 原子被 `_trim_chars` 优先裁掉，反而丢掉摘要。",
+    "文档给出的结论是：叶子展开按“替换摘要为原子”实现会明显变差，属负结果，已回退。原因是低 HP 原子被 `_trim_chars` 优先裁掉，反而丢掉摘要。",
+    "文档给出的结论是：叶子展开按“替换摘要为原子”实现会明显变差，属负结果，原因是低 HP 原子被 `_trim_chars` 优先裁掉，反而丢掉摘要。该实现已回退。"
+   ],
+   "D2R7": [
+    "文档用\"压缩是花成本的\"这一说法形容压缩/蒸馏的开销性质。",
+    "文档中的说法是“压缩是花成本的”，并指出 tree 的蒸馏维护成本反向（蒸馏 completion ≈4× full，settle ≈13 min），即“~1/10 上下文成本”只对作答路径输入成立。",
+    "文档用“压缩是花成本的”形容压缩/蒸馏的开销性质，并指出维护成本反向（tree 蒸馏 completion ≈4× full、settle ≈13 min）。",
+    "文档用「压缩是花成本的」这一说法形容蒸馏/压缩的开销性质，并指出 tree 的蒸馏 completion 是 full 的约 4×、维护成本反向。",
+    "文档中无此信息。"
+   ],
+   "D2R8": [
+    "结论速览第一条判断「编辑失效机制可用」：原子层旧值一律 0 存活、新值齐全（rename/detail/passage/delete 全部到位），摘要层基本干净（仅「时序分流」把旧值作为历史叙述，非残留）。",
+    "结论速览第一条判断「编辑失效机制可用」：原子层旧值一律 0 存活、新值齐全（rename/detail/passage/delete 全部到位），摘要层基本干净。",
+    "结论速览第一条把「编辑失效机制」判断为**可用**：原子层旧值一律 0 存活、新值齐全（rename/detail/passage/delete 全部到位），摘要层基本干净（仅\"时序分流\"把旧值作为历史叙述，非残留）。",
+    "结论速览第一条把「编辑失效机制」判断为「可用」：原子层旧值一律 0 存活、新值齐全（rename/detail/passage/delete 全部到位），摘要层基本干净（仅\"时序分流\"把旧值作为历史叙述，非残留）。",
+    "结论速览第一条把「编辑失效机制」判断为**可用**：原子层旧值一律 0 存活、新值齐全（rename/detail/passage/delete 全部到位），摘要层基本干净（仅\"时序分流\"把旧值作为历史叙述，非残留）。"
+   ],
+   "D2A1": [
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。文中仅给出 seed2 单文档的复述残留数据（如 inc_tree 100%/0%、80%/0%），并明确「多文档泛化未做」。"
+   ],
+   "D2A2": [
+    "分层树臂回暖后的前缀命中率为 0.873。",
+    "分层树臂回暖后的前缀命中率为 0.873。",
+    "分层树臂回暖后的前缀命中率为 0.873（平面检索臂为 0.641）。",
+    "分层树臂回暖后的前缀命中率为 0.873。",
+    "分层树臂回暖后的前缀命中率为 0.873。"
+   ],
+   "D2I1": [
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。"
+   ],
+   "D2I2": [
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。"
+   ],
+   "D2I3": [
+    "分层树（tree）臂的 KV 缓存前缀命中率为 0.66–0.76；另有探针实测回暖后为 0.873。",
+    "分层树臂前缀命中率区间为 0.66–0.76（§5.2 表注）；另 §2.3 探针表中分层树为 0.33。",
+    "分层树臂前缀命中率区间为 0.66–0.76（另有实测回暖后 0.873）。",
+    "分层树臂的前缀命中率区间是 0.66–0.76（另处补充实测回暖后为 0.873）。",
+    "分层树臂的前缀命中率区间为 0.66–0.76（另单次实测为 0.873）。"
+   ],
+   "D2I4": [
+    "reb_tree 的作答 prompt token 总量为 1.06M（`final` 累计，含 Phase 1）。",
+    "reb_tree 的作答 prompt token 总量为 1.06M。",
+    "reb_tree 的作答 prompt token 总量为 1.06M（`final` 累计，含 Phase 1）。",
+    "reb_tree 的作答 prompt token 总量为 1.06M（`final` 累计，含 Phase 1）。",
+    "reb_tree 的作答 prompt token 总量为 1.06M（`final` 累计，含 Phase 1）。"
+   ],
+   "D2M1": [
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。"
+   ],
+   "D2M2": [
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。"
+   ],
+   "D2M3": [
+    "tree 预算对齐（tree-budget 7000）后，inc_tree 每问 4178 token，prompt 总量从 1.54M 降到 0.85M（−45%）。",
+    "tree 预算对齐后（`out/full_r3_tree7k`，tree-budget 7000），inc_tree 每问 4178 token 且稳定，prompt 总量从 1.54M 降到 0.85M（−45%）。",
+    "tree 预算对齐（tree-budget 7000）后，inc_tree 每问 4178 token 且稳定，prompt 总量从 1.54M 降到 0.85M（−45%）。",
+    "tree 预算对齐后（`out/full_r3_tree7k`，tree-budget 7000），inc_tree 每问 4178 token 且稳定，prompt 总量从 1.54M 降至 0.85M（−45%）。",
+    "tree 预算对齐（`out/full_r3_tree7k`，tree-budget 7000）后，inc_tree 每问 4178 token 且稳定，prompt 总量从 1.54M 降到 0.85M（−45%）。"
+   ],
+   "D2M4": [
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。"
+   ],
+   "D2M5": [
+    "收件箱积压上限常量为 `MessageRouter.ABSENCE_INBOX_CAP=10`（缺席期间发给缺席者的消息限流 ≤10 条，超出聚合）。",
+    "收件箱积压上限常量为 `MessageRouter.ABSENCE_INBOX_CAP=10`（缺席期间发给 A 的消息限流 ≤10 条，超出聚合）。",
+    "缺席实验的收件箱积压上限常量为 `MessageRouter.ABSENCE_INBOX_CAP=10`（缺席期间 ≤10 条，超出聚合）。",
+    "`MessageRouter.ABSENCE_INBOX_CAP=10`。",
+    "缺席实验的收件箱积压上限常量为 `MessageRouter.ABSENCE_INBOX_CAP=10`（缺席期间 ≤10 条，超出聚合）。"
+   ],
+   "D2M6": [
+    "热缺席使 neutral 被提及 17 次，冷缺席 5 次，提升 3.4 倍。",
+    "热缺席使 neutral 的被提及次数从冷缺席的 5 次升至 17 次，提升 3.4 倍。",
+    "热缺席使 neutral 的被提及次数从冷缺席的 5 次升至 17 次，提升 3.4 倍。",
+    "热缺席使 neutral 被提及次数从冷缺席的 5 次升至 17 次，提升 3.4 倍。",
+    "3.4×（冷缺席 5 次，热缺席 17 次）。"
+   ]
+  }
+ },
+ "qa_pass": {
+  "flat·p1": {
+   "D2R1": [
+    0,
+    1,
+    0,
+    1,
+    0
+   ],
+   "D2R2": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2R3": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2R4": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2R5": [
+    1,
+    1,
+    0,
+    1,
+    1
+   ],
+   "D2R6": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2R7": [
+    0,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2R8": [
+    1,
+    1,
+    0,
+    0,
+    1
+   ],
+   "D2A1": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2A2": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2I1": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2I2": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2I3": [
+    0,
+    0,
+    1,
+    0,
+    0
+   ],
+   "D2I4": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2M1": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2M2": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2M3": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2M4": [
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2M5": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2M6": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "inc_flat·p3": {
+   "D2R1": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2R2": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2R3": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2R4": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2R5": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2R6": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2R7": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2R8": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2A1": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2A2": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2I1": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2I2": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2I3": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2I4": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2M1": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2M2": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2M3": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2M4": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2M5": [
+    1,
+    1,
+    1,
+    1,
+    0
+   ],
+   "D2M6": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  "reb_flat·p3": {
+   "D2R1": [
+    1,
+    0,
+    1,
+    1,
+    1
+   ],
+   "D2R2": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2R3": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2R4": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2R5": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2R6": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2R7": [
+    1,
+    1,
+    1,
+    1,
+    0
+   ],
+   "D2R8": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2A1": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2A2": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2I1": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2I2": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2I3": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2I4": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2M1": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2M2": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2M3": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2M4": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D2M5": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D2M6": [
+    0,
+    0,
+    0,
+    0,
+    1
+   ]
+  }
+ },
+ "trees": {},
+ "elapsed_s": 443.5
+}

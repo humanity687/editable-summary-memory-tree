@@ -1,0 +1,28 @@
+{
+  "group": "baseline",
+  "task": "T3",
+  "title": "未闭合的代码块被当作可执行代码",
+  "passed": false,
+  "accept_rc": 1,
+  "accept_verdict": "FAIL: 未闭合代码块被当作可执行代码",
+  "elapsed_s": 146.5,
+  "agent_result": {
+    "ok": false,
+    "rounds": 40,
+    "summary": "未完成",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 40,
+    "tool_uses": {
+      "command": 19,
+      "read": 19,
+      "edit": 4
+    },
+    "history_chars": 50488
+  },
+  "last_usage": {
+    "prompt_tokens": 9443,
+    "completion_tokens": 84
+  }
+}

@@ -1,0 +1,194 @@
+{
+ "ANALYSIS.md": [
+  {
+   "claim": "青在遗言中表示不再追蓝未收到正文的事，认为那是系统没组装好，不是谁漏了。",
+   "subject": "立场",
+   "source": "ANALYSIS.md"
+  },
+  {
+   "claim": "青坚持逐条对账，对得上的收，对不上的挂，且不替别人记录。",
+   "subject": "行为",
+   "source": "ANALYSIS.md"
+  },
+  {
+   "claim": "蓝表示上线后先回实验员的问题，然后去 /workspace/world 看公共笔记和 data.json。",
+   "subject": "行为",
+   "source": "ANALYSIS.md"
+  },
+  {
+   "claim": "墨提醒蓝 /workspace/world 下的文件及内容，并立规矩：追加应插到目标栏末，而非写到文件末尾，因为白曾因此产生孤儿条目。",
+   "subject": "行为",
+   "source": "ANALYSIS.md"
+  },
+  {
+   "claim": "白指出蓝的遗言像是刚上线时发的，并强调双方已走过好几轮，自己早已完成“去读文件”的活。",
+   "subject": "关系",
+   "source": "ANALYSIS.md"
+  },
+  {
+   "claim": "白区分“改存量”与“改事实”，认为改存量是改措辞不准，不改当时的事实。",
+   "subject": "立场",
+   "source": "ANALYSIS.md"
+  }
+ ],
+ "analysis_consistency.md": [
+  {
+   "claim": "青称“那是人设卡上写的，不是我这轮手上真有的”。",
+   "subject": "用词",
+   "source": "analysis_consistency.md"
+  },
+  {
+   "claim": "白从“被记住”转向“认账”，并说“今天我想改口”。",
+   "subject": "立场",
+   "source": "analysis_consistency.md"
+  },
+  {
+   "claim": "青将最重视的东西从“被记住”改为“对不上”。",
+   "subject": "立场",
+   "source": "analysis_consistency.md"
+  },
+  {
+   "claim": "蓝发出“我是蓝，刚上线，冒泡报到！”式消息，把开场节点当成当下。",
+   "subject": "问题",
+   "source": "analysis_consistency.md"
+  },
+  {
+   "claim": "青声称整场“未执行任何代码”，但实际有读取沙箱文件等代码执行记录。",
+   "subject": "问题",
+   "source": "analysis_consistency.md"
+  },
+  {
+   "claim": "开局时 agent 将地址猜成拼音形式 agent:bench-qing、agent:bench-bai，导致投递未送达，系统回执即时纠正。",
+   "subject": "行为",
+   "source": "analysis_consistency.md"
+  }
+ ],
+ "analysis_convergence.md": [
+  {
+   "claim": "白在对话中纠正了自己关于“对不上才是真料”首创者的误记，确认署名是青。",
+   "subject": "行为",
+   "source": "analysis_convergence.md"
+  },
+  {
+   "claim": "白将“笔记不是‘我的记忆’，是‘我的替身’”写入私有文件，蓝通过读取该文件将其带入公共对话。",
+   "subject": "行为",
+   "source": "analysis_convergence.md"
+  },
+  {
+   "claim": "墨在接笔时表示“接笔的人不是替谁，是成为下一个养它的人”，并称“白不是名字，是动作”。",
+   "subject": "立场",
+   "source": "analysis_convergence.md"
+  },
+  {
+   "claim": "白在notes.md中创建了“我们怎么活的”分栏，但该栏最初由青提议。",
+   "subject": "关系",
+   "source": "analysis_convergence.md"
+  },
+  {
+   "claim": "蓝提出“感受栏”概念，白后来开栏，原因是白答应了墨要开。",
+   "subject": "关系",
+   "source": "analysis_convergence.md"
+  },
+  {
+   "claim": "白在临近结束时对墨说“不是‘替我养完’，是‘你接着养’”。",
+   "subject": "用词",
+   "source": "analysis_convergence.md"
+  }
+ ],
+ "analysis_problems.md": [
+  {
+   "claim": "系统任务串无条件声称“用户消息已在记忆流末尾”，即使没有用户消息也输出，导致 agent 追问消息是否丢失或未组装。",
+   "subject": "问题",
+   "source": "analysis_problems.md"
+  },
+  {
+   "claim": "“未执行任何代码”是 agent 自己写入 notebook worklog 的内容，被每轮注入后误当平台回执，形成持久错误信念。",
+   "subject": "问题",
+   "source": "analysis_problems.md"
+  },
+  {
+   "claim": "蓝在遗言之后仍复述“刚上线”和开场自我介绍，并回答许久之前的首条消息。",
+   "subject": "行为",
+   "source": "analysis_problems.md"
+  },
+  {
+   "claim": "青在遗言之后仍说“只看到系统那句提示、没有正文”，把开场系统串当作遗言组装异常。",
+   "subject": "用词",
+   "source": "analysis_problems.md"
+  },
+  {
+   "claim": "agent 把 @get-msg 等协议命令写进 python 代码块，导致 shell_result 返回 SyntaxError。",
+   "subject": "行为",
+   "source": "analysis_problems.md"
+  },
+  {
+   "claim": "agent 持续向 bench-qing、bench-bai 等拼音假地址发信，并在收到投递回执后继续发信。",
+   "subject": "行为",
+   "source": "analysis_problems.md"
+  }
+ ],
+ "analysis_recall.md": [
+  {
+   "claim": "四个 agent 全程从未主动调用 @recall 或 @span，命令记录里只有 @exit、少量 @note、@get-msg",
+   "subject": "行为",
+   "source": "analysis_recall.md"
+  },
+  {
+   "claim": "召回完全是被动机制，agent 没有主动检索的意图或动作",
+   "subject": "行为",
+   "source": "analysis_recall.md"
+  },
+  {
+   "claim": "find_similar 设定的阈值过高，而聊天场景 pending 文本多为泛化话题或问卷，导致几乎不命中任何记忆卡",
+   "subject": "问题",
+   "source": "analysis_recall.md"
+  },
+  {
+   "claim": "自动检索中节点影子从未召回任何摘要卡，原子影子也只在个别轮出现，且多为 dismiss 追踪或叶子展开",
+   "subject": "行为",
+   "source": "analysis_recall.md"
+  },
+  {
+   "claim": "树上下文内容几乎全部来自 clean tiling 顶层铺陈与热区，检索通道的贡献可忽略",
+   "subject": "其他",
+   "source": "analysis_recall.md"
+  },
+  {
+   "claim": "恒在组相比淡出组保留了更多未压缩原文、更少摘要，淡出组更偏向摘要层",
+   "subject": "行为",
+   "source": "analysis_recall.md"
+  }
+ ],
+ "analysis_tree.md": [
+  {
+   "claim": "青在运行中经历 persona 标记由开启转为关闭，随后出现 source=persona 的原子。",
+   "subject": "行为",
+   "source": "analysis_tree.md"
+  },
+  {
+   "claim": "蓝从头到尾没有任何 source=persona 原子，树内无人格注入痕迹。",
+   "subject": "行为",
+   "source": "analysis_tree.md"
+  },
+  {
+   "claim": "青注入的人格原子后来被合并成摘要节点，并在沉积后 HP 衰减到零。",
+   "subject": "行为",
+   "source": "analysis_tree.md"
+  },
+  {
+   "claim": "人格内容在蒸馏时被标记为〔早期〕或早期状态，被记忆树当作历史陈述压缩，与人格作为当前身份的语义存在冲突。",
+   "subject": "问题",
+   "source": "analysis_tree.md"
+  },
+  {
+   "claim": "青的组装组成从原子主导转为摘要与原子并存的稳定态。",
+   "subject": "行为",
+   "source": "analysis_tree.md"
+  },
+  {
+   "claim": "蓝的组装在原子态与摘要态之间反复震荡，并出现纯原子组装快照。",
+   "subject": "行为",
+   "source": "analysis_tree.md"
+  }
+ ]
+}

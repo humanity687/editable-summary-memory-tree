@@ -1,0 +1,28 @@
+{
+  "group": "baseline",
+  "task": "T4",
+  "title": "@send-to 无引号目标静默广播",
+  "passed": false,
+  "accept_rc": 1,
+  "accept_verdict": "",
+  "elapsed_s": 246.7,
+  "agent_result": {
+    "ok": false,
+    "rounds": 40,
+    "summary": "未完成",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 40,
+    "tool_uses": {
+      "command": 10,
+      "read": 29,
+      "edit": 1
+    },
+    "history_chars": 124576
+  },
+  "last_usage": {
+    "prompt_tokens": 8983,
+    "completion_tokens": 33
+  }
+}

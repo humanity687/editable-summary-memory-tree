@@ -1,0 +1,16 @@
+{"round": 112, "s_ref": null, "a": 10499, "b": 4, "sim": 0.5113, "tiers": "T2+T3", "weight": 2.0}
+{"round": 112, "s_ref": null, "a": 10499, "b": 260, "sim": 0.576, "tiers": "T2+T3", "weight": 2.0}
+{"round": 112, "s_ref": null, "a": 3506, "b": 2049, "sim": 0.5225, "tiers": "T2", "weight": 2.0}
+{"round": 112, "s_ref": null, "a": 2049, "b": 1819, "sim": 0.5554, "tiers": "T2", "weight": 2.0}
+{"round": 112, "s_ref": null, "a": 3506, "b": 1819, "sim": 0.5606, "tiers": "T2", "weight": 2.0}
+{"round": 112, "s_ref": null, "a": 6042, "b": 167, "sim": 0.5651, "tiers": "T2+T3", "weight": 2.0}
+{"round": 112, "s_ref": null, "a": 1357, "b": 167, "sim": 0.5718, "tiers": "T2+T3", "weight": 2.0}
+{"round": 112, "s_ref": null, "a": 304, "b": 4634, "sim": 0.5481, "tiers": "T2", "weight": 2.0}
+{"round": 112, "s_ref": null, "a": 464, "b": 6784, "sim": 0.5582, "tiers": "T2", "weight": 2.0}
+{"round": 112, "s_ref": null, "a": 1839, "b": 10407, "sim": 0.5463, "tiers": "T2+T3", "weight": 2.0}
+{"round": 112, "s_ref": null, "a": 9813, "b": 9814, "sim": 0.5515, "tiers": "T1", "weight": 3.0}
+{"round": 112, "s_ref": null, "a": 10402, "b": 418, "sim": 0.5666, "tiers": "T2", "weight": 2.0}
+{"round": 112, "s_ref": null, "a": 9823, "b": 9824, "sim": 0.5339, "tiers": "T1", "weight": 3.0}
+{"round": 112, "s_ref": null, "a": 9824, "b": 9825, "sim": 0.5376, "tiers": "T1", "weight": 3.0}
+{"round": 112, "s_ref": null, "a": 9802, "b": 9818, "sim": 0.4664, "tiers": "T1", "weight": 3.0}
+{"round": 112, "s_ref": null, "a": 1213, "b": 170, "sim": 0.5796, "tiers": "T2", "weight": 2.0}

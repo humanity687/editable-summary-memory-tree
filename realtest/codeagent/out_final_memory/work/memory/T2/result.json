@@ -1,0 +1,39 @@
+{
+  "group": "memory",
+  "task": "T2",
+  "title": "data/ 目录下的 config.json 被误注册为新 Agent",
+  "passed": true,
+  "accept_rc": 0,
+  "accept_verdict": "PASS",
+  "elapsed_s": 33.9,
+  "agent_result": {
+    "ok": true,
+    "rounds": 7,
+    "summary": "修复了 `ProcessManager.discover_agents` 方法中会错误地将 `agents/*/data/config.json` 注册为新 Agent 的 bug。\n\n修改内容：\n- 在 `src/process_manager.py` 的 `discover_agents` 循环中增加了一个判断逻辑：如果 `config.json` 的直接父目录是 `data`，则跳过该文件，不再将其视为 Agent 配置。\n- 验证结果：运行 `python3 accept_t2.py` 成功通过（退出码 0），注册的 Agent 列表为空，符合预期。",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 7,
+    "atoms_alive": 62,
+    "nodes_alive": 1,
+    "tiling": 61,
+    "distill_calls": 1,
+    "distill_seconds": 0.7,
+    "tool_uses": {
+      "command": 3,
+      "read": 2,
+      "edit": 1,
+      "finish": 1
+    },
+    "notebook": 1,
+    "total_tokens": {
+      "prompt": 34692,
+      "completion": 987
+    },
+    "llm_seconds": 31.9
+  },
+  "last_usage": {
+    "prompt_tokens": 8898,
+    "completion_tokens": 142
+  }
+}

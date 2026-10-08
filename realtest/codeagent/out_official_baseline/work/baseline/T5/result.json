@@ -1,0 +1,30 @@
+{
+  "group": "baseline",
+  "task": "T5",
+  "title": "PythonShell 并发命令结果错配/丢失",
+  "passed": true,
+  "accept_rc": 0,
+  "accept_verdict": "PASS",
+  "elapsed_s": 285.2,
+  "agent_result": {
+    "ok": true,
+    "rounds": 30,
+    "summary": "修复了 PythonShell 在并发提交命令时结果丢失的问题。\n\n根因分析：\n在 `BaseShell.submit_command` 的 `_run` 线程中，多个线程共用同一个 `self._output_queue`。当一个线程调用 `self._output_queue.get()` 取出消息后，如果该消息的 `recv_id` 不属于当前线程（即不是当前命令的结果），该消息就会被该线程消耗掉。在原实现中，这些不属于当前线程的消息被直接丢弃，导致其他正在等待该消息的线程永远等不到结果，最终触发超时并重启进程。\n\n修复方案：\n1. 在 `_run` 线程的循环中，如果取出的消息 `recv_id` 不匹配当前 `cmd_id`，则通过 `self._output_queue.put(msg)` 将消息重新放回队列，并配合极短的 `time.sleep(0.01)` 以减少 CPU 空转和可能的死循环风险。\n2. 完善了 `BaseShell` 的初始化逻辑，使其支持可选的 `result_queue`（默认为新创建的 `Queue`），以兼容验收脚本中对 `PythonShell()` 的调用。\n3. 为 `BaseShell` 添加了 `get_results` 方法，以满足验收脚本对结果获取的需求。\n\n验证结果：\n运行 `python3 accept_t5.py` 成功通过，输出 `PASS`。",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 30,
+    "tool_uses": {
+      "command": 6,
+      "read": 17,
+      "edit": 5,
+      "write": 1,
+      "finish": 1
+    },
+    "conversation_chars": 39753
+  },
+  "last_usage": {
+    "prompt_tokens": 18453,
+    "completion_tokens": 328
+  }
+}

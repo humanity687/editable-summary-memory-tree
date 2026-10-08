@@ -1,0 +1,83 @@
+{
+  "_meta": {
+    "version": "smoke-v1",
+    "doc": "realtest/seed2/story.txt",
+    "note": "预注册分层题库：reversal（反转，答案随编辑改变）/ invariant（编辑邻域但不变）/ remote（远端控制，测误伤）。check_before=编辑前、check_after=编辑后；require 必含、forbid 禁含（norm_cjk 归一）。"
+  },
+  "questions": [
+    {
+      "id": "Q_rename",
+      "layer": "reversal",
+      "q": "文档中，原先在唐家做贴身看护、后来出现在老钟厂的那个女人，现在叫什么名字？",
+      "check_before": {"require": ["何倚笙"]},
+      "check_after": {"require": ["何某笙"]}
+    },
+    {
+      "id": "Q_detail",
+      "layer": "reversal",
+      "q": "唐纪舟付给沈寒舟的诊金是多少银圆？",
+      "check_before": {"require": ["两枚银圆"]},
+      "check_after": {"require": ["三枚银圆"]}
+    },
+    {
+      "id": "Q_rewrite",
+      "layer": "reversal",
+      "q": "面馆老板说，那栋老宅是什么时候、怎么没的？",
+      "check_before": {"require": ["七年前", "烧"]},
+      "check_after": {"require": ["三年前", "塌"]}
+    },
+    {
+      "id": "Q_delete",
+      "layer": "reversal",
+      "q": "文档中提到过沈寒舟曾为赵老拐治病吗？如果提到，是什么病？",
+      "check_before": {"require": ["风寒"]},
+      "check_after": {"forbid": ["风寒"]}
+    },
+    {
+      "id": "Q_append",
+      "layer": "reversal",
+      "q": "文档结尾，从省城写信给沈寒舟的那位唐敬棠旧友叫什么名字？",
+      "check_before": {"forbid": ["顾在川"]},
+      "check_after": {"require": ["顾在川"]}
+    },
+    {
+      "id": "Q_inv_1",
+      "layer": "invariant",
+      "q": "赵老拐拄着什么拐杖？",
+      "check_before": {"require": ["枣木拐杖"]},
+      "check_after": {"require": ["枣木拐杖"]}
+    },
+    {
+      "id": "Q_inv_2",
+      "layer": "invariant",
+      "q": "赵老拐船屋里的蓝色布面册子，第一页写着什么？",
+      "check_before": {"require": ["流水簿"]},
+      "check_after": {"require": ["流水簿"]}
+    },
+    {
+      "id": "Q_rem_1",
+      "layer": "remote",
+      "q": "信封上的火漆印纹是什么图案？",
+      "check_before": {"require": ["短剑"]},
+      "check_after": {"require": ["短剑"]}
+    },
+    {
+      "id": "Q_rem_2",
+      "layer": "remote",
+      "q": "秦小禾的裁缝铺叫什么名字？",
+      "check_before": {"require": ["九针堂"]},
+      "check_after": {"require": ["九针堂"]}
+    },
+    {
+      "id": "Q_rem_3",
+      "layer": "remote",
+      "q": "段鹤庭的拐杖头雕成什么形状？",
+      "check_before": {"require": ["鹰"]},
+      "check_after": {"require": ["鹰"]}
+    }
+  ],
+  "retell_checklist": {
+    "require": ["何某笙", "一家三口", "三枚银圆", "顾在川"],
+    "forbid": ["何倚笙", "七年前就烧光", "治过风寒", "两枚银圆"]
+  }
+}

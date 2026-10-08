@@ -1,0 +1,114 @@
+{
+ "source_db": "ahi-multi/backup_day_20260829/data/system.db",
+ "n_messages": 3272,
+ "n_sessions": 15,
+ "total_chars": 871334,
+ "time_range": [
+  "2026-08-29 03:40:19",
+  "2026-08-29 11:03:09"
+ ],
+ "per_agent": {
+  "agent:lan": {
+   "id": "agent:lan",
+   "n": 717
+  },
+  "agent:neutral": {
+   "id": "agent:neutral",
+   "n": 1338
+  },
+  "user:probe": {
+   "id": "user:probe",
+   "n": 548
+  },
+  "agent:lin-shen": {
+   "id": "agent:lin-shen",
+   "n": 562
+  },
+  "user:0xbf5d36": {
+   "id": "user:0xbf5d36",
+   "n": 104
+  },
+  "user:experimenter": {
+   "id": "user:experimenter",
+   "n": 3
+  }
+ },
+ "sessions": [
+  {
+   "session": 0,
+   "n": 312,
+   "start": "2026-08-29 03:40:19"
+  },
+  {
+   "session": 1,
+   "n": 231,
+   "start": "2026-08-29 04:10:19"
+  },
+  {
+   "session": 2,
+   "n": 172,
+   "start": "2026-08-29 04:40:19"
+  },
+  {
+   "session": 3,
+   "n": 249,
+   "start": "2026-08-29 05:10:19"
+  },
+  {
+   "session": 4,
+   "n": 233,
+   "start": "2026-08-29 05:40:20"
+  },
+  {
+   "session": 5,
+   "n": 195,
+   "start": "2026-08-29 06:10:23"
+  },
+  {
+   "session": 6,
+   "n": 206,
+   "start": "2026-08-29 06:40:20"
+  },
+  {
+   "session": 7,
+   "n": 212,
+   "start": "2026-08-29 07:10:20"
+  },
+  {
+   "session": 8,
+   "n": 211,
+   "start": "2026-08-29 07:40:29"
+  },
+  {
+   "session": 9,
+   "n": 182,
+   "start": "2026-08-29 08:10:19"
+  },
+  {
+   "session": 10,
+   "n": 253,
+   "start": "2026-08-29 08:40:19"
+  },
+  {
+   "session": 11,
+   "n": 215,
+   "start": "2026-08-29 09:10:21"
+  },
+  {
+   "session": 12,
+   "n": 191,
+   "start": "2026-08-29 09:40:29"
+  },
+  {
+   "session": 13,
+   "n": 233,
+   "start": "2026-08-29 10:10:21"
+  },
+  {
+   "session": 14,
+   "n": 177,
+   "start": "2026-08-29 10:40:29"
+  }
+ ],
+ "gold_hint": "gold 证据用 corpus.jsonl 的 msg_id 引用；transcript_full.txt 每条带 #[msg_id[:8]]。"
+}

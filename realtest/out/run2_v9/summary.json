@@ -1,0 +1,59 @@
+{
+ "summary": {
+  "rounds": 14,
+  "elapsed_s": 722.27,
+  "story_chars": 12272,
+  "story_tokens": 10687,
+  "llm_calls": 14,
+  "completion_tokens": 58600,
+  "prompt_tokens": 77970,
+  "distill_seconds": 19.54,
+  "distill_calls": 7,
+  "tools": {
+   "append": 18,
+   "edit": 0,
+   "recall": 4
+  },
+  "duplicates": 0,
+  "config": {
+   "provider": "deepseek",
+   "model": "deepseek-v4-flash",
+   "ollama": {
+    "base_url": "http://localhost:11434",
+    "model": "gemma4:12b",
+    "num_ctx": 32768,
+    "temperature": 0.8,
+    "timeout": 900
+   },
+   "deepseek": {
+    "base_url": "https://api.deepseek.com/v1",
+    "model": "deepseek-v4-flash",
+    "api_key": "sk-REDACTED",
+    "temperature": 0.8,
+    "timeout": 600
+   },
+   "assembly_budget": 10000,
+   "max_append_chars": 1000,
+   "merge_every": 4,
+   "retrieval_budget": 6,
+   "decay": 8.0,
+   "hp_merge_threshold": 30.0,
+   "parent_init_hp": 70.0,
+   "hot_threshold": 60.0,
+   "recall_boost": 30.0,
+   "merge_cap_atoms": 500,
+   "merge_depth_diff": 1,
+   "promote_threshold": 3,
+   "notebook": "on"
+  }
+ },
+ "charts": [
+  "story",
+  "ctx",
+  "mem",
+  "events",
+  "latency",
+  "compose",
+  "tree"
+ ]
+}

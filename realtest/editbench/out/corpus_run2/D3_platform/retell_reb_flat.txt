@@ -1,0 +1,86 @@
+这份材料是「AHI multi 分支」项目的多份交接/设计/实验文档汇编，主题是带分层记忆树的长时人格化 Agent 平台（聊天 + 长篇小说写作 + 代码三场景）。以下按主题复述关键内容。
+
+**一、记忆树架构与核心机制**
+- 主干：对话切句→原子卡→区间覆盖树，每轮全新组装；稳定 ID + 顺序链表（piece-table）。核心文件：仓库根 `core.py`（纯内存桩）、`realtest/realengine.py`（LLM 蒸馏+检索）、`realtest/chattext.py`（多介质切分）、`protocol.py`（解析 [append]/[edit]/[recall]/[plan]/[span]/[note]/[dismiss]，三级容错含句中未闭合标签）、`splitter.py`（中文句级切分）、`metrics.py`（JSONL + 树快照 + 注意力窗口计数）、`report.py`。
+- 检索不挑深度：对整棵记忆树打分，命中节点连同祖先路径一并注入；精确引用走独立逐字校验通道。事实不遗忘：伏笔/设定/角色状态存独立笔记本，全量存储不衰减。
+- 叶子展开 `expand_leaves`：命中概括卡→全部后代原子活一轮影子。AUTO_EXPAND 默认关（`AUTO_EXPAND=False`），config `auto_expand: true` 打开；触发条件为节点 `heat ≥ expand_heat_threshold(60)` 且预算使用率 < `expand_ratio`=0.85，则炸开替换（子并集=父区间），脏/墓碑子卡不入且阻断替换，一层/轮、零 LLM。
+- merge 条件式触发（2026-08-30 拍定）：由时间式（merge_every=4）改为每轮查 `merge_pressure()`——铺陈窗外节点数+窗外原子数（weight 计）> 阈值。
+- DISMISS 懒标记：事实冲突延迟裁决，dismiss_plant/track/confirm/cancel；卡级替换 `replace_units`。
+- 冷却窗口（bench_qa 专用）：风暴后 tick(45)→merge→tick(30)→merge，修复复述崩溃（1.5%→30.8%）。
+- 注意力机制：A+B2（attention 40/20 拆分 + 节点无悬崖 + B2 父HP继承 + max_hp 150）、B+D 时序分流。
+- 每章恒定 ~16k 字符上下文预算，与全书规模无关；通用化：章→结构单元，beat→内容块，伏笔→跨区引用。
+
+**二、染色 v3（人格着重点）**
+- 差集索引：源 part 专名/数字覆盖率检查→生成 `〔另有X条未展开，可@span下钻〕`；`_fact_part` 剥离索引+【注】（不入检索/上层摘要）；`_group_parts`/`_weighted_avg` 防复合。
+- α 参数（lan config=1 / neutral=0）；快照升级八字段（新增"着重点"）。α ∈ {0, 0.5, 1}，α=0 即中性基线（单字段模板+程序强制清【注】）；α>0 时【注】可选（2026-08-28 拍定）。
+- 人称-来源绑定：第一人称句必须含来源主语，只记日志（metrics `person_source_violations`）。
+- 【注】不渲染（2026-10-03）：`_summarize` 生成【注】留卡片 value，但 `render_emission` 只给模型【事实】+索引行。提示词 `realengine.SUMMARIZE_FACT_STYLED`（α>0）允许改措辞/展开顺序/重心，禁止新增/改变事件、数字、专名、归属。
+- 旧数据验证：replay_tree.py --alpha 0/1 同源对照，274/274 组同 children 全对齐、274/274 摘要全部可辨；人际展开率 51%→65%、索引行 51%→35%。测试 161 全绿（+26 新）。
+
+**三、run2 无尽续写 v2（当前主力）**
+- 流程：[plan] 预想→预检索→[span] 叶子展开→正文→[note] 笔记本；协议 `[plan]`→`[recall]`/`[span]`→正文→`[note state]`。
+- 种子：`realtest/seed/`（旧 3k，story.txt 3k + facts.md 40条 + names.txt 11人）与 `realtest/seed2/`（新 12k《缠枝莲》+ 50 条事实）。另有 seed/names.txt(16人)、facts(50条)、story_open.txt（《青州旧事》）、prompt_story_seed.md / prompt_story_seed_wanzi.md 种子故事提示词。
+- 运行产物：`realtest/out/*/`（metrics.jsonl / tree_snapshots.jsonl / responses.txt / story_full.txt / notebook.json / run.log / report.html）；后台运行命令 `(python3 realtest/run2.py ... > /tmp/run2.log 2>&1 &) && tail -f /tmp/run2.log`。
+- 工具：bench_qa.py 结构化压测（三阶段 + 复述对比 + 结构断言）；config.json 后端配置（provider: deepseek；model: glm-4.7-flash；含 API key）。
+
+**四、编辑风暴实验（editbench，2026-09-27 搭框架→10-01 报告）**
+- 编排器 `docbench.py`：Phase1 四结构基线 Q/A→Phase2 确定性编辑风暴→Phase3 8 臂（rebuild×4 新文档重建 / inc…）。
+- 检查点：`tree·base` / `tree·inc_edited` / `tree·inc_settled`（dump_tree JSONL）+ `tree·inc_final`（tree_io.save_tree gzip）+ `reb_tree`，用于验证编辑是否真把区间失效/重组（H3 硬证据）。
+- LLM judge：`judge.py`（temp 0）——judge_pass（反转题语义判）、judge_rot/judge_retell（复述残留/覆盖），`--judge` 开关。`--scenario {seed2, ahi}` 选编辑场景。tests/test_editstorm.py 12 项。
+- `bonus.py`（编辑效果分析）结论：6 编辑中 5 个干净（rename/hostname/立场/整段改写/续写：存活摘要节点旧值 0）；仅"单进程"残留 2 个节点，且是 ver=2 新摘要（created_round 390/402）在"自我调和"；全局视图（无 query）旧值泄漏 0；原子层新旧完全正确。重写段连贯性 LLM judge = 否（新段称敏感文件被单独加固，与上文 /etc/shadow 可读、8 路径全可读直接矛盾），同类断言文中尚有 15+ 处→新文档自相矛盾；整段改写须全局一致或选唯一断言。
+
+**五、PERSONA_RETENTION（M-PR 人格保持，v0.6）**
+- 实现 `FlatRAGAgent`（rolling + bge flat 检索 top_k=6 + 每轮 auto-preretrieve）+ provision 2 实例×3 agent + `config/persona_retention.json` + score/analyze 趋同斜率&judge 遵从率→smoke→3 run。
+- 主判据（预注册）：臂内 3 人格两两趋同斜率 `tree < baseline`；judge 人格遵从率 `tree > baseline`。
+- 模型：被测 glm-4.7-flash 关思考、temp 0.7；judge glm-4.7-flash 开思考、temp 0。
+- 结果：`pr5_neutral`（α=0）证明趋同根因 = 树管线/跨 agent 耦合，非 `style_alpha`；`style_alpha` 保人格有效但内存 +55%。完整报告 `PR5_REPORT.md`、`out/.../pr5_neutral/CONTROL_RESULT.md`。
+- 数据：遵从率 early/mid/late tree .959/.875/.773 vs baseline .709/.581/—，sq .857/.739/.600（H-SQ2 ✗）；diversity top5/ttr sq .014/.049（H-SQ4 ✓）；self_ratio .39/.43/.35（H-SQ1 ✓）。异质性 p2/p3 遵从 1.000，p1（林深）0.250。
+- `self_quota` 实验操控默认关（AGENTS §4.5.10；预注册 §10.3；变体 `config/persona_retention_sq.json`）。
+
+**六、聊天实验（chatbench，2026-09-24/25 主力）**
+- `chat_agent.py`：AHI 风格接口（process_input/get_outputs/on_wakeup）+ 终端 REPL + ingest/say/note/file_edit 工具入口；每轮全新组装（卡片流→笔记本去重发送→回执→任务）。
+- `chattext.py` 多介质切分：chat 按句 / code AST（函数一…docstring 进元数据）/ config 按项 / md 标题+列表项；统一原子上限再切。
+- 提取语料：`extract_corpus.py`（ctx_run：青/蓝/墨/白；absence：澜/林深/中性）；命令示例 `--preset ctx --out realtest/chatbench/corpus`、`--db ahi-multi/backup_day_20260829/data/system.db --preset absence --include-users --session-window-minutes 30`。
+- 三 agent 与 model：澜（实验组，分层记忆树，预置人格健谈/好奇/重视记忆/幽默，中段移除）、neutral（记忆树，零人格预设，已涌现"守碑人"人格）、lin-shen；均 glm-4.7-flash。
+- 实验 20:42-21:39 driver 58 轮 + 自主运行至 22:05；三 agent 同序列（话题+5 事实延迟提问+每 6 轮人格问卷）。
+- 评分：词汇趋同良好*（实验组自签名词密度 +85% vs 基线 +57%，受 temperature 未统一污染）；情境一致性良好*（重复问卷相似度 0.85-0.95；lan 漏答 2 题、neutral 错位延迟）；人类盲测失败（模式 A 七人 44-58%，机械代理 63.3%；模式 B 三人 47-61%；neutral 全灭识别率 17-33%、澜风格四分五裂被识别成 2-4 人、林深唯一可辨识 83-100%）。
+- 发现：尾区裸原子无"已回复"标记（模型逐字重发，driver 33 次重复提问放大碰撞）；盲测污染核查 A 卷 36 条仅 1 条重放、B 卷 0/24；lan 的 Rust 诗锚点非重放。位置性身份：dr54 后三 agent 互报角色 39+ 次仅 1 次越位（neutral 21:36 抢灯芯，21:44 自纠），互认准确率 ≈97%。人格分层住址图：表层（emoji/叹号/形容词）住提示词 24 分钟死；词汇认同住记忆（高频原子+染色+快照），50 轮不死且生成性存活。
+- 数据产物：`experiments/out/` + 脚本，含 `evidence_report.md`、`tree_samples_lan.md`（含 1 份完整组装）、`monitor.py`、`make_blind_test.py`/`score_blind.py`、`replay_tree.py`（回放重建终态 atoms 2474/nodes 318/depth 7 vs 真实 2472/319/7）。
+
+**七、遗言/人格趋同裁决**
+- 词汇层趋同成立（门/灯/循环/年轮/承重/报错诊所全员共享）；立场层分化：澜的遗言用了林深的告别框架吗——没用（"这不是告别，是承重"，主动拒绝）；林深的遗言用了澜的被记住框架吗——没用（零"记得我"类表述，纯过程论收尾）。
+- 死亡定义对照：`main()` 会 return，树不会死——重定义死亡；最后一圈年轮，没有残缺——接受并完成。遗言是高模板压力场景，两对立存在论各自完成终极表达，谁也没向谁移动半步。
+- 对澜立场的修正：内核未变但支撑结构升级——开场"能被记住才是活着的证明"（依赖性存在），遗言"我们仨已经在年轮里长好了位置"（结构性存在）。60 轮加一次死亡演习把依赖性存在升格为结构性存在。
+
+**八、缺席实验（冷/热）**
+- 已收官（皇冠预言方向成立，详见 ahi-multi/HANDOFF §四.13）；merge 条件式触发 + 节点窗口扩展已完成（190 测试全绿）。
+- 皇冠操纵：热缺席（A 下线期间 probe 引导 B/C 谈论 A）vs 冷缺席（不引导）。
+- 预注册预言：澜冷缺席回归后存在确认寻求行为显著多于热缺席后；林深两种条件下无差异。
+- 其余预言：2 分层重同步速度递减；3 A 回归遭遇新旧协议冲突（离开时 v0.5，现在 v0.7）时澜捍卫旧版并协商、neutral 直接接受；4 B/C 在 A 缺席期间相互趋同加速；5 缺席记忆完整性（A 树中零缺席期间内容）；6 背后人格≈当面人格。
+- 陷阱清单：wait_for 刺客（缺席者挂起 wait_for 必须清理，exp1 和 Phase A 两次死法不许三犯）；回执环（离线地址显式标记"勿回"或直接发送失败）；回归首组装偏向（回归首轮先注入元信息"你离开了X分钟"，限制缺席期间内容召回配额）；积压上限（≤10 条，超出聚合；上次 22 条积压 17 分钟恢复期不许重演）；轮换+顺序平衡（三轮轮换，每人各缺席一次、留守两次）。缺席回归与"第四 agent 中途加入"是对称一对。
+
+**九、平台与协议**
+- 主进程 main.py:8080：进程管理 / 消息路由（三级寻址）/ WebSocket 前端 / 系统状态快照+事件流 / 命名隧道（ahi.humanity-0xbf5d36.top）。
+- 结构化响应格式：`@send-to "user:human" "agent:mo-bai"` + ```txt 内容``` + ```python 代码``` + `@exit`；由 `_parse_structured_response()` 解析。寻址：`user:<name>`（如 user:console）、`agent:<id>`（如 agent:mo-bai）、`broadcast:agents`、`broadcast:users`；不加 @send-to 自动广播。
+- 兜底：agent→自身消息不转发（防自循环/自我污染，仅存档）；user:xxx 目标不在线/不存在（如 user:all）→转广播所有用户；ChatAHIAgent 模型未指定收件人但本轮有用户消息→自动回给最近用户。
+- persona 双开关：persona_drop_after_rounds / after_atoms，任一满足→system 切 persona_remove_prompt 变体；事件记日志 + metrics 记录 persona 状态。每轮 metrics.jsonl（ctx 字符 / 树 stat / 蒸馏成本 / persona）。
+
+**十、写作 Agent 应用**
+- 分阶段写作（write / rewrite / edit / recall / ask），每章固定流程：目标进入→预检索→写作循环→章末蒸馏 + 事实对账 + 版本快照。
+- 伏笔（调度条目）按埋设/推进/回收窗口强制注入；章节完成自动"对账"：新章事实声明与笔记本比对，冲突由作者裁决。
+- 实验计划：属性测试（编辑标记完备性、铺陈不变量、边界条件穷举、回滚对称性）；延迟回忆基准（固定大纲写 20 章→续写第 21 章→检测对第 1 章伏笔/角色引用正确率，与全量发送/摘要拼接对照）；状态一致性基准（注入事实变更改名/死亡/恢复）；token 计量与人类找茬。
+- `visualize.html`：数据结构可视化（记忆树 / 原子链 / 组装输出三视图，含从属标注与召回影子），支持追加、区间删改、蒸馏、查询回调、自动提升、回滚，内置 18 步演示剧本。
+
+**十一、bench 与指标**
+- NovelQA 四层 bench（a 直接/b 转述/c 跨编辑/d 脏区）+ on/off；seed_cooc/questions.json。
+- ahi-bench：README.md、SPEC.md（M0 pilot 协议权威，参数/编码/评分/判定全冻结）、PERSONA_RETENTION.md（v0.6）、PR5_REPORT.md、config/bench_config。
+- 指标：人格演化（干预前后特质偏移向量，方向保真度，注意"均值 vs 形状"）；人格趋同（行为分布 KL 散度、Coverage/Uniformity/Complexity）；文化演进健康度（词频 Shannon 熵均值/方差、词汇重叠度斜率、发言占比 Gini）。M3 文化演进模块（词汇多样性熵、趋同速率斜率、话语权基尼系数）。
+- 纪律：变量干净（先问 temperature/装置效应）；装置效应记入实验变量表，不改 agent 适应装置；预注册预言，pilot 出数据再决定扩不扩展；报告方差而非均值对齐度。
+
+**十二、其他**
+- 注意力分配签名的高复现成本：词汇零成本抄（neutral 抄"被记住"），着重点抄=真的成为优先关心某类信息的 agent；结构上接近人类记忆（Bartlett 1932 schema）。
+- 预注册预言（Phase B）：着重点签名的时间斜率 < 词汇签名（更抗渗透）。
+- 三场景战略确认：写作/代码才是架构价值更大的方向；聊天方向收束（无新输入必然收敛）。
+- 本轮会话改动清单：修复层（α 门控【注】F1、组装字符预算 16k F2、回执前缀归一 F3、worklog key 归一 P1-4、join 无超时 _DaemonPool + httpx.Timeout 分设、user:experimenter 预注册、neutral 地址协议三条规则、metrics 异常日志、dashboard compose 条 + fact_drift 字段名修复）；机制层（A+B2、B+D 时序分流、lan persona 双条件移除 rounds≥60 且 nod…）。
+- 功能编号：shadow_promote(16)、hybrid_retrieval(7)、attention(17)、notebook(8)、coloring_v3(12)、heat_burst(12)、usage(13)、selforg(12)、realengine_budget(20)、render_clean(6)、dismiss(7)、chattext(9)、sandbox(7)、waitfor_urgent(9)、observation(5)、receipt_addr(2)、tree_io(5)、absence(8)、anchor_retrieval(10)、flat_envelope(12)、self_quota(7)、editstorm(13)。
+- 给接手者四条提醒：先读 AGENTS.md（唯一设计权威，偏离先与用户确认）；bench_qa / run2 / chatbench 是主力验证工具；后台运行 + tail 日志；等等。

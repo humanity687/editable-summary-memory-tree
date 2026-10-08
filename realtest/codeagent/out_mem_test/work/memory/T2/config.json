@@ -1,0 +1,15 @@
+{
+    "tunnel_enabled": false,
+    "main_process_port": 8000,
+    "agent_port_start": 50000,
+    "agent_heartbeat_interval": 2,
+    "agent_heartbeat_timeout": 10,
+    "system_db_path": "data/system.db",
+    "log_level": "INFO",
+    "max_concurrent_agents": 100,
+    "default_auto_restart": true,
+    "default_max_memory_mb": 512,
+    "default_wakeup_interval": 10,
+    "cloudflare_tunnel_name": "AHI",
+    "cloudflare_tunnel_token": ""
+}

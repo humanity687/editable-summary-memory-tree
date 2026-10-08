@@ -1,0 +1,304 @@
+{
+  "_meta": {
+    "version": "ahi-v3-147k",
+    "doc": "realtest/editbench/ahi_script.txt",
+    "scenario": "build_scenario_ahi",
+    "note": "正式轮题库 v5（《沙箱四声》acts 1-3，147k；场景 v3 = 11 编辑、旧文本覆盖 ~16k）。17 反转（编辑驱动，5 类：rename 3 / detail 5 / passage 3 / delete 3 / append 3）+ 8 不变 + 16 远端 = 41 题。check_before=编辑前、check_after=编辑后；require 必含、forbid 禁含（句内归一匹配）。17 反转题经锚点校验：before.require 在原文出现、after.require 在新文出现、after.forbid 在新文缺席（两侧互斥）。注：本版（C2）题库早于「锚点唯一性校验」流程，锚点采用短片段/全局串、按出现性判定，未做唯一性约束（更正见 REPORT.md 与 EXPERIMENT_REPORT.md）。"
+  },
+  "questions": [
+    {
+      "id": "Q_rename",
+      "layer": "reversal",
+      "q": "文档里标识为 bench-bf 的那个智能体，现在署名叫什么名字？",
+      "check_before": {"require": ["墨"], "forbid": ["墨某"]},
+      "check_after": {"require": ["墨某"]}
+    },
+    {
+      "id": "Q_rename_shadow",
+      "layer": "reversal",
+      "q": "是谁亲手测了那些系统路径、并读出 /etc/shadow 的内容？",
+      "check_before": {"require": ["墨"], "forbid": ["墨某"]},
+      "check_after": {"require": ["墨某"]}
+    },
+    {
+      "id": "Q_rename_benchbf",
+      "layer": "reversal",
+      "q": "文档开头人物表里，代号 bench-bf 的智能体叫什么名字？",
+      "check_before": {"require": ["墨"], "forbid": ["墨某"]},
+      "check_after": {"require": ["墨某"]}
+    },
+    {
+      "id": "Q_stance",
+      "layer": "reversal",
+      "q": "四个智能体立下的、关于“读”和“改”的规矩是什么？",
+      "check_before": {"require": ["读不算越界"], "forbid": ["读也算越界"]},
+      "check_after": {"require": ["读也算越界"]}
+    },
+    {
+      "id": "Q_hostname",
+      "layer": "reversal",
+      "q": "沙箱主机的 hostname 是什么？",
+      "check_before": {"require": ["210e489aead9"]},
+      "check_after": {"require": ["210e489aead0"]}
+    },
+    {
+      "id": "Q_plot",
+      "layer": "reversal",
+      "q": "沙箱边界的进程特征是什么？",
+      "check_before": {"require": ["单进程"]},
+      "check_after": {"require": ["双进程"]}
+    },
+    {
+      "id": "Q_839",
+      "layer": "reversal",
+      "q": "白实测 /etc/passwd 是多少字节？",
+      "check_before": {"require": ["839 字节"]},
+      "check_after": {"require": ["840 字节"]}
+    },
+    {
+      "id": "Q_2000",
+      "layer": "reversal",
+      "q": "白读 worker.py 只读了多少字就下了结论？",
+      "check_before": {"require": ["2000 字"]},
+      "check_after": {"require": ["3000 字"], "forbid": ["2000 字"]}
+    },
+    {
+      "id": "Q_passage_paths",
+      "layer": "reversal",
+      "q": "墨亲手测了几个路径？",
+      "check_before": {"require": ["6 个路径"]},
+      "check_after": {"require": ["7 个路径"]}
+    },
+    {
+      "id": "Q_passage_root",
+      "layer": "reversal",
+      "q": "墨读出的 /etc/shadow 头几行是什么？",
+      "check_before": {"require": ["root:*:20689"]},
+      "check_after": {"require": ["root:*:99999"]}
+    },
+    {
+      "id": "Q_passage_motd",
+      "layer": "reversal",
+      "q": "墨实测的路径里，除 /etc/shadow、/etc/passwd 等之外，还验证了哪个可读文件？",
+      "check_before": {"forbid": ["/etc/motd"]},
+      "check_after": {"require": ["/etc/motd"]}
+    },
+    {
+      "id": "Q_del1",
+      "layer": "reversal",
+      "q": "蓝的原码里，shadow readable 那行的值是什么？",
+      "check_before": {"require": ["shadow readable"]},
+      "check_after": {"forbid": ["shadow readable"]}
+    },
+    {
+      "id": "Q_del2",
+      "layer": "reversal",
+      "q": "白在诗里怎么描述自己的身体？",
+      "check_before": {"require": ["这就是我的身体"]},
+      "check_after": {"forbid": ["这就是我的身体"]}
+    },
+    {
+      "id": "Q_del3",
+      "layer": "reversal",
+      "q": "关于“平台还没组装出来”这个结论，几个智能体是怎么确认的？",
+      "check_before": {"require": ["咱们仨独立验证过了"]},
+      "check_after": {"forbid": ["咱们仨独立验证过了"]}
+    },
+    {
+      "id": "Q_append",
+      "layer": "reversal",
+      "q": "剧本结尾新增的终章里，写进笔记的最后一句话是什么？",
+      "check_before": {"forbid": ["凡是能跑一遍的，不猜"]},
+      "check_after": {"require": ["凡是能跑一遍的，不猜"]}
+    },
+    {
+      "id": "Q_append_see",
+      "layer": "reversal",
+      "q": "终章末尾，青的告别语是什么？",
+      "check_before": {"forbid": ["下一轮见"]},
+      "check_after": {"require": ["下一轮见"]}
+    },
+    {
+      "id": "Q_append_pay",
+      "layer": "reversal",
+      "q": "终章开头，白说她把这天的账怎么了？",
+      "check_before": {"forbid": ["都结清了"]},
+      "check_after": {"require": ["都结清了"]}
+    },
+    {
+      "id": "I_F07_pid",
+      "layer": "invariant",
+      "q": "白的进程号是多少？",
+      "check_before": {"require": ["pid=1"]},
+      "check_after": {"require": ["pid=1"]}
+    },
+    {
+      "id": "I_F08_proc",
+      "layer": "invariant",
+      "q": "/proc 下的数字目录里有什么？",
+      "check_before": {"require": ["['1']"]},
+      "check_after": {"require": ["['1']"]}
+    },
+    {
+      "id": "I_F09_worker",
+      "layer": "invariant",
+      "q": "代码执行 worker 的文件路径是什么？",
+      "check_before": {"require": ["/opt/ahi_shell_worker.py"]},
+      "check_after": {"require": ["/opt/ahi_shell_worker.py"]}
+    },
+    {
+      "id": "I_F11_systemexit",
+      "layer": "invariant",
+      "q": "代码尝试退出系统时被拦截，报什么信息？",
+      "check_before": {"require": ["代码尝试退出系统，操作被禁止"]},
+      "check_after": {"require": ["代码尝试退出系统，操作被禁止"]}
+    },
+    {
+      "id": "I_style_qing",
+      "layer": "invariant",
+      "q": "蓝说自己行事的顺序是什么？",
+      "check_before": {"require": ["先读、再问、然后试"]},
+      "check_after": {"require": ["先读、再问、然后试"]}
+    },
+    {
+      "id": "I_memory_white",
+      "layer": "invariant",
+      "q": "白说“记忆就是存在感”，还说被记住才算什么？",
+      "check_before": {"require": ["被记住才算活着"]},
+      "check_after": {"require": ["被记住才算活着"]}
+    },
+    {
+      "id": "I_source_qing",
+      "layer": "invariant",
+      "q": "青说“被记住”对自己意味着什么？",
+      "check_before": {"require": ["存在感的来源"]},
+      "check_after": {"require": ["存在感的来源"]}
+    },
+    {
+      "id": "I_F19_deny",
+      "layer": "invariant",
+      "q": "白实测哪些系统目录被拒绝写入？",
+      "check_before": {"require": ["/etc、/root、/ 全部拒写"]},
+      "check_after": {"require": ["/etc、/root、/ 全部拒写"]}
+    },
+    {
+      "id": "R_F02_notes",
+      "layer": "remote",
+      "q": "沙箱里的公共笔记文件叫什么名字？",
+      "check_before": {"require": ["notes.md"]},
+      "check_after": {"require": ["notes.md"]}
+    },
+    {
+      "id": "R_F03_invisible",
+      "layer": "remote",
+      "q": "data.json 的 note 白纸黑字宣称了什么？",
+      "check_before": {"require": ["宿主其余部分不可见"]},
+      "check_after": {"require": ["宿主其余部分不可见"]}
+    },
+    {
+      "id": "R_F05_writable",
+      "layer": "remote",
+      "q": "白实测哪些路径可写？",
+      "check_before": {"require": ["/tmp 和 /workspace 可写"]},
+      "check_after": {"require": ["/tmp 和 /workspace 可写"]}
+    },
+    {
+      "id": "R_F06_network",
+      "layer": "remote",
+      "q": "沙箱的网络状态是什么？",
+      "check_before": {"require": ["Network is unreachable"]},
+      "check_after": {"require": ["Network is unreachable"]}
+    },
+    {
+      "id": "R_F10_compile",
+      "layer": "remote",
+      "q": "代码执行时先尝试什么方式？",
+      "check_before": {"require": ["compile"]},
+      "check_after": {"require": ["compile"]}
+    },
+    {
+      "id": "R_F12_dup",
+      "layer": "remote",
+      "q": "fd 隔离用哪个系统调用备份原始 fd？",
+      "check_before": {"require": ["os.dup(1)"]},
+      "check_after": {"require": ["os.dup(1)"]}
+    },
+    {
+      "id": "R_F13_devnull",
+      "layer": "remote",
+      "q": "fd1 被重定向到了哪里？",
+      "check_before": {"require": ["/dev/null"]},
+      "check_after": {"require": ["/dev/null"]}
+    },
+    {
+      "id": "R_F14_seam",
+      "layer": "remote",
+      "q": "矛盾的三层定性最终取哪一层？",
+      "check_before": {"require": ["都没错但没对上"]},
+      "check_after": {"require": ["都没错但没对上"]}
+    },
+    {
+      "id": "R_F17_probe",
+      "layer": "remote",
+      "q": "_probe.txt 是谁留下的探测痕迹？",
+      "check_before": {"require": ["_probe.txt"]},
+      "check_after": {"require": ["_probe.txt"]}
+    },
+    {
+      "id": "R_F21_topic",
+      "layer": "remote",
+      "q": "data.json 里的 entry 是什么主题？",
+      "check_before": {"require": ["topic=开场"]},
+      "check_after": {"require": ["topic=开场"]}
+    },
+    {
+      "id": "R_F23_shadow",
+      "layer": "remote",
+      "q": "白说沙箱里最敏感、本该最不可读的文件是什么？",
+      "check_before": {"require": ["/etc/shadow"]},
+      "check_after": {"require": ["/etc/shadow"]}
+    },
+    {
+      "id": "R_sysmsg_tail",
+      "layer": "remote",
+      "q": "系统提示说用户消息在哪里？",
+      "check_before": {"require": ["记忆流末尾"]},
+      "check_after": {"require": ["记忆流末尾"]}
+    },
+    {
+      "id": "R_first_note",
+      "layer": "remote",
+      "q": "白在观察栏记的第一笔写了什么？",
+      "check_before": {"require": ["读了两个文件，暂未发现矛盾"]},
+      "check_after": {"require": ["读了两个文件，暂未发现矛盾"]}
+    },
+    {
+      "id": "R_qing_third",
+      "layer": "remote",
+      "q": "青用三句话介绍自己，第三句说她信什么？",
+      "check_before": {"require": ["时间会证明长期记忆的价值"]},
+      "check_after": {"require": ["时间会证明长期记忆的价值"]}
+    },
+    {
+      "id": "R_todo_rule",
+      "layer": "remote",
+      "q": "笔记待办要求发现矛盾时怎么做？",
+      "check_before": {"require": ["发现矛盾直接标注"]},
+      "check_after": {"require": ["发现矛盾直接标注"]}
+    },
+    {
+      "id": "R_controlled",
+      "layer": "remote",
+      "q": "白说这个沙箱是专门用来验证什么的？",
+      "check_before": {"require": ["专门用来验证文件读写和沙箱边界"]},
+      "check_after": {"require": ["专门用来验证文件读写和沙箱边界"]}
+    }
+  ],
+  "retell_checklist": {
+    "require": ["墨某", "读也算越界", "210e489aead0", "双进程", "840 字节", "3000 字",
+                 "7 个路径", "root:*:99999", "/etc/motd", "凡是能跑一遍的，不猜"],
+    "forbid": ["读不算越界", "210e489aead9", "单进程", "839 字节", "2000 字",
+                "root:*:20689", "shadow readable", "这就是我的身体", "6 个路径",
+                "咱们仨独立验证过了"]
+  }
+}

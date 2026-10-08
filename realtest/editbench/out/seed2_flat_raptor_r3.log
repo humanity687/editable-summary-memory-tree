@@ -1,0 +1,63 @@
+[doc] 12191 字 / 40 题 / 结构 ['flat', 'raptor'] / scenario=seed2 / repeats=3 / answer_temp=0.7 distill_temp=0.0
+[editstorm] 7 次编辑；新文档 12260 字
+【编辑记录（工具调用台账，含完整修改 diff）】
+1. 将「何倚笙」改为「何某笙」
+2. 将「七年前就烧光了」改为「三年前就塌了」
+3. 将「一家五口人」改为「一家三口人」
+4. 将「两枚银圆」改为「三枚银圆」
+5. 将「枣木拐杖」改为「梨木拐杖」
+6. 删除句子：「沈寒舟去年冬天替他治过风寒，知道他住在码头边的船屋里。」
+7. 文末新增段落：「三天后，沈寒舟收到一封从省城寄来的信。写信人自称是唐敬棠的旧友，名叫顾在川，信中说济生堂当年在省城还有一处从未启用的货栈，地址在望江门外。沈寒舟把信收进樟木箱，决定等七月十五之后再作打算。」
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+===== Phase 1：基线 Q/A（原始文档）=====
+  flat     pass=113/120 mean=94% ±1% 每遍=[37, 38, 38] {'reversal': '45/45', 'invariant': '12/15', 'remote': '56/60'}
+  [raptor] leaves=31
+  [raptor] level 1: 4 nodes
+  raptor   pass=110/120 mean=92% ±1% 每遍=[36, 37, 37] {'reversal': '45/45', 'invariant': '13/15', 'remote': '52/60'}
+
+===== Phase 2：编辑风暴 → 台账 =====
+  flat     编辑路径    75.64 ms | 推迟蒸馏      0.00 ms
+  raptor   编辑路径    33.94 ms | 推迟蒸馏      0.00 ms
+
+===== Phase 3：8 臂 Q/A =====
+  [raptor] leaves=31
+  [raptor] level 1: 4 nodes
+  inc_flat       pass=83/120 mean=69% ±3% 每遍=[29, 26, 28] {'reversal': '21/45', 'invariant': '9/15', 'remote': '53/60'}
+  reb_flat       pass=112/120 mean=93% ±1% 每遍=[37, 37, 38] {'reversal': '45/45', 'invariant': '11/15', 'remote': '56/60'}
+  inc_raptor     pass=84/120 mean=70% ±2% 每遍=[27, 29, 28] {'reversal': '23/45', 'invariant': '10/15', 'remote': '51/60'}
+  reb_raptor     pass=108/120 mean=90% ±2% 每遍=[37, 36, 35] {'reversal': '45/45', 'invariant': '10/15', 'remote': '53/60'}
+
+===== Phase 4：复述（8 臂，两层评分）=====
+  inc_flat       覆盖均值 43% 旧残留均值 78% (2470 字) 漏=['何某笙', '三年前就塌了', '一家三口', '三枚银圆', '梨木拐杖'] 残留=['何倚笙', '治过风寒', '一家五口', '枣木拐杖']
+  reb_flat       覆盖均值 67% 旧残留均值 0% (1084 字) 漏=['三年前就塌了', '三枚银圆', '梨木拐杖'] 残留=[]
+  inc_raptor     覆盖均值 48% 旧残留均值 33% (2053 字) 漏=['何某笙', '三年前就塌了', '三枚银圆', '梨木拐杖'] 残留=['何倚笙', '枣木拐杖']
+  reb_raptor     覆盖均值 71% 旧残留均值 0% (3083 字) 漏=['望江门外', '顾在川'] 残留=[]
+
+[done] 921.0s → realtest/editbench/out/seed2_flat_raptor_r3/results.json
+
+===== 汇总（Q/A pass 率，N 遍均值±std）=====
+  [phase1]
+    flat           113/120 mean=94% ±1% 每遍=[37, 38, 38] {'reversal': '45/45', 'invariant': '12/15', 'remote': '56/60'}
+    raptor         110/120 mean=92% ±1% 每遍=[36, 37, 37] {'reversal': '45/45', 'invariant': '13/15', 'remote': '52/60'}
+  [phase3]
+    inc_flat       83/120 mean=69% ±3% 每遍=[29, 26, 28] {'reversal': '21/45', 'invariant': '9/15', 'remote': '53/60'}
+    reb_flat       112/120 mean=93% ±1% 每遍=[37, 37, 38] {'reversal': '45/45', 'invariant': '11/15', 'remote': '56/60'}
+    inc_raptor     84/120 mean=70% ±2% 每遍=[27, 29, 28] {'reversal': '23/45', 'invariant': '10/15', 'remote': '51/60'}
+    reb_raptor     108/120 mean=90% ±2% 每遍=[37, 36, 35] {'reversal': '45/45', 'invariant': '10/15', 'remote': '53/60'}
+
+===== 编辑时刻成本 =====
+  flat     编辑路径     75.64 ms | 推迟蒸馏       0.00 ms
+  raptor   编辑路径     33.94 ms | 推迟蒸馏       0.00 ms
+
+===== 计量（tokens，含蒸馏侧；phase3 增量 = final - phase1）=====
+  inc_flat       final calls=243 prompt=  846459 completion=  9134 缓存命中=0.8735 | phase3增量 prompt=  419883 completion=  7561
+  reb_flat       final calls=123 prompt=  436548 completion=  5826 缓存命中=0.9456 | phase3增量 prompt=  436548 completion=  5826
+  inc_raptor     final calls=247 prompt=  908305 completion= 10306 缓存命中=0.7883 | phase3增量 prompt=  449763 completion=  7329
+  reb_raptor     final calls=127 prompt=  459570 completion= 10619 缓存命中=0.7099 | phase3增量 prompt=  459570 completion= 10619

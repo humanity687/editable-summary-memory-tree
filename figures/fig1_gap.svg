@@ -1,0 +1,195 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="760" viewBox="0 0 1280 760" font-family="'Noto Sans CJK SC','Source Han Sans SC','PingFang SC','Microsoft YaHei','Heiti SC',sans-serif">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5b6672"/>
+    </marker>
+    <marker id="arr-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/>
+    </marker>
+    <marker id="arr-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1d6fb8"/>
+    </marker>
+    <style>
+      .ptitle{font-size:22px;font-weight:700;fill:#1f2328}
+      .psub{font-size:13px;fill:#5b6672}
+      .tier{fill:#f0f3f7;stroke:#aab4c0;stroke-width:1.5}
+      .tname{font-size:17px;font-weight:600;fill:#2b3440}
+      .tsys{font-size:13.5px;fill:#3a4652}
+      .tnote{font-size:12px;fill:#7a8593}
+      .axis{font-size:13px;fill:#8a94a2;font-weight:600}
+      .gapbox{fill:#fff7ed;stroke:#d68910;stroke-width:2.5;stroke-dasharray:9 6}
+      .gapq{font-size:104px;font-weight:800;fill:#d68910}
+      .gaplabel{font-size:15px;font-weight:700;fill:#b9770e}
+      .node{fill:#e8f5ec;stroke:#1a7f37;stroke-width:1.8}
+      .node-dirty{fill:#fdecea;stroke:#c0392b;stroke-width:2.2;stroke-dasharray:7 5}
+      .ntext{font-size:13.5px;fill:#1f2d24;font-weight:600}
+      .nsub{font-size:11px;fill:#5b6672}
+      .atom{fill:#ffffff;stroke:#4b5563;stroke-width:1.5}
+      .atom-new{fill:#fef3c7;stroke:#b9770e;stroke-width:2.2}
+      .edge{stroke:#8a97a6;stroke-width:1.6;fill:none}
+      .edge-dirty{stroke:#c0392b;stroke-width:2.6;fill:none}
+      .lbl{font-size:12.5px;fill:#5b6672}
+      .lbl-b{font-size:12.5px;fill:#1d6fb8;font-weight:600}
+      .lbl-r{font-size:12.5px;fill:#c0392b;font-weight:600}
+      .band{fill:#f6f8fa;stroke:#c8d3e0;stroke-width:1.3}
+      .chip{font-size:12.5px;font-weight:600}
+      .chip-g{fill:#e8f5ec;stroke:#1a7f37;stroke-width:1.5}
+      .chip-a{fill:#fef3c7;stroke:#b9770e;stroke-width:1.5}
+      .legend{fill:#ffffff;stroke:#d0d7de;stroke-width:1.2}
+      .lg{font-size:12.5px;fill:#2b3440}
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1280" height="760" fill="#ffffff"/>
+
+  <!-- ================= Panel A : existing stack ================= -->
+  <text class="ptitle" x="220" y="40" text-anchor="middle">现有上下文 / 记忆栈</text>
+  <text class="psub" x="220" y="64" text-anchor="middle">按可更新的最小单元分层</text>
+
+  <text class="axis" x="30" y="112" text-anchor="middle">细</text>
+  <text class="axis" x="30" y="536" text-anchor="middle">粗</text>
+  <line x1="30" y1="126" x2="30" y2="520" stroke="#c8d3e0" stroke-width="1.6" marker-start="url(#arr)" marker-end="url(#arr)"/>
+
+  <g>
+    <rect class="tier" x="48" y="96" width="344" height="96" rx="10"/>
+    <text class="tname" x="68" y="128">① Token 粒度</text>
+    <text class="tsys"  x="68" y="156">代表：全量发送（Full Context）</text>
+    <text class="tnote" x="68" y="180">无更新，每轮整体重发；预算随长度增长</text>
+  </g>
+  <g>
+    <rect class="tier" x="48" y="212" width="344" height="96" rx="10"/>
+    <text class="tname" x="68" y="244">② 缓存块粒度</text>
+    <text class="tsys"  x="68" y="272">代表：前缀缓存（Prefix Cache）</text>
+    <text class="tnote" x="68" y="296">KV 前缀复用；块失效即整段重算</text>
+  </g>
+  <g>
+    <rect class="tier" x="48" y="328" width="344" height="96" rx="10"/>
+    <text class="tname" x="68" y="360">③ 轮次粒度</text>
+    <text class="tsys"  x="68" y="388">代表：滚动窗口 / MemGPT（分页）</text>
+    <text class="tnote" x="68" y="412">按对话轮次滑窗、换页；内容只增不改</text>
+  </g>
+  <g>
+    <rect class="tier" x="48" y="444" width="344" height="96" rx="10"/>
+    <text class="tname" x="68" y="476">④ 事实粒度</text>
+    <text class="tsys"  x="68" y="504">代表：Mem0 / Graphiti（事实·边级失效）</text>
+    <text class="tnote" x="68" y="528">LLM 判定 ADD / UPDATE / DELETE 或 bi-temporal 失效</text>
+  </g>
+
+  <!-- ================= Panel B : the gap ================= -->
+  <text class="gaplabel" x="528" y="40" text-anchor="middle">语义区间层</text>
+  <text class="psub" x="528" y="64" text-anchor="middle">现有系统均未覆盖</text>
+  <rect class="gapbox" x="440" y="150" width="176" height="330" rx="16"/>
+  <text class="gapq" x="528" y="352" text-anchor="middle">?</text>
+  <text class="gaplabel" x="528" y="512" text-anchor="middle">连续区间概括</text>
+  <text class="gaplabel" x="528" y="534" text-anchor="middle">区间精确失效</text>
+
+  <!-- arrows between panels -->
+  <line x1="398" y1="315" x2="434" y2="315" stroke="#5b6672" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="622" y1="315" x2="646" y2="315" stroke="#1d6fb8" stroke-width="2.4" marker-end="url(#arr-blue)"/>
+
+  <!-- ================= Panel C : our editable summary tree ================= -->
+  <text class="ptitle" x="948" y="40" text-anchor="middle">本文：位置有序可编辑摘要树</text>
+  <text class="psub" x="948" y="64" text-anchor="middle">填补语义区间层 · 编辑经祖先链精确置脏</text>
+
+  <!-- edges (clean) -->
+  <path class="edge" d="M943,160 L827,228"/>
+  <path class="edge" d="M943,160 L1059,228"/>
+  <path class="edge" d="M1059,276 L1001,346"/>
+  <path class="edge" d="M1059,276 L1117,346"/>
+  <path class="edge" d="M827,276 L769,346"/>
+  <path class="edge" d="M769,392 L740,462"/>
+  <path class="edge" d="M769,392 L798,462"/>
+  <path class="edge" d="M1001,392 L972,462"/>
+  <path class="edge" d="M1001,392 L1030,462"/>
+  <path class="edge" d="M1117,392 L1088,462"/>
+  <path class="edge" d="M1117,392 L1146,462"/>
+
+  <!-- edges (dirty path) -->
+  <path class="edge-dirty" d="M943,160 L827,228" marker-end="url(#arr-red)"/>
+  <path class="edge-dirty" d="M827,276 L885,346" marker-end="url(#arr-red)"/>
+  <path class="edge-dirty" d="M885,392 L914,462" marker-end="url(#arr-red)"/>
+
+  <!-- root -->
+  <rect class="node-dirty" x="713" y="108" width="460" height="52" rx="9"/>
+  <text class="ntext" x="943" y="132" text-anchor="middle">根摘要 · 全书合并终点</text>
+  <text class="nsub"  x="943" y="150" text-anchor="middle">脏：区间与编辑相交</text>
+
+  <!-- level 2 -->
+  <rect class="node-dirty" x="722" y="228" width="210" height="48" rx="9"/>
+  <text class="ntext" x="827" y="251" text-anchor="middle">区间摘要</text>
+  <text class="nsub"  x="827" y="268" text-anchor="middle">脏</text>
+  <rect class="node" x="954" y="228" width="210" height="48" rx="9"/>
+  <text class="ntext" x="1059" y="251" text-anchor="middle">区间摘要</text>
+  <text class="nsub"  x="1059" y="268" text-anchor="middle">干净</text>
+
+  <!-- level 1 -->
+  <rect class="node" x="717" y="346" width="104" height="46" rx="8"/>
+  <text class="ntext" x="769" y="374" text-anchor="middle">摘要</text>
+
+  <rect class="node-dirty" x="833" y="346" width="104" height="46" rx="8"/>
+  <text class="ntext" x="885" y="374" text-anchor="middle">脏</text>
+
+  <rect class="node" x="949" y="346" width="104" height="46" rx="8"/>
+  <text class="ntext" x="1001" y="374" text-anchor="middle">摘要</text>
+
+  <rect class="node" x="1065" y="346" width="104" height="46" rx="8"/>
+  <text class="ntext" x="1117" y="374" text-anchor="middle">摘要</text>
+
+  <!-- atoms -->
+  <g>
+    <rect class="atom" x="717" y="462" width="46" height="46" rx="6"/>
+    <rect class="atom" x="775" y="462" width="46" height="46" rx="6"/>
+    <rect class="atom" x="833" y="462" width="46" height="46" rx="6"/>
+    <rect class="atom-new" x="891" y="462" width="46" height="46" rx="6"/>
+    <rect class="atom" x="949" y="462" width="46" height="46" rx="6"/>
+    <rect class="atom" x="1007" y="462" width="46" height="46" rx="6"/>
+    <rect class="atom" x="1065" y="462" width="46" height="46" rx="6"/>
+    <rect class="atom" x="1123" y="462" width="46" height="46" rx="6"/>
+  </g>
+  <text class="nsub" x="914" y="490" text-anchor="middle">新</text>
+  <text class="nsub" x="740" y="490" text-anchor="middle">句</text>
+  <text class="nsub" x="798" y="490" text-anchor="middle">句</text>
+  <text class="nsub" x="856" y="490" text-anchor="middle">句</text>
+  <text class="nsub" x="972" y="490" text-anchor="middle">句</text>
+  <text class="nsub" x="1030" y="490" text-anchor="middle">句</text>
+  <text class="nsub" x="1088" y="490" text-anchor="middle">句</text>
+  <text class="nsub" x="1146" y="490" text-anchor="middle">句</text>
+
+  <!-- order list -->
+  <line x1="717" y1="528" x2="1169" y2="528" stroke="#8a97a6" stroke-width="1.6" marker-start="url(#arr)" marker-end="url(#arr)"/>
+  <text class="lbl" x="943" y="548" text-anchor="middle">位置序 · 双向链表显式承载（原子卡 = 句粒度）</text>
+
+  <!-- edit path annotation -->
+  <text class="lbl-r" x="650" y="188" text-anchor="start">编辑传播：零 LLM · 零阻塞</text>
+  <text class="lbl" x="650" y="208" text-anchor="start">祖先链对区间相交者精确置脏</text>
+
+  <!-- assembly band -->
+  <rect class="band" x="656" y="566" width="584" height="72" rx="10"/>
+  <text class="lbl" x="676" y="590">编辑后组装视图（每工具调用一次，纯计算）：</text>
+  <rect class="chip chip-g" x="676" y="600" width="96" height="28" rx="7"/>
+  <text class="chip" x="724" y="619" text-anchor="middle" fill="#1a7f37">摘要 n1</text>
+  <rect class="chip chip-a" x="784" y="600" width="106" height="28" rx="7"/>
+  <text class="chip" x="837" y="619" text-anchor="middle" fill="#b9770e">新句 1..k</text>
+  <rect class="chip chip-g" x="902" y="600" width="96" height="28" rx="7"/>
+  <text class="chip" x="950" y="619" text-anchor="middle" fill="#1a7f37">摘要 n3</text>
+  <rect class="chip chip-g" x="1010" y="600" width="96" height="28" rx="7"/>
+  <text class="chip" x="1058" y="619" text-anchor="middle" fill="#1a7f37">摘要 n4</text>
+  <text class="lbl-r" x="1120" y="619">脏祖先已退出读取</text>
+
+  <!-- ================= legend ================= -->
+  <rect class="legend" x="32" y="664" width="1216" height="76" rx="10"/>
+  <rect class="node" x="60" y="688" width="40" height="26" rx="6"/>
+  <text class="lg" x="112" y="706">干净摘要（可读）</text>
+
+  <rect class="node-dirty" x="300" y="688" width="40" height="26" rx="6"/>
+  <text class="lg" x="352" y="706">脏节点（区间相交 · 退出读取）</text>
+
+  <rect class="atom-new" x="660" y="688" width="40" height="26" rx="6"/>
+  <text class="lg" x="712" y="706">本次编辑新原子</text>
+
+  <rect class="atom" x="880" y="688" width="40" height="26" rx="6"/>
+  <text class="lg" x="932" y="706">原子卡（句）</text>
+
+  <line x1="1060" y1="701" x2="1108" y2="701" stroke="#8a97a6" stroke-width="1.6" marker-start="url(#arr)" marker-end="url(#arr)"/>
+  <text class="lg" x="1118" y="706" font-weight="600" fill="#1d6fb8">零 LLM · 零阻塞 · 恒预算</text>
+</svg>

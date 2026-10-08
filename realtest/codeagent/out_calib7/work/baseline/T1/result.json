@@ -1,0 +1,29 @@
+{
+  "group": "baseline",
+  "task": "T1",
+  "title": "thinking 配置不生效",
+  "passed": true,
+  "accept_rc": 0,
+  "accept_verdict": "PASS",
+  "elapsed_s": 30.9,
+  "agent_result": {
+    "ok": true,
+    "rounds": 7,
+    "summary": "修复了 LLMClient 中 thinking 配置不生效的问题。\n\n1. 定位问题：在 `sdk/llm_client.py` 的 `send_message` 方法中，虽然在 `__init__` 中读取了 `thinking` 配置，但在构建发送给 API 的 `kwargs` 时，并未将该参数包含进去。\n2. 修复方案：在 `send_message` 方法中，根据 `self.thinking` 的值，在 `kwargs` 中添加 `extra_body={\"thinking\": {\"type\": \"enabled\"}}`。\n3. 验证结果：运行 `python3 accept_t1.py` 验收脚本，结果为 PASS。",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 7,
+    "tool_uses": {
+      "command": 3,
+      "read": 2,
+      "edit": 1,
+      "finish": 1
+    },
+    "conversation_chars": 7893
+  },
+  "last_usage": {
+    "prompt_tokens": 3871,
+    "completion_tokens": 160
+  }
+}

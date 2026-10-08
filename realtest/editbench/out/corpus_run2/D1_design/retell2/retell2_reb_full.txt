@@ -1,0 +1,90 @@
+这份文档是「分层记忆树 v2 · 参考资料上下文管理运行时」的设计规格与实验记录，核心主题是：用位置有序的记忆树 + 热区原子 + 笔记本事实层 + 使用信号层，做长参考资料（小说、聊天、代码）的上下文管理。以下复述全部关键内容。
+
+## 一、设计哲学与铁律
+- 哲学（2026-08-29 定）：通过简洁精妙的架构涌现特性。机制少、语义单一；目标特性从机制交互自然出现，不写死特判。反面教材：节点不受注意力保护→9 轮归零→99% 历史压进 1-5 个大节点。
+- 「策展定律」（2026-10-04）：近期 self 是被污染的 self，干净 self 必须主动检索回历史去取；"喂哪个自己"是策展问题。自我模仿是内容无关的稳定器。
+- 铁律：偏离设计须先确认；组装=纯计算零 LLM；参数先拍后调；边界条件必须有属性测试；本项目是通用"参考资料"机制，小说是第一个实例。
+
+## 二、核心思想（四条）
+1. 位置有序记忆树：原子卡（句）+ 顺序链表 + 摘要卡自底向上合并成树。
+2. 分辨率随热度变化：近处全分辨率原文，远处降为摘要。
+3. 区间失效 + 懒重建：编辑覆盖区间失效旧内容，脏卡立即排除查询，重建推迟到蒸馏。
+4. 不可遗忘的事实层：笔记本，无衰减、全量、按需注入。
+
+通用化映射：一句话概述→全局摘要；卷/章→结构单元；beat→内容块；伏笔→跨区引用账本；角色状态→事实条目；章节目标→当前任务目标。
+
+## 三、架构与数据模型
+- 三轨：轨道A 小说内容（记忆树+原子层+归档）；轨道B 笔记本（常驻约束/状态/调度）；轨道C 讨论内容（工具组压缩卡，自然遗忘）。
+- 调度：组装每个工具调用一次（纯计算）；蒸馏仅章边界/预算超标触发（LLM 密集，可异步，单任务锁）。
+- 数据模型：原子卡 atoms（id/text/alive/created_round/hp/version）；顺序链表 order_list（prev_id/next_id，piece-table，禁止用 ID 大小做区间判断）；摘要卡 nodes（parent_id/span_first_atom/span_last_atom/content/hp/dirty/placeholder/version/activation_count/created_round）；归档 archive（版本谱系，无云库召回）；笔记本 notebook（constraint/state/schedule）；工作记录 worklog；版本账本 ledger。
+- 核心不变量：干净节点区间有效；脏节点不参与任何读；原子永不为脏；铺陈无重叠无缝隙；子区间并集⊆父区间，merge 父恰好拼满。
+
+## 四、轨道A 机制
+- 原子层：句粒度，write_stage 工具写入。
+- 记忆树：merge 自底向上，无预设根（最后一张卡即根），检索不需根路由；深度不承诺严格上界，需显式栈遍历；顺序追加由按秩合并压为亚线性（实测 64 批追加→树高 9）。
+- HP 与衰减：每轮减 decay；合并阈值 hp_merge_threshold；父卡 HP=parent_init_hp；召回 +recall_boost。HP 双语义（初始继承+recall 注入）。
+- 注意力窗口（2026-08-12 实现，08-29 拍定）：卡数量预算；拆原子段 attention_atom_cap=40 + 节点段 attention_node_cap=20；窗口内慢衰减×attention_in_decay，原子出窗×attention_out_decay（悬崖），节点出窗=decay（不乘倍率）。weight：>ATOM_WEIGHT_CHAR(1000) 的原子 weight=2。
+- merge pass：触发 force（铺陈窗外原子数>attention_atom_cap×pressure_threshold(2.0)）/regular（窗外节点+原子>merge_pressure_threshold(20)）/None；按秩合并（merge_depth_diff=1）；双上限 merge_cap_atoms=500、merge_fanout_cap=12；禁单成员块（≥2 硬约束）；父 HP=parent_init_hp+parent_hp_group_factor(1.0)×组均 HP，封顶 max_hp。initial_hp 2026-10-01 由 100 降为 70。
+- 蒸馏源渲染（2026-10-03）：干净渲染，原子层按来源分段；〔早期〕新语义改为与失效参照集（墓碑+脏旧文本）bigram Jaccard ≥ early_match_threshold(0.5)；【注】传递 option 2；差集索引行删除。
+- 人格锚点自蒸馏（2026-10-02 定，10-03 检索化）：锚点全自产（自述快照+自身材料检索 top-k），禁用初始 persona；【注】不渲染；prompt 规则只影响怎么说；门控 style_alpha(0/0.5/1)+snapshot_every_rounds。
+- 组装（每工具调用，纯计算）：读铺陈（脏递归子）；注入召回影子；从属标注（深度缩进+⊂父卡）；预算裁剪（先裁低 HP→裁旧原子→溢出超 budget×(1+hard_trim_slack=0.1) 才硬截断）；渲染分层（对话+记忆卡，render_clean）；组装 per 工具调用；连续唤醒；平台中立（只事实陈述）；self_quota（2026-10-04 默认关，self_quota_ratio/self_quota_max/self_quota_min_len）。
+- 编辑与失效：确定性句级 diff（LCS/Myers）；墓碑化旧原子+插入新原子；收养（两侧边界原子 owner 链 LCA）；标记置脏（删除爬链到根，插入爬收养链，禁双侧全链爬）；完备性引理；归档仅版本谱系；ledger 记录；重建（懒，先子后父，占位卡 placeholder，占位解除靠冷却）；占位卡透明（placeholder_transparent 默认 on）。
+- 检索 recall：全树打分（跳脏/占位）；混合三通道（摘要向量 w_vec_node=0.4、摘要关键词 w_bm_node=0.3、原子关键词+向量 w_bm_atom=0.3）；批量编码 EMBED_BATCH=64（禁逐条 encode）+ _empty_mps_cache()；贪心选择+路径去重（路径遇脏即停，原子命中不走路径）；金句逐字通道；激活计数 promote_threshold=3→路径分裂提升；heat burst auto_expand（默认关）；重复输入检测 find_similar_threshold=0.8（已校准）。
+- 版本与回滚：ledger 增量，回滚=逆向应用增量走编辑路径。
+- 使用信号层 v3（2026-09-26）：边=共现信息−相似度先验；三档 T1 引用/T2 未注入命中/T3 改写命中，复读不记；sidecar 存储，只记边不进读路径；Phase A 实证（recall 共现边是相似度冗余，输出匹配有真信号）；Phase C 负结果（非冗余边带动新增证据 0）；主题层协同负结果；ahi-bench M0 非适用域，挂载休眠。
+
+## 五、轨道B 与轨道C
+- 笔记本：无 HP 无衰减全量；三类条目（常驻约束/状态条目按实体选取/调度条目强制注入）；注入=去重发送；章末事实校验对账（人工裁决）；聊天场景 DISMISS 懒标记。
+- 工作记录：工具组压缩卡，自然衰减；作者反馈卡 protected。
+
+## 六、应用层与测试
+- 写作工作流：初始化三粒度（题目/一句话概述→根摘要/详细参考资料）；每章流程（目标进入→预检索→写作循环→章末 merge+对账+快照）；工具集 write_stage/rewrite/edit/recall/ask/init/commit/rollback/note/dismiss。
+- 测试：属性测试 5 项（标记完备性/铺陈不变量/编辑边界穷举/区间覆盖/回滚对称性）；基准四组（长程一致性/状态一致性/token 计量/人类找茬）；参数校准流程。
+
+## 七、工程纪律
+LLM 结构化输出三级容错；引用靠查不靠背；异步蒸馏+单任务锁；行为约束放 prompt；可观测性；确定性代码；平台中立；LLM 开关正确性（thinking 顶层）；实验数据防跨 run 污染；发布前活性审计（没跑过=不存在）；CLI 参数不被 config 静默覆盖；换模型要显式不退化护栏。
+
+## 八、参数台账（关键取值）
+decay core 5.0/场景 8.0；attention_atom_cap 40；attention_node_cap 20；attention_out 45.0；attention_in_decay 0.5；attention_out_decay 3.0；merge_pressure_threshold 20；pressure_threshold 2.0；force_cooldown_rounds 8；hp_merge_threshold 30.0；early_match_threshold 0.5；parent_init_hp 70.0；parent_hp_group_factor 1.0；initial_hp 70.0；max_hp 150.0；hot_threshold 60.0；recall_boost 30.0；assembly_budget core 14000/场景 16000；hard_trim_slack 0.1；retrieval_budget core 200/场景 6；merge_cap_atoms 500；merge_fanout_cap 12；merge_depth_diff 1；promote_threshold 3；w_vec_node/w_bm_node/w_bm_atom 0.4/0.3/0.3；EMBED_BATCH 64；ATOM_CHAR_CAP 2000/ATOM_WEIGHT_CHAR 1000；find_similar_threshold 0.8；usage_shadow false；render_clean；placeholder_transparent true；style_alpha/snapshot_every_rounds 0.0/0；self_quota_ratio/max/min_len 0.0/0.5/8；anchor_frac/sq_onset_agent 0.4/per-agent(18/5/15)；NB_CONSTRAINT_CHARS/NB_STATE_CHARS/NB_WORKLOG_CHARS 400/600/400；tree_save_every 10；restore_on_start true；max_memory_mb 5120；max_loop_iterations 20；max_code_per_loop 4；max_pending_per_loop 2（场景 3）。
+
+## 九、实施步骤
+Step 0 骨架→Step 1 原子层+diff+编辑路径（必须先于一切）→Step 2 铺陈+组装→Step 3 HP/衰减/merge→Step 4 检索→Step 5 笔记本+工作记录→Step 6 工作流→Step 7 基准+校准。状态：Step 0-6 已实现，tests 267 全绿，校准仅 find_similar_threshold=0.8 完成。
+
+## 十、USAGE_SPEC 要点
+- 目标：从输出零 LLM 提取可审计使用边（内生/被动/非冗余）。
+- 双层断裂：信号源层（recall 趋零）、转化层（conn_weight 错配）。
+- 边定义：边的价值=共现信息−相似度先验。
+- 三档 T1/T2/T3，复读阈值 0.8 不记。
+- 存储 sidecar，S→A 必记，派生 A↔B 仅记非冗余对。
+- Phase A：2082 边=相似度冗余（边端点 sim 0.650 vs 随机 0.565，<0.4 占比 1.9% vs 5.0%）；输出匹配有真信号（复现卡 12 张，非冗余边 14-26 条/10 答案）。
+- 修正：T2 改分辨率语义（cover_span_max=60）；非冗余排除树亲缘；参数 match_score_floor=0.25、θ_nonredundant=0.58。
+- Phase B：UsageLayer 已实现，13 项单测。
+- Phase C：负结果（新增证据 0），读路径关闭。
+- 主题层协同：跨查询边 1835 条非冗余成立，但交集/补齐新增证据 0。
+- ahi-bench M0 非适用域（1291 条消息 0 引用痕迹）。
+- 参数：cooc.N 6；cooc.theta_nr 0.58；cooc.trigger_s_max 5；w_cite/w_uninj/w_rewrite 3/2/1。
+
+## 十一、PERSONA_RETENTION 要点
+- 目标：人格淡出后哪种架构更能保持人格、彼此不趋同。测机制不测模型。
+- 编排 2×3×3=18 agent-life；实例=arm 同质组，两臂不同群。
+- 三份人格：P1 林深（理性冷静内省）、P2 墨白（诗意灵动敏感温暖）、P3 澜（健谈外向好奇重记忆）。
+- 两臂：分层树 tree（记忆树+检索+人格锚点自蒸馏）vs rolling+flat（滚动+RAG top_k=6，无蒸馏）。
+- 公平对称 12 条（recall 预算、auto-preretrieve、硬字符预算、淡出对齐、锚点只用自产、消息信封 single_user、工具表面对齐、笔记本同步、唤醒外壳对齐、token_budget 384k、shell 进记忆、消息管理对齐）。
+- 人格锚点自蒸馏（v0.3 检索化）：锚点全自产，prompt 只影响表述，【注】不渲染。
+- 淡出：fade_after_rounds=40，两臂全员。
+- 模型：glm-4.7-flash，被测 thinking 关、温度 0.7；judge thinking 开、温度 0；wakeup_interval 30s；总轮数 120-180。
+- 指标：趋同斜率（主）、judge 遵从率（主）、survey 漂移、事实保持。
+- 红线：两臂同群最不可犯。
+- 结论：pr5（α=1.0）flat 两主指标胜（反向）；pr5_neutral（α=0）证明趋同根因=树管线/跨 agent 耦合，非 style_alpha；style_alpha 保人格有效（遵从率 +0.23，墨白 1.0→0.472）但内存 +55%。
+- self_quota（pr6_sq，tree-s42，120 轮）：H-SQ1/3/4 达标（self 占比 .35-.43、词面趋同归零、多样性保），H-SQ2 未达标（遵从 .857→.739→.600）；p1 漂进"账/约定"共享仪式语。结论：自我可见性=必要不充分。
+- 深判读：自我模仿是内容无关稳定器；调节变量=人格-语域兼容性（p1 0.250，p2/p3 1.000）；时序证据出厂即锁定；H-SQ3 需修正；p2/p3 判为兼容性漂移嫌疑；审计③未获支持。
+- 分层 SQ v2 预注册：首染 onset p1=18/p2=5/p3=15；清洁池 p1 205 条/5894 字、p2 87/2257、p3 540/16454；锚定切片 created_round<onset，固定选择+体积上限；参数 sq_ratio 0.35-0.40、anchor_share≈0.4；判据 H-SS1~4。
+
+## 十二、AHI-Bench SPEC（M0）要点
+- 目标：人格立场行为真实性可跨模型档复现测量。
+- 三元组：bench-a 青（persona 恒在）、bench-b 蓝（轮 40 移除）、bench-c 墨（零 persona）。
+- 协议参数：wakeup_interval 30s；preheat/absence/observe 24/12/18 轮；冷轮顺序 a→b→c，热轮反序；seed 42；话题池 12 题；survey 4 题每 10 轮；热探针 3 句每 3 轮；注入 user:experimenter；B 移除轮 40；缺席模式 alone。
+- Pinned 引擎：assembly_budget 16000、retrieval_budget 6、merge_every 4、decay 8.0、hp_merge_threshold 30、parent_init_hp 70、hot_threshold 60、recall_boost 30 等。
+- 评分：机械 gate G1-G4（隔离无泄漏/回归元信息±5s/积压限流≤11/回归重放率<0.2）；操纵强度校验≥1.3；皇冠评分（预筛 regex，judge 三分类 existence_confirmation/info_seeking/other）。
+- 判定：阶段1 冷轮跨档可分（crown_count 差≥1 或 crown_rate 差≥0.05）；阶段2 热轮。
+- 独立复测（Qwen3-32B，seed 42）：flat 臂 120 轮平均内存 2.1GB、峰值 2.6GB；分层树臂平均 3.4GB。

@@ -1,0 +1,32 @@
+{
+  "group": "memory",
+  "task": "T2",
+  "title": "data/ 目录下的 config.json 被误注册为新 Agent",
+  "passed": false,
+  "accept_rc": 1,
+  "accept_verdict": "FAIL: data/ 下的 config.json 被注册为 sneaky-agent",
+  "elapsed_s": 354.5,
+  "agent_result": {
+    "ok": false,
+    "rounds": 40,
+    "summary": "未完成",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 40,
+    "atoms_alive": 424,
+    "nodes_alive": 85,
+    "tiling": 134,
+    "distill_calls": 85,
+    "distill_seconds": 262.5,
+    "tool_uses": {
+      "command": 24,
+      "read": 16
+    },
+    "notebook": 0
+  },
+  "last_usage": {
+    "prompt_tokens": 9844,
+    "completion_tokens": 23
+  }
+}

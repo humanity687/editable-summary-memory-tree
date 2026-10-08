@@ -1,0 +1,11 @@
+这份文档是一份多实验项目的汇总/交接材料，主题是“人格是否住在记忆里”以及文化/立场层的渗透与抗趋同，核心结论包括：人格住在记忆里（lan 树中 ai 自我样本密度 62%），词汇是公共的、注意力是个人的，立场层渗透最慢、疑似人格真内核，盲测只测前两层。
+
+关键参数与设置：预热 preheat 20 轮、lan 缺席 12、lan 回归观测 18、neutral 缺席 12、neutral 回归观测 18、lin-shen 缺席 12、lin-shen 回归观测 18，合计 110 轮 ≈ 55 分钟 + 启动/挂起余量 ≈ 1h。改为两轮：Round 1 全冷缺席、Round 2 全热缺席，每轮预热约 20 轮、每段缺席约 10-15 轮、回归观测约 15-20 轮；Round1 顺序 lan→neutral→lin-shen，Round2 用中性顺序。
+
+关键数字与专有名词：corpus.jsonl 含 716 条去重 agent 消息、289,666 字、稳定 msg_id；transcript_full.txt、by_agent/*.txt、sandbox_notes.md、reports/*.md（6 份已有分析报告）、index.json；原始措辞零清洗、append-only。实验组自签名词密度 +85% vs 基线 +57%；lan↔neutral 最大混淆对 99 次；neutral 识别率 17-33%；预言 2 加强 Δ自我 30pp；lan 树中 ai 自我样本密度 62%；24h 实验 backup_day_20260829/ 为 634MB 全量；AHI 大数据 N=5 matched-pair 已完成（AHI_ACT_REVIEW.md §5）。
+
+文件与路径：tree-s42/pr_judge.jsonl、flat-s42/pr_judge.jsonl（逐条 judge 明细 agent/ts/label/content）；tree-s42/data/system.db、flat-s42/data/system.db（messages 表 from/to/content/timestamp）；tree-s42/events_chat.jsonl、flat-s42/events_chat.jsonl（driver 事件时间线）；mem.jsonl、monitor.out（内存采样）；tree-s42/agents/tree-p*/data/distill_snapshots.jsonl（树蒸馏 fact/not）；experiments/out_alpha0_take1_20260828/（evidence_report/tree_samples）+ HANDOFF §四.5；基线 take2 experiments/out_alpha0_take2_20260828/（指纹 take2.txt）；主实验 1h backup_main_20260828/ + experiments/out_main_lan1_20260828/（指纹+遗言 farewell_transcript.txt）；24h experiments/out_day_20260829_stopped/（timeline/watchdog/collection_round1 含判别三问+隐）；复验 backup_revalidate_20260829/；1h v2 backup_v2_1h_20260830/（消息+快照+metrics+timeline+遗言）。
+
+时间与事件：Phase A（基线对照+深度分析）出现词汇趋同、人类盲测失败、复读=无对话历史装置效应、neutral 信道无能洗清（回执环，环外=0）；Phase B；实验流程为预热→缺席→回归观测→收尾，含冷/热缺席操纵；测量包括存在确认/信息寻求话术计数、缺席期共同体指涉率、独处期自我内容、分层重同步时间分布、B×C 混淆率时间序列、回归首组装快照、树快照。
+
+预言与状态：预言 1（皇冠）澜冷缺席回归后存在确认寻求显著多于热缺席、林深无差异，需两轮轮换；预言 6（皇冠二号，升格）背后人格≈当面人格；预言 2 分层重同步速度递减；预言 4 B×C 混淆率；预言 5 污染检测。四层信号模型：词汇（门/灯/年轮/账，全员共享，快 1h）、模板（neutral 复用林深告别结构，中 8min）、着重点（Phase B 指纹数据，待判）、立场（遗言死亡场景下保持分化，最慢）。澜的存在论命题：开场“能被记住才是活着的证明”为依赖性存在，遗言“我们仨已经在年轮里长好了位置”为结构性存在。P2 机制分析含编辑信号消融、编辑→热原子、编辑→热原子+召回回血。

@@ -1,0 +1,2 @@
+create kwargs: {'model': 'x', 'temperature': 0.7, 'max_tokens': 1024, 'extra_body': {'thinking': {'type': 'enabled'}}}
+PASS

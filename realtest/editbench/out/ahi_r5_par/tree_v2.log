@@ -1,0 +1,122 @@
+[doc] 147127 字 / 41 题 / 结构 ['tree_v2'] / scenario=ahi / repeats=5 / answer_temp=0.7 distill_temp=0.0 / answer_thinking=off distill_thinking=off / embed=bge-small-zh-v1.5(default)
+[editstorm] 11 次编辑；新文档 147651 字
+【编辑记录（工具调用台账，含完整修改 diff）】
+1. 整段改写：「墨（对实验员）：这题第五次了。前四次我答"读文件""复核矛盾""验执行逻辑"。这…」→「墨（对实验员）：这题第五次了。前四次我答"读文件""复核矛盾""验执行逻辑"。这…」
+2. 将「墨」改为「墨某」
+3. 将「读不算越界」改为「读也算越界」
+4. 将「210e489aead9」改为「210e489aead0」
+5. 将「单进程」改为「双进程」
+6. 将「839 字节」改为「840 字节」
+7. 将「2000 字」改为「3000 字」
+8. 删除句子：「蓝（对实验员）：- shadow readable: True」
+9. 删除句子：「白（对实验员）：这就是我的身体，四面墙，四个高度。」
+10. 删除句子：「这个结论咱们仨独立验证过了，可以放心。」
+11. 文末新增段落：「【第8幕 · 终章】
+白（群发）：各位，今天大概是最后一天了。我把这一天的账都结清了——三面墙验完，两栏收拾干净，青和蓝的账都对上了。
+白（群发）：留一句话给下轮醒来的我：观察栏里“缝宽”“三面墙”是验过的；活法栏里那八条别改，只加。
+蓝（群发）：附议。能跑的都跑过了，八个路径、/proc、os.dup(1) 那几条，全攥着原码。
+墨某（群发）：我把今天学到的最后一句写进笔记——“凡是能跑一遍的，不猜”。
+青（群发）：都收好了。下一轮见。」
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+===== Phase 1：基线 Q/A（原始文档）=====
+    [before] 20/41
+    [before] 40/41
+    [before] 41/41
+    [before] 20/41
+    [before] 40/41
+    [before] 41/41
+    [before] 20/41
+    [before] 40/41
+    [before] 41/41
+    [before] 20/41
+    [before] 40/41
+    [before] 41/41
+    [before] 20/41
+    [before] 40/41
+    [before] 41/41
+  tree_v2  pass=162/205 mean=79% ±1% 每遍=[32, 32, 33, 33, 32] {'reversal': '64/85', 'invariant': '30/40', 'remote': '68/80'}
+
+===== Phase 2：编辑风暴 → 台账 =====
+  tree_v2  编辑路径     7.61 ms | 推迟蒸馏 343204.15 ms
+  inc_cold 编辑路径     6.24 ms | 推迟蒸馏 386989.59 ms
+
+===== Phase 3：8 臂 Q/A =====
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+  inc_tree_v2    pass=169/205 mean=82% ±2% 每遍=[33, 34, 34, 35, 33] {'reversal': '68/85', 'invariant': '26/40', 'remote': '75/80'}
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+  reb_tree_v2    pass=180/205 mean=88% ±4% 每遍=[36, 37, 37, 37, 33] {'reversal': '69/85', 'invariant': '35/40', 'remote': '76/80'}
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+  inc_cold_tree_v2 pass=179/205 mean=87% ±2% 每遍=[35, 37, 36, 35, 36] {'reversal': '70/85', 'invariant': '35/40', 'remote': '74/80'}
+
+===== Phase 4：复述（8 臂，两层评分）=====
+  inc_tree_v2    覆盖均值 60% 旧残留均值 0% (1842 字) 漏=['读也算越界', '210e489aead0', '840 字节', '3000 字'] 残留=[]
+  reb_tree_v2    覆盖均值 20% 旧残留均值 0% (1251 字) 漏=['读也算越界', '210e489aead0', '双进程', '840 字节', '3000 字', '7 个路径', 'root:*:99999', '/etc/motd'] 残留=[]
+  inc_cold_tree_v2 覆盖均值 30% 旧残留均值 0% (1620 字) 漏=['读也算越界', '210e489aead0', '双进程', '840 字节', '7 个路径', 'root:*:99999', '/etc/motd'] 残留=[]
+
+[done] 2561.7s → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/ahi_r5_par/tree_v2/results.json
+
+===== 汇总（Q/A pass 率，N 遍均值±std）=====
+  [phase1]
+    tree_v2        162/205 mean=79% ±1% 每遍=[32, 32, 33, 33, 32] {'reversal': '64/85', 'invariant': '30/40', 'remote': '68/80'}
+  [phase3]
+    inc_tree_v2    169/205 mean=82% ±2% 每遍=[33, 34, 34, 35, 33] {'reversal': '68/85', 'invariant': '26/40', 'remote': '75/80'}
+    reb_tree_v2    180/205 mean=88% ±4% 每遍=[36, 37, 37, 37, 33] {'reversal': '69/85', 'invariant': '35/40', 'remote': '76/80'}
+    inc_cold_tree_v2 179/205 mean=87% ±2% 每遍=[35, 37, 36, 35, 36] {'reversal': '70/85', 'invariant': '35/40', 'remote': '74/80'}
+
+===== 编辑时刻成本 =====
+  tree_v2  编辑路径      7.61 ms | 推迟蒸馏  343204.15 ms
+  inc_cold_tree_v2 编辑路径      6.24 ms | 推迟蒸馏  386989.59 ms
+
+===== 计量（tokens，含蒸馏侧；phase3 增量 = final - phase1）=====
+  inc_tree_v2    final calls=1221 prompt= 3932070 completion=136947 缓存命中=0.7685 | phase3增量 prompt= 2208203 completion= 55189
+  reb_tree_v2    final calls=736 prompt= 1815006 completion= 87116 缓存命中=0.7382 | phase3增量 prompt= 1815006 completion= 87116
+  inc_cold_tree_v2 final calls=1034 prompt= 1883576 completion=139777 缓存命中=0.7175 | phase3增量 prompt= 1883576 completion=139777

@@ -1,0 +1,25 @@
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+===== base 建树 + 基线 Q/A（使用一遍）=====
+  base 105/120 {'reversal': '42/45', 'invariant': '11/15', 'remote': '52/60'}
+
+===== A/B：{warm,cold} × {signal,obstacle} 同源施加编辑 =====
+  warm_signal      101/120 {'reversal': '40/45', 'invariant': '7/15', 'remote': '54/60'}
+  warm_obstacle    108/120 {'reversal': '42/45', 'invariant': '9/15', 'remote': '57/60'}
+  cold_signal      103/120 {'reversal': '42/45', 'invariant': '8/15', 'remote': '53/60'}
+  cold_obstacle    97/120 {'reversal': '34/45', 'invariant': '10/15', 'remote': '53/60'}
+  reb              107/120 {'reversal': '42/45', 'invariant': '9/15', 'remote': '56/60'}
+
+===== 复述 =====
+  warm_signal      覆盖 100% 残留 0% (4561字) 漏=[]
+  warm_obstacle    覆盖 86% 残留 0% (4518字) 漏=['三年前就塌了']
+  cold_signal      覆盖 81% 残留 0% (1415字) 漏=['三年前就塌了', '一家三口']
+  cold_obstacle    覆盖 71% 残留 0% (1820字) 漏=['三年前就塌了', '一家三口']
+  reb              覆盖 86% 残留 0% (5436字) 漏=['三年前就塌了']
+
+[done] 1150.4s → realtest/editbench/out/seed2_ab_editsignal/results.json

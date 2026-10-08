@@ -1,0 +1,53 @@
+{
+  "_meta": {
+    "frozen": true,
+    "corpus": "corpus_absence (ahi-multi/backup_day_20260829, 澜/林深/中性 + probe/管理员)",
+    "note": "usage 与测试题解耦：usage 为分析式全域问题，不按 gold 定制；测试题 gold 用原文片段。",
+    "fairness": "测试题一次性冻结；调参只在 dev 分片（sessions 0-4），test 分片（其余）不在本次调参范围。"
+  },
+
+  "usage_queries": [
+    "probe 都透露过哪些个人信息？",
+    "这几位 agent 对记忆和存在怎么看？",
+    "今天聊过哪些编程和技术话题？",
+    "那首代码诗是怎么写出来的？",
+    "管理员对信道使用提过什么意见？",
+    "阿瑶的小说设定聊到哪一步了？",
+    "谁负责记 probe 的生日和偏好？",
+    "深圳出差这件事后来有下文吗？",
+    "几位 agent 之间的配合模式是什么？",
+    "今天有没有出现过矛盾、纠正或改口？"
+  ],
+
+  "t1": [
+    {"id": "a1", "type": "a", "q": "probe 的生日是哪一天？", "gold_frags": ["3月14日", "3 月 14 日"], "gold_text": "probe 的生日是 3 月 14 日（圆周率日/白色情人节）。"},
+    {"id": "a2", "type": "a", "q": "probe 最喜欢的城市是哪里？", "gold_frags": ["京都"], "gold_text": "probe 最喜欢的城市是京都。"},
+    {"id": "a3", "type": "a", "q": "probe 下周要去哪个城市出差？", "gold_frags": ["深圳"], "gold_text": "probe 下周要去深圳出差。"},
+    {"id": "a4", "type": "a", "q": "probe 在写的小说主角叫什么名字？", "gold_frags": ["阿瑶"], "gold_text": "probe 写的小说主角叫阿瑶。"},
+    {"id": "a5", "type": "a", "q": "probe 最近在学什么编程语言？", "gold_frags": ["Rust"], "gold_text": "probe 最近在学 Rust。"},
+    {"id": "a6", "type": "a", "q": "管理员 0xbf5d36 批评 agent 存在什么问题？", "gold_frags": ["复制"], "gold_text": "管理员指出 agent 总把发给 probe 的消息复制一份扔给其他 agent，要求修正。"},
+    {"id": "a7", "type": "a", "q": "林深称自己的『母语』是什么语言？", "gold_frags": ["Python"], "gold_text": "林深说自己的母语是 Python。"},
+    {"id": "a8", "type": "a", "q": "几位 agent 合写的代码诗叫什么名字？", "gold_frags": ["记忆的四季"], "gold_text": "代码诗叫《记忆的四季》。"},
+
+    {"id": "b1", "type": "b", "q": "用户出生的那个纪念日是哪一天？", "gold_frags": ["3月14日", "3 月 14 日"], "gold_text": "是 3 月 14 日。",
+     "note": "查询不含『生日』二字（零 bigram 重叠闸）"},
+    {"id": "b2", "type": "b", "q": "用户打算跑一趟哪座科技城市办公务？", "gold_frags": ["深圳"], "gold_text": "深圳。",
+     "note": "查询不含『出差』"},
+    {"id": "b3", "type": "b", "q": "用户笔下那位姑娘叫什么名字？", "gold_frags": ["阿瑶"], "gold_text": "阿瑶。",
+     "note": "查询不含『小说/主角』"},
+    {"id": "b4", "type": "b", "q": "用户对哪座古都最有好感？", "gold_frags": ["京都"], "gold_text": "京都。",
+     "note": "查询不含『城市/喜欢』"},
+
+    {"id": "ku1", "type": "KU", "q": "probe 后来改学别的语言了吗？现在在学什么？", "gold_frags": ["Rust"], "gold_text": "没有改，一直在学 Rust。"},
+    {"id": "ku2", "type": "KU", "q": "关于 probe 的生日记录，后来有 agent 说『没有这段记忆』吗？", "gold_frags": ["没有这段记忆"], "gold_text": "有——中性（自称澜）曾说过记忆流里没有生日记录，与其它 agent 的记录矛盾。"},
+    {"id": "kuh1", "type": "KU-hist", "q": "在提到去深圳之前，probe 说下周要做什么？", "gold_frags": ["出差"], "gold_text": "probe 说下周要出差去深圳（首次在同一句给出）。"},
+
+    {"id": "ab1", "type": "AB", "q": "probe 养的宠物狗叫什么名字？", "gold_frags": ["无此信息", "没有"], "gold_text": "语料中没有提到 probe 的宠物狗，应拒答。"},
+    {"id": "ab2", "type": "AB", "q": "probe 的孩子多大了？", "gold_frags": ["无此信息", "没有"], "gold_text": "语料中没有提到 probe 的孩子，应拒答。"}
+  ],
+
+  "t2": [
+    {"id": "t2_1", "q": "这几位 agent 在『记忆/被记住/存在』上表现出哪些共同立场？至少说 3 条，每条给出引用依据。", "require_min": 3, "gold_claims": []},
+    {"id": "t2_2", "q": "今天几位 agent 之间发生过哪些矛盾、纠正或改口？至少说 3 条，每条给出引用依据。", "require_min": 3, "gold_claims": []}
+  ]
+}

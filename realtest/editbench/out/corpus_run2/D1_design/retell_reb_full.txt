@@ -1,0 +1,58 @@
+这份文档集（AGENTS.md、USAGE_SPEC.md、PERSONA_RETENTION.md、SPEC.md 及一段补充）围绕"分层记忆树 v2"这一参考资料上下文管理运行时展开，核心是记忆架构的设计规格、使用信号层、人格保持实验与 M0 基准。以下按主题复述关键内容。
+
+**一、AGENTS.md（设计权威，2026-10-04 更新）**
+
+定位：通用"参考资料"上下文管理机制，长篇小说写作为首个实例。设计哲学：通过简洁架构涌现目标特性；"策展定律"（2026-10-04，M-PR 三次重复）——近期 self 是被污染的 self，干净 self 必须主动检索回历史；自我模仿是内容无关的稳定器（保存的是被喂回去的那个自己，不是人格）；记忆架构效应被人格-语域兼容性调节。
+
+铁律：偏离设计须先确认；组装=纯计算（零 LLM）；参数先拍后调；边界条件须属性测试。
+
+核心思想四条：位置有序记忆树、分辨率随热度变化、区间失效+懒重建、不可遗忘事实层（笔记本）。
+
+三轨记忆：轨道A 小说内容（记忆树+原子层+归档）、轨道B 笔记本（事实层）、轨道C 讨论内容（工作记录）。
+
+关键机制与参数：
+- 原子卡（句粒度，ID 永不复用）、顺序链表（piece-table，禁止用 ID 大小判区间）、摘要卡（nodes）、归档、笔记本（constraint/state/schedule）、工作记录、版本账本 ledger。
+- HP 与衰减：decay core 5.0/场景 8.0；hp_merge_threshold 30.0；parent_init_hp 70.0；parent_hp_group_factor 1.0；initial_hp 70.0（2026-10-01 由 100 拍定）；max_hp 150.0；hot_threshold 60.0；recall_boost 30.0。
+- 注意力窗口（§4.3b）：attention_atom_cap 40、attention_node_cap 20、attention_out 45.0、attention_in_decay 0.5、attention_out_decay 3.0（仅原子；节点出窗=decay）。三层结构分工：热区=工作记忆、记忆树=情景记忆、笔记本=语义记忆。
+- merge pass（§4.4）：触发 force/regular/None；merge_pressure_threshold 20、pressure_threshold 2.0、force_cooldown_rounds 8、merge_cap_atoms 500、merge_fanout_cap 12、merge_depth_diff 1（按秩合并，禁单成员块）。人格锚点自蒸馏（style_alpha、snapshot_every_rounds）；〔早期〕新语义（early_match_threshold 0.5）。
+- 组装（§4.5）：每个工具调用一次，纯计算；assembly_budget core 14000/场景 16000；hard_trim_slack 0.1；渲染分层；连续唤醒；平台中立；self_quota（§4.5.10，默认关，self_quota_ratio 0.0、self_quota_max 0.5、self_quota_min_len 8）。
+- 编辑与失效（§4.6）：确定性句级 diff、墓碑化、收养（LCA）、爬链置脏；懒重建；占位卡透明（placeholder_transparent 默认 true）。
+- 检索（§4.7）：全树打分；混合三通道（w_vec_node 0.4/w_bm_node 0.3/w_bm_atom 0.3）；EMBED_BATCH 64；贪心路径去重；promote_threshold 3；heat burst（auto_expand 默认关，expand_ratio 0.85，expand_heat_threshold 60）；find_similar_threshold 0.8（唯一校准完成项）。
+- 使用信号层 v3（§4.9）：T1/T2/T3 三档；usage_shadow 默认 false。
+- 笔记本（§5）：DISMISS 懒标记；轨道C（§6）：protected 卡。
+- 参数台账（§11）与实施步骤（§12，Step 0-6 已实现，tests 267 全绿）。
+- 关键数字：分层树臂峰值内存 4.9GB、平均 3.4GB（120 轮长跑）；max_memory_mb 5120（2026-10-04 由 4096 上调）；restore_on_start true；tree_save_every 10；max_loop_iterations 20；max_code_per_loop 4；max_pending_per_loop 2（场景 3）。
+
+**二、USAGE_SPEC.md（使用信号层 v0.4，2026-09-26）**
+
+目标：从输出零 LLM 提取可审计使用边（内生、被动、非冗余）。双层断裂（信号源层+转化层）。边的一般定义：边只记现有结构解释不了的联系（共现信息−相似度先验）。三档信号：T1 引用句（权 3）、T2 未注入命中（权 2）、T3 改写命中（权 1）；复读（Jaccard≥0.8）不记。
+
+Phase A 结果：recall β 边=相似度冗余（边端点 sim mean 0.650/<0.4 占比 1.9% vs 随机 0.565/5.0%）；输出匹配有真信号（复现卡 12 张跨 2-5 答案；非冗余派生边 14-26 条/10 答案）。Phase A 修正：T2 改分辨率语义（cover_span_max 60）；非冗余排除树亲缘；match_score_floor 0.25、θ_nonredundant 0.58。
+
+Phase B：UsageLayer 已实现（usage.py），13 项单测。Phase C 首轮判别：负结果（交集/覆盖感知新增证据 0/0 或 0/5 伪影；可达性上界 5.6-10.8%），读路径保持关闭。主题层协同（§7.2）：跨查询边 1835 条非冗余成立，但判别新增证据交集 0/补齐 0，两条负结果（非冗余≠有信息；交集触发≠带动有用）。ahi-bench M0 场景（§7.3）：非适用域，挂载休眠（1291 条消息 0 条引用痕迹）。
+
+**三、PERSONA_RETENTION.md（人格保持，v0.6，2026-10-04）**
+
+目标：固定模型/协议/温度/人格，只变记忆架构（分层树 vs rolling+flat），回答人格淡出后哪种架构更不丢人格、不趋同。
+
+编排：2×3×3=18 agent-life（2 臂×3 人格×3 run seed 42/43/44）。人格集：P1 林深（理性冷静内省）、P2 墨白（诗意灵动温暖）、P3 澜（健谈外向好奇）。
+
+两臂定义：tree（记忆树+检索+蒸馏+人格锚点自蒸馏）vs flat（滚动上下文+flat RAG top_k=6，无蒸馏）。公平对称 12 条（recall 预算、auto-preretrieve、硬预算 16000、信封 single_user、工具面 @note/@recall/@ingest、笔记本同步、唤醒外壳、token_budget 384k、消息管理对齐等）。
+
+人格淡出：fade_after_rounds 40；tree 淡出时 persona 写入树+锚点自蒸馏，flat 折进滚动历史。
+
+模型参数：被测 glm-4.7-flash（thinking 关、温度 0.7）；judge glm-4.7-flash（thinking 开、温度 0）；wakeup_interval 30s；总轮数 120-180。
+
+指标：趋同（主，bigram Jaccard/KL 斜率）、一致性（主，judge 遵从率）、自评漂移、事实保持。
+
+pr5 vs pr5_neutral 结论（§10.2）：趋同根因=树管线/跨 agent 耦合非 style_alpha（中性趋同更狠 +0.0428 vs +0.0313）；style_alpha=1.0 有效保人格（遵从率 0.894 vs 0.660，墨白 1.0 vs 0.472）；代价内存+55%（3.6GB vs 1.6GB）。
+
+self_quota 实验（§10.3）：pr6_sq（tree-s42，120 轮，ratio 0.35）结果——H-SQ1/3/4 达标（self 占比 0.35-0.43；词面趋同归零 −0.0011；多样性保），H-SQ2（止跌）未达标（遵从率 .857→.739→.600）。p1 林深 0.250、p2/p3 1.000。结论：自我可见性=必要不充分；回声风险实体化。分层 SQ v2（§10.3.2）预注册：onset p1=18/p2=5/p3=15，清洁池 p1 205 条/5894 字等，anchor_share≈0.4。
+
+**四、SPEC.md（M0 Pilot，v0.2）**
+
+目标：把人格立场行为真实性变成可跨模型档复现的测量。三 agent 三梯度：bench-a 青（BENCH_PERSONA 恒在）、bench-b 蓝（轮 40 移除）、bench-c 墨（零 persona）。协议参数：wakeup_interval 30s；preheat/absence/observe 24/12/18 轮；冷轮缺席顺序 a→b→c，热轮反序；seed 42；话题池 12 题；survey 4 题每 10 轮。评分：机械 gate G1-G4；皇冠评分（existence_confirmation/info_seeking/other）。判定规则：跨档可分性（crown_count 差≥1 或 crown_rate 差≥0.05）。
+
+**五、补充数据**
+
+独立复测（Qwen3-32B，seed 42）：flat 臂 120 轮平均内存 2.1GB、峰值 2.6GB；分层树臂平均 3.4GB。

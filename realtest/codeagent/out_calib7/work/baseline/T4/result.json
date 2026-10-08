@@ -1,0 +1,29 @@
+{
+  "group": "baseline",
+  "task": "T4",
+  "title": "@send-to 无引号目标静默广播",
+  "passed": true,
+  "accept_rc": 0,
+  "accept_verdict": "PASS",
+  "elapsed_s": 72.1,
+  "agent_result": {
+    "ok": true,
+    "rounds": 11,
+    "summary": "修复了 @send-to 命令在不带引号的目标时会静默广播的问题。\n\n改动内容：\n1. 在 `agents/lin-shen/agent.py` 的 `_parse_send_to` 方法中，增加了对不带引号目标的解析逻辑（支持空格分隔的 `user:xxx` 或 `agent:yyy`）。\n2. 在 `_parse_structured_response` 方法中，针对 `@send-to` 命令，如果解析出的目标列表为空，则不再进入默认的广播流程，而是通过 `actions` 返回一个错误提示给模型，从而打破“静默广播”的循环。\n\n验证结果：\n运行 `python3 accept_t4.py` 成功通过（PASS）。",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 11,
+    "tool_uses": {
+      "command": 3,
+      "read": 4,
+      "edit": 3,
+      "finish": 1
+    },
+    "conversation_chars": 49955
+  },
+  "last_usage": {
+    "prompt_tokens": 18191,
+    "completion_tokens": 175
+  }
+}

@@ -1,0 +1,47 @@
+[doc] 12191 字 / 40 题 / 结构 ['full'] / scenario=seed2 / repeats=3 / answer_temp=0.7 distill_temp=0.0
+[editstorm] 7 次编辑；新文档 12260 字
+【编辑记录（工具调用台账，含完整修改 diff）】
+1. 将「何倚笙」改为「何某笙」
+2. 将「七年前就烧光了」改为「三年前就塌了」
+3. 将「一家五口人」改为「一家三口人」
+4. 将「两枚银圆」改为「三枚银圆」
+5. 将「枣木拐杖」改为「梨木拐杖」
+6. 删除句子：「沈寒舟去年冬天替他治过风寒，知道他住在码头边的船屋里。」
+7. 文末新增段落：「三天后，沈寒舟收到一封从省城寄来的信。写信人自称是唐敬棠的旧友，名叫顾在川，信中说济生堂当年在省城还有一处从未启用的货栈，地址在望江门外。沈寒舟把信收进樟木箱，决定等七月十五之后再作打算。」
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+===== Phase 1：基线 Q/A（原始文档）=====
+  full     pass=117/120 mean=98% ±2% 每遍=[39, 38, 40] {'reversal': '45/45', 'invariant': '13/15', 'remote': '59/60'}
+
+===== Phase 2：编辑风暴 → 台账 =====
+  full     编辑路径     0.16 ms | 推迟蒸馏      0.00 ms
+
+===== Phase 3：8 臂 Q/A =====
+  inc_full       pass=111/120 mean=92% ±2% 每遍=[38, 36, 37] {'reversal': '41/45', 'invariant': '11/15', 'remote': '59/60'}
+  reb_full       pass=113/120 mean=94% ±2% 每遍=[37, 39, 37] {'reversal': '45/45', 'invariant': '10/15', 'remote': '58/60'}
+
+===== Phase 4：复述（8 臂，两层评分）=====
+  inc_full       覆盖均值 5% 旧残留均值 72% (4662 字) 漏=['何某笙', '三年前就塌了', '一家三口', '三枚银圆', '望江门外', '顾在川'] 残留=['何倚笙', '两枚银圆', '一家五口']
+  reb_full       覆盖均值 90% 旧残留均值 0% (4973 字) 漏=['三年前就塌了', '梨木拐杖'] 残留=[]
+
+[done] 568.7s → realtest/editbench/out/seed2_full_r3/results.json
+
+===== 汇总（Q/A pass 率，N 遍均值±std）=====
+  [phase1]
+    full           117/120 mean=98% ±2% 每遍=[39, 38, 40] {'reversal': '45/45', 'invariant': '13/15', 'remote': '59/60'}
+  [phase3]
+    inc_full       111/120 mean=92% ±2% 每遍=[38, 36, 37] {'reversal': '41/45', 'invariant': '11/15', 'remote': '59/60'}
+    reb_full       113/120 mean=94% ±2% 每遍=[37, 39, 37] {'reversal': '45/45', 'invariant': '10/15', 'remote': '58/60'}
+
+===== 编辑时刻成本 =====
+  full     编辑路径      0.16 ms | 推迟蒸馏       0.00 ms
+
+===== 计量（tokens，含蒸馏侧；phase3 增量 = final - phase1）=====
+  inc_full       final calls=243 prompt= 2309745 completion= 19508 缓存命中=0.9786 | phase3增量 prompt= 1243728 completion= 17528
+  reb_full       final calls=123 prompt= 1099449 completion= 18164 缓存命中=0.9738 | phase3增量 prompt= 1099449 completion= 18164

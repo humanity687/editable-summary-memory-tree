@@ -1,0 +1,29 @@
+{
+  "group": "baseline",
+  "task": "T1",
+  "title": "thinking 配置不生效",
+  "passed": true,
+  "accept_rc": 0,
+  "accept_verdict": "PASS",
+  "elapsed_s": 25.5,
+  "agent_result": {
+    "ok": true,
+    "rounds": 9,
+    "summary": "修复 T1：LLMClient 在调用 API 时未传递 `thinking` 配置。根因：`send_message` 构造 `kwargs` 时未包含 `thinking`；`extra_body` 用于传递 DeepSeek 思考模式参数，但未处理该配置。修复：在 `send_message` 中，若 `self.thinking` 为真，则向 `kwargs` 添加 `extra_body: {\"thinking\": True}`，确保 API 请求携带该参数。验证：`accept_t1.py` 返回 PASS。",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 9,
+    "tool_uses": {
+      "command": 6,
+      "read": 3,
+      "edit": 1,
+      "finish": 1
+    },
+    "history_chars": 10588
+  },
+  "last_usage": {
+    "prompt_tokens": 3971,
+    "completion_tokens": 131
+  }
+}

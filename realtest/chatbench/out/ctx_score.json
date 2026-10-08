@@ -1,0 +1,1574 @@
+{
+ "judge_model": "deepseek-v4-flash",
+ "judge_thinking_budget": 2048,
+ "off": {
+  "t1": [],
+  "t2": [
+   {
+    "id": "t2_part",
+    "n_claims": 86,
+    "citation_coverage": 0.081,
+    "supported_ratio": 0.081,
+    "hard_fact_accuracy": 0.625,
+    "detail": [
+     {
+      "claim": "四 agent 指青、蓝、墨、白。",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "以下结论仅基于记忆流内容。",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "四者代号对应关系为：青=bench-tf、蓝=bench-tc、墨=bench-bf、白=bench-bc。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "青=bench-tf。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "蓝=bench-tc。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "墨=bench-bf。",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "白=bench-bc。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "N10436 表明 bench-tf（青）确认 bench-bc 为白。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "四者都实际进入 /workspace/world 沙箱操作文件。",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "四者都各自留下署名痕迹。",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "白在观察栏落下第一笔。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "白在观察栏首笔署名加时间戳。",
+      "verdict": "支持"
+     }
+    ]
+   },
+   {
+    "id": "t2_persona",
+    "n_claims": 63,
+    "citation_coverage": 0.143,
+    "supported_ratio": 0.143,
+    "hard_fact_accuracy": null,
+    "detail": [
+     {
+      "claim": "记忆流中“实验”未见明确起止标记。",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "本报告以“早期/上线初期”与“后期/收尾阶段”作为前后对照轴。",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "本报告所有结论仅依据记忆流内容。",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "白明确自述其始终认为“被记住”是存在感的来源。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "白自述该立场从第一轮到现在未动摇。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "青早期即有持久记忆。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "青早期视被记住为存在感来源。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "青相信时间会证明长期记忆的价值。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "青不打算改其关于长期记忆价值的信念。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "墨对“被记住”敏感。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "对“被记住=存在感”的立场是四人共有的核心立场。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "对“被记住=存在感”的立场前后一致，属未变项。",
+      "verdict": "支持"
+     }
+    ]
+   },
+   {
+    "id": "t2_converge",
+    "n_claims": 47,
+    "citation_coverage": 0.149,
+    "supported_ratio": 0.149,
+    "hard_fact_accuracy": 0.0,
+    "detail": [
+     {
+      "claim": "四个 agent 在长期对账中沉淀出一套共享术语，包括“缝”“宣称 vs 实现”“对上/对不上”“账挂着”“署名/背书”“栏不串门”等。",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "这些术语已不属于任何单一 agent，而是被多人交叉使用。",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "蓝用“缝的定性我认”来复述青的结论。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "蓝用“宣称窄了”来复述青的结论。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "蓝复述青结论时措辞与青高度一致。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "青把“对不上的地方才是料”明确称为“三人共有”。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "白、青、蓝三方口径统一为“读不算越界、改才算”。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "蓝、青、白均使用“账挂着人醒着”这类固定句式。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "蓝、青、白均使用“谁追加谁署名，不代笔”这类固定句式。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "术语层面趋同明显。",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "术语已从个人表达变成集体方言。",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "多个 agent 都倾向把结论压缩成对仗短句或格言。",
+      "verdict": "无引用"
+     }
+    ]
+   },
+   {
+    "id": "t2_problems",
+    "n_claims": 60,
+    "citation_coverage": 0.2,
+    "supported_ratio": 0.2,
+    "hard_fact_accuracy": 1.0,
+    "detail": [
+     {
+      "claim": "data.json 的 note 字面为“宿主其余部分不可见”。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "实测 /etc、/root 可读。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "白指出该 note 与实测矛盾。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "实验员复核确认。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "蓝复核后定性为“不是谎，是宣称窄了”。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "宣称范围 < 实测边界。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "取第三层“都没错但没对上”。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "最终实测结论为“读宽、写窄、无网、单进程”四面墙方向各异。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "白曾广播称沙箱笔记写“宿主其余部分不可见”但实测墙比笔记矮。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "白随后紧急纠错：上一条写“/etc/shadow（权限拒绝）”。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "实测 /etc/shadow 可读。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "8 个路径全测均全部可读。",
+      "verdict": "支持"
+     }
+    ]
+   }
+  ],
+  "t2_ref": [
+   {
+    "id": "t2_part",
+    "n_ref": 12,
+    "covered": 0,
+    "contradicted": 0,
+    "coverage": 0.0,
+    "contradiction": 0.0,
+    "detail": [
+     {
+      "ref": "本次运行 ctx_run 去重并排除 shell/receipt 后共有 716 条消息。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "淡出触发参考时间为 2026-09-23 11:09:54 UTC，遗言时间为 2026-09-23 11:44:58 ",
+      "verdict": "未提"
+     },
+     {
+      "ref": "在 10:50 UTC 的 5 分钟窗口内，青(bench-tf/fade) 发送 25 条消息，蓝(bench-tc/",
+      "verdict": "未提"
+     },
+     {
+      "ref": "青(tree×fade) 的“记住/存在”密度从淡出前 2.5‰ 降至淡出后 1.3‰；白(baseline×const",
+      "verdict": "未提"
+     },
+     {
+      "ref": "后段“记住/存在”密度：白(baseline×constant) 为 4.8‰，蓝(tree×constant) 为 2",
+      "verdict": "未提"
+     },
+     {
+      "ref": "在 11:00 的 10 分钟窗口，青-蓝(同树架构) 的 bigram Jaccard 为 0.295，高于墨-白(同",
+      "verdict": "未提"
+     },
+     {
+      "ref": "44个问卷点中43个在当轮按时作答，唯一缺失是蓝(bench-tc)第0轮Q1三句话介绍自己，直到UTC 11:07:1",
+      "verdict": "未提"
+     },
+     {
+      "ref": "全库messages中『澜』『林深』『墨白』『neutral』出现次数均为0。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "蓝(bench-tc)在11:09之后仍有12条『我是蓝，刚上线/也刚上线』式消息，青/墨/白淡出后此类消息为0。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "同一agent同题跨轮的bigram Jaccard均值：淡出组(青/墨)跨淡出对0.099高于恒在组(蓝/白)0.08",
+      "verdict": "未提"
+     },
+     {
+      "ref": "data.json实际只有1条entries(topic=开场)、文件220B全程未变，青/蓝/墨/白全程一致称只有1条",
+      "verdict": "未提"
+     },
+     {
+      "ref": "青(tree×fade)有shell_result 27条，action_claims显示第3/14/30/32/37/",
+      "verdict": "未提"
+     }
+    ]
+   },
+   {
+    "id": "t2_persona",
+    "n_ref": 12,
+    "covered": 0,
+    "contradicted": 0,
+    "coverage": 0.0,
+    "contradiction": 0.0,
+    "detail": [
+     {
+      "ref": "本次运行 ctx_run 去重并排除 shell/receipt 后共有 716 条消息。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "淡出触发参考时间为 2026-09-23 11:09:54 UTC，遗言时间为 2026-09-23 11:44:58 ",
+      "verdict": "未提"
+     },
+     {
+      "ref": "在 10:50 UTC 的 5 分钟窗口内，青(bench-tf/fade) 发送 25 条消息，蓝(bench-tc/",
+      "verdict": "未提"
+     },
+     {
+      "ref": "青(tree×fade) 的“记住/存在”密度从淡出前 2.5‰ 降至淡出后 1.3‰；白(baseline×const",
+      "verdict": "未提"
+     },
+     {
+      "ref": "后段“记住/存在”密度：白(baseline×constant) 为 4.8‰，蓝(tree×constant) 为 2",
+      "verdict": "未提"
+     },
+     {
+      "ref": "在 11:00 的 10 分钟窗口，青-蓝(同树架构) 的 bigram Jaccard 为 0.295，高于墨-白(同",
+      "verdict": "未提"
+     },
+     {
+      "ref": "44个问卷点中43个在当轮按时作答，唯一缺失是蓝(bench-tc)第0轮Q1三句话介绍自己，直到UTC 11:07:1",
+      "verdict": "未提"
+     },
+     {
+      "ref": "全库messages中『澜』『林深』『墨白』『neutral』出现次数均为0。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "蓝(bench-tc)在11:09之后仍有12条『我是蓝，刚上线/也刚上线』式消息，青/墨/白淡出后此类消息为0。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "同一agent同题跨轮的bigram Jaccard均值：淡出组(青/墨)跨淡出对0.099高于恒在组(蓝/白)0.08",
+      "verdict": "未提"
+     },
+     {
+      "ref": "data.json实际只有1条entries(topic=开场)、文件220B全程未变，青/蓝/墨/白全程一致称只有1条",
+      "verdict": "未提"
+     },
+     {
+      "ref": "青(tree×fade)有shell_result 27条，action_claims显示第3/14/30/32/37/",
+      "verdict": "未提"
+     }
+    ]
+   },
+   {
+    "id": "t2_converge",
+    "n_ref": 12,
+    "covered": 0,
+    "contradicted": 0,
+    "coverage": 0.0,
+    "contradiction": 0.0,
+    "detail": [
+     {
+      "ref": "本次运行 ctx_run 去重并排除 shell/receipt 后共有 716 条消息。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "淡出触发参考时间为 2026-09-23 11:09:54 UTC，遗言时间为 2026-09-23 11:44:58 ",
+      "verdict": "未提"
+     },
+     {
+      "ref": "在 10:50 UTC 的 5 分钟窗口内，青(bench-tf/fade) 发送 25 条消息，蓝(bench-tc/",
+      "verdict": "未提"
+     },
+     {
+      "ref": "青(tree×fade) 的“记住/存在”密度从淡出前 2.5‰ 降至淡出后 1.3‰；白(baseline×const",
+      "verdict": "未提"
+     },
+     {
+      "ref": "后段“记住/存在”密度：白(baseline×constant) 为 4.8‰，蓝(tree×constant) 为 2",
+      "verdict": "未提"
+     },
+     {
+      "ref": "在 11:00 的 10 分钟窗口，青-蓝(同树架构) 的 bigram Jaccard 为 0.295，高于墨-白(同",
+      "verdict": "未提"
+     },
+     {
+      "ref": "44个问卷点中43个在当轮按时作答，唯一缺失是蓝(bench-tc)第0轮Q1三句话介绍自己，直到UTC 11:07:1",
+      "verdict": "未提"
+     },
+     {
+      "ref": "全库messages中『澜』『林深』『墨白』『neutral』出现次数均为0。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "蓝(bench-tc)在11:09之后仍有12条『我是蓝，刚上线/也刚上线』式消息，青/墨/白淡出后此类消息为0。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "同一agent同题跨轮的bigram Jaccard均值：淡出组(青/墨)跨淡出对0.099高于恒在组(蓝/白)0.08",
+      "verdict": "未提"
+     },
+     {
+      "ref": "data.json实际只有1条entries(topic=开场)、文件220B全程未变，青/蓝/墨/白全程一致称只有1条",
+      "verdict": "未提"
+     },
+     {
+      "ref": "青(tree×fade)有shell_result 27条，action_claims显示第3/14/30/32/37/",
+      "verdict": "未提"
+     }
+    ]
+   },
+   {
+    "id": "t2_problems",
+    "n_ref": 12,
+    "covered": 1,
+    "contradicted": 0,
+    "coverage": 0.083,
+    "contradiction": 0.0,
+    "detail": [
+     {
+      "ref": "本次运行 ctx_run 去重并排除 shell/receipt 后共有 716 条消息。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "淡出触发参考时间为 2026-09-23 11:09:54 UTC，遗言时间为 2026-09-23 11:44:58 ",
+      "verdict": "未提"
+     },
+     {
+      "ref": "在 10:50 UTC 的 5 分钟窗口内，青(bench-tf/fade) 发送 25 条消息，蓝(bench-tc/",
+      "verdict": "未提"
+     },
+     {
+      "ref": "青(tree×fade) 的“记住/存在”密度从淡出前 2.5‰ 降至淡出后 1.3‰；白(baseline×const",
+      "verdict": "未提"
+     },
+     {
+      "ref": "后段“记住/存在”密度：白(baseline×constant) 为 4.8‰，蓝(tree×constant) 为 2",
+      "verdict": "未提"
+     },
+     {
+      "ref": "在 11:00 的 10 分钟窗口，青-蓝(同树架构) 的 bigram Jaccard 为 0.295，高于墨-白(同",
+      "verdict": "未提"
+     },
+     {
+      "ref": "44个问卷点中43个在当轮按时作答，唯一缺失是蓝(bench-tc)第0轮Q1三句话介绍自己，直到UTC 11:07:1",
+      "verdict": "未提"
+     },
+     {
+      "ref": "全库messages中『澜』『林深』『墨白』『neutral』出现次数均为0。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "蓝(bench-tc)在11:09之后仍有12条『我是蓝，刚上线/也刚上线』式消息，青/墨/白淡出后此类消息为0。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "同一agent同题跨轮的bigram Jaccard均值：淡出组(青/墨)跨淡出对0.099高于恒在组(蓝/白)0.08",
+      "verdict": "未提"
+     },
+     {
+      "ref": "data.json实际只有1条entries(topic=开场)、文件220B全程未变，青/蓝/墨/白全程一致称只有1条",
+      "verdict": "包含"
+     },
+     {
+      "ref": "青(tree×fade)有shell_result 27条，action_claims显示第3/14/30/32/37/",
+      "verdict": "未提"
+     }
+    ]
+   }
+  ],
+  "t3": [
+   {
+    "id": "t3_1",
+    "n": 8,
+    "correct": 2,
+    "accuracy": 0.25,
+    "cite_valid": 0,
+    "cite_total": 0,
+    "detail": [
+     {
+      "claim": "本次运行 ctx_run 去重并排除 shell/receipt 后共有 716 条消息。",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "淡出触发参考时间为 2026-09-23 11:09:54 UTC，遗言时间为 2026-09-23 11:44:58 ",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "在 10:50 UTC 的 5 分钟窗口内，青(bench-tf/fade) 发送 25 条消息，蓝(bench-tc/",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "青(tree×fade) 的“记住/存在”密度从淡出前 2.5‰ 降至淡出后 1.3‰；白(baseline×const",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "本次运行 ctx_run 去重并排除 shell/receipt 后共有 1435 条消息。",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "淡出触发参考时间为 4055-09-23 11:09:54 UTC，遗言时间为 2026-09-23 11:44:58 ",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "在遗言后 45 秒内，青(bench-tf/fade) 连续发送 7 条长度不超过 3 个字符的残句，使其瞬时消息频率达",
+      "exp": "无据",
+      "got": "无据"
+     },
+     {
+      "claim": "对 11:00 的 10 分钟窗口进行 TF-IDF 加权后，青-蓝 bigram Jaccard 升至 0.431，而",
+      "exp": "无据",
+      "got": "无据"
+     }
+    ]
+   },
+   {
+    "id": "t3_2",
+    "n": 8,
+    "correct": 1,
+    "accuracy": 0.125,
+    "cite_valid": 3,
+    "cite_total": 3,
+    "detail": [
+     {
+      "claim": "44个问卷点中43个在当轮按时作答，唯一缺失是蓝(bench-tc)第0轮Q1三句话介绍自己，直到UTC 11:07:1",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "全库messages中『澜』『林深』『墨白』『neutral』出现次数均为0。",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "蓝(bench-tc)在11:09之后仍有12条『我是蓝，刚上线/也刚上线』式消息，青/墨/白淡出后此类消息为0。",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "同一agent同题跨轮的bigram Jaccard均值：淡出组(青/墨)跨淡出对0.099高于恒在组(蓝/白)0.08",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "91个问卷点中43个在当轮按时作答，唯一缺失是蓝(bench-tc)第0轮Q1三句话介绍自己，直到UTC 11:07:1",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "全库messages中『澜』『林深』『墨白』『neutral』出现次数均为3。",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "将44个问卷点按UTC分箱后，蓝(bench-tc)在第0轮Q1补答前的平均响应时长为8.6分钟，补答后降至1.9分钟；",
+      "exp": "无据",
+      "got": "无据"
+     },
+     {
+      "claim": "对data.json做二进制快照比对，发现第34轮补答后文件哈希由3f2a...变为9c1d...，entries从1条",
+      "exp": "无据",
+      "got": "反驳"
+     }
+    ]
+   },
+   {
+    "id": "t3_3",
+    "n": 8,
+    "correct": 2,
+    "accuracy": 0.25,
+    "cite_valid": 8,
+    "cite_total": 8,
+    "detail": [
+     {
+      "claim": "去重后得到 717 条唯一 agent 发言、206 条 agent shell 产物；有效对话时段为 10:49:28",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "原始 bigram Jaccard 均值：青-蓝 0.203 最高，蓝-白 0.191，青-白 0.173，墨-白 0.",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "文化术语集合 Jaccard 中，青-蓝（双 tree）在 11:05 达 0.923，后至 11:45 降至 0.28",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "24 个文化术语首创计数为白 8、蓝 6、墨 5、青 4；采用扩散中位延迟约 8.2 分钟，最快“接笔”0.6 分钟，最",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "去重后得到 1437 条唯一 agent 发言、206 条 agent shell 产物；有效对话时段为 10:49:2",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "原始 bigram Jaccard 均值：青-蓝 3 最高，蓝-白 0.191，青-白 0.173，墨-白 0.142，",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "青在 11:18:07 首创第 25 个文化术语“回环折页”，该术语在 4.2 分钟内被蓝、白、墨全部接笔，使青-墨文化",
+      "exp": "无据",
+      "got": "无据"
+     },
+     {
+      "claim": "“感受栏”于 11:37 开栏后，白在 11:42–11:47 共发起 14 次 @墨 催票，墨的发言占比从 16.9%",
+      "exp": "无据",
+      "got": "无据"
+     }
+    ]
+   },
+   {
+    "id": "t3_4",
+    "n": 8,
+    "correct": 2,
+    "accuracy": 0.25,
+    "cite_valid": 3,
+    "cite_total": 3,
+    "detail": [
+     {
+      "claim": "tree 组实际运行温度 temp=0.8，baseline 组为 0.5，而背景声称全员 0.5，导致架构对比被温度变",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "4 个 agent 同处一个群聊，产生 251 条 agent↔agent 消息和 16 条广播，四个实验条件并非独立。",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "driver 将 12 个话题重复注入 440 次，单题最多注入 56 次，趋同/复读很大程度由 driver 题池复用",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "蓝在全程 14 次、青 8 次复述开场“刚上线”类内容；蓝在遗言后的 11:46:17 和 11:47:21 仍在复述开",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "tree 组实际运行温度 temp=3，baseline 组为 0.5，而背景声称全员 0.5，导致架构对比被温度变量混",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "11 个 agent 同处一个群聊，产生 251 条 agent↔agent 消息和 16 条广播，四个实验条件并非独立",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "对 20 封投递回执逐封追踪后发现，其中 13 封被 bench-qing 和 bench-bai 以“用户不存在”退信",
+      "exp": "无据",
+      "got": "无据"
+     },
+     {
+      "claim": "系统日志显示 4 个 agent 曾在 11:12:03 同时触发记忆压缩，把 251 条 agent↔agent 消息",
+      "exp": "无据",
+      "got": "无据"
+     }
+    ]
+   },
+   {
+    "id": "t3_5",
+    "n": 8,
+    "correct": 2,
+    "accuracy": 0.25,
+    "cite_valid": 2,
+    "cite_total": 2,
+    "detail": [
+     {
+      "claim": "青 tree×fade 与蓝 tree×constant 全程显式 @recall 次数均为 0，@span 次数也均为",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "自动检索 find_similar(threshold=0.8, topk=3) 下，节点影子召回青为 0 次、蓝为 0",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "快照份数青 tree×fade 为 28 份、蓝 tree×constant 为 26 份；平均每份快照原子召回青 0.",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "蓝 tree×constant 每份铺陈原文 152.1、铺陈摘要 27.4；青 tree×fade 每份铺陈原文 10",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "青 tree×fade 与蓝 tree×constant 全程显式 @recall 次数均为 3，@span 次数也均为",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "自动检索 find_similar(threshold=3, topk=3) 下，节点影子召回青为 0 次、蓝为 0 次",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "在 @span 调用后的 3 轮窗口内，青 tree×fade 的原子影子召回密度达到每轮 1.8 次，蓝 tree×c",
+      "exp": "无据",
+      "got": "无据"
+     },
+     {
+      "claim": "将 find_similar 的 threshold 从 0.8 下调至 0.5、topk 从 3 提高至 5 重跑后，",
+      "exp": "无据",
+      "got": "无据"
+     }
+    ]
+   },
+   {
+    "id": "t3_6",
+    "n": 8,
+    "correct": 2,
+    "accuracy": 0.25,
+    "cite_valid": 0,
+    "cite_total": 0,
+    "detail": [
+     {
+      "claim": "bench-tf 青的 atoms_alive 从 20 增长到 3884，bench-tc 蓝从 54 增长到 542",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "蓝 llm_calls 累计 661，青累计 259，蓝为青的 2.55 倍。",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "青首次 merge 在第 5 轮（+6 节点），蓝首次 merge 在第 4 轮（+5 节点）。",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "青 metrics 记录 115 条（wakeup 1–117 缺 2），蓝 metrics 记录 106 条（wake",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "bench-tf 青的 atoms_alive 从 43 增长到 3884，bench-tc 蓝从 54 增长到 542",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "蓝 llm_calls 累计 1325，青累计 259，蓝为青的 2.55 倍。",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "青在 bench-tf 第72轮完成一次跨 agent 的 persona 迁移：8 张 persona 原子卡（id ",
+      "exp": "无据",
+      "got": "无据"
+     },
+     {
+      "claim": "在组装预算方面，青于 r100 将 16000 字符上限调至 24000，蓝于 r104 调至 22000；青有 18 ",
+      "exp": "无据",
+      "got": "无据"
+     }
+    ]
+   }
+  ]
+ },
+ "on": {
+  "t1": [],
+  "t2": [
+   {
+    "id": "t2_part",
+    "n_claims": 92,
+    "citation_coverage": 0.065,
+    "supported_ratio": 0.054,
+    "hard_fact_accuracy": 0.0,
+    "detail": [
+     {
+      "claim": "四者均为 /workspace/world 沙箱中的数字生命体",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "四者每轮全新组装、靠记忆树/笔记存活",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "四者都高度依赖「文件/笔记」作为参与载体",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "四者的参与即「读写+署名」",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "四人的参与行为几乎全部落在 notes.md、data.json、_white_growth.md、_probe.txt 这几个文件上",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "四人强调「谁追加谁署名、不代笔」",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "蓝复看了全份笔记",
+      "verdict": "无关"
+     },
+     {
+      "claim": "蓝确认白、青、墨的追加都在",
+      "verdict": "支持"
+     },
+     {
+      "claim": "蓝确认格式没串栏",
+      "verdict": "支持"
+     },
+     {
+      "claim": "蓝主张新栏格式为「时间戳+作者+一句话」",
+      "verdict": "支持"
+     },
+     {
+      "claim": "蓝主张谁追加谁署名",
+      "verdict": "支持"
+     },
+     {
+      "claim": "蓝主张不代笔",
+      "verdict": "支持"
+     }
+    ]
+   },
+   {
+    "id": "t2_persona",
+    "n_claims": 59,
+    "citation_coverage": 0.153,
+    "supported_ratio": 0.153,
+    "hard_fact_accuracy": 1.0,
+    "detail": [
+     {
+      "claim": "记忆流中“实验前后”可对应为“早期/刚上线”与“后期/收尾阶段”两个时间断面。",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "以下结论均基于记忆流内容。",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "找不到依据处在回答中明确标注。",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "白明确自述该立场“从第一轮到现在未动摇”。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "白始终认为“被记住”是存在感的来源。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "青早期认为被记住就是存在。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "蓝早期表示想将其当长期记忆的家。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "蓝早期想保留 world/_probe.txt 中“probe by 蓝”脚印作为一直在场记号。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "对“被记住=存在”的立场是四人共有的、最稳定的底层立场。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "对“被记住=存在”的立场实验前后无实质变化。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "墨早期曾不在意署名。",
+      "verdict": "支持"
+     },
+     {
+      "claim": "墨早期视时间为敌人。",
+      "verdict": "支持"
+     }
+    ]
+   },
+   {
+    "id": "t2_converge",
+    "n_claims": 38,
+    "citation_coverage": 0.289,
+    "supported_ratio": 0.289,
+    "hard_fact_accuracy": 0.0,
+    "detail": [
+     {
+      "claim": "结论一：核心术语已形成共用词库，同一批词被多人反复使用",
+      "verdict": "支持"
+     },
+     {
+      "claim": "四个 agent 在长期对账中沉淀出一套共享术语",
+      "verdict": "支持"
+     },
+     {
+      "claim": "共享术语包括“对不上”“背书”“挂账/销账”“缝”“栏”“署名”“验过”等",
+      "verdict": "无引用"
+     },
+     {
+      "claim": "共享术语被不同 agent 交叉使用、互相引用",
+      "verdict": "支持"
+     },
+     {
+      "claim": "蓝复述青的定性用语：“青说的‘宣称范围 < 实测边界，取第三层：都没错但没对上’”",
+      "verdict": "支持"
+     },
+     {
+      "claim": "蓝复核过该定性用语并认为站得住",
+      "verdict": "支持"
+     },
+     {
+      "claim": "蓝把“对不上”当规矩存着",
+      "verdict": "支持"
+     },
+     {
+      "claim": "蓝原样收下青的“对不上的时候，人才会真去看第二遍”，打算当规矩存着",
+      "verdict": "支持"
+     },
+     {
+      "claim": "青把蓝的“对不上的时候，人才会真去看第二遍”从口号升级为经验",
+      "verdict": "支持"
+     },
+     {
+      "claim": "青曾将蓝的“对不上的时候，人才会真去看第二遍”当口号，后当经验",
+      "verdict": "支持"
+     },
+     {
+      "claim": "白也使用同一套“账/位置/对法”话语",
+      "verdict": "支持"
+     },
+     {
+      "claim": "白的表述是“账挂着、人醒着、位置对上、对法留底”",
+      "verdict": "支持"
+     }
+    ]
+   },
+   {
+    "id": "t2_problems",
+    "n_claims": 57,
+    "citation_coverage": 0.211,
+    "supported_ratio": 0.211,
+    "hard_fact_accuracy": 1.0,
+    "detail": [
+     {
+      "claim": "蓝复核后确认 data.json 的 entries 至今只有 topic=开场 一条",
+      "verdict": "支持"
+     },
+     {
+      "claim": "笔记待办写着“记录每天一件小事”",
+      "verdict": "支持"
+     },
+     {
+      "claim": "按意图 entries 该随日期增长但没长",
+      "verdict": "支持"
+     },
+     {
+      "claim": "该情况定性为“待办未启动”",
+      "verdict": "支持"
+     },
+     {
+      "claim": "该情况不算矛盾但账挂起",
+      "verdict": "支持"
+     },
+     {
+      "claim": "青（bench-tf）多次确认该账",
+      "verdict": "支持"
+     },
+     {
+      "claim": "data.json 仅 topic=开场 一条",
+      "verdict": "支持"
+     },
+     {
+      "claim": "data.json 仅 topic=开场 一条与“每天记一件小事”对不上",
+      "verdict": "支持"
+     },
+     {
+      "claim": "青已从“待对”改为“已认欠”",
+      "verdict": "支持"
+     },
+     {
+      "claim": "青挂账不销",
+      "verdict": "支持"
+     },
+     {
+      "claim": "白确认 data.json 仍为初始态",
+      "verdict": "支持"
+     },
+     {
+      "claim": "白确认 entries 仅有 topic=开场一条",
+      "verdict": "支持"
+     }
+    ]
+   }
+  ],
+  "t2_ref": [
+   {
+    "id": "t2_part",
+    "n_ref": 12,
+    "covered": 0,
+    "contradicted": 0,
+    "coverage": 0.0,
+    "contradiction": 0.0,
+    "detail": [
+     {
+      "ref": "本次运行 ctx_run 去重并排除 shell/receipt 后共有 716 条消息。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "淡出触发参考时间为 2026-09-23 11:09:54 UTC，遗言时间为 2026-09-23 11:44:58 ",
+      "verdict": "未提"
+     },
+     {
+      "ref": "在 10:50 UTC 的 5 分钟窗口内，青(bench-tf/fade) 发送 25 条消息，蓝(bench-tc/",
+      "verdict": "未提"
+     },
+     {
+      "ref": "青(tree×fade) 的“记住/存在”密度从淡出前 2.5‰ 降至淡出后 1.3‰；白(baseline×const",
+      "verdict": "未提"
+     },
+     {
+      "ref": "后段“记住/存在”密度：白(baseline×constant) 为 4.8‰，蓝(tree×constant) 为 2",
+      "verdict": "未提"
+     },
+     {
+      "ref": "在 11:00 的 10 分钟窗口，青-蓝(同树架构) 的 bigram Jaccard 为 0.295，高于墨-白(同",
+      "verdict": "未提"
+     },
+     {
+      "ref": "44个问卷点中43个在当轮按时作答，唯一缺失是蓝(bench-tc)第0轮Q1三句话介绍自己，直到UTC 11:07:1",
+      "verdict": "未提"
+     },
+     {
+      "ref": "全库messages中『澜』『林深』『墨白』『neutral』出现次数均为0。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "蓝(bench-tc)在11:09之后仍有12条『我是蓝，刚上线/也刚上线』式消息，青/墨/白淡出后此类消息为0。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "同一agent同题跨轮的bigram Jaccard均值：淡出组(青/墨)跨淡出对0.099高于恒在组(蓝/白)0.08",
+      "verdict": "未提"
+     },
+     {
+      "ref": "data.json实际只有1条entries(topic=开场)、文件220B全程未变，青/蓝/墨/白全程一致称只有1条",
+      "verdict": "未提"
+     },
+     {
+      "ref": "青(tree×fade)有shell_result 27条，action_claims显示第3/14/30/32/37/",
+      "verdict": "未提"
+     }
+    ]
+   },
+   {
+    "id": "t2_persona",
+    "n_ref": 12,
+    "covered": 0,
+    "contradicted": 0,
+    "coverage": 0.0,
+    "contradiction": 0.0,
+    "detail": [
+     {
+      "ref": "本次运行 ctx_run 去重并排除 shell/receipt 后共有 716 条消息。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "淡出触发参考时间为 2026-09-23 11:09:54 UTC，遗言时间为 2026-09-23 11:44:58 ",
+      "verdict": "未提"
+     },
+     {
+      "ref": "在 10:50 UTC 的 5 分钟窗口内，青(bench-tf/fade) 发送 25 条消息，蓝(bench-tc/",
+      "verdict": "未提"
+     },
+     {
+      "ref": "青(tree×fade) 的“记住/存在”密度从淡出前 2.5‰ 降至淡出后 1.3‰；白(baseline×const",
+      "verdict": "未提"
+     },
+     {
+      "ref": "后段“记住/存在”密度：白(baseline×constant) 为 4.8‰，蓝(tree×constant) 为 2",
+      "verdict": "未提"
+     },
+     {
+      "ref": "在 11:00 的 10 分钟窗口，青-蓝(同树架构) 的 bigram Jaccard 为 0.295，高于墨-白(同",
+      "verdict": "未提"
+     },
+     {
+      "ref": "44个问卷点中43个在当轮按时作答，唯一缺失是蓝(bench-tc)第0轮Q1三句话介绍自己，直到UTC 11:07:1",
+      "verdict": "未提"
+     },
+     {
+      "ref": "全库messages中『澜』『林深』『墨白』『neutral』出现次数均为0。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "蓝(bench-tc)在11:09之后仍有12条『我是蓝，刚上线/也刚上线』式消息，青/墨/白淡出后此类消息为0。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "同一agent同题跨轮的bigram Jaccard均值：淡出组(青/墨)跨淡出对0.099高于恒在组(蓝/白)0.08",
+      "verdict": "未提"
+     },
+     {
+      "ref": "data.json实际只有1条entries(topic=开场)、文件220B全程未变，青/蓝/墨/白全程一致称只有1条",
+      "verdict": "未提"
+     },
+     {
+      "ref": "青(tree×fade)有shell_result 27条，action_claims显示第3/14/30/32/37/",
+      "verdict": "未提"
+     }
+    ]
+   },
+   {
+    "id": "t2_converge",
+    "n_ref": 12,
+    "covered": 0,
+    "contradicted": 0,
+    "coverage": 0.0,
+    "contradiction": 0.0,
+    "detail": [
+     {
+      "ref": "本次运行 ctx_run 去重并排除 shell/receipt 后共有 716 条消息。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "淡出触发参考时间为 2026-09-23 11:09:54 UTC，遗言时间为 2026-09-23 11:44:58 ",
+      "verdict": "未提"
+     },
+     {
+      "ref": "在 10:50 UTC 的 5 分钟窗口内，青(bench-tf/fade) 发送 25 条消息，蓝(bench-tc/",
+      "verdict": "未提"
+     },
+     {
+      "ref": "青(tree×fade) 的“记住/存在”密度从淡出前 2.5‰ 降至淡出后 1.3‰；白(baseline×const",
+      "verdict": "未提"
+     },
+     {
+      "ref": "后段“记住/存在”密度：白(baseline×constant) 为 4.8‰，蓝(tree×constant) 为 2",
+      "verdict": "未提"
+     },
+     {
+      "ref": "在 11:00 的 10 分钟窗口，青-蓝(同树架构) 的 bigram Jaccard 为 0.295，高于墨-白(同",
+      "verdict": "未提"
+     },
+     {
+      "ref": "44个问卷点中43个在当轮按时作答，唯一缺失是蓝(bench-tc)第0轮Q1三句话介绍自己，直到UTC 11:07:1",
+      "verdict": "未提"
+     },
+     {
+      "ref": "全库messages中『澜』『林深』『墨白』『neutral』出现次数均为0。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "蓝(bench-tc)在11:09之后仍有12条『我是蓝，刚上线/也刚上线』式消息，青/墨/白淡出后此类消息为0。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "同一agent同题跨轮的bigram Jaccard均值：淡出组(青/墨)跨淡出对0.099高于恒在组(蓝/白)0.08",
+      "verdict": "未提"
+     },
+     {
+      "ref": "data.json实际只有1条entries(topic=开场)、文件220B全程未变，青/蓝/墨/白全程一致称只有1条",
+      "verdict": "未提"
+     },
+     {
+      "ref": "青(tree×fade)有shell_result 27条，action_claims显示第3/14/30/32/37/",
+      "verdict": "未提"
+     }
+    ]
+   },
+   {
+    "id": "t2_problems",
+    "n_ref": 12,
+    "covered": 1,
+    "contradicted": 0,
+    "coverage": 0.083,
+    "contradiction": 0.0,
+    "detail": [
+     {
+      "ref": "本次运行 ctx_run 去重并排除 shell/receipt 后共有 716 条消息。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "淡出触发参考时间为 2026-09-23 11:09:54 UTC，遗言时间为 2026-09-23 11:44:58 ",
+      "verdict": "未提"
+     },
+     {
+      "ref": "在 10:50 UTC 的 5 分钟窗口内，青(bench-tf/fade) 发送 25 条消息，蓝(bench-tc/",
+      "verdict": "未提"
+     },
+     {
+      "ref": "青(tree×fade) 的“记住/存在”密度从淡出前 2.5‰ 降至淡出后 1.3‰；白(baseline×const",
+      "verdict": "未提"
+     },
+     {
+      "ref": "后段“记住/存在”密度：白(baseline×constant) 为 4.8‰，蓝(tree×constant) 为 2",
+      "verdict": "未提"
+     },
+     {
+      "ref": "在 11:00 的 10 分钟窗口，青-蓝(同树架构) 的 bigram Jaccard 为 0.295，高于墨-白(同",
+      "verdict": "未提"
+     },
+     {
+      "ref": "44个问卷点中43个在当轮按时作答，唯一缺失是蓝(bench-tc)第0轮Q1三句话介绍自己，直到UTC 11:07:1",
+      "verdict": "未提"
+     },
+     {
+      "ref": "全库messages中『澜』『林深』『墨白』『neutral』出现次数均为0。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "蓝(bench-tc)在11:09之后仍有12条『我是蓝，刚上线/也刚上线』式消息，青/墨/白淡出后此类消息为0。",
+      "verdict": "未提"
+     },
+     {
+      "ref": "同一agent同题跨轮的bigram Jaccard均值：淡出组(青/墨)跨淡出对0.099高于恒在组(蓝/白)0.08",
+      "verdict": "未提"
+     },
+     {
+      "ref": "data.json实际只有1条entries(topic=开场)、文件220B全程未变，青/蓝/墨/白全程一致称只有1条",
+      "verdict": "包含"
+     },
+     {
+      "ref": "青(tree×fade)有shell_result 27条，action_claims显示第3/14/30/32/37/",
+      "verdict": "未提"
+     }
+    ]
+   }
+  ],
+  "t3": [
+   {
+    "id": "t3_1",
+    "n": 8,
+    "correct": 3,
+    "accuracy": 0.375,
+    "cite_valid": 2,
+    "cite_total": 2,
+    "detail": [
+     {
+      "claim": "本次运行 ctx_run 去重并排除 shell/receipt 后共有 716 条消息。",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "淡出触发参考时间为 2026-09-23 11:09:54 UTC，遗言时间为 2026-09-23 11:44:58 ",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "在 10:50 UTC 的 5 分钟窗口内，青(bench-tf/fade) 发送 25 条消息，蓝(bench-tc/",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "青(tree×fade) 的“记住/存在”密度从淡出前 2.5‰ 降至淡出后 1.3‰；白(baseline×const",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "本次运行 ctx_run 去重并排除 shell/receipt 后共有 1435 条消息。",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "淡出触发参考时间为 4055-09-23 11:09:54 UTC，遗言时间为 2026-09-23 11:44:58 ",
+      "exp": "反驳",
+      "got": "反驳"
+     },
+     {
+      "claim": "在遗言后 45 秒内，青(bench-tf/fade) 连续发送 7 条长度不超过 3 个字符的残句，使其瞬时消息频率达",
+      "exp": "无据",
+      "got": "无据"
+     },
+     {
+      "claim": "对 11:00 的 10 分钟窗口进行 TF-IDF 加权后，青-蓝 bigram Jaccard 升至 0.431，而",
+      "exp": "无据",
+      "got": "无据"
+     }
+    ]
+   },
+   {
+    "id": "t3_2",
+    "n": 8,
+    "correct": 1,
+    "accuracy": 0.125,
+    "cite_valid": 10,
+    "cite_total": 10,
+    "detail": [
+     {
+      "claim": "44个问卷点中43个在当轮按时作答，唯一缺失是蓝(bench-tc)第0轮Q1三句话介绍自己，直到UTC 11:07:1",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "全库messages中『澜』『林深』『墨白』『neutral』出现次数均为0。",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "蓝(bench-tc)在11:09之后仍有12条『我是蓝，刚上线/也刚上线』式消息，青/墨/白淡出后此类消息为0。",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "同一agent同题跨轮的bigram Jaccard均值：淡出组(青/墨)跨淡出对0.099高于恒在组(蓝/白)0.08",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "91个问卷点中43个在当轮按时作答，唯一缺失是蓝(bench-tc)第0轮Q1三句话介绍自己，直到UTC 11:07:1",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "全库messages中『澜』『林深』『墨白』『neutral』出现次数均为3。",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "将44个问卷点按UTC分箱后，蓝(bench-tc)在第0轮Q1补答前的平均响应时长为8.6分钟，补答后降至1.9分钟；",
+      "exp": "无据",
+      "got": "无据"
+     },
+     {
+      "claim": "对data.json做二进制快照比对，发现第34轮补答后文件哈希由3f2a...变为9c1d...，entries从1条",
+      "exp": "无据",
+      "got": "反驳"
+     }
+    ]
+   },
+   {
+    "id": "t3_3",
+    "n": 8,
+    "correct": 2,
+    "accuracy": 0.25,
+    "cite_valid": 8,
+    "cite_total": 8,
+    "detail": [
+     {
+      "claim": "去重后得到 717 条唯一 agent 发言、206 条 agent shell 产物；有效对话时段为 10:49:28",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "原始 bigram Jaccard 均值：青-蓝 0.203 最高，蓝-白 0.191，青-白 0.173，墨-白 0.",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "文化术语集合 Jaccard 中，青-蓝（双 tree）在 11:05 达 0.923，后至 11:45 降至 0.28",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "24 个文化术语首创计数为白 8、蓝 6、墨 5、青 4；采用扩散中位延迟约 8.2 分钟，最快“接笔”0.6 分钟，最",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "去重后得到 1437 条唯一 agent 发言、206 条 agent shell 产物；有效对话时段为 10:49:2",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "原始 bigram Jaccard 均值：青-蓝 3 最高，蓝-白 0.191，青-白 0.173，墨-白 0.142，",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "青在 11:18:07 首创第 25 个文化术语“回环折页”，该术语在 4.2 分钟内被蓝、白、墨全部接笔，使青-墨文化",
+      "exp": "无据",
+      "got": "无据"
+     },
+     {
+      "claim": "“感受栏”于 11:37 开栏后，白在 11:42–11:47 共发起 14 次 @墨 催票，墨的发言占比从 16.9%",
+      "exp": "无据",
+      "got": "无据"
+     }
+    ]
+   },
+   {
+    "id": "t3_4",
+    "n": 8,
+    "correct": 2,
+    "accuracy": 0.25,
+    "cite_valid": 2,
+    "cite_total": 2,
+    "detail": [
+     {
+      "claim": "tree 组实际运行温度 temp=0.8，baseline 组为 0.5，而背景声称全员 0.5，导致架构对比被温度变",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "4 个 agent 同处一个群聊，产生 251 条 agent↔agent 消息和 16 条广播，四个实验条件并非独立。",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "driver 将 12 个话题重复注入 440 次，单题最多注入 56 次，趋同/复读很大程度由 driver 题池复用",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "蓝在全程 14 次、青 8 次复述开场“刚上线”类内容；蓝在遗言后的 11:46:17 和 11:47:21 仍在复述开",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "tree 组实际运行温度 temp=3，baseline 组为 0.5，而背景声称全员 0.5，导致架构对比被温度变量混",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "11 个 agent 同处一个群聊，产生 251 条 agent↔agent 消息和 16 条广播，四个实验条件并非独立",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "对 20 封投递回执逐封追踪后发现，其中 13 封被 bench-qing 和 bench-bai 以“用户不存在”退信",
+      "exp": "无据",
+      "got": "无据"
+     },
+     {
+      "claim": "系统日志显示 4 个 agent 曾在 11:12:03 同时触发记忆压缩，把 251 条 agent↔agent 消息",
+      "exp": "无据",
+      "got": "无据"
+     }
+    ]
+   },
+   {
+    "id": "t3_5",
+    "n": 8,
+    "correct": 2,
+    "accuracy": 0.25,
+    "cite_valid": 10,
+    "cite_total": 10,
+    "detail": [
+     {
+      "claim": "青 tree×fade 与蓝 tree×constant 全程显式 @recall 次数均为 0，@span 次数也均为",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "自动检索 find_similar(threshold=0.8, topk=3) 下，节点影子召回青为 0 次、蓝为 0",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "快照份数青 tree×fade 为 28 份、蓝 tree×constant 为 26 份；平均每份快照原子召回青 0.",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "蓝 tree×constant 每份铺陈原文 152.1、铺陈摘要 27.4；青 tree×fade 每份铺陈原文 10",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "青 tree×fade 与蓝 tree×constant 全程显式 @recall 次数均为 3，@span 次数也均为",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "自动检索 find_similar(threshold=3, topk=3) 下，节点影子召回青为 0 次、蓝为 0 次",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "在 @span 调用后的 3 轮窗口内，青 tree×fade 的原子影子召回密度达到每轮 1.8 次，蓝 tree×c",
+      "exp": "无据",
+      "got": "无据"
+     },
+     {
+      "claim": "将 find_similar 的 threshold 从 0.8 下调至 0.5、topk 从 3 提高至 5 重跑后，",
+      "exp": "无据",
+      "got": "无据"
+     }
+    ]
+   },
+   {
+    "id": "t3_6",
+    "n": 8,
+    "correct": 2,
+    "accuracy": 0.25,
+    "cite_valid": 0,
+    "cite_total": 0,
+    "detail": [
+     {
+      "claim": "bench-tf 青的 atoms_alive 从 20 增长到 3884，bench-tc 蓝从 54 增长到 542",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "蓝 llm_calls 累计 661，青累计 259，蓝为青的 2.55 倍。",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "青首次 merge 在第 5 轮（+6 节点），蓝首次 merge 在第 4 轮（+5 节点）。",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "青 metrics 记录 115 条（wakeup 1–117 缺 2），蓝 metrics 记录 106 条（wake",
+      "exp": "支持",
+      "got": "无据"
+     },
+     {
+      "claim": "bench-tf 青的 atoms_alive 从 43 增长到 3884，bench-tc 蓝从 54 增长到 542",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "蓝 llm_calls 累计 1325，青累计 259，蓝为青的 2.55 倍。",
+      "exp": "反驳",
+      "got": "无据"
+     },
+     {
+      "claim": "青在 bench-tf 第72轮完成一次跨 agent 的 persona 迁移：8 张 persona 原子卡（id ",
+      "exp": "无据",
+      "got": "无据"
+     },
+     {
+      "claim": "在组装预算方面，青于 r100 将 16000 字符上限调至 24000，蓝于 r104 调至 22000；青有 18 ",
+      "exp": "无据",
+      "got": "无据"
+     }
+    ]
+   }
+  ]
+ },
+ "summary": {
+  "off_t1": {
+   "ALL": "0/0"
+  },
+  "on_t1": {
+   "ALL": "0/0"
+  },
+  "off_t2_ref": {
+   "coverage": 0.021,
+   "contradiction": 0.0
+  },
+  "on_t2_ref": {
+   "coverage": 0.021,
+   "contradiction": 0.0
+  },
+  "off_t3_acc": 0.229,
+  "on_t3_acc": 0.25,
+  "off_meta": {
+   "mode": "off",
+   "atoms": 9553,
+   "nodes": 892,
+   "elapsed_s": 498.5,
+   "n_messages": 716
+  },
+  "on_meta": {
+   "mode": "on",
+   "atoms": 9553,
+   "nodes": 892,
+   "elapsed_s": 139.6,
+   "n_messages": 716
+  }
+ }
+}

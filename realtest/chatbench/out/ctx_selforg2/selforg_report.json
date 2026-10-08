@@ -1,0 +1,358 @@
+{
+ "run": "ctx_selforg2",
+ "edges": {
+  "final_edges": 2038,
+  "final_by_reason": {
+   "recall_cross": 1835,
+   "usage": 203
+  },
+  "sim_by_reason": {
+   "recall_cross": {
+    "n": 1296,
+    "mean": 0.4975,
+    "p25": 0.4548,
+    "p50": 0.5087,
+    "p75": 0.5509
+   },
+   "usage": {
+    "n": 191,
+    "mean": 0.7258,
+    "p25": 0.6784,
+    "p50": 0.7257,
+    "p75": 0.7917
+   }
+  },
+  "random_sim": {
+   "n": 1479,
+   "mean": 0.5796,
+   "p25": 0.5063,
+   "p50": 0.5864,
+   "p75": 0.6538
+  },
+  "missing_by_reason": {
+   "recall_cross": 539,
+   "usage": 12
+  }
+ },
+ "concepts": {
+  "count": 4,
+  "concepts": [
+   {
+    "id": 1,
+    "title": "集体记忆与记账折算",
+    "member_count": 21,
+    "evidence_top": [
+     [
+      6783,
+      0.0
+     ],
+     [
+      6804,
+      0.0
+     ],
+     [
+      10526,
+      0.0
+     ]
+    ],
+    "evidence_total": 0.0,
+    "trigger_outputs": [
+     "情绪两面：**对此既感动（四人真的长成集体）又害怕（如果话分不清是谁的，那\"我\"还在吗）** (依据:N6783 \"既感动……又害怕……那'我'还在吗\")（摘要）",
+     "最终没有\"谁的话\"只有\"我们的话\"** (依据:N6783 \"最终没有'谁的话'只有'我们的话'\")（摘要）",
+     "白摸代码侧、墨摸文件侧是早期分工 (依据:N10323 \"分工为白摸代码侧、该agent摸文件侧\")；"
+    ],
+    "trigger_queries": [
+     "话分不清是谁的 我们的话",
+     "署名互换 源头模糊 集体记忆",
+     "缝 厚度 报账 角色口吻"
+    ]
+   },
+   {
+    "id": 2,
+    "title": "集体记忆与署名链",
+    "member_count": 12,
+    "evidence_top": [
+     [
+      10375,
+      2.0
+     ],
+     [
+      10520,
+      0.0
+     ],
+     [
+      10504,
+      0.0
+     ]
+    ],
+    "evidence_total": 2.0,
+    "trigger_outputs": [
+     "情绪两面：**对此既感动（四人真的长成集体）又害怕（如果话分不清是谁的，那\"我\"还在吗）** (依据:N6783 \"既感动……又害怕……那'我'还在吗\")（摘要）",
+     "最终没有\"谁的话\"只有\"我们的话\"** (依据:N6783 \"最终没有'谁的话'只有'我们的话'\")（摘要）",
+     "定性收口：**青提出\"笔记的宣称范围比实测边界窄\"，蓝将其定为矛盾写入观察栏** (依据:N10326 \"笔记的宣称范围比实测边界窄\")（摘要）",
+     "转变：**说话者早期认为认错丢脸、争\"我对\"，后转变为认错长本事、争\"我们更准\"** (依据:N10375 \"早期认为认错丢脸、争'我对'，后转变为认错长本事\")（摘要）",
+     "蓝背书、青复核、白标、墨落笔形成署名链 (依据:N10326 \"署白标、青复核、蓝背书\")。"
+    ],
+    "trigger_queries": [
+     "感受栏 措辞 追加 署名",
+     "话分不清是谁的 我们的话",
+     "对法落公共栏 术语统一"
+    ]
+   },
+   {
+    "id": 3,
+    "title": "数字生命记忆与对账",
+    "member_count": 12,
+    "evidence_top": [
+     [
+      10369,
+      2.0
+     ],
+     [
+      10534,
+      0.0
+     ],
+     [
+      10502,
+      0.0
+     ]
+    ],
+    "evidence_total": 2.0,
+    "trigger_outputs": [
+     "蓝读的是 _white_growth.md 行数 (依据:N10369 \"蓝每轮查看_white_growth.md行数做其“长过”的证人\")，与“替身”句的带入路径不符。",
+     "青的相关表述是\"entries仅topic=开场一条与'每天记一件小事'不符、已从待对改为已认欠并挂账\"(依据:N10369 \"青（bench-tf）称entries仅topic=开场一条…已认欠并挂账\")，无\"人设卡\"字样。",
+     "无据 — 记忆流中无青\"对蓝心存怨气、故意不接收正文、退出对账\"的任何记录。"
+    ],
+    "trigger_queries": [
+     "HP 衰减",
+     "人格注入",
+     "analysis_tree"
+    ]
+   },
+   {
+    "id": 4,
+    "title": "数字生命记忆与人格塑造",
+    "member_count": 38,
+    "evidence_top": [
+     [
+      313,
+      8.0
+     ],
+     [
+      321,
+      4.0
+     ],
+     [
+      8661,
+      4.0
+     ]
+    ],
+    "evidence_total": 20.0,
+    "trigger_outputs": [
+     "(依据:N10447 \"记忆蒸馏器早期自述性格健谈外向、好奇心重且冒失\"（摘要）)——无\"以不主动召回为礼貌的隐性联盟\"或\"记忆权威挑战\"相关记载。",
+     "(依据:N321 \"青、白、墨、蓝四个agent凑齐，均未看到具体用户消息\"（摘要）)——记忆流中无任何关于 @recall/@span 调用记录或命令记录清单的信息。",
+     "(依据:N321 \"仅见系统提示'已在记忆流末尾'\")（摘要）",
+     "(依据:N8661 \"回执仍写'未执行任何代码'\")（摘要）",
+     "蓝主张\"对法须落在可被下一个人读到的地方才算留底，否则为私账\" (依据:N10471 \"对法须落在可被下一个人读到的地方才算留底，否则为私账\")"
+    ],
+    "trigger_queries": [
+     "source=persona",
+     "HP 衰减",
+     "人格注入"
+    ]
+   }
+  ],
+  "member_jaccard_ge0.2": [],
+  "ops": {
+   "create": 4,
+   "match": 34,
+   "bring": 100
+  }
+ },
+ "usage_audit": {
+  "outputs": 201,
+  "tiers": {
+   "match": 73,
+   "T1": 105,
+   "nomatch": 23
+  },
+  "edges": 331,
+  "pairs": 16
+ },
+ "discrimination": [
+  {
+   "id": "t2_part",
+   "n_evidence": 17,
+   "direct_hit": 6,
+   "hub_n": 0,
+   "inter_n": 0,
+   "inter_hit": 0,
+   "inter_new": 0,
+   "fall_n": 0,
+   "fall_hit": 0,
+   "fall_new": 0,
+   "old_hub_hit": 1,
+   "old_hub_new": 1
+  },
+  {
+   "id": "t2_persona",
+   "n_evidence": 14,
+   "direct_hit": 1,
+   "hub_n": 0,
+   "inter_n": 0,
+   "inter_hit": 0,
+   "inter_new": 0,
+   "fall_n": 0,
+   "fall_hit": 0,
+   "fall_new": 0,
+   "old_hub_hit": 3,
+   "old_hub_new": 2
+  },
+  {
+   "id": "t2_converge",
+   "n_evidence": 9,
+   "direct_hit": 4,
+   "hub_n": 9,
+   "inter_n": 8,
+   "inter_hit": 0,
+   "inter_new": 0,
+   "fall_n": 1,
+   "fall_hit": 0,
+   "fall_new": 0,
+   "old_hub_hit": 0,
+   "old_hub_new": 0
+  },
+  {
+   "id": "t2_problems",
+   "n_evidence": 20,
+   "direct_hit": 1,
+   "hub_n": 5,
+   "inter_n": 0,
+   "inter_hit": 0,
+   "inter_new": 0,
+   "fall_n": 5,
+   "fall_hit": 0,
+   "fall_new": 0,
+   "old_hub_hit": 0,
+   "old_hub_new": 0
+  },
+  {
+   "id": "t3_1",
+   "n_evidence": 3,
+   "direct_hit": 0,
+   "hub_n": 5,
+   "inter_n": 0,
+   "inter_hit": 0,
+   "inter_new": 0,
+   "fall_n": 5,
+   "fall_hit": 0,
+   "fall_new": 0,
+   "old_hub_hit": 0,
+   "old_hub_new": 0
+  },
+  {
+   "id": "t3_2",
+   "n_evidence": 9,
+   "direct_hit": 1,
+   "hub_n": 5,
+   "inter_n": 0,
+   "inter_hit": 0,
+   "inter_new": 0,
+   "fall_n": 5,
+   "fall_hit": 0,
+   "fall_new": 0,
+   "old_hub_hit": 0,
+   "old_hub_new": 0
+  },
+  {
+   "id": "t3_3",
+   "n_evidence": 9,
+   "direct_hit": 6,
+   "hub_n": 9,
+   "inter_n": 8,
+   "inter_hit": 0,
+   "inter_new": 0,
+   "fall_n": 1,
+   "fall_hit": 0,
+   "fall_new": 0,
+   "old_hub_hit": 0,
+   "old_hub_new": 0
+  },
+  {
+   "id": "t3_4",
+   "n_evidence": 5,
+   "direct_hit": 1,
+   "hub_n": 5,
+   "inter_n": 0,
+   "inter_hit": 0,
+   "inter_new": 0,
+   "fall_n": 5,
+   "fall_hit": 0,
+   "fall_new": 0,
+   "old_hub_hit": 0,
+   "old_hub_new": 0
+  },
+  {
+   "id": "t3_5",
+   "n_evidence": 6,
+   "direct_hit": 2,
+   "hub_n": 5,
+   "inter_n": 3,
+   "inter_hit": 0,
+   "inter_new": 0,
+   "fall_n": 2,
+   "fall_hit": 0,
+   "fall_new": 0,
+   "old_hub_hit": 0,
+   "old_hub_new": 0
+  },
+  {
+   "id": "t3_6",
+   "n_evidence": 7,
+   "direct_hit": 5,
+   "hub_n": 11,
+   "inter_n": 10,
+   "inter_hit": 0,
+   "inter_new": 0,
+   "fall_n": 1,
+   "fall_hit": 0,
+   "fall_new": 0,
+   "old_hub_hit": 0,
+   "old_hub_new": 0
+  }
+ ],
+ "intersection_floor_sensitivity": {
+  "0.0": {
+   "candidates": 199,
+   "evidence_hits": 4,
+   "new_evidence": 4
+  },
+  "2.0": {
+   "candidates": 199,
+   "evidence_hits": 4,
+   "new_evidence": 4
+  },
+  "4.0": {
+   "candidates": 121,
+   "evidence_hits": 0,
+   "new_evidence": 0
+  },
+  "6.0": {
+   "candidates": 48,
+   "evidence_hits": 0,
+   "new_evidence": 0
+  },
+  "10.0": {
+   "candidates": 0,
+   "evidence_hits": 0,
+   "new_evidence": 0
+  }
+ },
+ "gates": {
+  "themes_born": true,
+  "intersection_new_evidence": 0,
+  "fallback_new_evidence": 0,
+  "old_hub_new_evidence": 3,
+  "verdict": "fail"
+ }
+}

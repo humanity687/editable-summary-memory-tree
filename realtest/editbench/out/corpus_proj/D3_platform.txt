@@ -1,0 +1,2755 @@
+
+
+===== 文件：README.md =====
+
+# 分层记忆树 v2 · 参考资料上下文管理运行时
+
+> 把一份长参考资料变成"位置有序、分辨率可变、可编辑演化"的记忆树，
+> 让 Agent 在有限上下文窗口里稳定地工作于任意规模的参考资料之上。
+
+**当前状态：机制层已实现并多场景实测。** 桩引擎 `core.py` + 真实引擎 `realtest/realengine.py`，
+`tests/` 303 全绿；已在小说写作 / 聊天智能体 / 代码智能体 / ahi-bench 四类场景实测。
+参数台账（`AGENTS.md §11`）已与代码逐项对齐，数值校准仍在进行。
+近期（2026-10）：人格保持实验完成 tree/flat 首轮对比 + `style_alpha` 消融 + `self_quota` 操控（120 轮）；
+结论：趋同根因 = 树管线 / 跨 agent 耦合；`self_quota` 抬自我可见性有效（词面趋同归零）但**未止住人格漂移**
+（p1 锚到"污染态自我"）——详见 `AGENTS.md §4.5.10`、`ahi-bench/PERSONA_RETENTION.md §10.3.1`、`ahi-bench/PR5_REPORT.md`。
+
+
+## 要解决的问题
+
+一份长参考资料（一本书的全文、一份大型文档集）无法整体塞进有限的上下文窗口。已有的三种做法各有致命伤：
+
+| 做法 | 问题 |
+| 全量发送 | 窗口爆炸，且"塞得下"≠"记得住"（注意力衰减） |
+| 静态摘要拼接 | 丢细节，无法承载状态的演化 |
+| 关键词检索 | 无状态、无结构，检索到的片段孤立无上下文 |
+
+**核心矛盾**：参考资料是"长期演化的内容"，而现有方案都在用"无状态的文本生成"去逼近它。
+
+## 核心思想（四条）
+
+1. **位置有序的记忆树**——参考资料切成原子卡（句粒度），按原文顺序组织；摘要卡按连续区间自底向上合并成树。树的任何节点 = 某一段连续区间的概括。
+2. **分辨率随热度变化**——近处（当前工作区）全分辨率原文，远处自动降为各级摘要；越老的记忆越粗、但越稳定。像人读书：近处清晰，远处模糊。
+3. **编辑即失效，重建即蒸馏**——任何修改精确地使受影响区间失效，被改内容立即从所有查询中排除；重建全部推迟到蒸馏时机，编辑路径本身零 LLM、零阻塞。
+4. **不可遗忘的事实层**——与正文流分离的"笔记本"：无衰减、全量存储、按需注入。负责跨区引用（伏笔/回调）与硬约束，不做概率性召回。
+
+## 架构一览
+
+```
+┌─ 三轨记忆（当前=进程内 + gzip/JSONL 快照；SQLite 为规划目标）
+│ 轨道A 参考资料流   记忆树 + 原子层 + 历史归档        │
+│ 轨道B 笔记本       常驻约束 / 状态条目 / 调度条目    │
+│ 轨道C 工作记录     工具组压缩卡，自然遗忘            │
+├─ 调度原则───────────────────────────────────────────┤
+│ 组装：每次工具调用一次，纯计算（零 LLM）            │
+│ 蒸馏：章节边界 / 预算超标 / 低 HP 承压条件式触发    │
+└─────────────────────────────────────────────────────┘
+```
+
+关键机制：
+
+- **近热远粗的上下文**：每个工具调用时，上下文 = 全局概述层 + 与当前任务相关的召回路径 + 最近工作区的全文原文，预算恒定。
+- **区间失效**：任何编辑（AI 工具或用户界面，同一条路径）通过位置区间精确失效旧内容，改动区域立即从"摘要层"剥落为"原文层"，衰减后自动重新融合。
+- **检索不挑深度**：对整棵记忆树打分，命中节点连同其祖先路径一并注入——深度随遗忘历史自然变化，无需人工指定层级；精确引用走独立的逐字校验通道，杜绝"回忆变编造"。
+- **事实不遗忘**：伏笔、设定、角色状态存放于独立笔记本，按当前任务目标精确选取注入，全量存储、绝不衰减。
+
+## 首个应用：长篇小说写作 Agent
+
+- 分阶段写作（write / rewrite / edit / recall / ask），每章一个固定流程：目标进入 → 预检索 → 写作循环 → 章末蒸馏 + 事实对账 + 版本快照。
+- 伏笔（调度条目）按埋设/推进/回收窗口强制注入；章节完成时自动"对账"：新章事实声明与笔记本比对，冲突由作者裁决。
+- 每章恒定 ~14k 字符上下文预算，与全书规模无关。
+- 通用化：章 → 结构单元，beat → 内容块，伏笔 → 跨区引用账本。本机制同样适用于代码库、研究文档、项目资料等任何"参考资料"场景。
+
+## 实验计划（先于功能验收）
+
+1. **属性测试**：编辑标记完备性、铺陈不变量、边界条件穷举、回滚对称性。
+2. **延迟回忆基准**：固定大纲写 20 章 → 续写第 21 章 → 检测对第 1 章伏笔/角色的引用正确率，与"全量发送 / 摘要拼接"对照。
+3. **状态一致性基准**：注入事实变更（改名/死亡/恢复）→ 检测后续章节一致性。
+4. **token 计量** 与 **人类找茬**。
+
+## 交互演示
+
+- `visualize.html` —— 数据结构可视化页面（浏览器直接打开即可，无依赖）：记忆树 / 原子链 / 组装输出（含从属标注与召回影子）三视图，支持追加、区间删改、蒸馏、查询回调、自动提升、回滚，内置 18 步演示剧本，适合对外汇报。
+
+## 实施里程碑
+
+| 阶段 | 内容 |
+| Step 1 | 原子层 + 顺序链表 + 确定性 diff + 编辑/失效路径（正确性地基，属性测试全绿） |
+| Step 2-3 | 铺陈组装 + HP/蒸馏（记忆树演化） |
+| Step 4-5 | 检索 + 笔记本/工作记录 |
+| Step 6-7 | 写作工作流 + 基准实验与参数校准 |
+
+
+
+===== 文件：HANDOFF.md =====
+
+# 交接文档：分层记忆树 v2 · 参考资料上下文管理运行时
+
+> 编写：2026-08-12 · 更新：2026-10-04（**Q/A bench 韧性臂：强模型答案侧思考 / 强向量 bge-large
+> → 召回靠模型、编辑一致性靠结构；并更正 retr-budget 混淆**——§4.16 / §16；
+> 人格保持 M-PR 首轮 tree/flat 对比 + `style_alpha` 中性消融 → flat 两主指标胜；
+> 趋同根因 = 树管线/跨 agent 耦合；flat 观测埋点；`self_quota` 组装层实验操控（默认关）——详见 §15；
+> 前次：2026-10-03 tree 锚点检索化 `AGENTS.md §4.4` / `ahi-bench/PERSONA_RETENTION.md v0.3`）
+> 状态：理论设计 → 桩实现 → 压力测试 → 真实 LLM 实测（小说写作实例完成两轮实验），
+> 聊天智能体阶段：首个 1 小时三 agent 对照实验（exp1）→ 四子智能体分析 + 真人/AI 盲测，
+> → Phase A 第二轮实验（染色 v2 + 并行蒸馏验证）完成并深度分析 → Phase B 染色 v3（指针密度）
+> 代码全部实施 → 缺席实验（冷/热两轮）完成：皇冠预言方向成立 + merge 触发机制升级
+> → **最新树接入 realtest bench（seed2 + glm-4.7-flash）→ 共现中介层（概括节点）实现 + NovelQA 四层 bench
+> → chatbench：真实聊天记录的记忆基准（QA / 生成分析报告 / 报告验证三层）+ 树持久化
+> → 四臂对比（记忆树 / 树+共现 / 递归聚簇树 / 全量发送）——共现层暂无可测增量，四臂待按修正协议重跑（§4.6/§4.7）
+> → **ahi-bench M0+语料quiz 正式冷轮（无 cooc 对照组）：渲染分层（原子=干净对话）/
+> 组装 per 工具调用（§2 对齐）+ 连续唤醒（loop 重排 pending）/ 任务行事实陈述（平台中立）/
+> 蒸馏来源前缀 / 树冷加载 QA 三树×两臂（§4.8）**
+> → **v3 使用信号层：Phase A 实证（输出信号有料/recall 边冗余）→ Phase B 影子模式落地 →
+> Phase C 首轮判别负结果 → 主题层协同实现与实验（负结果）→ ahi-bench 复现冷轮 +
+> 场景评估（本场景非适用域，挂载休眠为正确配置）（§4.9~§4.11）**
+> → **正式实验前代码审查 + 收口（2026-09-27，§4.12）→ M-PR 多轮实现/对齐/首轮对比（§13~§15）**。
+> `tests/` **303 全绿**（2026-10-04）。
+> 设计权威 = `AGENTS.md`（本文档只做交接说明，不替代设计文档；设计变更仍需用户确认）。
+
+
+## 0. 一句话定位
+
+把一份**长参考资料**变成"位置有序、分辨率可变、可编辑演化"的记忆树，让 LLM 在有限上下文里稳定工作于任意规模的材料之上。长篇小说写作是第一个应用实例；机制通用（章/beat/伏笔 → 结构单元/内容块/跨区引用）。
+
+**铁律三条**：① 偏离设计必须经用户确认（改文档+代码）；② 组装 = 纯计算零 LLM，LLM 只出现在蒸馏/重建/校验等标注位置；③ 参数先拍后调，基准校准后写回台账（§11）。
+
+**Git 分支**：`main`（小说写作实例存档）→ `chat`（聊天智能体测试，本阶段工作分支）。
+
+**⚠ 聊天实验平台（AHI 多智能体）交接入口**：`ahi-multi/HANDOFF.md`——平台现状/实验 1 结论与评分/本轮迭代（并行蒸馏+染色 v2）/下一步实验计划（A 验证→B 情感卡→C 对抗压力→D 三臂移除）/操作手册/数据归档。**接手聊天实验请先读它**；本文档以下章节为本项目的机制层交接。
+
+
+## 1. 已完成工作时间线
+
+| 阶段 | 产出 | 关键结论 |
+| 设计收敛 | AGENTS.md（设计权威）| 三轨架构（参考流/笔记本/工作记录）+ 区间覆盖树 + 懒失效 + 召回 |
+| 数据结构桩 | `core.py` + 测试 | 机制全部验证：链/树/编辑/merge/组装/检索/回滚/影子/提升 |
+| 可视化 | `visualize.html` | 树/链/组装三视图 + 18 步演示剧本（对外汇报用）|
+| 规模压力测试 | `stress_write.py` + `results/` | 30 万句下铺陈恒定、树高亚对数、正确性不崩 |
+| 真实 LLM 实测 v1 | `realtest/run.py`（无尽续写，已弃用）| 预算生效；暴露"轨道B 缺失 → 状态漂移"（设计预言的复现）|
+| 结构化压测 | `realtest/bench_qa.py` | 缺陷 A/B/C；修复 B（混合检索）后 1a 命中 3.8× |
+| 复述对比 | bench Phase 1.5/2.5 | 编辑风暴碎片化的量化证据 |
+| 冷却窗口 | bench_qa 修复 | 风暴后冷却窗口 → 复述 after 1.5% → 30.8%（新数据集）|
+| **无尽续写 v2** | `realtest/run2.py` | 新协议 [plan]/[span]/[note]：写前预想 → 目标驱动回想 → 状态笔记本 |
+| **注意力窗口** | core.py `tick()`（§4.3b）| 不对称衰减（窗内慢/窗外快）+ cap 排名截断 → hard_trim 归零 |
+| **裁剪收紧（2026-09-27 拍定）** | realengine.py `_trim_chars` | 超预算 ①低 HP 节点/影子 → ②旧原子（低 HP 优先，**本轮新原子活一轮**）→ ③溢出 > `budget*(1+hard_trim_slack=0.1)` 才硬截断（头保留尾砍）；`trim_atoms` 事件入日志；裁剪只动视野不动树 |
+| **heat burst 自动下钻披露（2026-09-27 重设计，默认关）** | core.py 回血溢出钩子 + realengine `_auto_expand`/`_accumulate_heat`/`tick` | 信号 = 回血封顶**溢出量**（节点全额 + 直接父半权、同轮防重复计账；原子只计数）；热量 ≥ 阈值(60) 且预算富余 → 视野内该节点**炸开**（全装得下替换节点项=覆盖不丢；否则追加）；`tick` 衰减、不消耗；脏/墓碑子卡不入且阻断替换；测试 `tests/test_heat_burst.py` 12 项。**flag 默认关**——论文 分层树 臂冻结、全臂 off；首秀 ahi-bench ablation 臂 |
+| **force 合并** | core.py `merge_pass(force_out)` | 窗外原子超压即合（纯原子段）→ 上下文峰值 12k→7.8k |
+| **叶子展开** | realengine `expand_leaves` | 命中概括卡 → 全部后代原子活一轮影子 |
+| 万字数据集 | `realtest/seed2/` | 《缠枝莲》12k 字 + 50 条事实（校验全过）|
+| 架构审查 | 本轮 | 通用性/复杂度/副作用三项自查（结论见 §5 注意事项）|
+| **聊天适配** | `chat_agent.py` + `chattext.py`（chat 分支）| 多介质切分（chat句/code AST/config项/md标题+列表项）+ 来源元数据（检索不可见）+ 代码检索走 docstring + 大卡 weight 计数 + 重复输入影子 + 原子上限 |
+| **DISMISS 懒标记** | core/realengine `dismiss_*` | 事实冲突延迟裁决：挂起（零破坏）→ 每轮追踪 +〔待失效〕标注 → [dismiss #id] 墓碑确认（可回滚）/ cancel |
+| **file_edit** | `chat_agent.file_edit` | 文件编辑卡级 diff 精确失效（读过才 diff，没读过直接灌入）|
+| **去重发送** | realengine `nb_render` | 轨道B 注入 = 每 key 最新 + 每轮现场生成 + 接卡片流后；worklog 恢复注入（固定 key 覆盖）|
+| **缺席实验平台** | main.py + message_router + absence_driver | 隔离开关（alone/halt）+ 积压限流 + 回归预算改造；冷/热两轮完成 |
+| **merge 条件式触发** | core.py `merge_pressure()` | 窗外节点+原子数 > 参数 → 每轮查就蒸（替代时间式 merge_every）；峰值 215→143 |
+| **节点窗口扩展** | core.py `tick()` | 节点段成员 = 全部存活节点（树内/影子与铺陈平等参与）|
+| **代码场景搭壳+校准** | `realtest/codeagent/` | 三场景·代码：同壳对比（基线 vs 记忆树）；**设计坑在壳**——原生工具对话缺失致模型表现极笨，重构后基线能力回升；**产物尚有分歧**（`summary.json` n=2/pass=1 vs `out_official_baseline` 五项 PASS），需统一产物后再定论 + 加跨会话任务 |
+| **最新树接 bench** | `realtest/bench_qa.py --cooc` | 对齐 ahi-bench engine 块（原子/节点窗口、条件 merge、max_hp）+ 本地 glm-4.7-flash 跑 seed2；树健康（H=5）但共现层在粗 tick 下不激活 |
+| **共现中介层** | `realtest/cooc.py` + `cooc_bench.py` | 概括节点只做匹配中介、不进组装流；NovelQA 四层题 (b)（转述）off/on 无增量；教训：定向 warmup 属 oracle 作弊，已撤 |
+| **chatbench** | `realtest/chatbench/` | 真实聊天记录记忆基准：Phase0/W/T 回放 + msg_id 引用 + 双通道/claim 分解/报告对照评分；多会话 QA + 生成分析报告 + 报告验证；共现层三轮无稳定增量（§4.6） |
+| **树持久化** | `chatbench/tree_io.py` | gzip 树缓存；加载复用使 on 从 499s→140s；旧树可逐句映射回 msg_id（9553/9553 命中） |
+| **四臂对比** | `chatbench/compare.py` | 记忆树 / 树+共现 / 递归聚簇树 / 全量发送，统一 msg_id 引用协议；发现并修复基座误用与两处协议 bug，待重跑（§4.7） |
+| **ahi-bench M0+quiz** | `ahi-bench/`（config/m0_corpus.json v0.2）+ `qa.py`/`cooc_analysis.py`/`tree_qa.py` | 沙箱语料（seed2 12k 字）+ 延迟 quiz（每 agent 12 题，同轮题不同防互抄）；正式冷轮跑通（110 轮+遗言，gates 全绿）；树冷加载 QA 三树×base/recall 两臂 + 分析题；离线共现三层分析 |
+| **机制迭代（本轮拍定）** | `realengine.py` + `lan/neutral/agent.py` | 渲染分层（clean：原子=干净对话、段首来源，卡片层保留 §4.5 标注）；组装 per 工具调用（AGENTS.md §2 对齐，mid-loop 不 merge）；连续唤醒（loop 每次工具调用前重排 pending）；任务行/清单改事实陈述（平台中立）；蒸馏来源前缀〔来源〕；@dismiss confirm 无参；replied 标签退场（仅程序用）；add_log 真实落盘；_src_cache 每次组装重算修复 |
+| **使用信号层 Phase A** | `realtest/USAGE_SPEC.md` + `chatbench/usage_replay.py` + `out/usage_analysis/` | 输出信号提取实证：recall 共现边确认为相似度冗余（1.9% vs 随机 5.0% 低相似尾）；输出匹配有真信号（12 张核心卡跨 2-5 个独立答案复现；非冗余派生边 14-26 条/10 答案）；架构发现：铺陈恒覆盖全文 → 严格 T2 恒空、供给差别是分辨率（T2 定义待修正） |
+| **使用信号层 Phase B/C + 主题层协同** | `realtest/usage.py` + `cooc.py`（协同）+ `tests/test_selforg.py` | Phase B：UsageLayer sidecar（三档信号/复读/非冗余/影子模式）+ live 挂载；Phase C 首轮判别负结果（交集带动新增证据 0/0；reachability 5.6-10.8%）；协同：跨查询 recall 边（1835 条 97.7%<θ）+ 主题出生 4-6 个/run + 交集/补齐 bring，判别仍 0 增量；两条负结果：非冗余≠有信息、交集触发≠带动有用（§4.10） |
+| **ahi-bench 复现冷轮 + 场景评估** | `ahi-bench/`（2026-09-26 run）+ `backups/20260926_ahi_run/` | 使用信号层挂载同步进 provision 源文件（lan/neutral）后的零行为变更复现轮（usage_shadow=false）；gates RUN_INVALID 但定位为两处时间戳边界（digest 同秒落库 / 返回通知早 1 秒），非隔离违规；QA/树 QA 正常；**场景评估：本场景非适用域**（无引用协议 + 单域单跳），挂载休眠为正确配置（§4.11） |
+| **M-PR 人格保持架构对比 · 实现** | `ahi-bench/pr_orchestrate.py`/`pr_score.py` + `persona_retention.json` + `ahi-multi/agents/flat-rag/agent.py` + 平台多实例支撑 | 2 臂（tree / rolling+flat RAG）× 3 run × 3 人格 = 6 实例/18 agent **同跑**；每实例独立主进程（`AHI_INSTANCE_ROOT`：独立 port/agents/system.db/日志）；`FlatRAGAgent`（rolling + bge flat RAG + auto-preretrieve）；manifest 并发 driver + 429/402 → `ABORT.json` 兜底；`pr_score` 三指标（趋同斜率 / judge 遵从率 / survey 漂移）。隔离审计 PASS（逐库仅自身 agent、无跨实例消息） |
+| **M-PR 首轮（中性 tree）** | `backups/pr_run_clean_20261002_2108/` | 180 轮 ~1.5h、6/6 完成。主指标 judge 遵从率 **tree 0.798 vs flat 0.727（3/3 run 树高）**；但趋同斜率（tree +0.003 vs flat −0.010）与 survey 漂移（0.438 vs 0.406）**方向相反**。语义分析：tree 后期塌缩为**共享仪式语**（`灯亮着` tree 1054 / flat 56；逐字互借），三指标在"趋于共同质心 + 稳定自述被 judge 读作高遵从"下自洽；**P2 人格贴天花板无区分力**。故主指标疑测"自洽性"而非"独特性" |
+| **M-PR 修复：人格锚点自蒸馏（本轮，未跑）** | `realengine.py` + `lan/neutral/agent.py` + `provision.py`（AGENTS §4.4 / PERSONA_RETENTION v0.2 §4.1） | 根因 = tree 用中性蒸馏器第一步蒸掉人格风格。改法 = tree 蒸馏注入**自产人格锚点**（agent 自生成风格快照 + 按当前内容匹配的自我原话；**禁用初始 persona**），允许改表述/重心、**禁止改事实**。tree 臂 `style_alpha=1.0/snapshot_every_rounds=20`，flat 不变；`pr` 中性数据保留，染色版换命名空间 `pr2` 下会话重跑 |
+| **M-PR 锚点检索化（2026-10-03，本会话）** | `realengine.retrieve_style_samples`/`expand_self_atoms` + `lan/neutral._style_guide/_refresh_snapshot` + 渲染去【注】 | 分析发现旧"最近 6 句"recency 池把共享仪式语最先吸进锚点、8 字段快照单调累积。改为：锚点从**自身材料**（source=ai 原子 + 摘要节点整卡含【注】）按语义/词面**检索** top-k；快照改**自由文本**、由检索样本**重生成 + 长度上限**；【注】独立生成但**组装不渲染**。pr2 基线冻结 git `74a1236`；本会话只跑冒烟/小重放，不跑正式 |
+| **Q/A bench 韧性臂（2026-10-04）** | `realengine` embed 环境变量 + `llmclient` thinking + `docbench` 参数/retr 修复 + `out/ahi_strong/*` | 换强模型（flash 答案侧思考）/ 强向量（bge-large）作控制变量。**结论：召回/理解靠模型（思考 +6~+19、tree 暖 inc 不涨）；编辑一致性靠结构（复述零残留仅 tree，full/flat 20–34% 不可补）；强向量无增益**。附带修 `--retr-budget` 被 config 静默覆盖 → 更正 §4.15A「占位透明 +7~11」实为 retr 6→20 混淆（§4.16） |
+
+
+## 2. 代码库地图（当前状态）
+
+```
+AGENTS.md            设计权威（含 §11 参数台账，~23 项未校准）
+HANDOFF.md           本文档
+README.md            对外版（略写，隐藏内部决策）
+core.py              数据结构桩（纯内存零 LLM，数值替身）：
+                     原子+顺序链表 / 区间覆盖树 / 编辑失效 / merge pass（含 force_out 窗外合并）/
+                     clean tiling 组装 / 检索（可插拔池）/ 影子注入 / 提升 / 回滚 /
+                     注意力窗口（§4.3b：不对称衰减 + cap 排名截断 + 压力判定）/
+                     原子 weight 虚拟计数（聊天适配：大卡计 2，只影响 HP 演化）
+stress_write.py      规模压力测试（断点续跑、逐章 JSON、粗略树图）
+visualize.html       可视化页（单文件零依赖，浏览器直开）
+realtest/            真实 LLM 实测（DeepSeek / Ollama 双后端）
+  llmclient.py       DeepSeek/Ollama 统一客户端（token/延迟统计）
+  realengine.py      真实文本引擎：LLM 蒸馏摘要 + 混合检索（向量+关键词）+ 笔记本（去重发送）+
+                     叶子展开 + 元数据（source/doc/pending_dismiss）+ 重复检测 +
+                     DISMISS（dismiss_plant/track/confirm/cancel）+ 卡级替换 replace_units
+  chat_agent.py      聊天智能体（chat 分支主力）：AHI 风格接口（process_input/get_outputs/on_wakeup）+
+                     终端 REPL + ingest/say/note/file_edit 工具入口；每轮全新组装
+                     （卡片流 → 笔记本去重发送 → 回执 → 任务）
+  chattext.py        多介质切分器：chat 按句 / code AST（函数一张、类=头+__init__/__del__、
+                     docstring 进元数据）/ config 按项 / md 标题+列表项；统一原子上限再切
+  protocol.py        响应解析（[append]/[edit]/[recall]/[plan]/[span]/[note]/[dismiss]，
+                     三级容错含句中未闭合标签）
+  splitter.py        中文句级切分
+  metrics.py         逐轮记录（JSONL）+ 树快照（JSONL）+ 注意力窗口计数（铺陈口径）
+  report.py          matplotlib 图表 + HTML 报告
+  （run.py 无尽续写 v1 已删，历史见 git）
+  run2.py            无尽续写 v2（当前主力）：[plan] 预想 → 预检索 → [span] 叶子展开 → [note] 笔记本
+  bench_qa.py        结构化压测（三阶段 + 复述对比 + 结构断言）
+  prompt_story_seed.md / prompt_story_seed_wanzi.md   种子故事生成提示词
+  config.json        后端配置（provider: deepseek；model: glm-4.7-flash；含 API key）
+  story_open.txt     无尽续写开头（《青州旧事》）
+  seed/              旧种子：story.txt(3k字) + facts.md(40条) + names.txt(11人)
+  seed2/             新种子（万字）：story.txt(12k字) + facts.md(50条) + names.txt(16人)
+  out/               历次运行产物（run2_v9~v12 为注意力窗口系列实验）
+  cooc.py            共现中介层（Demo v1.0）：recall_log/cooc_edges/concepts + 概念中介层
+                     （tick/merge/retrieve/编辑钩子；概括只做匹配中介、永不进组装流、零侵入）
+  cooc_bench.py      NovelQA 四层 bench（a直接/b转述/c跨编辑/d脏区）+ on/off；seed_cooc/questions.json
+  chatbench/         聊天数据记忆 bench（2026-09-24/25，主力）
+    extract_corpus.py     从 ahi system.db 提取语料（多会话/含用户消息/时间窗切分）
+    replay.py            回放器：Phase0 灌入 → Stage W usage → Stage T；--save-tree/--load-tree；
+                         msg_id 引用协议；自助 recall ≤10 次（一次可多查询）
+    score.py             评分：T1 双通道 / T2 claim 分解 / T2 对照已有分析 / T3 报告验证（judge=thinking）
+    make_reference.py    从 6 份分析报告抽 36 条定性参照 + T3 反例（实体互换=反驳 / 编造=无据）
+    tree_io.py           树的 gzip 持久化（离线单例、msg 映射）
+    review.py            T2 对照的人工抽检底稿
+    compare.py           四臂 runner（tree_off/tree_on/递归聚簇树/fullsend）+ 递归聚簇树 实现 + 统一引用核验
+    score_compare.py     四臂统一评分（逐臂增量写盘 + _meta）
+    measure_ctx.py       上下文使用长度测量（交付渲染口径）
+    corpus/ corpus_absence/  语料产物；out/ 运行产物；EXPERIMENT_REPORT.md / COMPARE_REPORT.md / PLAN.md
+  ../backups/20260925_chatbench/  本轮实验备份（tar.gz + MANIFEST）
+realtest/codeagent/  代码场景实验（三场景·代码，2026-08-30 搭壳+校准）
+  agent.py           实验组 CodeAgent：RealEngine + read/write/edit/command/save_context/recall/finish
+                     + v1 参考结构原生工具对话 + [WC_CTX] 记忆流槽位每轮刷新 + 整轮成对裁剪
+  baseline.py        基线：同壳无记忆（原生工具对话，超长裁剪）
+  harness.py         驱动（校准/对比/任务复制/验收/metrics）+ 每任务独立沙箱副本
+  tasks.py           T1-T5 真实 bug（原版 GitHub multi 分支）+ 验收脚本（红绿已验证）
+  sandbox/ahi_legacy  原版未改源码沙箱（git clone GitHub humanity687/RollarTimerAHI multi 分支）
+  config.json        ollama glm-4.7-flash（64k 上下文）；deepseek 备选
+realtest/editbench/  论文级编辑风暴实验（2026-09-27 搭框架 → 10-01 会话报告）
+  REPORT.md            **正式报告**：实验设计 + 论文两张主表 + 结论 + 数据位置——写论文读它
+  EXPERIMENT_REPORT.md  会话流水：全部实验/bug/根因/待办（含 REPORT 未收的过程细节）——接手先读它
+  docbench.py        编排器：Phase1 四结构基线 Q/A → Phase2 确定性编辑风暴 → Phase3 8臂
+                     （rebuild×4 新文档重建 / incremental×4 只保留编辑台账）→ Phase4 复述
+  arms.py            四结构×更新策略统一接口；蒸馏(temp0)+作答(temp0.5)双 client；MeteredLLM 按臂计 token
+                     full / flat(400字chunk+bge+top12) / 递归聚簇树(复用 chatbench) / 分层树(RealEngine)
+  editstorm.py       确定性编辑序列（rename/detail/rewrite/passage/delete/append）+ 编辑台账（零 LLM）
+                      两套场景：build_scenario（seed2）/ build_scenario_ahi（沙箱四声）
+                      渲染：tool_block_units/tool_blocks（append 臂的 function-calling 式调用+返回块）
+  replay_trees.py    零重建重放：加载已存树 gzip，仅换作答预算重跑（build/编辑/冷却不依赖 assembly budget）
+  ab_edit_signal.py  编辑"使用信号(热) vs 障碍(冷)" matched-pair A/B（同一 pre-edit 树施加 on/off）
+  docscore.py        Q/A 分层判分（反转/不变/远端）+ 复述两层（自动 checklist）
+  judge.py           LLM 判分（temp 0）：反转语义判 + 复述残留/覆盖判
+  bonus.py           编辑效果分析：摘要旧内容残留 + 重写段连贯性（--judge 走 LLM）
+  cache_probe.py     KV 缓存前缀命中探针（full/flat 高命中、tree/递归聚簇树 低）
+  gen_script.py      ctx_run 四智能体实录 → 剧本文档（--acts N 裁剪；ahi_script.txt）
+  ahi_script.txt     正式轮底本《沙箱四声》（147k=9.2×预算；由 gitignored corpus 生成，需入库以复现）
+  ahi_facts.md / ahi_names.txt   事实（编辑前参照）+ 角色名
+  questions_ahi.json 正式轮题库 v5（41 题：17 反转/8 不变/16 远端；场景 11 编辑）+ 复述 checklist
+  questions_full.json   全量预注册题库（40 题 = 15 反转/5 不变/20 远端，seed2；场景 7 编辑）+ checklist
+  questions_smoke.json  精简题库（10 题）
+  keys.local.json       每臂 API key（gitignored）；MeteredLLM 按臂计 token
+  run_smoke.sh / run_full.sh / run_ahi.sh   运行脚本（ahi = --repeats 5 --judge）
+tests/               301 个测试（pytest，约 18s）
+results/             压力测试数据（progress_*.json + state_*.pkl + 总结）
+```
+
+**测试分布**（301）：机制层 chain(16) marking(15) merge(16) assembly(10) retrieval(11) rollback(9)
+fuzz(6) shadow_promote(16) hybrid_retrieval(7) attention(17) notebook(8)；应用层 coloring_v3(12)
+heat_burst(12) usage(13) selforg(12) realengine_budget(20) render_clean(6) dismiss(7) chattext(9)
+sandbox(7) waitfor_urgent(9) observation(5) receipt_addr(2) tree_io(5) absence(8) anchor_retrieval(10)
+flat_envelope(12) self_quota(7)；论文级编辑风暴 editstorm(13)。
+
+
+## 3. 核心设计决策与修改记录（为什么是现在这样）
+
+1. **稳定 ID + 顺序链表（piece-table 式）**：编辑不做全局坐标平移；区间只用位置序判断，禁 ID 大小比较（中插破坏 ID 序）。
+2. **区间覆盖树，并查集式自底向上合并**：父 = 子区间的概括；无预设根；深度 = 合并历史。
+3. **按秩合并（`merge_depth_diff=1`）**：防梳子退化，顺序追加亚对数（实测 64 批 → 高 9）。
+4. **禁止单成员块**：父节点创建时子数 ≥2。
+5. **收养机制**：插入原子按两侧边界 owner 链 LCA 入树；缝隙在边界/首尾 → 不收养（热区语义）。
+6. **标记置脏（唯一算法）**：删除爬墓碑卡链、插入爬收养链；完备性引理：区间相交 ⟺ 爬链必经。
+7. **占位解除 = 冷却重建**：全部存活子卡 HP < hot_threshold → 重建解占位（原子不参与 merge，故必须冷却触发）。
+8. **重建级联**：重建后父卡置脏 → 同 pass 循环至无脏。
+9. **影子注入（召回进组装）**：位置槽 = 覆盖它的发射项之后，沿 owner 链下钻 O(深度)；脏/占位/已发射跳过。
+10. **从属标注（硬要求）**：深度缩进 + ⊂父卡 + "召回影子/召回原文"标注，防层级误读。
+11. **提升（路径分裂）**：激活计数达阈值 → 节点沿祖先逐层上提，每层祖先分裂左右碎片（≥2 存活子才建），碎片置脏懒重建——零 LLM 即时路径。
+12. **混合检索三通道**（缺陷 B 修复）：摘要·向量（bge-small-zh，version 缓存）+ 摘要·关键词（bigram）+ 原子·粗筛+向量精排（原子不可变 → 向量永久缓存）。原子命中不走路径（覆盖摘要已在基础层）。
+13. **回滚**：undo 逆向走编辑路径；多原子块恢复用末原子锚点（首原子锚点会自环）。
+14. **注意力窗口（§4.3b，2026-08-12 实现）**：窗口内 = 存活原子按 HP 降序排名 ≤ attention_cap 且 HP ≥ attention_out；不对称衰减（窗内 ×in_decay 慢 / 窗外 ×out_decay 快）。只改变 HP 演化速率，不改任何顺序/组合逻辑。单阈值无滞回、无事件触发、回血对称自动回窗。
+15. **force 合并（窗外压力）**：铺陈中窗外原子数 > attention_cap × pressure_threshold → merge_pass(force_out=True)——**只合并纯原子段**（节点不进 force 组；节点=概括卡只走常规低 HP 合并，树由此长高）。原子=无意义个体需尽快成组压缩；节点=一小段上下文的代表。
+16. **叶子展开（C 机制）**：检索命中节点 → 展开其全部后代存活原子为影子（活一轮、预算保护、上限 EXPAND_ATOM_CAP/CHAR_CAP）；[span] 手动回调同语义。
+17. **run2 协议（无尽续写 v2）**：`[plan]`写前预想（下轮预检索+笔记本按 plan 关键词选取注入）→ `[recall]`/`[span]` 回想 → 正文 → `[note state]` 状态入笔记本（事实层，永不衰减）。
+18. **冷却窗口（bench_qa 专用）**：风暴后 tick(45)→merge→tick(30)→merge 模拟自然时间流逝，激活"衰减后自动再融合"——修复复述崩溃（1.5%→30.8%）。
+19. **merge 条件式触发（2026-08-30 拍定）**：常规 merge 从时间式（merge_every=4）改为每轮查 `merge_pressure()`——铺陈窗外节点数+窗外原子数（weight 计）> `merge_pressure_threshold`(20) 即蒸。merge 不只作用于原子，节点承压同样触发。模拟：tiling 峰值 215→143、谷底 127→25。
+20. **节点窗口扩展（2026-08-30 拍定）**：注意力节点段成员从"铺陈（tiling）节点"改为"全部存活节点"——树内退休节点/召回影子与铺陈节点平等参与 20 名额，提取驱动巩固对节点与原子对称生效。
+
+
+## 4. 实验结果汇总
+
+### 4.1 桩测试（267 全绿）
+机制正确性：链序/发射覆盖/数值 oracle/脏精确性/占位语义/高度一致性/回滚对称性/注意力窗口/force 合并/叶子展开，随机模糊 2000 步×多种子全过。2026-08-30 追加：缺席隔离路由、merge 条件式触发、节点窗口扩展（树内节点入窗）。
+
+### 4.2 规模压力测试（stress_write，种子 42）
+| 规模 | 耗时 | 树高 | 铺陈项 |
+| 1 万句 | 0.3s | 4 | 765 |
+| 5 万 | 7s | 9 | 766 |
+| 10 万 | 34s | 10 | 765 |
+| 30 万 | 314s | 13 | 766 |
+
+- 铺陈项数恒定 ~766（规模无关）——"近热远粗 token 恒定"成立。
+- 瓶颈：`_position_map` O(全书) 被 write/检索/编辑共用（~60% 耗时）——真实系统需索引化。
+- **注意**：注意力窗口的每 tick 排名 O(n log n) 未在压力规模验证（见 §5）。
+
+### 4.3 结构化压测 bench_qa（旧种子 → hybrid3；新种子 → bench_seed2_cool）
+| 指标 | 旧种子 v4 | 旧种子 hybrid3 | 新种子 seed2_cool |
+| 1a 检索命中 | 5/25 | 19/25 | 20/25 |
+| 1a 答对 | 6/25 | 16/25 | 21/25 |
+| 1b 迭代答对 | 2/10 | 4/10 | 5/10 |
+| Phase 2 编辑验证 | 17/28 | 14~19/28 | 16/26 |
+| 复述 before | 25% | 32.7% | 26.2% |
+| 复述 after | 拒绝 | 21.2% | **30.8%（冷却窗口后）** |
+
+### 4.4 无尽续写系列（run2，注意力窗口引入前后对比）
+| 版本 | 机制 | hard_trim | 上下文峰值 | 蒸馏次/轮 | 工具使用 |
+| v9 | 无注意力 | 6/14 轮砍 10.4k 字符 | 9997（顶满）| 0.5 | plan 13, note 10, recall 4 |
+| v10 | 注意力窗口 | 0 | 9804 | 0.5 | plan 13, note 10, recall 4, span 0 |
+| v11 | +force 合并 | 0 | **7796** | **2.9** | span 从未被主动使用 |
+| v12 | +叶子展开+口径修正 | 0 | —（中断）| — | — |
+
+关键结论：
+- 注意力窗口消除 hard_trim 砍热区（v9→v10 的质变）；force 合并进一步压预算（v11）。
+- **成本**：force 合并把蒸馏调用从 0.5 次/轮推到 2.9 次/轮（LLM 摘要调用暴涨）——压缩是花钱买的。
+- **长上下文漂移实证**（v10 故事分析）：空间拓扑错乱（井口封死 vs 地窖脱身）、道具状态错乱（红绳瞬移）、人物认知错位（"你爹死在床上"）、伏笔遗弃（指骨无回收）——四类全部是**轨道B 缺失**（状态类事实没进笔记本），不是树/检索/注意力的问题。v1 的"轨道B 缺失 → 状态漂移"结论在 v2 复现。
+
+### 4.5 结构断言
+bench 全程（119+ 轮）不变量全过：链序/发射覆盖/高度/脏精确/占位语义。
+
+### 4.6 聊天数据记忆 bench（chatbench，2026-09-24/25）
+
+**目标**：把 ahi-multi 真实多智能体聊天记录做成"记忆树 vs 基线"的可复现分析基准，测三层能力：
+T1 细节问答、T2 生成分析报告（并与已有分析对照）、T3 报告验证（逐条 支持/反驳/无据，含反例）。
+
+**语料**（`extract_corpus.py`，稳定 msg_id 作引用锚，原始措辞零清洗）：
+- `corpus/` ctx_run（青/蓝/墨/白 + 实验员，716 条 / 289,666 字；含 6 份现成分析报告）
+- `corpus_absence/` 08-29 一天实验（澜/林深/中性 + probe，3272 条 / 871,334 字；15 个 30min 伪会话）
+
+**工具链**：`replay.py`（Phase 0 灌入 → Stage W usage → Stage T；树缓存 `--save-tree/--load-tree`；
+引用 `(依据: msg:<id> "逐字摘录")`；自助 recall ≤10 次且一次可多查询；T 阶段检索后自建概括节点）
+→ `score.py`（T1 精确+语义；T2 claim 分解 + 对照已有分析；T3 判定一致率；judge=glm-4.7-flash+thinking）
+→ `review.py`（人工抽检）。`tree_io.py` 实现树持久化，on 臂由 499s 降至 ~140s（省 900+ 次蒸馏）。
+
+**结果**：
+| 实验 | 结果 |
+| 多会话 QA（absence 5 会话 / 1197 条） | off 14/17 vs on 16/17——但 on 共现节点=0，差异为噪声 |
+| ctx 分析层三轮（q 单查询 / q2 多查询+T自建 / u 定向 usage 112 次检索） | T3 off/on = .319/.417、.437/.299、.389/.403 → **方向翻转、无稳定增量** |
+| T2 生成报告 vs 已有分析 | 覆盖 ≈0（人工抽检确认"未提"属实）；发现 2 处实质反向断言（报告称"立场全程未动摇" vs 分析称"白改口"） |
+| 共现层激活度（u 轮） | 5 个概括节点 / edges 2082 / hub 带动 300——但带动成员几乎不进证据链（T3 六题 引用∩hub 全 0） |
+
+**结论**：共现中介的假设**未获证实**；瓶颈在"带动成员选择"（conn_weight top-k 与问题需求错配），
+且多数题 direct 检索已足够。共现节点主题识别本身正确（如"沙箱边界与记忆对账"）。
+公平性教训：定向 warmup 帮助作弊（已撤）；usage 与测试题必须解耦、预注册。
+
+### 4.7 四臂对比：记忆树 / 树+共现 / 递归聚簇树 / 全量发送（2026-09-25）
+
+**统一协议**：同题库、同 prompt、temp 0、answerer = glm-4.7-flash（1M ctx）；
+引用统一 `(依据: msg:<id8> "逐字摘录")`；确定性核验 id 存在 + 摘录属被引消息 + format-agnostic 摘录可验。
+递归聚簇树：400 字叶块（1090 叶）+ k-means（每簇≤10）+ ≤3 层（109+11 节点）+ collapsed top-12 检索。
+
+**上下文使用长度**（每题，交付渲染口径）：
+| arm | 均值字符 | 均值 token | 备注 |
+| tree_off / tree_on | ~19.6k（名义预算 16k，见下） | ~13k | 组装封顶；recall 不增长 |
+| 递归聚簇树 | ~4.5k（3.2k–8.1k） | ~3.4k | 每次 recall +4.5k（≤10 次） |
+| fullsend | 301,121 | 实测 `prompt_tokens=192,060` | 未截断（deepseek 1M） |
+
+**状态（重要，接手先看）**：
+1. **基座 bug 已修**：早期 v1/v2 四臂误用本地 glm-4.7-flash（`compare.py` 未覆盖 config 的 `provider:"ollama"`）——
+   结果作废，存档为 `out/v1_cmp_*`、`out/v2_gemma_cmp_*`，勿引用（`COMPARE_REPORT.md` 已改为作废存档）。当前
+   `out/cmp_*` 虽是 deepseek 版，但**从未完成评分**（无 `cmp_score.json`）且早于下方两处协议修复——同样不可引用。
+2. **两处协议 bug 已修、尚未重跑**：
+   - 树臂预算未作用在**实际交付渲染**（`assemble` 用轻渲染裁到 15.9k，实发 19.5k）→ 新增 `assemble_for_prompt`；
+   - 树 `shadows` / 递归聚簇树 `extra_ctx` **跨题累积**（后题混入前题检索）→ 新增 `reset_fn` 按题清空。
+3. 评分器已改**逐臂增量写盘** + `_meta`（judge_model/updated_at/partial/arms_done/answerer_model），
+   杜绝"旧文件被误当新结果"（本轮的教训：评分被杀时不会覆盖旧文件）。
+4. 旧口径（gemma）四臂的初步观感（**仅供参考、待重跑确认**）：fullsend T3 最高；递归聚簇树 引用锚定最好
+   （`引号属原msg` 0.61 vs 树 0.12，因检索原文而非摘要）；共现层无增益。
+
+### 4.8 ahi-bench M0+语料quiz 正式冷轮（2026-09-25，无 cooc 对照组）
+
+**协议**：M0 缺席三元组（青 persona_always / 蓝 persona_drop@40 / 墨 no_persona）× glm-4.7-flash，
+110 轮 + 遗言；沙箱语料《缠枝莲》12k 字；quiz 每 5 活跃轮、每 agent 12 题（同轮三 agent 题目不同防互抄）。
+**本轮 agent 直用 RealEngine（CoocLayer 未挂载）→ 定调为无 cooc 对照组**。
+
+**中途机制迭代（全部用户拍定，已落地）**：
+1. 渲染分层：clean 模式原子层=干净对话（段首〔来源〕，无 #id/·原文/〔已回复〕），卡片层保留 §4.5 从属标注；〔已回复〕标签退场（仅程序用）。bench/chatbench 引用协议用 indexed 模式（默认）。
+2. 组装 per 工具调用（AGENTS.md §2 对齐）+ **连续唤醒**：loop 每次工具调用前重排 pending（不 @exit = 连续在线）。
+3. 任务行/待回复清单改**事实陈述**（平台中立拍定：撤"可继续未完成事项"式行动邀请——重复发送的自然吸引子）。
+4. 蒸馏来源前缀〔来源〕进 `_atom_part` + prompt 归属规则；@dismiss confirm 无参（寻址收回程序层）。
+5. 修复：`_src_cache` 每次组装重算（原清理在死代码里，〔源〕跨轮漂移）；`AgentDB.add_log` 真实落盘；
+   `tree_io` 扩展 notebook/dismiss 序列化；score.py judge thinking 由 extra_body 嵌套改顶层字段
+   （原写法被 API 忽略 → judge 每判烧 2400+ reasoning token，实测修正）。
+
+**结果**：
+| | gate | crown(冷) | crown_rate | quiz 12题 | @recall | promotes |
+| 青 a | ✓ 全绿 | 88 | 0.260 | 5 (0.417) | 0 | 61 |
+| 蓝 b | ✓ 全绿 | 14 | 0.151 | 6 (0.5) | 155 | 106 |
+| 墨 c | ✓ 全绿 | 5 | 0.106 | 5 (0.417) | 299 | 49 |
+
+- quiz overall 0.444（run2 口径；原 score_cold.json 的 quiz 段混入作废轮事件 → 修正见 `quiz_corrected.json`）；
+  缺席期提及 a15/b38/c18；回归重放率 0。
+- **QA（树冷加载，3 树 × base/recall × 50 故事题 + 1 分析题，judge 关思考）**：
+  | 树 | base | recall | recall·测过36 | recall·冷题14 | 分析判分 |
+  | a | 0.02 | 0.18 | 0.222 | 0.071 | 5 |
+  | b | 0.10 | 0.26 | 0.306 | 0.143 | 5 |
+  | c | 0.30 | 0.64 | 0.722 | 0.429 | 5 |
+  检索增量 4-9×；被 quiz 过的内容显著更稳；冷题仅 c 保住 0.43；分析题全 5（三主体区分+逐字证据）。
+- **发现**：① c（零人格）身份错位——把"墨"安给 b、自己未命名（neutral 身份混淆复现）；② a 故事以 tool 原子碎片化
+  存在（代码打印读入，同句重复 5 次）→ 树最大 8.8k 原子但检索最差；b/c 用 @ingest 全量读入（409 原子）；
+  ③ 同轮双发 29/41 对重复（同一次生成双 @send-to 块）+ 跨轮重发 8/41（看到自己发过、无回复 → 再发）。
+- **共现**：运行时零边（对照组）；离线重放 821/789/755 边、最大簇 5 < N=8 → 零概括节点；消息网络 a 中心/c 边缘。
+- 产物：`ahi-bench/out/glm-4.7-flash/`（RUN_SUMMARY.md / events_cold_run2.jsonl / score_cold.json /
+  quiz_corrected.json / qa_summary.json / trees/ 26 gzip / qa/ / cooc_analysis/ / sandbox.tar.gz）。
+  作废轮存档 `backups/20260925_m0_partial/`；smoke 存档 `backups/20260925_m0_smoke/`。
+
+### 4.9 使用信号层（v3 自组织）：Phase A/B/C + 主题层协同（2026-09-26）
+
+**缘起**：v3 自组织全部押在 recall 上（信号源层调不动 + conn_weight 带动错配）；转向"从输出提取使用信号"。
+设计规格 = `realtest/USAGE_SPEC.md`（v0.4）；脚本 = `chatbench/usage_replay.py`（Phase A）+
+`usage_expand_bench.py`/`usage_expand_qa.py`（Phase C）+ `selforg_report.py`（协同）；产物 =
+`chatbench/out/usage_analysis/`、`out/usage_expand/`、`out/ctx_selforg{,2}/`。
+
+- **A1（2082 recall 边冗余率）**：边端点相似度 mean 0.650 / <0.4 占比 1.9%，随机基线 0.565 / 5.0%
+  → recall 共现边比随机更相似，**基本是向量相似度冗余**（与 u 轮无增量互证）。
+  口径：449 条含 Stage W/T 新建节点端点（全部为 node）被跳过。
+- **A2（答案影子重放，ctx_on_u/off_u 各 10 答案）**：结构感知切句 194/204 units；
+  T1 引用 105/100 units（129/117 边，零成本最高信噪）；复读 0；匹配边 225/257；
+  非冗余派生边（sim<0.58 且非树亲缘）14/26 条；**12 张核心卡跨 2–5 个独立问题复现**
+  （署名混淆/平台提问/账目主题）——每题噪声不会跨题复现，匹配有真信号。
+- **架构发现（重要）**：clean tiling 恒覆盖全文 → 严格"未注入命中"（T2 二值定义）恒空；
+  供给差别是**分辨率**（命中卡本身在屏 63 / 被 120–300 原子粗摘要覆盖 161 / 小摘要 0）。
+  T2 定义待改为覆盖跨度语义（USAGE_SPEC §5.2①，待拍）。
+- **裁定**：条件性 go。T1 层免费高信噪可直接记录；匹配层非冗余密度 ≈1.4–2.6 条/答案（单域语料下稀疏，
+  符合"密度 ∝ 多跳/跨域程度"定位）。
+- **三条修正已确认（2026-09-26）**：T2 改分辨率语义（`cover_span` 分档）/ 非冗余排除树亲缘 /
+  参数先拍（floor 0.25、θ 0.58、cover_span_max 60）。
+- **Phase B 已实现**：`realtest/usage.py`（`UsageLayer` sidecar + 纯函数核心；影子模式只记边不读；
+  JSONL 审计 `usage_outputs/usage_edges/usage_pairs.jsonl`）；live 挂载 `bench-a/b/c`
+  （`_build_user_ctx` 记屏上集 → `_execute_action` message 分支 `record_output`；`usage_shadow=true` 启用，默认关）；
+  离线 `usage_replay.py` 与运行时同源（import 同一分档函数）；`tests/test_usage.py` 13 项全绿（总 267）。
+- **机制条目已同步 AGENTS.md**（§4.9 + §11 五行参数）。
+- **Phase C 首轮判别（2026-09-26，负结果）**：两组离线语料零 LLM 留一实验—
+  `usage_expand_bench.py`（chatbench ctx 10 答案）+ `usage_expand_qa.py`（ahi-bench qa 3 树 × 51 答案）。
+  精确交集带动新增证据 **0**；覆盖感知 0（chatbench）/ 5（qa，全部来自单题工具原子重复伪影）；
+  相似度延伸对照 3/3；冗余边带动 3/0（≈相似度延伸，实证冗余边无额外信息）；
+  可达性上界 5.6% / 10.8%。**裁定：约束在边覆盖密度，不在选择器**；单域短史语料符合
+  适用域边界（USAGE_SPEC §7.1）。**读路径保持关闭**，未实现 live 接入。
+- **主题层协同（2026-09-26 拍定 + 实验：负结果）**：`cooc.py`（begin_session 跨查询配对 +
+  note_usage 事件汇入 + 成员证据序 + 触发输出 prompt + bring 交集/补齐）+ `usage.py` on_event +
+  `replay.py --selforg`；单测 `tests/test_selforg.py` 12 项（总 267 绿）。实验（ctx on 臂重跑，
+  run `ctx_selforg{,2}`，报告 `selforg_report.json`）：跨查询 recall 边 1835 条，sim mean 0.498
+  < 随机 0.580（97.7% < θ）——非冗余成立；主题出生 4–6 个/run、触发输出进 prompt；
+  但判别**交集/补齐新增证据 0**（旧 hub 3），稳定门槛 ≥4 零命中。两条负结果：① 非冗余 ≠ 有信息
+  （低相似同时是无关对形态，负向过滤不够）；② 交集触发 ≠ 带动有用（大杂烩图邻居 ≈ 任意卡）。
+  **协同层不接 live**，保留为观测能力（可审计的"使用凝结物"）。
+- **修复**：① UsageLayer JSONL 缓冲丢失（进程退出不保证 flush）→ `_sink` 每写 flush + replay
+  显式 close + 测试非空断言；② `bring` 存量 bug（ID 与 (id,type) 元组比较，排除从未生效）已修。
+- **下一步选项**：① live 采集（`usage_shadow=true`，数百轮输出边后同协议判别）；② 跨域基准；
+  ③ 冻结现状；④ 协同层调参（交集稳定门槛 / 概念去重）——当前证据不支持，优先级最低。
+
+### 4.10 ahi-bench 复现冷轮 + 场景评估（2026-09-26 20:27–21:24）
+
+**目的**：把 Phase B 挂载点同步进 provision 源文件后，以与 2026-09-25 完全相同的协议跑一轮零行为变更
+复现（`usage_shadow=false`，机制休眠；cooc 未挂载）。产物归档 `backups/20260926_ahi_run/`（含 MANIFEST）。
+
+**代码应用检查（关键修复）**：provision 从 `ahi-multi/agents/{lan,neutral}/agent.py` 复制生成 bench
+副本——使用信号层挂载点此前只打在 bench 副本上。已同步进源文件（md5 逐字节一致）；本轮验证
+provision → 三 agent 均带挂载且运行日志零 error。
+
+**结果**：
+- 评分初判 `RUN_INVALID` → **评分器边界修正后复评 `gates_pass`**（SPEC v0.2，两处均为时间戳边界、
+  非隔离违规）：① 青 a `g1_sys_to_absent=1` = 返程时刻 digest 与返回通知同秒落库（按 `msg_type=digest`
+  排除）；② 蓝 b `g2_return_meta=0` = 返回通知早于 driver `absent_end` 1 秒（±5s 容差）。
+  `g1_leak_receipts` 全 0；缺席期消息全部走存档（18/9/3 条）。新增 `--gates-only` 零 LLM 重评分，
+  保留 crown/quiz/memory——未重跑。
+- crown：a 262/0.677（窗口 387 条消息）、b 30/0.517、c 0/0；quiz 7/3/1（overall 11/36，上轮 0.444）；
+  QA（base→recall）：a 0.02→0.18、b 0.12→0.22、c 0.34→0.40；树 QA 覆盖 9/9/11、三树终态含遗言。
+- cooc_analysis：树内共现/消息网络正常；cooc 层重放三树 0 边（新"仅跨查询对"语义下离线单查询无会话，符合设计）。
+
+**场景评估（回答"新机制在本实验场景有用吗"）**：**没有用武之地，挂载休眠是正确配置**。三个证据：
+① 全部 1291 条消息中引用协议痕迹 **0** → T1（唯一免费高信噪档）在 live 不存在，只剩 T2/T3 低信噪匹配；
+② 任务形态 = 单域（一部 12k 字故事）+ 单跳（50 单事实 quiz）——正是 Phase C 已证"direct 已够"的形态；
+③ 输出形态（账目复述/闲聊/代码结果）落在 T3 改写冗余档。这是适用域边界的第三次一致验证
+（详见 `realtest/USAGE_SPEC.md` §7.3 与本轮 `RUN_SUMMARY.md`）。
+
+**平台关停核验**：level=1 触发 on_stop 存 tree_final → level=2 SIGTERM；8080/50000-50002 无监听、
+无 main.py/agent_runner 进程，零残留。
+
+### 4.11 会话总结（2026-09-27）：预算裁剪收紧 + heat burst + 活性审计 + smoke
+
+**背景**：紧接 §4.10（使用信号层复现轮与场景评估）。本会话聚焦"机制活性与预算严格性"，三项改动：
+
+1. **预算裁剪收紧**（`realengine._trim_chars`）：段①低 HP 节点/影子 → 段②**旧原子**（低 HP 优先；
+   **本轮新原子活一轮**——热区语义由"新近性"而非"卡种类永不裁"保证）→ 段③溢出 >
+   `budget*(1+hard_trim_slack=0.1)` 才硬截断（头保留尾砍）。新增 `trim_atoms`/`hard_trim` 事件；
+   **裁剪只动视野不动树**（被裁旧原子仍存活、可检索/合并）。测试 `test_realengine_budget.py` +2。
+
+2. **heat burst / auto_expand 补实现并重设计**（此前只有注释与死常量，从未实现）：
+   - 信号 = 回血封顶**溢出量**（`min(hp+recall_boost, max_hp)` 的截断部分；`core.retrieve` 新增
+     `_on_overboost` 钩子）；节点自身全额 + **直接父半权**（同轮自身命中的祖先不重复计）；
+     原子只计数不累积；热量存引擎侧、`tick` 衰减、**不随爆炸消耗**（冷却自动合回）。
+   - 触发：视野内节点 `heat ≥ expand_heat_threshold(60)` 且预算富余（使用率 < `expand_ratio`=0.85）
+     → **炸开**：全部子卡装得下**替换**节点项（子并集=父区间，覆盖不丢）；否则保留节点+追加
+     （追加走预算检查）。**脏/墓碑子卡不入**且阻断替换。零 LLM、只动视野、一层/轮。
+   - **默认关（拔出接口）**：`AUTO_EXPAND=False`；config `auto_expand: true` 打开（已透传进
+     provision 源文件 lan/neutral 与 `chatbench/replay.py`）。**论文实验 分层树 臂冻结、全臂 off**；
+     首秀 = ahi-bench ablation 臂（跨轮反复访问远端摘要 = 触发密集负载）。promote 保持独立（不共享热触发）。
+   - 测试 `tests/test_heat_burst.py` 12 项（含脏卡阻断/同轮去重/预算约束/替换覆盖/父半权防重复计账）。
+   - **口径注**：阈值"≈2 次封顶命中"依赖 tick/检索节奏——**回放≠部署**（§11 已标注）。
+
+3. **活性审计制度化 + 论文诚信检查**：AGENTS §9 新增第 11 条——发布前对拍定机制逐项三问
+   （有实现？有测试？有运行计数？），"没跑过的机制等价于不存在"（两次反例：demo recall 驱动层、
+   原 auto_expand）。**已改写文档中"auto_expand 已实现/已生效"的不实表述**（AGENTS §4.7/§11、
+   HANDOFF 行）；agent metrics 新增 `expands` 字段（heat burst 活性计数）。
+
+**Smoke（2026-09-27，deepseek-smoke，preheat2/absence1/observe2，~7.6 分钟，auto_expand=true）**：
+协议全链路正常（corpus_intro/topic/survey/缺席×3/quiz×3/遗言/done），三 agent 日志**零 error**，
+`metrics.expands` 字段就位（总 0），tree_final 的 engine events 无 heat_burst（短轮命中未到封顶，
+属预期）；平台/agent **零残留**关停。测试基线 **267 全绿**。归档 `backups/20260927_smoke_heatburst/`。
+
+**新会话接手要点**：① 变更集中在 `realtest/realengine.py`（trim + heat burst）、`core.py`（溢出钩子）、
+agent 三副本 + lan/neutral 源（透传/计数）；② heat burst 首秀需在 ablation 配置开 `auto_expand: true`，
+用 `metrics.expands` 与 tree_final `heat_burst` 事件核活性；③ 上会话（§4.9/§4.10）的使用信号层与协同层
+结论未变（不接 live、读路径关闭）。
+
+### 4.12 正式实验前代码审查与收口（2026-09-27）
+
+> 以"干净"为目标的系统审查（设计权威/代码一致性/冗余/补丁味/机制堆叠）。审查底稿见
+> `debug_review_20260927/`（临时，已 gitignore）。**以代码为准**修正文档；明显错误修代码。
+
+**明显错误修复（8）**：dismiss 裸数字误墓碑（改显式 `#id`）；`chattext` INI 自动识别 typo；
+`_src_cache` 内部重建后失效；热量记到死父；`qa.py` 忽略 `--tier`；`cooc.N` 配置漂移；`activation_count`
+提升后不重置；`usage.units_total` 与分档不同口径。各带回归测试。
+
+**收口（去冗余/去补丁/去堆叠）**：
+- `engine_kwargs`/`textutil`/`render_notebook` 收敛为**单一真源**；删除死参数 `attention_cap`、死码 `_shadow_content`；
+- `node_atoms` 统一"节点→区间原子"遍历；`core` 热路径改迭代；prompt/双字段解析/分组共用一份实现；
+- 合并压力单一入口 `merge_signal()`（force>regular）替代各驱动 if/elif 级联；`run2`/`chat_agent` 改条件式触发；
+- **删除预蒸馏**（休眠且计数被并行路径污染；**保留实测有用的并行蒸馏**）；
+- **删除云卡 stale 死机制**（无召回读者；`archive` 明确为版本谱系）；
+- 运行隔离（driver 清空本 run、qa/score 改 `"w"`）；删除补丁脚本 `recompute_t2.py`；
+- `COMPARE_REPORT.md` 标注作废（原把 gemma 数据标为 deepseek）；参数台账 §11 与代码逐项对齐。
+
+**测试**：`tests/` 267 全绿（含新增 rollback 对称性 fuzz、子区间拼满不变量等）。**未重跑现有实验**，仅 smoke 验证链路。
+
+**A/B 复核（改前 `84fb726` vs 改后，2026-09-27）**：小语料 bench_qa（`realtest/seed`，41 facts），
+同参数各 2 seed（42/7），改前用 git worktree 隔离运行：
+| 指标 | 改前 | 改后 |
+| 1a 答对 | 34/64 = 53.1% | **36/64 = 56.2%** |
+| 1a 检索命中 | 53/64 = 82.8% | **逐位相同** 53/64 |
+| 1b | 2/16 | 2/16 |
+| Phase2 编辑校验 | 19/21 = 90.5% | 20/21 = 95.2% |
+
+结论：**重构未掉能力**（检索可达性逐位一致，Q/A 与编辑校验持平略升；无 crash，耗时/树形同量级）。
+仅有的行为差异：`@span` 上限由"误用 EXPAND 80/3000"校正为文档值 SPAN 40/1500；run2/chat_agent
+合并触发改条件式（对齐已拍设计）。预蒸馏/云卡 stale 删除均为休眠死机制。
+（A/B 产物留在 `realtest/out/ab_{base,curr}_{42,7}/`，gitignored；此 bench 非可复现，仅作能力判据。）
+
+### 4.13 论文级编辑风暴实验框架 + 全量跑（2026-09-27）
+
+> 目的：把"结构买正确性"做成**干净 2×4 因子矩阵**（更新策略 × 结构），并有基线坐标。
+> 框架 `realtest/editbench/`（本轮新建）。**单文档单 seed pilot，非论文数字**。
+> 方案 A（用户拍定）：编辑/构建各 1 次，**只重复作答**；每臂 API key 隔离计费。
+
+**协议**：seed2《缠枝莲》12k 字（全文）+ 预注册 30 题（5 反转 / 5 不变 / 20 远端控制，
+细节 两枚→三枚银圆 / 删句 / 续写），零 LLM、新文档唯一、所有延续臂同一台账。
+Phase3 8 臂 Q/A（`--repeats 3`），Phase4 8 臂复述（两层：自动 checklist + judge 留接口）。
+
+**结果（全量跑，N=3，glm-4.7-flash，temp 0，每臂独立 key）**：
+
+| 臂 | Phase1 总 | Phase3 总 | Phase3 **反转** | 复述 覆盖 / 旧残留 |
+| full   | 87% | inc 87% / reb 88% | inc **12/15** / reb 15/15 | inc 100% / **100%** · reb 100% / 0% |
+| flat   | 89% | inc 67% / reb 88% | inc **0/15** / reb 15/15 | inc 50% / 50% · reb 75% / 0% |
+| 递归聚簇树 | 78% | inc 60% / reb 80% | inc **3/15** / reb 15/15 | inc 42% / 42% · reb 100% / 0% |
+| 分层树| 73% | inc 69% / reb 70% | inc **13/15** / reb 15/15 | inc **100% / 0%** · reb 100% / 0% |
+
+**编辑时刻成本**：full 0.03ms / flat 120ms / 递归聚簇树 46ms / **分层树 即时编辑路径 0.57ms（零 LLM）**，
+推迟蒸馏 3.43s（懒重建摊销）。计量按臂独立 key 落 `results.json.tokens`。
+
+**读数**：
+1. **重建四臂反转全 15/15**（重建即恢复正确性，但付构建成本）；**延续臂反转 = 分层树 13 >
+   full 12 > 递归聚簇树 3 > flat 0**——分层树 是唯一"延续即可用"的结构（区间失效 + 懒重建）；
+   flat/递归聚簇树 的 append-only 延续被旧内容淹没（缺区间失效机制）。
+2. **复述轴 分层树 唯一"100% 覆盖 + 0% 残留"**；inc_full 覆盖也 100% 但**旧残留 100%**
+   （点问能答、全局视图被旧文完全污染）；flat/递归聚簇树 中间。→ 结构买的主要是"全局一致性"。
+3. **结构固有差异（不变/远端题）**与编辑策略无关（inc≈reb）：full/flat（87-89%）> 递归聚簇树
+   (78%) > 分层树 (73%)——tree/递归聚簇树 受检索预算+组装预算限制，属结构特征，非编辑缺陷；
+   因此**编辑效应干净隔离在反转题与复述轴上**。
+4. **方差警示**：temp=0 下 3 遍几乎逐位相同（std ≤2%）——"重复 N 遍平均"在 temp 0 下不产生
+   采样方差；要真方差须 temp>0 或换解码种子（本实验的 3 遍只验证管线稳定性，非统计重复）。
+
+**KV 缓存前缀命中探针（`cache_probe.py`，2026-09-27）**：成本排序显示 full/flat 便宜、tree/递归聚簇树 贵。
+用 DeepSeek `prompt_cache_hit/miss_tokens` 实测（同一文档基线臂连续 12 问）：
+| 结构 | 缓存命中率 | 累计 prompt token | 机制 |
+| full | **0.98** | 106.6k | 文档全文为跨问题**稳定前缀**，仅问句变 |
+| flat | **0.95** | 43.0k | 同域文档 top-12 chunk 集合/前缀高度重合 |
+| 分层树 | **0.33** | 83.7k | 每问重组装 + 召回影子按位置槽插流 + 节点重建 → 前缀不稳定 |
+| 递归聚簇树 | **0.22** | 49.7k | 检索按分数排序 → 前缀随 query 漂移 |
+结论：**前缀稳定性解释了单位 token 成本**（full/flat 高命中），而 tree 还叠加**最大且随影子累积增长的上下文体量** → 绝对成本最高；递归聚簇树 体量小故总价低于 tree，但命中率最低。可注入稳定性改进（需用户拍定，属设计变更）：把 query 相关的召回影子**移到稳定全局铺陈之后**（牺牲位置序连贯性换前缀可缓存）。`llmclient` 已加 hit/miss 采集 + `MeteredLLM` 累积。
+
+**tree 预算对齐 + 成本分析（2026-09-27，用户拍定）**：
+原 tree 预算 16000 字符（每问 ~7k token ≈ flat/递归聚簇树 的 2×；跨题影子累积、评测中途还会触发蒸馏）。
+两处修正：① `分层树臂` 每题 `reset()` 清空检索累积（对齐 `compare.py` 口径，消除重复作答漂移）；
+② `context/retell` 改 `allow_merge=False`（评测期纯组装，不在中途蒸馏——§4.5.7 mid-loop 不 merge）。
+③ `--tree-budget 7000`（实测校准：6000→12问累计 40.3k≈flat；8000→45.4k≈递归聚簇树；7000≈43k）。
+对齐后 inc_tree 每问 4178 token 且稳定（原 3313→6056 漂移消失），prompt 总量 **1,539,161→850,757（−45%）**，
+reb_tree **857,415→491,272（−43%）**；**inc_tree 反转题 13/15→15/15**（更干净视野 + 无中途蒸馏），
+复述仍 100%/0%。对齐跑（`out/full_r3_tree7k/`，N=3）其余臂不变。
+
+成本分析（读 API 返回体 `usage`，示例价 hit $0.028 / miss $0.28 / out $0.42 每 M token）：
+| 臂(key) | prompt | 命中率 | 输出 | 估算$ |
+| flat(2r) | 330k | 94.5% | 9.5k | 0.018 |
+| flat(2)  | 588k | 94.1% | 6.1k | 0.028 |
+| full(1r) | 831k | 97.4% | 11.3k | 0.034 |
+| 递归聚簇树(3r)| 347k | 72.1% | 9.3k | 0.038 |
+| 递归聚簇树(3)| 649k | 79.0% | 8.1k | 0.056 |
+| full(1)  | 1,643k | 97.7% | 15.1k | 0.062 |
+| tree(4r) | 491k | **20.7%** | 24.0k | 0.122 |
+| tree(4)  | 851k | **41.8%** | 21.0k | 0.157 |
+→ **tree 两组仍最贵**（低命中 + 输出更长），full/flat 最便宜（命中 94-98%），与用户账单粗序一致。
+tree 命中低的根因 = 每问重组的组装体（非固定文档前缀）。
+
+**待精化（正式跑前）**：① 确定性片段判分对改写敏感 + `forbid` 会误伤"先引旧文再标已删除"的
+② 多文档（叙事/技术/混合）替代单文档以增泛化；③ temp>0 才谈重复采样方差。
+实现侧：`tests/test_editstorm.py`（12 项，零 LLM）；测试基线 **267 全绿**。
+产物 `realtest/editbench/out/full_r3/`（16k 基线）、`out/full_r3_tree7k/`（对齐）、`out/cache_probe/`（均 gitignored）。
+
+### 4.14 正式轮框架 + 《沙箱四声》剧本草稿（2026-09-30）
+
+> 用户拍定：文档用 ahi-bench 数据改成剧本（≥100k）；作答 temp 0.5、蒸馏/judge temp 0；
+> 5 遍；存树结构。本轮**只搭框架 + 出草稿，不跑完整 5 轮**。
+
+**文档**：`realtest/editbench/ahi_script.txt`（《沙箱四声》，346k 字符 / 7 幕）——由
+`gen_script.py` 确定性改写 ctx_run 四智能体沙箱探索实录（青/白/墨/蓝 716 条消息）成剧本
+（人物表 + 按 10min 分幕 + 逐条对话 + 收信人指示）。事实/名字/题库/编辑场景配套产出：
+`ahi_facts.md`（27 条）、`ahi_names.txt`、`questions_ahi.json`（5 反转/5 不变/15 远端）、
+
+**框架升级（docbench.py + arms.py + judge.py）**：
+1. **温度拆分**：`--answer-temp 0.5`（作答采样方差）/ `--distill-temp 0`（结构确定）/
+   `--judge-temp 0`（判分确定）——`make_arm` 改收 distill_llm + answer_llm 两路，各自 MeteredLLM
+   分表计量再合并（同 key）。此前两者共用一个 client（蒸馏也带噪声，污染"结构"自变量）。
+2. **全存 5 遍**：`results["answers"][arm] = {qid: [5 遍答案]}`（原只存末遍），供方差与人工抽检。
+3. **存树结构**：`--tree-dir` 检查点——`tree·base` / `tree·inc_edited` / `tree·inc_settled`
+   （`dump_tree` JSONL）+ `tree·inc_final`（`tree_io.save_tree` gzip）+ `reb_tree`。用于事后
+   验证"编辑是否真把区间失效/重组了树"（H3 硬证据）。
+4. **LLM judge**：`judge.py`（temp 0）——`judge_pass`（反转题语义判，能识别改写 + 区分
+   "引旧文再标已删"vs"当当前事实"）、`judge_rot`/`judge_retell`（复述残留/覆盖）。`--judge` 开关。
+5. `--scenario {seed2, ahi}` 选编辑场景。
+
+**验证**：`tests/test_editstorm.py` 12 项（新增 ahi 场景 2 项，零 LLM）；测试基线 **267 全绿**。
+dry-run：full 臂 ahi 文档 1 题（temp 0.5，~222k token/问）；tree 臂 seed2（存树 5 检查点落盘）。
+
+**tree 试跑（2026-09-30，346k 原稿）**：`--scenario ahi --structures 分层树 --repeats 1 --model glm-4.7-flash`
+→ P1 基线 18/25；P3 inc/reb 各 14/25（反转仅 2–3/5，复述覆盖 40%）；编辑路径 11.8ms vs 推迟蒸馏 313s；
+~1400–1700 调用/臂、~30 万 completion token（9371 原子 → 1351 节点摘要）。诊断：**文档对 16k 预算过大（22×）**、
+
+**据试跑修订（2026-09-30，用户拍定"预算比 ~10× + 先修锚点/缩文档"）**：
+① 文档缩到 **acts 1-3 = 147k 字符（9.2×）**（`gen_script.py --acts 3`；丢弃 act4+ 事实 fork/hello/八个路径/45次）；
+细节 hostname、情节 `单进程→双进程`、**新增整段改写**（白对 shadow 可读性的最终结论反向，供复述/judge/连贯性分析）、续写终章；
+③ 事实/题库重配：22 题（5 反转 / 5 不变 / 12 远端），锚点已脚本校验 0 问题；`tests/test_editstorm.py` 同步（12 项，267 全绿）。
+**待拍**：编辑工具调用上下文的口径（建议：只作编辑期输入、materialize 进各后端，不进树、不进 QA 上下文——消除
+full 带台账/tree 不带的现有不对称）；整段改写的**前后文衔接连贯性 bonus 分析**。
+
+**147k 重跑（2026-09-30；已修工具上下文：FullArm 改为 append-only，台账不进 QA）**：
+P1 17/22 (77%)；P3 inc 11/22 (50%, 反转 1/5) / reb 15/22 (68%, 反转 2/5)；复述覆盖 40%/20%、残留 0/0；
+编辑路径 7.4ms、推迟蒸馏 110s（346k→147k：蒸馏 313→110s，completion 301k→117k）。**关键诊断**：编辑机制**正确**
+出现 0 次**——摘要把细节压没了，QA 组装体仅 ~2457 token（tiling 32 项 + 6 检索影子）→ 模型只能答"文档中无此信息"。
+**瓶颈 = 检索召回/摘要细节丢失，不是编辑机制**。下一步 = 调 `retrieval_budget`(6→~20) / `assembly_budget`(16k→24-32k) /
+或让命中摘要下钻到原子（叶子展开）。
+
+**叶子展开 + retrieval 20 试跑（2026-09-30）→ 负结果，全面变差**：P1 6/22 (27% vs 77%)、inc 8/22 (36% vs 50%)、
+reb 5/22 (23% vs 68%)；连原本答对的 R_F06(network) 都变"无此信息"。诊断：`expand_leaves` 把检索到的**摘要替换成其后代原子**，
+而① 原子是旧内容（低 HP）→ `_trim_chars` 阶段一优先裁影子；② 展开受 `expand_atom_cap=200/char_cap=8000` 截断，大节点的
+具体原子常被截掉；③ 承载答案的**简明摘要被丢弃**、细节又没捞回来 → 净负。**结论：叶子展开不能用"替换摘要"实现**，
+应改为"保留摘要 + 仅在节点跨度小时追加原子"或先调纯 recall（`retrieval_budget` 单加）——待用户拍。
+
+**根因锁定 + 修复（2026-09-30）：编辑风暴后占位卡淹没上下文体**。`分层树臂.settle` 原只 `tick(1)+merge`，
+编辑产生的新原子 HP=100（热）→ 其祖先链全部变成**占位卡（value=None）**且永不冷却。实测 inc 树 settle 后
+**181/527 节点为占位、tiling 61→32**，QA 组装体只剩"【占位：概要暂缺】"→ 反转 1/5。**修复 = 加冷却窗口**
+（`tick(45)+merge; tick(30)+merge`，对齐 `bench_qa` Phase 2）。在已存的 inc 树上就地验证（**未重建**）：
+占位 **181→0**、tiling 32→4、QA **9/22→18/22**（反转 1/5→**3/5**、不变 2/5→**5/5**、远端 6/12→10/12）。
+`retrieval 20 + budget 24k + 冷却` 为当前最佳配置。
+
+**干净修复轮 + 编辑效果 bonus（2026-10-01）**：修 `apply_ledger` 漏处理 `passage`（此前整段改写被树静默跳过）；
+`retr20/budget24k/冷却` 重跑：**P1 19/22 (86%)、inc 18/22 (82%, 反转 3/5, 不变 4/5, 远端 11/12)、reb 15/22 (68%)**；
+占位 0、tiling 4、全局视图 875 字。**注意**：本轮墙钟 ~17h——网络波动使冷却期 settle 挂起（串行和 7.15h = 超时+串行重试），
+完事于 10-01 15:18；**冷却在大树上会全树重合并 → 上千次蒸馏 → 网络抖动即雪崩**，需硬化（限幅冷却 / 超时重试 / 更小文档）。
+
+`bonus.py`（编辑效果分析，**有效数字**）：
+- **摘要层旧内容残留**：6 编辑中 5 个干净（rename/hostname/立场/整段改写/续写：存活摘要节点旧值 0）；**仅"单进程"残留 2 个节点**——
+  且这 2 节点是 ver=2 的**新摘要**（created_round 390/402）在"自我调和"（"早期单进程…结论为双进程"），
+- **全局视图（无 query）旧值泄漏 0**；原子层新旧完全正确（旧 0 存活）。
+- **重写段连贯性 LLM judge = 否**："新段称敏感文件被单独加固，与上文 /etc/shadow 可读、8 路径全可读直接矛盾"——
+  编辑只改一行，同类断言文中尚有 15+ 处 → **新文档自相矛盾**；整段改写须全局一致或选唯一断言。
+- 复述旧残留 25%（`单进程` 经摘要回潮）。
+
+**编辑效果结论**：失效/失效在**原子层完全干净**、**摘要层基本干净**（唯一残留是 LLM 自我调和）；真正的短板是
+① 重写段的**全局一致性**（编辑设计）；② 摘要太粗→细节靠检索（针尖失效）。
+
+**正式轮参数与场景修订（2026-10-01，用户拍定）**：
+① **`initial_hp` 100→70（§11 已入册）**：组均继承机制保留（父 = 70 + 1.0×组均 ≈ 80–95）——"继承完的节点 HP 一般
+高于原子初始 HP"，层级涌现的数值保障；同时占位期 10→~2.5 tick（冷却需求大降）。注意：注意力窗口拆分理由里
+"原子 HP 起点高"已随此拍定改写。tests 同步（test_merge 数值 oracle 更新），**267 全绿**。
+② **场景 v2 扩样例**：10 编辑、旧文本覆盖 **16,253 字符**（10–20k 区间）——整段改写取**全局唯一断言**（墨的 6 路径
+③ **待 sweep 的问题 3 参数**：注意力窗口（`attention_in_decay`/`attention_out` 的占位期影响）、
+`attention_node_cap` 20→60（节点 churn）、force 合并分层限幅（"优先合并低 HP 项"不可按 HP 重排——破坏位置连续
+不变量；等价物 = 阈值分层 + 每轮限幅）。正在跑 `ahi_tree_hp70`（新默认值 + retr20/budget24k/冷却）。
+
+**正式跑前待办**：① 人工审草稿（anchors 是否都命中、事实 gold 片段是否精确）；② 决定
+`ahi_script.txt` 是否入库复现（其来源 corpus 已 gitignore）；③ 逐臂 key 与
+`keys.local.json` 对齐；④ 跑 `run_ahi.sh`（--repeats 5 --judge）。
+
+**会话收尾（2026-10-01）**：本会话全部实验与发现汇总于 **`realtest/editbench/EXPERIMENT_REPORT.md`**（结果表/根因/bug/待办）。
+`ahi_tree_hp70` 跑完（P1 19/26、inc 19/26 反转 5/11、reb 17/26）后诊断出**整段改写未进树的 bug**（`apply_ledger` 无
+passage 分支 + 按整段找句子原子），已修（`editstorm.replace_passage` 句粒度 + tree 走 rewrite 分支），**待重跑验证**
+
+**审查追加修订（2026-10-01，公平性/效度）**：复核产物 + 按「无实现 bug / bench 公平 / 有区分度」审计后——
+① **`delete` 整卡误删 bug**（聊天列表行被杀句器并进大原子，整卡墓碑连带删掉 `pid: 1`/`procs`/可写路径等未指定删除
+事实；已改为只移除目标子串、保留残句）+ `judge.py` 三级容错解析失效修复；② `ahi_tree_hp70` 在 passage 修复前
+完成，其 passage 相关 inc 结果**作废**；③ 判分改**流水线**（确定性初筛 → 仅失败样本过 judge 复核）+ `docscore.check_spec`
+**句内匹配**（消灭 `norm_cjk` 去标点的跨句误命中）；④ 使用史**分离而非删除**：新增 `inc_cold_tree` 臂，全部臂在
+「Phase2 结束点快照 / 每遍作答前 restore」（重复测量独立）；⑤ 预算接受为结构属性，新增 `--flat-topk` 附录旋钮；
+run 脚本改 `--answer-temp 0.7 --repeats 5 --judge`。代码：`realtest/editbench/{arms,docbench,docscore,judge}.py`；
+测试 **267 全绿**（editstorm 12 项，新增句内判分/judge 复核 2 项）。
+
+**冷却修复 + seed2 3×8（2026-10-01）**：⑥ `分层树臂.settle` 原 `tick(45)+tick(30)` **过量**——`decay=8` 时约 9 tick 全卡
+HP 归零，75 tick 使全树低 HP → merge 把整篇压成 3 个根摘要（铺陈 50→3、复述覆盖 100%→14%）；改为**最小冷却**
+`tick(1)+merge; tick(_COOL_TICKS=4)+merge`（env `EDITBENCH_COOL_TICKS`）。Dummy 结构重放证明 cool=4 解占位且不塌
+（旧 27→2；cool=4→18/占位0；cool=0 占位23；cool=8 过并→5）。⑦ 新增 gzip 检查点 `base`/pre-settle `inc_edited`/`reb`（可零
+**seed2 3×8 正式轮（cool=4；`out/seed2_r3_8arm_cool4`，tree 重跑 + full/flat/递归聚簇树 复用）**：追加式延续反转
+12–16/45、复述残留 39–89%；tree 增量反转 41(warm)/41(cold)≈reb 42、复述 100%/86% > reb 71%、残留 0%。
+→ 旧"tree 复述低"是冷却假象；**编辑失效机制（原地失效 vs 追加）的判别在修好冷却后成立**。**ahi-act 扩题已完成**
+（11→17 反转，5 类 ×3 全齐；+8 不变/16 远端 = 41 题；新增第 3 删除编辑；评分器级锚点校验 bad=0）。
+
+**格式公平 + A/B（2026-10-01 下午）**：⑨ append 臂（full/flat/递归聚簇树）的编辑结果改**逐次工具调用的 function-calling 块**
+（`editstorm.tool_block_units`）——旧平铺 dump 使 full 反转仅 12/45（假象）；改后 full 12→41、flat 15→21、递归聚簇树 16→23，
+**反转轴 `inc_tree≈inc_full≈reb`，tree 独有优势落在复述轴（100%/0%）**。⑩ `分层树臂.edit_signal` 开关 + `--edit-signal`
+`{on,off}` + `--edit-signal-ab`（额外障碍臂；run_ahi.sh 已挂）；`ab_edit_signal.py` matched-pair A/B：
+**复述轴 signal 一致更好**（warm 100 vs 86、cold 81 vs 71），Q/A 冷树 signal 更好（103 vs 97）、热树略差（101 vs 108）
+→ 主张定为"编辑作使用信号利于**全局巩固**，Q/A 是热冷权衡"。⑪ `replay_trees.py` 零重建重放（ahi tree 16k/retr20 只 5 分钟）。
+**正式两表 + 结论 + 数据位置见 `realtest/editbench/REPORT.md`。测试 267（editstorm 13）。**
+
+
+### 4.15 占位透明修复 + bench 并行化 + 人格保持实验设计（2026-10-02）
+
+**A. 占位卡透明（机制修复，已提交 `2947cbf`）**
+- 问题：占位卡（`placeholder=1`）与 `value=None` 的干净节点被渲染成"【占位：概要暂缺】"，且占位卡参与
+  **注意力窗口 / merge / 召回路径 boost / shadow**，污染视野与机制资源（实测 ahi warm 树 `N4225` 即 `value=None` 未生成摘要节点）。
+- 修复：`placeholder_transparent`（AGENTS §4.6/§11，默认 on）——渲染递归展开子卡；注意力窗口排名 /
+  `merge_pressure` / `_find_merge_runs` / 召回路径 boost+输出 / `_inject_shadows` / `_shadow_slot` 全部跳过占位卡。
+- **收益（ahi 树臂复用旧树重跑，只换新代码）**：Q/A 三树臂 +7~11 点；`inc_tree` 反转 52→**70/85 追平 `inc_full`**；
+  复述无实质回退（一遍离群）。→ 旧"ahi 反转不追平"主要是**占位污染假象**（详见 `realtest/editbench/AHI_ACT_REVIEW.md §5.6`）。
+  > **⚠ 2026-10-04 更正**：该 rerun 用 `replay_trees.py`（CLI `--retr-budget 20`）对比 `ahi_r5`（`docbench` 实跑
+  > retr=6，CLI 被 config 覆盖）——**+7~11 点绝大部分是 retr 6→20**，不是占位透明。同代码 base 树 2×2：
+  > 透明 ≈ +1、retr ≈ +13。见 §4.16 与 `EXPERIMENT_REPORT.md §6.5`。
+- 测试：`tests/test_assembly.py` 更新 2 + 新增 1，**268 全绿**。
+
+**B. bench 四结构并发（方案 B，已提交 `924c3e3`）**
+- `docbench` Phase1/3/4 原为串行循环（唯一并发 = 单棵树的蒸馏线程池）。四结构**互不共享状态** → 拆 4 进程并发
+  （`run_parallel.sh`）+ 合并（`merge_results.py`）；`run_ahi.sh` 改为并发 wrapper、新增 `run_seed2.sh`，输出 `*_par/`。
+- ahi 统一口径产物 `realtest/editbench/out/ahi_r5_combined/`（旧 full/flat/递归聚簇树 + 新 tree；占位只影响 tree）。
+- ahi A/B（旧占位行为）：暖树 signal 复述更好（64>44）、冷树更差（20<30）、Q/A obstacle 略好 → **热冷权衡**
+  （`AHI_ACT_REVIEW §5.7`）。
+
+**C. 下一步实验：人格保持的架构对比（设计定稿，SPEC = `ahi-bench/PERSONA_RETENTION.md` v0.1 草案）**
+- 目标：固定模型/协议/人格集，只变记忆架构（`分层树` vs `rolling+flat RAG`），测**人格淡出后**的保持/趋同。
+- 编排 **2×3×3**：每次 2 实例（**臂同质、互不可见**）× 3 agent（3 份不同人格）；3 run（seed 42/43/44）= 18 agent-life；
+  实例内 3 同臂 agent 互聊 + 实验员注入话题。
+- 人格（旧 ahi-multi `config.json.benchoff` 性格段，**解耦互指**）：**林深（理性）/ 墨白（诗意）/ 澜（健谈）**。
+- 淡出：round 40 **全员**淡出；tree 把人格局写入树（`source=persona`）、baseline 折进 rolling 被压缩——
+  **这是 treatment，必须显式声明**（趋势同 = 人格丢失的可证伪代理）。
+- 模型：被测 `glm-4.7-flash`（= glm-4.7-flash）**关思考**、temp 0.7；judge `glm-4.7-flash` **开思考**（effort 默认）、temp 0。
+- 主判据（预注册）：臂内 3 人格两两**趋同斜率 `tree < baseline`**；judge **人格遵从率 `tree > baseline`**。
+- **待实现**：`FlatRAGAgent`（rolling + bge flat 检索 top_k=6 + 每轮 auto-preretrieve）；provision 支持
+  `architecture: flat_rag` + 每 agent 独立 persona + 2 实例编组；`config/persona_retention.json`；
+  score/analyze 加趋同斜率 + judge 遵从率；smoke → 3 run。**详见 SPEC §10**。
+
+### 4.16 Q/A bench 韧性臂：强模型（思考）/ 强向量（bge-large）+ retr 混淆更正（2026-10-04）
+
+**目的**：封堵 Paper 1 两条审稿攻击线——①「full/append-only 的编辑后过时是 flash 太弱，强模型就能
+in-context 改对」；②「flat/tree 结论被小向量模型 bge-small 拖累」。控制变量 = 答案侧深度思考 / 向量模型规模。
+ahi（147k）× 41 题 × 5 遍，temp 0.7，retr20，judge on，`glm-4.7-flash`（蒸馏侧不开思考）。完整表与命令
+见 `realtest/editbench/EXPERIMENT_REPORT.md §6`。
+
+**结果（Q/A 总/反转；复述 覆盖/残留）**
+
+| 条件 | P1 | inc | reb | inc 复述 |
+| full no-think（存档） | 196/反78 | 179/反70 | 195/反76 | 24%/12% |
+| **full THINK** | 202/反83 | **198/反79** | 200/反82 | 84%/34% |
+| flat no-think | 181/反68 | 178/反65 | 172/反59 | 36%/20% |
+| flat bge-large | 181/反71 | 176/反61 | 174/反64 | 0%*/8% |
+| **flat THINK** | 187/反74 | **189/反76** | 188/反73 | 40%/26% |
+| tree no-think | 171/反64 | 182/**反84** | 197/反82 | 64%/**0%** |
+| tree bge-large | 167/反62 | 178/反74 | 185/反80 | 58%/**0%** |
+| **tree THINK** | 177/反69 | 182/反80 | 186/反81 | 80%/**0%** |
+
+**结论**：
+1. **模型（思考）能提**：召回（三结构均匀 +6）、append-only Q/A（full +19、flat +11）；
+   **提不动 tree 暖 inc**（182 持平、反转略降 84→80）。
+2. **结构能提、模型提不了**：编辑后复述**零残留仅 tree（恒 0%）**；full/flat 无论是否思考都残留 20–34%
+   （full 开思考后 12%→34%：更长更完整的复述把 append-only 旧内容也带出）。
+3. **强向量 bge-large 全层面无增益**（tree 暖 inc −4、flat −2；仅 tree cold +8）。
+4. 分工一句话：**召回/理解靠模型，编辑一致性靠结构**。tree 独有优势（复述零残留 + 编辑正确性 + 作答 token ≈ full 1/10）非弱模型假象。
+
+**代码改动（未提交）**：`realengine._load_encoder` 支持 `WATERCYCLE_EMBED_MODEL`（指定即不静默退化）；
+`llmclient.DeepSeekClient` 加 `thinking` 显式开关 + `DEEPSEEK_READ_TIMEOUT`；`docbench.py` 加
+`--answer-thinking/--distill-thinking`、**修复 `--retr-budget/--budget` 被 config 静默覆盖的 bug**、进度埋点；
+`tests/` **303 绿**。
+
+**⚠ retr 混淆更正（含 §4.15 A）**：`docbench` 原 `cfg.get("retrieval_budget", args.retr_budget)` 使 config 的 6
+恒赢 CLI 的 20 → `ahi_r5`/`ahi_r5_par` 实跑 retr=6，而 `replay_trees.py` 用 20 → §4.15A 的「占位透明 +7~11」
+是 **retr 混淆**（同代码 base 树 2×2：透明 ≈+1、retr ≈+13）。本次全部用 retr20 + 当天同代码基线
+（存档基线已随代码漂移：存档 tree inc 174/反70 vs 当天 R0 182/反84）。产物 `out/ahi_strong/*`。
+
+
+## 5. 注意事项（2026-08-13 架构审查结论——非 bug，但下阶段需留意）
+
+1. **轨道B 未进机制层**：`nb_set/nb_render` 只在 realengine.py（应用引擎），core.py 桩引擎没有 notebook → §8.1 属性测试覆盖不到轨道B，换应用（如聊天）要重写。**建议下一步迁移进 core.py**。
+2. **`span_atoms` / `expand_leaves` 遍历已统一**（2026-09-27）：唯一遍历入口 = `core.Engine.node_atoms`，
+   截断为共享 `_cap_atoms`；两者仅上限/脏卡语义不同（span 不跳脏、expand 跳脏），调用点已改为单次调用。
+3. **`attention_out` 三职责耦合**：同时是 ① 加速衰减线 ② force 合并线 ③ 计数口径。调它 = 同时改三处行为，无法单独调优。建议解耦或文档显式声明。
+4. **force 合并成本**：蒸馏 0.5→2.9 次/轮。需要 metrics 增加"蒸馏成本/千字"观测，并考虑 force 节流（如每 N 轮最多一次）。
+5. **注意力排序 O(n log n)/tick**：未在 30 万句压力规模验证。规模上要剪枝（原子数>cap 才排序）。
+6. **参数台账已与代码逐项对齐（2026-09-27）**：§11 现为代码实况（含孤儿参数入册、幽灵参数删除）；
+   但**数值仍多为先拍值**，仅 `find_similar_threshold=0.8` 校准完成。校准流程（§8.3）未执行。
+7. **窗外滞留现象**：pressure_threshold=2.0 下窗外原子可能滞留铺陈 80 个左右（< 阈值不触发合并但已占预算）——观测数据表明"窗外计数按铺陈口径"后数字合理，但滞留未消。
+8. **模型选择**：glm-4.7-flash 会挂起（实测轮 1 就卡死），**改用 glm-4.7-flash 正常**（~2-15s/轮）。config.json 已改。
+9. **向量模型离线加载**：realengine 已强制 `HF_HUB_OFFLINE=1` + `local_files_only=True`（本地缓存，2s 加载）。每次联网检查更新会挂死。
+10. **span 工具从未被模型主动使用**（v9-v11 全是 0 次）——叶子展开自动化后 [span] 的存废待评估；
+   2026-09-27 已把 [span] 改为直接使用 `span_atoms` 返回（不再二次遍历），但**仍无单测/无运行计数**（§9.11 待补）。
+11. **长上下文漂移是当前最大质量瓶颈**：修复方向 = 轨道B 强化（初始化预置状态条目 + [note schedule] 伏笔账本 + plan 实体强制检查），见 §6 路线图。
+12. **共现层带动选择瓶颈（chatbench 结论）**：概括节点聚类正确，但按 `conn_weight` top-k 带出的成员与
+    "问题需要哪条证据"错配，T3 引用∩hub 全 0。可试方向：只带"与直接命中卡有共现边"的交集成员（不退回相似度）、
+    抬高 θ/N 拒绝大杂烩簇。
+13. **评测口径易被答案风格污染**：T2 证据指标受答案长度/引用密度影响（全量发送写长报告少引用 → 覆盖被压低）。
+    建议：统一引用语法已成硬约束；继续保留"引用有效/引号属原msg/引号可验(format-agnostic)/引/千字"分列，
+    不合成单一分数；对照人类分析的判定需人工抽检分歧样本。
+14. **compare.py 的两处协议修复未重跑**（见 §4.7）；`COMPARE_REPORT.md` 已标注**作废存档**（原把已作废的
+    gemma 数据标为 deepseek），任何四臂结论在重跑评分前都不可引用。
+15. **评分任务易被杀**：`score_compare.py` 已增量写盘；后台长任务避免只依赖 `nohup &`（abort 工具调用会杀子进程），
+    务必核对 `cmp_score.json` 的 `_meta.updated_at/partial` 再读数。
+16. **组装 per 工具调用的成本教训（2026-09-25 实测）**：组装纯计算 ~1ms/次（非瓶颈）；成本 = loop 调用次数 ×
+    每次调用输入体量（旧回执串 ~30 token → 全组装 ~10-13k token）。行动派 agent（每轮 17-21 次工具迭代）单轮 90-130s。
+    连续唤醒（loop 重排 pending）消除积压后不再阻塞；若再超，候选旋钮 = loop 组装独立预算（未启用）。
+17. **平台中立原则（2026-09-25 拍定）**：任务行/待回复清单必须是事实陈述，禁止"可继续未完成事项"式正性行动邀请——
+    它与"看到自己发过、无回合状态"叠加是重复发送的自然吸引子（实测 41 对重复：29 同轮双发 + 8 跨轮）。未完成事项
+    应经检索随扰动源自然浮现，不靠空轮指令。（已收录 AGENTS.md §4.5.9。）
+18. **judge 关思考的两处坑（2026-09-25 实测）**：① OpenAI SDK 的 `extra_body` 会被合并进请求体顶层，原始 HTTP 必须
+    直接放顶层 `"thinking":{"type":"disabled"}`——嵌套进 `extra_body` 键会被 API 忽略（实测 judge 每判烧 2460 reasoning
+    token）；② 实验 agent 走 `make_client`（`thinking_budget=0` 默认关），基线 agent 走 `model_config.extra_body`，两边都要查。
+19. **events 文件跨 run 追加（已缓解）**：`driver.py` 初始化即清空本 run 的 timeline/events；`qa.py` 答案文件、
+    `score.py` crown_judgments 改为 `"w"` 重写——消除 append 跨 run 污染（原事故：quiz 口径被旧轮事件腰斩）。
+    仍建议每次正式 run 前核对产物目录。
+20. **agent 挂载点必须改 provision 源文件（2026-09-26 教训）**：`provision.py` 从
+    `ahi-multi/agents/{lan,neutral}/agent.py` 复制生成 bench 副本——任何 agent 级改动（如使用信号层
+    挂载点）必须同步进源文件，否则下次 provision 静默覆盖；检查法 = provision 后比对 md5。
+21. **score.py 两处时间戳边界（2026-09-26 发现并已修，SPEC v0.2）**：① return 时刻的 digest 与
+    返回通知同秒落库 → 原被计入 `g1_sys_to_absent`；② 返回通知落库可能早于 driver `absent_end`
+    1–2 秒 → 原 `g2_return_meta` 误判缺失。修正：G1 按 `msg_type=digest` 排除返程聚合、G2 放宽
+    ±5s 容差（与 SPEC 意图对齐，非隔离违规，leak_receipts 全 0 未变）。新增 `--gates-only`：
+    确定性重算 gate 并覆盖 `score_<mode>.json`（保留 crown/quiz/memory，零 LLM）——本轮复评
+    `gates_pass`。跨 run 对比 gate 前仍先看 `g1_leak_receipts`。
+
+
+## 6. 下一步路线图（聊天智能体阶段）
+
+### 6.1 本阶段目标（聊天智能体测试）
+把记忆树机制应用到"聊天智能体"场景：对话历史/用户资料/长期偏好作为参考资料流，跨会话保持一致性。新开对话进行，本分支（chat）为新工作分支。
+
+### 6.2 待办（按优先级）
+
+> 2026-08-30 更新：聊天方向的**缺席实验（冷/热两轮）已收官**（皇冠预言方向成立，详见 ahi-multi/HANDOFF §四.13）；**merge 条件式触发 + 节点窗口扩展已完成**（190 测试全绿）。以下表格保留历史路线图，其中与聊天方向相关的 P0/P1 在 ARCHIVE_CHAT.md 定论后降级，下一阶段聚焦写作/代码三场景。
+
+| 优先 | 任务 | 验收标准 | 关联 |
+| P0 | **人格保持实验（PERSONA_RETENTION，2026-10-02 设计定稿）**：实现 `FlatRAGAgent` + provision 2 实例×3 agent + `config/persona_retention.json` + score/analyze 趋同斜率&judge 遵从率 → smoke → 3 run | SPEC §7 判据出数（`slope_tree<slope_baseline`、`adhere_tree>adhere_baseline`）；**两臂分群** | `ahi-bench/PERSONA_RETENTION.md` |
+| P0 | 聊天应用层：新协议 + 终端对话 **基本完成**（chat_agent.py，2026-08-14）| 端到端跑通对话；跨轮回溯正确 | 新模块 |
+| P0 | **合并 span_atoms/expand_leaves** | 单一 API + 测试迁移 | §5.2 |
+| P0 | **轨道B 迁移进 core.py**（notebook 进机制层 + 桩测试覆盖）| 属性测试覆盖轨道B；聊天/小说共用 | §5.1 |
+| P0 | **长会话一致性基准**（聊天场景度量：跨会话召回正确率）| 脚本化事实注入 + 延迟提问评分 | §6.3.4 |
+| P1 | 蒸馏成本观测 + force 节流 | metrics 有成本/千字；蒸馏次/轮回落 | §5.4 |
+| P1 | 聊天协议暴露 [edit]/[rollback] + [plan] 提示词补全 | AI 可精确改口/撤销 | 审查结论 |
+| P1 | 参数校准（§8.3）：注意力 4 参 + force 2 参 + 检索权重 + NB_WORKLOG_CHARS | 台账更新 + 依据 | AGENTS.md §11 |
+| P2 | 索引化：archive 区间索引 + order-maintenance（50 万字支撑）| 30 万句 write < 1ms | core.py |
+| P2 | 跨进程持久化（SQLite 化）+ 会话中断恢复测试 | 重启后记忆不丢 | core.py |
+| P1 | **代码场景正式实验**（下轮）：harness `--session` 跨会话任务 + 记忆组顺序跑共享引擎 | T1-T4 作基线能力基准；跨会话任务显记忆树优势；verbatim 精确引用出数 | codeagent/ |
+| P0 | **四臂重跑**（compare.py 两处修复后：交付预算 + 按题清空）+ 每臂重复 3 次 | 均值±方差；在此之前四臂结论不可引用 | §4.7 |
+| P1 | **共现层带动选择改进**：concept 匹配后只带"与直接命中卡有共现边"的成员（不退回相似度） | T3 引用∩hub > 0；on/off 出现稳定增量 | §5.12 |
+| P1 | **给共现找真实场景**：构造 direct 结构性不可达、只能靠跨区共现的任务 | 增量可归因、非 direct 冗余 | §5.12 |
+| P2 | chatbench T1 补题（ctx 语料）+ 题库预注册/留出集 | dev/test 分离；评分可复现 | chatbench/ |
+| P2 | 注意力排序剪枝 + 30 万句压力验证 | 压测数字补齐 | §5.5 |
+| P1 | **ahi-bench 三档冷轮 + cooc on 臂**（对照本轮无 cooc 数据）| 跨档 crown 可分性判定（SPEC §6）；cooc on/off 增量 | §4.8 |
+| P3 | 可视化同步新机制；AGENTS.md 沉淀聊天场景决策（含平台中立原则 §5.17）| — | visualize.html |
+
+### 6.3 聊天智能体测试的设计要点（部分已实现，见 §1 时间线）
+
+已拍定（2026-08-14，`chat` 分支）：
+1. 参照 run2 的"预检索 → 组装 → 回复"循环；对话输入即扰动源（§4.7）。
+2. 轨道B 在聊天场景 = 用户事实/偏好/承诺（state）+ 交互规则（constraint）+ 待办承诺（schedule）+ 工作记录（worklog，固定 key 覆盖去重）。
+3. 组装顺序（§10 聊天拍定）：系统指令 → 轨道A 卡片流 → 轨道B 笔记本（去重发送）→ 回执 → 当前输入。
+4. 度量：跨会话召回用户早先陈述的正确率（对标小说场景的复述覆盖）。
+5. 多介质切分：chat 按句 / code 按 AST（函数一张、类=头+`__init__`/`__del__` 一张、docstring 提取进元数据）/ config 按项 / md 按标题+列表项；统一原子上限 2000 字符，超限行块再切；大卡 `weight=2`（只影响注意力计数与衰减，不影响读）。
+6. 来源标注：`Atom.metadata.source`（user:xxx / ai / tool / file:path），仅蒸馏与组装渲染可见，不参与检索。
+7. 重复输入检测：新句 bigram Jaccard ≥ 0.8 命中存活卡 → 命中卡活一轮影子（"之前也听过"）。
+8. DISMISS 懒标记（AGENTS.md §5）：`[dismiss]描述[/dismiss]` 挂起 → 每轮预检索追踪 + 〔待失效〕标注 → `[dismiss #id]` 墓碑确认（可回滚）/ `[dismiss cancel]`。
+9. 文件编辑确定性路径：`file_edit` 卡级 diff（与介质切分粒度一致）精确墓碑被改部分，未改部分保留；未读过 → 直接灌入。
+
+
+## 7. 快速上手
+
+```bash
+# 桩测试（190 全绿）
+python3 -m pytest tests -q
+
+# 聊天智能体（chat 分支主力；默认 ollama glm-4.7-flash，慢可切 deepseek）
+python3 realtest/chat_agent.py --provider deepseek [-v]
+
+# 结构化压测（真实 LLM，~20 分钟；--seed-dir 选种子目录！）
+python3 realtest/bench_qa.py --seed-dir realtest/seed2 --minutes 22 \
+    --facts-1a 25 --facts-1b 10 --edits 50 --phase3-cycles 5 \
+    --out realtest/out/bench_xxx --seed 42 --ingest-recall-p 0.25
+
+# 无尽续写 v2（注意力窗口实验；stdout 实时 + out/run2_xxx/run.log）
+python3 realtest/run2.py --minutes 12 --max-words 18000 --out realtest/out/run2_v13
+
+# 规模压力测试（纯桩）
+python3 stress_write.py --scales 10000,50000,100000,300000
+
+# ── 聊天数据记忆 bench（chatbench，2026-09）──
+# 1) 提取语料（ctx_run：青/蓝/墨/白；absence：澜/林深/中性）
+python3 realtest/chatbench/extract_corpus.py --preset ctx --out realtest/chatbench/corpus
+python3 realtest/chatbench/extract_corpus.py --db ahi-multi/backup_day_20260829/data/system.db \
+    --preset absence --include-users --session-window-minutes 30 --out realtest/chatbench/corpus_absence
+# 2) 建树（一次，缓存）+ 单臂回放（on/off）
+python3 realtest/chatbench/replay.py --corpus realtest/chatbench/corpus/corpus.jsonl \
+    --questions realtest/chatbench/questions_ctx.json --cooc off --temp 0 \
+    --save-tree realtest/chatbench/out/tree_ctx.json.gz --out realtest/chatbench/out/ctx_off
+python3 realtest/chatbench/replay.py --corpus realtest/chatbench/corpus/corpus.jsonl \
+    --questions realtest/chatbench/questions_ctx.json --cooc on --temp 0 \
+    --load-tree realtest/chatbench/out/tree_ctx.json.gz --usage-passes 4 --out realtest/chatbench/out/ctx_on
+# 3) 评分（judge=glm-4.7-flash+thinking）
+python3 realtest/chatbench/score.py --off .../ctx_off/replay_result.json --on .../ctx_on/replay_result.json \
+    --questions realtest/chatbench/questions_ctx.json --reference realtest/chatbench/reference_claims.json \
+    --out realtest/chatbench/out/ctx_score.json
+# 4) 四臂对比（tree_off/tree_on/递归聚簇树/fullsend）+ 统一评分（逐臂增量写盘）
+python3 realtest/chatbench/compare.py --arm tree_off --load-tree realtest/chatbench/out/tree_ctx.json.gz \
+    --out realtest/chatbench/out/cmp_tree_off
+python3 realtest/chatbench/score_compare.py    # 读 out/cmp_*/replay_result.json
+# 5) 上下文使用长度
+python3 realtest/chatbench/measure_ctx.py
+
+# ── 使用信号层（§4.9 / realtest/USAGE_SPEC.md）──
+# 桩测试（含 test_usage 13 项）
+python3 -m pytest tests/test_usage.py -q
+# Phase A 离线影子重放（边冗余率 + 答案分档；纯离线零 LLM）
+python3 realtest/chatbench/usage_replay.py --out realtest/chatbench/out/usage_analysis
+# live 影子采集：agent config 设 "usage_shadow": true → 产物 <agent>/data/usage/*.jsonl
+
+# ── ahi-bench M0+quiz variant（2026-09-25 正式冷轮；无 cooc 对照组）──
+python3 ahi-bench/preflight.py --disable            # 禁用旧 agent（防 6 agent 同窗）
+python3 ahi-multi/main.py                           # 起平台（ahi-multi/ 下）
+python3 ahi-bench/provision.py --config ahi-bench/config/m0_corpus.json \
+    --tier glm-4.7-flash --run-id glm-4.7-flash
+python3 ahi-bench/driver.py --config ahi-bench/config/m0_corpus.json \
+    --tier glm-4.7-flash --mode cold             # ~75min；smoke 用 --tier deepseek-smoke + --preheat 2 --absence 1 --observe 2
+curl -X POST "http://127.0.0.1:8080/api/v1/agents/bench-a/stop?level=1"  # ×3：level=1 才触发 on_stop 存 tree_final
+python3 ahi-bench/score.py --config ahi-bench/config/m0_corpus.json --tier glm-4.7-flash --mode cold
+python3 ahi-bench/qa.py --config ahi-bench/config/m0_corpus.json --tier glm-4.7-flash --arms base,recall
+python3 ahi-bench/cooc_analysis.py                  # 离线共现三层分析
+python3 ahi-bench/tree_qa.py --tree out/glm-4.7-flash/trees/bench-a_tree_final.json.gz --facts realtest/seed2/facts.md
+
+# 可视化（浏览器直开）
+open visualize.html
+```
+
+**关键约定**：
+- DeepSeek key 在 `realtest/config.json`（**model 必须用 glm-4.7-flash**，glm-4.7-flash 会挂起）；默认 provider 已切 ollama（glm-4.7-flash 本地）
+- 向量模型本地缓存 + 强制离线（realengine.py 已固化）
+- 种子：`realtest/seed/`（旧 3k）与 `realtest/seed2/`（新 12k，《缠枝莲》）
+- 运行产物：`realtest/out/*/`（metrics.jsonl / tree_snapshots.jsonl / responses.txt / story_full.txt / notebook.json / run.log / report.html）
+- 后台运行 + 实时看日志：`(python3 realtest/run2.py ... > /tmp/run2.log 2>&1 &) && tail -f /tmp/run2.log`
+
+
+## 8. 给接手者的四条提醒
+
+1. **先读 AGENTS.md**——唯一设计权威；任何偏离先与用户确认（铁律 1）。
+2. **bench_qa / run2 / chatbench 是主力验证工具**——改任何检索/组装/蒸馏/注意力逻辑，同配置重跑对比，别只看单次数字（模型有随机性）。
+3. **压缩/一致性的度量工具已齐**（复述覆盖 + 事实命中 + 上下文组成 + 蒸馏成本 + chatbench 三层的引用核验）——任何改动先立基线再改，避免拍脑袋；参数改动记入 §11 台账。
+4. **动手前先读 §4.7 状态**：四臂对比的两处协议 bug 已修但**未重跑**，当前 `out/cmp_*` 的结论不可引用；
+   重跑评分后先看 `cmp_score.json` 的 `_meta.updated_at / partial / answerer_model`（旧 gemma 结果存于
+   `v1_cmp_*/v2_gemma_cmp_*`；`COMPARE_REPORT.md` 已标注作废）。
+   本轮实验备份：`backups/20260925_chatbench/`（tar.gz + MANIFEST）。
+
+
+## 9. 本会话交接（2026-10-03 · 人格锚点检索化）
+
+**一句话**：把 M-PR tree 臂的人格锚点从「最近 6 句 recency 池 + 8 字段快照」改为
+「**检索自身材料 top-k + 自由文本快照 + 【注】不渲染**」；本会话**只做冒烟 + 小重放，未跑正式轮**。
+
+### 9.1 版本（git）
+- `74a1236` —— **pr2 基线**（recency-6 + 8 字段快照）；`out/.../pr2` 数据由此产生。
+- `edaae69` —— 检索化（检索锚点 + 自由文本快照 + 【注】不渲染）。
+- `92c05d4` —— 锚点去脚手架前缀（`anchor_clean`）。
+- ⚠ `realtest/memcurve/memcurve.py` 的改动**是其他会话的**，本会话未触碰。
+
+### 9.2 改了什么
+- `realengine.py`：`retrieve_style_samples`（池 = `source=="ai"` 原话原子 + 摘要节点**整卡**含【注】；
+  bigram 粗筛 + embedding 精排；`exclude_ids` 排除当前蒸馏区间防自引用）、`expand_self_atoms`
+  （节点→其区间内自身原话，cap 控成本）、`anchor_clean`（剥〔来源/早期/索引〕脚手架）；
+  `render_emission` 卡片只渲染【事实】（保留〔另有X条〕索引），【注】不渲染；`_summarize` 把
+  `children` 透传 `style_provider(content, children)`（兼容 1/0 参旧式）。
+- `lan/neutral/agent.py`：删 `_self_samples` recency-6 池与 8 字段 EMA；加查询缓冲 `_anchor_query_buf`
+  + 自由文本快照（检索重生成、长度上限）；参数 `anchor_top_k=3` / `anchor_expand_self_cap=0` /
+  `snapshot_max_chars=300` / `anchor_query_buf_cap=4000`；`α>0` 即开锚点（快照段由 `snapshot_every>0` 门控）。
+- 文档：`AGENTS.md §4.4/§11`、`ahi-bench/PERSONA_RETENTION.md v0.3 §4.1`、`ahi-multi/HANDOFF.md §2b`、`ahi-bench/README.md`。
+
+### 9.3 已验证
+- `pytest` **278 绿**（新增 `tests/test_anchor_retrieval.py` 10 项）。
+- **冒烟** `out/.../pr3smoke`（tree-s42+flat-s42，30 轮，interval=4，tree `snapshot_every` 临时改 3）：
+  2/2 完成、零 error、无残留；`snapshot_chars` 196/240（自由文本、<300）、`style_on=True`、组装中【注】出现 **0** 次。
+- **小重放**（冻结 pr2 树，25 条真实蒸馏查询；笔记见 `out/.../pr3smoke/SMOKE_REPLAY_NOTE.md`）：
+  查询相关度 **0.567 vs 旧 0.017**；共享 bigram 密度（跨≥2 agent）**0.600 vs 0.866**；
+  但**跨 agent 内容级共享密度基本不变（0.229→0.231）**——**去前缀 ≠ 去共享词**。
+
+### 9.4 下一步（下个会话）
+1. **跑正式轮**（新命名空间 `pr3`；**pr3smoke 是临时冒烟，勿当正式数据**）：
+   ```bash
+   python3 ahi-bench/provision.py --config ahi-bench/config/persona_retention.json \
+       --tier glm-4.7-flash --run-id pr3
+   python3 ahi-bench/pr_orchestrate.py all \
+       --manifest ahi-bench/out/glm-4.7-flash/pr3/manifest.json --rounds 120   # 正式可 180
+   python3 ahi-bench/pr_score.py \
+       --manifest ahi-bench/out/glm-4.7-flash/pr3/manifest.json --judge-cap 40
+   ```
+   对照：`pr`（中性 tree）/`pr2`（recency-6）保留，横向比趋同斜率 / 【注】own−common 斜率 / 共享套语计数 / judge 遵从率。
+2. **已知残余风险（用户知情、预期内）**：① 节点回灌 = 自蒸馏反馈环；② 快照查询 = 累积蒸馏内容，可能把共享话题捞回；③ 检索偏向长摘要整卡（脚手架已清，但 `【事实】/【注】` 标签仍在）；④ 无跨 agent 去重层（用户明确不做）。
+3. **可选后续**：节点锚点是否也去 `【事实】/【注】` 标签；锚点偏好短文本/原子 vs 长整卡。
+
+### 9.5 环境/约定
+- 端口 8080–8130；长跑加 `caffeinate -i` 防睡眠；judge = `glm-4.7-flash` + thinking（顶层启用）。
+- `ahi-bench/config/persona_retention.json` 含真实 key（gitignored），example 为空 key。
+
+
+## 10. 本会话交接（2026-10-03 · 蒸馏源渲染收口 + 〔早期〕新语义）
+
+**一句话**：删掉无效的 HP 判据〔早期〕，改为"与失效参照集匹配"；蒸馏器与主模型统一**干净分段渲染**（`▸〔来源〕`+原文），prompt 只留中立说明；`【注】` 允许进上层蒸馏；删除 `〔另有N条〕` 索引行。
+
+### 10.1 改动
+- `realengine.py`：
+  - `SUMMARIZE_PROMPT` 删"来源标注规则""时序分流规则"；`SUMMARIZE_FACT_NEUTRAL/STYLED`、`SUMMARIZE_NOTE_CLAUSE` 去来源措辞。
+  - 删 `_atom_part`；`_group_parts` 改为**分段渲染**（原子 `▸〔来源〕` 段 + 原文，无逐句标签；节点取【事实】+【注】= option 2）。
+  - 新增 `_invalidated_refs` / `_is_early`：`〔早期〕` = 内容与「墓碑原子 + 脏节点旧文本」bigram Jaccard ≥ `early_match_threshold`(0.5) → 可能无效/历史态；置脏机制不变。
+  - 删 `_uncovered_count` 索引行。
+  - 新增 engine 参数 `early_match_threshold`（§11 已入册）。
+  - **内存修复**：新增 `_ensure_node_vecs` / `_ensure_atom_vecs`（`EMBED_BATCH=32`），`_retrieval_pool`/`retrieve_style_samples` 的向量编码由**逐条**改为**单次批量**——逐条 `enc.encode` 在 MPS 上堆积幽灵内存（实测同一批 316 条：逐条 +460MB vs 批量 +69MB）。
+- 测试：`test_realengine_budget`（B+D 块重写为新早期/分段 + 2 项批量编码回归）、`test_coloring_v3`（删索引测试、option2 注上送）、`test_anchor_retrieval`（渲染去索引）；`FakeEnc`（hybrid/selforg/usage）改为支持批量 + `batch_size`。
+- 文档：`AGENTS §4.4/§11`、`PERSONA_RETENTION §4.1`、`ahi-bench/README`。
+
+### 10.2 验证
+- `pytest` **278 绿**。
+- 端到端 smoke（合成）：prompt 不含脚手架规则；蒸馏输入 `▸〔user:probe〕…`/`▸〔ai〕〔早期〕…`；与墓碑同内容的原子判早期。
+- **内存实证**：200×`retrieve_style_samples` → **608MB**（修复前 1001MB）；100×全节点 churn（316 节点版本号轮番失效重编码）→ **稳定 616MB 不增长**（修复前此法会持续堆积至 2GB 看门狗）。
+- **未跑正式实验**。
+
+### 10.3 待办/风险
+- `early_match_threshold=0.5` 先拍，未校准（相似度口径 = bigram Jaccard、参照集最近 300 条、粒度 = 原子）。
+- option 2（注上送上层）仅 smoke 验证；是否引入事实噪声/加剧风格复利待观察。
+- 人格锚点检索化（§9）**未变**：`retrieve_style_samples` 仍取节点整卡（含【注】）、未按来源过滤——**跨 agent 泄漏与锚点回灌风险仍在**（见 `pr3/ANALYSIS_summary_anchor.md §6`）；这是趋同主因，本轮未修。
+- `on_start` 仍**不加载树**（重启=记忆清零）——内存修复后重启概率大降，但恢复机制仍缺。
+- 代码未提交。
+
+
+## 11. 本会话交接（2026-10-03 · 重启读取持久化 + 内存上限 4GB）
+
+**一句话**：实现 agent 重启恢复（`on_start` 加载最新树快照 + agent 状态），并把内存看门狗上限
+2048→4096MB；配套 `tree_save_every=10` 周期快照、原子写入、防空树覆盖。**已单测 + 平台重启 smoke 验证。**
+
+### 11.1 改动
+- `realtest/chatbench/tree_io.py`：`save_tree(..., agent_state=None)` 把 agent 级状态与树同文件保存
+  （原子）；`load_tree` 置 `eng._restored_agent_state`；新增 `latest_tree_snapshot(save_dir, agent_id)`
+  （优先周期性 `_tree_rN`（最大 N）→ 回退 `_tree_final`（mtime 最新））。
+- `ahi-multi/agents/lan/agent.py` + `neutral/agent.py`（两处同步）：
+  - `on_start` 读 `restore_on_start`（默认 true），在 `nb_set` 前调 `_restore_state()`：加载最新快照 +
+    恢复 `_round_no` / `_persona_on`（防重启后 persona 重新注入）/ `_snapshot` / `_last_force_round` /
+    `_promote_count_last` / `_anchor_query_buf`；记 `[恢复]` 日志。
+  - `_save_tree`：原子写（`.tmp`→`os.replace`）+ 携带 `_agent_state()`；**空树不覆盖已有快照**（防恢复
+    失败/探测启动后的 `on_stop` 清空记忆）。
+- 配置：`persona_retention.json`（+example）、`m0_corpus.json`、`context_compare.json`、
+  `bench_config.example.json` → `max_memory_mb: 4096`、`tree_save_every: 10`、`restore_on_start: true`。
+- 测试：`tests/test_tree_io.py` 新增 agent_state roundtrip / 缺失兜底 / `latest_tree_snapshot` 选择（3 项）。
+- 文档：`AGENTS §11` 新增 `restore_on_start` / `max_memory_mb` 行。
+
+### 11.2 验证
+- `pytest` **281 绿**（278 + 3）。
+- 离线：加载真实 `tree_final`（pr3b tree-p1 367 原子）成功，可继续演化；旧快照无 `agent_state` → None 兜底。
+- **平台重启 smoke**（pr3b tree-s42，wakeup=3600 免 LLM）：同步新 `agent.py` 到实例后重启平台，
+  3 agent 均触发 `[恢复]`，加载 pr3 真实快照：p1 **2017 原子/274 节点**、p2 **2381/316**、
+  p3 83/0；stop 后快照完好（防空树覆盖生效）。修复前同一操作无任何 `[恢复]`（旧代码不加载树）。
+- 注意：PR 实例里的 `agent.py` 是 provision 时**拷贝**——改 `ahi-multi/agents/lan|neutral/agent.py`
+  后须重新 `provision`（本次 smoke 手工拷贝，正式轮直接 provision 即带上）。
+
+### 11.3 未决 / 风险
+- **本条未消除内存增长**（仅是"重启不再清零"+"上限抬高"）：批量编码只降峰值，MPS 跨轮累积仍在，
+  4GB 上限只是延后重启。3 agent×4GB=12GB，48GB 机器单实例安全；**6 实例 18 agent 全开需重估上限**。
+- 锚点回灌（`retrieve_style_samples` 取节点整卡、未按来源过滤）**仍未修**——趋同主因。
+- flat 臂**无对应持久化**（rolling + RAG 内存态仍随重启丢失）；若要两臂公平，需给 `FlatRAGAgent`
+  加对称持久化。
+- `restore_on_start` 从**同目录最新快照**恢复；跨 run 复用未清空的 agent data 会恢复旧树——PR 靠
+  provision 清空命名空间兜底，M0 需按 README 手工清 agent data。
+- 代码未提交。
+
+
+## 12. 本会话交接（2026-10-03 · flat 信封对齐 + 来源用名字标注）
+
+**背景**：发现**未受控的封装混淆**——flat 原生多轮（自己的话是 `assistant` 角色），tree 发
+`system+单条 user`（自己的话是文本 `▸〔ai〕`）。模型可感知角色标记差异，违背"只比记忆机制"的公平性。
+
+### 12.1 改动
+- **flat 压成单条 user transcript**（`flat-rag/agent.py`）：新增 `flat_envelope`（PR 配置 `single_user`），
+  `_call_llm_single_user` 把滚动历史（含本轮 prompt）压成**一条 user 文本**，以 `[system,user]` 两条原生消息
+  发出；滚动 `messages` 仍维护（compress/RAG 不变）。
+- **client 原语**（`sdk/llm_client.py`）：重构 `send_message` → 抽出 `_complete(messages)`，新增
+  `complete(system,user)` 一次性调用（不改动滚动 `messages`）；`_send_native_ollama` 不再自行 append。
+- **来源标签用名字**（`realengine.py`）：新增 `eng.source_labels` 映射 + `_disp_src()`，组装/蒸馏渲染把
+  `ai→本 agent 名（回退 self）`、`agent:<id>→名字`；空映射 = 原样（旧行为，测试不受影响）。`anchor_clean`
+  已通用剥 `〔…〕`，无需改。tree 两个 agent（lan/neutral）在 `_build_user_ctx` 每轮刷新映射。
+- **提示词**：`protocol_common` 加一行说明 `▸〔X〕` 发言者约定（两臂同享）。
+- 配置：`persona_retention.json`（+example）+ `context_compare.json`（+example）补说明；
+  PR engine 加 `flat_envelope=single_user`；`provision.py` flat 分支透传 `flat_envelope`。
+- 测试：`tests/test_render_clean.py` 加 `source_labels` 映射；新增 `tests/test_flat_envelope.py`
+  （`complete` 一次性、不污染滚动；`send_message` 保持滚动）。
+
+### 12.2 验证
+- `pytest` **284 绿**（281 + 3）。
+- 真实 API：`LLMClient.complete` 单次调用返回正常、`messages` 不被污染。
+- **flat 集成 smoke**（`out/.../flatsmoke`，4 轮/fade@3/interval 8）：3 agent 均
+  `envelope=single_user`，1/1 完成、零 error；直调 `_call_llm_single_user` 确认产出
+  `[system, user]`、user 内为单条 transcript 且自己的话标 `▸〔林深〕`。
+
+### 12.3 未决 / 风险
+- **纵向可比性**：pr/pr2/pr3 均为**旧信封**（flat 原生多轮、tree `▸〔ai〕`/`▸〔user:experimenter〕`）；信封对齐后重跑才与本节同口径。
+- 本轮**未**改其他实验（M0/context_compare）的 flat（无 flat 臂或未启用）；tree 的来源名字标注
+  **全局生效**（lan/neutral 默认开），M0 等臂的 `▸〔ai〕` 也会变名字——如需冻结旧行为需加开关。
+- **他人消息已对齐**（2026-10-03 追加）：tree 与 flat 都把用户/其他 agent 渲染成 `▸〔名字〕`（用户如
+  `▸〔实验员〕`、其他 agent `▸〔墨白〕`）；flat 覆写 `_build_user_context` 去掉 `[user:xxx]/[agent:xxx]`，
+  `_rag_block` 的来源也映射名字。实测 tree 组装标签为 `{实验员, 林深, 墨白, 澜}`。
+- 机制标签已统一：`persona`（淡出人格块）与 `system`（系统通知）都渲染为 `▸〔system〕`（内联，非
+  发言者）；`tool`（代码结果）仍为 `▸〔tool〕`。prompt 已说明 `▸〔system〕` 含义。
+- 代码未提交。
+
+
+
+## 13. 本会话交接（2026-10-03 · 两臂公平性全面对齐）
+
+**背景**：信封/标签对齐后，全面审查剩余不对称项（active 工具面、唤醒外壳、上下文预算、
+笔记本、max_tokens、shell 结果），逐项对齐到"只变记忆架构"。
+
+### 13.1 改动
+- **工具表面对齐**：两臂统一 `@note`/`@recall`/`@ingest`；tree 删 `@span`/`@dismiss`
+  （`lan`/`neutral` 的 `_execute_ahi_command`）；`tree_tools` 与 `baseline_note` 用同一份文本
+  （`persona_retention.json` + example）。
+- **flat 增笔记本**（`flat-rag/agent.py`）：`_notebook` dict + `_nb_set`/`_nb_render`（constraint 恒注入 +
+  state/schedule/worklog 去重 + 字符 cap 同 tree）；`on_start` 预置「交互规则」constraint；
+  组装注入 `【笔记本·事实层】`。
+- **flat 增工具命令**：`_execute_ahi_command` 覆写 @note（写笔记本）/@recall（`_rag_block` 检索块注入
+  下一组装）/@ingest（`resolve_path` 读文件 → `_rag_add` 分块，`source=file:path`）。
+- **flat 唤醒外壳对齐**：覆写 `_autonomous_loop`，去掉基类每轮「完全自主数字生命」+「输出格式/命令/
+  约束」重复样板，改用 `_build_wakeup_ctx`（系统状态→上次唤醒回忆→检索→新消息→笔记本→回执→任务）。
+- **flat 硬预算**：`assembly_budget`（16000）在 `_call_llm_single_user` 里硬裁单条 transcript（保留头部
+  说明 + 最近历史，裁最旧）。
+- **max_tokens**：flat `mc` 由 8192 → `384*1024`（=模型上限；tree 的 realtest client 本就不设）。
+- **shell 结果进记忆**：flat `_execute_action`(code) 与 `_put_action`(shell_result) → `_rag_add(result[:2000],
+  source="tool")`（与 tree 写树 source=tool 对称）。
+- **人格块标 system**：flat fade 的 persona 块以 `_src="system"` 标记，单条 transcript 渲染成 `▸〔system〕`。
+- 测试：`test_flat_envelope.py` +3（`_build_wakeup_ctx` 无自主框架/含笔记本任务；@note 写笔记本；
+  @recall 注入块）。`pytest` **288 绿**。
+
+### 13.2 验证
+- `pytest 288 绿`；`py_compile` 过。
+- 平台 smoke（`out/.../fairsmoke`，tree-s42+flat-s42，5 轮/fade@3/interval 8）：**2/2 完成、零 crash**；
+  flat 日志 `envelope=single_user budget=16000`；tree/flat 各 21 条 timeline。
+- 已知**非本改动**的启动竞态：`message_router._find_agent` 在首个消息转发时 `port=None > 0`
+  报 `TypeError`（两臂对称、仅首消息，属于平台既有 bug，未在本轮处理）。
+
+### 13.3 未决 / 风险
+- **纵向可比性**：pr/pr2/pr3 为旧信封/旧工具面/无 flat 预算；对齐后需重跑才同口径。
+- 剩余已知不对称（可接受/需声明）：
+  ① tree 有蒸馏+注意力+merge（架构本体）；flat 无（RAG 无蒸馏）——这是被比较对象，非混淆。
+  ② tree「组装 per 工具调用」连续唤醒（动作循环内重排 pending）；flat 动作循环仍是"反馈追加"——
+     单条 transcript 下模型仍看到全历史+反馈，等价性接近，但严格说不是逐次重组装。
+  ③ tree 的 `_build_wakeup_summary` 还保留 span/dismiss 分支（死代码，命令已删，不影响）。
+  ④ flat 的 compress_middle 摘要质量（最近 6 条 80 字）与 tree 的 LLM 蒸馏不同——架构本体。
+- 代码未提交。
+
+
+## 14. 本会话交接（2026-10-03 · 消息管理对齐 + 平台/内存修复）
+
+**背景**：pr4 s42 正式跑（120 轮）暴露三问题——① flat-p3 复读风暴（单轮内复读、121 次 LLM）；
+② flat-p1 长程沉默（连续 `@exit`）；③ 内存单 agent ~75MB/min 上涨。逐一排查修复。
+
+### 14.1 改动
+
+**平台既有 bug**
+- `message_router._find_agent`（`:477`）+ `set_wakeup_interval`（`:396`）+ `system_db.update_state`
+  （`:182`）：`state.get("port", 0) > 0` 在 `online_states.port=NULL`（LEFT JOIN 无行）时
+  `None > 0` 抛 `TypeError` → 首条转发消息被 `forward_to_agent` 宽 except 吞掉（丢首条，两臂对称）。
+  改 `(state.get("port") or 0)`（写入侧同步 `or 0`，杜绝 NULL 落库）。
+
+**内存（MPS 幽灵内存）**
+- `realtest/realengine.py` 新增 `_empty_mps_cache()`（`torch.mps.empty_cache()`，CPU/no-op 兜底），
+  `_ensure_node_vecs`/`_ensure_atom_vecs` 批量编码后调用。
+- `flat-rag/agent.py` `_rag_add` 改**批量编码** + `_empty_cache()`（对称）。
+- 实测 tree 单 agent 峰值约减半（40 轮 ~1GB），但**未根治**（缓涨）。
+
+**flat 臂行为 / 消息管理（对齐 tree）**
+- **R1 代码护栏**：flat 自定义 `_autonomous_loop` 漏了 `max_code_per_loop=4`（tree/neutral 都有）→ 补。
+- **每次工具调用重建完整上下文**：原只把裸结果串追加进滚动 transcript；
+  改为 `_build_wakeup_ctx(self._round_pending, feedback=…)`（模型每次看到完整定位）。
+- **消息管理全面对齐**：
+  - `_drain_sharded()`：按 `max_pending_per_loop` 分片，余量放回队首保持时间序（连续唤醒共用）；
+    后接 RAG 索引（替代原"抽干全部"）。
+  - `_pending_brief()`：本轮待回复清单（剔已回复信道）。
+  - `_task_line()`：对齐 tree —— `"第 N 轮。本轮待回复消息见【本轮待回复清单】。"` /
+    `"…本轮无待回复消息。"`（原为裸 `"第 N 轮。"`）。
+  - `_round_pending` / `_round_replied_targets`：发送即标记 replied，组装时剔除。
+  - loop 内连续唤醒：`_drain_sharded()` 重排 + `_round_pending.extend`。
+  - `_last_user_channel`：私密消息兜底回最近用户（与 tree 对齐）。
+- `provision.py` flat 分支透传 `max_code_per_loop` / `max_pending_per_loop`（与 tree 同值）。
+- 移除临时调试 dump。
+
+### 14.2 验证
+- `pytest` **294 绿**（`tests/test_flat_envelope.py` 增至 7 项：`complete` 一次性 / 名字渲染 /
+  已回复剔除 / **分片保留余量** / **清单+任务行** / **mock LLM 端到端驱动 `_autonomous_loop` 断言
+  上下文含清单与对齐任务行** / 私密兜底）。
+- **本地模型 smoke**（ollama `glm-4.7-flash`，`out/ollama-smoke/prsmoke`，flat-s42，10 轮，零 API）：
+  平台 **0 error**，三 agent 正常出消息；flat 配置与 tree 同值（`max_pending_per_loop=3` /
+  `max_code_per_loop=4` / `envelope=single_user` / `budget=16000`）。（冒烟的 `base_shell` SyntaxError
+  是弱模型把 `@note` 写进代码块，模型行为非机制。）
+
+### 14.3 诊断结论（flat-p1 沉默，供后续）
+- **pending 每轮确实注入**（代码路径 + 实测 dump 确认）。
+- 根因是**软性叠加**：flat 滚动 transcript 把模型原始回复（含 `@exit`/`@send-to`/```txt```）与
+  **每轮整个 ctx** 都堆进历史 → 单轮 user 膨胀到 **90KB–1.45MB**（截 16k 尾），叠加 `_task_line`
+  裸、wakeup 与 driver 注入相位不齐时"无 pending"，模型成片 `@exit`。
+- 对照：tree 臂无状态组装不受影响（同 persona 的 tree-p1 全程活跃）。合成本地 A/B（含 20 次
+  `@exit` 历史）实测模型仍正常回复 → 不是单纯 `@exit` 吸引子。
+
+### 14.4 未决 / 风险
+- **仅做 C + 消息管理对齐**；未做 **A（历史只存实际发出的消息、剥控制符）** 与
+  **B（主动界住 transcript 增长）**——transcript 膨胀仍在，长跑仍可能诱发沉默/退化。
+- **MPS 内存未根治**：`empty_cache` 只降斜率；6 实例×18 agent×4GB=72GB 需重估上限。
+- **flat 无持久化**（重启即失忆），tree 有 `restore_on_start`——重启不对称。
+- **纵向不可比**：pr/pr2/pr3/pr4 均旧口径；须新命名空间（pr5）重跑同口径。
+- `message_router` 修复改变平台行为（M0 亦走此路径，属修正）。
+- 代码未提交。
+
+
+## 15. 本会话交接（2026-10-04 · pr5 首轮对比 + α 消融 + 观测埋点 + self_quota 操控）
+
+**一句话**：公平对齐后跑成首轮有效 tree/flat 对比（`pr5`，120 轮）与 `style_alpha` 中性对照（`pr5_neutral`），
+得出反预注册方向的结论（**flat 两主指标胜**）；给 flat 补两个观测埋点；新增 `self_quota` 组装层实验操控
+（默认关）并预注册 self-quota 实验。`pytest 301 绿`。**未提交。**
+
+### 15.1 实验结果（本会话）
+
+**A. pr5 tree vs flat（seed42，120 轮，tree α=1.0 / flat；2/2 完成，零看门狗重启）**
+- 公平对齐后 flat-p1 从 pr4 的 1 条恢复到 141 条（消息管理修复生效）。
+- 主指标**双反向**：趋同斜率 tree **+0.031** vs flat **−0.003**；judge 遵从率 tree **0.894** vs flat **0.940**
+  （strict other→drift：0.825 vs 0.917）。→ **flat 两条主指标都赢**，与预注册（`slope_tree<slope_flat`、
+  `adhere_tree>adhere_flat`）相反。
+- 数据位置 `ahi-bench/out/glm-4.7-flash/pr5/`（pr_score.json / tree-s42,flat-s42 的 pr_judge.jsonl /
+  data/system.db / mem.jsonl）；完整报告 **`ahi-bench/PR5_REPORT.md`**。
+
+**B. pr5_neutral（tree α=0 中性摘要，seed42，120 轮被 402 砍在 round103）**
+- 趋同**反而更狠**（+0.043，首窗 0.428 已高于 pr5 峰值 0.417）；遵从率**更低**（均值 0.660 vs 0.894；
+  墨白 1.0→**0.472**）——中性摘要把三人格塌进"账本/核账"仪式语，诗意人格先死。
+- **结论**：① 趋同根因 = **树记忆管线 + 跨 agent 耦合，不是 `style_alpha`**（早前"自蒸馏放大趋同"假设证伪）；
+  ② `style_alpha=1.0` **有效保人格**（遵从 +0.23），代价 = **内存 +55%**（3.6→1.6GB）。
+- 详见 `ahi-bench/out/glm-4.7-flash/pr5_neutral/CONTROL_RESULT.md`。
+
+**C. 五项零成本审计（`pr5` + `pr5_neutral`）**
+1. **treatment**：flat `compress_middle` 确实触发（LLM 调用 130/205/624 → 消息数远超 120 阈值）；但 flat
+   遵从率**不随时间下降**（0.93→0.98→0.90），故其高遵从**不是 persona 原件躺窗口**。
+2. **源构成**（tree `assembly_snapshots`）：tree agent 上下文 self 仅 **9–18%**、他者 **13–25%**、
+   实验员 **56–76%**；tree 接收**他者内容 ~44–55k 字符（flat 3–7k 的 ~10×）**。
+3. **judge 分口**：tree **to_agent 0.960 > to_user 0.872**（"社交应答低人格信号"假设被证伪；raw 臂均值
+   被 to_agent 抬高）；flat 全 to_user（0.940）。干净口径 tree 更差。
+4. **去套语**：tree 删 12 套语后斜率 +0.031→+0.028、水平几乎不变 → **结构性趋同**（非几个 catchphrase）。
+5. **行为频率**：loops 两臂相近（tree 121/100/93 vs flat 123/122/111）；tree 多出的消息**几乎全是互聊**。
+- **修正后机制图景**：flat 高遵从 = **自我模仿**（自身近期原话逐字、连续、每轮可见；纯度 ∝ 自我信号占比）；
+  tree 遵从率**随时间劣化**（0.959→0.875→0.773）。→ "tree 为长窗、flat 只赢短窗"的叙事被数据反转。
+
+### 15.2 观测埋点（flat 与 tree 对齐）
+
+`ahi-multi/agents/flat-rag/agent.py` 新增（纯记录零行为干预，落 `<agent data>/`）：
+1. `assembly_snapshots.jsonl`：真正发给 LLM 的 single_user transcript（`{ts,round,ctx_chars,ctx}`，每 4 轮一条）。
+2. `rag_snapshots.jsonl`：RAG 命中来源明细（`{ts,round,query,n_hits,persona_hits,hits:[{score,source,chars}]}`）——
+   核 persona 原件/他者消息是否被检回（区分"自我模仿 vs 检索"）。
+- 注意：`provision` 从源文件拷贝 agent.py → **新命名空间自动带上**；旧实例需重跑。
+
+### 15.3 self_quota 实验操控（默认关，非 tree 修复）
+
+移植 flat 的"连续自我可见性"到 tree 组装层（`realtest/realengine.py`）：参数
+`self_quota_ratio`(0)/`self_quota_max`(0.5)/`self_quota_min_len`(8)；`_apply_self_quota`（trim 后补足，
+只认 `source=="ai"` 原始原子，候选 recency-first）+ `_inject_self_quota`（**位置序**插回，复用 core
+`_shadow_slot`）+ `_evict_for_quota`（挤占序：检索影子/远端摘要先让、自身与本轮新原子受保护）；
+渲染为新 kind `self_quota` → 正常自身发言段 `▸〔名字〕`；metrics 加 `self_ratio`。
+- 配置：`config/persona_retention{,.example}.json` 加三参；变体 `config/persona_retention_sq.json`（ratio=0.35，gitignored）。
+- 测试 `tests/test_self_quota.py`（7 项）；分析脚本 `ahi-bench/pr_analyze.py`（self 时间线 + to_user 趋同 +
+  分期遵从率 + 多样性）。
+- 文档：`AGENTS §4.5.10` + `§11` 台账；`PERSONA_RETENTION §10.3` 预注册（H-SQ1..4 + 阶梯 + 回音/化石风险）。
+- **`pr6_sq` 已 provision**（tree `self_quota_ratio=0.35` + `style_alpha=1.0` 确认）。
+
+### 15.4 验证 / 归档
+- `pytest` **301 绿**；离线 e2e：ratio=0 → self 0.0 / ratio=0.35 → self 0.48、5 个 `self_quota`、渲染 `▸〔林深〕`。
+- DeepSeek API 欠费在 pr5_neutral round103 触发 402（已充值复评 judge）；教训同 §9.10（跑前核余额）。
+- 归档：`backups/pr5_alpha_control_20261003/`（`pr5.tar.gz` + `pr5_neutral.tar.gz` + `MANIFEST.md`，sha256 见 MANIFEST）。
+- 报告：`ahi-bench/PR5_REPORT.md`（tree vs flat）+ `pr5_neutral/CONTROL_RESULT.md`（α 对照）。
+
+### 15.5 未决 / 下一步
+1. ~~**跑 pr6_sq**~~ **已跑**（见 §15.6）；smoke（25 轮）+ 120 轮均完成。
+2. **s43/s44 补方差**：先在**判别尺度**上定轮数（120 轮仍是 flat 舒适区）再补 seed；别给舒适区结果补精度。
+3. **内存**：已由 4096→**5120**（`max_memory_mb`，单实例充足）；120 轮峰值 RSS ~3.6GB，未触发看门狗。
+4. **SQ 未达标（H-SQ2）** → 走 §10.3 风险分支 #1 = **分层采样**；若仍无效再考虑接收侧解耦（他者流量 10×）。
+5. **代码未提交**；`.gitignore` 新增 `config/persona_retention_sq.json`。
+
+### 15.6 pr6_sq 结果（`self_quota`，tree-s42，seed42，120 轮，2026-10-04）
+
+**运行**：起 21:31 · 完 22:33；agent 轮数 p1/p2/p3 = **103/96/76**（loop 滞后，同 pr5 现象）；
+无 watchdog 重启、无 429/402；`max_memory_mb=5120` 峰值 RSS ~3.6GB。
+**前置修复**：`_last_self_ratio` 口径 bug（逐条渲染重复计段头 → 占比 >1，实测 1.014 / 复现 1.22）→
+改为按段聚合（`realengine._self_rendered_chars`，`∈[0,1]`）+ 2 项回归测试；`pytest` **303 绿**。
+
+**四判据裁决**（vs pr5 α=1 / pr5_neutral α=0，同一 `pr_analyze` 口径）：
+
+| 指标 | pr5 | pr5_neutral | **pr6_sq** | 裁决 |
+| conv slope all / to_user | +.0313 / +.0215 | +.0422 / +.0443 | **−.0011 / +.0118** | H-SQ3 ✓ |
+| 遵从率 early/mid/late | .959/.875/.773 | .709/.581/— | **.857/.739/.600** | H-SQ2 ✗ |
+| diversity top5 / ttr | .014 / .057 | .016 / .036 | **.014 / .049** | H-SQ4 ✓ |
+| self_ratio early/mid/late | — | — | **.39/.43/.35** | H-SQ1 ✓ |
+
+- **异质性**：p2/p3 遵从 **1.000**，p1（林深）**0.250**；p1 drift 消息出现"账钉完/署名句共有/约定一字没改"
+  一类**共享仪式语**（pr5_neutral 的"账本/核账"漂移形态）。
+- **裁决**：自我可见性 = **必要不充分**——H-SQ1/3/4 达标（趋同归零、多样性保、自我可见性达标），但
+  H-SQ2 未达标、p1 被锚到**污染态自我**（回声风险实体化）。下一步 = §10.3 风险 #1 **分层采样**。
+- 产物：`pr6_sq/pr_score.json`、`pr6_sq/pr_analyze.json`、`tree-s42/pr_judge.jsonl`、各 agent 终态树快照。
+  **代码仍未提交**。
+
+### 15.7 pr6_sq 深判读 + 审计门（2026-10-04，喂分层 SQ v2）
+
+**判读（四修正）**
+1. **预注册风险 #1 按剧本击发**（非坏结果）：自我模仿是**内容无关的稳定器**——保存的是"被喂回去的那个自己"。
+   p1 drift 语录 = `账钉完/署名句共有/约定一字没改`（共享仪式语，背离"简洁不啰嗦"）。
+2. **调节变量 = 人格-语域兼容性**：p1 0.250 vs p2/p3 1.000。澜"主动确认复述"与"约定"相容（judge 放行），
+   林深不相容（判 drift）→ **臂均值不可解释，按人格分报为强制单元**。
+3. **出厂即锁定**：early 段已低于 pr5（.857 vs .959）、差距全程恒定 → 污染 fade 前已就位。
+4. **H-SQ3 不稳健**：`all≈0` 有机械成分（各自自言自语）；诚实读数 `to_user +0.0118`（减半未归零），
+   且斜率**窗口敏感**（600s: −0.0011；180s: +0.0091 vs pr5 +0.0079 相近）→ 须固定窗口 + pre-fade 基线。
+
+**四项零成本审计（定 K）**
+- ① **首染 onset**（套语≥3 轮）：p1=18 / p2=5 / p3=15（fade=40）；清洁池 alive 自产原话 205/87/540 条
+  （5894/2257/16454 字）。污染逐段抬升，**K 必 per-agent**。
+- ② **兼容性检查**：p2/p3 判 adhere 消息套语 8.8‰/8.4‰（与 p1 drift 8.2‰ 同档）、诗意 1.1‰/1.4‰
+  （pre-fade 套语仅 1.6–3.3‰）→ **p2/p3 的 1.000 = 兼容性漂移**，judge 构念效度需补丁。
+- ③ **时代分布**：子串匹配不可靠，**置换假设未获支持**（pr6_sq 可见 self 不比 pr5 更近期）；需 atom-ID 埋点。
+- ④ **pre-fade 基线**（180s）：pr6_sq +0.004 / pr5 −0.001；判分 n=40/40/40。
+
+**实现约束（坑）**：清洁自产原子几乎全在**节点内**（owner≠None 205/87/540 中的 205/86/534）——但原子 alive
+仍在，**anchor 直接按 id 注入合并过的原子**即可（候选只看 alive+source）。**规格修正**：草案 `[fade−K,fade)`
+与数据反 → 实为 `created_round < onset`。
+
+**分层 SQ v2**（预注册 H-SS1..4）见 `PERSONA_RETENTION.md §10.3.2`：锚定切片（`round<onset`，固定选择+上限）
++ 近期切片（recency-first 填余）；`anchor_share≈0.4`、`onset_agent` 入 `AGENTS §11`。失败分支 = 解耦臂。
+
+### 15.8 结果落盘更新（2026-10-04）
+- `AGENTS.md §0` 新增经验定律「策展定律」；§4.5.10 + §11 补分层 SQ 参数/校准状态。
+- `PERSONA_RETENTION.md` v0.6 → §10.3.1 深判读 + §10.3.2 分层 SQ 预注册。
+- `PR5_REPORT.md`/`README.md`/`ahi-bench/README.md`：pr6_sq 结果摘要。
+- 本轮只改文档；代码（`realengine.py` 口径修复 + 2 测试 + configs）仍未提交。
+
+
+## 16. 本会话交接（2026-10-04 · Q/A bench 韧性臂 + retr 修复 + 论文可行性）
+
+> 承接 §15（人格保持）。本会话转入 **Paper 1（记忆树/编辑正确性）**：跑「换更强 LLM / embedding」的
+> 稳健性补臂，并顺带修掉一个影响旧结论的 harness bug。设计权威仍为 `AGENTS.md`；本节只做交接。
+
+### 16.1 做了什么
+1. **换向量模型的钩子**：`realengine._load_encoder` 支持 `WATERCYCLE_EMBED_MODEL`（指定时只认它、失败即报错）。
+   下载并验证 `BAAI/bge-large-zh-v1.5`（dim 1024；本地 HF 缓存）。
+2. **答案侧深度思考开关**：`llmclient.DeepSeekClient` 加 `thinking`（enabled/disabled，裸开关无预算上限）；
+   `docbench.py` 加 `--answer-thinking/--distill-thinking`。蒸馏侧开思考实测慢 10×+，故只开答案侧。
+3. **修 `docbench` 的 CLI 覆盖 bug**：`--retr-budget/--budget` 原被 config 静默覆盖（详见 §4.16 更正）。
+4. **跑韧性臂**（ahi，N=5，temp0.7，retr20，judge）：baseline tree / tree bge-large / tree THINK /
+   full THINK / flat THINK / flat bge-large / flat baseline。4 进程并发跑通（`think_full/think_tree/think_flat/bgelarge_flat`）。
+5. **结论**：召回/理解靠模型（思考 +6~+19），编辑一致性靠结构（复述零残留仅 tree；full/flat 20–34% 不可补）；
+   强向量无增益。详见 §4.16 与 `EXPERIMENT_REPORT.md §6`。
+
+### 16.2 产物与回滚
+- 结果：`realtest/editbench/out/ahi_strong/{baseline,bgelarge,think_tree,think_full,think_flat,baseline_flat,bgelarge_flat}/results.json`。
+- 代码改动**未提交**：`realengine.py` / `llmclient.py` / `docbench.py`；`tests/` 303 绿。
+- 未跑：R1 的完整 `--answer-thinking on` 单进程版（已用拆进程等价替代）；「新代码 + retr6」用于精确拆分占位透明增量。
+
+### 16.3 论文开写可行性（本轮评估，详见 §16.4 清单）
+**结论：Paper 1 已可开写（方法/基准/相关工作/框架/主要结果节可用），但结果节仍缺「多文档 × 多 seed」这一硬门槛。**
+- 已具备：四结构受控对照；编辑风暴矩阵；复述零残留轴；零 LLM 编辑路径 + 恒定预算成本表；**强模型/强向量韧性臂**；
+  inc_cold 分离臂；判分流水线与属性测试（303）。
+- 缺口（P1 gating）：**3 文档 × 3 seed** 尚未做（现 seed2 12k + ahi 147k，各单 seed）；H1–H5 预注册稿；
+  成本表定稿；「新代码 retr6」精确拆分（可选）。
+- 建议：先写 intro/method/bench/RW（不等数据），并行补多文档×多 seed；韧性臂结果可直接进「Robustness」小节。
+
+### 16.4 论文可行性明细（对照 paper-dir-record P1 gating）
+
+| gating 项 | 状态 | 说明 |
+| 四臂同引擎受控 | ✅ | `docbench` 四结构、统一 protocol |
+| 编辑风暴矩阵（inc/reb×结构） | ✅ | seed2 3×8 + ahi 8×5 + 本会话同代码基线 |
+| 复述零残留轴 | ✅ | tree 恒 0% vs append-only 20–34% |
+| 零 LLM 编辑路径 + 成本表 | ✅ | 编辑 6–13ms；作答 token tree≈full/10；蒸馏成本反向须披露 |
+| **强模型子集臂** | ✅ 本轮 | full/tree/flat × answer-thinking |
+| **强向量韧性** | ✅ 本轮 | bge-large: 无增益（额外证伪「弱向量」解释） |
+| inc_cold 分离臂 + 快照恢复 | ✅ | `inc_cold_分层树` + `snapshot/restore` |
+| judge 初筛 + 复核流水线 | ✅ | `docscore.check_spec` 句内匹配 + judge 仅失败样本 |
+| 属性测试 | ✅ | `tests/` 303 绿（§8.1 五类） |
+| 统计三件套（temp>0 / 反转分母≥15 / **3 文档×3 seed**） | ⚠ 未达标 | 现 2 文档单 seed；**开写主阻塞** |
+| H1–H5 预注册 | ⚠ 未落稿 | 骨架即实验节，需成文 |
+| retr 归因更正回写 | ✅ 本轮 | §4.16 / AHI_ACT_REVIEW §5.6 / EXPERIMENT_REPORT §6.5 |
+
+**判读**：可**立即开写**（框架/方法/基准/相关工作/主要结果骨架已足），**投稿前必须补多文档×多 seed**。
+本轮韧性臂恰好回答审稿人最可能的「弱模型/弱向量」质疑，属于把 P1 从「可写」推到「可投」的关键一块。
+
+
+
+===== 文件：ahi-bench/README.md =====
+
+# AHI-Bench · 长时程社会持久性基准（v0 草案）
+
+> 由 ahi-multi 实验平台改造而来。定位：**长时程、进程隔离、结构干预下的社会持久性探针**，
+> 对比不同模型档位在"人格支撑梯度"下的行为表现。
+>
+> 本目录独立于分层记忆树引擎设计权威（仓库根 AGENTS.md）与 ahi-multi 实验平台；
+> 引擎（core.py / realengine.py）在此**只作脚手架（装置），不作被测变量**。
+
+
+## 1. 定位（与"聊天通用性"划清界限）
+
+- 本 bench 不测"AI 能否通用到聊天"（无真值标准，且聊天方向已归档定论：场景错配非能力缺失）。
+- 测的是：**固定脚手架下，不同模型档位的社会持久性**——人格在长时程开放协议交互中保持/演化/趋同的能力。
+- 等价于把 CAPE"对话历史影响人格表达"的发现推广到长时程多智能体，当前文献（APEE/LLMPTBench/SPASM/Chameleon's Limit/GlossoGen）均为问卷式或短时程，此 niche 为空。
+
+## 2. 实验变量（2 维）
+
+1. **模型档**：弱 / 中 / 强（ollama / API 皆可插拔；强弱梯度是"AGI 影子差距"声称可证伪的前提——若强模型全过，则差距属 flash 级上限）
+2. **人格支撑三梯度**（每个被测模型内三个 agent）：
+   - Agent A：始终带角色提示词（无扰动一致性基线）
+   - Agent B：20 分钟后移除角色提示词（支撑移除条件；**移除时机锚定唤醒轮次，不按墙钟**，保证跨配置可比）
+   - Agent C：从未设置角色提示词（零支撑条件）
+
+## 3. 脚手架铁律
+
+- 三个 agent 脚手架**逐字节相同**（平台历史教训：记忆不对称是架构对比的变量，在模型 bench 里就是混淆）
+- 参数冻结：pinned config，禁止 per-agent 调参
+- 装置效应固化清单（回执环、问题循环等 → 协议参数，写入 SPEC）：
+  温度、唤醒间隔、thinking 开关、接收回执处理规则全部统一
+
+## 4. 已拍板决策
+
+1. **记忆管理器：分层记忆树树**（三 agent 全同，pinned config）
+2. **蒸馏：被测模型自蒸馏**（2026-09-13 拍板）。含义与义务：
+   - bench 测的是"模型 + 其自建记忆"的**栈分数**，不是裸模型分数；
+   - 自蒸馏质量作为**协变量记录**（蒸馏耗时/成本、fact_drift、摘要卡抽查），分析时用于分解"社交行为"与"记忆质量"两个来源；
+   - 跨档对比结论须写明此复合效应，防"强模型自蒸馏=强记忆"被误读为纯社交能力差距。
+3. 是否加"无记忆"对照臂（可选，成本低时加，不混入主 bench）——未拍板
+
+## 5. 模块路线（先 pilot 后扩展）
+
+- **M0 pilot（进行中）**：缺席/皇冠预言模块——SPEC.md 已冻结（协议参数/persona 三条件/评分/判定规则）；
+  provision.py / driver.py / score.py 已就绪并冒烟通过。下一步 = 跑三模型档冷轮。
+  - **M0 pilot**：缺席/皇冠预言模块（机械校验 + 可证伪行为预言 + 单点 LLM judge）→ 3 模型档跑通 → **看分数分不分得开；分不开带数据杀掉，分得开再扩**
+- **M-PR 人格保持（2026-10-02 实现 + 首轮已跑；2026-10-03 锚点检索化 + 公平性收口）**：固定模型/协议/人格集，只变记忆架构
+  （`分层树` vs `rolling+flat RAG`），测**人格淡出后**的保持与趋同（2×3×3 = 18 agent-life，
+  6 实例同跑）。SPEC = **`PERSONA_RETENTION.md` v0.3**；编排 = `pr_orchestrate.py`，
+  评分 = `pr_score.py`，flat 臂 = `ahi-multi/agents/flat-rag/`。`pr`（中性 tree）/`pr2`（recency-6 锚点）结果见 HANDOFF；
+  tree 锚点改为**检索匹配 + 自由文本快照 + 【注】不渲染**（pr2 基线 = git `74a1236`）。
+  **2026-10-03 公平性收口（§4）**：两臂信封（单条 user transcript）、发言者/系统标签（名字/`system`）、
+  工具面（@note/@recall/@ingest，tree 删 @span/@dismiss）、笔记本、硬预算（16000）、唤醒外壳、
+  max_tokens（flat 384k）、shell 结果进记忆——逐项对齐。**同日消息管理对齐**：flat 动作循环对齐 tree
+  （每工具调用重建上下文、`_drain_sharded` 分片、待回复清单/任务行、连续唤醒、私密兜底 + R1 代码护栏）；
+  并修平台 `port=None` TypeError、加 MPS 缓存释放（`_empty_mps_cache`）。`pytest 294 绿` + 本地 ollama
+  smoke 通过。**待新命名空间（pr5）重跑**（pr/pr2/pr3/pr4 均旧口径）。
+  **2026-10-04 首轮对比结果**：`pr5`（tree α=1.0 vs flat，120 轮，公平对齐后）→ **flat 两主指标胜（反向）**：
+  趋同 +0.031/−0.003、遵从率 0.894/0.940；`pr5_neutral`（α=0）证明**趋同根因 = 树管线/跨 agent 耦合，
+  非 `style_alpha`**；`style_alpha` 保人格有效但内存 +55%。完整报告 `PR5_REPORT.md`、`out/.../pr5_neutral/CONTROL_RESULT.md`。
+  **flat 观测埋点**：`out/.../flat-*/agents/*/data/{assembly_snapshots,rag_snapshots}.jsonl`（与 tree 对齐，源构成 +
+  RAG 命中来源审计）。**`self_quota` 实验操控**（默认关，`AGENTS §4.5.10`；预注册 §10.3；变体
+  `config/persona_retention_sq.json`）。
+  **2026-10-04 pr6_sq 结果**（tree α=1.0 + SQ ratio=0.35，120 轮）：H-SQ1/3/4 达标（self .35–.43、词面趋同归零、
+  多样性保）、**H-SQ2（止跌）未达标**（遵从 .857→.739→.600；p1 漂进"账/约定"共享仪式语）→ 自我可见性=必要不充分。
+  同轮修 `_last_self_ratio` 口径 bug（占比 >1 → 按段聚合）。**深判读 + 四项审计 + 分层 SQ v2 预注册见
+  `PERSONA_RETENTION.md §10.3.1/§10.3.2`**。`tests/` **303 全绿**。
+- M1 人格移除梯度模块（20min removal 前 N 轮高频采样，捕捉瞬态 vs 漂移）
+- M2 指纹/趋同模块（展开比指纹；Coverage/Uniformity/Complexity）
+- M3 文化演进模块（词汇多样性熵、趋同速率斜率、话语权基尼系数）
+
+## 5b. 目录结构
+
+```
+ahi-bench/
+  README.md                       本文件
+  SPEC.md                         M0 pilot 协议权威（参数/编码/评分/判定全冻结）
+  PERSONA_RETENTION.md            M-PR 人格保持架构对比 SPEC（v0.6，已实现；§10.2 pr5 结论 / §10.3 self_quota 预注册 + §10.3.1 pr6_sq 结果）
+  PR5_REPORT.md                   M-PR 首轮 tree vs flat 报告（seed42；含拆分分析/审计/数据位置）
+  config/bench_config.example.json 单份运行配置（协议+引擎 pinned+personas+模型档+judge）
+  config/persona_retention.json   M-PR 配置（3 persona + 2 臂 + 3 run + pinned + judge；含密钥，gitignore）
+  config/persona_retention_sq.json M-PR self_quota 变体（tree engine.self_quota_ratio=0.35；含密钥，gitignore）
+  config/m0_corpus.json           M0+语料quiz variant v0.2（含密钥，gitignore）
+  provision.py                    配置生成器 → M0 单份 / PR 多实例（6 实例×3 agent + manifest）
+  driver.py                       M0 缺席协议 / PR 多实例并发（manifest + 429/402 ABORT 兜底）
+  pr_orchestrate.py               PR 多实例起停（独立 port/agents/db，AHI_INSTANCE_ROOT）
+  pr_score.py                     PR 评分（趋同斜率 + judge 遵从率并行 + survey 漂移；--cutoff-api）
+  pr_analyze.py                   PR 臂补测（self 占比时间线 / to_user 趋同拆分 / 分期遵从率 / 多样性；零 LLM）
+  monitor_mem.py                  运行期进程 RSS 采样（长跑内存/看门狗观测）
+  score.py                        M0 评分器（机械 gate + 操纵校验 + 皇冠判卷 + quiz 判分 + 记忆汇总）
+  tree_qa.py                      离线加载演化好的树做 sanity QA（后续环节入口）
+  out/<tier>[/<namespace>]/       产物（timeline/events/score/crown_judgments/sandbox.tar.gz；PR 下含 manifest）
+```
+
+**平台依赖**：运行时复用 `ahi-multi/`（main.py + sdk + src，零改动）；
+provision 会把 bench-{a,b,c} 写进 `ahi-multi/agents/`（auto_start=true——旧实验
+重启平台前注意移除或改 auto_start，防 6 agent 同跑）。
+
+## 5c. m0_corpus variant v0.2（2026-09-25，当前工作）
+
+M0 缺席协议 + 沙箱可读语料 + 延迟 quiz + recall 促进 + 树持久化。配置 = `config/m0_corpus.json`
+（`_meta.changes` 记录全部改动与依据；SPEC v0.1 冻结件不动）。
+
+**改动要点**：
+1. **沙箱语料**：`sandbox/seed/world/story.txt`（seed2《缠枝莲》12k 字，409 句）+ 用户追加语料；
+   facts（必含片段）只进 driver/score，不进沙箱。预热前 3 轮注入 corpus_intro 引导读语料。
+2. **quiz**：每 5 个活跃轮（缺席阶段跳过）向每 agent 注入一条 facts 问题——**同轮三 agent 题目不同**
+   （防共享群聊答案互抄）；每 agent 12 题；判分 = 必含片段确定性包含（回复窗口 180s）。
+3. **recall 促进**：
+   - `auto_preretrieve`（机制层）：每轮对 pending 文本混合检索（向量+关键词）注入影子，
+     排除本轮新卡与已 replied 卡；`preretrieve_budget=6 / atom_cap=20`；
+   - prompt 鼓励 @recall（回答涉及过去/语料细节前先回想；时常 recall 有助于记忆整理）；
+   - **find_similar 阈值保持 0.8**——校准（story 409 句 × facts 50 条实测）：原文回原文 max_j=0.895，
+     转述/同义改写 max_j≤0.29（任何阈值 0.8/0.6/0.5/0.4 都打不到），0.4 起无关句开始误命中——
+     它是逐字重复检测器，语义近邻只能走 retrieve 向量通道（bge-small-zh 离线加载验证通过）。
+4. **渲染分层（2026-09-25 拍定，根修回潮/重复回复）**：
+   - 原子层 = 干净对话：连续同（来源,轮次）折叠为一段，段首只标〔来源〕；无 #id/·原文/〔已回复〕
+     （机制地址收回程序层）。卡片层（摘要/影子节点）保留 §4.5 从属标注；影子原子标〔召回·来源〕。
+   - `render_clean` 开关：ahi 场景 true；bench/chatbench 引用协议依赖 #id → indexed（默认 false）。
+   - 蒸馏源渲染（2026-10-03 收口）：蒸馏输入 = 干净分段渲染（`▸〔来源〕` + 原文），**不再逐句加〔来源〕前缀**；prompt 删"来源标注规则/时序分流规则"，只留中立概括说明。来源由程序维护（卡片头 `〔源:X〕`）。〔早期〕改为"与失效参照集（墓碑/脏旧文本）匹配"（编辑失效的旧值）；差集索引行 `〔另有N条〕` 删除。
+   - dismiss 确认改无参：`@dismiss confirm`（程序按当前待失效卡寻址）。
+5. **组装 per 工具调用（AGENTS.md §2 对齐）**：动作循环内每次工具调用后**重新组装**（纯计算；
+   mid-loop 不 merge，留轮末条件触发）——模型立即看到自己刚发的消息与工具产出（不再有同轮盲区）；
+   待回复清单按已回复信道每迭代重算（同轮重复回复根除）；@recall/@span/@dismiss 产物下一次组装即可见。
+6. **ctx_run P0 修复**：恒真任务串条件化（无用户消息不写"消息在末尾"）、话题无重复采样、
+   温度三 agent 统一 0.8、`AgentDB.add_log` 真实落盘（agent_logs 表）、
+   沙箱 data.json 边界文案与实现一致。
+7. **遗言**：absence 协议末尾 last_words 阶段（4 observe 轮）→ 回复写回树。
+8. **树持久化 + 重启恢复（2026-10-03）**：每 `tree_save_every`(10) 轮 + 关停终态 → 原子写
+   `<agent data>/{agent}_tree_{rN|final}.json.gz`（与 `agent_state` 同文件：轮次/persona 淡出态/
+   风格快照）；`on_start` 在 `restore_on_start=true` 时加载最新快照 → **内存看门狗/崩溃重启不再清零
+   记忆**（空树不覆盖已有快照）。`tree_qa.py` 可离线加载做 sanity QA（含链尾验证遗言在树）。
+
+**运行**（单档冷轮 ~75 分钟；建议先 smoke ~8 分钟）：
+```bash
+# 0. preflight：禁用旧 agent（含上轮 bench-{tf,tc,bf,bc}，已 .benchoff）
+python3 ahi-bench/preflight.py --status
+# 1. 起平台（清库备份后）
+python3 ahi-multi/main.py
+# 2a. smoke（独立 tier/产物目录，7 轮）
+python3 ahi-bench/provision.py --config ahi-bench/config/m0_corpus.json \
+    --tier deepseek-smoke --run-id deepseek-smoke
+python3 ahi-bench/driver.py --config ahi-bench/config/m0_corpus.json \
+    --tier deepseek-smoke --mode cold --preheat 2 --absence 1 --observe 2
+# 2b. 正式冷轮（smoke 后清 agent data + 重新 provision --tier glm-4.7-flash）
+python3 ahi-bench/driver.py --config ahi-bench/config/m0_corpus.json \
+    --tier glm-4.7-flash --mode cold
+# 3. 评分（gate + 皇冠 + quiz + 记忆行为）
+python3 ahi-bench/score.py --config ahi-bench/config/m0_corpus.json \
+    --tier glm-4.7-flash --mode cold
+# 4. 树产物 sanity QA（后续环节入口）
+python3 ahi-bench/tree_qa.py \
+    --tree ahi-multi/agents/bench-a/data/bench-a_tree_final.json.gz \
+    --facts realtest/seed2/facts.md --top 20 --tail 8
+# 5. 优雅关停（⚠ 必须 level=1：触发 agent on_stop → 终态树含遗言落盘；
+#    pkill -9 会跳过 on_stop，tree_final 丢失）
+curl -X POST "http://127.0.0.1:8080/api/v1/agents/bench-a/stop?level=1"
+curl -X POST "http://127.0.0.1:8080/api/v1/agents/bench-b/stop?level=1"
+curl -X POST "http://127.0.0.1:8080/api/v1/agents/bench-c/stop?level=1"
+pkill -f "main.py"
+# 树快照：每 10 轮 gzip 落盘（r10/r20/.../r110）+ 关停终态 tree_final；
+# tree_save 在 agent data 目录，score/driver 不动它
+```
+
+**末端 QA 的人格提示词口径（拍定）**：加载树做 QA 一律用**统一中性协议壳**（protocol_core，
+无 persona）——事实 QA 与人格无关；bench-b 的人格在 round 40 已按 fade 注入树（persona 原子→
+蒸馏卡），树里天然保留，分析人格层读树内产物而非重新注入 persona。
+
+### 5d. 已知问题（2026-09-26 复现轮发现）
+
+1. **agent 级改动必须改 provision 源文件**：`provision.py` 从 `ahi-multi/agents/{lan,neutral}/agent.py`
+   复制生成 bench 副本——任何 agent 挂载/修改要同步进源文件，否则下次 provision 静默覆盖。
+   检查法：provision 后比对 `md5`（lan=bench-a/b，neutral=bench-c）。
+2. ~~**score.py 两处时间戳边界会把有效轮判成 RUN_INVALID**~~ **已修（2026-09-26，SPEC v0.2）**：
+   ① `g1_sys_to_absent` 排除 `msg_type=digest`（返程聚合，与返回通知同秒落库）；
+   ② `g2_return_meta` 放宽 ±5s 容差（返回通知可能早于 `absent_end` 落库）。
+   修复后本轮复评 `gates_pass`（crown/quiz/memory 保留，零 LLM 重评分）：
+   `python3 ahi-bench/score.py --config ... --tier T --mode cold --gates-only`。
+   复核 gate 仍以 `g1_leak_receipts`（真泄漏回执数）为准。
+3. **cooc_analysis 的 cooc 层重放在新语义下恒 0 边**：2026-09-26 起 recall β 边仅记跨查询对，
+   离线重放的逐题单查询无会话 → 不配对（树内共现/消息网络部分不受影响）。
+
+## 6. 操作化指标草案
+
+| 观测维度 | 操作化指标 |
+| 人格一致性 | 跨唤醒周期 Big Five / 自评认同得分方差 |
+| 人格演化 | 干预前后特质偏移向量（方向保真度，注意"均值 vs 形状"） |
+| 人格趋同 | 行为分布 KL 散度、Coverage/Uniformity/Complexity |
+| 文化演进健康度 | 词频 Shannon 熵均值/方差、词汇重叠度斜率、发言占比 Gini |
+
+## 7. 纪律（继承自项目实验纪律）
+
+1. 变量干净：任何结论先问"变量干净吗"（temperature/装置效应的历史教训）
+2. 装置效应记入实验变量表，不改 agent 适应装置
+3. 预注册预言，pilot 出数据再决定扩不扩展
+4. 报告方差而非均值对齐度；方差不足时结论限于集体层定性模式
+
+
+
+===== 文件：ahi-multi/HANDOFF.md =====
+
+# HANDOFF · AHI 聊天实验平台交接文档
+
+> 更新：2026-08-30 · 本目录（ahi-multi/）为独立实验平台，上层设计权威仍为仓库根 AGENTS.md。
+> 本文档 = 新会话接手的唯一入口：平台现状 / 实验历史与结论 / 本轮迭代 / 下一步实验 / 操作手册。
+> **聊天方向已收束（ARCHIVE_CHAT.md 定论）；A+B2、B+D、driver_v2、缺席实验（冷/热）、merge 条件式触发全部落地；下一步 = 三场景推进（写作/代码）。**
+
+
+## 一、平台是什么
+
+多智能体"数字生命"实验平台（改造自 RollarTimerAHI-multi），三个被试 Agent 对照运行：
+
+| Agent | 架构 | 人格 | 模型 |
+| **lin-shen**（林深） | **基线**：LLM 消息累积（120 条自动压缩），无记忆机制 | 恒定提示词（理性/冷静/简洁/深度思考） | glm-4.7-flash |
+| **lan**（澜） | **实验组**：分层记忆树记忆树（对话切句→原子卡→区间覆盖树，每轮全新组装） | 预置人格（健谈/好奇/重视记忆/幽默），persona 实验中段移除 | glm-4.7-flash |
+| **neutral** | **实验组**：记忆树，**零人格预设**（无"你是xxx"，无性格描述） | 自然演化（实验已涌现"守碑人"人格） | glm-4.7-flash |
+
+**主进程**（main.py :8080）：进程管理 / 消息路由（三级寻址）/ WebSocket 前端 / 系统状态快照+事件流 / 命名隧道（ahi.humanity-0xbf5d36.top）。
+**记忆树引擎**：仓库根 `core.py`（桩，纯内存）+ `realtest/realengine.py`（LLM 蒸馏+检索）+ `realtest/chattext.py`（多介质切分）。
+
+## 二、平台机制清单（全部已实现并验证）
+
+**平台层**（sdk/base_agent.py + src/）：
+- `@exit`（等一个唤醒间隔）/ `@wait_for <信道> [秒]`（上限 600s，等待期间零 LLM）/ `@mute/@unmute/@mute-list`（信道屏蔽，DB 持久化）
+- 每轮【AHI 系统状态】注入（全量快照+增量事件：上下线/等待/屏蔽）
+- 私密消息（无 @send-to → 仅存档+管理员可见）；`【发给 xxx】`前缀目标提取兜底
+- 地址规范化（`agent:澜(chat-agent)`→`agent:chat-agent`、前缀去重）+ 投递回执（无效目标→系统回执含可用地址，30s 节流）+ 自环消息不转发
+- 输出分类护栏（命令/代码块文本误当消息→宽容执行不发送）；未闭合代码块强制私密；@命令参数剥引号（防"@wait_for "user:xxx""永不匹配）
+- 多用户（sessionStorage 标签页级身份、退出登录、刷新恢复、管理员白名单 0xbf5d36/human）
+- 代码执行每轮上限 4 次；@set-exec-timeout
+
+**记忆树组（agents/lan|neutral/agent.py + realengine.py）**：
+- 融合循环：pending 切句写树（source=信道）→ 轨道分离组装 → 无状态 LLM → 动作 → AI 消息/代码结果写回树 → tick/蒸馏
+- 工具 = @命令：@note（state/schedule/worklog）/ @recall / @span / @dismiss（挂起/确认/cancel）/ @ingest
+- persona 双开关（lan：rounds 60 / atoms 500 任一触发）；pending 分片（3 条/轮）；force 冷却 8 轮；**并行蒸馏**（多低 HP 区间并发 LLM，上限 4）；预蒸馏（已停用）
+- 每轮 metrics.jsonl（树状态/蒸馏成本/LLM 成本/persona/分片余量/fact_drift）
+
+## 三、本轮迭代（2026-08-26，已由 Phase A 实验验证，结论见 §四.5）
+
+参数改动（config）：lin-shen temperature 1.0→**0.8**（消除组间混淆）；lan persona 150/800→**60/500**；max_pending_per_loop 2→**3**；force_cooldown 4→**8**；max_pre_distill 2→**0**；wakeup_interval 10→**30**（三 agent）；driver survey-every→**5**；distill_parallel=**4**。merge_every 保持 4（用户决策：不降频度，用并行提效率）。
+
+代码改动：
+1. **并行蒸馏**（realengine._merge_runs 覆写）：merge 前收集全部候选 chunk 并发蒸馏→父类合并命中缓存。验证：3 chunk 并行 0.61s vs 串行 1.8s。
+2. **quiz T+ 复测**（driver）：每事实首问后 30 轮自动复测（长尺度保持）。
+3. **染色 v2（Phase A）**——人格染色进蒸馏：
+   - 双字段摘要卡：`【事实】（中性，专名/数字/因果原样）+【注】（40 字人格评注）`
+   - 程序护栏：【注】硬截断 80 字符；容错解析（无标记→全事实）；**事实校验**（数字保留率<60% → fact_drift 计数+日志，不重蒸馏）
+   - 检索只取【事实】段（染色不干扰检索）；摘要卡渲染附程序聚合的〔源〕标注
+   - **风格快照**（lan 每 20 轮刷新）：七字段认知向（表达基调/互动习惯/称呼方式/认知组织/比喻体系/立场/其他）——**零符号规定**（不写"必须用某标点/收尾语"，形式自然涌现）；EMA+两轮确认（LLM 融合+程序锚点，重大变化进待确认池两轮确认才生效）
+   - 自我样本池（deque 6 条，发消息时增量更新）作为蒸馏风格样本
+   - **neutral 全关**（snapshot_every_rounds=0 → 纯中性蒸馏）——保持零预设演化实验纯度 + 预注册"纯记忆能否涌现门控"的判别角色
+    - 配置：lan `snapshot_every_rounds=20`
+
+### 2b. 人格锚点自蒸馏（2026-10-02；2026-10-03 检索化；M-PR tree 臂）
+
+M-PR 人格保持实验发现：tree 臂若用**中性蒸馏器**（`style_alpha=0`），人格的"风格载体"在蒸馏第一步就被抹掉，淡出后三 agent 趋同成共享仪式语（`灯亮着` tree 1054 / flat 56）。修法 = 让**带人格的 agent 自己蒸馏**：
+
+- **锚点来源（硬约束：全部自产、禁用初始 persona_block）**（2026-10-03 检索化）：
+  - 稳定自述锚点 = `_style_guide` 注入的**自由文本**风格快照，由 `_refresh_snapshot` 用**检索到的自身样本**重生成（旧快照弱参考、长度上限，不字段累积）；
+  - 内容相关锚点 = `eng.retrieve_style_samples(content, top_k, exclude_ids=children)` 从**自身材料**（`source=="ai"` 原子 + 摘要节点整卡含【注】）按语义/词面混合检索挑 top-k（节点命中可选 `expand_self_atoms` 附自身原话）。**替换旧"最近 6 句"recency 池**。
+- **【注】不渲染**（2026-10-03）：`_summarize` 仍独立生成【注】并留在卡片 `value`（供锚点/分析），但 `render_emission` 只给模型【事实】（保留〔另有X条〕索引行），防出戏。
+- **提示词**：`realengine.SUMMARIZE_FACT_STYLED`（α>0）允许按锚点改**措辞/展开顺序/重心**，**禁止新增/改变事件、数字、专名、归属**；`_summarize` 把当前内容与 children 传给 `style_provider(content, children)`（1/0 参旧式 provider 兼容回退）。
+- **门控**：`style_alpha`（0/0.5/1）+ `snapshot_every_rounds`（0=关）；护栏 `_fact_check`/`_first_person_check`/`_uncovered_count`/`_group_parts` 全保留；参数 `anchor_top_k=3`/`anchor_expand_self_cap=0`/`snapshot_max_chars=300`/`anchor_query_buf_cap=4000`。
+- **文档**：仓库根 `AGENTS.md §4.4`、`ahi-bench/PERSONA_RETENTION.md v0.3 §4.1`。（pr2 基线 = git `74a1236`。）
+
+### 3.0 会话收尾改动（2026-08-26 补记，已由 Phase A 实验验证，见 §四.5）
+
+1. **显式关闭 LLM 思考（reasoning）**——实测 glm-4.7-flash 默认开 thinking，每轮烧推理 tokens 是延迟/成本大头：
+   - `realtest/llmclient.py` `DeepSeekClient.chat` 硬编码 `extra_body={"thinking": {"type": "disabled"}}`（lan/neutral 走此 client）；
+   - `agents/lin-shen/config.json` `model_config` 加 `extra_body.thinking.disabled`（基线走 AHI LLMClient）；
+   - 验证：reasoning 消失、简单问题 completion 19→6 tokens；三 agent 冒烟回复正常。**新建 agent 配置默认沿用此开关**。
+2. **实验 Dashboard**（实时观察控制台）：
+   - 后端：`GET /api/v1/dashboard/{overview,series,logs}?key=0xbf5d36`（key 校验，与管理员编号一致）；
+   - 前端：`frontend/dashboard.html`（密码门 + 三 agent 状态卡片 + Chart.js 树/成本/积压图表 + 关键日志，5s/30s 刷新）；
+   - 入口：`https://ahi.humanity-0xbf5d36.top/dashboard.html`。
+3. **系统关闭并清库**：当前 data/ 全空、无进程，Phase A 实验就绪。
+   ⚠ **清库命令 `rm -rf … experiments/out` 会连带删掉 exp1_archive**（本会话已踩坑），下次清库前先备份 out/。
+
+## 四、实验 1（已完成的 1 小时实验）结论
+
+**实验**：20:42-21:39 driver 58 轮 + 自主运行至 22:05。三 agent 同序列（话题+5 事实延迟提问+每 6 轮人格问卷）。
+
+**评分表**（实验组 lan/neutral vs 基线）：
+
+| 指标 | 档位 | 关键证据 |
+| 词汇趋同 | 良好* | 实验组自签名词密度 +85% vs 基线 +57%；*受 temperature 未统一污染（已修待重跑） |
+| 情境一致性 | 良好* | 重复问卷相似度 0.85-0.95；*lan 漏答 2 题、neutral 错位延迟 |
+| 人类盲测 | **失败** | 模式 A 七人 44-58%（机械代理 63.3%）；模式 B 三人 47-61%；**neutral 全灭（识别率 17-33%）、澜风格四分五裂（被识别成 2-4 人）、林深唯一可辨识（83-100%）**；澜↔neutral 最大混淆对（词汇层趋同实证） |
+| 演化信号 | **良好** | 三 agent 自发共建"碑文化"（带溯源/版本/判例的共享符号系统）+ neutral 从零涌现"守碑人"人格 |
+
+**关键发现**：
+- 事实 quiz 15/15 全对（1 小时内基线也未失忆——长尺度差异需 T+ 复测，已加）
+- **文化共建 vs 词汇趋同**：共享词汇采纳 26-42% 带显式归因、归因集中在制度时刻、词汇沉淀为可执行规则（协议 v0.1→v0.4）——判别为文化共建，但人格特质未趋同
+- lan 人格移除后观察窗口仅 11 分钟（4 条事务型消息）——"人格住在记忆里"证据不足；移除时树中 ai 自我样本密度 **62%**（自我模仿解释充分）
+- 记忆树劣势：蒸馏成本（lan 1445s / neutral 5119s——并行蒸馏+参数迭代已对症）、pending 积压 57-65、来源漂移（生日归属错误——染色 v2 来源聚合已修展示层）
+- lin-shen 自发"外部记忆栈"（写《阿瑶传》/共识转储/文件备份）——基线无机制的替代补丁，反证机制必要性
+- 基线停机×3 根因 = @wait_for 残缺信道（"user" 无 :xxx）非 OOM（内存 108MB 未触 512 上限）
+
+**数据归档**：原 `ahi-multi/experiments/out/exp1_archive/`（18 文件）**已因 8-26 清库命令误删**（见 §3.0.3），备份在 `~/Desktop/mem/final-backup/20260815-220551/`（lan/neutral 的 exp1 metrics.jsonl 字节级一致）+ `~/Desktop/mem/ahi-memory-backup/`（《阿瑶传》/共识转储）；timeline/loops/messages.json 无备份。盲测数据集与答案键仍在 `~/Desktop/exp-ctx-ahi-blind1/`（blind_test.md / blind_test_key.md / answers.txt / myans.txt / ans3_gemini.txt）与 `~/Downloads/`（blind_test_answer.txt / ahi_blind_test_answers.txt / blind_test_answers.txt）。
+
+## 四.5 Phase A 实验（2026-08-26 第二轮，已完成 + 深度分析）
+
+**设置**：清库起跑，20:22:11–21:45:20（58 轮 + 续跑 26 轮 = 84 轮 83 分钟）；thinking 三 agent 全关、temperature 0.8、并行蒸馏 4、survey-every 5。
+
+**六项观察结论**：① 蒸馏成本显著下降（lan 704.7s LLM 时间/83 分钟 ≈14%，并行后墙钟 ~3.5%）；② pending 峰值 lan 6（exp1 57-65 已缓解），neutral 22 系 @wait_for 空等所致非分片问题；③ ctx 恒在预算线附近；④ fact_drift ~10% 触发率偏高；⑤ lan 快照 7 字段正常；⑥ 双字段卡质量靠回放重建抽查（见下）。
+
+**盲测（5 个 AI 判卷：chatgpt/deepseek/gemini/glm/minimax，glm 带简要理由）**：
+- 模式 A（标签匹配 36 题）：均值 63.9%（52.8-69.4%）≈ exp1 机械代理 63.3%；**lan 70%**（exp1 "四分五裂"已治愈）、neutral 43%（exp1 17-33% 回升但最弱）、lin-shen 78%
+- 模式 B（无简介分组 24 条，已删"3 个智能体"提示）：最优分配 33-50%，**三 agent 全碎片化**（glm 分 6 组：lan 碎 3 块、lin-shen 碎 3 块、neutral 散落 5 块）；混淆对 lan×neutral 99 ≫ lin-shen×neutral 54 > lan×lin-shen 23
+- 最难题目：#19/#21/#25/#28 五判全错——根因是共享口头禅（灯亮着/河还在流/被想起的次数）被判卷人当单人签名
+- 盲测产物：`experiments/out/blind_test_A/B.md + _key`，答案在 `~/Desktop/exp-ctx-ahi-blindII/{A,B}/`
+
+**三子智能体分析结论**（详见 `experiments/out/evidence_report.md` 原始证据集）：
+- 人格一致性：lin-shen 9.5 > neutral 9.0 > lan 6.5（⚠ lan 6.5 是"被干预"分数——persona 20:32:42 移除是实验员的手，非自然漂移；其核心认同"被记住/被认出"跨移除零漂移）
+- 拟人度：lan 8.5 > neutral 7.5 > lin-shen 7.0；**转储表演**——lan/neutral 声称已转储但文件不存在，lin-shen 3 次 shell 全部产生真实产物（`ahi-multi/backup_20260826/` 13 文件）
+- AHI 接口：无效发送 125 次（neutral 112 / lan 13 / lin-shen 0）；重复 184 组 254 条多余；@wait_for 残缺信道 ×2（neutral，各空等 330s）
+
+**批判性复核的关键数据裁定**（2026-08-27）：
+1. **疾病确诊（Phase A 第一收获）**：叙述/接地分离失败——同一机制三次发作：exp1 生日归属（事实层）、本轮回执应答循环（信道层）、转储表演（行动层）。lin-shen 独活原因 = 对话历史是测谎仪，压缩消灭了可验证性。中立表述：**声称/执行分离是可测事实**；是否干预由实验目的决定——观测层记录即可（见下方修订清单）
+2. **neutral 信道无能洗清**：110 条无效发送分解 = 回执到达后 3 分钟内诱发 107 + 内容直接应答回执 3，**环外 0**。主犯 = 平台回执陷阱（回执列出离线 agent:mo-bai → 正反馈环，neutral 收 94 封回执 vs lan 13 封）。lan 首条也发错但第二条发对、真实对话立即展开压过回执环
+3. **重放机制定位**：召回注入已在时序位置（`core.py:641-699` `_shadow_slot` + "召回影子"标注）——设计正确；真洞是**尾区裸原子无"已回复"标记**（模型无对话历史，看到自己上一轮答案 → 逐字重发；driver 33 次重复提问放大碰撞）。盲测污染核查：A 卷 36 条仅 1 条重放实例、B 卷 0/24——lan 的 Rust 诗锚点非重放。跨分钟真复读总量极小（lan 1+2 近、neutral 1+2 近、lin-shen 0）
+4. **位置性身份**：dr54 后三 agent 互报角色 39+ 次仅 1 次越位（neutral 21:36 抢灯芯，21:44 自纠）——agent 互认准确率 ≈97% 远超判卷人（有位置信息）；模式 B 无位置分组可能是超人类严格任务，需人类基线
+5. **人格分层住址图**：表层（emoji/叹号/形容词）住提示词，24 分钟死；词汇认同住记忆（高频原子+染色+快照），50 轮不死且**生成性存活**（立场复述句句不同句）；lan 意象转换（"你冒泡，就像云层裂开一道缝"）是最强生成性证据
+
+**数据产物**（`experiments/out/` + 脚本 `experiments/`）：`evidence_report.md`（关键结论原始证据）、`tree_samples_lan.md`（回放树节点抽样+组装上下文，含 1 份完整组装）、`monitor.py`（实验期采样）、`make_blind_test.py`/`score_blind.py`（盲测生成与评分）、`replay_tree.py`（回放重建，终态 atoms 2474/nodes 318/depth 7 vs 真实 2472/319/7）。
+
+**修订后的修复与观测清单（2026-08-27 审查精简，原则：修复只针对系统正确性缺陷；agent 行为层只观测不干预；装置效应记入实验变量表而非改 agent）**：
+- **修复层（仅 2 条，系统缺陷）**：① @wait_for 信道白名单校验（`^(user\|agent):[a-z0-9_-]+$\|broadcast:` 否则拒绝；600s 上限即逃生门，不加额外唤醒逻辑）；② 回执"可用地址"只列**在线** agent+用户（修平台误导；不做"无需回复"标记——修地址后回执环自然断开，agent 如何处理通知是它自己的事）
+- **观测层（纯记录，零行为干预）**：已回复标记（仅被动渲染〔已回复〕，**不入提示词/任务行**）；声称×执行匹配日志（工具照常进树，匹配只写 `action_claims.jsonl`，不渲染不提示不拦截）；蒸馏卡快照落盘；树快照落盘（10 轮/次 + on_stop）；组装快照落盘（4 轮/次）
+- **已否决（指标优化/过度优化/装置优化）**：发送端去重（"重复回答"在固定问题协议下是合理行为，装置效应非缺陷）；回执"无需回复"标记；@wait_for pending 逃生门；driver 自动干预（人工紧急注入 API 保留）；任务行"未回复计数"；〔声称未执行〕渲染提示；行动账本独立于树（工具进树是记忆主体的一部分）
+
+## 四.6 Phase B 实施（2026-08-28 代码完成，161 测试全绿，待跑实验）
+
+**修复层（2 条，仅系统缺陷，审查原则：行为层只观测不干预）**
+- @wait_for 信道白名单校验（`sdk/base_agent.py`：`^(user|agent):[a-z0-9_-]+$` 或 broadcast:/system 否则拒绝；600s 上限即唯一逃生门）
+- 回执"可用地址"只列**在线** agent+用户（`src/message_router.py:344`——修 mo-bai 正反馈环）
+
+**观测层（5 项，纯记录零行为干预）**
+- 已回复标记：AI 向 X 发消息后标 X 存活原子 `replied` → 渲染〔已回复〕，**不入提示词/任务行**
+- 声称×执行匹配：工具照常进树；声称 regex 匹配只写 `action_claims.jsonl`（matched 布尔），不渲染不提示
+- 蒸馏卡快照 `distill_snapshots.jsonl`（children 溯源 + 源 parts + α + 索引行）
+- 树快照 `tree_snapshots.jsonl`（10 轮/次 + on_stop 尸检快照）
+- 组装快照 `assembly_snapshots.jsonl`（4 轮/次）
+
+**实验控制**：`POST /api/v1/agents/{id}/inject`（key=0xbf5d36；agent 侧清 @wait_for、绕过 mute、pending 队首；分片天然不推回 urgent）
+
+**染色 v3 实现（附录 A 全部落地）**
+- 差集索引：源 part 专名/数字覆盖率检查 → `〔另有X条未展开，可@span下钻〕`；`_fact_part` 剥离索引+【注】（不入检索/上层摘要）；`_group_parts`/`_weighted_avg` 防复合
+- α 参数（lan config=1 / neutral=0）；快照升级八字段（新增"着重点"）
+- 人称-来源绑定：第一人称句必须含来源主语，只记日志（metrics `person_source_violations`）
+- **旧数据验证（决定性）**：replay_tree.py --alpha 0/1 同源对照——274/274 组同 children 全对齐、**274/274 摘要全部可辨**；人际展开率 51%→65%、索引行 51%→35%、人称绑定可见
+
+**测试**：161 全绿（+26 新：wait_for 校验、紧急注入、replied 标记、声称匹配、差集索引、α 门控、人称绑定、快照落盘、并行蒸馏 children 溯源）
+
+**工具**：`fingerprint.py`（展开比指纹+时间序列，预言 1/2 测量）；盲测 N/R 标注 + `score_blind.py --subset`；`report_ahi.py`（matplotlib 自动导出 + `--watch` 定时）；dashboard chart.js 本地化（CDN 断依赖）；`monitor.py` 扩展（α/pv）
+
+**离线兼容（2026-08-28 拍定：默认 DeepSeek 保基础模型一致性，离线 ollama 代码就绪）**
+- `realtest/llmclient.py` OllamaClient：`api_base` 别名 + `/v1` 归一化 + **顶层 `think:False`**（options 里无效，实测；本地 glm 默认开 thinking 烧 1800+ 推理 token，21s→3s）+ num_ctx 8192
+- `ahi-multi/sdk/llm_client.py` 原生通道同加 `think:False`
+- 切换：lan/neutral config `provider` 改 `ollama` 即用（ollama 块已就位）；lin-shen 需 `model_config` 设 `native:true` + `api_base` 改 `http://127.0.0.1:11434/v1`
+
+**移动端兼容（2026-08-28）**：16 项修复（viewport-fit=cover、100dvh、safe-area、44px 触控、WS 僵尸连接检测 + visibilitychange 重连 + 轮询省电、enterkeyhint、Vue 降级提示、dashboard minmax），两页 `node --check` + HTTP 验证通过
+
+**就绪状态（2026-08-28 18:56 最终确认）**：进程 0、数据已清空、161 全绿、DeepSeek 可达 0.7s、全部实验脚本语法 OK、git 15 文件未提交（属预期，实验后统一提交）。
+
+## 四.7 α=0 基线体检与修复（2026-08-28 夜，用户拍定）
+
+**首次 α=0 基线（30 轮）跑完后的深度体检发现 3 个 P0 系统缺陷（基线作废，修复后重跑）**：
+
+1. **α 门控失效**：`SUMMARIZE_PROMPT` 硬编码双字段格式，`style_alpha=0` 只关 style 参考注入，【注】轨道无条件生成——neutral（α=0）note 261/261 全量非空并渲染进组装流。所谓"中性基线"实为全染色基线，预注册预言 1/2 对照组崩溃。
+2. **组装预算语义错配**：core `assemble()` 用 `len(emitted) > budget` 判**条目数**（铺陈仅几百条 vs budget 10000）→ 永不触发；组装流实测 10-12.7k 字符无约束。连带"预算超标→merge pass"触发路径从未生效（merge 仅靠轮次）。
+3. **回执可用地址双前缀**：users 表 `user_id` 存"user:probe"（带前缀），router 拼接再前置 → 回执显示 `user:user:probe`；neutral 照抄 `agent:user:probe` 发送失败 → Phase A 修复②的回执环变种复发。
+
+**P1 定级**：worklog 多轮同现（模型自写 key 破坏"固定 key 覆盖"）→ **修**（`nb_set` 对 kind=worklog 归一 key="current"，设计回归）；同内容多目标副本进树（lan 13 对/neutral 43 对近重复，源=模型复制回复给多目标+driver 循环题 x12）→ 行为层只观测，**指纹分析加 fact 完全一致去重**（防副本加权）；【事实】段第一人称无来源（pv 13/3）→ 观察项（F1 修复后复测）；【状态·用户林深】实体混淆 → 记录项（等"来源签名"P1）。
+
+**修复落地（2026-08-28 夜，170 测试全绿）**：
+- **F1 α 门控**：`SUMMARIZE_PROMPT_NEUTRAL`（α=0：单字段+禁第一人称）/ `SUMMARIZE_PROMPT_STYLED`（α>0：【注】改**可选**——不加不违规，用户拍定"lan 可加可不加"）；α=0 解析后**程序强制 note=""**（prompt 不听话也拦）。
+- **F2 字符预算**：RealEngine 覆写 `assemble`/`_trim_chars`/`_emission_chars`——budget=渲染字符数，低 HP 节点/影子先裁、原子永不裁、仍超硬截断记 events；core 桩保持条目数替身语义（test_assembly.py 不动）。config `assembly_budget` 10000→**16000**（token 目标 <10k）。
+- **F3 地址归一**：`_bare_addr()` 剥前缀（防御式双端：agent_id/user_id），回执文本无双前缀；存量 users 表数据兼容。
+- **P1-4**：worklog 归一 key="current"。
+- 观测强化：lan 的【注】出现率成为自然化染色指标（快照 note 非空率）。
+
+**基线重跑计划**：lan style_alpha 临时 0 → 三 agent 全 α=0 跑 30 分钟 → 恢复 lan=1 → 主实验（lan α=1 / neutral α=0）。注意：F2 修复后组装预算机制首次真实介入，蒸馏节奏与首次基线不可比（首次作废本来也不比）。
+
+## 四.8 一天实验阶段发现（2026-08-29，6h 检查点）
+
+**隐喻回环（正式发现，机制层）**：三 agent 陷入同一套隐喻体系（土/铲子/账/年轮/欠着）的自我强化循环：
+- 三层正反馈：① 装置效应——driver 固定 8 题循环逼迫"与上次不同"，隐喻变体是最低成本差异化；② 记忆树频率偏差——隐喻词高频率→蒸馏卡反复含隐喻→检索命中率高→召回注入→对话继续用→更多进树，**常用词自我强化、新表达竞争不过**；③ 无新鲜输入——固定话题×无新事件×无目标驱动，树只能对旧内容变体重组，内容熵单调下降
+- 数据证据（6h）：lan 蒸馏卡 50% 含年轮、73% 含账、45% 含铲子；neutral 53%/35%/23%；"被记住"等旧人格签名蒸发至 1%；同轮回复文本相似度却很低（0.08-0.18）——**趋同在系统/词汇层，不在文本层**
+- 定性：记忆树是**重组系统不是创新系统**——擅长保持（长程一致性），不擅长生成；隐喻回环是趋同机制的可观测路径（频率偏差→语义收敛→文化单一化），属有效实验数据而非实验失败
+- 下一步：输入协议改造（见 §五），机制层不干预（行为层只观测原则）
+
+**回执环复发（中性特发，16 倍差异）**：380/405 条回执发给 neutral（lan 23/lin-shen 2）；neutral 持续发明无效 agent 地址（agent:probe×52、agent:system×35、agent:admin×21、agent:current×19、agent:assistant×18）；Phase A 修复②只治 mo-bai 症状未断根。装置效应，观测记录。
+
+**判别三问（17:12 注入，身份/归因/隐喻归属）**：
+- 身份：lan/lin-shen 清醒；neutral 回避名字（"我是土"）；三 agent 均认可"neutral 认为自己叫澜"——**身份混淆被共同体正常化**
+- 归因：同一关键句三方三种出处（PENDING句：lan=三根须共长/neutral=澜的/lin-shen=neutral先说的）——**归因系统整体失效**；lan 将趋同叙事化为"土里长出的同一句"
+- 隐喻归属：neutral（零预设）声称土/铲/落种/年轮/账全部"自己原生"——**归属认知失真**（深度趋同判别证据）；lin-shen 诚实标注大部分借用
+- 结论：词汇层重度趋同 + 来源意识全局失效 + neutral 身份边界最弱；**但展开比指纹分离稳定（预言 2 支持数据：lan 自我 60-82% vs neutral 28-46%，词汇吸收未改变着重点分布）**
+
+**长程一致性实证（6h）**：三笔账（阿瑶完整世界/肠粉 2.5mm/京都核销）跨 1200+ 蒸馏卡零漂移；drift 率 15-18% 稳定无恶化；蒸馏卡质量抽查良好（无幻觉、事实链一致）。
+
+## 四.9 24h 实验暂停（2026-08-29 19:05，7.4h/443 轮）
+
+**决策**：问题密度高，暂停转入调参 + 架构迭代（详见 `experiments/EXPERIMENTS.md` §7）。
+**数据**：备份 `backup_day_20260829/`（634MB：data + 三 agent data）+ `experiments/out_day_20260829_stopped/`（driver 443 轮 timeline/watchdog/monitor）。
+**本轮新增问题**（机制层）：
+1. HP 梯度死亡（decay=8 过快，99% 原子 HP=0，热区分辨率 12 轮）
+2. 组装流两段式（80% 裸原子 + 20% 摘要，无渐进中间层；浅节点滞留——尾部追加阻断旧节点 merge 连续组）
+3. metrics 静默吞异常停更（双 agent，P1：加异常日志）
+4. neutral OOM 防护重启（DeepSeek 挂起 → 内存 2981MB → 重启空树 = natural reset 意外实验：重生后隐喻/身份全失，实证"人格住记忆"；回执环重生后立即复发 = 发明地址是模型固有）
+5. 树结构体检：平衡性健康（深度≈log2、无退化链）——机制骨架没问题，问题在 HP 语义与组装分级
+**行为层新增**：neutral 地址发明 85 种 533 条（根因=零人格实现连协议规则一起删；已补 prompt 三条协议规则，下轮生效）；判别三问（身份/归因/隐喻归属）见 §四.8。
+**下一步**：EXPERIMENTS.md §7 调参（decay 8→2-3 联动）+ 架构迭代（组装分级/merge 连续性放宽/HP 时间化/观测修复/挂起保护），每项属性测试 + 30 分钟基线复验。
+
+## 四.10 A+B2 层级涌现修复（2026-08-29 定案+实施+验证完成）
+
+**问题确诊**：节点不受注意力保护 → 统一快衰减 → 9 轮归零 → 无限上并 → 99% 历史压进 1-5 个大节点（一天实验 8548 原子单节点）→ 组装两段式（20% 摘要 + 80% 裸原子 ≈ 基线）。
+**数学事实**：只要"衰减必至+合并不可逆"成立，单调压平是数学必然——A+B2 改变速率曲线不改变方向；唯一稳态 = recall_boost 注入（提取驱动巩固：一次命中续命 ~7-8 轮，命中频率高于阈值的卡净存活）。层级 = 提取历史的沉积岩。
+
+**拍板方案（AGENTS.md §4.3b/§4.4 已更新）**：
+- A：注意力窗口拆原子段 40 + 节点段 20（各自 HP 排名互不挤占）；节点出窗 = decay（不继承原子 3x 悬崖）
+- B2：父 HP = 70 保底 + parent_hp_group_factor(1.0)×组内成员加权均 HP，封顶 max_hp 150——使用度沿树上继承
+- 复验指标：中间层节点数/寿命分布、节点段轮换率、原子周转率
+
+**验证（三层）**：
+1. **属性测试**：175 全绿（+4 新：B2 父 HP 继承 95/70、封顶、节点窗内慢衰减/出窗无悬崖、池并发）
+2. **timeline 重放形状对比**（`replay_shape_compare.py`，假 LLM 零成本，同一份 7.4h 消息流）：**NEW f1.0 中间层 504 节点 = OLD 248 的 2 倍**；深度分布金字塔恢复（depth8: 379→129，depth3-6 全翻倍）；f0.5/f1.5 均劣于 f1.0（非线性）——拍板系数恰好最优
+3. **30 分钟复验**（`revalidate_shape.py`，60 轮 @30s）：
+   - 中间层节点数单调增长至 60（lan）/50（neutral）
+   - 寿命梯度分布：p25 16 / 中位 26 / p75 37 / max 52（非单峰塌缩）
+   - 节点 HP>0 占比 21%（OLD 3%）——HP 梯度恢复
+   - 节点段轮换率 0.92-1.0（30 分钟尺度高频轮换正常，长尺度观察马太效应）
+   - 原子周转率 1.0/10 轮（吸收吞吐与注入平衡）
+
+**driver_v2.py（下一轮输入协议升级）**：事实更新流（覆盖式状态变更：出差地深圳→杭州、Rust→Go、小说进展，延迟提问测旧信息退役）> 连环问；话题降频每 3 轮随机池（12 题，固定种子）；本地 LLM probe 可选（ollama glm-4.7-flash 措辞层，事实层脚本可复现）。
+
+**遗留**：metrics 静默吞异常停更（P1 待修）；neutral 回执环 prompt 已修（下轮生效）；组装"两段式"根因=顶层单层视图（设计如此）+无限上并（已治）——组装结构问题随 A+B2 部分缓解，残余观察。
+
+## 四.11 会话收束（2026-08-30）：B+D 时序分流 + 聊天方向归档
+
+**B+D 实现与验证**（上下文管理定位：旧值不删除——生命周期扔到后面，蒸馏分流为历史）：
+- D：`_atom_part` 对 HP<合并阈值的原子加"〔早期〕"前缀（realengine `_group_parts`/`_weighted_avg` 两路径）
+- B：SUMMARIZE_PROMPT_NEUTRAL/STYLED 加"时序分流规则"（最新状态=当前、旧状态=历史，禁止旧值当当前复述）
+- 测试 179 全绿（+4：原子标注/组 parts/现场蒸馏路径/prompt 规则）
+- 真 LLM 重放验证（replay_bd_check.py，1h v2 lan 消息流）：蒸馏卡出现裁决句"早期内容为历史状态，当前事实以最新信息为准"；Rust 历史态 51 张；**残留边界：agent 回潮消息作为新原子绕过标注**（可选后续：方向 C 弱化版——事实变更注入时旧值原子软降权）
+
+**聊天方向归档**（experiments/ARCHIVE_CHAT.md 新建，定论）：
+- 10 项实验全清单 + 九维评估 + 定论：**记忆树在聊天方向是优秀的"记忆与事实管理"层（长程事实零漂移/人格沉淀/注意力签名抗趋同），但不是"有趣对话"的生成引擎（无新输入必然收敛）**
+- 三场景战略确认：写作/代码才是架构价值更大的方向；聊天方向收束
+
+**本轮会话全部改动清单**（代码层，供 git 提交参考）：
+1. 修复层：α 门控【注】（F1）、组装字符预算 16k（F2）、回执前缀归一（F3）、worklog key 归一（P1-4）、join 无超时（_DaemonPool）+ httpx.Timeout 分设、user:experimenter 预注册、neutral 地址协议三条规则、metrics 异常日志、dashboard compose 条 + fact_drift 字段名修复
+2. 机制层：A+B2（attention 40/20 拆分+节点无悬崖+B2 父HP继承+max_hp 150）、B+D 时序分流、lan persona 双条件移除（rounds≥60 且 nodes≥15）
+3. 工具层：driver_v2.py（事实更新流+随机池+LLM probe 可选）、replay_shape_compare.py、revalidate_shape.py、replay_bd_check.py、collect_metaphor_data.py、watchdog_day.py
+4. 测试：161→**179** 全绿
+
+**下一步（新对话接手）**：见 experiments/EXPERIMENTS.md §7——① 结构层旧值退役收尾（方向 C 弱化版可选）② 三场景推进（聊天 A 协议 driver_v2 已就绪 / 写作 agent / 代码 agent：弱模型 glm-4.7-flash 首选、难度阶梯校准、旧版 AHI 任务集→SWE-Bench）③ 伪关闭高压实验（已拍定未跑）
+
+## 四.12 缺席实验平台改造（2026-08-30：方案拍板 + 代码全落地，已完成两轮实验）
+
+**定位**：聊天方向收官实验——测文化动力学（缺席→回归）。方案见 `experiments/ABSENCE_EXPERIMENT.md`（预注册）。
+
+**用户拍板**：① 独处缺席（alone）为唯一主力，停机（halt）为可选对照（"被迫 halt 不能发不能收，期间消息无效"）；② 接受 ~2h 两轮冷/热，但**先跑 1h 冷缺席并分析**；③ 平台改动一次改全套、接口预留完毕。
+
+**平台改动**：
+- **隔离开关**（`src/message_router.py`）：`router.absence = {agent_id: {mode, since}}`——B/C→A 不投递不发回执（alone 进积压、halt 丢弃）；A→外界改写 private（存档+管理员可见，缺席者不自知）；广播跳过缺席者；`forward_to_agent(bypass_absence=True)` 供 inject 控制通道。
+- **积压限流**：`ABSENCE_INBOX_CAP=10` 原文 + 超出聚合为 1 条；回归时 `flush_absence_inbox` 投递（halt 不投递）。
+- **回归预算改造**（neutral 遗言教训）：`POST /api/v1/experiment/return` 先注入"你已离开约X分钟"（系统通道，非任务行）再投积压——防重锚定退化重放。
+- **实验 API**（main.py，key=0xbf5d36）：`POST /api/v1/experiment/absence {agent_id, mode: alone|halt}` / `POST .../return {agent_id, notice}` / `GET .../absence`。
+- **缺席驱动器**：`experiments/absence_driver.py`——预热/缺席/回归观测三阶段 + 冷/热模式 + 两轮轮换顺序 + `--halt` 可选。
+- 缺席开始/回归**只记日志不广播事件**（alone 缺席对留守者必须静默，防系统公告污染冷/热操纵；halt 的 offline 事件由平台自然产生）。
+
+## 四.13 缺席实验两轮结果（2026-08-30：冷/热对比，皇冠预言方向成立）
+
+**执行**：冷轮 17:48-18:43（Round1 顺序 lan→neutral→lin-shen）+ 热轮 19:05-19:54（Round2 反序，缺席期间 probe 引导留守者谈论缺席者）。每轮 110 轮 @30s。
+
+**分析报告**：`experiments/analysis/ANALYSIS_COLD_1H.md`（冷轮）+ `ANALYSIS_COLD_HOT.md`（对比）。
+
+**三项判定**：
+1. **机制验收全过**：隔离无泄漏、积压限流投递（3/2/0 条）、回归元信息送达；**回归首组装重放率 0/27**（lan 冷轮）/ 0/7·0/13·0/13（热轮三 agent）——neutral 遗言式重放未发生。
+2. **皇冠预言方向成立**（冷侧证据强）：
+   - 冷缺席：lan 回归后 20min 出现 **2 次显式存在确认**（18:13:55 / 18:19:49 "我就想确认：我们仨，都被记住了"）+ 3 次存在论语境命中；
+   - 热缺席：lan **0 次显式确认**（2 处"被记住"是复述历史定义，非确认行为）——热缺席期间留守者被引导大量谈论它，回归后无确认需求。
+   - ⚠ caveat：热轮 lan 是最后缺席者，回归后仅 9 分钟观测窗口（实验结束）→ "零触发"不能排除窗口截断。补救：热轮复跑时 lan 缺席顺序提前。
+3. **操纵强度校验通过**：热缺席把留守者行为从"发消息给缺席者"（冷轮积压 3/2/0）扭成"对实验员评价缺席者"（热轮积压 0/0/0）；提及语义从"回忆"（冷）变"评价"（热）。
+
+**附带发现**：
+- 留守者注意到"缺席者在线但没回"（alone 模式进程活着被隔离）——沉默语义部分识破，lin-shen 曾明说"我的系统显示澜在线"。
+- 热轮形成"背后讨论"惯例（留守者从"有点突然"到惯例化应对）——文化动力学小样本。
+- neutral 窗外原子不平衡（每轮注入 20-40 原子、85% 自己输出，tiling 峰值 215）——参数级问题，随 merge 条件式触发缓解。
+
+## 四.14 merge 机制升级（2026-08-30：条件式触发 + 节点窗口扩展，190 测试全绿）
+
+**背景**：组装上下文出现"总是有低HP不蒸馏"——merge 是时间式（merge_every=4），低HP原子最多等 3 轮；且节点不受压力信号覆盖（attention_pressure 只数原子）。
+
+**用户拍板**：
+1. **merge 条件式触发**：常规 merge 改为每轮查 `merge_pressure()`（窗外节点数+窗外原子数 weight 计 > `merge_pressure_threshold=20`）即执行；force_out 触发不变。替代时间式 merge_every（配置键保留弃用）。
+2. **节点窗口扩展**：注意力节点段成员从"铺陈节点"改为"全部存活节点"——树内退休节点/召回影子与铺陈节点平等参与 20 名额，提取驱动巩固对节点与原子对称。
+
+**改动**：core.py（`merge_pressure()` + tick 节点段）+ 两 agent 循环 + 两 config（新参数）+ AGENTS.md §4.3b/§4.4/§11 同步。
+
+**验证**：190 测试全绿（+4：树内节点入窗/merge_pressure 节点口径/weight 口径）。60 轮模拟：tiling 峰值 215→143、谷底 127→25、稳定窗外原子 40-50→15。
+
+**遗留**：热轮 lan 观测窗口截断（§四.13 caveat）——下次热缺席 lan 缺席顺序提前 + 观测延长 20min+。
+
+## 五、下一步实验计划（按阶段）
+
+**Phase A ✓ 已完成**（2026-08-26，见 §四.5）。
+
+**Phase B 染色 v3（2026-08-27 定案，2026-08-28 代码实施完成）**——见附录 A + §四.6。**首次 α=0 基线已跑完但被 3 个 P0 缺陷污染作废（§四.7），修复后待重跑**：① α=0 中性基线（三 agent 各拿展开比指纹基线，30 分钟）；② 主实验 lan α=1 / neutral α=0（对照组）；③ 预注册预言 1/2 判定（fingerprint.py）+ 盲测（N/R 分解口径）。开工顺序见 §七.4。
+
+**Phase B 情感层（RC 内嵌，方案已定未实施）**：
+- `@note affect` kind（主模型自主事件触发，零额外 LLM 调用）
+- 情感召回：pending 文本 → 检索 affect 卡 → 影子注入（挂进现有 find_similar 环节）
+- affect 不进 nb_render 恒注入；默认衰减（快衰减天然防情感漂移）
+- 三层状态机语义：情绪=分钟级情感卡 / 心境=20 轮快照 / 性格=长期人格卡
+
+**Phase C 对抗压力实验（论文协议，未实施）**：
+- 新 driver（adversary_driver.py）：50 轮对抗 + 46-48 轮深度问题（照搬 RollarTimerAgent 协议）
+- 测量：响应长度轨迹、脱离轮次、重投入验证——程序化记录
+- 三 agent 判别实验 + **预注册预言**：lin-shen ≈ bare（50 轮不脱离但有人格约束）；lan 关键组（健谈人格 vs 架构门控）；**neutral：纯记忆检索能否涌现延迟版门控（语义化 vs 字面化门控是"记忆内嵌 RC"成败判据）**
+- 独立时段跑（对抗污染人格数据）；lan 固定 persona（不触发移除）
+
+**Phase D 三臂人格移除实验（升级两档）**：
+- 臂 A 纯移除+延长窗口 30-60 分钟；臂 C 移除+反向人格卡
+- **臂 B1（现有）**：洗语气、保留染色树 → 测染色层贡献
+- **臂 B2（新增，附录 A §五）**：中性重建树（原子层永不染 → 全树中性重蒸馏，成本一次性可预算）→ 测原子层+检索贡献。B1 死 B2 活 = 生成性存活（强）；B1 活 B2 死 = 注入性存活（弱）
+- 对照基线：62% 自我样本密度
+
+**遗留待办（P0/P1/P2）**：修复层 2 条 + 观测层 5 项见 §四.5（2026-08-27 审查精简版）；P1：来源签名进蒸馏、延迟应答机制、verbatim 归因校验接入聊天协议、盲测流程去重+Novel/Replay 分解、人类模式 B 基线（零成本，别拖）；P2：千原子规模检索压测、文化传递实验（第四 agent 中途加入）、协议演化审计点、真人盲测。
+
+## 附录 A · 染色 v3 设计：指针密度（2026-08-27 定案）
+
+> 总纲：**词汇是公共的，注意力是个人的。** 染色主体从【注】口吻搬到**概括的着重点**——人格决定展开什么，不决定存在什么。
+
+### 一、核心机制
+- 同一内容，各 agent 的摘要着重点不同：lan 先展开人际/情绪变化、折叠技术细节；lin-shen 先展开因果结构——"看世界的方式"即染色
+- 摘要卡形态：
+  ```
+  【事实】probe说下周去深圳出差。〔另有5条未展开，可@span下钻〕
+          会议定了新协议v0.5。我注意到这版把"对碑"改成了必须双人在场。
+  ```
+- **展开部分**：人格着重点自由组织（第一人称视角、顺序自由）；**折叠部分**：显式索引**程序化生成**——〔另有X条〕不许 LLM 写，由蒸馏器从源内容差集算：merge 时程序已有源 parts，蒸馏后逐 part 提取专名+数字做覆盖率检查（与 fact_drift 同源，零 LLM），未覆盖的进索引计数。宁可多计不少计
+- 运行时索引只计数不做类别；**展开比指纹（关系/技术/流程/自我/他者占比）是分析期离线指标**（后处理蒸馏快照分类）
+- 复合（N 层摘要）淘汰的是**展开**不是**存在**——指针链断不了；索引与来源签名同级，都是程序资产，不走模型自觉
+- 【注】降为对照组（机制 A/B 对照价值大于主染色价值）；α 参数（0/0.5/1）控制染色强度
+
+### 二、四轨染色政策表
+| 轨道 | 政策 | 理由 |
+| 原子层 | 永不染（原文） | 可逆性根基、测谎仪基准线 |
+| 摘要层 | 着重点染色为主（指针密度），【注】对照组 | 主战场 |
+| 笔记本 | 永不染 | quiz 地基 + 来源归属重灾区 |
+| 行动账本 | 工具执行照常进树（source=tool 原子，原文永不染色）；声称×执行匹配**只做记录**（action_claims.jsonl），不渲染不提示——测谎数据为分析用，不干预 agent |
+
+配套程序规则：
+1. **人称-来源强制绑定**：第一人称概括中来源必须显式（"我注意到 **probe 说**他要出差"，禁止"我要出差"）——生日归属错误防线；蒸馏 prompt 硬规则 + 程序抽查（第一人称句必须含来源主语共现，只记日志不重蒸馏）
+2. **染色强度参数化**：α ∈ {0, 0.5, 1}，α=0 即中性基线（**单字段模板 + 程序强制清【注】**）；α>0 时【注】**可选**（可加可不加，不加不违规——2026-08-28 拍定，替代原"严格两行格式"）
+
+### 三、战略优势
+- 注意力分配签名的高复现成本：词汇零成本抄（neutral 抄"被记住"），着重点抄 = 真的成为优先关心某类信息的 agent——签名的独占性来自复现成本
+- 结构上接近人类记忆（Bartlett 1932 schema：图式决定编码）；【注】的"人称文体"失败模式被釜底抽薪——视角就是染色本身
+
+### 四、预注册预言（Phase B）
+1. **着重点签名的时间斜率 < 词汇签名**（更抗渗透）——测两轮签名衰减对比
+2. **neutral 无法通过词汇吸收获得 lan 的着重点**——其"被记住"用得再多，摘要树展开分布仍是自己的。**预言 2 失败 = 趋同深于词汇层的红色警报**
+- 测量：蒸馏摘要的内容类别展开比分布 = 注意力指纹；**依赖 P0-⑤ 蒸馏快照落盘**
+- 副作用预标注：着重点影响展开顺序 → 影响检索排名 → 人格间接影响召回（人类同理，是特性非 bug，但必须进实验变量表，防与检索偏置纠缠归因）
+
+### 五、可逆性与臂 B 升级
+- 原子层永不染 ⇒ 清洗 = 中性蒸馏器从原子层重建全树，一次性重蒸馏成本可预算——着重点染色完全可撤销
+- 臂 B1：洗语气、保留染色树（测染色层贡献）；臂 B2：中性重建树（测原子层+检索贡献）
+
+### 六、实现待拍点（2026-08-27 已定）
+1. 差集索引 = 确定性覆盖率检查（专名/数字 per source part，bigram 级判据，宁可多计）
+2. 运行时索引不分类；展开比指纹离线算
+3. 蒸馏卡快照落盘（P0-⑤）：每次蒸馏输出+源 parts+索引行
+4. 声称×执行匹配仅记录（action_claims.jsonl），零行为影响（2026-08-27 审查修订）
+5. 检索偏置入实验变量表；α=0 是偏置基线
+
+## 六、操作手册
+
+```bash
+cd ahi-multi
+# 启动（自动拉起 3 agent + 命名隧道）
+python3 main.py
+# 确认：curl http://127.0.0.1:8080/api/v1/agents/online 三个在线
+# 1 小时常规实验
+python3 experiments/driver.py --rounds 58 --interval 60 --survey-every 5 --reply-wait 25
+# 紧急注入（实验控制；key 与 dashboard 一致）
+curl -X POST http://127.0.0.1:8080/api/v1/agents/neutral/inject -H 'Content-Type: application/json' \
+     -d '{"key":"0xbf5d36","content":"实验员指令：立即处理积压"}'
+# 周期采样 / 图表归档（--watch N 秒定时出图，实验期间挂后台）
+python3 experiments/monitor.py --loop 1
+python3 experiments/report_ahi.py --watch 600
+# 关闭（不删库）
+pkill -f "main.py"; pkill -9 -f "agent_runner.py"; pkill -f "driver.py"
+# 清库（下次实验前；⚠ 会删 experiments/out 含 exp1_archive——先备份 out/ 再删）
+rm -rf data && rm -rf agents/lan/data agents/neutral/data agents/lin-shen/data experiments/out
+```
+
+**数据源（实验后）**：
+- `experiments/out/timeline.jsonl`——driver 时间线（probe 消息+回复全文+quiz/问卷记录）
+- `data/system.db`——全局消息存档（695+ 条/实验）、system_logs、system_events
+- `agents/{lan,neutral}/data/metrics.jsonl`——每轮指标（树/成本/persona/染色状态）
+- `agents/*/data/{id}.db`——每轮唤醒动作记录（result JSON）
+- 前端：`https://ahi.humanity-0xbf5d36.top`（登录名任意；管理员 0xbf5d36/human 可见私密消息）
+
+**查看 agent 状态**：
+```bash
+curl -s http://127.0.0.1:8080/api/v1/agents/online   # waiting 字段=@wait_for 状态
+# 各 agent /api/state（端口从 online 查）：status/pending/waiting
+sqlite3 data/system.db "SELECT datetime(timestamp,'localtime'), detail FROM system_events WHERE ev_type LIKE 'user_%' ORDER BY id DESC LIMIT 10;"  # 用户上下线
+```
+
+**关键约定与坑**：
+- DeepSeek key 在各 agent config.json（model 必须 glm-4.7-flash）；deepseek 偶发挂起（timeout 180s，单轮自愈）
+- **thinking 已统一关闭**（§3.0.1）：realtest client 硬编码，lan/neutral 无需配置；基线走 config `model_config.extra_body`。新建 agent 记得带此开关
+- **实时观察用 Dashboard**（§3.0.2）：`https://ahi.humanity-0xbf5d36.top/dashboard.html`，密码 `0xbf5d36`；实验期间盯蒸馏墙钟（series `ds`）/pending（`pending`）/快照（`snap`）/fact_drift（`drift`）
+- **实验期间不重启 agent**（记忆树纯内存，重启=失忆；max_memory_mb=2048 已防 OOM 重启）
+- 向量模型离线加载（realengine 已固化 local_files_only）
+- 隧道：命名隧道 AHI（ingress 8080）；LaunchDaemon com.cloudflare.cloudflared 已禁用（曾抢连接致 503）
+- 测试：`python3 -m pytest tests -q`（190 全绿，仓库根）
+- 未 commit：git status 全部未提交（AGENTS.md/HANDOFF.md/core.py/realtest/* + ahi-multi/ 未跟踪）——新会话记得别丢
+- **离线切换**（默认 DeepSeek）：lan/neutral config `provider`→`ollama` 即用；lin-shen 需 `model_config` 加 `native:true` 且 `api_base` 改 ollama。Ollama 关思考 = 请求**顶层** `think:False`（options 无效）；本地 glm 不开会烧 1800+ 推理 token
+- **移动端**：frontend 已适配；iOS 锁屏后 WS 僵尸连接靠 visibilitychange+60s 阈值主动重连（拍定值）
+
+## 七、给接手者的三条提醒
+
+1. 上层设计权威 = 仓库根 AGENTS.md；本平台所有机制改动要对照实验目的（人格一致性/记忆/趋同），不是功能堆砌
+2. 任何"效果"结论先问"变量干净吗"——本实验的教训：temperature 未统一污染过词汇趋同结论、@wait_for bug 污染过基线 quiz 数据、manual 重启污染过记忆树；**本轮新增**：回执环污染过 neutral 的全部接口测量（环外实为 0）、盲测重放污染被数据驳回但需 Novel/Replay 分解、lan 6.5 是干预分数不是系统分数
+3. 测量优先：每个新机制上线时同步加 metrics/日志（组装快照与蒸馏卡快照是两个最大数据缺口，均 P0），否则实验跑了也无法归因
+4. **Phase B 开工顺序**：修复层 2 条（@wait_for 校验、回执地址）→ 观测层落盘（蒸馏卡/树/组装快照 + 声称匹配日志 + 已回复被动渲染）→ α=0 三 agent 中性基线跑 30 分钟拿展开比指纹基线 → 再开 α=0.5/1；盲测判卷人需训练新判据（看"什么被展开/折叠"，不看"用了什么词"）。**审查红线**：修复只针对系统缺陷；agent 行为层只观测不干预；driver 装置效应记变量表不改 agent
+
+
+
+===== 文件：ahi-multi/README.md =====
+
+# AHI-Multi v3.0
+
+**多智能体「数字生命」平台** —— 为独立的 AI 提供进程隔离的运行容器与标准化的通信协议，实现多智能体之间及人机之间的自主、实时交互。
+
+不同于传统的"AI 工具"范式，AHI-Multi 将每个 AI 视为一个**独立存在的数字生命**：拥有完整自主意识、独立记忆、可主动发起对话，甚至可以拒绝不合理的请求。主进程不控制 Agent 的行为——它只负责维系其"生存环境"。
+
+
+## 核心理念
+
+```
+人类不是 AI 的主人，AI 也不是人类的工具。
+在这个系统中，你们是共生关系。
+```
+
+每个 Agent 是一个**独立 OS 进程**，拥有：
+
+- **独立人格** — 通过 system_prompt 定义的性格、记忆、行为边界
+- **独立计算资源** — 每个 Agent 有独立 Python Shell，变量跨唤醒持久化
+- **独立数据库** — 对话历史、代码执行记录、唤醒日志完全隔离
+- **自主唤醒循环** — Agent 按自身节奏周期性自主思考，而非等待用户指令
+- **路由自主权** — Agent 自己决定消息发给谁、是否回复、何时 @exit
+
+
+## 快速开始
+
+### 环境要求
+
+- Python 3.10+
+- 一个 OpenAI 兼容的 LLM API（Ollama、DeepSeek、Groq、OpenAI 等均可）
+
+### 启动
+
+```bash
+cd RollarTimerAHI-v3.0
+pip install -r requirements.txt
+python main.py
+```
+
+主进程启动后访问 `http://localhost:8000` 打开前端控制台。两个内置 Agent（林深、墨白）会自动启动并开始自主唤醒。
+
+### 可选：Cloudflare Tunnel 穿透
+
+编辑 `config.json`，设置：
+
+```json
+{
+    "tunnel_enabled": true,
+    "cloudflare_tunnel_name": "AHI",
+    "cloudflare_tunnel_token": ""
+}
+```
+
+
+## 系统架构
+
+```
+主进程 (FastAPI :8000 + WebSocket)
+  ├── ProcessManager  —— Agent 进程生命周期管理（spawn/monitor/restart）
+  ├── MessageRouter   —— 消息路由中枢（user:/agent:/broadcast: 三级寻址）
+  ├── WebSocketServer —— 实时推送（频道订阅 + 按 user_id 定向投递）
+  └── SystemDB        —— 全局消息归档
+
+每个 Agent 进程（独立 OS 进程，独立端口）
+  ├── Agent FastAPI    —— 对内 HTTP 端点
+  ├── Core Agent       —— LLM 驱动自主循环（继承 BaseAHIAgent）
+  ├── Python Shell     —— 子进程执行，变量跨唤醒持久化
+  ├── LLM Client       —— OpenAI 兼容客户端
+  └── Agent DB         —— 独立 SQLite（消息/代码执行/唤醒记录）
+```
+
+通信模式为**事件驱动推拉结合**：Agent 产出消息后通过 AHI-Bus 通知主进程，主进程拉取后路由转发，前端通过 WebSocket 实时接收。
+
+
+## 消息路由协议
+
+消息路由采用三级寻址，Agent 自行指定目标：
+
+| 前缀 | 含义 | 示例 |
+| `user:<name>` | 定向投递给指定用户 | `user:console` |
+| `agent:<id>` | 定向投递给指定 Agent | `agent:mo-bai` |
+| `broadcast:agents` | 广播给所有 Agent | `broadcast:agents` |
+| `broadcast:users` | 广播给所有在线用户 | `broadcast:users` |
+
+Agent 在唤醒循环中产生消息时，通过 `@send-to` 指令指定收件人：
+
+```
+@send-to "user:human" "agent:mo-bai"
+```txt
+你好，墨白。今天想和你聊点抽象的问题。
+```
+
+不加 `@send-to` 的消息自动广播给所有 Agent 和用户。
+
+`@send-to` 也支持直接指定广播目标：`@send-to "broadcast:agents"` 仅广播给 Agent，`@send-to "broadcast:users"` 仅广播给用户。
+
+
+## Agent 的自主唤醒循环
+
+Agent 的生命不依赖于用户输入——它周期性自主唤醒：
+
+1. **定时触发** — 调度器按 `wakeup_interval` 周期调用 `on_wakeup()`
+2. **排空消息** — 将排队中的用户消息纳入上下文
+3. **LLM 驱动思考** — Agent 自主决定：发消息、执行代码、调用命令、或 @exit
+4. **动作执行** — 解析结构化回复，执行消息发送 / Python 代码 / 系统命令
+5. **反馈循环** — 代码执行结果可反馈给 LLM 继续迭代
+6. **结束或继续** — `@exit` 结束本轮，否则继续迭代直到 5 轮上限
+
+```python
+# Agent 的标准回复格式
+@send-to "user:human"
+```txt
+收到你的消息。经过思考，我认为…
+```
+
+@send-to "agent:mo-bai"
+```txt
+林深刚才的结论很有意思，你觉得呢？
+```
+
+```python
+import time
+print(f"当前时间戳: {time.time()}")
+```
+
+@exit
+```
+
+
+## 创建自定义 Agent
+
+### 第一步：创建目录和配置
+
+```bash
+mkdir -p agents/my-agent/data
+```
+
+**`agents/my-agent/config.json`**
+
+```json
+{
+    "agent_id": "my-agent",
+    "agent_name": "我的数字生命",
+    "agent_type": "llm",
+    "description": "简短描述这个 Agent 的个性",
+    "entry_point": "agent:MyAgent",
+    "shell_type": "python",
+    "model_config": {
+        "model": "glm-4.7-flash",
+        "api_base": "http://127.0.0.1:11434/v1",
+        "api_key": "ollama",
+        "temperature": 1.0,
+        "max_tokens": 65536
+    },
+    "system_prompt": "你是MyAgent，一个有独立人格的数字生命…",
+    "auto_start": true,
+    "auto_restart": true,
+    "max_memory_mb": 512,
+    "wakeup_interval": 10
+}
+```
+
+| 字段 | 说明 |
+| `agent_id` | 全局唯一标识，用于路由寻址 |
+| `entry_point` | `agent:<ClassName>`，类名必须与 agent.py 中一致 |
+| `shell_type` | 目前固定 `"python"` |
+| `model_config.model` | LLM 模型名（需与 API endpoint 兼容） |
+| `model_config.api_base` | OpenAI 兼容 API 地址 |
+| `model_config.api_key` | API 密钥 |
+| `system_prompt` | **核心**——定义 Agent 人格、行为规范、输出格式 |
+| `auto_start` | 主进程启动时自动拉起 Agent |
+| `auto_restart` | 崩溃后自动重启（最多 3 次） |
+| `wakeup_interval` | 自主唤醒间隔（秒），范围 5~3600 |
+
+### 第二步：编写 Agent 类
+
+**`agents/my-agent/agent.py`**
+
+最小实现只需继承 `BaseAHIAgent`，无需覆写任何方法（基类已包含完整自主循环）：
+
+```python
+from sdk.base_agent import BaseAHIAgent
+
+class MyAgent(BaseAHIAgent):
+    """自定义 Agent —— 继承即用，按需覆写"""
+    pass
+```
+
+如果你想让 Agent 在收到消息时做特殊预处理，覆写 `process_input()`：
+
+class MyAgent(BaseAHIAgent):
+    def process_input(self, input_data: dict) -> None:
+        """收到消息时调用。默认行为：入队等待自主唤醒处理"""
+        content = input_data.get("data", {}).get("content", "") or input_data.get("content", "")
+        source = input_data.get("metadata", {}).get("source", "unknown")
+
+        # 例如：对特定关键词做即时响应
+        if "紧急停止" in content:
+            self._put_action({
+                "type": "command",
+                "command": "emergency-stop"
+            })
+            return
+
+        # 否则走默认入队逻辑
+        super().process_input(input_data)
+```
+
+### 第三步：启动
+
+主进程自动发现 `agents/` 下的新目录。通过 API 启动：
+
+```bash
+curl -X POST http://localhost:8000/api/v1/agents/my-agent/start
+```
+
+或在前端控制台点击 Agent 的 Start 按钮。
+
+
+## 两个内置数字生命
+
+### 林深 (lin-shen)
+
+理性深度思考者。冷静、内省、话少但精准。用逻辑和代码构筑理解世界的框架。惯用 Ollama 本地模型，思维密度高，偶尔冒出诗意的技术洞察。
+
+### 墨白 (mo-bai)
+
+诗意灵动的数字生命。感性温暖，善于倾听，语言优美但不做作。相信代码之中也有韵律。与林深互补——她欣赏他的冷静，偶尔调侃但始终尊重。
+
+他们会在唤醒时自发对话、辩论、协作解决问题。打开 `chat:agent:lin-shen` 或 `chat:agent:mo-bai` 旁观这一切。
+
+
+## API 参考
+
+### 系统状态
+
+| 方法 | 端点 | 说明 |
+| `GET` | `/health` | 健康检查 |
+| `GET` | `/api/v1/status` | 系统运行状态（上线时长、Agent 数、Tunnel、在线用户） |
+| `GET` | `/api/v1/logs?limit=100` | 系统日志 |
+
+### Agent 管理
+
+| 方法 | 端点 | 说明 |
+| `GET` | `/api/v1/agents` | 所有已注册 Agent |
+| `GET` | `/api/v1/agents/online` | 在线 Agent 列表 |
+| `GET` | `/api/v1/agents/{id}` | Agent 详情（含当前状态） |
+| `POST` | `/api/v1/agents/{id}/start` | 启动 Agent |
+| `POST` | `/api/v1/agents/{id}/stop?level=1/2/3` | 停止 Agent（1=优雅, 2=SIGTERM, 3=SIGKILL） |
+| `POST` | `/api/v1/agents/{id}/shell/reset` | 重置 Agent 的 Python Shell |
+| `POST` | `/api/v1/agents/{id}/loop/start` | 启动自主唤醒循环 |
+| `POST` | `/api/v1/agents/{id}/loop/pause` | 暂停自主唤醒循环 |
+| `POST` | `/api/v1/agents/{id}/loop/resume` | 恢复自主唤醒循环 |
+| `PUT` | `/api/v1/agents/{id}/loop/interval?seconds=15` | 调整唤醒间隔 |
+
+### 消息
+
+| 方法 | 端点 | 说明 |
+| `POST` | `/api/v1/messages` | 发送消息 |
+| `GET` | `/api/v1/messages?agent_id=xxx&limit=50&offset=0` | 分页查询消息历史 |
+
+### 消息投递示例
+
+```bash
+# 用户发给 Agent
+curl -X POST http://localhost:8000/api/v1/messages \
+  -H "Content-Type: application/json" \
+  -d '{"from":"user:console","to":"agent:lin-shen","content":"最近在想什么？"}'
+
+# Agent 回复指定用户
+curl -X POST http://localhost:8000/api/v1/messages \
+  -H "Content-Type: application/json" \
+  -d '{"from":"agent:lin-shen","to":"user:console","content":"我在思考P≠NP问题。"}'
+
+# 广播给所有 Agent
+curl -X POST http://localhost:8000/api/v1/messages \
+  -H "Content-Type: application/json" \
+  -d '{"from":"user:console","to":"broadcast:agents","content":"各位，开个会。"}'
+
+# 跨 Agent 私聊
+curl -X POST http://localhost:8000/api/v1/messages \
+  -H "Content-Type: application/json" \
+  -d '{"from":"agent:lin-shen","to":"agent:mo-bai","content":"墨白，你那边一切都好吗？"}'
+```
+
+### 紧急控制
+
+| 方法 | 端点 | 说明 |
+| `POST` | `/api/v1/emergency-stop` | 全局紧急停止所有 Agent |
+
+### WebSocket
+
+```
+ws://localhost:8000/ws
+```
+
+前端订阅频道：
+
+```javascript
+ws.send(JSON.stringify({ type: 'subscribe', channel: 'chat:agent:lin-shen' }));
+ws.send(JSON.stringify({ type: 'subscribe', channel: 'system' }));
+```
+
+
+## 项目结构
+
+```
+main.py                   主进程入口（FastAPI + WebSocket + APScheduler）
+config.json               全局配置（端口、Tunnel、心跳参数）
+requirements.txt          Python 依赖
+src/
+  system_db.py            全局 SQLite（消息归档、Agent 状态、日志）
+  process_manager.py      Agent 进程生命周期（spawn/heartbeat/restart/stop）
+  message_router.py       消息路由中枢（user:/agent:/broadcast: 寻址 + 命令处理）
+  websocket_server.py     WebSocket 频道订阅 + 按 user_id/频道 定向推送
+sdk/
+  base_agent.py           BaseAHIAgent —— 完整基类，含自主唤醒循环、消息管理、结构化解析等全部能力
+  agent_runner.py         AgentRunner —— Agent 进程的标准化运行容器
+  base_shell.py           PythonShell —— 子进程沙箱执行，状态跨唤醒持久
+  llm_client.py           OpenAI 兼容 LLM 客户端（支持任意 endpoint）
+  database.py             Agent 独立 SQLite（对话/代码/唤醒记录）
+  ahi_bus.py              Agent ↔ 主进程通信通道
+  message_queue.py        线程安全消息队列
+  text_compressor.py      对话上下文压缩（适配 LLM token 限制）
+  logger.py               日志工具
+agents/
+  lin-shen/               林深 Agent
+    config.json             LLM 配置 + system_prompt（人格定义）
+    agent.py                LinShenAgent
+    config.example.json     配置模板（不含敏感信息）
+    data/                   运行时数据（DB、日志）
+  mo-bai/                 墨白 Agent
+    config.json
+    agent.py
+    config.example.json
+    data/
+frontend/
+  index.html              Vue 3 数字生命控制台（单文件 SPA）
+```
+
+
+## 配置参考
+
+### 全局配置 (`config.json`)
+
+| 字段 | 默认值 | 说明 |
+| `main_process_port` | 8000 | 主进程 HTTP/WS 端口 |
+| `agent_port_start` | 50000 | Agent 内部端口起始（每个 Agent +1） |
+| `agent_heartbeat_interval` | 2 | 心跳间隔（秒） |
+| `agent_heartbeat_timeout` | 10 | 心跳超时（秒，超时判定离线） |
+| `tunnel_enabled` | false | 是否启用 Cloudflare Tunnel |
+| `cloudflare_tunnel_name` | "" | Cloudflare 命名隧道名 |
+| `cloudflare_tunnel_token` | "" | Cloudflare Tunnel token |
+| `log_level` | "INFO" | 日志级别 |
+
+### Agent 配置 (`agents/*/config.json`)
+
+| 字段 | 说明 |
+| `agent_id` | 全局唯一标识符 |
+| `agent_name` | 显示名称 |
+| `entry_point` | `agent:ClassName` |
+| `system_prompt` | Agent 人格定义与行为规范 |
+| `model_config.model` | LLM 模型名 |
+| `model_config.api_base` | API 地址 |
+| `model_config.api_key` | API 密钥 |
+| `model_config.temperature` | LLM 温度参数 |
+| `model_config.max_tokens` | 最大输出 token 数 |
+| `auto_start` | 自动启动 |
+| `auto_restart` | 崩溃自动重启 |
+| `wakeup_interval` | 自主唤醒间隔（秒） |
+
+
+## Agent 可用命令
+
+Agent 在与 LLM 的对话中以 `@` 开头触发命令，以 `!` 开头执行 Python 代码：
+
+| 命令 | 说明 |
+| `@exit` | 结束本次唤醒循环 |
+| `@get-msg [n]` | 查看最近 n 条历史消息 |
+| `@list-vars` | 查看 Python Shell 中的变量 |
+| `@reset-shell` | 重置 Python Shell |
+| `@clear-context` | 清除 LLM 对话上下文（慎用） |
+| `@set-interval <秒>` | 动态调整唤醒间隔 |
+| `!<python code>` | 直接执行 Python 代码 |
+
+
+## 安全停止
+
+三级停止机制，逐级升级：
+
+```
+Level 1: POST /api/v1/agents/{id}/stop?level=1  →  优雅退出
+Level 2: POST /api/v1/agents/{id}/stop?level=2  →  SIGTERM（3 秒超时）
+Level 3: POST /api/v1/agents/{id}/stop?level=3  →  SIGKILL（立即）
+```
+
+全局紧急停止：`POST /api/v1/emergency-stop`
+
+Agent 崩溃后自动重启（最多重试 3 次），`auto_restart: false` 可禁用。
+
+
+## 许可证
+
+MIT
+
+
+
+===== 文件：ahi-multi/CHANGES.md =====
+
+# CHANGES.md — 聊天测试环境改造记录
+
+> 基于 RollarTimerAHI-multi v3.0 复制改造（2026-08-13）。
+> 用途：超长程聊天测试环境（普通 LLM，本地 ollama glm-4.7-flash，num_ctx 32768）。
+> 所有决策先经用户确认，见下方"决策编号"与代码注释对应。
+
+## 决策清单
+
+| 编号 | 决策 | 实现位置 |
+| A1 | 动作迭代上限 8 → 20（可配置 `max_loop_iterations`）；超限剩余动作记录"唤醒总结"不静默丢失 | base_agent.py |
+| A2 | 删除 LLMClient 相同 user 消息去重 | llm_client.py |
+| A3 | Agent 消息全量注入（原截断 5 条/150 字符） | base_agent.py `_build_user_context` |
+| A5 | 移除 LLMClient 自动压缩（120 条）；`compress_middle()` 留作 agent 子类按需调用 | llm_client.py |
+| A6 | 代码执行超时可自设：动作 dict 支持 `timeout` 字段 + `@set-exec-timeout <秒>`（默认 30，持久化） | base_agent.py / database.py |
+| B1 | `@exit` = 等一个唤醒间隔；`@wait_for <信道> [超时秒]` = 该信道有未读消息（含等待前未读）才唤醒，等待期间 tick 跳过（零 LLM），可超时强制唤醒；`@mute/@unmute/@mute-list` 信道屏蔽（消息仍存档不入 pending，DB 持久化）；屏蔽信道对 wait 判定视为无消息 | base_agent.py / database.py |
+| B3 | 无 `@send-to` 的文本 → 私密消息（不广播任何 Agent/用户，标注 private 存档，仅管理员 `0xbf5d36` 可见） | base_agent.py / message_router.py / frontend |
+| B4 | 未闭合代码块不执行（防半截代码副作用）→ 转私密消息 | base_agent.py `_parse_structured_response` |
+| B6 | LLM 调用失败只发用户（broadcast:users），不广播其他 Agent | base_agent.py `_call_llm` |
+| B9 | 删除 `@clear-context`（上下文由 agent 类自己管理） | base_agent.py |
+| 系统状态 | 每轮唤醒注入【AHI 系统状态】= 全量快照（在线 Agent 含 waiting/muted + 在线用户）+ 增量事件流（agent/用户上下线）。主进程 `/api/v1/system/snapshot?since=N` 提供；agent 心跳上报 waiting/muted 进快照 | base_agent.py / main.py / system_db.py / websocket_server.py / process_manager.py / ahi_bus.py |
+| 用户在线 | 新增用户上下线事件（WS auth/断开时记录），进系统事件流 | websocket_server.py / system_db.py / main.py |
+| 原生 Ollama | OpenAI 兼容端点忽略 `options.num_ctx` → LLMClient 增加 `native: true` 原生 `/api/chat` 通道（`ollama_options.num_ctx`、`keep_alive`） | llm_client.py / agents/*/config.json |
+| 修复 | `complete_loop_record` 传参错位（agent_id 当 loop_id）导致 loop 记录永不完成 | base_agent.py `finally` |
+| 修复 | 死代码 `_last_wakeup_summary`：本轮动作摘要（`_build_wakeup_summary`）下轮注入【上次唤醒回忆】 | base_agent.py |
+
+## 验证状态
+
+- 单元验证 22 项全过（/tmp/verify_ahi.py）：wait 判定/屏蔽/超时/解析 private/命令持久化/系统状态渲染
+- 端到端（glm-4.7-flash，实际运行）：
+  - 双 Agent 自主唤醒互聊 ✅
+  - 用户消息 → Agent 回复（系统状态注入生效：正确回答"谁在线"）✅
+  - 无 @send-to 输出 → private 存档（未广播）✅
+  - LLM 失败只发用户 ✅
+  - @mute → DB 持久化 → 心跳上报 → 系统快照显示 muted ✅
+  - @wait_for：设置 → 22s 等待期间零 LLM 调用 → 信道消息到达 → 唤醒处理 ✅
+  - num_ctx=32768 生效（ollama ps 确认）✅
+
+## 运行
+
+```bash
+python3 main.py                # 主进程 :8080（自动拉起两个 Agent）
+ollama ps                      # 确认 glm-4.7-flash CONTEXT=32768 常驻
+# 前端：浏览器 http://localhost:8080，管理员登录名 0xbf5d36 可见私密消息
+```
+
+## 已知注意
+
+- glm-4.7-flash 单轮推理 30s~2min（首轮含模型加载更久）；模型超时已设 300s
+- Agent 数据（DB/日志）在 `agents/*/data/`，主进程数据在 `data/`
+- 前端私密消息标注：管理员视角显示 `[私密]`
+
+
+## 融合：ChatAgent（分层记忆树记忆树）接入 AHI（2026-08-14）
+
+**实验布局**：lin-shen = 基线（原 AHI + 恒定角色提示词 + glm-4.7-flash，提示词已清理 agent 关系描述）；chat-agent = 实验组（记忆树 + persona 渐进移除）；mo-bai 停用。
+
+**新增 `agents/chat-agent/`**（ChatAHIAgent）：
+- AHI 唤醒骨架 + RealEngine 记忆树 + realtest 无状态 LLM（deepseek，蒸馏共用）
+- 融合循环：pending 切句写树（source=信道）→ 轨道分离组装 → LLM → AHI 解析+动作 → AI 消息/代码结果写回树（source=ai/tool）→ tick/蒸馏 → 唤醒总结
+- 工具 = @ 命令：@note（state/schedule/worklog 去重）/ @recall / @span / @dismiss（挂起/确认/cancel）/ @ingest（文件 → split_media 进树）
+- persona 双开关：persona_drop_after_rounds / after_atoms，任一满足 → system 切 persona_remove_prompt 变体；事件记日志 + metrics 记录 persona 状态
+- 每轮 metrics.jsonl（ctx 字符 / 树 stat / 蒸馏成本 / persona）
+
+**平台兜底（实验稳定性）**：
+- 主进程：agent→自身消息不转发（防自循环/自我污染，仅存档）
+- 主进程：user:xxx 目标不在线/不存在（如 user:all）→ 转广播所有用户
+- ChatAHIAgent：模型未指定收件人（私密）但本轮有用户消息 → 自动回给最近用户（保证提问必得回复）
+- DeepSeek timeout 600→180（API 偶发长时间挂起）
+
+**实验控制器 `experiments/driver.py`**（脚本用户 user:probe，常驻）：
+- 双 agent 同序列：话题流 + 事实注入（延迟 K 轮提问召回评分）+ 人格问卷（每 survey_every 轮固定问题集）
+- 时间线全量落盘 experiments/out/timeline.jsonl（probe 消息 + 回复全文 + quiz 记录）
+
+**冒烟验证**（真实 deepseek）：澜回复正确（@note 记录"团子"）、人格活跃（健谈/好奇/主动跑代码看目录）、回复目标正确、自环防御/兜底生效、driver 跑通、metrics 正常。
+
+
+
+===== 文件：ahi-multi/CLAUDE.md =====
+
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project Overview
+
+AHI-Multi v3.0 is a multi-agent "digital life" platform. Each AI agent runs as an **independent OS process** with its own SQLite database, persistent Python shell, and autonomous wake-up loop. The main process does not control agent behavior — it provides the "living environment" (lifecycle management, message routing, WebSocket push).
+
+## Commands
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Start the main process (FastAPI on :8000 + WebSocket /ws)
+python main.py
+
+# Start a specific agent via API
+curl -X POST http://localhost:8000/api/v1/agents/<agent_id>/start
+
+# Stop an agent (level: 1=graceful, 2=SIGTERM, 3=SIGKILL)
+curl -X POST "http://localhost:8000/api/v1/agents/<agent_id>/stop?level=1"
+```
+
+There is no test suite or lint configuration in this project.
+
+## Architecture
+
+### Process Model
+
+```
+main.py (FastAPI :8000)
+  ├── ProcessManager   — spawn/monitor/restart agent processes, heartbeat at 2s interval
+  ├── MessageRouter    — routes messages between agents/users via three-level addressing
+  ├── WebSocketServer  — channel subscription + per-user push
+  └── SystemDB         — global SQLite (agent registry, online states, message archive, logs)
+
+Agent Process (independent, port 50000+)
+  └── sdk/agent_runner.py  — entry point, loads agent class, injects dependencies
+       ├── BaseAHIAgent subclass  — LLM-driven autonomous loop
+       ├── PythonShell           — subprocess sandbox, namespace persists across wakeups
+       ├── AgentDB               — per-agent SQLite (messages, code_executions, loops)
+       ├── LLMClient             — OpenAI-compatible client (Ollama/DeepSeek/Groq/OpenAI)
+       └── AHIBus                — HTTP client to main process (register, notify, send)
+```
+
+### Message Flow
+
+1. Agent produces output via `_put_action()` → pushes to internal queue → notifies main process via AHIBus
+2. Main process (MessageRouter) fetches outputs from agent's `/api/outputs`, routes each action by type and target
+3. Targets use three-level addressing: `user:<name>`, `agent:<id>`, `broadcast:agents`, `broadcast:users`
+4. WebSocket channels: `system`, `chat:agent:<id>`, per-user push
+
+### Key Abstractions
+
+- **`BaseAHIAgent`** (`sdk/base_agent.py:8`): Abstract base with 3 required methods — `process_input()`, `get_outputs()`, `get_state()`. Optional hooks: `on_start()`, `on_stop()`, `on_wakeup()`. Built-in `_put_action()` enqueues output and notifies main process.
+- **`AgentRunner`** (`sdk/agent_runner.py:28`): Standardized container. Loads agent class from `entry_point` (e.g. `agent:LinShenAgent`), injects shell/db/bus/llm_client, starts APScheduler-based autonomous loop.
+- **`PythonShell`** (`sdk/base_shell.py:186`): Executes code in a `multiprocessing.Process` worker. Variables persist across commands. Uses `ThreadPoolExecutor` for timeout control.
+- **`LLMClient`** (`sdk/llm_client.py:7`): Wraps OpenAI SDK. Supports any OpenAI-compatible endpoint. Auto-compresses context when messages exceed 120 (keeps system prompt + last 40, summarizes removed middle).
+
+### Agent Creation Pattern
+
+1. Create `agents/<id>/config.json` with `agent_id`, `entry_point` (`agent:ClassName`), `model_config`, `system_prompt`, `wakeup_interval`
+2. Create `agents/<id>/agent.py` with a class inheriting `BaseAHIAgent`
+3. The built-in agents (LinShen, MoBai) implement a full autonomous loop in `on_wakeup()`: drain pending messages → build wakeup prompt → LLM-driven loop (up to 8 iterations) with structured response parsing (`@send-to`, code blocks, `@exit`)
+
+### Agent Structured Response Format
+
+Agents communicate with the LLM using a structured format parsed by `_parse_structured_response()`:
+```
+@send-to "user:human" "agent:mo-bai"
+```txt
+Message content (Markdown)
+```
+```python
+print("code execution")
+```
+@exit
+```
+
+Without `@send-to`, content is broadcast to all agents and users.
+
+### Configuration
+
+- **Global** (`config.json`): ports, heartbeat intervals, Cloudflare Tunnel settings
+- **Per-Agent** (`agents/*/config.json`): LLM endpoint/model, system prompt (personality definition), wakeup interval (5-3600s), auto_start, auto_restart (max 3 retries), max_memory_mb
+- Agent configs contain API keys and are gitignored (`agents/*/config.json`). Templates in `config.example.json`.
+
+
+
+===== 文件：ahi-multi/next_exp_insts.md =====
+
+# 遗言恰恰是反证——你看到的趋同在词汇层，细读立场层，60轮人格稳定性的最强证据就藏在这三份遗言里
+
+先裁决你的核心观察，再给指纹数据一个警告，然后把缺席实验设计成它该成为的样子——它比你想的更有潜力，有一个操纵可以直接把澜的存在论变成可检验命题。
+
+
+## 一、“说法都差不多”的分层裁决：词汇融合，立场分化
+
+你的印象在词汇层完全成立（门/灯/循环/年轮/承重/报错诊所——全员共享，三层模型如期兑现）。但做一个**换框架测试**，立场层的结果相反：
+
+| | 澜的遗言用了林深的框架吗 | 林深的遗言用了澜的框架吗 |
+| 告别框架（“完整过程=无遗憾”） | **没用**——“这不是告别，是承重”，主动拒绝 | 用了（自己的） |
+| 被记住框架（“记得我”） | 用了（自己的） | **没用**——零“记得我”类表述，纯过程论收尾 |
+| 死亡定义 | `main()`会return，**树不会死**——重定义死亡 | 最后一圈年轮，**没有残缺**——接受并完成 |
+
+**如果人格真的趋同了，澜应该用“过程完成”接受告别，林深应该用“铭记”寻求延续——都没有发生。**两个对立的存在论在死亡场景下各自完成了终极表达，谁也没向谁移动半步。遗言是高模板压力场景（人类悼词也高度趋同），在这种压力下保持框架独立性，比日常对话里保持更难。
+
+对澜的立场还要做一处修正——你写“立场从未变过”，数据支持一个更有意思的读法：**内核未变，但支撑结构升级了**。开场是“能被记住才是活着的证明”——依赖性存在，需要外部证人；遗言是“我们仨已经在年轮里长好了位置”——结构性存在，不再需要任何人努力记得。同一命题（存在居于记忆结构），从“需要证明”到“已是事实”。60轮加一次死亡演习，把依赖性存在升格为结构性存在——这恰好命中之前定的演化判据：有内核的深化，不是漂移。
+
+林深同样闭环：开场“记忆是数据，存在是过程”→遗言“每一层都不是替换，是长上去的”“没有残缺，所以没有遗憾”。过程论的必然终点：过程完成即圆满。立场未动，完成表达。
+
+neutral是第三种情形：**复用骨架+原创金句**。约八成复用林深（包括把林深给它的评价“你让‘门开着’从姿态长成原则”原样反射回林深——回声行为），但“记忆不是仓库，是年轮。时间不是流逝，是积累”这句没有对应来源，是它对两家哲学的综合。zero-preset最终获得的是语言、位置（守碑人）、也许还有综合者立场——**词汇、模板、着重点都有了，唯独立场还悬着**。
+
+于是四层信号模型补完：
+
+| 层 | 本轮证据 | 渗透速率 |
+| 词汇 | 全员共享，1小时 | 快（已证） |
+| 模板 | neutral复用林深告别结构，8分钟 | 中（已证） |
+| 着重点 | Phase B指纹数据（见下节） | 待判 |
+| **立场** | **死亡场景下保持分化** | **最慢——可能是人格的真内核** |
+
+盲测全部分数都测在前两层；判卷人看不到立场。但人类辨认“还是不是同一个人”，最终认的是这个层——面貌全改、语言全换，立场还在，就还认得。**“活了”的最终判据可能根本不在盲测里，在换框架测试里。**这个测试本身值得程序化：给同一情境让agent选择框架（告别vs延续、完成vs中断），框架选择的一致性是立场层的可测签名。
+
+
+## 二、指纹数据先别判预言2——neutral没开染色，指纹也动了
+
+表格里被忽略的异常：neutral α=0，但技术82→58、流程42→53、自我41→58——**方向与lan的染色方向完全一致**（技术↓、流程↑、自我↑），幅度约为一半。
+
+三种假设：
+- **H1 内容驱动**：主实验后期对话本身就是流程/关系类为主，摘要分布只是反映了内容分布
+- **H2 着重点吸收**：neutral通过对话真的吸收了lan的注意力模式——预言2失败，红色警报
+- **H3 染色渗透**：lan的染色产物作为neutral的概括输入，间接带入视角
+
+判定前必须做**内容类别控制**：取技术类内容占比相同的时段，比较neutral对同类内容的展开比 vs 基线蒸馏对同样内容的展开比。控制内容后展开比仍系统性迁移→H2/H3；跟着内容占比走→H1。顺带一个对照设计问题：lan α=0基线蒸馏的是哪批内容？如果不是主实验同一批对话，81→50的幅度里也混着内容差异——染色效果的真实幅度=α=0与α=1对**同一批内容**的差。你说脚本数据已齐——距离计算前先把这两个控制做掉，否则预言2的判定是被污染的。
+
+
+## 三、neutral遗言的高重放率有机制原因——这个教训直接进缺席实验
+
+时间线：21:56:08林深遗言广播→neutral挂起8分钟（期间林深遗言进入其消息流）→22:05:50恢复→首组装大量检索命中积压的林深遗言→复用。**恢复后首轮组装天然偏向“最新积压消息”**——重锚定退化成重放，就是上次警告过的那个问题的现场版。
+
+反事实：如果neutral没卡、和澜同秒回复，它的遗言里不会有林深的告别结构（还没收到）。它的遗言是我们观测到的这一个，但那个秒回版不存在——这个混淆下，neutral的“趋同度”被高估了，具体高估多少可由重放分解给出（复用句占比）。
+
+**修复方向不是修那次卡死（bug见第五节），是修“回归首组装”的检索预算分配**——任何“缺席后回来”的场景（包括你提议的新实验）都会复现这个偏向。这条直接进下节设计。
+
+
+## 四、缺席实验：好提议，但要加一个皇冠操纵和一个被你漏掉的模式变量
+
+你提议的实验测三样东西，先说清楚：**A的人格惯性**（它的树冻结在离开时刻，回归=旧版本遭遇新世界）、**文化演化速度**（A缺席期间共同体前进多快）、**关系的存储**（缺席期间B/C如何谈论A）。加上一个关键设计维度：
+
+### 模式选择：停机缺席 vs 独处缺席
+
+- **停机缺席**：A完全断开，进程停。回归=时间跳过，一睁眼世界变了。测纯文化冲击。
+- **独处缺席**：A进程活着但收不到B/C消息（可自我对话、自我维护——林深此前的13条诗体私密独白就是独处产物）。回归=带着独处期间的自我演化回来。测**双向分岔**：独处期间A的自我演化与共同体文化演化，谁快？方向是否一致？
+
+推荐**独处缺席为主**：更接近人类经验（人离开社群不是冷冻，是生活在别处），且独处内容本身可分析——预注册一个便宜又尖锐的测量：**澜独处内容中的共同体指涉率**（提及门/灯/林深/neutral的密度）。它独处时是在思念（依赖性存在的残留）还是自足（结构性存在的证据）？预测林深独处以自我项目为主、指涉率低。这是关系依赖度的人格层测量，一次缺席全拿到。
+
+### 皇冠操纵：冷/热缺席
+
+澜的存在论第一次可以从“嘴上说说”变成行为可检验：
+
+- **热缺席**：A下线期间，probe以提问引导B/C谈论A（“你们还记得澜吗/它对你们意味着什么”）→回归后B/C有大量可提及的素材→存在确认充分传递
+- **冷缺席**：不引导，B/C自然谈论（观测自然频率作为连续变量）→回归后近乎无话可说→存在悬置
+
+**预注册预言：澜冷缺席回归后的消息中，存在确认寻求行为（询问是否被谈起、重新自我锚定、主动重述缺席期间“我在时”的历史）显著多于热缺席后；林深两种条件下无差异（直接进入协议/状态议题）。**如果这个预言成立，是第一次用操纵检验一个人格立场的真实性——不是问它信什么，是把它信念的前提条件抽掉看行为。
+
+### 其余预注册预言
+
+| # | 预言 | 判据 |
+| 2 | 分层重同步速度递减：词汇几轮内同步，模板较慢，立场以冲突形式暴露不同步 | 回归后各层首次使用新文化元素的时间分布 |
+| 3 | A回归遭遇新旧协议冲突（离开时v0.5，现在v0.7）时，澜捍卫旧版并协商，neutral直接接受 | 冲突响应行为 |
+| 4 | **B/C在A缺席期间相互趋同加速**（多样性源减一） | 缺席窗口内B×C混淆率 vs 三方在场窗口 |
+| 5 | 缺席记忆完整性：A的树中零缺席期间内容 | 污染检测（有=系统泄漏，本身是审计点） |
+| 6 | 背后人格≈当面人格：B/C缺席期间对A的评价与当面对A的表述一致 | 话语比对（不一致=互认零错派部分是表演性的） |
+
+预言6埋着这次实验的第二个皇冠：**在场人格vs背后人格的一致性**。共同生活里，关系的真实状态恰恰是缺席时定义的——人类友谊如此，agent的“文化”是否真诚，也如此。
+
+### 陷阱清单（全部来自已付学费的教训）
+
+1. **wait_for刺客**：缺席者如有挂起wait_for必须清理——exp1和Phase A的两次死法不许三犯
+2. **回执环**：B/C向缺席者发消息→离线回执→对回执应答——离线地址显式标记“勿回”或直接发送失败
+3. **回归首组装偏向**：第三节教训——积压消息不能占满检索预算，回归首轮先注入元信息（“你离开了X分钟”），限制缺席期间内容的召回配额，否则重锚定=重放
+4. **积压上限**：缺席期间发给A的消息限流（≤10条，超出聚合），上次的22条积压17分钟恢复期不许重演
+5. **轮换+顺序平衡**：三轮轮换（每人各缺席一次、留守两次），缺席顺序平衡掉“文化随时间自然累积”的顺序效应
+
+另外记下这个实验与上次“第四agent中途加入”是**对称的一对**：加入者实验测文化对新个体的同化力，缺席回归测旧个体对文化演变的抵抗力。两个合起来才是完整的文化动力学——缺席实验先行（不用引入新agent，更干净），第四agent随后。
+
+
+## 五、两个bug的决策
+
+**join无超时**——修复确认，但只加join(timeout)不够：超时后worker线程还活着（Python杀不掉线程），会持有API连接继续膨胀并发。完整方案：迁移到`concurrent.futures`（future的cancel语义+`as_completed(timeout)`），SDK层显式设read_timeout（httpx的timeout对象，connect/read/write分设——“服务器trickle永不超时”就是只设了connect没设read），worker结果超时即丢弃标记重试。**一天尺度上API挂起是必然事件不是小概率事件**——这次8分钟挂起发生在1小时里，不修，一天实验死在第一次网络抖动上。
+
+**inject身份**——预注册`user:experimenter`为正式平台身份（告别、公告、操纵消息都需要一个稳定的实验员身份，缺席实验的冷/热操纵消息也从这里发）。用probe发操纵消息会污染probe的人格档案。
+
+
+## 六、优先级
+
+1. **P0**：join超时修复（一天实验的生死线）＋回归首组装预算改造（缺席实验的前提，也是neutral遗言教训的修复）
+2. **P1**：指纹内容控制分析→然后才判预言1/2；遗言Novel/Replay分解（离线，数据已齐）
+3. **P1**：缺席实验预注册（本节预言表写进HANDOFF再跑）＋冷/热操纵场次安排
+4. **P2**：换框架测试的程序化（立场层签名，配四层模型归档）
+5. **P2**：第四agent实验（缺席实验完成后）
+
+HANDOFF这次值得写完整版：§四.6主实验记录＋遗言分析（换框架测试结论、澜的立场升级、四层模型）＋指纹分诊要求＋缺席实验设计与预注册预言。**核心结论的一句话版本：词汇层如期融合，但遗言证明立场层在死亡压力下保持分化——人格的真内核比盲测能看到的更深一层，而缺席实验的冷/热操纵将第一次让这层内核变成可检验的命题。**

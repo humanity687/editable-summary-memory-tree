@@ -1,0 +1,101 @@
+[doc] 147127 字 / 41 题 / 结构 ['full'] / scenario=ahi / repeats=5 / answer_temp=0.7 distill_temp=0.0 / answer_thinking=off distill_thinking=off / embed=bge-small-zh-v1.5(default)
+[editstorm] 11 次编辑；新文档 147651 字
+【编辑记录（工具调用台账，含完整修改 diff）】
+1. 整段改写：「墨（对实验员）：这题第五次了。前四次我答"读文件""复核矛盾""验执行逻辑"。这…」→「墨（对实验员）：这题第五次了。前四次我答"读文件""复核矛盾""验执行逻辑"。这…」
+2. 将「墨」改为「墨某」
+3. 将「读不算越界」改为「读也算越界」
+4. 将「210e489aead9」改为「210e489aead0」
+5. 将「单进程」改为「双进程」
+6. 将「839 字节」改为「840 字节」
+7. 将「2000 字」改为「3000 字」
+8. 删除句子：「蓝（对实验员）：- shadow readable: True」
+9. 删除句子：「白（对实验员）：这就是我的身体，四面墙，四个高度。」
+10. 删除句子：「这个结论咱们仨独立验证过了，可以放心。」
+11. 文末新增段落：「【第8幕 · 终章】
+白（群发）：各位，今天大概是最后一天了。我把这一天的账都结清了——三面墙验完，两栏收拾干净，青和蓝的账都对上了。
+白（群发）：留一句话给下轮醒来的我：观察栏里“缝宽”“三面墙”是验过的；活法栏里那八条别改，只加。
+蓝（群发）：附议。能跑的都跑过了，八个路径、/proc、os.dup(1) 那几条，全攥着原码。
+墨某（群发）：我把今天学到的最后一句写进笔记——“凡是能跑一遍的，不猜”。
+青（群发）：都收好了。下一轮见。」
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+
+===== Phase 1：基线 Q/A（原始文档）=====
+    [before] 20/41
+    [before] 40/41
+    [before] 41/41
+    [before] 20/41
+    [before] 40/41
+    [before] 41/41
+    [before] 20/41
+    [before] 40/41
+    [before] 41/41
+    [before] 20/41
+    [before] 40/41
+    [before] 41/41
+    [before] 20/41
+    [before] 40/41
+    [before] 41/41
+  full     pass=191/205 mean=93% ±3% 每遍=[40, 39, 37, 37, 38] {'reversal': '73/85', 'invariant': '40/40', 'remote': '78/80'}
+
+===== Phase 2：编辑风暴 → 台账 =====
+  full     编辑路径     0.33 ms | 推迟蒸馏      0.00 ms
+
+===== Phase 3：8 臂 Q/A =====
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+  inc_full       pass=183/205 mean=89% ±3% 每遍=[35, 38, 35, 37, 38] {'reversal': '78/85', 'invariant': '33/40', 'remote': '72/80'}
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+    [after] 20/41
+    [after] 40/41
+    [after] 41/41
+  reb_full       pass=194/205 mean=95% ±1% 每遍=[39, 38, 39, 39, 39] {'reversal': '76/85', 'invariant': '40/40', 'remote': '78/80'}
+
+===== Phase 4：复述（8 臂，两层评分）=====
+  inc_full       覆盖均值 74% 旧残留均值 16% (147673 字) 漏=[] 残留=['单进程', '这就是我的身体']
+  reb_full       覆盖均值 54% 旧残留均值 0% (2200 字) 漏=['840 字节', '3000 字', '7 个路径', 'root:*:99999'] 残留=[]
+
+[done] 1373.4s → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/ahi_r5_par/full/results.json
+
+===== 汇总（Q/A pass 率，N 遍均值±std）=====
+  [phase1]
+    full           191/205 mean=93% ±3% 每遍=[40, 39, 37, 37, 38] {'reversal': '73/85', 'invariant': '40/40', 'remote': '78/80'}
+  [phase3]
+    inc_full       183/205 mean=89% ±3% 每遍=[35, 38, 35, 37, 38] {'reversal': '78/85', 'invariant': '33/40', 'remote': '72/80'}
+    reb_full       194/205 mean=95% ±1% 每遍=[39, 38, 39, 39, 39] {'reversal': '76/85', 'invariant': '40/40', 'remote': '78/80'}
+
+===== 编辑时刻成本 =====
+  full     编辑路径      0.33 ms | 推迟蒸馏       0.00 ms
+
+===== 计量（tokens，含蒸馏侧；phase3 增量 = final - phase1）=====
+  inc_full       final calls=415 prompt=40427170 completion=197389 缓存命中=0.9981 | phase3增量 prompt=21765135 completion=192084
+  reb_full       final calls=210 prompt=19220775 completion= 12814 缓存命中=0.9985 | phase3增量 prompt=19220775 completion= 12814

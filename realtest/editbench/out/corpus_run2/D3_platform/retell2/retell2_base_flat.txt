@@ -1,0 +1,69 @@
+这份文档是一份长篇小说写作/记忆系统项目的交接与实验记录，关键内容如下。
+
+**主题与结论**
+项目核心是一个带“记忆树 + 笔记本”的写作/聊天 Agent 系统，主张：检索不挑深度（命中节点连同祖先路径注入，深度随遗忘历史自然变化，精确引用走独立逐字校验通道）；事实不遗忘（伏笔、设定、角色状态存于独立笔记本，按任务目标精确选取注入，全量存储、绝不衰减）；原文层衰减后自动重新融合。
+
+**首个应用：长篇小说写作 Agent**
+分阶段写作（write/rewrite/edit/recall/ask），每章固定流程：目标进入→预检索→写作循环→章末蒸馏+事实对账+版本快照。伏笔（调度条目）按埋设/推进/回收窗口强制注入；章末自动对账，冲突由作者裁决。每章恒定约 14k 字符上下文预算，与全书规模无关。通用化：章→结构单元，beat→内容块，伏笔→跨区。
+
+**关键文件与脚本**
+- cts.md（50 条）+ names.txt（16 人）
+- out/ 历次运行产物（run2_v9~v12 为注意力窗口系列实验）
+- cooc.py：共现中介层（Demo v1.0），recall_log/cooc_edges/concepts + 概念中介层（tick/merge/retrieve/编辑钩子；概括只做匹配中介、永不进组装流、零侵入）
+- cooc_bench.py：NovelQA 四层 bench（a 直接/b 转述/c 跨编辑/d 脏区）+ on/off；seed_cooc/questions.json
+- chatbench/：聊天数据记忆 bench（2026-09-24/25，主力），含 extract_corpus.py
+- 续写 v2（当前主力）：[plan] 预想→预检索→[span] 叶子展开→[note] 笔记本
+- bench_qa.py：结构化压测（三阶段+复述对比+结构断言）
+- prompt_story_seed.md / prompt_story_seed_wanzi.md：种子故事生成提示词
+- config.json：后端配置（provider: deepseek；model: glm-4.7-flash；含 API key）
+- story_open.txt：无尽续写开头《青州旧事》
+- seed/：旧种子 story.txt(3k 字)+facts.md(40 条)+names.txt(11 人)
+- seed2/：新种子（万字）story.txt(12k 字)+facts
+- chat_agent.py + chattext.py（chat 分支）：多介质切分（chat 句/code AST/config 项/md 标题+列表项）+来源元数据（检索不可见）+代码检索走 docstring+大卡 weight 计数+重复输入影子+原子上限
+- DISMISS 懒标记：core/realengine `dismiss_*`，事实冲突延迟裁决；dismiss_plant/track/confirm/cancel + 卡级替换 replace_units
+- chat_agent.py：聊天智能体（chat 分支主力），AHI 风格接口（process_input/get_outputs/on_wakeup）+终端 REPL + ingest/say/note/file_edit 工具入口；每轮全新组装（卡片流→笔记本去重发送→回执→任务）
+
+**关键参数与机制**
+- realengine `expand_leaves`：叶子展开，命中概括卡→全部后代原子活一轮影子
+- 万字数据集 `realtest/seed2/`：《缠枝莲》12k 字 + 50 条事实（校验全过）
+- 上下文峰值 12k→7.8k
+- 注意力窗口/自我配额参数：`self_quota_ratio`(0)/`self_quota_max`(0.5)/`self_quota_min_len`(8)；`_apply_self_quota`（trim 后补足，只认 source=="ai" 原始原子，候选 recency-first）+`_inject_self_quota`（位置序插回，复用 core `_shadow_slot`）+`_evict_for_quota`（挤占序：检索影子/远端摘要先让、自身与本轮新原子受保护）；渲染为新 kind `self_quota`→正常自身发言段 `▸〔名字〕`；metrics 加 `self_ratio`。配置在 `config/persona_retention{,.example}.json`。
+- 运行产物：`realtest/out/*/`（metrics.jsonl / tree_snapshots.jsonl / responses.txt / story_full.txt / notebook.json / run.log / report.html）
+- 后台运行：`(python3 realtest/run2.py ... > /tmp/run2.log 2>&1 &) && tail -f /tmp/run2.log`
+
+**实验产物与回放**
+`experiments/out/` + `experiments/`：evidence_report.md（关键结论原始证据）、tree_samples_lan.md（回放树节点抽样+组装上下文，含 1 份完整组装）、monitor.py（实验期采样）、make_blind_test.py/score_blind.py（盲测生成与评分）、replay_tree.py（回放重建，终态 atoms 2474/nodes 318/depth 7 vs 真实 2472/319/7）。
+
+**2026-08-27 审查精简的修复与观测清单**
+原则：修复只针对系统正确性缺陷；agent 行为层只观测不干预；装置效应记入实验变量表而非改 agent。修复层仅 2 条（系统缺陷）：① @wait_for 信道白名单校验。
+
+**人格保持实验（PERSONA_RETENTION，2026-10-02 设计定稿）**
+实现 `FlatRAGAgent` + provision 2 实例×3 agent + `config/persona_retention.json` + score/analyze 趋同斜率&judge 遵从率→smoke→3 run。判据（SPEC §7）：`slope_tree<slope_baseline`、`adhere_tree>adhere_baseline`。merge 条件式触发+节点窗口扩展已完成（190 测试全绿）。与聊天方向相关的 P0/P1 在 ARCHIVE_CHAT.md 定论后降级，下一阶段聚焦写作/代码三场景。
+
+**60 轮人格稳定性实验（遗言分析）**
+核心裁决：“说法都差不多”分层看——词汇层趋同成立（门/灯/循环/年轮/承重/报错诊所全员共享，三层模型如期兑现），但立场层分化。换框架测试：澜的遗言没用林深的告别框架（“这不是告别，是承重”，主动拒绝）；林深的遗言没用澜的“记得我”框架，纯过程论收尾。
+
+**三 agent 同序列实验（行至 22:05）**
+话题+5 事实延迟提问+每 6 轮人格问卷。评分表（实验组 lan/neutral vs 基线）：
+- 词汇趋同：良好*（实验组自签名词密度 +85% vs 基线 +57%；*受 temperature 未统一污染，已修待重跑）
+- 情境一致性：良好*（重复问卷相似度 0.85-0.95；*lan 漏答 2 题、neutral 错位延迟）
+- 人类盲测：失败（模式 A 七人 44-58%，机械代理 63.3%；模式 B 三人 47-61%；neutral 全灭，识别率 17-33%；澜风格四分五裂，被识别成 2-4 人；林深唯一可辨识 83-100%；澜↔neutral 最大混淆对，词汇层趋同实证）
+- 演化信号：良好
+
+**缺席实验设计（六条预言）**
+1. 场以冲突形式暴露不同步；回归后各层首次使用新文化元素的时间分布
+2. A 回归遭遇新旧协议冲突（离开时 v0.5，现在 v0.7），澜捍卫旧版并协商，neutral 直接接受
+3. B/C 在 A 缺席期间相互趋同加速（多样性源减一）
+4. 缺席记忆完整性：A 的树中零缺席期间内容（污染检测，有=系统泄漏，本身是审计点）
+5. 背后人格≈当面人格：B/C 缺席期间对 A 的评价与当面对 A 表述一致（不一致=互认零错派部分是表演性的）
+预言 6 的皇冠：在场人格 vs 背后人格的一致性。
+
+**陷阱清单**（来自已付学费的教训）第 1 条为 wait_ 相关。
+
+**给接手者的四条提醒**
+1. 先读 AGENTS.md——唯一设计权威；任何偏离先与用户确认（铁律 1）。
+2. bench_qa / run2 / chatbench 是主力验证工具——改任何检索/组装/蒸馏/注意力逻辑，同配置重跑对比，别只看单次数字（模型有随机性）。
+
+**其他**
+- HANDOFF §四.13 涉及 merge 条件式触发+节点窗口扩展。
+- 时间线：2026-08-27 审查；2026-09-24/25 聊天 bench；2026-10-02 人格保持实验设计定稿。

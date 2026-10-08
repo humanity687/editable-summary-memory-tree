@@ -1,0 +1,79 @@
+[Phase 0] 409 原子, 节点 55, 最大高 7
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[warmup] 4 轮 × 8 query；概括节点 0
+[layer a] 直接可达
+  a a1: d/h/a=000 shadows=6 hub=0
+  a a2: d/h/a=101 shadows=6 hub=0
+  a a3: d/h/a=101 shadows=6 hub=0
+  a a4: d/h/a=101 shadows=5 hub=0
+  a a5: d/h/a=101 shadows=6 hub=0
+  a a6: d/h/a=101 shadows=8 hub=0
+  a a7: d/h/a=101 shadows=6 hub=0
+  a a8: d/h/a=101 shadows=6 hub=0
+  a a9: d/h/a=101 shadows=6 hub=0
+  a a10: d/h/a=101 shadows=6 hub=0
+  a a11: d/h/a=100 shadows=6 hub=0
+  a a12: d/h/a=001 shadows=6 hub=0
+[layer b] 共现中介
+  b b1: d/h/a=000 shadows=6 hub=0
+  b b2: d/h/a=000 shadows=6 hub=0
+  b b3: d/h/a=000 shadows=6 hub=0
+  b b4: d/h/a=000 shadows=6 hub=0
+  b b5: d/h/a=000 shadows=6 hub=0
+  b b6: d/h/a=000 shadows=6 hub=0
+  b b7: d/h/a=000 shadows=6 hub=0
+  b b8: d/h/a=100 shadows=6 hub=0
+  b b9: d/h/a=000 shadows=7 hub=0
+  b b10: d/h/a=101 shadows=6 hub=0
+  b b11: d/h/a=000 shadows=6 hub=0
+  b b12: d/h/a=000 shadows=6 hub=0
+[edit storm] 12 次编辑
+  d d1: d/h/a=000 shadows=6 hub=0
+  d d2: d/h/a=101 shadows=6 hub=0
+  d d3: d/h/a=101 shadows=6 hub=0
+  d d4: d/h/a=101 shadows=6 hub=0
+  d d5: d/h/a=101 shadows=6 hub=0
+  d d6: d/h/a=101 shadows=5 hub=0
+[layer c] 编辑跨接
+  c c1: d/h/a=100 shadows=6 hub=0
+  c c2: d/h/a=101 shadows=7 hub=0
+  c c3: d/h/a=101 shadows=5 hub=0
+  c c4: d/h/a=100 shadows=5 hub=0
+  c c5: d/h/a=101 shadows=6 hub=0
+  c c6: d/h/a=101 shadows=6 hub=0
+
+===== 结果 =====
+{
+ "a": {
+  "n": 12,
+  "direct": 0.833,
+  "hub": 0.0,
+  "answer": 0.833
+ },
+ "b": {
+  "n": 12,
+  "direct": 0.167,
+  "hub": 0.0,
+  "answer": 0.083
+ },
+ "c": {
+  "n": 6,
+  "direct": 1.0,
+  "hub": 0.0,
+  "answer": 0.667
+ },
+ "d": {
+  "n": 6,
+  "direct": 0.833,
+  "hub": 0.0,
+  "answer": 0.833
+ }
+}
+
+产出目录: realtest/out/cooc_off

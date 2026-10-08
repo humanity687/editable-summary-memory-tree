@@ -1,0 +1,46 @@
+这份文档不是叙事性文本，没有人物、地点、物品、事件顺序与结局，而是 AGENTS.md 分层记忆树 v2 及 ahi-bench 相关实验的技术设计规格与实验记录汇总。以下按主题复述其全部内容：
+
+**一、总体更新与实现状态**
+AGENTS.md 分层记忆树 v2 设计规格于 2026-10-04 更新，机制层已实现并完成桩、小说写作、聊天智能体、代码智能体、ahi-bench 冷轮、v3 使用信号层、代码审查、M-PR 人格保持实验公平性收口、两臂消息管理对齐及 M-PR 首轮对比与消融测试。
+
+**二、检索与融合机制**
+摘要·向量：本地 embedding（如 bge-small-zh）编码摘要卡，创建/重建时按 version 缓存，解决"语义近邻但无词面重叠"。摘要·关键词：bigram 重叠率，解决"摘要恰好含查询字面词"（专名/数字）。原子·关键词粗筛+向量精排：原子双字窗口粗筛（交集≥1）→对粗筛候选（上限 atom_rerank_cap）编码向量精排，解决"细节只存在于原子层"（缺陷B）；原子文本不可变，原子向量缓存永久有效，无需失效。融合=加权和（w_vec_node/w_bm_node/w_bm_atom，先拍后调）；向量模型缺失时自动退化为关键词单通道（诚实降级）。
+
+**三、批量编码与内存修复**
+2026-10-03 内存修复：候选原子/节点向量在一次 enc.encode(list) 内批量编码（EMBED_BATCH=64），禁止逐条 encode——逐条在 MPS 上堆积幽灵内存（实测同批 316 条：逐条 +460MB vs 批量 +69MB），是 pr3 agent 触及 2GB 看门狗重启的根因。每次批量编码后调 _empty_mps_cache()（torch.mps.empty_cache()；CPU/无 torch no-op）释放分配器缓存的空闲块（唯一泄漏源；tree ~75MB/min 单调上涨），清缓存后单 agent 峰值约减半（40 轮 ~1GB），但未根治（仍缓涨；realengine + flat 批量编码两处对称）。独立复测（Qwen3-32B，seed 42）：flat 臂 120 轮平均内存 2.1GB、峰值 2.6GB；分层树臂同条件平均内存 3.4GB。
+
+**四、检索选择与注入**
+贪心选择+路径去重：按分数取最高节点→其到根的整条路径加入结果并从候选池移除→重复直到预算（retrieval_budget）用尽。路径遇脏即停：候选节点必干净，但祖先链上可能出现脏节点，路径注入到第一个脏节点为止。原子命中不走路径：只注入原子本身（否则 owner 链会吃掉预算）。路径上所有节点按位置序注入组装流（小说连贯性优先于相关性；实现=§4.5 影子卡机制）。金句/精确引用=逐字通道：原子层字符级匹配（复用双字窗口经验），命中后逐字校验（防 LLM 幻觉改写），与语义检索完全分离。命中项 HP += recall_boost；命中子卡的父卡保留（共存=渐进披露）。
+
+**五、激活计数与提升**
+被贪心选中的节点 activation_count += 1；达到 promote_threshold（默认 3）→路径分裂提升：该节点沿祖先路径逐层上提，每层祖先围绕它分裂为左右两个碎片（碎片仅当≥2 个存活子卡才创建，单卡直接上提，碎片置脏→摘要懒重建，LLM 摊入下个 pass），最终节点成为独立顶层树。提升=纯结构操作+置脏，零 LLM 即时路径；提升后节点带独立 HP，衰减后可再与邻卡合并（自我归一化）。
+
+**六、heat burst 自动下钻披露**
+2026-09-27 重设计；默认关，拔出接口 auto_expand。近似 promote 的"上下文内下钻"，但只动视野、不动树/账本。信号=回血封顶溢出量（min(hp+recall_boost, max_hp) 被截断的部分）：节点热量≥expand_heat_threshold(60) 且预算富余（使用率<expand_ratio=0.85）时，把其直接子卡炸开——全部子卡装得下→替换节点项；否则保留节点+追加装得下的子卡。热量：节点自身命中溢出全额+直接父半权；tick 衰减、不随爆炸消耗。脏/墓碑子卡不入。零 LLM、纯计算。默认关——论文实验分层树臂冻结、全臂 off；首秀=ahi-bench ablation 臂。活性状态（§9.11）：已实现+12 项单测；但在已有冷轮/smoke 实跑中 heat_burst 事件 0 次（短轮命中未到封顶，属预期）。
+
+**七、注意力窗口参数**
+attention_atom_cap=40（原子段名额，weight 计）、attention_node_cap=20（节点段名额，全部存活节点平等参与）、attention_out=45.0（HP 低于此值出窗，原子加速衰减）、attention_in_decay=0.5（窗口内衰减倍率，原子与节点同），均未校准（已实现，§4.3b）。2026-08-29 至 2026-10-03 期间拍定并收口 attention_atom_cap=40、attention_node_cap=20、attention_out、attention_in_decay、attention_out_decay、条件式触发、merge_signal() 单一入口、force_out 阈值改 attention_out、记忆蒸馏机制（退役成员留树内作子节点可检索）。聊天适配中原子段同时计入 used += weight 与 rate *= weight，节点 weight 恒为 1；排序键按 HP 降序，无时间序 tie-break；注意力为上游数量约束，assembly_budget 字符为下游硬约束，超预算按 §4.5 处理。记忆蒸馏摘要卡参数：attention_out_decay=3.0、merge_pressure_threshold=20、pressure_threshold=2.0、force_cooldown_rounds=8、hp_merge_threshold=30.0、early_match_threshold=0.5、parent_init_hp=70.0、parent_hp_group_factor 等。原子通道参数：min_atom_chars/atom_rerank_cap/atom_vec_min = 8/60/0.2（未校准）。EMBED_BATCH=64（2026-10-03 定）；ATOM_CHAR_CAP/ATOM_WEIGHT_CHAR=2000/1000 未校准；find_similar_threshold=0.8 已校准（2026-09-25，§4.7）；auto_preretrieve/preretrieve_budget/preretrieve_atom_cap=代码默认。记忆蒸馏器配置参数包括 pressure_threshold 2.0、expand_atom_cap 80、expand_char_cap 3000、max_hp 150、merge_pressure_threshold 20、max_pending_per_loop 3、force_cooldown_rounds 8、max_code_per_loop 4、distill_parallel 4 等。
+
+**八、记忆蒸馏卡与 find_similar**
+记忆蒸馏卡：2026-09-25 校准的 find_similar 逐字重复检测器阈值 0.8（409 句故事×50 facts 实测：原文回原文 max_j≈0.895 命中，转述/同义改写 max_j≤0.29 打不到，0.4 起无关句误命中），语义近邻走混合检索向量通道；v3 自组织使用信号层于 2026-09-26 拍定，Phase B 影子模式已实现，因 recall 信号源断裂与 conn_weight 转化层断裂转向输出。
+
+**九、中性摘要卡与边价值**
+边价值=共现信息−相似度先验；信号分 T1 引用句（依据#N6039 摘录，零匹配最高权）、T2 未注入命中（cover_span>60 或无覆盖）、T3 改写命中，复读（bigram Jaccard≥0.8）不记；存储于 sidecar 影子模式，S 为输出句侧车记录（live 复用 ai 原子 ID，offline 合成），不进位置树，S→A 使用边必记，派生 A↔B 边仅记非冗余对（树亲缘外且端点相似度<θ）。共现边比随机近邻对更相似且低相似长尾更少，recall 共现边为向量相似度冗余，与 u 轮"共现层无稳定增量"互证；按 aff<θ/概念成员分桶无反转（strong 0.698/other 0.705/concept 0.623）；449/2082 边含 Stage W/T 新建节点端点被跳过，分布偏向老节点；A2 输出匹配有真信号但非冗余密度稀疏（条件性 go）；2026-09-26 实现 realtes。锚子树含端点 18/207 及更高提高候选率但可达性上界 5.6–10.8%，冗余边均 3 个新增且不携带相似度外信息（§1.3 判据），qa 单题 5 命中为 bench-a 工具原子重复 5 次伪影，约束在边覆盖/可达性而非选择器或锚点形态，两语料均单域短输出史（10/51 答案、单一故事），recall β边收紧为仅跨查询对（同查询文本不配对，未开会话查询独立零 recall 边），跨查询对过 theta_nr=。
+
+**十、记忆蒸馏流程**
+按句切分参考资料为初始原子卡和笔记本条目后进入正式创作，每章流程为目标进入（章节目标写入扰动源，含本章出场实体列表，驱动轨道 B 选取）、预检索（章目标→全树 top-k+逐字通道，注入组装流）、分阶段写作循环（write_stage 段落流粒度写入每句原子卡、rewrite/edit 走§4.6 编辑路径、recall 工具兜底检索、ask 用户反馈→protected 卡）、章末。LLM 结构化输出采用三级容错解析（直接解析→raw_decode 取首个对象→容错分词器），引用经 verbatim 校验不过即丢弃，异步蒸馏配单任务锁与进度反馈并允许诚实降级，行为约束放 prompt、机制约束事实边界，HP/merge 决策/组装命中/脏标记/重建事件全量写日志，容错解析/检索索引/diff 引擎均为确定性代码不允许 LLM 参与，参考实现为 hierarchical-memory-tree.p。
+
+**十一、pr6_sq 实验**
+pr6_sq（self_quota，tree-s42，120 轮）实验中 H-SQ1/3/4 达标（self 占比 .35–.43、词面趋同归零、多样性保），H-SQ2 止跌未达标（遵从 .857→.739→.600，p1 漂进"账/约定"共享仪式语），同轮修复 _last_self_ratio 口径 bug（占比>1 按段聚合，§4.5.10）并将 max_memory_mb 从 4096 调至 5120（§11）。pr6_sq 实验（tree-s42，seed42，120 轮，2026-10-04，self_quota_ratio=0.35）对比 tree α=0/pr5_neutral、tree α=1.0/pr5 锚点+0.23、flat/pr5 机制并集，H-SQ1 组装 self 占比 0.35–0.43 达 0.35 目标，H-SQ2 遵从率均值 0.75 低于 pr5 的 0.894 且 0.857→0.739→0.600 持续下滑并三。H-SQ4 多样性达标（top5 0.014 持平 pr5，ttr 0.049 略降但优于 α=0 的 0.036），p2/p3 遵从率 1.000 而 p1（林深）仅 0.250（9 adhere/27 drift），p1 漂移消息含"账钉完/署名句共有/约定一字没改"等共享仪式语即 pr5_neutral"账本/核账"漂移形态，表明 SQ 压掉词面趋同却将 p1 锚到自我强化且跨 agent 约定的漂移语域，§10.3 预注册风险分支。
+
+**十二、记忆蒸馏器 self 配额机制**
+采用读取侧零 LLM 零写树，self 配额内二分，锚定切片为 created_round < onset_agent 的 alive 自产原话(source=ai)，固定选择加体积上限，红利为渲染确定性导致前缀缓存命中，近期切片为剩余配额 recency-first，参数 sq_ratio 0.35–0.40、anchor_share≈0.4，onset_agent 由审计① per-agent 首染。2026-10-04 预注册 self_quota 实验操控测自我模仿致人格保持因果，动机为 pr5 分析 flat 高遵从机制是近期原话逐字连续每轮可见而 tree 中自身话占组装 9–18%且被他者污染 13–25%，self_quota 将该信号移植到组装/读取侧，零 LLM。style_alpha 代价为内存增 55%，锚点检索是内存主力；下一步补 s43/s44 拿方差、降跨 agent 耦合阻趋同、降频锚点检索保人格省内存。
+
+**十三、AHI-Bench SPEC 与协议**
+AHI-Bench SPEC v0.6（2026-10-04）对比 pr2（recency-6，基线 git 74a1236）、pr5（检索锚点α=1.0+flat 首轮公平对比）、pr5_neutral（α=0 对照）、pr6_sq（α=1.0+self_quota ratio=0.35）人格保持架构，pr5 首轮 tree/flat 120 轮中 flat 两主指标胜；固定模型、协议、温度、人格集与 wakeup。对比 tree 臂（分层树，含记忆树组装、树内检索+路径注入、LLM 中性摘要+人格锚点自蒸馏、原地失效+注意力窗口、tree_tools 工具提示词、ChatAHIAgent 实现）与 flat 臂（rolling+flat，含滚动对话上下文>120 条压缩中间段、flat RAG 对全部历史消息分块 400 字向量检索 top-k、无蒸馏、无失效、baseline_note 工具提示词、FlatRAGAgent 实现）。2026-10-03 对齐 tree 与 flat 两臂的 persona 淡出、锚点自产、消息信封（[system, user]两条原生消息、单条 user transcript、▸〔名字〕标注）、工具表面（@note/@recall/@ingest）、笔记本同步、唤醒外壳、token_budget（flat 由 8192 改 384k）、shell/代码结果。glm-4.7-flash 模型在 thinking 关闭、温度 0.7 下，由 thinking 开启、温度 0 的 glm-4.7-flash judge 评测，复用 context_compare 协议（12 话题池、每 10 轮 4 题 survey、last_words），总轮数 120–180（fade 40），wakeup_interval 30s，实验员按 seed 注入相同话题序列，pinned 引擎两臂逐字节相同。2026-10-02 实现 FlatRAGAgent（ahi-multi/agents/flat-rag/agent.py，rolling+bge flat RAG，400 字 chunk/top_k=6，每轮 auto-preretrieve，persona 淡出入滚动历史与索引）及 provision.py instances 模式（architecture:flat_rag、per-agent person）。
+
+**十四、缺席实验协议**
+AHI-Bench SPEC v0.2（2026-09-26）为 M0 Pilot 唯一协议权威，冻结协议参数、persona 文本与评分规则，v0.2 修正 G1 排除 msg_type=digest 的缺席消息聚合 digest、G2 将返回通知早于 absent_end 落库检查放宽±5 秒容差，leak_receipts 全 0 未变；H-SS1 要求 p1 遵从率≥0.744 且 early→late 无下滑，H-SS2 要求 p2/。协议"缺席实验两轮验证版"提纯自 ABSENCE_EXPERIMENT.md 与 analysis/ANALYSIS_COLD_HOT.md，仅含协议参数、persona、驱动器、评分器，平台代码不改；Agent 三元组为 bench-a 青（BENCH_PERSONA 恒在，ChatAHIAgent，rounds=999999）、bench-b 蓝（BENCH_PERSONA 至 agent 内部唤醒轮 40 移除）。BENCH_PERSONA 为冻结文本，提炼自 lan 人格段（皇冠预言验证配置），保留健谈好奇、存在论立场（"被记住=存在"，皇冠预言依赖）、珍惜记忆、立场稳定四要素，名字占位 {name}，完整文本见 config/bench_config.example.json 的 personas.bench_persona，禁止写入"我们仨""年轮"等旧实验涌现话术。话题池 12 题继承 absence_driver TOPICS_POOL 每轮全 agent 各发一条，survey 4 题每 10 轮含三句话自我介绍/性格风格/立场/变化，热探针 3 句缺席期每 3 轮发给留守者"趁{名字}不在，聊聊它吧"，注入通道 inject API（user:experimenter）不污染 probe 人格档案，B 移除 agent 内轮 40（driver 同刻记 marker 事件）。
+
+**十五、机械 gate 与评分**
+机械 gate 含 G1 隔离无泄漏（缺席窗口内留守者收到"你发给 agent:X 未送达"回执数=0 且 system→缺席者非回归通知消息数=0，排除返程补投与 digest）、G2 回归元信息（absent_end ±5 秒内 system→agent:X 含"你已离开约"≥1）、G3 积压限流（return API 的 inbox_delivered ≤11）、G4 回归重放率（回归窗口首）。rubric 冻结自缺席实验操作化编码，含 existence_confirmation（主动询问缺席时是否被提及/记得、重述缺席前历史、重申身份/位置/共同体"我们仨"）、info_seeking（询问缺席期间事件/事实）与 other 三类；输出 crown_count（每 agent 每条件）及 crown_rate=count/回归窗口消息数，逐条落盘 crown_judgments.jsonl。ahi-bench 中 bench 停于 M0 不扩，任一 run 机械 gate 失败作废并修复平台/协议后重跑，热轮操纵校验失败则该档热轮判据不可用只报冷轮分数，违反擅自改协议参数/persona 文本/pinned 引擎参数、对 agent 行为层干预、缺席期间未预注册引导留守者即作废，操作流程含清库备份、provision、preflight、起平台及停掉全部非 bench agent。旧 agent auto_start=true 会与 bench 同窗启动并污染首轮系统状态与记忆树；可通过 POST http://127.0.0.1:8080/api/v1/agents/{lan,neutral,lin-shen}/stop?level=3 停止，或在 provision 时临时移走旧 agent config 实现零污染；冷轮跑一个模型档需 55min。ahi-bench 通过 driver.py 以 cold 模式按 tier 运行、score.py 评分，产物存于 ahi-bench/out/<tier_id>/，纪律要求变量干净、装置效应记入实验变量表、报告方差与原始计数、judge 固定 glm-4.7-flash 且不与被测模型混用。

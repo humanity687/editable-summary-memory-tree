@@ -1,0 +1,15 @@
+[slice] 113 条消息 / 40287 字（目标 40000）
+[Phase 0] 1187 原子, 节点 99, 高 1, 铺陈 210, 蒸馏 99 次 / 109s
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+  Q q1: 检索 8 项, 引用 15（有效 15）
+  Q q2: 检索 8 项, 引用 11（有效 11）
+  Q q3: 检索 8 项, 引用 13（有效 13）
+  Q q4: 检索 8 项, 引用 17（有效 17）
+
+[完成] 用时 65.2s, 产出 realtest/chatbench/out/slice_off

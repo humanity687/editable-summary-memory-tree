@@ -1,0 +1,27 @@
+{
+  "group": "baseline",
+  "task": "T5",
+  "title": "PythonShell 并发命令结果错配/丢失",
+  "passed": false,
+  "accept_rc": 1,
+  "accept_verdict": "FAIL: 并发命令结果缺失/错配/串扰",
+  "elapsed_s": 347.2,
+  "agent_result": {
+    "ok": false,
+    "rounds": 40,
+    "summary": "未完成",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 40,
+    "tool_uses": {
+      "command": 9,
+      "read": 31
+    },
+    "history_chars": 157666
+  },
+  "last_usage": {
+    "prompt_tokens": 9054,
+    "completion_tokens": 31
+  }
+}

@@ -1,0 +1,47 @@
+{
+ "fullsend": {
+  "ctx": 301121,
+  "tokens": 222397,
+  "note": "常量/题"
+ },
+ "raptor": {
+  "ctx": [
+   10,
+   3212,
+   8111,
+   4459.7
+  ],
+  "tokens_mean": 3404,
+  "per_recall_block": 4522,
+  "topk": 12,
+  "note": "collapsed-tree top-12；无字符硬上限"
+ },
+ "tree_off": {
+  "ctx": [
+   10,
+   19471,
+   19710,
+   19629.7
+  ],
+  "tokens_mean": 13001,
+  "budget_chars": 16000,
+  "emission_mean": 15914,
+  "per_recall_delta": -157,
+  "note": "assemble 硬预算 16000 字符；原子不裁"
+ },
+ "tree_on": {
+  "ctx": [
+   10,
+   19461,
+   19652,
+   19545.8
+  ],
+  "tokens_mean": 12929,
+  "budget_chars": 16000,
+  "emission_mean": 15867,
+  "per_recall_delta": 0,
+  "note": "assemble 硬预算 16000 字符；原子不裁",
+  "concepts": 17,
+  "hub_calls": 320
+ }
+}

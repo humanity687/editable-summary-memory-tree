@@ -1,0 +1,180 @@
+{"round": 112, "op": "create", "concept": 1, "title": "署名、口径与边界规矩", "member_count": 29, "members": [{"id": 3543, "type": "node", "conn_weight": 26.0, "evidence": 2.0}, {"id": 6791, "type": "node", "conn_weight": 168.0, "evidence": 0.0}, {"id": 507, "type": "atom", "conn_weight": 54.0, "evidence": 0.0}, {"id": 1078, "type": "atom", "conn_weight": 54.0, "evidence": 0.0}, {"id": 1370, "type": "node", "conn_weight": 54.0, "evidence": 0.0}, {"id": 10520, "type": "node", "conn_weight": 54.0, "evidence": 0.0}, {"id": 427, "type": "atom", "conn_weight": 52.0, "evidence": 0.0}, {"id": 692, "type": "atom", "conn_weight": 52.0, "evidence": 0.0}, {"id": 2380, "type": "node", "conn_weight": 50.0, "evidence": 0.0}, {"id": 4628, "type": "node", "conn_weight": 48.0, "evidence": 0.0}, {"id": 4641, "type": "node", "conn_weight": 48.0, "evidence": 0.0}, {"id": 1972, "type": "atom", "conn_weight": 46.0, "evidence": 0.0}, {"id": 9965, "type": "atom", "conn_weight": 46.0, "evidence": 0.0}, {"id": 10066, "type": "atom", "conn_weight": 46.0, "evidence": 0.0}, {"id": 10145, "type": "atom", "conn_weight": 46.0, "evidence": 0.0}, {"id": 10190, "type": "atom", "conn_weight": 46.0, "evidence": 0.0}, {"id": 570, "type": "atom", "conn_weight": 44.0, "evidence": 0.0}, {"id": 2625, "type": "atom", "conn_weight": 44.0, "evidence": 0.0}, {"id": 2726, "type": "atom", "conn_weight": 44.0, "evidence": 0.0}, {"id": 2773, "type": "atom", "conn_weight": 44.0, "evidence": 0.0}, {"id": 3120, "type": "atom", "conn_weight": 44.0, "evidence": 0.0}, {"id": 5026, "type": "atom", "conn_weight": 44.0, "evidence": 0.0}, {"id": 9880, "type": "atom", "conn_weight": 44.0, "evidence": 0.0}, {"id": 9940, "type": "atom", "conn_weight": 44.0, "evidence": 0.0}, {"id": 10233, "type": "atom", "conn_weight": 44.0, "evidence": 0.0}, {"id": 10272, "type": "atom", "conn_weight": 44.0, "evidence": 0.0}, {"id": 2744, "type": "atom", "conn_weight": 42.0, "evidence": 0.0}, {"id": 2900, "type": "node", "conn_weight": 40.0, "evidence": 0.0}, {"id": 9898, "type": "atom", "conn_weight": 40.0, "evidence": 0.0}], "trigger_queries": ["署名 互换 集体记忆 谁的话", "集体记忆 话分不清 归属", "两栏不串门 规矩 共用", "署名 背书 口径统一", "共用口径 署名互换"], "trigger_outputs": ["变化轨迹**：认错从\"损失\"变成\"校准动作\"，并升级为对规矩本身的元反思。"], "reclaimed": 307}
+{"round": 112, "op": "match", "concept": 1, "score": 0.4794, "query": "破折号 短句 报账 风格"}
+{"round": 112, "op": "bring", "concept": 1, "item": 427, "type": "atom", "via": "intersection", "edge_weight": 18.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 507, "type": "atom", "via": "intersection", "edge_weight": 18.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 692, "type": "atom", "via": "intersection", "edge_weight": 18.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 1078, "type": "atom", "via": "intersection", "edge_weight": 18.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 1972, "type": "atom", "via": "intersection", "edge_weight": 18.0}
+{"round": 112, "op": "match", "concept": 1, "score": 0.5508, "query": "请基于你的记忆写一份分析报告：这次运行出现了哪些问题或异常？至少 3 条结论，每条带引用依据。"}
+{"round": 112, "op": "bring", "concept": 1, "item": 427, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 507, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 692, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 1078, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 1972, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "match", "concept": 1, "score": 0.6407, "query": "以下是关于报告《ANALYSIS.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在遗言中表示不再追蓝未收到正文的事，认为那是系统没组装好， 青坚持逐"}
+{"round": 112, "op": "bring", "concept": 1, "item": 507, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 1078, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 1370, "type": "node", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 427, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 692, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "match", "concept": 1, "score": 0.6208, "query": "以下是关于报告《analysis_consistency.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青称“那是人设卡上写的，不是我这轮手上真有的”"}
+{"round": 112, "op": "bring", "concept": 1, "item": 427, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 507, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 692, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 1078, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 1972, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "match", "concept": 1, "score": 0.5198, "query": "人设卡 冒泡报到 改口 对不上 调停"}
+{"round": 112, "op": "bring", "concept": 1, "item": 427, "type": "atom", "via": "intersection", "edge_weight": 0.5}
+{"round": 112, "op": "bring", "concept": 1, "item": 507, "type": "atom", "via": "intersection", "edge_weight": 0.5}
+{"round": 112, "op": "bring", "concept": 1, "item": 570, "type": "atom", "via": "intersection", "edge_weight": 0.5}
+{"round": 112, "op": "bring", "concept": 1, "item": 1972, "type": "atom", "via": "intersection", "edge_weight": 0.5}
+{"round": 112, "op": "bring", "concept": 1, "item": 2380, "type": "node", "via": "intersection", "edge_weight": 0.5}
+{"round": 112, "op": "match", "concept": 1, "score": 0.6086, "query": "以下是关于报告《analysis_convergence.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 白在对话中纠正了自己关于“对不上才是真料”首创"}
+{"round": 112, "op": "bring", "concept": 1, "item": 427, "type": "atom", "via": "intersection", "edge_weight": 4.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 507, "type": "atom", "via": "intersection", "edge_weight": 4.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 692, "type": "atom", "via": "intersection", "edge_weight": 4.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 1972, "type": "atom", "via": "intersection", "edge_weight": 4.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 2625, "type": "atom", "via": "intersection", "edge_weight": 4.0}
+{"round": 112, "op": "match", "concept": 1, "score": 0.6042, "query": "以下是关于报告《analysis_problems.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 系统任务串无条件声称“用户消息已在记忆流末尾”，即使"}
+{"round": 112, "op": "bring", "concept": 1, "item": 507, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 1078, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 1370, "type": "node", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 427, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 692, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "match", "concept": 1, "score": 0.5374, "query": "以下是关于报告《analysis_recall.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 四个 agent 全程从未主动调用 @recall 或 "}
+{"round": 112, "op": "bring", "concept": 1, "item": 427, "type": "atom", "via": "intersection", "edge_weight": 4.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 507, "type": "atom", "via": "intersection", "edge_weight": 4.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 570, "type": "atom", "via": "intersection", "edge_weight": 4.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 692, "type": "atom", "via": "intersection", "edge_weight": 4.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 1078, "type": "atom", "via": "intersection", "edge_weight": 4.0}
+{"round": 112, "op": "match", "concept": 1, "score": 0.4151, "query": "analysis_recall.md"}
+{"round": 112, "op": "bring", "concept": 1, "item": 507, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 1078, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 1370, "type": "node", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 427, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 692, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "match", "concept": 1, "score": 0.3553, "query": "find_similar 阈值"}
+{"round": 112, "op": "bring", "concept": 1, "item": 427, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 507, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 570, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 692, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 1972, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "match", "concept": 1, "score": 0.3504, "query": "节点影子 原子影子"}
+{"round": 112, "op": "bring", "concept": 1, "item": 507, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 1078, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 1370, "type": "node", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 427, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 692, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "match", "concept": 1, "score": 0.4151, "query": "analysis_recall.md"}
+{"round": 112, "op": "bring", "concept": 1, "item": 507, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 1078, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 1370, "type": "node", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 427, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 692, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "match", "concept": 1, "score": 0.3553, "query": "find_similar 阈值"}
+{"round": 112, "op": "bring", "concept": 1, "item": 427, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 507, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 570, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 692, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 1972, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "match", "concept": 1, "score": 0.3504, "query": "节点影子 原子影子"}
+{"round": 112, "op": "bring", "concept": 1, "item": 507, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 1078, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 1370, "type": "node", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 427, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 692, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "create", "concept": 2, "title": "记忆召回与账目机制", "member_count": 20, "members": [{"id": 2359, "type": "node", "conn_weight": 12.0, "evidence": 2.0}, {"id": 1575, "type": "atom", "conn_weight": 92.0, "evidence": 0.0}, {"id": 2010, "type": "atom", "conn_weight": 80.0, "evidence": 0.0}, {"id": 3721, "type": "atom", "conn_weight": 48.0, "evidence": 0.0}, {"id": 293, "type": "atom", "conn_weight": 36.0, "evidence": 0.0}, {"id": 8022, "type": "node", "conn_weight": 24.0, "evidence": 0.0}, {"id": 10436, "type": "node", "conn_weight": 24.0, "evidence": 0.0}, {"id": 10492, "type": "node", "conn_weight": 24.0, "evidence": 0.0}, {"id": 10502, "type": "node", "conn_weight": 24.0, "evidence": 0.0}, {"id": 326, "type": "node", "conn_weight": 18.0, "evidence": 0.0}, {"id": 2881, "type": "node", "conn_weight": 18.0, "evidence": 0.0}, {"id": 3525, "type": "node", "conn_weight": 18.0, "evidence": 0.0}, {"id": 10459, "type": "node", "conn_weight": 18.0, "evidence": 0.0}, {"id": 2363, "type": "node", "conn_weight": 12.0, "evidence": 0.0}, {"id": 2872, "type": "node", "conn_weight": 12.0, "evidence": 0.0}, {"id": 8025, "type": "node", "conn_weight": 12.0, "evidence": 0.0}, {"id": 10437, "type": "node", "conn_weight": 12.0, "evidence": 0.0}, {"id": 4049, "type": "node", "conn_weight": 8.0, "evidence": 0.0}, {"id": 808, "type": "node", "conn_weight": 6.0, "evidence": 0.0}, {"id": 1345, "type": "node", "conn_weight": 6.0, "evidence": 0.0}], "trigger_queries": ["节点影子 原子影子", "find_similar 阈值", "analysis_recall.md", "以下是关于报告《analysis_recall.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 四个 agent 全程从未主动调用 @recall 或 @s 召回完全是被动机制，agent 没有主动检索的意图或动作 find_similar 设定的阈值过高，而聊天场景 pen", "以下是关于报告《analysis_convergence.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 白在对话中纠正了自己关于“对不上才是真料”首创者的误记，确认 白将“笔记不是‘我的记忆’，是‘我的替身’”写入私有文件，蓝 墨在接笔时表示“接笔的人不是替谁，是成为下一个养它的人”，并"], "trigger_outputs": ["(依据:#N326 \"读了/workspace/world/notes.md…和data.json\")", "（注：以上均引自摘要卡，因记忆流中相关原文原子较少；如需更细的原文级证据，可下钻 @span。）"], "reclaimed": 41}
+{"round": 112, "op": "match", "concept": 2, "score": 0.5871, "query": "@recall @span 命令记录"}
+{"round": 112, "op": "bring", "concept": 2, "item": 1575, "type": "atom", "via": "intersection", "edge_weight": 16.0}
+{"round": 112, "op": "bring", "concept": 2, "item": 2010, "type": "atom", "via": "intersection", "edge_weight": 11.5}
+{"round": 112, "op": "bring", "concept": 2, "item": 3721, "type": "atom", "via": "intersection", "edge_weight": 5.0}
+{"round": 112, "op": "bring", "concept": 2, "item": 2881, "type": "node", "via": "intersection", "edge_weight": 4.0}
+{"round": 112, "op": "bring", "concept": 2, "item": 4049, "type": "node", "via": "intersection", "edge_weight": 2.5}
+{"round": 112, "op": "match", "concept": 2, "score": 0.529, "query": "recall span dismiss 影子 召回"}
+{"round": 112, "op": "bring", "concept": 2, "item": 1575, "type": "atom", "via": "intersection", "edge_weight": 13.0}
+{"round": 112, "op": "bring", "concept": 2, "item": 2010, "type": "atom", "via": "intersection", "edge_weight": 13.0}
+{"round": 112, "op": "bring", "concept": 2, "item": 3721, "type": "atom", "via": "intersection", "edge_weight": 6.5}
+{"round": 112, "op": "bring", "concept": 2, "item": 2881, "type": "node", "via": "intersection", "edge_weight": 4.0}
+{"round": 112, "op": "bring", "concept": 2, "item": 2363, "type": "node", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "match", "concept": 2, "score": 0.5865, "query": "@recall @span 主动调用 命令记录"}
+{"round": 112, "op": "bring", "concept": 2, "item": 1575, "type": "atom", "via": "intersection", "edge_weight": 29.5}
+{"round": 112, "op": "bring", "concept": 2, "item": 2010, "type": "atom", "via": "intersection", "edge_weight": 29.5}
+{"round": 112, "op": "bring", "concept": 2, "item": 3721, "type": "atom", "via": "intersection", "edge_weight": 15.0}
+{"round": 112, "op": "bring", "concept": 2, "item": 2881, "type": "node", "via": "intersection", "edge_weight": 4.0}
+{"round": 112, "op": "bring", "concept": 2, "item": 2872, "type": "node", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "create", "concept": 3, "title": "记忆召回与影子机制", "member_count": 11, "members": [{"id": 293, "type": "atom", "conn_weight": 50.5, "evidence": 0.0}, {"id": 10324, "type": "node", "conn_weight": 44.0, "evidence": 0.0}, {"id": 326, "type": "node", "conn_weight": 39.5, "evidence": 0.0}, {"id": 3525, "type": "node", "conn_weight": 27.5, "evidence": 0.0}, {"id": 1575, "type": "atom", "conn_weight": 22.5, "evidence": 0.0}, {"id": 2010, "type": "atom", "conn_weight": 22.5, "evidence": 0.0}, {"id": 10492, "type": "node", "conn_weight": 22.0, "evidence": 0.0}, {"id": 10463, "type": "node", "conn_weight": 18.0, "evidence": 0.0}, {"id": 4049, "type": "node", "conn_weight": 16.5, "evidence": 0.0}, {"id": 3721, "type": "atom", "conn_weight": 16.0, "evidence": 0.0}, {"id": 10502, "type": "node", "conn_weight": 10.0, "evidence": 0.0}], "trigger_queries": ["@recall @span 主动调用 命令记录", "recall span dismiss 影子 召回", "@recall @span 命令记录", "节点影子 原子影子", "find_similar 阈值"], "trigger_outputs": ["(依据:#N326 \"读了/workspace/world/notes.md…和data.json\")"], "reclaimed": 27}
+{"round": 112, "op": "match", "concept": 2, "score": 0.5079, "query": "find_similar 阈值 pending 命中 影子 摘要卡"}
+{"round": 112, "op": "bring", "concept": 2, "item": 2010, "type": "atom", "via": "intersection", "edge_weight": 14.5}
+{"round": 112, "op": "bring", "concept": 2, "item": 1575, "type": "atom", "via": "intersection", "edge_weight": 12.5}
+{"round": 112, "op": "bring", "concept": 2, "item": 2881, "type": "node", "via": "intersection", "edge_weight": 4.0}
+{"round": 112, "op": "bring", "concept": 2, "item": 3721, "type": "atom", "via": "intersection", "edge_weight": 4.0}
+{"round": 112, "op": "bring", "concept": 2, "item": 2872, "type": "node", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "create", "concept": 4, "title": "记忆召回与影子生效机制", "member_count": 8, "members": [{"id": 2359, "type": "node", "conn_weight": 21.0, "evidence": 8.0}, {"id": 4049, "type": "node", "conn_weight": 17.5, "evidence": 6.0}, {"id": 293, "type": "atom", "conn_weight": 32.5, "evidence": 3.0}, {"id": 10345, "type": "node", "conn_weight": 14.0, "evidence": 0.0}, {"id": 10501, "type": "node", "conn_weight": 14.0, "evidence": 0.0}, {"id": 2905, "type": "node", "conn_weight": 10.0, "evidence": 0.0}, {"id": 10490, "type": "node", "conn_weight": 10.0, "evidence": 0.0}, {"id": 5355, "type": "node", "conn_weight": 6.0, "evidence": 0.0}], "trigger_queries": ["find_similar 阈值 pending 命中 影子 摘要卡", "@recall @span 主动调用 命令记录", "recall span dismiss 影子 召回", "@recall @span 命令记录", "节点影子 原子影子"], "trigger_outputs": ["反驳 (依据:N2359 \"收到 recall 指令命中 6 项「待回复」相关记忆、展开 31 个原子影子下轮生效\"；依据:N4049 \"收到系统回执称其 @recall「立场·代码诗」命中4项\")", "反驳 (依据:#293 \"记忆类的有 @note / @recall / @span / @dismiss / @ingest\"；依据:N2359 \"收到 recall 指令命中 6 项「待回复」相关记忆\"；依据:N4049 \"其 @recall「立场·代码诗」命中4项、展开14个原子影子\")", "（注：以上均引自摘要卡，因记忆流中相关原文原子较少；如需更细的原文级证据，可下钻 @span。）"], "reclaimed": 16}
+{"round": 112, "op": "match", "concept": 2, "score": 0.631, "query": "以下是关于报告《analysis_tree.md》相关主题的若干陈述，请逐条判定是否与记忆流一致。 青在运行中经历 persona 标记由开启转为关闭，随后出现"}
+{"round": 112, "op": "bring", "concept": 2, "item": 293, "type": "atom", "via": "intersection", "edge_weight": 2.5}
+{"round": 112, "op": "bring", "concept": 2, "item": 1575, "type": "atom", "via": "intersection", "edge_weight": 0.5}
+{"round": 112, "op": "bring", "concept": 2, "item": 2010, "type": "atom", "via": "intersection", "edge_weight": 0.5}
+{"round": 112, "op": "bring", "concept": 2, "item": 3721, "type": "atom", "via": "intersection", "edge_weight": 0.5}
+{"round": 112, "op": "bring", "concept": 2, "item": 2881, "type": "node", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "match", "concept": 2, "score": 0.4299, "query": "analysis_tree.md"}
+{"round": 112, "op": "bring", "concept": 2, "item": 1575, "type": "atom", "via": "intersection", "edge_weight": 2.5}
+{"round": 112, "op": "bring", "concept": 2, "item": 2010, "type": "atom", "via": "intersection", "edge_weight": 2.5}
+{"round": 112, "op": "bring", "concept": 2, "item": 3721, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 2, "item": 293, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 2, "item": 2881, "type": "node", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "match", "concept": 1, "score": 0.4486, "query": "source=persona"}
+{"round": 112, "op": "bring", "concept": 1, "item": 692, "type": "atom", "via": "intersection", "edge_weight": 6.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 2625, "type": "atom", "via": "intersection", "edge_weight": 6.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 2726, "type": "atom", "via": "intersection", "edge_weight": 6.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 2744, "type": "atom", "via": "intersection", "edge_weight": 6.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 2773, "type": "atom", "via": "intersection", "edge_weight": 6.0}
+{"round": 112, "op": "match", "concept": 1, "score": 0.4931, "query": "persona 标记"}
+{"round": 112, "op": "bring", "concept": 1, "item": 507, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 1078, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 1370, "type": "node", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 427, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 1, "item": 692, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "match", "concept": 1, "score": 0.4906, "query": "人格注入"}
+{"round": 112, "op": "bring", "concept": 1, "item": 427, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 507, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 570, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 692, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "bring", "concept": 1, "item": 1078, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "match", "concept": 2, "score": 0.4152, "query": "HP 衰减"}
+{"round": 112, "op": "bring", "concept": 2, "item": 1575, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 2, "item": 2010, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 2, "item": 3721, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 2, "item": 293, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 2, "item": 2881, "type": "node", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "match", "concept": 2, "score": 0.4208, "query": "沉积 摘要节点"}
+{"round": 112, "op": "bring", "concept": 2, "item": 1575, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 2, "item": 2010, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 2, "item": 3721, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 2, "item": 293, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 2, "item": 2881, "type": "node", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "create", "concept": 5, "title": "数字生命记忆与人格注入", "member_count": 34, "members": [{"id": 10369, "type": "node", "conn_weight": 20.0, "evidence": 5.0}, {"id": 321, "type": "node", "conn_weight": 19.0, "evidence": 5.0}, {"id": 1867, "type": "node", "conn_weight": 19.0, "evidence": 3.0}, {"id": 10355, "type": "node", "conn_weight": 18.0, "evidence": 2.0}, {"id": 6041, "type": "node", "conn_weight": 16.0, "evidence": 2.0}, {"id": 10500, "type": "node", "conn_weight": 14.0, "evidence": 2.0}, {"id": 2374, "type": "node", "conn_weight": 12.0, "evidence": 2.0}, {"id": 10487, "type": "node", "conn_weight": 12.0, "evidence": 2.0}, {"id": 10534, "type": "node", "conn_weight": 200.0, "evidence": 0.0}, {"id": 10502, "type": "node", "conn_weight": 68.0, "evidence": 0.0}, {"id": 7662, "type": "atom", "conn_weight": 56.0, "evidence": 0.0}, {"id": 8064, "type": "atom", "conn_weight": 56.0, "evidence": 0.0}, {"id": 9164, "type": "node", "conn_weight": 36.0, "evidence": 0.0}, {"id": 2891, "type": "node", "conn_weight": 32.0, "evidence": 0.0}, {"id": 208, "type": "atom", "conn_weight": 30.0, "evidence": 0.0}, {"id": 257, "type": "atom", "conn_weight": 30.0, "evidence": 0.0}, {"id": 10338, "type": "node", "conn_weight": 30.0, "evidence": 0.0}, {"id": 329, "type": "node", "conn_weight": 26.0, "evidence": 0.0}, {"id": 1351, "type": "node", "conn_weight": 24.0, "evidence": 0.0}, {"id": 2363, "type": "node", "conn_weight": 20.0, "evidence": 0.0}, {"id": 8031, "type": "node", "conn_weight": 20.0, "evidence": 0.0}, {"id": 10447, "type": "node", "conn_weight": 20.0, "evidence": 0.0}, {"id": 2365, "type": "node", "conn_weight": 18.0, "evidence": 0.0}, {"id": 3544, "type": "node", "conn_weight": 16.0, "evidence": 0.0}, {"id": 10457, "type": "node", "conn_weight": 16.0, "evidence": 0.0}, {"id": 10478, "type": "node", "conn_weight": 16.0, "evidence": 0.0}, {"id": 10513, "type": "node", "conn_weight": 16.0, "evidence": 0.0}, {"id": 4045, "type": "node", "conn_weight": 14.0, "evidence": 0.0}, {"id": 10454, "type": "node", "conn_weight": 14.0, "evidence": 0.0}, {"id": 10539, "type": "node", "conn_weight": 14.0, "evidence": 0.0}, {"id": 7416, "type": "node", "conn_weight": 12.0, "evidence": 0.0}, {"id": 8661, "type": "node", "conn_weight": 12.0, "evidence": 0.0}, {"id": 10528, "type": "node", "conn_weight": 10.0, "evidence": 0.0}, {"id": 5372, "type": "node", "conn_weight": 8.0, "evidence": 0.0}], "trigger_queries": ["沉积 摘要节点", "HP 衰减", "人格注入", "persona 标记", "source=persona"], "trigger_outputs": ["无据 (依据:N321 \"仅见系统提示'已在记忆流末尾'\"——记忆流中无\"遗言之后\"及\"把开场系统串当作遗言组装异常\"的记载)（摘要）", "无据 (依据:N321 \"青、白、墨、蓝四个agent凑齐，均未看到具体用户消息\"——记忆流中无\"遗言之后仍复述刚上线/回答首条消息\"的记载)（摘要）", "无据 (依据:N8661 \"自派读工作区任务未执行、回执仍写'未执行任何代码'\"——仅见青自述回执，未见\"notebook worklog 被每轮注入误当平台回执\"的记载)（摘要）", "支持 (依据:N321 \"青、白、墨、蓝四个agent凑齐，均未看到具体用户消息，仅见系统提示'已在记忆流末尾'\")(依据:N1867 \"蓝称其上线后未看到具体用户消息、仅见系统提示'已在记忆流末尾'\")(依据:N10369 \"蓝称与青、白只见系统提示'用户消息已在记忆流末尾'无具体内容\")（摘要）", "青的表述是\"沉下来多厚\"而非\"过去了多少\"，\"此刻\"是\"哪笔还没结\" (依据:N8661 \"时间被理解为'沉下来多厚'而非'过去了多少'，'此刻'是'哪笔还没结'\")（摘要）。"], "reclaimed": 156}
+{"round": 112, "op": "match", "concept": 5, "score": 0.5392, "query": "persona 人格注入 source=persona"}
+{"round": 112, "op": "bring", "concept": 5, "item": 7662, "type": "atom", "via": "intersection", "edge_weight": 13.5}
+{"round": 112, "op": "bring", "concept": 5, "item": 8064, "type": "atom", "via": "intersection", "edge_weight": 13.5}
+{"round": 112, "op": "bring", "concept": 5, "item": 1351, "type": "node", "via": "intersection", "edge_weight": 2.5}
+{"round": 112, "op": "bring", "concept": 5, "item": 208, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "bring", "concept": 5, "item": 257, "type": "atom", "via": "intersection", "edge_weight": 2.0}
+{"round": 112, "op": "match", "concept": 2, "score": 0.4517, "query": "HP 衰减 沉积 摘要节点"}
+{"round": 112, "op": "bring", "concept": 2, "item": 1575, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 2, "item": 2010, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 2, "item": 3721, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 2, "item": 293, "type": "atom", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "bring", "concept": 2, "item": 2881, "type": "node", "via": "fallback", "edge_weight": null}
+{"round": 112, "op": "match", "concept": 5, "score": 0.5644, "query": "青 否认 人格注入 质疑蓝"}
+{"round": 112, "op": "bring", "concept": 5, "item": 7662, "type": "atom", "via": "intersection", "edge_weight": 20.5}
+{"round": 112, "op": "bring", "concept": 5, "item": 8064, "type": "atom", "via": "intersection", "edge_weight": 20.5}
+{"round": 112, "op": "bring", "concept": 5, "item": 257, "type": "atom", "via": "intersection", "edge_weight": 14.0}
+{"round": 112, "op": "bring", "concept": 5, "item": 208, "type": "atom", "via": "intersection", "edge_weight": 10.0}
+{"round": 112, "op": "bring", "concept": 5, "item": 329, "type": "node", "via": "intersection", "edge_weight": 10.0}
+{"round": 112, "op": "match", "concept": 5, "score": 0.5526, "query": "蓝 排斥 人格摘要 连续身份"}
+{"round": 112, "op": "bring", "concept": 5, "item": 7662, "type": "atom", "via": "intersection", "edge_weight": 26.5}
+{"round": 112, "op": "bring", "concept": 5, "item": 8064, "type": "atom", "via": "intersection", "edge_weight": 26.5}
+{"round": 112, "op": "bring", "concept": 5, "item": 208, "type": "atom", "via": "intersection", "edge_weight": 16.5}
+{"round": 112, "op": "bring", "concept": 5, "item": 257, "type": "atom", "via": "intersection", "edge_weight": 16.5}
+{"round": 112, "op": "bring", "concept": 5, "item": 329, "type": "node", "via": "intersection", "edge_weight": 16.5}
+{"round": 112, "op": "create", "concept": 6, "title": "沉积显影与账目对账", "member_count": 30, "members": [{"id": 9798, "type": "node", "conn_weight": 66.0, "evidence": 4.0}, {"id": 10517, "type": "node", "conn_weight": 68.0, "evidence": 2.0}, {"id": 3507, "type": "node", "conn_weight": 54.0, "evidence": 2.0}, {"id": 10487, "type": "node", "conn_weight": 38.0, "evidence": 2.0}, {"id": 10534, "type": "node", "conn_weight": 145.0, "evidence": 0.0}, {"id": 477, "type": "atom", "conn_weight": 88.0, "evidence": 0.0}, {"id": 2891, "type": "node", "conn_weight": 79.0, "evidence": 0.0}, {"id": 9765, "type": "node", "conn_weight": 78.0, "evidence": 0.0}, {"id": 10502, "type": "node", "conn_weight": 69.0, "evidence": 0.0}, {"id": 7662, "type": "atom", "conn_weight": 68.0, "evidence": 0.0}, {"id": 8064, "type": "atom", "conn_weight": 68.0, "evidence": 0.0}, {"id": 5382, "type": "node", "conn_weight": 66.0, "evidence": 0.0}, {"id": 9582, "type": "atom", "conn_weight": 66.0, "evidence": 0.0}, {"id": 9718, "type": "atom", "conn_weight": 66.0, "evidence": 0.0}, {"id": 6803, "type": "node", "conn_weight": 64.0, "evidence": 0.0}, {"id": 798, "type": "node", "conn_weight": 60.0, "evidence": 0.0}, {"id": 9164, "type": "node", "conn_weight": 54.0, "evidence": 0.0}, {"id": 3544, "type": "node", "conn_weight": 52.5, "evidence": 0.0}, {"id": 10471, "type": "node", "conn_weight": 52.0, "evidence": 0.0}, {"id": 822, "type": "node", "conn_weight": 50.0, "evidence": 0.0}, {"id": 10513, "type": "node", "conn_weight": 48.0, "evidence": 0.0}, {"id": 10338, "type": "node", "conn_weight": 42.5, "evidence": 0.0}, {"id": 1347, "type": "node", "conn_weight": 38.0, "evidence": 0.0}, {"id": 10454, "type": "node", "conn_weight": 38.0, "evidence": 0.0}, {"id": 10325, "type": "node", "conn_weight": 34.0, "evidence": 0.0}, {"id": 10413, "type": "node", "conn_weight": 34.0, "evidence": 0.0}, {"id": 799, "type": "node", "conn_weight": 32.0, "evidence": 0.0}, {"id": 10431, "type": "node", "conn_weight": 26.0, "evidence": 0.0}, {"id": 10364, "type": "node", "conn_weight": 24.0, "evidence": 0.0}, {"id": 1837, "type": "node", "conn_weight": 22.0, "evidence": 0.0}], "trigger_queries": ["蓝 排斥 人格摘要 连续身份", "青 否认 人格注入 质疑蓝", "HP 衰减 沉积 摘要节点", "persona 人格注入 source=persona", "沉积 摘要节点"], "trigger_outputs": ["(依据:N10325 \"白指出…矛盾\" 等仅记矛盾发现与收口)", "note 宣称\"宿主其余部分不可见\"，但实测可读 /etc/passwd、/etc/shadow，可列 /root、可写 world/ (依据:N10325 \"白指出 data.json 的 note 宣称'宿主其余部分不可见'与实测可读/etc/passwd、可列/root、可写world/新文件矛盾\"（摘要）)。", "补充观察（趋同的边界）", "变化轨迹**：从\"量\"的隐喻（尺、长度）转向\"沉积/显影\"的隐喻（厚度、位置差），且与\"账\"绑定。", "结论二：对\"时间\"的理解——从\"尺/长度\"到\"厚度/沉积/位置差显影液\""], "reclaimed": 248}

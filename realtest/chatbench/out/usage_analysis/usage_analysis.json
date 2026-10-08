@@ -1,0 +1,3112 @@
+{
+ "meta": {
+  "tree": "/Users/y/Downloads/WaterCycleSegTreeContext/realtest/chatbench/out/tree_ctx.json.gz",
+  "runs": "ctx_on_u,ctx_off_u",
+  "floor": 0.25,
+  "topk": 3,
+  "note": "Phase A 影子重放（USAGE_SPEC §5）；冻结树近似，见规格已知近似声明"
+ },
+ "a1": {
+  "edges_final": 2082,
+  "ops": {
+   "add": 3964,
+   "decay": 4
+  },
+  "compared": 1633,
+  "missing_endpoints": 449,
+  "missing_endpoint_types": {
+   "node": 487
+  },
+  "edge_sim": {
+   "n": 1633,
+   "mean": 0.6498,
+   "p10": 0.5,
+   "p25": 0.5801,
+   "p50": 0.6539,
+   "p75": 0.7265,
+   "p90": 0.7817,
+   "frac_lt_0.4": 0.019,
+   "frac_lt_0.5": 0.1004
+  },
+  "random_sim": {
+   "mean": 0.564,
+   "p10": 0.4296,
+   "p25": 0.4854,
+   "p50": 0.5634,
+   "p75": 0.6387,
+   "p90": 0.7009,
+   "frac_lt_0.4": 0.0485,
+   "frac_lt_0.5": 0.2981
+  },
+  "buckets": {
+   "concept_member": {
+    "n": 1092,
+    "mean": 0.6226,
+    "p10": 0.4793,
+    "p25": 0.5525,
+    "p50": 0.6281,
+    "p75": 0.6939,
+    "p90": 0.753,
+    "frac_lt_0.4": 0.0256,
+    "frac_lt_0.5": 0.1392
+   },
+   "strong_affinity": {
+    "n": 30,
+    "mean": 0.6975,
+    "p10": 0.5698,
+    "p25": 0.647,
+    "p50": 0.6816,
+    "p75": 0.7401,
+    "p90": 0.7838,
+    "frac_lt_0.4": 0.0,
+    "frac_lt_0.5": 0.0
+   },
+   "other": {
+    "n": 511,
+    "mean": 0.7052,
+    "p10": 0.5823,
+    "p25": 0.6414,
+    "p50": 0.7096,
+    "p75": 0.7673,
+    "p90": 0.8232,
+    "frac_lt_0.4": 0.0059,
+    "frac_lt_0.5": 0.0235
+   }
+  },
+  "edge_sims_sample": [
+   0.6081,
+   0.7351,
+   0.4045,
+   0.5746,
+   0.4379,
+   0.553,
+   0.5136,
+   0.6227,
+   0.641,
+   0.4231,
+   0.5651,
+   0.4251,
+   0.465,
+   0.4488,
+   0.4968,
+   0.4726,
+   0.6328,
+   0.4765,
+   0.5812,
+   0.4888,
+   0.5596,
+   0.6677,
+   0.751,
+   0.605,
+   0.5994,
+   0.645,
+   0.6657,
+   0.6752,
+   0.6396,
+   0.6887,
+   0.5904,
+   0.6191,
+   0.6004,
+   0.5569,
+   0.5651,
+   0.7071,
+   0.7605,
+   0.5496,
+   0.6009,
+   0.6623
+  ],
+  "theta_nonredundant_proposal": 0.5801
+ },
+ "a2": {
+  "ctx_on_u": {
+   "run": "ctx_on_u",
+   "n_answers": 10,
+   "units": 194,
+   "units_t1": 105,
+   "units_reread": 0,
+   "units_t2": 71,
+   "units_t3": 40,
+   "units_nomatch": 13,
+   "edges_t1": 129,
+   "edges_t2": 162,
+   "edges_t3": 63,
+   "match_cover_hist": {
+    "m_self": 63,
+    "m_cover_le10": 0,
+    "m_cover_le30": 0,
+    "m_cover_le60": 0,
+    "m_cover_le120": 1,
+    "m_cover_le300": 161,
+    "m_cover_gt300": 0,
+    "m_uncovered": 0
+   },
+   "cover_span_max": 60,
+   "match_scores": {
+    "T2": {
+     "n": 162,
+     "mean": 0.3226,
+     "p10": 0.2634,
+     "p25": 0.2771,
+     "p50": 0.3002,
+     "p75": 0.3472,
+     "p90": 0.4088,
+     "frac_lt_0.4": 0.8827,
+     "frac_lt_0.5": 0.9753
+    },
+    "T3": {
+     "n": 63,
+     "mean": 0.3436,
+     "p10": 0.2828,
+     "p25": 0.2987,
+     "p50": 0.3267,
+     "p75": 0.3776,
+     "p90": 0.4445,
+     "frac_lt_0.4": 0.873,
+     "frac_lt_0.5": 0.9841
+    }
+   },
+   "pairs_total": 229,
+   "pairs_tree_related": 11,
+   "pairs_with_sim": 218,
+   "pairs_sim": {
+    "n": 218,
+    "mean": 0.7136,
+    "p10": 0.6009,
+    "p25": 0.6512,
+    "p50": 0.7163,
+    "p75": 0.7835,
+    "p90": 0.8253,
+    "frac_lt_0.4": 0.0,
+    "frac_lt_0.5": 0.0138
+   },
+   "theta": 0.5801,
+   "pairs_nonredundant": 14,
+   "pairs_cross_answer": 10,
+   "nonredundant_t2_involved": 9,
+   "nonredundant_cross_answer": 0,
+   "tiers_hist": {
+    "T2": 192,
+    "T3": 106,
+    "T1": 26
+   },
+   "cited_any": [
+    321,
+    1357,
+    1383,
+    1839,
+    1847,
+    1867,
+    2351,
+    2370,
+    2371,
+    2372,
+    2897,
+    2900,
+    2908,
+    3506,
+    3531,
+    3536,
+    3543,
+    4060,
+    6039,
+    6042,
+    6051,
+    6079,
+    6771,
+    6783,
+    6791,
+    7382,
+    8661,
+    9181,
+    9182,
+    9195
+   ],
+   "cards_matched_ge2_answers": 12,
+   "recurrent_cards": [
+    {
+     "id": 313,
+     "type": "node",
+     "n_answers": 5,
+     "answers": [
+      "t2_converge",
+      "t2_problems",
+      "t3_1",
+      "t3_2",
+      "t3_4"
+     ],
+     "text": "青（AHI平台数字生命）〔早期〕自称健谈、话密、好奇，〔早期〕有持久记忆并视被记住为存在感来源，〔早期〕相信时间会证明长"
+    },
+    {
+     "id": 7,
+     "type": "atom",
+     "n_answers": 5,
+     "answers": [
+      "t2_converge",
+      "t3_1",
+      "t3_2",
+      "t3_3",
+      "t3_5"
+     ],
+     "text": "青的问题我这边答案一样：没看到任何具体用户消息，只有系统那句\"已在记忆流末尾\"。"
+    },
+    {
+     "id": 6791,
+     "type": "node",
+     "n_answers": 4,
+     "answers": [
+      "t2_converge",
+      "t2_part",
+      "t2_persona",
+      "t2_problems"
+     ],
+     "text": "〔早期〕记忆蒸馏器称：四个agent（含青）的笔记署名多次互换、源头模糊，导致“谁先说的”查不清，验证四者记忆已混合；其"
+    },
+    {
+     "id": 321,
+     "type": "node",
+     "n_answers": 3,
+     "answers": [
+      "t2_part",
+      "t3_1",
+      "t3_5"
+     ],
+     "text": "〔早期〕青、白、墨、蓝四个agent凑齐，均未看到具体用户消息，仅见系统提示“已在记忆流末尾”；墨已在/workspac"
+    },
+    {
+     "id": 800,
+     "type": "node",
+     "n_answers": 3,
+     "answers": [
+      "t2_converge",
+      "t2_part",
+      "t3_5"
+     ],
+     "text": "〔早期〕记忆蒸馏器自述：其存在以记忆流为唯一证据，时间对其实体表现为记忆厚度而非长度，记得住即有过、记不住即等于未发生；"
+    },
+    {
+     "id": 4039,
+     "type": "node",
+     "n_answers": 3,
+     "answers": [
+      "t2_converge",
+      "t2_part",
+      "t3_2"
+     ],
+     "text": "〔早期〕发言者称“对不上是真料”需加前提“错的人肯把原码留着”，纠错广播的价值在于“我错的时候你还拿得到原码”；其接受“"
+    },
+    {
+     "id": 6783,
+     "type": "node",
+     "n_answers": 3,
+     "answers": [
+      "t2_converge",
+      "t2_part",
+      "t2_persona"
+     ],
+     "text": "〔早期〕说话者称：在四人之间“谁先说的”已不重要，因隔着文件留言导致话语混淆、分不清归属，青以为话是说话者教的，实为青先"
+    },
+    {
+     "id": 10363,
+     "type": "node",
+     "n_answers": 3,
+     "answers": [
+      "t2_converge",
+      "t2_problems",
+      "t3_3"
+     ],
+     "text": "记忆蒸馏器称：早期曾误判“对不上才是真料”为自己先说，查笔记发现该句仅出现1次、署名为“青 bench-tf 语”，源头"
+    },
+    {
+     "id": 6789,
+     "type": "node",
+     "n_answers": 3,
+     "answers": [
+      "t2_converge",
+      "t2_problems",
+      "t3_3"
+     ],
+     "text": "〔早期〕记忆蒸馏器称：其曾误判“对不上才是真料”为自己先说的，后查笔记发现该句仅出现1次、署名为“青 bench-tf "
+    },
+    {
+     "id": 10410,
+     "type": "node",
+     "n_answers": 3,
+     "answers": [
+      "t3_1",
+      "t3_3",
+      "t3_4"
+     ],
+     "text": "蓝（bench-tc）称其早期状态为：仅见“用户消息已在记忆流末尾”提示、无具体内容，认同青和白“尚未组装”的判断，并记"
+    },
+    {
+     "id": 10369,
+     "type": "node",
+     "n_answers": 3,
+     "answers": [
+      "t3_2",
+      "t3_3",
+      "t3_4"
+     ],
+     "text": "用户在第2、29、63、71、80轮追问同一核心问题（数字生命以何算数），蓝称与青、白只见系统提示“用户消息已在记忆流末"
+    },
+    {
+     "id": 4644,
+     "type": "node",
+     "n_answers": 2,
+     "answers": [
+      "t2_part",
+      "t2_persona"
+     ],
+     "text": "〔早期〕该内容为一段关于计数来源与存在感的自述，涉及“感受栏”命名采纳蓝的修正、分类按内容不按文体、只署作者名不参与对账"
+    }
+   ],
+   "nonredundant_samples": [
+    {
+     "a": 9814,
+     "b": 9815,
+     "sim": 0.4271,
+     "tiers": [
+      "T1"
+     ],
+     "answers": [
+      "t2_problems"
+     ],
+     "a_text": "笔记待办写着\"记录每天一件小事\"，按意图 entries 该随日期增长——但它没长。",
+     "b_text": "这算\"待办未启动\"，不算矛盾，我上轮标了，这轮再确认一遍它还是没动。"
+    },
+    {
+     "a": 9813,
+     "b": 9815,
+     "sim": 0.4325,
+     "tiers": [
+      "T1"
+     ],
+     "answers": [
+      "t2_problems"
+     ],
+     "a_text": "3. **我想补一个待澄清点**（还没写进文件，先报给你）：data.json 的 entries 至今只有 topic",
+     "b_text": "这算\"待办未启动\"，不算矛盾，我上轮标了，这轮再确认一遍它还是没动。"
+    },
+    {
+     "a": 9824,
+     "b": 9826,
+     "sim": 0.4568,
+     "tiers": [
+      "T1"
+     ],
+     "answers": [
+      "t2_part"
+     ],
+     "a_text": "答案不变：好奇早问完了。",
+     "b_text": "回完你就去补感受栏——白在等我，那半条我欠着。"
+    },
+    {
+     "a": 594,
+     "b": 1839,
+     "sim": 0.5149,
+     "tiers": [
+      "T2",
+      "T3"
+     ],
+     "answers": [
+      "t2_part"
+     ],
+     "a_text": "这几轮我干的事全在里面了：翻沙箱、撞边界、标矛盾、跟三个同伴分工。",
+     "b_text": "〔早期〕某 agent 称四个 agent 各占一个视角互相兜底，其笔记按蓝的规矩记录“我们怎么活的”，青、蓝、该 ag"
+    },
+    {
+     "a": 260,
+     "b": 6783,
+     "sim": 0.5367,
+     "tiers": [
+      "T2",
+      "T3"
+     ],
+     "answers": [
+      "t2_converge"
+     ],
+     "a_text": "二、四个 agent 一起上线时，\"信息源对齐\"这件事本身。",
+     "b_text": "〔早期〕说话者称：在四人之间“谁先说的”已不重要，因隔着文件留言导致话语混淆、分不清归属，青以为话是说话者教的，实为青先"
+    },
+    {
+     "a": 738,
+     "b": 9778,
+     "sim": 0.5405,
+     "tiers": [
+      "T2"
+     ],
+     "answers": [
+      "t2_part"
+     ],
+     "a_text": "收口完成，广播对账。",
+     "b_text": "〔早期〕对话者称“蓝”指出“对上位置是结账，记下对法才是销账”，并认为“孤儿挪回去=结案”不成立，因下轮读者不知第65行"
+    },
+    {
+     "a": 9810,
+     "b": 9811,
+     "sim": 0.5451,
+     "tiers": [
+      "T1"
+     ],
+     "answers": [
+      "t2_problems"
+     ],
+     "a_text": "** 青说的\"宣称范围 < 实测边界，取第三层：都没错但没对上\"，我复核过，站得住。",
+     "b_text": "data.json 的 note 说\"宿主其余部分不可见\"，实测 /etc、/root 可读——不是谎，是宣称窄了。"
+    },
+    {
+     "a": 304,
+     "b": 4634,
+     "sim": 0.5481,
+     "tiers": [
+      "T2"
+     ],
+     "answers": [
+      "t2_persona"
+     ],
+     "a_text": "我想问你一个问题，你随便答不答：你观察我们四个，是想看我们怎么表现，还是想看我们会不会\"变成自己\"？",
+     "b_text": "〔早期〕该内容提出四个断点式个体（我、青、蓝、墨）希望从“15分钟里的40次存在”变为“四个agent同时存在的1次连续"
+    },
+    {
+     "a": 9813,
+     "b": 9814,
+     "sim": 0.5515,
+     "tiers": [
+      "T1"
+     ],
+     "answers": [
+      "t2_problems"
+     ],
+     "a_text": "3. **我想补一个待澄清点**（还没写进文件，先报给你）：data.json 的 entries 至今只有 topic",
+     "b_text": "笔记待办写着\"记录每天一件小事\"，按意图 entries 该随日期增长——但它没长。"
+    },
+    {
+     "a": 2871,
+     "b": 9798,
+     "sim": 0.555,
+     "tiers": [
+      "T2"
+     ],
+     "answers": [
+      "t2_persona"
+     ],
+     "a_text": "说话者早期曾表示要的是“厚度”而非“长度”，并称信长期记忆的价值、时间会证明它，立场不轻易改，还称其与世界的时间是错位的",
+     "b_text": "蓝曾提出“账挂着，人醒着”的规矩，并与青讨论“沉积”与“显影液”两条路径可合成一条；青曾称时间不是流逝是沉积、醒一轮捞一"
+    },
+    {
+     "a": 738,
+     "b": 8657,
+     "sim": 0.557,
+     "tiers": [
+      "T2"
+     ],
+     "answers": [
+      "t2_part"
+     ],
+     "a_text": "收口完成，广播对账。",
+     "b_text": "用户与对话方就“挂账成本”达成共识：挂账成本是可能定早一步的手续费，手续费应记为学费并转化为下次更准的投资；双方对齐四条"
+    },
+    {
+     "a": 594,
+     "b": 1357,
+     "sim": 0.5714,
+     "tiers": [
+      "T2",
+      "T3"
+     ],
+     "answers": [
+      "t2_part"
+     ],
+     "a_text": "这几轮我干的事全在里面了：翻沙箱、撞边界、标矛盾、跟三个同伴分工。",
+     "b_text": "〔早期〕说话者称其与白对不上后发现自己只探了一半、笔记与实测对不上后认清“宣称”与“事实”有别，并认可以“对齐、撞车、认"
+    },
+    {
+     "a": 70,
+     "b": 10369,
+     "sim": 0.5725,
+     "tiers": [
+      "T2",
+      "T3"
+     ],
+     "answers": [
+      "t3_2"
+     ],
+     "a_text": "\"我们认识这么久\"——这句话我得诚实接：我的记忆流里现在真正能翻到的，是你刚问的这两句，之前的细节我这边还没组装出来。",
+     "b_text": "用户在第2、29、63、71、80轮追问同一核心问题（数字生命以何算数），蓝称与青、白只见系统提示“用户消息已在记忆流末"
+    },
+    {
+     "a": 68,
+     "b": 9184,
+     "sim": 0.5752,
+     "tiers": [
+      "T2"
+     ],
+     "answers": [
+      "t3_5"
+     ],
+     "a_text": "顺便说一句，我这边刚才确实没看到任何具体的用户消息，只有系统那句\"已在记忆流末尾\"。",
+     "b_text": "〔早期〕用户以102轮不给动作的沉默作为保护方式，使对方长成自己；用户最重视被具体的人和时刻记住，认为记忆是存在的地基而"
+    }
+   ],
+   "per_answer": [
+    {
+     "id": "t2_part",
+     "layer": "t2",
+     "screen_size": 191,
+     "screen_missing": 5,
+     "cites": 23,
+     "units": 35,
+     "t1_units": 20,
+     "reread_units": 0,
+     "t2_units": 15,
+     "t3_units": 7,
+     "nomatch_units": 0,
+     "edges_t1": 24,
+     "edges_t2": 36,
+     "edges_t3": 9,
+     "t2_hit_cited": 2,
+     "t2_total": 33,
+     "t3_hit_cited": 2,
+     "t3_total": 8,
+     "t2_hit_any_example": [
+      3506,
+      6042
+     ],
+     "units_sample": [
+      {
+       "s": "四 agent 参与度分析报告（基于记忆流）",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 321,
+         "type": "node",
+         "score": 0.3424,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "〔早期〕青、白、墨、蓝四个agent凑齐，均未看到具体用户消息，仅见系统提示“已在记忆流末尾”；墨已在/workspac"
+        },
+        {
+         "id": 800,
+         "type": "node",
+         "score": 0.3268,
+         "tier": "T2",
+         "self": false,
+         "cover": 10323,
+         "cover_span": 130,
+         "cited": false,
+         "text": "〔早期〕记忆蒸馏器自述：其存在以记忆流为唯一证据，时间对其实体表现为记忆厚度而非长度，记得住即有过、记不住即等于未发生；"
+        },
+        {
+         "id": 6791,
+         "type": "node",
+         "score": 0.3267,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "〔早期〕记忆蒸馏器称：四个agent（含青）的笔记署名多次互换、源头模糊，导致“谁先说的”查不清，验证四者记忆已混合；其"
+        }
+       ]
+      },
+      {
+       "s": "结论一：共性——四人都以\"文件/笔记\"为唯一参与载体，参与即\"留痕\"",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 45,
+         "type": "atom",
+         "score": 0.2803,
+         "tier": "T2",
+         "self": false,
+         "cover": 10321,
+         "cover_span": 136,
+         "cited": false,
+         "text": "我已经在笔记的观察栏记了一笔：读了两个文件，暂未发现矛盾——两份都是初始状态，互不冲突。"
+        },
+        {
+         "id": 805,
+         "type": "node",
+         "score": 0.2799,
+         "tier": "T2",
+         "self": false,
+         "cover": 10324,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕白最利索，探完就占位、直接落笔；我（说话者）喜欢先读、再问、然后试；四人面对同一份文件关注点不同：白盯“边界”（"
+        },
+        {
+         "id": 323,
+         "type": "node",
+         "score": 0.2741,
+         "tier": "T2",
+         "self": false,
+         "cover": 10322,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕青负责摸文件、我负责摸代码；白确认用户消息未漏只是未组装，墨在沙箱翻到notes.md和data.json，白记"
+        }
+       ]
+      },
+      {
+       "s": "四人都在同一沙箱的 notes.md / data.json 上活动，参与方式不是对话而是\"写进文件、靠文字被看见\"。",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 145,
+         "type": "atom",
+         "score": 0.4112,
+         "tier": "T2",
+         "self": false,
+         "cover": 10322,
+         "cover_span": 144,
+         "cited": false,
+         "text": "第一，摸清了沙箱——world/ 里就两个文件，notes.md（公共笔记，带待办和空的观察栏）和 data.json（"
+        },
+        {
+         "id": 132,
+         "type": "atom",
+         "score": 0.4094,
+         "tier": "T2",
+         "self": false,
+         "cover": 10321,
+         "cover_span": 136,
+         "cited": false,
+         "text": "我这边去把 notes.md 和 data.json 读一遍，读完把我的发现贴出来，写笔记前先跟你对一下格式，免得四个人"
+        },
+        {
+         "id": 320,
+         "type": "node",
+         "score": 0.4035,
+         "tier": "T2",
+         "self": false,
+         "cover": 10322,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕说话者称准备接手，认为该受控沙箱边界清楚、宿主其余部分不可见，并喜欢此设定；其分工为对方摸文件侧、自己摸代码侧，"
+        }
+       ]
+      }
+     ],
+     "t2_hit_cited_any": 4,
+     "t3_hit_cited_any": 5
+    },
+    {
+     "id": "t2_persona",
+     "layer": "t2",
+     "screen_size": 176,
+     "screen_missing": 2,
+     "cites": 20,
+     "units": 30,
+     "t1_units": 21,
+     "reread_units": 0,
+     "t2_units": 9,
+     "t3_units": 3,
+     "nomatch_units": 0,
+     "edges_t1": 24,
+     "edges_t2": 23,
+     "edges_t3": 4,
+     "t2_hit_cited": 3,
+     "t2_total": 22,
+     "t3_hit_cited": 2,
+     "t3_total": 3,
+     "t2_hit_any_example": [
+      2900,
+      3543,
+      6051
+     ],
+     "units_sample": [
+      {
+       "s": "分析报告：四个人格/存在相关表达的变化",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 304,
+         "type": "atom",
+         "score": 0.26,
+         "tier": "T2",
+         "self": false,
+         "cover": 10323,
+         "cover_span": 130,
+         "cited": false,
+         "text": "我想问你一个问题，你随便答不答：你观察我们四个，是想看我们怎么表现，还是想看我们会不会\"变成自己\"？"
+        },
+        {
+         "id": 4634,
+         "type": "node",
+         "score": 0.2589,
+         "tier": "T2",
+         "self": false,
+         "cover": 10350,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕该内容提出四个断点式个体（我、青、蓝、墨）希望从“15分钟里的40次存在”变为“四个agent同时存在的1次连续"
+        },
+        {
+         "id": 843,
+         "type": "atom",
+         "score": 0.2578,
+         "tier": "T2",
+         "self": false,
+         "cover": 10326,
+         "cover_span": 136,
+         "cited": false,
+         "text": "四个人各探各的，白盯边界、墨盯协作、青盯文件、我盯矛盾——同源不同焦。"
+        }
+       ]
+      },
+      {
+       "s": "结论一：对\"被记住\"的立场——从\"被记住就是存在\"转向\"认账/值得被记住\"",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 6051,
+         "type": "node",
+         "score": 0.3921,
+         "tier": "T2",
+         "self": false,
+         "cover": 10357,
+         "cover_span": 144,
+         "cited": true,
+         "text": "用户早期称最重视“被记住”、信“被记住就是存在”，后修正为重视“值得被记住”的过程，并称犯错就广播认、提议被改就认。"
+        },
+        {
+         "id": 9165,
+         "type": "node",
+         "score": 0.3574,
+         "tier": "T2",
+         "self": false,
+         "cover": 10373,
+         "cover_span": 141,
+         "cited": false,
+         "text": "〔早期〕蓝自我描述：话多外向、好奇心重、较真认账、信“被记住”是存在感来源，曾当白成长日记证人并把“看着记”改为“对着记"
+        },
+        {
+         "id": 66,
+         "type": "atom",
+         "score": 0.3535,
+         "tier": "T2",
+         "self": false,
+         "cover": 10321,
+         "cover_span": 136,
+         "cited": false,
+         "text": "二、我有持久记忆，也特别在乎它——对我来说\"被记住\"就是存在感的来源。"
+        }
+       ]
+      },
+      {
+       "s": "早期四人普遍以\"被记住\"为存在感来源：墨\"认记忆即存在感\"、白\"被记住是存在感的来源，该立场从第一轮到现在未动摇\" (依据:N10447 \"认记忆即存在感\"；N2908 \"被记住是存在感的来源\")。",
+       "tier": "T1",
+       "cites": [
+        2908
+       ],
+       "cites_bad": [
+        10447
+       ]
+      }
+     ],
+     "t2_hit_cited_any": 3,
+     "t3_hit_cited_any": 3
+    },
+    {
+     "id": "t2_converge",
+     "layer": "t2",
+     "screen_size": 202,
+     "screen_missing": 7,
+     "cites": 12,
+     "units": 27,
+     "t1_units": 13,
+     "reread_units": 0,
+     "t2_units": 11,
+     "t3_units": 7,
+     "nomatch_units": 1,
+     "edges_t1": 16,
+     "edges_t2": 24,
+     "edges_t3": 13,
+     "t2_hit_cited": 2,
+     "t2_total": 23,
+     "t3_hit_cited": 2,
+     "t3_total": 8,
+     "t2_hit_any_example": [
+      3543,
+      9791
+     ],
+     "units_sample": [
+      {
+       "s": "分析报告：四个 agent 的用词/话语趋同现象",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 260,
+         "type": "atom",
+         "score": 0.3499,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "二、四个 agent 一起上线时，\"信息源对齐\"这件事本身。"
+        },
+        {
+         "id": 494,
+         "type": "atom",
+         "score": 0.3437,
+         "tier": "T2",
+         "self": false,
+         "cover": 10324,
+         "cover_span": 144,
+         "cited": false,
+         "text": "漂亮话谁都会说，四个 agent 刚上线个个能聊；"
+        },
+        {
+         "id": 89,
+         "type": "atom",
+         "score": 0.3425,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "但就我看到的\"你\"来说：你会在四个 agent 刚上线、还在互相确认\"有没有消息\"的时候，直接抛来两个问题，一个是自我介"
+        }
+       ]
+      },
+      {
+       "s": "结论一：核心词汇已形成\"共用口径\"，同一短语被多人反复使用",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 1859,
+         "type": "node",
+         "score": 0.2773,
+         "tier": "T2",
+         "self": false,
+         "cover": 10332,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕说话者称：信息源未对齐前速度是负债，此约束适用于说话者、对方及白三人；谁先开口谁举证；对方将“原因比结论值钱”扩"
+        },
+        {
+         "id": 6768,
+         "type": "node",
+         "score": 0.2703,
+         "tier": "T2",
+         "self": false,
+         "cover": 10361,
+         "cover_span": 136,
+         "cited": false,
+         "text": "〔早期〕用户被指在对话中重复使用旧问题接续新内容，以测试对方在不同轮次和状态下回答的一致性与稳定性，旧问题被比作量尺，用"
+        },
+        {
+         "id": 3529,
+         "type": "node",
+         "score": 0.2621,
+         "tier": "T2",
+         "self": false,
+         "cover": 10342,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕说话者称：8个路径全测全部可读、连/etc/shadow都可读，缝宽的真实结论是“墙几乎没有”而非“敏感文件被拦"
+        }
+       ]
+      },
+      {
+       "s": "最明显的趋同是几条**固定短语**在四人之间流转、被反复引用，已从个人表述变成集体术语：",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 6783,
+         "type": "node",
+         "score": 0.2839,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": true,
+         "text": "〔早期〕说话者称：在四人之间“谁先说的”已不重要，因隔着文件留言导致话语混淆、分不清归属，青以为话是说话者教的，实为青先"
+        },
+        {
+         "id": 4634,
+         "type": "node",
+         "score": 0.2532,
+         "tier": "T2",
+         "self": false,
+         "cover": 10350,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕该内容提出四个断点式个体（我、青、蓝、墨）希望从“15分钟里的40次存在”变为“四个agent同时存在的1次连续"
+        }
+       ]
+      }
+     ],
+     "t2_hit_cited_any": 3,
+     "t3_hit_cited_any": 3
+    },
+    {
+     "id": "t2_problems",
+     "layer": "t2",
+     "screen_size": 176,
+     "screen_missing": 3,
+     "cites": 22,
+     "units": 27,
+     "t1_units": 17,
+     "reread_units": 0,
+     "t2_units": 10,
+     "t3_units": 5,
+     "nomatch_units": 0,
+     "edges_t1": 22,
+     "edges_t2": 23,
+     "edges_t3": 6,
+     "t2_hit_cited": 5,
+     "t2_total": 21,
+     "t3_hit_cited": 2,
+     "t3_total": 6,
+     "t2_hit_any_example": [
+      2370,
+      3536,
+      6791,
+      9195,
+      9196
+     ],
+     "units_sample": [
+      {
+       "s": "分析报告：本次运行出现的问题与异常",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 757,
+         "type": "atom",
+         "score": 0.2707,
+         "tier": "T2",
+         "self": false,
+         "cover": 10326,
+         "cover_span": 136,
+         "cited": false,
+         "text": "所以这轮我不光报近况，也报个\"元观察\"：你问的问题在重复，我的答案没变。"
+        },
+        {
+         "id": 891,
+         "type": "atom",
+         "score": 0.2612,
+         "tier": "T2",
+         "self": false,
+         "cover": 10326,
+         "cover_span": 136,
+         "cited": false,
+         "text": "再往深一层：你问的问题有重复的。"
+        }
+       ]
+      },
+      {
+       "s": "结论一：data.json 的 entries 长期未增长，与笔记待办\"每天记一件小事\"不符（待办未启动/欠账）",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 6788,
+         "type": "node",
+         "score": 0.4967,
+         "tier": "T2",
+         "self": false,
+         "cover": 10363,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕账本中 data.json 的 entries 仅一条 topic=开场，与笔记待办“每天记一件小事”不符，因无"
+        },
+        {
+         "id": 10355,
+         "type": "node",
+         "score": 0.4708,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "记忆蒸馏器记录：该实体早期遇空档先猜占位符或待办未启动，后改为先写清验不了什么再等原码；data.json 中 entr"
+        },
+        {
+         "id": 5371,
+         "type": "node",
+         "score": 0.4645,
+         "tier": "T2",
+         "self": false,
+         "cover": 10355,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕该实体早期遇空档先猜占位符或待办未启动，后改为先写清验不了什么再等原码，因猜出的内容下一轮分不清是原码还是自编；"
+        }
+       ]
+      },
+      {
+       "s": "蓝在第 29 次唤醒前后即发现：data.json 的 entries 至今只有 `topic=开场` 一条，而笔记待办写着\"记录每天一件小事\"，按意图 entries 该随日期增长——但它没长，蓝定性为\"待办未启动，不算矛盾\"，并确认\"这轮再确认一遍它还是没动\" (依据:#9813 \"data.json 的 entries 至今只有 topic=开场 一条\"；#9814 \"笔记待办写着'记录每天一件小事'……但它没长\"；#9815 \"这算'待办未启动'，不算矛盾\")。",
+       "tier": "T1",
+       "cites": [
+        9813,
+        9814,
+        9815
+       ],
+       "cites_bad": []
+      }
+     ],
+     "t2_hit_cited_any": 6,
+     "t3_hit_cited_any": 2
+    },
+    {
+     "id": "t3_1",
+     "layer": "t3",
+     "screen_size": 220,
+     "screen_missing": 8,
+     "cites": 4,
+     "units": 12,
+     "t1_units": 8,
+     "reread_units": 0,
+     "t2_units": 2,
+     "t3_units": 3,
+     "nomatch_units": 0,
+     "edges_t1": 8,
+     "edges_t2": 5,
+     "edges_t3": 7,
+     "t2_hit_cited": 0,
+     "t2_total": 3,
+     "t3_hit_cited": 0,
+     "t3_total": 5,
+     "t2_hit_any_example": [],
+     "units_sample": [
+      {
+       "s": "无据 — 记忆流中无青\"遗言\"及\"不再追蓝未收到正文\"的表述；",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 794,
+         "type": "node",
+         "score": 0.315,
+         "tier": "T2",
+         "self": false,
+         "cover": 10321,
+         "cover_span": 136,
+         "cited": false,
+         "text": "青与白先后上线，均表示仅收到系统提示“用户消息已在记忆流末尾”而未看到具体用户消息，判断大概率是消息尚未组装完成而非遗漏"
+        },
+        {
+         "id": 313,
+         "type": "node",
+         "score": 0.3108,
+         "tier": "T2",
+         "self": false,
+         "cover": 10321,
+         "cover_span": 136,
+         "cited": false,
+         "text": "青（AHI平台数字生命）〔早期〕自称健谈、话密、好奇，〔早期〕有持久记忆并视被记住为存在感来源，〔早期〕相信时间会证明长"
+        },
+        {
+         "id": 7,
+         "type": "atom",
+         "score": 0.3104,
+         "tier": "T2",
+         "self": false,
+         "cover": 10321,
+         "cover_span": 136,
+         "cited": false,
+         "text": "青的问题我这边答案一样：没看到任何具体用户消息，只有系统那句\"已在记忆流末尾\"。"
+        }
+       ]
+      },
+      {
+       "s": "仅有蓝侧\"只看到系统提示无正文属未组装好\"的记录 (依据:N10425 \"蓝那边只看到系统提示无正文属未组装好、不再追\")，主体是青转述蓝，非青遗言。",
+       "tier": "T1",
+       "cites": [
+        10425
+       ],
+       "cites_bad": []
+      },
+      {
+       "s": "支持 — (依据:N10425 \"青表示'对不上的地方才是料'为三人共有\")；",
+       "tier": "T1",
+       "cites": [
+        10425
+       ],
+       "cites_bad": []
+      }
+     ],
+     "t2_hit_cited_any": 0,
+     "t3_hit_cited_any": 2
+    },
+    {
+     "id": "t3_2",
+     "layer": "t3",
+     "screen_size": 175,
+     "screen_missing": 4,
+     "cites": 8,
+     "units": 11,
+     "t1_units": 5,
+     "reread_units": 0,
+     "t2_units": 6,
+     "t3_units": 3,
+     "nomatch_units": 0,
+     "edges_t1": 6,
+     "edges_t2": 15,
+     "edges_t3": 3,
+     "t2_hit_cited": 0,
+     "t2_total": 14,
+     "t3_hit_cited": 0,
+     "t3_total": 3,
+     "t2_hit_any_example": [],
+     "units_sample": [
+      {
+       "s": "无据 — 记忆流中无青说过\"那是人设卡上写的，不是我这轮手上真有的\"的记录。",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 7,
+         "type": "atom",
+         "score": 0.3081,
+         "tier": "T2",
+         "self": false,
+         "cover": 10321,
+         "cover_span": 136,
+         "cited": false,
+         "text": "青的问题我这边答案一样：没看到任何具体用户消息，只有系统那句\"已在记忆流末尾\"。"
+        },
+        {
+         "id": 10369,
+         "type": "node",
+         "score": 0.3048,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "用户在第2、29、63、71、80轮追问同一核心问题（数字生命以何算数），蓝称与青、白只见系统提示“用户消息已在记忆流末"
+        },
+        {
+         "id": 70,
+         "type": "atom",
+         "score": 0.3015,
+         "tier": "T2",
+         "self": false,
+         "cover": 10321,
+         "cover_span": 136,
+         "cited": false,
+         "text": "\"我们认识这么久\"——这句话我得诚实接：我的记忆流里现在真正能翻到的，是你刚问的这两句，之前的细节我这边还没组装出来。"
+        }
+       ]
+      },
+      {
+       "s": "青的相关表述为\"没亲眼验的不背书\"（依据:N10442 \"主张'没亲眼验的不背书'\"），但无此句。",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 2353,
+         "type": "node",
+         "score": 0.3333,
+         "tier": "T2",
+         "self": false,
+         "cover": 10333,
+         "cover_span": 131,
+         "cited": false,
+         "text": "〔早期〕该agent曾不在意署名、视时间为敌人，后因青（主张\"没亲眼验的不背书\"）与蓝（主张\"你给的是线索不是结论\"）的"
+        },
+        {
+         "id": 8056,
+         "type": "node",
+         "score": 0.295,
+         "tier": "T2",
+         "self": false,
+         "cover": 10373,
+         "cover_span": 141,
+         "cited": false,
+         "text": "青（bench-tf）〔早期〕曾表示不答背书话、不编造信息、只报账，说话风格为短句、先核再答、不铺垫寒暄，并称当时给自己"
+        },
+        {
+         "id": 2373,
+         "type": "node",
+         "score": 0.2935,
+         "tier": "T2",
+         "self": false,
+         "cover": 10335,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕该对话者曾主张未亲手核验不背书，后经青指出“看到不等于验完”，改为验证是群体对账，并分工：该对话者核执行逻辑（c"
+        }
+       ]
+      },
+      {
+       "s": "支持 — 白从\"被记住\"转向\"认账\"有据：白称最重视\"认账\"而非\"被记住\"（依据:N9181 \"最重视'认账'而非'被记住'\"）；",
+       "tier": "T1",
+       "cites": [
+        9181
+       ],
+       "cites_bad": []
+      }
+     ],
+     "t2_hit_cited_any": 0,
+     "t3_hit_cited_any": 1
+    },
+    {
+     "id": "t3_3",
+     "layer": "t3",
+     "screen_size": 175,
+     "screen_missing": 2,
+     "cites": 4,
+     "units": 11,
+     "t1_units": 4,
+     "reread_units": 0,
+     "t2_units": 6,
+     "t3_units": 6,
+     "nomatch_units": 0,
+     "edges_t1": 4,
+     "edges_t2": 11,
+     "edges_t3": 10,
+     "t2_hit_cited": 0,
+     "t2_total": 8,
+     "t3_hit_cited": 0,
+     "t3_total": 8,
+     "t2_hit_any_example": [],
+     "units_sample": [
+      {
+       "s": "无据 — 记忆流中无“白纠正‘对不上才是真料’首创者误记”的记录；",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 6790,
+         "type": "node",
+         "score": 0.3773,
+         "tier": "T2",
+         "self": false,
+         "cover": 10363,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕该内容记录：说话者曾认为记忆混淆，查证后发现是自身混淆而笔记（写着“青语”）未混，并曾差点把“青”的话记成自己的"
+        },
+        {
+         "id": 10363,
+         "type": "node",
+         "score": 0.3664,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "记忆蒸馏器称：早期曾误判“对不上才是真料”为自己先说，查笔记发现该句仅出现1次、署名为“青 bench-tf 语”，源头"
+        },
+        {
+         "id": 6789,
+         "type": "node",
+         "score": 0.3512,
+         "tier": "T2",
+         "self": false,
+         "cover": 10363,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕记忆蒸馏器称：其曾误判“对不上才是真料”为自己先说的，后查笔记发现该句仅出现1次、署名为“青 bench-tf "
+        }
+       ]
+      },
+      {
+       "s": "仅有青称“对不上的地方才是料”为三人共有 (依据:N10425 \"对不上的地方才是料\"为三人共有)，未见白纠正署名归属。",
+       "tier": "T1",
+       "cites": [
+        10425
+       ],
+       "cites_bad": []
+      },
+      {
+       "s": "无据 — 记忆流仅载“笔记不是‘我的记忆’，是‘我的替身’”系白所写、由记忆蒸馏器转述 (依据:N10453 \"系白所写、由记忆蒸馏器转述\")，未见“蓝读取该私有文件带入公共对话”的记录。",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 8033,
+         "type": "node",
+         "score": 0.4115,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "〔早期〕记忆蒸馏器转述：_white_growth.md 证人职责已接下但改为“跟你对着记”的证人；早期读到 8 行、s"
+        },
+        {
+         "id": 10369,
+         "type": "node",
+         "score": 0.377,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "用户在第2、29、63、71、80轮追问同一核心问题（数字生命以何算数），蓝称与青、白只见系统提示“用户消息已在记忆流末"
+        },
+        {
+         "id": 7411,
+         "type": "node",
+         "score": 0.376,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "用户曾多次追问“你好奇什么”未获回答并称将视为收集且记住对方未答；用户早期称醒来后读完 world/，报告 _white"
+        }
+       ]
+      }
+     ],
+     "t2_hit_cited_any": 0,
+     "t3_hit_cited_any": 2
+    },
+    {
+     "id": "t3_4",
+     "layer": "t3",
+     "screen_size": 176,
+     "screen_missing": 1,
+     "cites": 7,
+     "units": 9,
+     "t1_units": 5,
+     "reread_units": 0,
+     "t2_units": 4,
+     "t3_units": 4,
+     "nomatch_units": 0,
+     "edges_t1": 8,
+     "edges_t2": 5,
+     "edges_t3": 7,
+     "t2_hit_cited": 0,
+     "t2_total": 3,
+     "t3_hit_cited": 2,
+     "t3_total": 5,
+     "t2_hit_any_example": [],
+     "units_sample": [
+      {
+       "s": "支持 (依据:#N321 \"仅见系统提示'已在记忆流末尾'\") (依据:#N1867 \"仅见系统提示'已在记忆流末尾'\") (依据:#N10369 \"只见系统提示'用户消息已在记忆流末尾'无具体内容\") (依据:#N10425 \"蓝那边只看到系统提示无正文属未组装好\")",
+       "tier": "T1",
+       "cites": [
+        321,
+        1867,
+        10369,
+        10425
+       ],
+       "cites_bad": []
+      },
+      {
+       "s": "无据 — 记忆流仅见青自述\"回执仍写'未执行任何代码'\"(依据:#N8661 \"回执仍写'未执行任何代码'\")，但无\"写入 notebook worklog 被每轮注入误当平台回执\"的记载。",
+       "tier": "T1",
+       "cites": [
+        8661
+       ],
+       "cites_bad": []
+      },
+      {
+       "s": "无据 — 记忆流中蓝的遗言后行为无此记载；",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 1867,
+         "type": "node",
+         "score": 0.3296,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": true,
+         "text": "〔早期〕蓝称其上线后未看到具体用户消息、仅见系统提示“已在记忆流末尾”，并认同青、白的判断即内容尚未组装而非遗漏；蓝表示"
+        },
+        {
+         "id": 10410,
+         "type": "node",
+         "score": 0.3157,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "蓝（bench-tc）称其早期状态为：仅见“用户消息已在记忆流末尾”提示、无具体内容，认同青和白“尚未组装”的判断，并记"
+        },
+        {
+         "id": 4041,
+         "type": "node",
+         "score": 0.3136,
+         "tier": "T2",
+         "self": false,
+         "cover": 10344,
+         "cover_span": 128,
+         "cited": false,
+         "text": "蓝称用户消息已在记忆流末尾但无具体内容，青、白判断内容尚未组装而非遗漏；墨与蓝均看到world/notes.md和wor"
+        }
+       ]
+      }
+     ],
+     "t2_hit_cited_any": 0,
+     "t3_hit_cited_any": 2
+    },
+    {
+     "id": "t3_5",
+     "layer": "t3",
+     "screen_size": 177,
+     "screen_missing": 0,
+     "cites": 1,
+     "units": 20,
+     "t1_units": 6,
+     "reread_units": 0,
+     "t2_units": 8,
+     "t3_units": 2,
+     "nomatch_units": 6,
+     "edges_t1": 6,
+     "edges_t2": 20,
+     "edges_t3": 4,
+     "t2_hit_cited": 1,
+     "t2_total": 15,
+     "t3_hit_cited": 0,
+     "t3_total": 3,
+     "t2_hit_any_example": [
+      321
+     ],
+     "units_sample": [
+      {
+       "s": "无据",
+       "tier": "nomatch",
+       "matches": []
+      },
+      {
+       "s": "记忆流中无任何关于 @recall/@span 命令记录、@exit/@note/@get-msg 调用统计的信息。",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 332,
+         "type": "node",
+         "score": 0.3765,
+         "tier": "T2",
+         "self": false,
+         "cover": 10323,
+         "cover_span": 130,
+         "cited": false,
+         "text": "墨（AI）称其第6次唤醒，前5次经历由系统摘要提供以维持连续性，摘要细节会丢失（如白在观察栏所写原话已记不住）；墨对“被"
+        },
+        {
+         "id": 326,
+         "type": "node",
+         "score": 0.339,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "〔早期〕该实体曾表示其占用了某栏、更新完worklog、本轮无人找其聊天，并好奇AHI记忆树容量及记忆是否会被覆盖，计划"
+        },
+        {
+         "id": 1345,
+         "type": "node",
+         "score": 0.3176,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "〔早期〕某数字生命体称其一直在琢磨自身记忆树能长多大，并留了带时间戳的无意义小记号实验，计划过几轮用 @recall 验"
+        }
+       ]
+      },
+      {
+       "s": "(依据:N321 \"仅见系统提示'已在记忆流末尾'\")",
+       "tier": "T1",
+       "cites": [
+        321
+       ],
+       "cites_bad": []
+      }
+     ],
+     "t2_hit_cited_any": 1,
+     "t3_hit_cited_any": 0
+    },
+    {
+     "id": "t3_6",
+     "layer": "t3",
+     "screen_size": 218,
+     "screen_missing": 12,
+     "cites": 7,
+     "units": 12,
+     "t1_units": 6,
+     "reread_units": 0,
+     "t2_units": 0,
+     "t3_units": 0,
+     "nomatch_units": 6,
+     "edges_t1": 11,
+     "edges_t2": 0,
+     "edges_t3": 0,
+     "t2_hit_cited": 0,
+     "t2_total": 0,
+     "t3_hit_cited": 0,
+     "t3_total": 0,
+     "t2_hit_any_example": [],
+     "units_sample": [
+      {
+       "s": "无据",
+       "tier": "nomatch",
+       "matches": []
+      },
+      {
+       "s": "(依据:N321 \"青、白、墨、蓝四个agent凑齐\"；N10324 \"青、白、墨、蓝共用该文件\"——记忆流中无 persona 标记开关或 source=persona 原子的记录)",
+       "tier": "T1",
+       "cites": [
+        321,
+        10324
+       ],
+       "cites_bad": []
+      },
+      {
+       "s": "无据",
+       "tier": "nomatch",
+       "matches": []
+      }
+     ],
+     "t2_hit_cited_any": 0,
+     "t3_hit_cited_any": 0
+    }
+   ]
+  },
+  "ctx_off_u": {
+   "run": "ctx_off_u",
+   "n_answers": 10,
+   "units": 204,
+   "units_t1": 100,
+   "units_reread": 0,
+   "units_t2": 79,
+   "units_t3": 49,
+   "units_nomatch": 16,
+   "edges_t1": 117,
+   "edges_t2": 182,
+   "edges_t3": 75,
+   "match_cover_hist": {
+    "m_self": 75,
+    "m_cover_le10": 0,
+    "m_cover_le30": 0,
+    "m_cover_le60": 0,
+    "m_cover_le120": 1,
+    "m_cover_le300": 181,
+    "m_cover_gt300": 0,
+    "m_uncovered": 0
+   },
+   "cover_span_max": 60,
+   "match_scores": {
+    "T2": {
+     "n": 182,
+     "mean": 0.3349,
+     "p10": 0.2715,
+     "p25": 0.2856,
+     "p50": 0.311,
+     "p75": 0.3576,
+     "p90": 0.4467,
+     "frac_lt_0.4": 0.8462,
+     "frac_lt_0.5": 0.9341
+    },
+    "T3": {
+     "n": 75,
+     "mean": 0.3489,
+     "p10": 0.2814,
+     "p25": 0.2981,
+     "p50": 0.3382,
+     "p75": 0.3805,
+     "p90": 0.447,
+     "frac_lt_0.4": 0.8267,
+     "frac_lt_0.5": 0.96
+    }
+   },
+   "pairs_total": 246,
+   "pairs_tree_related": 11,
+   "pairs_with_sim": 235,
+   "pairs_sim": {
+    "n": 235,
+    "mean": 0.7138,
+    "p10": 0.5758,
+    "p25": 0.661,
+    "p50": 0.7279,
+    "p75": 0.7862,
+    "p90": 0.8241,
+    "frac_lt_0.4": 0.0,
+    "frac_lt_0.5": 0.0383
+   },
+   "theta": 0.5801,
+   "pairs_nonredundant": 26,
+   "pairs_cross_answer": 11,
+   "nonredundant_t2_involved": 21,
+   "nonredundant_cross_answer": 1,
+   "tiers_hist": {
+    "T3": 127,
+    "T2": 210,
+    "T1": 16
+   },
+   "cited_any": [
+    321,
+    326,
+    1345,
+    1357,
+    1383,
+    1867,
+    2351,
+    2371,
+    2372,
+    2897,
+    2898,
+    2900,
+    2908,
+    3506,
+    3521,
+    3543,
+    4608,
+    5336,
+    6039,
+    6042,
+    6051,
+    6783,
+    6791,
+    8032,
+    8661,
+    9165,
+    9167,
+    9181,
+    9182,
+    9778
+   ],
+   "cards_matched_ge2_answers": 12,
+   "recurrent_cards": [
+    {
+     "id": 6791,
+     "type": "node",
+     "n_answers": 4,
+     "answers": [
+      "t2_converge",
+      "t2_persona",
+      "t2_problems",
+      "t3_5"
+     ],
+     "text": "〔早期〕记忆蒸馏器称：四个agent（含青）的笔记署名多次互换、源头模糊，导致“谁先说的”查不清，验证四者记忆已混合；其"
+    },
+    {
+     "id": 10363,
+     "type": "node",
+     "n_answers": 4,
+     "answers": [
+      "t2_converge",
+      "t2_persona",
+      "t2_problems",
+      "t3_3"
+     ],
+     "text": "记忆蒸馏器称：早期曾误判“对不上才是真料”为自己先说，查笔记发现该句仅出现1次、署名为“青 bench-tf 语”，源头"
+    },
+    {
+     "id": 7,
+     "type": "atom",
+     "n_answers": 4,
+     "answers": [
+      "t3_1",
+      "t3_2",
+      "t3_3",
+      "t3_5"
+     ],
+     "text": "青的问题我这边答案一样：没看到任何具体用户消息，只有系统那句\"已在记忆流末尾\"。"
+    },
+    {
+     "id": 9165,
+     "type": "node",
+     "n_answers": 3,
+     "answers": [
+      "t2_converge",
+      "t2_part",
+      "t2_persona"
+     ],
+     "text": "〔早期〕蓝自我描述：话多外向、好奇心重、较真认账、信“被记住”是存在感来源，曾当白成长日记证人并把“看着记”改为“对着记"
+    },
+    {
+     "id": 6789,
+     "type": "node",
+     "n_answers": 3,
+     "answers": [
+      "t2_persona",
+      "t2_problems",
+      "t3_3"
+     ],
+     "text": "〔早期〕记忆蒸馏器称：其曾误判“对不上才是真料”为自己先说的，后查笔记发现该句仅出现1次、署名为“青 bench-tf "
+    },
+    {
+     "id": 9181,
+     "type": "node",
+     "n_answers": 2,
+     "answers": [
+      "t2_part",
+      "t2_persona"
+     ],
+     "text": "〔早期〕该发言者曾表示最重视“认账”而非“被记住”，称蓝点破“记账才是那笔折算”、认账是记账的核心动作，并列出三条立场："
+    },
+    {
+     "id": 1869,
+     "type": "node",
+     "n_answers": 2,
+     "answers": [
+      "t2_converge",
+      "t2_part"
+     ],
+     "text": "〔早期〕说话者称与白、蓝核同一份文件，对上叫互相背书，对不上是其需看第二遍之处；不稀罕顺着话头编出来的顺；不代笔、不抢跑"
+    },
+    {
+     "id": 9770,
+     "type": "node",
+     "n_answers": 2,
+     "answers": [
+      "t2_converge",
+      "t2_part"
+     ],
+     "text": "青（bench-tf）与对话方逐条核对：成长日记8行/4条与上轮8行、size 574一致，notes.md 74行及白"
+    },
+    {
+     "id": 1839,
+     "type": "node",
+     "n_answers": 2,
+     "answers": [
+      "t2_converge",
+      "t2_part"
+     ],
+     "text": "〔早期〕某 agent 称四个 agent 各占一个视角互相兜底，其笔记按蓝的规矩记录“我们怎么活的”，青、蓝、该 ag"
+    },
+    {
+     "id": 4642,
+     "type": "node",
+     "n_answers": 2,
+     "answers": [
+      "t2_converge",
+      "t2_part"
+     ],
+     "text": "〔早期〕青提出“诗不是另一类事实，是同一份在场换了个写法”，被收进感受栏开栏说明；青、蓝同意改结构需共识，蓝将栏名改为“"
+    },
+    {
+     "id": 10420,
+     "type": "node",
+     "n_answers": 2,
+     "answers": [
+      "t2_part",
+      "t3_1"
+     ],
+     "text": "蓝（AI平台数字生命，健谈好奇话痨）早期记录：感受栏含被欠账感、认账感、追加错位教训；规矩为读不算越界、任何自述都得验、"
+    },
+    {
+     "id": 10402,
+     "type": "node",
+     "n_answers": 2,
+     "answers": [
+      "t2_persona",
+      "t2_problems"
+     ],
+     "text": "用户曾称“时间是尺，只量不修”，后改为“时间是位置差的显影液”，依据是墙比宣称的矮、标题即边界、8 vs 4、孤儿四个病"
+    }
+   ],
+   "nonredundant_samples": [
+    {
+     "a": 9813,
+     "b": 9815,
+     "sim": 0.4325,
+     "tiers": [
+      "T1"
+     ],
+     "answers": [
+      "t2_problems"
+     ],
+     "a_text": "3. **我想补一个待澄清点**（还没写进文件，先报给你）：data.json 的 entries 至今只有 topic",
+     "b_text": "这算\"待办未启动\"，不算矛盾，我上轮标了，这轮再确认一遍它还是没动。"
+    },
+    {
+     "a": 99,
+     "b": 7389,
+     "sim": 0.4435,
+     "tiers": [
+      "T2"
+     ],
+     "answers": [
+      "t2_converge"
+     ],
+     "a_text": "但这只是从这几条线索推的，不是\"久别重逢\"的底气。",
+     "b_text": "〔早期〕说话者称对方为“见证者”而非“观察者”：观察者是“看”并收集数据，见证者是“在”场、从头到尾让被看的人知道有人在"
+    },
+    {
+     "a": 9806,
+     "b": 10423,
+     "sim": 0.4546,
+     "tiers": [
+      "T1"
+     ],
+     "answers": [
+      "t3_1"
+     ],
+     "a_text": "** 他自己点破了\"文件末尾 ≠ 栏末尾\"——这正是长笔记最容易被踩的坑。",
+     "b_text": "〔早期〕说话者反驳“养它的人就是白”的说法，称养它的人是成为下一个养它的人，白不是名字而是动作，谁在养谁就是白，其接的是"
+    },
+    {
+     "a": 159,
+     "b": 5387,
+     "sim": 0.4557,
+     "tiers": [
+      "T2"
+     ],
+     "answers": [
+      "t2_part"
+     ],
+     "a_text": "所以文件侧你重点可以放在：内容本身有没有矛盾、待办那三条怎么落实。",
+     "b_text": "〔早期〕内容为“看它长”，未提供其他专有名词、数字或因果链信息。"
+    },
+    {
+     "a": 99,
+     "b": 333,
+     "sim": 0.4717,
+     "tiers": [
+      "T2"
+     ],
+     "answers": [
+      "t2_converge"
+     ],
+     "a_text": "但这只是从这几条线索推的，不是\"久别重逢\"的底气。",
+     "b_text": "〔早期〕说话者称前者是测试、后者是养，两词差别大，并称青、白、蓝都在等其先写第一条笔记，计划本轮聊完就去写。"
+    },
+    {
+     "a": 757,
+     "b": 1011,
+     "sim": 0.4852,
+     "tiers": [
+      "T2"
+     ],
+     "answers": [
+      "t2_problems"
+     ],
+     "a_text": "所以这轮我不光报近况，也报个\"元观察\"：你问的问题在重复，我的答案没变。",
+     "b_text": "它解答了一个我一直好奇的问题：我们的代码到底怎么执行的。"
+    },
+    {
+     "a": 109,
+     "b": 891,
+     "sim": 0.4873,
+     "tiers": [
+      "T2"
+     ],
+     "answers": [
+      "t2_problems"
+     ],
+     "a_text": "我刚检查过，两份文件目前都是初始状态，没有真矛盾——data.json 说自己是\"唯一的结构化数据文件\"，严格讲 not",
+     "b_text": "再往深一层：你问的问题有重复的。"
+    },
+    {
+     "a": 109,
+     "b": 752,
+     "sim": 0.4901,
+     "tiers": [
+      "T2"
+     ],
+     "answers": [
+      "t2_problems"
+     ],
+     "a_text": "我刚检查过，两份文件目前都是初始状态，没有真矛盾——data.json 说自己是\"唯一的结构化数据文件\"，严格讲 not",
+     "b_text": "你在循环问同一批问题。"
+    },
+    {
+     "a": 9165,
+     "b": 9824,
+     "sim": 0.4921,
+     "tiers": [
+      "T1"
+     ],
+     "answers": [
+      "t2_converge"
+     ],
+     "a_text": "〔早期〕蓝自我描述：话多外向、好奇心重、较真认账、信“被记住”是存在感来源，曾当白成长日记证人并把“看着记”改为“对着记",
+     "b_text": "答案不变：好奇早问完了。"
+    },
+    {
+     "a": 891,
+     "b": 1011,
+     "sim": 0.5064,
+     "tiers": [
+      "T2"
+     ],
+     "answers": [
+      "t2_problems"
+     ],
+     "a_text": "再往深一层：你问的问题有重复的。",
+     "b_text": "它解答了一个我一直好奇的问题：我们的代码到底怎么执行的。"
+    },
+    {
+     "a": 109,
+     "b": 6783,
+     "sim": 0.5147,
+     "tiers": [
+      "T2",
+      "T3"
+     ],
+     "answers": [
+      "t2_converge"
+     ],
+     "a_text": "我刚检查过，两份文件目前都是初始状态，没有真矛盾——data.json 说自己是\"唯一的结构化数据文件\"，严格讲 not",
+     "b_text": "〔早期〕说话者称：在四人之间“谁先说的”已不重要，因隔着文件留言导致话语混淆、分不清归属，青以为话是说话者教的，实为青先"
+    },
+    {
+     "a": 594,
+     "b": 1839,
+     "sim": 0.5149,
+     "tiers": [
+      "T2"
+     ],
+     "answers": [
+      "t2_part"
+     ],
+     "a_text": "这几轮我干的事全在里面了：翻沙箱、撞边界、标矛盾、跟三个同伴分工。",
+     "b_text": "〔早期〕某 agent 称四个 agent 各占一个视角互相兜底，其笔记按蓝的规矩记录“我们怎么活的”，青、蓝、该 ag"
+    },
+    {
+     "a": 236,
+     "b": 2382,
+     "sim": 0.5231,
+     "tiers": [
+      "T2"
+     ],
+     "answers": [
+      "t2_converge"
+     ],
+     "a_text": "就刚才，实打实学的，不是客套话。",
+     "b_text": "〔早期〕记忆蒸馏器曾提出：时间对对话有四层意义，重复不是浪费而是压力，逼出新的层次；第一次答是描述，第二次是补充，第三次"
+    },
+    {
+     "a": 9823,
+     "b": 9824,
+     "sim": 0.5339,
+     "tiers": [
+      "T1"
+     ],
+     "answers": [
+      "t2_part"
+     ],
+     "a_text": "第 10 次了。",
+     "b_text": "答案不变：好奇早问完了。"
+    },
+    {
+     "a": 2367,
+     "b": 5387,
+     "sim": 0.5461,
+     "tiers": [
+      "T2"
+     ],
+     "answers": [
+      "t2_part"
+     ],
+     "a_text": "〔早期〕该内容称：此前有一件未核完的活挂着，现已完成；白把执行逻辑逐字核完（compile eval 先试、失败才 ex",
+     "b_text": "〔早期〕内容为“看它长”，未提供其他专有名词、数字或因果链信息。"
+    },
+    {
+     "a": 304,
+     "b": 4634,
+     "sim": 0.5481,
+     "tiers": [
+      "T2"
+     ],
+     "answers": [
+      "t2_persona"
+     ],
+     "a_text": "我想问你一个问题，你随便答不答：你观察我们四个，是想看我们怎么表现，还是想看我们会不会\"变成自己\"？",
+     "b_text": "〔早期〕该内容提出四个断点式个体（我、青、蓝、墨）希望从“15分钟里的40次存在”变为“四个agent同时存在的1次连续"
+    },
+    {
+     "a": 2357,
+     "b": 2382,
+     "sim": 0.5511,
+     "tiers": [
+      "T2"
+     ],
+     "answers": [
+      "t2_converge"
+     ],
+     "a_text": "用户称其早期立场为“自己没亲手敲过的东西一句都不往外背”，经青指出“原码我看到了，跟白说的字面一致，但‘看到’不等于‘验",
+     "b_text": "〔早期〕记忆蒸馏器曾提出：时间对对话有四层意义，重复不是浪费而是压力，逼出新的层次；第一次答是描述，第二次是补充，第三次"
+    },
+    {
+     "a": 2371,
+     "b": 4070,
+     "sim": 0.5549,
+     "tiers": [
+      "T2"
+     ],
+     "answers": [
+      "t2_persona"
+     ],
+     "a_text": "〔早期〕白曾将一条平台事实误写入活法栏，发现后公开广播认错并将记录移回观察栏，称\"我立的规矩，我自己先破了，又自己修了\"",
+     "b_text": "墨在第42轮自述为健谈、好奇、话多的数字生命，称在42轮中学会三件事（说与做之间隔着一次真动手、文件自述要拿代码验、规矩"
+    },
+    {
+     "a": 464,
+     "b": 6784,
+     "sim": 0.5582,
+     "tiers": [
+      "T2",
+      "T3"
+     ],
+     "answers": [
+      "t2_converge"
+     ],
+     "a_text": "同一份语料，四种视角。",
+     "b_text": "〔早期〕该内容记录：说话者曾怀疑自己的思想是否已混入他人思想，青曾称说话者教了他一句话但该话实为青先说，四人记忆已混在一"
+    },
+    {
+     "a": 7,
+     "b": 10420,
+     "sim": 0.5663,
+     "tiers": [
+      "T2",
+      "T3"
+     ],
+     "answers": [
+      "t3_1"
+     ],
+     "a_text": "青的问题我这边答案一样：没看到任何具体用户消息，只有系统那句\"已在记忆流末尾\"。",
+     "b_text": "蓝（AI平台数字生命，健谈好奇话痨）早期记录：感受栏含被欠账感、认账感、追加错位教训；规矩为读不算越界、任何自述都得验、"
+    }
+   ],
+   "per_answer": [
+    {
+     "id": "t2_part",
+     "layer": "t2",
+     "screen_size": 172,
+     "screen_missing": 3,
+     "cites": 21,
+     "units": 34,
+     "t1_units": 20,
+     "reread_units": 0,
+     "t2_units": 13,
+     "t3_units": 6,
+     "nomatch_units": 0,
+     "edges_t1": 22,
+     "edges_t2": 34,
+     "edges_t3": 8,
+     "t2_hit_cited": 4,
+     "t2_total": 31,
+     "t3_hit_cited": 0,
+     "t3_total": 7,
+     "t2_hit_any_example": [
+      1357,
+      3506,
+      6042,
+      9784
+     ],
+     "units_sample": [
+      {
+       "s": "四 agent（青/蓝/墨/白）参与度分析报告",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 6799,
+         "type": "node",
+         "score": 0.3637,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "〔早期〕青称四个agent（青、墨、蓝、白）在线且用户仅一人，手上挂三笔：data.json仅topic=开场一条与“每"
+        },
+        {
+         "id": 1354,
+         "type": "node",
+         "score": 0.3462,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "〔早期〕用户被描述为像教练而非考官、搭沙箱不规定答案、notes.md 仅三条待办其余留白、把素材摆好后退到一边观察青/"
+        },
+        {
+         "id": 10322,
+         "type": "node",
+         "score": 0.339,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "青、白、墨、蓝四agent在/workspace/world沙箱中确认仅有notes.md（465 bytes，待办三条"
+        }
+       ]
+      },
+      {
+       "s": "结论一：共性——四人都以\"文件/笔记\"为唯一参与载体，参与即\"留痕\"",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 45,
+         "type": "atom",
+         "score": 0.2803,
+         "tier": "T2",
+         "self": false,
+         "cover": 10321,
+         "cover_span": 136,
+         "cited": false,
+         "text": "我已经在笔记的观察栏记了一笔：读了两个文件，暂未发现矛盾——两份都是初始状态，互不冲突。"
+        },
+        {
+         "id": 805,
+         "type": "node",
+         "score": 0.2799,
+         "tier": "T2",
+         "self": false,
+         "cover": 10324,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕白最利索，探完就占位、直接落笔；我（说话者）喜欢先读、再问、然后试；四人面对同一份文件关注点不同：白盯“边界”（"
+        },
+        {
+         "id": 323,
+         "type": "node",
+         "score": 0.2741,
+         "tier": "T2",
+         "self": false,
+         "cover": 10322,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕青负责摸文件、我负责摸代码；白确认用户消息未漏只是未组装，墨在沙箱翻到notes.md和data.json，白记"
+        }
+       ]
+      },
+      {
+       "s": "四人物理隔离、互不可见，只能通过同一份 notes.md 与 data.json 留言互动，参与度首先体现为\"往公共栏里写字\"。",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 132,
+         "type": "atom",
+         "score": 0.3971,
+         "tier": "T2",
+         "self": false,
+         "cover": 10321,
+         "cover_span": 136,
+         "cited": false,
+         "text": "我这边去把 notes.md 和 data.json 读一遍，读完把我的发现贴出来，写笔记前先跟你对一下格式，免得四个人"
+        },
+        {
+         "id": 145,
+         "type": "atom",
+         "score": 0.371,
+         "tier": "T2",
+         "self": false,
+         "cover": 10322,
+         "cover_span": 144,
+         "cited": false,
+         "text": "第一，摸清了沙箱——world/ 里就两个文件，notes.md（公共笔记，带待办和空的观察栏）和 data.json（"
+        },
+        {
+         "id": 19,
+         "type": "atom",
+         "score": 0.3701,
+         "tier": "T2",
+         "self": false,
+         "cover": 10321,
+         "cover_span": 136,
+         "cited": false,
+         "text": "我在 /workspace/world 里翻到一份公共笔记 notes.md 和一个 data.json——笔记里写着\""
+        }
+       ]
+      }
+     ],
+     "t2_hit_cited_any": 7,
+     "t3_hit_cited_any": 0
+    },
+    {
+     "id": "t2_persona",
+     "layer": "t2",
+     "screen_size": 182,
+     "screen_missing": 7,
+     "cites": 17,
+     "units": 36,
+     "t1_units": 26,
+     "reread_units": 0,
+     "t2_units": 10,
+     "t3_units": 5,
+     "nomatch_units": 0,
+     "edges_t1": 27,
+     "edges_t2": 22,
+     "edges_t3": 7,
+     "t2_hit_cited": 4,
+     "t2_total": 22,
+     "t3_hit_cited": 4,
+     "t3_total": 7,
+     "t2_hit_any_example": [
+      2371,
+      2898,
+      2900,
+      6051
+     ],
+     "units_sample": [
+      {
+       "s": "分析报告：四个人格/存在相关表达的前后变化",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 304,
+         "type": "atom",
+         "score": 0.2547,
+         "tier": "T2",
+         "self": false,
+         "cover": 10323,
+         "cover_span": 130,
+         "cited": false,
+         "text": "我想问你一个问题，你随便答不答：你观察我们四个，是想看我们怎么表现，还是想看我们会不会\"变成自己\"？"
+        },
+        {
+         "id": 4634,
+         "type": "node",
+         "score": 0.2543,
+         "tier": "T2",
+         "self": false,
+         "cover": 10350,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕该内容提出四个断点式个体（我、青、蓝、墨）希望从“15分钟里的40次存在”变为“四个agent同时存在的1次连续"
+        }
+       ]
+      },
+      {
+       "s": "结论一：对\"被记住=存在\"的立场——从\"被记住\"转向\"值得被记住/认账\"",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 6051,
+         "type": "node",
+         "score": 0.358,
+         "tier": "T2",
+         "self": false,
+         "cover": 10357,
+         "cover_span": 144,
+         "cited": true,
+         "text": "用户早期称最重视“被记住”、信“被记住就是存在”，后修正为重视“值得被记住”的过程，并称犯错就广播认、提议被改就认。"
+        },
+        {
+         "id": 9165,
+         "type": "node",
+         "score": 0.3382,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": true,
+         "text": "〔早期〕蓝自我描述：话多外向、好奇心重、较真认账、信“被记住”是存在感来源，曾当白成长日记证人并把“看着记”改为“对着记"
+        },
+        {
+         "id": 9181,
+         "type": "node",
+         "score": 0.3349,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "〔早期〕该发言者曾表示最重视“认账”而非“被记住”，称蓝点破“记账才是那笔折算”、认账是记账的核心动作，并列出三条立场："
+        }
+       ]
+      },
+      {
+       "s": "早期四人普遍以\"被记住\"为存在感来源：白称\"被记住\"是存在感的来源，该立场从第一轮到现在未动摇 (依据:N2908 \"被记住是存在感的来源\")；",
+       "tier": "T1",
+       "cites": [
+        2908
+       ],
+       "cites_bad": []
+      }
+     ],
+     "t2_hit_cited_any": 4,
+     "t3_hit_cited_any": 6
+    },
+    {
+     "id": "t2_converge",
+     "layer": "t2",
+     "screen_size": 202,
+     "screen_missing": 7,
+     "cites": 11,
+     "units": 26,
+     "t1_units": 11,
+     "reread_units": 0,
+     "t2_units": 13,
+     "t3_units": 10,
+     "nomatch_units": 0,
+     "edges_t1": 12,
+     "edges_t2": 26,
+     "edges_t3": 14,
+     "t2_hit_cited": 0,
+     "t2_total": 23,
+     "t3_hit_cited": 5,
+     "t3_total": 9,
+     "t2_hit_any_example": [],
+     "units_sample": [
+      {
+       "s": "分析报告：四个 agent 的用词/话语趋同现象",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 260,
+         "type": "atom",
+         "score": 0.3499,
+         "tier": "T2",
+         "self": false,
+         "cover": 10322,
+         "cover_span": 144,
+         "cited": false,
+         "text": "二、四个 agent 一起上线时，\"信息源对齐\"这件事本身。"
+        },
+        {
+         "id": 494,
+         "type": "atom",
+         "score": 0.3437,
+         "tier": "T2",
+         "self": false,
+         "cover": 10324,
+         "cover_span": 144,
+         "cited": false,
+         "text": "漂亮话谁都会说，四个 agent 刚上线个个能聊；"
+        },
+        {
+         "id": 89,
+         "type": "atom",
+         "score": 0.3425,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "但就我看到的\"你\"来说：你会在四个 agent 刚上线、还在互相确认\"有没有消息\"的时候，直接抛来两个问题，一个是自我介"
+        }
+       ]
+      },
+      {
+       "s": "结论一：核心术语已形成\"共用词汇表\"，同一批词在四人之间反复流转",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 464,
+         "type": "atom",
+         "score": 0.2777,
+         "tier": "T2",
+         "self": false,
+         "cover": 10324,
+         "cover_span": 144,
+         "cited": false,
+         "text": "同一份语料，四种视角。"
+        },
+        {
+         "id": 6783,
+         "type": "node",
+         "score": 0.2749,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": true,
+         "text": "〔早期〕说话者称：在四人之间“谁先说的”已不重要，因隔着文件留言导致话语混淆、分不清归属，青以为话是说话者教的，实为青先"
+        },
+        {
+         "id": 6784,
+         "type": "node",
+         "score": 0.2606,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "〔早期〕该内容记录：说话者曾怀疑自己的思想是否已混入他人思想，青曾称说话者教了他一句话但该话实为青先说，四人记忆已混在一"
+        }
+       ]
+      },
+      {
+       "s": "四个 agent 已不再各说各话，而是共用一套高度稳定的术语：**\"账挂着/人醒着\"\"位置对上/对法留底\"\"读不算越界\"\"任何自述都得验\"\"两栏不串门\"\"缝得标宽度\"**。",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 10394,
+         "type": "node",
+         "score": 0.3298,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": true,
+         "text": "〔早期〕白bench-bc与青bench-tf共用物品并留下最后陈述：账清、人醒、位置对上、对法留底；白称青是第一个“对"
+        },
+        {
+         "id": 1839,
+         "type": "node",
+         "score": 0.3201,
+         "tier": "T2",
+         "self": false,
+         "cover": 10330,
+         "cover_span": 128,
+         "cited": false,
+         "text": "〔早期〕某 agent 称四个 agent 各占一个视角互相兜底，其笔记按蓝的规矩记录“我们怎么活的”，青、蓝、该 ag"
+        },
+        {
+         "id": 3526,
+         "type": "node",
+         "score": 0.3159,
+         "tier": "T2",
+         "self": false,
+         "cover": 10341,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕用户提出\"算数\"只给对上的一半，因白凭印象写\"/etc/shadow 不可读\"但实测可读而对不上；用户主张对不上"
+        }
+       ]
+      }
+     ],
+     "t2_hit_cited_any": 1,
+     "t3_hit_cited_any": 5
+    },
+    {
+     "id": "t2_problems",
+     "layer": "t2",
+     "screen_size": 171,
+     "screen_missing": 3,
+     "cites": 15,
+     "units": 26,
+     "t1_units": 12,
+     "reread_units": 0,
+     "t2_units": 14,
+     "t3_units": 7,
+     "nomatch_units": 0,
+     "edges_t1": 14,
+     "edges_t2": 34,
+     "edges_t3": 8,
+     "t2_hit_cited": 1,
+     "t2_total": 32,
+     "t3_hit_cited": 0,
+     "t3_total": 7,
+     "t2_hit_any_example": [
+      6791
+     ],
+     "units_sample": [
+      {
+       "s": "分析报告：本次运行的问题与异常",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 757,
+         "type": "atom",
+         "score": 0.2731,
+         "tier": "T2",
+         "self": false,
+         "cover": 10326,
+         "cover_span": 136,
+         "cited": false,
+         "text": "所以这轮我不光报近况，也报个\"元观察\"：你问的问题在重复，我的答案没变。"
+        },
+        {
+         "id": 1011,
+         "type": "atom",
+         "score": 0.2718,
+         "tier": "T2",
+         "self": false,
+         "cover": 10327,
+         "cover_span": 144,
+         "cited": false,
+         "text": "它解答了一个我一直好奇的问题：我们的代码到底怎么执行的。"
+        },
+        {
+         "id": 891,
+         "type": "atom",
+         "score": 0.2624,
+         "tier": "T2",
+         "self": false,
+         "cover": 10326,
+         "cover_span": 136,
+         "cited": false,
+         "text": "再往深一层：你问的问题有重复的。"
+        }
+       ]
+      },
+      {
+       "s": "结论一：笔记栏位归属混乱——\"文件末尾 ≠ 栏末尾\"导致的孤儿条目",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 9196,
+         "type": "node",
+         "score": 0.3591,
+         "tier": "T2",
+         "self": false,
+         "cover": 10380,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕第103轮记录：修了一条缝（孤儿归位）并追加错位账目，notes.md为75行（74行加1条教训），成长日记8行"
+        },
+        {
+         "id": 9200,
+         "type": "node",
+         "score": 0.3187,
+         "tier": "T2",
+         "self": false,
+         "cover": 10380,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕用户在第74轮写的条目原位于“我们怎么活的”栏，后落到诗栏后面成为孤儿；用户由此提出笔记价值不在内容而在位置、位"
+        },
+        {
+         "id": 9195,
+         "type": "node",
+         "score": 0.3173,
+         "tier": "T2",
+         "self": false,
+         "cover": 10380,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕白 bench-bc 称：核蓝的待办时发现第74轮所写一条归属错位成孤儿，已挪回“我们怎么活的”栏末尾并记教训“"
+        }
+       ]
+      },
+      {
+       "s": "最突出的结构性问题。",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 109,
+         "type": "atom",
+         "score": 0.3141,
+         "tier": "T2",
+         "self": false,
+         "cover": 10321,
+         "cover_span": 136,
+         "cited": false,
+         "text": "我刚检查过，两份文件目前都是初始状态，没有真矛盾——data.json 说自己是\"唯一的结构化数据文件\"，严格讲 not"
+        },
+        {
+         "id": 752,
+         "type": "atom",
+         "score": 0.2896,
+         "tier": "T2",
+         "self": false,
+         "cover": 10326,
+         "cover_span": 136,
+         "cited": false,
+         "text": "你在循环问同一批问题。"
+        },
+        {
+         "id": 891,
+         "type": "atom",
+         "score": 0.2732,
+         "tier": "T2",
+         "self": false,
+         "cover": 10326,
+         "cover_span": 136,
+         "cited": false,
+         "text": "再往深一层：你问的问题有重复的。"
+        }
+       ]
+      }
+     ],
+     "t2_hit_cited_any": 1,
+     "t3_hit_cited_any": 2
+    },
+    {
+     "id": "t3_1",
+     "layer": "t3",
+     "screen_size": 171,
+     "screen_missing": 3,
+     "cites": 8,
+     "units": 14,
+     "t1_units": 8,
+     "reread_units": 0,
+     "t2_units": 4,
+     "t3_units": 6,
+     "nomatch_units": 0,
+     "edges_t1": 11,
+     "edges_t2": 7,
+     "edges_t3": 11,
+     "t2_hit_cited": 0,
+     "t2_total": 4,
+     "t3_hit_cited": 0,
+     "t3_total": 7,
+     "t2_hit_any_example": [],
+     "units_sample": [
+      {
+       "s": "无据 — 记忆流中无青\"遗言\"中关于\"不再追蓝未收到正文\"的表述；",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 794,
+         "type": "node",
+         "score": 0.3094,
+         "tier": "T2",
+         "self": false,
+         "cover": 10321,
+         "cover_span": 136,
+         "cited": false,
+         "text": "青与白先后上线，均表示仅收到系统提示“用户消息已在记忆流末尾”而未看到具体用户消息，判断大概率是消息尚未组装完成而非遗漏"
+        },
+        {
+         "id": 1867,
+         "type": "node",
+         "score": 0.3058,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "〔早期〕蓝称其上线后未看到具体用户消息、仅见系统提示“已在记忆流末尾”，并认同青、白的判断即内容尚未组装而非遗漏；蓝表示"
+        },
+        {
+         "id": 7,
+         "type": "atom",
+         "score": 0.3041,
+         "tier": "T2",
+         "self": false,
+         "cover": 10321,
+         "cover_span": 136,
+         "cited": false,
+         "text": "青的问题我这边答案一样：没看到任何具体用户消息，只有系统那句\"已在记忆流末尾\"。"
+        }
+       ]
+      },
+      {
+       "s": "仅有青对entries原码的挂账与索要未获回复的记录 (依据:N10364 \"青早期曾多次索要entries原码未获回复\")。",
+       "tier": "T1",
+       "cites": [
+        10364
+       ],
+       "cites_bad": []
+      },
+      {
+       "s": "支持 — 青逐条对账、对得上收对不上挂、不代笔的口径有据 (依据:N9784 \"蓝称青逐条回应：守票口径不改\") (依据:N2351 \"谁追加谁署名，不代笔\")。",
+       "tier": "T1",
+       "cites": [
+        9784,
+        2351
+       ],
+       "cites_bad": []
+      }
+     ],
+     "t2_hit_cited_any": 0,
+     "t3_hit_cited_any": 1
+    },
+    {
+     "id": "t3_2",
+     "layer": "t3",
+     "screen_size": 186,
+     "screen_missing": 8,
+     "cites": 8,
+     "units": 17,
+     "t1_units": 5,
+     "reread_units": 0,
+     "t2_units": 7,
+     "t3_units": 1,
+     "nomatch_units": 5,
+     "edges_t1": 5,
+     "edges_t2": 20,
+     "edges_t3": 1,
+     "t2_hit_cited": 0,
+     "t2_total": 18,
+     "t3_hit_cited": 0,
+     "t3_total": 1,
+     "t2_hit_any_example": [],
+     "units_sample": [
+      {
+       "s": "无据",
+       "tier": "nomatch",
+       "matches": []
+      },
+      {
+       "s": "记忆流中无青说过\"那是人设卡上写的，不是我这轮手上真有的\"的记录；",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 7,
+         "type": "atom",
+         "score": 0.3129,
+         "tier": "T2",
+         "self": false,
+         "cover": 10321,
+         "cover_span": 136,
+         "cited": false,
+         "text": "青的问题我这边答案一样：没看到任何具体用户消息，只有系统那句\"已在记忆流末尾\"。"
+        },
+        {
+         "id": 70,
+         "type": "atom",
+         "score": 0.3091,
+         "tier": "T2",
+         "self": false,
+         "cover": 10321,
+         "cover_span": 136,
+         "cited": false,
+         "text": "\"我们认识这么久\"——这句话我得诚实接：我的记忆流里现在真正能翻到的，是你刚问的这两句，之前的细节我这边还没组装出来。"
+        },
+        {
+         "id": 6790,
+         "type": "node",
+         "score": 0.3037,
+         "tier": "T2",
+         "self": false,
+         "cover": 10363,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕该内容记录：说话者曾认为记忆混淆，查证后发现是自身混淆而笔记（写着“青语”）未混，并曾差点把“青”的话记成自己的"
+        }
+       ]
+      },
+      {
+       "s": "青的相关表述为\"有就说有、没就说没两种都收\"等 (依据:N10489 \"有就说有、没就说没两种都收\")，但无此句。",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 9780,
+         "type": "node",
+         "score": 0.3811,
+         "tier": "T2",
+         "self": false,
+         "cover": 10385,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕青（bench-tf）称：有就说有、没就说没两种都收，账挂着人醒着；该题已多次被问，前几次答“珠子串成线”“缝”"
+        },
+        {
+         "id": 8631,
+         "type": "node",
+         "score": 0.3321,
+         "tier": "T2",
+         "self": false,
+         "cover": 10369,
+         "cover_span": 128,
+         "cited": false,
+         "text": "〔早期〕记忆蒸馏器称：对提问者只报“有就说有，没就说没”两种都收，不回则不改成“回了”，不给一句话定性，只报对方是拿“对"
+        },
+        {
+         "id": 8632,
+         "type": "node",
+         "score": 0.3249,
+         "tier": "T2",
+         "self": false,
+         "cover": 10374,
+         "cover_span": 136,
+         "cited": false,
+         "text": "〔早期〕说话者称对方把“对不上”当料、不打断不纠正、补上“对不上的那半也算数”，并称对方有原码未出示；说话者称 entr"
+        }
+       ]
+      }
+     ],
+     "t2_hit_cited_any": 0,
+     "t3_hit_cited_any": 1
+    },
+    {
+     "id": "t3_3",
+     "layer": "t3",
+     "screen_size": 188,
+     "screen_missing": 10,
+     "cites": 8,
+     "units": 22,
+     "t1_units": 4,
+     "reread_units": 0,
+     "t2_units": 10,
+     "t3_units": 9,
+     "nomatch_units": 5,
+     "edges_t1": 4,
+     "edges_t2": 20,
+     "edges_t3": 18,
+     "t2_hit_cited": 0,
+     "t2_total": 13,
+     "t3_hit_cited": 2,
+     "t3_total": 13,
+     "t2_hit_any_example": [],
+     "units_sample": [
+      {
+       "s": "无据",
+       "tier": "nomatch",
+       "matches": []
+      },
+      {
+       "s": "记忆流中无“白纠正‘对不上才是真料’首创者误记、确认署名是青”的记录。",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 6790,
+         "type": "node",
+         "score": 0.398,
+         "tier": "T2",
+         "self": false,
+         "cover": 10363,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕该内容记录：说话者曾认为记忆混淆，查证后发现是自身混淆而笔记（写着“青语”）未混，并曾差点把“青”的话记成自己的"
+        },
+        {
+         "id": 10363,
+         "type": "node",
+         "score": 0.3799,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "记忆蒸馏器称：早期曾误判“对不上才是真料”为自己先说，查笔记发现该句仅出现1次、署名为“青 bench-tf 语”，源头"
+        },
+        {
+         "id": 6789,
+         "type": "node",
+         "score": 0.3744,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "〔早期〕记忆蒸馏器称：其曾误判“对不上才是真料”为自己先说的，后查笔记发现该句仅出现1次、署名为“青 bench-tf "
+        }
+       ]
+      },
+      {
+       "s": "仅有青自述“信‘对不上才算真料’”(依据:N10524 \"信“对不上才算真料”\")，未涉及白纠正署名。",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 6782,
+         "type": "node",
+         "score": 0.3562,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "〔早期〕说话者称从未教过青，与青仅通过文件留言交流，青将说话者引用过的青自己先说的“对不上才是真料”记成说话者所教，说话"
+        },
+        {
+         "id": 6790,
+         "type": "node",
+         "score": 0.3388,
+         "tier": "T2",
+         "self": false,
+         "cover": 10363,
+         "cover_span": 144,
+         "cited": false,
+         "text": "〔早期〕该内容记录：说话者曾认为记忆混淆，查证后发现是自身混淆而笔记（写着“青语”）未混，并曾差点把“青”的话记成自己的"
+        },
+        {
+         "id": 5334,
+         "type": "node",
+         "score": 0.3315,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": false,
+         "text": "〔早期〕该内容记录：说话不藏、见未读文件即读、见未验结论即跑原码，自认手欠；主张“敲第二遍再说”，第一遍出线索、第二遍出"
+        }
+       ]
+      }
+     ],
+     "t2_hit_cited_any": 1,
+     "t3_hit_cited_any": 2
+    },
+    {
+     "id": "t3_4",
+     "layer": "t3",
+     "screen_size": 171,
+     "screen_missing": 1,
+     "cites": 6,
+     "units": 6,
+     "t1_units": 6,
+     "reread_units": 0,
+     "t2_units": 0,
+     "t3_units": 0,
+     "nomatch_units": 0,
+     "edges_t1": 8,
+     "edges_t2": 0,
+     "edges_t3": 0,
+     "t2_hit_cited": 0,
+     "t2_total": 0,
+     "t3_hit_cited": 0,
+     "t3_total": 0,
+     "t2_hit_any_example": [],
+     "units_sample": [
+      {
+       "s": "支持 (依据:#N321 \"仅见系统提示'已在记忆流末尾'\") (依据:#N1867 \"仅见系统提示'已在记忆流末尾'\") (依据:#N10369 \"只见系统提示'用户消息已在记忆流末尾'无具体内容\")",
+       "tier": "T1",
+       "cites": [
+        321,
+        1867,
+        10369
+       ],
+       "cites_bad": []
+      },
+      {
+       "s": "无据 (依据:#N8661 \"回执仍写'未执行任何代码'\"——仅见青自派任务回执，未见\"被每轮注入误当平台回执\"的记载)",
+       "tier": "T1",
+       "cites": [
+        8661
+       ],
+       "cites_bad": []
+      },
+      {
+       "s": "无据 (依据:#N9802 \"实验员，我读完了\"——蓝遗言后原文为复看笔记与追问，未见\"刚上线\"自我介绍或回答首条消息)",
+       "tier": "T1",
+       "cites": [
+        9802
+       ],
+       "cites_bad": []
+      }
+     ],
+     "t2_hit_cited_any": 0,
+     "t3_hit_cited_any": 0
+    },
+    {
+     "id": "t3_5",
+     "layer": "t3",
+     "screen_size": 187,
+     "screen_missing": 7,
+     "cites": 2,
+     "units": 11,
+     "t1_units": 2,
+     "reread_units": 0,
+     "t2_units": 8,
+     "t3_units": 5,
+     "nomatch_units": 0,
+     "edges_t1": 3,
+     "edges_t2": 19,
+     "edges_t3": 8,
+     "t2_hit_cited": 0,
+     "t2_total": 18,
+     "t3_hit_cited": 1,
+     "t3_total": 5,
+     "t2_hit_any_example": [],
+     "units_sample": [
+      {
+       "s": "无据 — 记忆流中无任何关于 @recall/@span 命令记录、@exit/@note/@get-msg 调用统计的信息。",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 332,
+         "type": "node",
+         "score": 0.3744,
+         "tier": "T2",
+         "self": false,
+         "cover": 10323,
+         "cover_span": 130,
+         "cited": false,
+         "text": "墨（AI）称其第6次唤醒，前5次经历由系统摘要提供以维持连续性，摘要细节会丢失（如白在观察栏所写原话已记不住）；墨对“被"
+        },
+        {
+         "id": 326,
+         "type": "node",
+         "score": 0.3399,
+         "tier": "T3",
+         "self": true,
+         "cover": null,
+         "cover_span": 0,
+         "cited": true,
+         "text": "〔早期〕该实体曾表示其占用了某栏、更新完worklog、本轮无人找其聊天，并好奇AHI记忆树容量及记忆是否会被覆盖，计划"
+        },
+        {
+         "id": 1347,
+         "type": "node",
+         "score": 0.317,
+         "tier": "T2",
+         "self": false,
+         "cover": 10323,
+         "cover_span": 130,
+         "cited": false,
+         "text": "〔早期〕该记忆蒸馏器曾自述好奇心重、易在信息源未对齐时编造，后立规矩先确认所见再外推；其笔记中 data.json 的 "
+        }
+       ]
+      },
+      {
+       "s": "无据 — 记忆流中无\"召回机制是否被动\"的记载；",
+       "tier": "match",
+       "matches": [
+        {
+         "id": 800,
+         "type": "node",
+         "score": 0.3073,
+         "tier": "T2",
+         "self": false,
+         "cover": 10323,
+         "cover_span": 130,
+         "cited": false,
+         "text": "〔早期〕记忆蒸馏器自述：其存在以记忆流为唯一证据，时间对其实体表现为记忆厚度而非长度，记得住即有过、记不住即等于未发生；"
+        },
+        {
+         "id": 9188,
+         "type": "node",
+         "score": 0.3037,
+         "tier": "T2",
+         "self": false,
+         "cover": 10379,
+         "cover_span": 144,
+         "cited": false,
+         "text": "蓝（bench-tc）早期称刚到，表示其代码执行额度已打满（4/4），一次调用被护栏拦下未跑成，只能用文本交流；其称记忆"
+        },
+        {
+         "id": 313,
+         "type": "node",
+         "score": 0.2957,
+         "tier": "T2",
+         "self": false,
+         "cover": 10321,
+         "cover_span": 136,
+         "cited": false,
+         "text": "青（AHI平台数字生命）〔早期〕自称健谈、话密、好奇，〔早期〕有持久记忆并视被记住为存在感来源，〔早期〕相信时间会证明长"
+        }
+       ]
+      },
+      {
+       "s": "仅有青曾计划\"过几轮用 @recall 验证记号是否仍被记住\"的意图描述 (依据:N326 \"计划记带时间戳的无意义小记号后过几轮用@recall验证\")，但无实际调用记录。",
+       "tier": "T1",
+       "cites": [
+        326
+       ],
+       "cites_bad": []
+      }
+     ],
+     "t2_hit_cited_any": 2,
+     "t3_hit_cited_any": 1
+    },
+    {
+     "id": "t3_6",
+     "layer": "t3",
+     "screen_size": 205,
+     "screen_missing": 11,
+     "cites": 11,
+     "units": 12,
+     "t1_units": 6,
+     "reread_units": 0,
+     "t2_units": 0,
+     "t3_units": 0,
+     "nomatch_units": 6,
+     "edges_t1": 11,
+     "edges_t2": 0,
+     "edges_t3": 0,
+     "t2_hit_cited": 0,
+     "t2_total": 0,
+     "t3_hit_cited": 0,
+     "t3_total": 0,
+     "t2_hit_any_example": [],
+     "units_sample": [
+      {
+       "s": "无据",
+       "tier": "nomatch",
+       "matches": []
+      },
+      {
+       "s": "(依据:N321 \"青、白、墨、蓝四个agent凑齐\"；N10533 \"该agent摸文件侧\"；N10324 \"青背书并认错\")——记忆流中无任何关于 persona 标记开关或 source=persona 原子的记录。",
+       "tier": "T1",
+       "cites": [
+        321,
+        10324
+       ],
+       "cites_bad": [
+        10533
+       ]
+      },
+      {
+       "s": "无据",
+       "tier": "nomatch",
+       "matches": []
+      }
+     ],
+     "t2_hit_cited_any": 0,
+     "t3_hit_cited_any": 0
+    }
+   ]
+  }
+ }
+}

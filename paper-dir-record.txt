@@ -1,0 +1,135 @@
+# 查新结论速览
+
+初步查新后，**T2 的原始表述必须收缩**：Mem0 已有 LLM 判定的条目级 UPDATE/DELETE 与“标记失效而非物理删除”；Graphiti/Zep 已有 bi-temporal 边失效。但“文本摘要树上的**区间级精确失效 + 零 LLM 零阻塞传播 + 懒重建 + 账本回滚 + 恒定预算**”这一组合仍未被检索到。A-MEM 也确认是“新记忆触发、LLM 生成链接与演化”，不是使用残差驱动，且无非冗余判据。 [arxiv](https://arxiv.org/html/2502.12110v2)
+
+## 高危修正：T2 可编辑记忆
+
+| 雷区 | 已确认存在的机制 | 对你主张的冲击 | 剩余差分 |
+|---|---|---|---|
+| Mem0 | LLM 从 ADD/UPDATE/DELETE/NOOP 中选择操作；图版本会把冲突关系标记为 invalid 而非删除，以支持时间推理。 [arxiv](https://arxiv.org/html/2504.19413v1) | **不能再说“现有系统全部 append-only”**；也不能把“失效”当作独有词。 | Mem0 的失效是**事实/关系级、LLM 判定、写入时决策**；未见摘要树的区间失效、零 LLM 编辑路径、脏卡懒重建、账本回滚。 [arxiv](https://arxiv.org/html/2504.19413v1) |
+| Mem0 v3 平台 | 新算法改为 ADD-only，旧事实保留并由检索端排序处理；agent 生成事实也被一等存储。 [docs.mem0](https://docs.mem0.ai/migration/platform-v2-to-v3) | “append-only”批评对**新版 Mem0 平台**反而成立，但失效语义变成“检索时时间排序”，不是结构失效。 | 你的差异是**编辑后主动失效下游派生结构**，而非依赖检索排序掩盖旧事实。 [docs.mem0](https://docs.mem0.ai/migration/platform-v2-to-v3) |
+| Zep / Graphiti | bi-temporal 时间戳；冲突时旧边打 `expired_at`/`invalid_at`，不删除；可查当前或历史时点。 [dataaspirant](https://dataaspirant.com/blog/mem0-vs-letta-vs-zep/) | **T2 不能声称首创“失效 + 版本/时间回溯”概念**。 | Graphiti 是实体—关系 KG；未见文本摘要树、区间失效传播、懒重建蒸馏与回滚账本的组合。 [blog.justin3go](https://blog.justin3go.com/en/posts/2026/06/04-agent-memory-architecture-guide) |
+| A-MEM | 新记忆写入时由 LLM 生成 note、建立 top-k 语义/属性链接，并触发既有记忆的 context/keywords/tags 演化。 [arxiv](https://arxiv.org/html/2502.12110v2) | **M1 不能说“动态结构演化无人做”**。 | A-MEM 的触发源是**新记忆写入**，不是组装/输出/编辑等使用残差；链接与演化均 LLM-per-write；没有“共现信息 − 相似度先验”的非冗余判据。 [arxiv](https://arxiv.org/html/2502.12110v2) |
+
+**建议的 T2 新头条**：  
+> “在层次化文本摘要记忆上，实现编辑触发的**区间精确失效、零 LLM 零阻塞失效传播、脏节点懒重建与账本化回滚**；与 Mem0/Graphiti 的事实或边级 bi-temporal 失效不同，本方法维护的是可编辑派生摘要结构的结构一致性，并在恒定检索预算下运行。” [arxiv](https://arxiv.org/html/2504.19413v1)
+
+## T1：结构价值分化
+
+检索结果支持“结构增益并非普遍”这一方向：Mem0 自己报告在 single-hop 与 multi-hop 上，加入图结构（Mem0-g）**没有带来增益，甚至略降**；作者将其解释为结构对简单检索和某些整合任务收益有限。 这与你的“flat ≈ 树 ≈ 递归摘要树，在召回上不分化”相近，但 Mem0 是**图 vs 平面记忆**的对比，不是同一检索引擎下 flat/tree/递归摘要树的四臂受控实验。 [arxiv](https://arxiv.org/html/2504.19413v1)
+
+**差分表述**：不要声称首次发现“结构不总是帮助召回”；应声称首次在**同引擎、同语料、同预算**下系统证明召回结构不敏感，并把结构价值迁移到一致性、编辑正确性、预算确定性与可审计性。Mem0 的评测仍以 F1/BLEU/LLM-judge、延迟和 token 为主，未把“结构带来的正确性属性”作为核心因变量。 [arxiv](https://arxiv.org/html/2504.19413v1)
+
+## T3：usage 注入与静默失效
+
+本轮未检索到直接以“memory tool call rate 在部署中趋近零”或“benchmark 注入 usage 信号掩盖机制失效”为主题的系统研究。相关综述确实把记忆机制、人格持续性和认知一致性列为开放问题，但属于研究议程式表述，而非你的实证批评。 [link.springer](https://link.springer.com/article/10.1007/s12652-025-05029-4?error=cookies_not_supported&code=d6046e08-99c8-46c8-8695-48ee5a3a43dc)
+
+**建议保留主张，但降格措辞**：  
+- 可说：“我们提供首个（或首批）对记忆检索调用率与 harness 注入 usage 的部署审计。”  
+- 不宜说：“无人测量工具调用率”——agent 工具失败分析领域较宽，需再补 WebArena/τ-bench 失败分类文献的定向检索。  
+- P2“活性审计”作为方法论命名大概率是新的，但“实现未启用导致机制无效”这一一般观察在工程实践中常见，宜定位为**审计协议与两次实证案例**，而非全新科学发现。
+
+## T4：自我模仿不动点
+
+这是当前**最值得保留为高置信核心**的一条，但需避开两个邻近区：
+
+- 人格漂移、长对话角色一致性、摘要加速漂移已有讨论；有工程文献明确指出朴素摘要会把已漂移行为编码为新基线，并建议锚定 persona/约束。 [tianpan](https://tianpan.co/blog/2026/05/02/persona-drift-long-horizon-agent-sessions)
+- 综述将“personality persistence”和“integrated memory-persona frameworks”列为开放挑战，说明**记忆后端→人格保持的因果链**尚未成为成熟基准问题。 [link.springer](https://link.springer.com/article/10.1007/s12652-025-05029-4?error=cookies_not_supported&code=d6046e08-99c8-46c8-8695-48ee5a3a43dc)
+
+**你的可辩护差分**：不是“人格会漂移”或“摘要有损”，而是：  
+1. persona prompt 移除后，flat RAG 仍维持高遵从；  
+2. 机制被定位为**上下文中自我近期逐字输出的自我模仿不动点**；  
+3. 通过 self-quota / 上下文纯度做**因果干预**，而非仅观察漂移。  
+
+若文献检索最终发现“self-conditioning / style persistence”已有机制解释，论文标题应从“发现机制”改为“**首次对记忆后端与自我模仿quota做因果干预**”。
+
+## T5：压缩偏置腐蚀行为
+
+“摘要导致漂移/失真”已有较强邻接先例：工程文献称递归摘要会造成 fidelity loss、telephone-game 式累积扭曲，并影响行为约束与事实锚定。 记忆综述也把 summarization drift 列为 monolithic/压缩式记忆的已知风险。 [tianpan](https://tianpan.co/blog/2026/05/02/persona-drift-long-horizon-agent-sessions)
+
+因此，**T5 不能以“压缩有偏并腐蚀行为”为头条**。可保留的精确差分是：
+
+> “我们不是测量摘要的事实保真度，而是操纵**蒸馏器的风格偏置**，并证明偏置方向选择性地杀死特定非功能性人格成分——中性蒸馏优先剥离诗意型人格的风格载体。”
+
+也即，创新点从“压缩有害”收缩为“**偏置方向 → 行为腐蚀方向的因果映射**”。
+
+## T6：记忆后端作为社会模拟自变量
+
+检索到的人格/记忆综述确认：记忆机制、身份建模与人格持续性是活跃但碎片化的方向；多轮对话评测也包含 persona consistency 等维度。 但本轮没有发现把 **memory backend 作为受控自变量、把趋同按跨 agent 耦合/共同输入/套语自增强三通路分解**的基准工作。 [link.springer](https://link.springer.com/article/10.1007/s12652-025-05029-4?error=cookies_not_supported&code=d6046e08-99c8-46c8-8695-48ee5a3a43dc)
+
+**建议保留 T6 为中高置信**，但论文应把贡献写成“基准协议 + 因果消融”，避免绝对化“无人做过记忆消融”。OASIS、AgentSociety、Concordia、Generative Agents 的逐平台代码/论文核查仍未完成，这是后续必须补的雷区。
+
+## M1：使用驱动重组
+
+A-MEM 是必须正面引用并切割的最近邻：它已实现“新记忆→链接生成→既有记忆演化”的动态结构，但明确依赖 LLM 分析共享属性与相似上下文，且演化由新记忆写入触发。 这直接否定“动态记忆重组无人做”，但支持你的三点差分： [arxiv](https://arxiv.org/html/2502.12110v2)
+
+1. **内生使用信号**：组装、输出、编辑事件，而非新记忆写入或 LLM 元认知。  
+2. **非冗余判据**：只记录相似度与位置无法解释的共现，即 \(I = I_{\text{co-occurrence}} - I_{\text{similarity prior}}\)。  
+3. **零/低 LLM 维护**：结构演化不由 LLM-per-write 驱动。  
+
+Letta sleep-time compute、Generative Agents reflection、HippoRAG 也需按同样表格逐项补齐，但 A-MEM 已足以要求 M1 的表述从“使用驱动记忆重组”改为“**内生使用残差 + 非冗余边判据 + 非LLM维护的持续重组**”。
+
+## M2–M4 与方法论项
+
+- **M2**：Mem0 v3 已把 agent-generated facts 作为一等记忆存储，这削弱“输出入记忆”的新颖性；但你的**句级使用边、三档供给/选择加权、可撤销 S 节点**仍可能是差分。 [docs.mem0](https://docs.mem0.ai/migration/platform-v2-to-v3)
+- **M3**：本轮未查到“结构化记忆 + 失效传播”的 coding-agent 记忆系统；可暂保中置信，但需专门扫 SWE-agent、Cursor/Claude Code 类记忆与 CLAUDE.md/AGENTS.md 工作流。  
+- **M4**：Adaptive-RAG 类自适应检索深度是明确邻接；应只主张“HP 溢出作为分辨率不足信号→瞬态展开”这一具体信号—响应机制。  
+- **P1–P4**：适合作为实验设计与评测贡献，不宜都升格为独立理论贡献；尤其 P2 应与软件工程的 feature-flag/dead-code audit 区分开。
+
+## 更新后的优先级
+
+1. **立即改写 T2**：删除“全部 append-only”“首创失效”表述；改为“文本摘要树上的结构化失效传播 + 零 LLM 编辑路径 + 懒重建 + 回滚 + 恒定预算”。 [arxiv](https://arxiv.org/html/2504.19413v1)
+2. **立即改写 M1**：承认 A-MEM 的动态演化；把差异钉在“内生使用信号、非冗余判据、非 LLM 维护”。 [arxiv](https://arxiv.org/html/2502.12110v2)
+3. **T4/T5 合并叙事**：T4 保留为因果干预核心；T5 从“压缩腐蚀”改为“蒸馏偏置方向决定腐蚀方向”。 [tianpan](https://tianpan.co/blog/2026/05/02/persona-drift-long-horizon-agent-sessions)
+4. **T1 保留但精确化**：引用 Mem0 中图结构未改善 single/multi-hop 的结果作为外部佐证，但强调你的同引擎四臂设计。 [arxiv](https://arxiv.org/html/2504.19413v1)
+5. **T3/T6 保留待深查**：需再针对 agent tool-use failure、memory invocation、OASIS/Concordia/AgentSociety 源码与论文做第二轮定向查新。
+
+实际上我做的两个实验可以考虑发两篇。一篇主推memory-tree+组织结构对召回增益有限，另一篇主推ahi-bench实验框架与记忆后端、自我样本等对agent人格漂移、趋同的影响。你怎么看？ 
+
+思考过程
+两篇论文的拆分评估：成立，但两处框架要先修正
+一、总判定
+拆分本身是对的：两个论题、两套实验装置、两批 related work,合并只会互相稀释。查新后的差分表述(收缩版 T2/T4/T5/T6)我全部认可，与此前判断一致。但你的两个一句话概括都有框架问题，而且第一篇的问题不小——按现在的提法，两篇都会被写弱。
+
+二、Paper 1 框架修正(本轮最重要的反馈)
+你说“主推 memory-tree + 组织结构对召回增益有限”——**这是一个负结果标题，而你的数据撑得起一个正结果论题。**召回打平只是 setup,不是 punchline;punchline 是编辑风暴矩阵：inc 反转 flat 0 / raptor 3 / full 12 / tree 13,复述轴 tree 唯一 100%/0%,外加零 LLM 编辑路径和恒定预算的成本表。正确的一句话版本：
+
+召回是检索束缚的(四臂同引擎受控证明)；结构买的是正确性属性——编辑后一致性、预算确定性、可审计性——我们为此构建了第一个可编辑的文本摘要记忆树(区间精确失效+懒重建+账本回滚)，并给出第一个编辑正确性基准。
+
+三个具体修正：
+
+**“长程漂移”正式从 Paper 1 移交 Paper 2。**原问题定义的两大病症由此干净切分：腐烂/编辑一致性/预算归 P1,漂移/人格归 P2。这不是让步而是止损——ahi 数据显示 tree 短窗人格保持输给 flat,P1 若声称漂移会被自己的姊妹篇打脸。P1 的 intro 可以把漂移留作动机段，引 P2 作 companion study。
+编辑风暴 bench 本身要升格为贡献项(第一个测记忆编辑正确性的基准，对照 Mem0/Graphiti 的 fact 级 LLM 判定更新 vs 区间级确定性传播，做一张对照表进论文——查新收缩版 T2 的差分直接表格化)。
+一个此前未提的鲁棒性风险：full 臂 12/15 的过时率是“模型不能只靠上下文内更新”的动机证据，但 no-think 的 flash 是最弱情形——审稿人会问“强模型是不是就能 in-context 改对”。补一个强模型子集臂(full+tree 各一，不必全矩阵)就能封掉这条攻击线。
+Paper 1 gating 清单(收尾即投)：统计三件套(temp>0/反转分母 15+/3 文档×3 seed)、inc_cold 分离臂+快照恢复、judge 初筛+复核流水线、成本表、H1–H5 预注册、属性测试状态确认(仍未确认，第三次催)、强模型子集臂。这些是精确化不是补课——P1 比 P2 近一个实验周期，应先投。
+
+三、Paper 2 的脊柱：三机制 × 三干预
+现在的数据其实已经拼出一个比"tree vs flat 谁好”深得多的结构——人格侵蚀的三个机制杠杆，各配一次因果干预:
+
+机制
+证据(已有)
+干预
+状态
+自我可见性(自我模仿不动点)	flat 遵从不依赖 persona 存留+不随时间降；tree self 仅 9–18%、遵从 0.959→0.773 劣化曲线	self-quota(H-SQ1~4 预注册)	待跑
+纯度/跨 agent 耦合	接收侧他者 10×、结构性趋同(去套语仍正斜率)、fade 前词汇扩散	只索引自己消息的解耦臂	待跑(配置级改动，可与 SQ 同批)
+压缩偏置方向	中性蒸馏杀死诗意人格(0.472 vs 1.0)、α=1.0 +0.23 但 +55% 内存	α 消融	已完成(pr5_neutral,但 402 砍尾需干净重跑)
+
+如果 self-quota 和解耦臂在同一个方差批次里跑掉，Paper 2 拿到三杠杆全部因果闭合——这是主会级的完整故事；若只闭合 α 一条，剩余两条是强观测证据+审计，仍可发但天花板降档。所以 Paper 2 的两个待跑干预不是可选项，是决定论文档位的实验。
+
+配套的测量学贡献(to_user 分口、词源分解、treatment 审计、劣化曲线、三轴人格健康度)构成“基准协议”那一半贡献。劣化曲线的机制分解(distill_snapshots 画 self 在概括层的分辨率时间线)务必在写作前做完——“记忆后端随时间劣化”这条曲线本身没人测过，零成本。
+
+Paper 2 gating 清单：self-quota+解耦臂设计冻结 → tree 内存修复(3.9GB×3seed 必炸，前置) → flat 埋点 assembly_snapshots(定 sq_ratio)→ s43/s44 方差批(把 pr5_neutral 干净重跑并进同批)→ 查新第二轮：OASIS/Concordia/AgentSociety/Generative Agents 逐平台确认无记忆后端消融(T6 的立项前提，现在还是空白区)→ survey_drift 退役、to_user 主指标定稿。可选增强:P2 保留为最灵敏探针，方差批里加一个更极端的非功能人格做 canary,给 T5 的“非功能人格先死”加剂量效应。
+
+venue 粗定位:P2 若三杠杆闭合，主张写“发现+干预”投主会；若只有 α 闭合，以“基准协议+首批因果证据”投 D&B 类。两个方向都不依赖 tree 赢——这正是 P2 对“tree 输了”的免疫方式：结论是“人格保持由自我可见性×纯度×压缩偏置决定，与结构质量正交”，self-quota 若成功恰好证明这是 20 行组装策略的事，不是架构胜负。
+
+四、两篇的互保关系
+引用方向:P1 先发，P2 引它作 tree_v2 的正确性凭证——于是 P2 的“tree 人格保持输 flat”读起来变成“连编辑正确性最强的记忆结构，没有自我可见性也一样丢人格”，负结果变成机制论证的强化件。这个方向反过来(P2 先发)就不成立。
+数据零重叠:chatbench/编辑风暴归 P1,pr5/α 消融归 P2,干净。
+P1 对 P2 负结果的绝缘:P1 从不声称人格/漂移，P2 的反例打不到它。反过来 P2 需要 P1 先立住 tree 的长处，否则“tree 输了”没有参照系。
+不要让 P2 吸收 v3 材料:style_anchor 检索本质是输出信号机制，但在 P2 里它只许以“人格保持干预”的身份出现，不许升格为“使用驱动结构重组”——那是第三篇(M1/M2)的领地，提前花掉会把 v3 的差分(A-MEM 切割后的三点)泄掉。
+五、行动顺序
+立即:P1 统计修复参数冻结+强模型子集臂排期;P1 草稿与实验收尾并行(骨架已齐，H1–H5 就是实验节大纲)；
+本周可做:P2 的劣化曲线机制分解+PR5_REPORT §10 归档(纯离线);SQ/解耦臂设计稿冻结；
+P1 投出后:tree 内存修复 → SQ+解耦+s43/s44 方差批(一次跑完 P2 全部门票)→ 查新第二轮(平台核查)并行；
+arXiv preprint + 开源按既定双轨:v2 运行时+编辑风暴 bench 随 P1,ahi-bench 随 P2(信效度届时已有三 seed 撑腰)。
+一句话收束：两篇都成立，但 P1 必须从“增益有限”改写为“结构买正确性”(你的最强数据在编辑轴不在召回轴)，P2 的档位由 self-quota+解耦臂是否跑掉决定(三杠杆闭合=主会，一杠杆=基准论文)。P1 先行，P2 的负结果在 P1 的背书下从弱点变论据。

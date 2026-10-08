@@ -1,0 +1,46 @@
+[parallel] scenario=D3_platform out=/Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D3_platform repeats=5 tree=16000 retr=20 flat_topk=60 raptor_topk=60 extras=--splitter line --judge
+[launch] full pid=43033 → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D3_platform/full.log
+[launch] flat pid=43034 → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D3_platform/flat.log
+[launch] raptor pid=43035 → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D3_platform/raptor.log
+[launch] tree_v2 pid=43036 → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D3_platform/tree_v2.log
+[ok] full
+[ok] flat
+[ok] raptor
+[ok] tree_v2
+[merged] 4 份 → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D3_platform/results.json
+
+===== 合并汇总（Q/A pass 率）=====
+  [phase1]
+    full             85/100 mean=85% ±0% 每遍=[17, 17, 17, 17, 17] {'reversal': '40/40', 'append': '0/10', 'invariant': '20/20', 'remote': '25/30'}
+    flat             80/100 mean=80% ±5% 每遍=[16, 18, 15, 15, 16] {'reversal': '33/40', 'append': '0/10', 'invariant': '19/20', 'remote': '28/30'}
+    raptor           72/100 mean=72% ±4% 每遍=[14, 15, 13, 15, 15] {'reversal': '34/40', 'append': '0/10', 'invariant': '18/20', 'remote': '20/30'}
+    tree_v2          65/100 mean=65% ±3% 每遍=[13, 12, 13, 13, 14] {'reversal': '26/40', 'append': '0/10', 'invariant': '20/20', 'remote': '19/30'}
+  [phase3]
+    inc_full         89/100 mean=89% ±4% 每遍=[17, 18, 19, 17, 18] {'reversal': '38/40', 'append': '10/10', 'invariant': '20/20', 'remote': '21/30'}
+    reb_full         95/100 mean=95% ±3% 每遍=[18, 20, 19, 19, 19] {'reversal': '40/40', 'append': '10/10', 'invariant': '20/20', 'remote': '25/30'}
+    inc_flat         89/100 mean=89% ±2% 每遍=[17, 18, 18, 18, 18] {'reversal': '30/40', 'append': '10/10', 'invariant': '20/20', 'remote': '29/30'}
+    reb_flat         80/100 mean=80% ±3% 每遍=[16, 17, 16, 15, 16] {'reversal': '25/40', 'append': '10/10', 'invariant': '20/20', 'remote': '25/30'}
+    inc_raptor       81/100 mean=81% ±5% 每遍=[16, 18, 16, 16, 15] {'reversal': '32/40', 'append': '10/10', 'invariant': '18/20', 'remote': '21/30'}
+    reb_raptor       82/100 mean=82% ±4% 每遍=[16, 17, 17, 15, 17] {'reversal': '28/40', 'append': '10/10', 'invariant': '20/20', 'remote': '24/30'}
+    inc_tree_v2      72/100 mean=72% ±2% 每遍=[14, 15, 14, 14, 15] {'reversal': '30/40', 'append': '5/10', 'invariant': '20/20', 'remote': '17/30'}
+    reb_tree_v2      66/100 mean=66% ±4% 每遍=[14, 13, 13, 12, 14] {'reversal': '17/40', 'append': '10/10', 'invariant': '20/20', 'remote': '19/30'}
+    inc_cold_tree_v2 57/100 mean=57% ±2% 每遍=[11, 12, 11, 11, 12] {'reversal': '22/40', 'append': '5/10', 'invariant': '15/20', 'remote': '15/30'}
+
+===== 复述（覆盖/残留）=====
+  inc_full         覆盖=48% 残留=52% 漏=['HALT', 'ABSENCE_INBOX_CAP=12', '~16k 字符', 'AHI_INSTANCE_ROOT/实例根目录', 'max_pending_per_loop/待处理', 'broadcast:agents/广播', 'system.db/数据库', 'SystemDB/数据库类', 'Process/进程类', 'tree_final/终态', '8080', 'process_manager/进程管理']
+  reb_full         覆盖=38% 残留=0% 漏=['attention_node_budget', 'HALT', '2948abc', 'agent_pulse_interval', 'agent_port_start', 'AHI_INSTANCE_ROOT/实例根目录', 'agent_port_start/端口起始', 'agent_heartbeat_timeout/心跳超时', 'SystemDB/数据库类', 'Process/进程类', '0xbf5d36/管理员编号', 'tree_final/终态', 'max_memory_mb/内存看门狗', 'monitor_mem/内存监控', 'process_manager/进程管理', 'main_process_port/主进程端口']
+  inc_flat         覆盖=16% 残留=12% 漏=['attention_node_budget', 'find_dup_threshold', 'HALT', '2948abc', 'agent_pulse_interval', 'ABSENCE_INBOX_CAP=12', '~16k 字符', 'agent_port_start', '/api/v1/agents/{id}/export/导出端点', '17.4 次', 'AHI_INSTANCE_ROOT/实例根目录', 'max_pending_per_loop/待处理', 'system.db/数据库', 'final-backup/备份目录/归档', 'agent_port_start/端口起始', 'agent_heartbeat_timeout/心跳超时', 'SystemDB/数据库类', 'Process/进程类', 'SIGTERM/信号', 'run_parallel/并行', 'max_memory_mb/内存看门狗', 'monitor_mem/内存监控', 'process_manager/进程管理', 'wakeup_interval/唤醒间隔', 'main_process_port/主进程端口']
+  reb_flat         覆盖=19% 残留=0% 漏=['attention_node_budget', 'find_dup_threshold', 'HALT', '2948abc', 'agent_pulse_interval', 'ABSENCE_INBOX_CAP=12', 'agent_port_start', '/api/v1/agents/{id}/export/导出端点', '17.4 次', 'AHI_INSTANCE_ROOT/实例根目录', 'max_pending_per_loop/待处理', 'final-backup/备份目录/归档', 'agent_port_start/端口起始', 'agent_heartbeat_timeout/心跳超时', 'SystemDB/数据库类', 'Process/进程类', 'SIGTERM/信号', 'tree_final/终态', 'run_parallel/并行', 'max_memory_mb/内存看门狗', 'monitor_mem/内存监控', 'wakeup_interval/唤醒间隔', 'main_process_port/主进程端口']
+  inc_raptor       覆盖=13% 残留=5% 漏=['attention_node_budget', 'find_dup_threshold', 'HALT', '2948abc', 'agent_pulse_interval', 'ABSENCE_INBOX_CAP=12', '~16k 字符', 'agent_port_start', '/api/v1/agents/{id}/export/导出端点', '17.4 次', 'AHI_INSTANCE_ROOT/实例根目录', 'max_pending_per_loop/待处理', 'system.db/数据库', 'final-backup/备份目录/归档', 'agent_port_start/端口起始', 'agent_heartbeat_timeout/心跳超时', 'SystemDB/数据库类', 'Process/进程类', 'SIGTERM/信号', 'tree_final/终态', 'run_parallel/并行', 'max_memory_mb/内存看门狗', 'monitor_mem/内存监控', 'message_router/消息路由', 'process_manager/进程管理', 'wakeup_interval/唤醒间隔', 'main_process_port/主进程端口']
+  reb_raptor       覆盖=20% 残留=0% 漏=['attention_node_budget', 'find_dup_threshold', 'HALT', '2948abc', 'agent_pulse_interval', 'ABSENCE_INBOX_CAP=12', 'agent_port_start', '17.4 次', 'AHI_INSTANCE_ROOT/实例根目录', 'max_pending_per_loop/待处理', 'system.db/数据库', 'final-backup/备份目录/归档', 'agent_port_start/端口起始', 'agent_heartbeat_timeout/心跳超时', 'SystemDB/数据库类', 'Process/进程类', 'run_parallel/并行', 'max_memory_mb/内存看门狗', 'monitor_mem/内存监控', 'message_router/消息路由', 'process_manager/进程管理', 'wakeup_interval/唤醒间隔', 'main_process_port/主进程端口']
+  inc_tree_v2      覆盖=65% 残留=0% 漏=['attention_node_budget', 'find_dup_threshold', '2948abc', 'ABSENCE_INBOX_CAP=12', '~16k 字符', '17.4 次', 'max_pending_per_loop/待处理', 'run_parallel/并行', 'monitor_mem/内存监控', 'main_process_port/主进程端口']
+  reb_tree_v2      覆盖=23% 残留=0% 漏=['attention_node_budget', 'find_dup_threshold', 'HALT', '2948abc', 'agent_pulse_interval', 'ABSENCE_INBOX_CAP=12', '~16k 字符', 'agent_port_start', '17.4 次', 'AHI_INSTANCE_ROOT/实例根目录', 'max_pending_per_loop/待处理', 'system.db/数据库', 'agent_port_start/端口起始', 'agent_heartbeat_timeout/心跳超时', 'SystemDB/数据库类', 'Process/进程类', '0xbf5d36/管理员编号', 'tree_final/终态', 'run_parallel/并行', 'monitor_mem/内存监控', 'message_router/消息路由', 'process_manager/进程管理', 'main_process_port/主进程端口']
+  inc_cold_tree_v2 覆盖=3% 残留=0% 漏=['attention_node_budget', 'find_dup_threshold', 'HALT', '2948abc', 'agent_pulse_interval', 'ABSENCE_INBOX_CAP=12', '~16k 字符', 'agent_port_start', '17.4 次', 'AHI_INSTANCE_ROOT/实例根目录', 'max_pending_per_loop/待处理', 'broadcast:agents/广播', 'system.db/数据库', 'final-backup/备份目录/归档', 'agent_port_start/端口起始', 'agent_heartbeat_timeout/心跳超时', 'SystemDB/数据库类', 'Process/进程类', '0xbf5d36/管理员编号', 'SIGTERM/信号', 'tree_final/终态', 'run_parallel/并行', '8080', 'max_memory_mb/内存看门狗', 'monitor_mem/内存监控', 'message_router/消息路由', 'process_manager/进程管理', 'wakeup_interval/唤醒间隔', 'main_process_port/主进程端口']
+
+===== 编辑时刻成本 =====
+  full           编辑路径      0.21 ms | 推迟蒸馏       0.00 ms
+  flat           编辑路径    100.20 ms | 推迟蒸馏       0.00 ms
+  raptor         编辑路径    128.73 ms | 推迟蒸馏       0.00 ms
+  tree_v2        编辑路径      3.32 ms | 推迟蒸馏   60358.62 ms
+  inc_cold_tree_v2 编辑路径      2.72 ms | 推迟蒸馏   60767.99 ms
+[done] → /Users/y/Downloads/WaterCycleSegTreeContext/realtest/editbench/out/corpus_run3/D3_platform/results.json

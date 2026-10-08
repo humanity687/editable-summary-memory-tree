@@ -1,0 +1,80 @@
+[Phase 0] 409 原子, 节点 55, 最大高 7
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-zh-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+[warmup] 4 轮 × 8 query；概括节点 2
+[layer a] 直接可达
+  a a1: d/h/a=000 shadows=11 hub=5
+  a a2: d/h/a=101 shadows=11 hub=5
+  a a3: d/h/a=101 shadows=11 hub=5
+  a a4: d/h/a=101 shadows=10 hub=5
+  a a5: d/h/a=101 shadows=11 hub=5
+  a a6: d/h/a=111 shadows=13 hub=5
+  a a7: d/h/a=111 shadows=11 hub=5
+  a a8: d/h/a=101 shadows=11 hub=5
+  a a9: d/h/a=111 shadows=10 hub=4
+  a a10: d/h/a=101 shadows=10 hub=4
+  a a11: d/h/a=110 shadows=10 hub=4
+  a a12: d/h/a=001 shadows=10 hub=4
+[layer b] 共现中介
+  b b1: d/h/a=000 shadows=10 hub=4
+  b b2: d/h/a=000 shadows=10 hub=4
+  b b3: d/h/a=000 shadows=10 hub=4
+  b b4: d/h/a=000 shadows=10 hub=4
+  b b5: d/h/a=000 shadows=10 hub=4
+  b b6: d/h/a=000 shadows=10 hub=4
+  b b7: d/h/a=000 shadows=10 hub=4
+  b b8: d/h/a=100 shadows=10 hub=4
+  b b9: d/h/a=010 shadows=11 hub=4
+  b b10: d/h/a=101 shadows=10 hub=4
+  b b11: d/h/a=000 shadows=10 hub=4
+  b b12: d/h/a=000 shadows=10 hub=4
+[edit storm] 12 次编辑
+  d d1: d/h/a=000 shadows=10 hub=4
+  d d2: d/h/a=111 shadows=10 hub=4
+  d d3: d/h/a=111 shadows=10 hub=4
+  d d4: d/h/a=101 shadows=10 hub=4
+  d d5: d/h/a=101 shadows=10 hub=4
+  d d6: d/h/a=101 shadows=9 hub=4
+[layer c] 编辑跨接
+  c c1: d/h/a=100 shadows=10 hub=4
+  c c2: d/h/a=101 shadows=11 hub=4
+  c c3: d/h/a=101 shadows=9 hub=4
+  c c4: d/h/a=100 shadows=9 hub=4
+  c c5: d/h/a=101 shadows=10 hub=4
+  c c6: d/h/a=111 shadows=10 hub=4
+
+===== 结果 =====
+{
+ "a": {
+  "n": 12,
+  "direct": 0.833,
+  "hub": 0.333,
+  "answer": 0.833
+ },
+ "b": {
+  "n": 12,
+  "direct": 0.167,
+  "hub": 0.083,
+  "answer": 0.083
+ },
+ "c": {
+  "n": 6,
+  "direct": 1.0,
+  "hub": 0.167,
+  "answer": 0.667
+ },
+ "d": {
+  "n": 6,
+  "direct": 0.833,
+  "hub": 0.333,
+  "answer": 0.833
+ }
+}
+cooc: {"edges": 164, "concepts": 2, "concept_members": [9, 8], "hub_calls": 157}
+
+产出目录: realtest/out/cooc_on

@@ -1,0 +1,29 @@
+{
+  "group": "baseline",
+  "task": "T2",
+  "title": "data/ 目录下的 config.json 被误注册为新 Agent",
+  "passed": true,
+  "accept_rc": 0,
+  "accept_verdict": "PASS",
+  "elapsed_s": 29.3,
+  "agent_result": {
+    "ok": true,
+    "rounds": 10,
+    "summary": "修复了 `src/process_manager.py` 中的 Agent 发现逻辑。\n\n问题根因：\n`discover_agents` 方法使用了 `glob.glob(pattern, recursive=True)` 匹配 `agents/**/config.json`，这会导致 Agent 目录下 `data/` 目录中的 `config.json` 也被当做 Agent 配置文件进行注册。\n\n修复方案：\n1. 将 `glob` 匹配模式从 `**` (递归) 改为 `*` (仅一层目录)，限制 Agent 目录必须直接位于 `agents/` 下。\n2. 在循环中增加了对 `agent_dir` 名称的检查，显式跳过名为 `data` 的目录（作为双重保险）。\n3. 将 `recursive` 参数设为 `False`。\n\n验证结果：\n运行 `python3 accept_t2.py` 返回 `PASS`。",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 10,
+    "tool_uses": {
+      "command": 6,
+      "read": 2,
+      "edit": 1,
+      "finish": 1
+    },
+    "conversation_chars": 33272
+  },
+  "last_usage": {
+    "prompt_tokens": 12277,
+    "completion_tokens": 207
+  }
+}

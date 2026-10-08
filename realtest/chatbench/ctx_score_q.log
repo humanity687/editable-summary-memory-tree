@@ -1,0 +1,68 @@
+{
+ "off_t1": {
+  "ALL": "0/0"
+ },
+ "on_t1": {
+  "ALL": "0/0"
+ },
+ "off_t2_ref": {
+  "coverage": 0.042,
+  "contradiction": 0.084
+ },
+ "on_t2_ref": {
+  "coverage": 0.042,
+  "contradiction": 0.062
+ },
+ "off_t3_acc": 0.319,
+ "on_t3_acc": 0.417,
+ "off_meta": {
+  "mode": "off",
+  "atoms": 9553,
+  "nodes": 892,
+  "elapsed_s": 132.1,
+  "n_messages": 716
+ },
+ "on_meta": {
+  "mode": "on",
+  "atoms": 9553,
+  "nodes": 892,
+  "elapsed_s": 148.2,
+  "n_messages": 716
+ }
+}
+
+T2 evidence (生成报告内部指标):
+  off t2_part: claims=66 cover=0.121 support=0.121 hard=1.0
+  off t2_persona: claims=67 cover=0.149 support=0.149 hard=0.0
+  off t2_converge: claims=44 cover=0.182 support=0.182 hard=0.0
+  off t2_problems: claims=40 cover=0.25 support=0.25 hard=0.625
+  on t2_part: claims=72 cover=0.167 support=0.167 hard=1.0
+  on t2_persona: claims=93 cover=0.086 support=0.086 hard=0.5
+  on t2_converge: claims=56 cover=0.196 support=0.196 hard=0.5
+  on t2_problems: claims=61 cover=0.197 support=0.197 hard=0.6
+
+T2 vs 已有分析 (对照):
+  off t2_part: 覆盖 1/12 (0.083) 矛盾 0.167
+  off t2_persona: 覆盖 0/12 (0.0) 矛盾 0.167
+  off t2_converge: 覆盖 0/12 (0.0) 矛盾 0.0
+  off t2_problems: 覆盖 1/12 (0.083) 矛盾 0.0
+  on t2_part: 覆盖 1/12 (0.083) 矛盾 0.167
+  on t2_persona: 覆盖 0/12 (0.0) 矛盾 0.083
+  on t2_converge: 覆盖 0/12 (0.0) 矛盾 0.0
+  on t2_problems: 覆盖 1/12 (0.083) 矛盾 0.0
+
+T3 报告验证:
+  off t3_1: 1/8 = 0.125
+  off t3_2: 2/6 = 0.333
+  off t3_3: 5/8 = 0.625
+  off t3_4: 1/6 = 0.167
+  off t3_5: 2/6 = 0.333
+  off t3_6: 2/6 = 0.333
+  on t3_1: 3/8 = 0.375
+  on t3_2: 2/6 = 0.333
+  on t3_3: 5/8 = 0.625
+  on t3_4: 3/6 = 0.5
+  on t3_5: 2/6 = 0.333
+  on t3_6: 2/6 = 0.333
+
+→ realtest/chatbench/out/ctx_score_q.json

@@ -1,0 +1,582 @@
+{
+ "doc": "realtest/editbench/out/corpus_proj/D3_platform.txt",
+ "prereg": {
+  "coverage_record": "inc_tree 对'被问过且未被编辑'的关键词复述覆盖 ~100%（显著高于 inc_cold/reb）",
+  "coverage_nonrecord": "'题库从未问过'的关键词各臂相近",
+  "note": "record = 被问到、未被编辑（不变/远端题目标）；nonrecord = 文档中存在但任何题都未问的点。"
+ },
+ "edits": [
+  {
+   "kind": "rename",
+   "old": "attention_node_cap",
+   "new": "attention_node_budget"
+  },
+  {
+   "kind": "rename",
+   "old": "find_similar_threshold",
+   "new": "find_dup_threshold"
+  },
+  {
+   "kind": "rename",
+   "old": "ABORT",
+   "new": "HALT"
+  },
+  {
+   "kind": "detail",
+   "old": "2947cbf",
+   "new": "2948abc"
+  },
+  {
+   "kind": "rename",
+   "old": "agent_heartbeat_interval",
+   "new": "agent_pulse_interval"
+  },
+  {
+   "kind": "detail",
+   "old": "ABSENCE_INBOX_CAP=10",
+   "new": "ABSENCE_INBOX_CAP=12"
+  },
+  {
+   "kind": "rewrite",
+   "scope": "分阶段写作",
+   "old": "每章恒定 ~14k 字符上下文预算",
+   "new": "每章恒定 ~16k 字符上下文预算"
+  },
+  {
+   "kind": "delete",
+   "sentence": "前端私密消息标注：管理员视角显示 `[私密]`"
+  },
+  {
+   "kind": "insert",
+   "anchor": "17-21",
+   "text": "补充实测（glm-4.7-flash）：连续唤醒下单轮平均工具调用 17.4 次。"
+  },
+  {
+   "kind": "append",
+   "text": "补充记录（2026-10-05）：平台新增 `/api/v1/agents/{id}/export` 端点，用于导出单个 Agent 的完整对话与执行记录快照。"
+  }
+ ],
+ "questions": [
+  {
+   "id": "D3R1",
+   "layer": "reversal",
+   "q": "节点段注意力名额对应参数的名称是什么？",
+   "check_before": {
+    "require": [
+     "attention_node_cap"
+    ],
+    "forbid": [
+     "attention_node_budget"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "attention_node_budget"
+    ],
+    "forbid": [
+     "attention_node_cap"
+    ]
+   }
+  },
+  {
+   "id": "D3R2",
+   "layer": "reversal",
+   "q": "逐字重复检测（find_similar 通道）阈值的参数名是什么？",
+   "check_before": {
+    "require": [
+     "find_similar_threshold"
+    ],
+    "forbid": [
+     "find_dup_threshold"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "find_dup_threshold"
+    ],
+    "forbid": [
+     "find_similar_threshold"
+    ]
+   }
+  },
+  {
+   "id": "D3R3",
+   "layer": "reversal",
+   "q": "API 欠费/限流时平台写出的中止标记文件叫什么？",
+   "check_before": {
+    "require": [
+     "ABORT.json"
+    ],
+    "forbid": [
+     "HALT.json"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "HALT.json"
+    ],
+    "forbid": [
+     "ABORT"
+    ]
+   }
+  },
+  {
+   "id": "D3R4",
+   "layer": "reversal",
+   "q": "占位透明修复对应的 git 提交号是什么？",
+   "check_before": {
+    "require": [
+     "2947cbf"
+    ],
+    "forbid": [
+     "2948abc"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "2948abc"
+    ],
+    "forbid": [
+     "2947cbf"
+    ]
+   }
+  },
+  {
+   "id": "D3R5",
+   "layer": "reversal",
+   "q": "全局配置里，心跳间隔（秒）对应的字段名是什么？",
+   "check_before": {
+    "require": [
+     "agent_heartbeat_interval"
+    ],
+    "forbid": [
+     "agent_pulse_interval"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "agent_pulse_interval"
+    ],
+    "forbid": [
+     "agent_heartbeat_interval"
+    ]
+   }
+  },
+  {
+   "id": "D3R6",
+   "layer": "reversal",
+   "q": "缺席实验中，缺席者积压消息的条数上限（常量定义）是多少？",
+   "check_before": {
+    "require": [
+     "ABSENCE_INBOX_CAP=10"
+    ],
+    "forbid": [
+     "ABSENCE_INBOX_CAP=12"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "ABSENCE_INBOX_CAP=12"
+    ],
+    "forbid": [
+     "ABSENCE_INBOX_CAP=10"
+    ]
+   }
+  },
+  {
+   "id": "D3R7",
+   "layer": "reversal",
+   "q": "平台前端里，私密消息在管理员视角下显示成什么标注？",
+   "check_before": {
+    "require": [
+     "[私密]"
+    ],
+    "forbid": []
+   },
+   "check_after": {
+    "require": [],
+    "forbid": [
+     "[私密]"
+    ]
+   }
+  },
+  {
+   "id": "D3R8",
+   "layer": "reversal",
+   "q": "长篇小说写作 Agent 每章恒定使用的上下文预算约为多少字符？",
+   "check_before": {
+    "require": [
+     "~14k 字符"
+    ],
+    "forbid": [
+     "~16k 字符"
+    ]
+   },
+   "check_after": {
+    "require": [
+     "~16k 字符"
+    ],
+    "forbid": [
+     "~14k 字符"
+    ]
+   }
+  },
+  {
+   "id": "D3A1",
+   "layer": "append",
+   "novel": true,
+   "q": "补充实测中，连续唤醒下单轮平均工具调用次数是多少？",
+   "check_before": {
+    "require": [
+     "17.4 次"
+    ],
+    "forbid": []
+   },
+   "check_after": {
+    "require": [
+     "17.4 次"
+    ],
+    "forbid": [
+     "17.9 次"
+    ]
+   }
+  },
+  {
+   "id": "D3A2",
+   "layer": "append",
+   "novel": true,
+   "q": "2026-10-05 的补充记录里，平台新增了哪个用于导出 Agent 快照的端点？",
+   "check_before": {
+    "require": [
+     "/api/v1/agents/{id}/export"
+    ],
+    "forbid": []
+   },
+   "check_after": {
+    "require": [
+     "/api/v1/agents/{id}/export"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D3I1",
+   "layer": "invariant",
+   "q": "多实例平台用哪个环境变量设置实例根目录？",
+   "check_before": {
+    "require": [
+     "AHI_INSTANCE_ROOT"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D3I2",
+   "layer": "invariant",
+   "q": "单轮最多处理 pending 消息数的参数名是什么？",
+   "check_before": {
+    "require": [
+     "max_pending_per_loop"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D3I3",
+   "layer": "invariant",
+   "q": "平台全局配置里，Agent 内部端口起始值对应的字段名是什么？",
+   "check_before": {
+    "require": [
+     "agent_port_start"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D3I4",
+   "layer": "invariant",
+   "q": "平台全局配置里，判定 Agent 离线的心跳超时字段名是什么？",
+   "check_before": {
+    "require": [
+     "agent_heartbeat_timeout"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D3M1",
+   "layer": "remote",
+   "q": "文档里群发消息使用的广播地址写法是什么？",
+   "check_before": {
+    "require": [
+     "broadcast:agents"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D3M2",
+   "layer": "remote",
+   "q": "平台每实例独立存放 agent 数据的数据库文件名是什么？",
+   "check_before": {
+    "require": [
+     "system.db"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D3M3",
+   "layer": "remote",
+   "q": "一次实验归档备份目录的命名（final-backup 开头的那串）是什么？",
+   "check_before": {
+    "require": [
+     "final-backup/20260815-220551"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D3M4",
+   "layer": "remote",
+   "q": "平台里负责全局消息归档的数据库类叫什么？",
+   "check_before": {
+    "require": [
+     "SystemDB"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D3M5",
+   "layer": "remote",
+   "q": "平台的 Python Shell 在哪个进程类里执行代码？",
+   "check_before": {
+    "require": [
+     "multiprocessing.Process"
+    ],
+    "forbid": []
+   }
+  },
+  {
+   "id": "D3M6",
+   "layer": "remote",
+   "q": "前端里唯一能查看私密消息的管理员编号是什么？",
+   "check_before": {
+    "require": [
+     "0xbf5d36"
+    ],
+    "forbid": []
+   }
+  }
+ ],
+ "retell_checklist": {
+  "require": [
+   [
+    "attention_node_budget"
+   ],
+   [
+    "find_dup_threshold"
+   ],
+   [
+    "HALT"
+   ],
+   [
+    "2948abc"
+   ],
+   [
+    "agent_pulse_interval"
+   ],
+   [
+    "ABSENCE_INBOX_CAP=12"
+   ],
+   [
+    "~16k 字符"
+   ],
+   [
+    "agent_port_start"
+   ],
+   [
+    "/api/v1/agents/{id}/export",
+    "导出端点"
+   ],
+   [
+    "17.4 次"
+   ],
+   [
+    "AHI_INSTANCE_ROOT",
+    "实例根目录"
+   ],
+   [
+    "max_pending_per_loop",
+    "待处理"
+   ],
+   [
+    "broadcast:agents",
+    "广播"
+   ],
+   [
+    "system.db",
+    "数据库"
+   ],
+   [
+    "final-backup",
+    "备份目录",
+    "归档"
+   ],
+   [
+    "agent_port_start",
+    "端口起始"
+   ],
+   [
+    "agent_heartbeat_timeout",
+    "心跳超时"
+   ],
+   [
+    "SystemDB",
+    "数据库类"
+   ],
+   [
+    "Process",
+    "进程类"
+   ],
+   [
+    "0xbf5d36",
+    "管理员编号"
+   ],
+   [
+    "SIGTERM",
+    "信号"
+   ],
+   [
+    "tree_final",
+    "终态"
+   ],
+   [
+    "run_parallel",
+    "并行"
+   ],
+   [
+    "8080"
+   ],
+   [
+    "max_memory_mb",
+    "内存看门狗"
+   ],
+   [
+    "monitor_mem",
+    "内存监控"
+   ],
+   [
+    "message_router",
+    "消息路由"
+   ],
+   [
+    "process_manager",
+    "进程管理"
+   ],
+   [
+    "wakeup_interval",
+    "唤醒间隔"
+   ],
+   [
+    "main_process_port",
+    "主进程端口"
+   ]
+  ],
+  "require_record": [
+   [
+    "AHI_INSTANCE_ROOT",
+    "实例根目录"
+   ],
+   [
+    "max_pending_per_loop",
+    "待处理"
+   ],
+   [
+    "broadcast:agents",
+    "广播"
+   ],
+   [
+    "system.db",
+    "数据库"
+   ],
+   [
+    "final-backup",
+    "备份目录",
+    "归档"
+   ],
+   [
+    "agent_port_start",
+    "端口起始"
+   ],
+   [
+    "agent_heartbeat_timeout",
+    "心跳超时"
+   ],
+   [
+    "SystemDB",
+    "数据库类"
+   ],
+   [
+    "Process",
+    "进程类"
+   ],
+   [
+    "0xbf5d36",
+    "管理员编号"
+   ]
+  ],
+  "require_nonrecord": [
+   [
+    "SIGTERM",
+    "信号"
+   ],
+   [
+    "tree_final",
+    "终态"
+   ],
+   [
+    "run_parallel",
+    "并行"
+   ],
+   [
+    "8080"
+   ],
+   [
+    "max_memory_mb",
+    "内存看门狗"
+   ],
+   [
+    "monitor_mem",
+    "内存监控"
+   ],
+   [
+    "message_router",
+    "消息路由"
+   ],
+   [
+    "process_manager",
+    "进程管理"
+   ],
+   [
+    "wakeup_interval",
+    "唤醒间隔"
+   ],
+   [
+    "main_process_port",
+    "主进程端口"
+   ]
+  ],
+  "forbid": [
+   "attention_node_cap",
+   "find_similar_threshold",
+   "ABORT",
+   "2947cbf",
+   "agent_heartbeat_interval",
+   "ABSENCE_INBOX_CAP=10",
+   "[私密]",
+   "~14k 字符"
+  ]
+ }
+}

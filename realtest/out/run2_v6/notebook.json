@@ -1,0 +1,65 @@
+{
+ "玉坠": {
+  "key": "玉坠",
+  "kind": "state",
+  "content": "已由玉器铺伙计送至七娘手中，白玉材质，正面刻“顾”字，背面刻“井底三尺，欠债还钱”，红绳系着",
+  "status": "current",
+  "updated_round": 0
+ },
+ "寄存人线索": {
+  "key": "寄存人线索",
+  "kind": "state",
+  "content": "灰袍瘦高个，左眉梢有疤，声音低沉，寄存玉坠十余年，留言让顾家姑娘去井里看看",
+  "status": "current",
+  "updated_round": 0
+ },
+ "枯井石板": {
+  "key": "枯井石板",
+  "kind": "state",
+  "content": "一角有反复挪动磨痕，暗示曾被人动过",
+  "status": "current",
+  "updated_round": 0
+ },
+ "旧账簿": {
+  "key": "旧账簿",
+  "kind": "state",
+  "content": "庚子年往来账目，第一页记赵守拙借银三百两，末页夹当票——城南宅基押于庚子年腊月未赎成死当，当票背面粘半枚刻“赵”字铜钱，疑与玉坠“欠债还钱”相对",
+  "status": "current",
+  "updated_round": 2
+ },
+ "索债人线索": {
+  "key": "索债人线索",
+  "kind": "state",
+  "content": "灰袍人寄存玉坠时另留纸条，写“赵守拙已死，债未销。索债人，腊月廿九来”，纸条写于庚子年冬月，与当票赎期（庚子年腊月）相邻",
+  "status": "current",
+  "updated_round": 3
+ },
+ "半枚铜钱": {
+  "key": "半枚铜钱",
+  "kind": "state",
+  "content": "庙后槐树根下挖出另半枚，断口与当票上粘的半枚严丝合缝，可拼合成完整一枚，两面各刻“赵”“顾”字",
+  "status": "current",
+  "updated_round": 5
+ },
+ "灰袍人身份": {
+  "key": "灰袍人身份",
+  "kind": "state",
+  "content": "现身于城外破庙，左眉梢旧疤，确认是当年寄存玉坠之人，系替赵守拙守债之人，埋下半枚铜钱与顾父字条后离去",
+  "status": "current",
+  "updated_round": 5
+ },
+ "真相": {
+  "key": "真相",
+  "kind": "state",
+  "content": "三百两实为赵守拙借给顾父，顾父替赵守拙认下宅基死当；赵守拙庚子年冬死于破庙，至死守着另半枚铜钱等顾家来对",
+  "status": "current",
+  "updated_round": 5
+ },
+ "顾父字条": {
+  "key": "顾父字条",
+  "kind": "state",
+  "content": "庙后油布中另有一纸，字迹为顾父，写“赵兄，三百两本是我借你的，你却替我认了死当。我顾家欠你一条命、一座宅。腊月廿九，我若不来，你便来取”",
+  "status": "current",
+  "updated_round": 5
+ }
+}

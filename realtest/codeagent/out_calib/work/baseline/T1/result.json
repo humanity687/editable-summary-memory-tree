@@ -1,0 +1,29 @@
+{
+  "group": "baseline",
+  "task": "T1",
+  "title": "thinking 配置不生效",
+  "passed": true,
+  "accept_rc": 0,
+  "accept_verdict": "PASS",
+  "elapsed_s": 60.2,
+  "agent_result": {
+    "ok": true,
+    "rounds": 13,
+    "summary": "修复 T1：LLMClient 在调用 OpenAI API 时将 thinking 配置通过 extra_body 传递，使 DeepSeek 思考模式配置生效。修改文件：sdk/llm_client.py，在 send_message 方法的 kwargs 中增加 extra_body={'thinking': self.thinking}。验收：运行 accept_t1.py 退出码 0 通过。",
+    "notes": []
+  },
+  "metrics": {
+    "rounds": 13,
+    "tool_uses": {
+      "command": 11,
+      "read": 7,
+      "write": 1,
+      "finish": 1
+    },
+    "history_chars": 78726
+  },
+  "last_usage": {
+    "prompt_tokens": 4143,
+    "completion_tokens": 135
+  }
+}

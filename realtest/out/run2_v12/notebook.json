@@ -1,0 +1,37 @@
+{
+ "玉坠": {
+  "key": "玉坠",
+  "kind": "state",
+  "content": "已由柴姓汉子送至七娘手，正面刻“顾”，背面为七娘爹手迹“井底三尺，欠债还钱”",
+  "status": "current",
+  "updated_round": 0
+ },
+ "敲门暗号": {
+  "key": "敲门暗号",
+  "kind": "state",
+  "content": "三长两短，为七娘爹生前约定，用于送坠子之人认门",
+  "status": "current",
+  "updated_round": 0
+ },
+ "七娘爹": {
+  "key": "七娘爹",
+  "kind": "state",
+  "content": "六年前北进山收旧玉时失踪，临行前将玉坠交由柴姓汉子；末封信嘱七娘搬至城南旧宅，未提坠子与暗号",
+  "status": "current",
+  "updated_round": 0
+ },
+ "伙计": {
+  "key": "伙计",
+  "kind": "state",
+  "content": "与七娘爹一同进山，在七娘老宅守门七日无人应，将坠子托刘掌柜后独自进山寻人未归",
+  "status": "current",
+  "updated_round": 0
+ },
+ "枯井": {
+  "key": "枯井",
+  "kind": "state",
+  "content": "井沿石板边缘有去年冬天新翻的土痕，石板压得很沉，七娘未掀开；她怀疑爹未进山，而是与此井有关",
+  "status": "current",
+  "updated_round": 1
+ }
+}

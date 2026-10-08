@@ -1,0 +1,23 @@
+{
+ "玉坠来源": {
+  "key": "玉坠来源",
+  "kind": "state",
+  "content": "实为二十年前戴斗笠外乡人所存，并非其父；外乡人留言让顾家女儿去井底看看",
+  "status": "current",
+  "updated_round": 3
+ },
+ "枯井": {
+  "key": "枯井",
+  "kind": "state",
+  "content": "七娘下井探看后，未再发出声响",
+  "status": "current",
+  "updated_round": 4
+ },
+ "井底发现": {
+  "key": "井底发现",
+  "kind": "state",
+  "content": "井壁距底三四尺处有松动的青砖，砖后藏油布包裹，内有旧木匣，装着一张恒昌当铺当票（当物“青瓷碗一只”，日期二十年前冬月，字迹为顾父所写）和半枚铜钱（断口齐整，边缘刻“井”字）",
+  "status": "current",
+  "updated_round": 4
+ }
+}

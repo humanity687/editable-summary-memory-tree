@@ -1,0 +1,81 @@
+{
+ "D1_design": {
+  "dup_line_ratio": 0.0021,
+  "dup_sent_ratio": 0.0025,
+  "n_lines_ge20": 956,
+  "unique_lines_ge20": 954,
+  "n_sents": 1189,
+  "unique_sents": 1186,
+  "n_distinct_numbers": 196,
+  "n_distinct_latin_ids": 607,
+  "n_anchor_like_lines": 505,
+  "chars": 69653,
+  "raw_chars": 70140,
+  "dedup_paras_removed": 0,
+  "files": {
+   "AGENTS.md": 33869,
+   "realtest/USAGE_SPEC.md": 12598,
+   "ahi-bench/PERSONA_RETENTION.md": 17922,
+   "ahi-bench/SPEC.md": 5636
+  },
+  "missing": [],
+  "n_files": 4
+ },
+ "D2_experiments": {
+  "dup_line_ratio": 0.0047,
+  "dup_sent_ratio": 0.0053,
+  "n_lines_ge20": 1276,
+  "unique_lines_ge20": 1270,
+  "n_sents": 1496,
+  "unique_sents": 1488,
+  "n_distinct_numbers": 338,
+  "n_distinct_latin_ids": 762,
+  "n_anchor_like_lines": 579,
+  "chars": 81551,
+  "raw_chars": 84094,
+  "dedup_paras_removed": 0,
+  "files": {
+   "realtest/editbench/EXPERIMENT_REPORT.md": 14723,
+   "realtest/editbench/AHI_ACT_REVIEW.md": 14360,
+   "realtest/editbench/REPORT.md": 5270,
+   "realtest/editbench/INNOVATION_REVIEW.md": 4582,
+   "realtest/chatbench/EXPERIMENT_REPORT.md": 5673,
+   "realtest/chatbench/PLAN.md": 2310,
+   "realtest/chatbench/COMPARE_REPORT.md": 834,
+   "ahi-bench/PR5_REPORT.md": 7082,
+   "ahi-multi/experiments/EXPERIMENTS.md": 10682,
+   "ahi-multi/experiments/ABSENCE_EXPERIMENT.md": 7970,
+   "ahi-multi/experiments/ARCHIVE_CHAT.md": 4967,
+   "ahi-multi/experiments/analysis/ANALYSIS_COLD_HOT.md": 2604,
+   "ahi-multi/experiments/analysis/ANALYSIS_COLD_1H.md": 2479
+  },
+  "missing": [],
+  "n_files": 13
+ },
+ "D3_platform": {
+  "dup_line_ratio": 0.008,
+  "dup_sent_ratio": 0.009,
+  "n_lines_ge20": 1882,
+  "unique_lines_ge20": 1867,
+  "n_sents": 2216,
+  "unique_sents": 2196,
+  "n_distinct_numbers": 392,
+  "n_distinct_latin_ids": 1741,
+  "n_anchor_like_lines": 863,
+  "chars": 138481,
+  "raw_chars": 140268,
+  "dedup_paras_removed": 1,
+  "files": {
+   "README.md": 2552,
+   "HANDOFF.md": 78442,
+   "ahi-bench/README.md": 9523,
+   "ahi-multi/HANDOFF.md": 26496,
+   "ahi-multi/README.md": 10062,
+   "ahi-multi/CHANGES.md": 3744,
+   "ahi-multi/CLAUDE.md": 4398,
+   "ahi-multi/next_exp_insts.md": 4935
+  },
+  "missing": [],
+  "n_files": 8
+ }
+}

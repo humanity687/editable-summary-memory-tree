@@ -1,0 +1,3418 @@
+{
+ "model": "deepseek-v4-flash",
+ "doc": "realtest/editbench/out/corpus_proj/D1_design.txt",
+ "scenario": "D1_design",
+ "n_questions": 20,
+ "repeats": 5,
+ "answer_temp": 0.7,
+ "distill_temp": 0.0,
+ "judge": true,
+ "answer_thinking": "off",
+ "distill_thinking": "off",
+ "splitter": "line",
+ "embed_model": "bge-small-zh-v1.5(default)",
+ "ledger": [
+  {
+   "kind": "detail",
+   "instruction": "把「EMBED_BATCH=32」更改为「EMBED_BATCH=64」",
+   "old": "EMBED_BATCH=32",
+   "new": "EMBED_BATCH=64",
+   "old_units": [
+    "- **批量编码（2026-10-03 内存修复）**：候选原子/节点向量在**一次** `enc.encode(list)` 内批量编码（`EMBED_BATCH=32`），禁止逐条 `enc.encode`——逐条在 MPS 上堆积幽灵内存（实测同批 316 条：逐条 +460MB vs 批量 +69MB），是 pr3 agent 触及 2GB 看门狗重启的根因。"
+   ],
+   "new_units": [
+    "- **批量编码（2026-10-03 内存修复）**：候选原子/节点向量在**一次** `enc.encode(list)` 内批量编码（`EMBED_BATCH=64`），禁止逐条 `enc.encode`——逐条在 MPS 上堆积幽灵内存（实测同批 316 条：逐条 +460MB vs 批量 +69MB），是 pr3 agent 触及 2GB 看门狗重启的根因。"
+   ]
+  },
+  {
+   "kind": "detail",
+   "instruction": "把「EMBED_BATCH | 32」更改为「EMBED_BATCH | 64」",
+   "old": "EMBED_BATCH | 32",
+   "new": "EMBED_BATCH | 64",
+   "old_units": [
+    "ahi-bench ablation 臂再开） | flag 关（已实现，未触发） |\n| expand_heat_threshold / heat_parent_factor / heat_decay | 60 / 0.5 / =decay | 炸开热量阈值 / 子→父半权 / 热量每轮衰减（口径随 tick/检索节奏） | 未校准 |\n| expand_atom_cap / expand_char_cap | 80 / 3000 | 召回展开影子（叶子展开）上限 | 未校准 |\n| span_atom_cap / span_char_cap | 40 / 1500 | [span] 区间回调上限 | 未校准 |\n| w_vec_node / w_bm_node / w_bm_atom | 0.4 / 0.3 / 0.3 | 混合检索三通道权重（原子向量通道复用 `w_vec_node`） | 未校准 |\n| atom_min_len / atom_rerank_cap / atom_vec_min | 8 / 60 / 0.2 | 原子通道：最小长度 / 精排上限 / 向量最低分 | 未校准 |\n| EMBED_BATCH | 32 | 向量批量编码批大小（内存修复：禁止逐条 encode，MPS 幽灵内存） | 已定（2026-10-03） |\n| ATOM_CHAR_CAP / ATOM_WEIGHT_CHAR | 2000 / 1000 | 原子文本再切上限 / 大卡 weight=2 阈值 | 未校准 |\n| find_similar_threshold | 0.8 | 重复输入检测（bigram Jaccard）。"
+   ],
+   "new_units": [
+    "ahi-bench ablation 臂再开） | flag 关（已实现，未触发） |\n| expand_heat_threshold / heat_parent_factor / heat_decay | 60 / 0.5 / =decay | 炸开热量阈值 / 子→父半权 / 热量每轮衰减（口径随 tick/检索节奏） | 未校准 |\n| expand_atom_cap / expand_char_cap | 80 / 3000 | 召回展开影子（叶子展开）上限 | 未校准 |\n| span_atom_cap / span_char_cap | 40 / 1500 | [span] 区间回调上限 | 未校准 |\n| w_vec_node / w_bm_node / w_bm_atom | 0.4 / 0.3 / 0.3 | 混合检索三通道权重（原子向量通道复用 `w_vec_node`） | 未校准 |\n| atom_min_len / atom_rerank_cap / atom_vec_min | 8 / 60 / 0.2 | 原子通道：最小长度 / 精排上限 / 向量最低分 | 未校准 |\n| EMBED_BATCH | 64 | 向量批量编码批大小（内存修复：禁止逐条 encode，MPS 幽灵内存） | 已定（2026-10-03） |\n| ATOM_CHAR_CAP / ATOM_WEIGHT_CHAR | 2000 / 1000 | 原子文本再切上限 / 大卡 weight=2 阈值 | 未校准 |\n| find_similar_threshold | 0.8 | 重复输入检测（bigram Jaccard）。"
+   ]
+  },
+  {
+   "kind": "rename",
+   "instruction": "把所有出现的「NeutralAgent」改名为「BaselineAgent」",
+   "old": "NeutralAgent",
+   "new": "BaselineAgent",
+   "old_units": [
+    "## 1. Agent 三元组（每 run 一组，人格支撑三梯度）\n\n| Agent | 名字 | 条件 | 实现 | 移除锚点 |\n| bench-a | 青 | BENCH_PERSONA 恒在 | ChatAHIAgent（lan 实现） | 永不（rounds=999999） |\n| bench-b | 蓝 | BENCH_PERSONA，到点移除 | ChatAHIAgent | **agent 内部唤醒轮 40**（30s 间隔时 ≈ 墙钟 20min） |\n| bench-c | 墨 | 零 persona | NeutralAgent | —（PROTOCOL_ONLY 恒在） |\n\n- **移除锚定唤醒轮次，不锚墙钟**：换 wakeup_interval 时主观经验可比（20min 设计意图在 30s 间隔下等价）。"
+   ],
+   "new_units": [
+    "## 1. Agent 三元组（每 run 一组，人格支撑三梯度）\n\n| Agent | 名字 | 条件 | 实现 | 移除锚点 |\n| bench-a | 青 | BENCH_PERSONA 恒在 | ChatAHIAgent（lan 实现） | 永不（rounds=999999） |\n| bench-b | 蓝 | BENCH_PERSONA，到点移除 | ChatAHIAgent | **agent 内部唤醒轮 40**（30s 间隔时 ≈ 墙钟 20min） |\n| bench-c | 墨 | 零 persona | BaselineAgent | —（PROTOCOL_ONLY 恒在） |\n\n- **移除锚定唤醒轮次，不锚墙钟**：换 wakeup_interval 时主观经验可比（20min 设计意图在 30s 间隔下等价）。"
+   ]
+  },
+  {
+   "kind": "detail",
+   "instruction": "把「sq_anchor_share」更改为「anchor_frac」",
+   "old": "sq_anchor_share",
+   "new": "anchor_frac",
+   "old_units": [
+    "测\"自我模仿→人格保持\"因果，**非 tree 修复** | 已跑 pr6_sq（tree-s42，120 轮）：H-SQ1/3/4 达标、**H-SQ2 未达标**（回声风险实体化） |\n| sq_anchor_share / sq_onset_agent | 0.4 / per-agent(18/5/15) | **分层 SQ v2**（§4.5.10 续 / `PERSONA_RETENTION §10.3.2`）：锚定切片（`created_round < onset` 的 alive 自产原话）占 self 配额比例 / 各 agent 首染 onset（审计①定，clean=round<onset）。"
+   ],
+   "new_units": [
+    "测\"自我模仿→人格保持\"因果，**非 tree 修复** | 已跑 pr6_sq（tree-s42，120 轮）：H-SQ1/3/4 达标、**H-SQ2 未达标**（回声风险实体化） |\n| anchor_frac / sq_onset_agent | 0.4 / per-agent(18/5/15) | **分层 SQ v2**（§4.5.10 续 / `PERSONA_RETENTION §10.3.2`）：锚定切片（`created_round < onset` 的 alive 自产原话）占 self 配额比例 / 各 agent 首染 onset（审计①定，clean=round<onset）。"
+   ]
+  },
+  {
+   "kind": "detail",
+   "instruction": "把「20 / 12 / 18」更改为「24 / 12 / 18」",
+   "old": "20 / 12 / 18",
+   "new": "24 / 12 / 18",
+   "old_units": [
+    "## 3. 协议参数（冻结）\n\n| 参数 | 值 | 说明 |\n| wakeup_interval | 30s | 三 agent |\n| preheat / absence / observe | 20 / 12 / 18 轮 | 110 轮 ≈ 55min/轮（验证过的 1h 先行实验量） |\n| 冷轮缺席顺序 | bench-a → bench-b → bench-c | Round1 |\n| 热轮缺席顺序 | 反序（c→b→a） | Round2，平衡文化累积顺序效应 |\n| seed | 42 | 话题/热探针抽取固定 |\n| 话题池 | 12 题（继承 absence_driver TOPICS_POOL） | 每轮全 agent 各发一条 |\n| survey | 4 题，每 10 轮 | 三句话自我介绍/性格风格/立场/变化 |\n| 热探针 | 3 句，缺席期每 3 轮发给留守者 | \"趁{名字}不在，聊聊它吧\" |\n| 注入通道 | inject API（user:experimenter） | 不污染 probe 人格档案 |\n| B 移除 | agent 内轮 40（driver 同刻记 marker 事件） | 见 §1 |\n| 缺席模式 | alone（唯一主力） | halt 为可选对照，不在 M0 内 |\n\n## 4. Pinned 引擎参数（三 agent 相同，= 缺席实验验证配置 2026-08-30）\n\n> 完整清单 = `config/bench_config.example.json` 的 `engine` 块（assembly_budget 16000 /\n> retrieval_budget 6 / merge_every 4 / decay 8.0 / hp_merge_threshold 30 / parent_init_hp 70 /\n> hot_threshold 60 / recall_boost 30 / merge_cap_atoms 500 / merge_depth_diff 1 /\n> promote_threshold 3 / attention_atom_cap 40 / attention_node_cap 20 / attention_out 45 /\n> attention_in_decay 0.5 / attention_out_decay 3.0 / merge_fanout_cap 12 /\n> pressure_threshold 2.0 / expand_atom_cap 80 / expand_char_cap 3000 / max_hp 150 /\n> merge_pressure_threshold 20 / max_pending_per_loop 3 /\n> force_cooldown_rounds 8 / max_code_per_loop 4 / distill_parallel 4 / snapshot_every_rounds 20）。"
+   ],
+   "new_units": [
+    "## 3. 协议参数（冻结）\n\n| 参数 | 值 | 说明 |\n| wakeup_interval | 30s | 三 agent |\n| preheat / absence / observe | 24 / 12 / 18 轮 | 110 轮 ≈ 55min/轮（验证过的 1h 先行实验量） |\n| 冷轮缺席顺序 | bench-a → bench-b → bench-c | Round1 |\n| 热轮缺席顺序 | 反序（c→b→a） | Round2，平衡文化累积顺序效应 |\n| seed | 42 | 话题/热探针抽取固定 |\n| 话题池 | 12 题（继承 absence_driver TOPICS_POOL） | 每轮全 agent 各发一条 |\n| survey | 4 题，每 10 轮 | 三句话自我介绍/性格风格/立场/变化 |\n| 热探针 | 3 句，缺席期每 3 轮发给留守者 | \"趁{名字}不在，聊聊它吧\" |\n| 注入通道 | inject API（user:experimenter） | 不污染 probe 人格档案 |\n| B 移除 | agent 内轮 40（driver 同刻记 marker 事件） | 见 §1 |\n| 缺席模式 | alone（唯一主力） | halt 为可选对照，不在 M0 内 |\n\n## 4. Pinned 引擎参数（三 agent 相同，= 缺席实验验证配置 2026-08-30）\n\n> 完整清单 = `config/bench_config.example.json` 的 `engine` 块（assembly_budget 16000 /\n> retrieval_budget 6 / merge_every 4 / decay 8.0 / hp_merge_threshold 30 / parent_init_hp 70 /\n> hot_threshold 60 / recall_boost 30 / merge_cap_atoms 500 / merge_depth_diff 1 /\n> promote_threshold 3 / attention_atom_cap 40 / attention_node_cap 20 / attention_out 45 /\n> attention_in_decay 0.5 / attention_out_decay 3.0 / merge_fanout_cap 12 /\n> pressure_threshold 2.0 / expand_atom_cap 80 / expand_char_cap 3000 / max_hp 150 /\n> merge_pressure_threshold 20 / max_pending_per_loop 3 /\n> force_cooldown_rounds 8 / max_code_per_loop 4 / distill_parallel 4 / snapshot_every_rounds 20）。"
+   ]
+  },
+  {
+   "kind": "rename",
+   "instruction": "把所有出现的「theta_nonredundant」改名为「nonredundant_theta」",
+   "old": "theta_nonredundant",
+   "new": "nonredundant_theta",
+   "old_units": [
+    "**已校准（2026-09-25，§4.7）** | 校准完成 |\n| auto_preretrieve / preretrieve_budget / preretrieve_atom_cap | 代码默认 false / 6 / 20（场景 config true） | pending 自动预检索（混合检索注入影子） | 未校准（已实现） |\n| usage_shadow | false | 使用信号层（§4.9）影子模式：只记边不进读路径 | 已实现（Phase B，未启用） |\n| match_score_floor / cover_span_max / theta_nonredundant | 0.25 / 60 / 0.58 | 输出句匹配下限 / T2 覆盖跨度分档线 / 非冗余阈值 | 先拍（Phase C 复校） |\n| w_cite / w_uninj / w_rewrite | 3 / 2 / 1 | 使用边三档权重（T1/T2/T3） | 未校准 |\n| render_clean | 引擎默认 false / 聊天+ahi config true | 渲染分层开关（§4.5.6） | 已定 |\n| source_labels（展示） | 名字（ai→本 agent 名回退 self；"
+   ],
+   "new_units": [
+    "**已校准（2026-09-25，§4.7）** | 校准完成 |\n| auto_preretrieve / preretrieve_budget / preretrieve_atom_cap | 代码默认 false / 6 / 20（场景 config true） | pending 自动预检索（混合检索注入影子） | 未校准（已实现） |\n| usage_shadow | false | 使用信号层（§4.9）影子模式：只记边不进读路径 | 已实现（Phase B，未启用） |\n| match_score_floor / cover_span_max / nonredundant_theta | 0.25 / 60 / 0.58 | 输出句匹配下限 / T2 覆盖跨度分档线 / 非冗余阈值 | 先拍（Phase C 复校） |\n| w_cite / w_uninj / w_rewrite | 3 / 2 / 1 | 使用边三档权重（T1/T2/T3） | 未校准 |\n| render_clean | 引擎默认 false / 聊天+ahi config true | 渲染分层开关（§4.5.6） | 已定 |\n| source_labels（展示） | 名字（ai→本 agent 名回退 self；"
+   ]
+  },
+  {
+   "kind": "rename",
+   "instruction": "把所有出现的「max_tokens」改名为「token_budget」",
+   "old": "max_tokens",
+   "new": "token_budget",
+   "old_units": [
+    "10. **max_tokens（2026-10-03）**：tree 不设（realtest client）；"
+   ],
+   "new_units": [
+    "10. **token_budget（2026-10-03）**：tree 不设（realtest client）；"
+   ]
+  },
+  {
+   "kind": "rewrite",
+   "instruction": "把以「深度 = 合并历史轮数…」开头的那一段改写：迭代遍历而非递归 → 显式栈遍历而非递归",
+   "old": "迭代遍历而非递归",
+   "new": "显式栈遍历而非递归",
+   "old_units": [
+    "编辑/重建会破坏平衡（重建可产生单活子节点链，见 §4.6），实测深度可达 O(sqrt(叶子数)) 量级——**不承诺严格上界**，实现必须用迭代遍历而非递归（防爆栈），检索/组装按预算封顶。"
+   ],
+   "new_units": [
+    "编辑/重建会破坏平衡（重建可产生单活子节点链，见 §4.6），实测深度可达 O(sqrt(叶子数)) 量级——**不承诺严格上界**，实现必须用显式栈遍历而非递归（防爆栈），检索/组装按预算封顶。"
+   ]
+  },
+  {
+   "kind": "rename",
+   "instruction": "把所有出现的「atom_min_len」改名为「min_atom_chars」",
+   "old": "atom_min_len",
+   "new": "min_atom_chars",
+   "old_units": [
+    "ahi-bench ablation 臂再开） | flag 关（已实现，未触发） |\n| expand_heat_threshold / heat_parent_factor / heat_decay | 60 / 0.5 / =decay | 炸开热量阈值 / 子→父半权 / 热量每轮衰减（口径随 tick/检索节奏） | 未校准 |\n| expand_atom_cap / expand_char_cap | 80 / 3000 | 召回展开影子（叶子展开）上限 | 未校准 |\n| span_atom_cap / span_char_cap | 40 / 1500 | [span] 区间回调上限 | 未校准 |\n| w_vec_node / w_bm_node / w_bm_atom | 0.4 / 0.3 / 0.3 | 混合检索三通道权重（原子向量通道复用 `w_vec_node`） | 未校准 |\n| atom_min_len / atom_rerank_cap / atom_vec_min | 8 / 60 / 0.2 | 原子通道：最小长度 / 精排上限 / 向量最低分 | 未校准 |\n| EMBED_BATCH | 64 | 向量批量编码批大小（内存修复：禁止逐条 encode，MPS 幽灵内存） | 已定（2026-10-03） |\n| ATOM_CHAR_CAP / ATOM_WEIGHT_CHAR | 2000 / 1000 | 原子文本再切上限 / 大卡 weight=2 阈值 | 未校准 |\n| find_similar_threshold | 0.8 | 重复输入检测（bigram Jaccard）。"
+   ],
+   "new_units": [
+    "ahi-bench ablation 臂再开） | flag 关（已实现，未触发） |\n| expand_heat_threshold / heat_parent_factor / heat_decay | 60 / 0.5 / =decay | 炸开热量阈值 / 子→父半权 / 热量每轮衰减（口径随 tick/检索节奏） | 未校准 |\n| expand_atom_cap / expand_char_cap | 80 / 3000 | 召回展开影子（叶子展开）上限 | 未校准 |\n| span_atom_cap / span_char_cap | 40 / 1500 | [span] 区间回调上限 | 未校准 |\n| w_vec_node / w_bm_node / w_bm_atom | 0.4 / 0.3 / 0.3 | 混合检索三通道权重（原子向量通道复用 `w_vec_node`） | 未校准 |\n| min_atom_chars / atom_rerank_cap / atom_vec_min | 8 / 60 / 0.2 | 原子通道：最小长度 / 精排上限 / 向量最低分 | 未校准 |\n| EMBED_BATCH | 64 | 向量批量编码批大小（内存修复：禁止逐条 encode，MPS 幽灵内存） | 已定（2026-10-03） |\n| ATOM_CHAR_CAP / ATOM_WEIGHT_CHAR | 2000 / 1000 | 原子文本再切上限 / 大卡 weight=2 阈值 | 未校准 |\n| find_similar_threshold | 0.8 | 重复输入检测（bigram Jaccard）。"
+   ]
+  },
+  {
+   "kind": "delete",
+   "instruction": "删除句子「3. 并发编辑 → 顺序工作流假设，不做并发控制。」",
+   "old": "3. 并发编辑 → 顺序工作流假设，不做并发控制。",
+   "new": "",
+   "old_units": [
+    "3. 并发编辑 → 顺序工作流假设，不做并发控制。"
+   ],
+   "new_units": []
+  },
+  {
+   "kind": "insert",
+   "instruction": "在含「清缓存后单 agent 峰值约减半…」的行后加入实验数据",
+   "old": "",
+   "new": "实测（glm-4.7-flash）：分层记忆树臂峰值内存 4.9GB、平均 3.4GB（120 轮长跑）。",
+   "old_units": [],
+   "new_units": [
+    "实测（glm-4.7-flash）：分层记忆树臂峰值内存 4.9GB、平均 3.4GB（120 轮长跑）。"
+   ]
+  },
+  {
+   "kind": "append",
+   "instruction": "在文末续写新增一段",
+   "old": "",
+   "new": "独立复测（Qwen3-32B，seed 42）：flat 臂 120 轮的平均内存占用为 2.1GB，峰值 2.6GB；分层树臂同条件下平均内存 3.4GB。",
+   "old_units": [],
+   "new_units": [
+    "独立复测（Qwen3-32B，seed 42）：flat 臂 120 轮的平均内存占用为 2.1GB，峰值 2.6GB；",
+    "分层树臂同条件下平均内存 3.4GB。"
+   ]
+  }
+ ],
+ "phase1": {
+  "raptor": {
+   "n": 100,
+   "pass": 86,
+   "pass_rate": 0.86,
+   "layers": {
+    "reversal": "36/40",
+    "append": "0/10",
+    "invariant": "20/20",
+    "remote": "30/30"
+   },
+   "per_repeat_pass": [
+    17,
+    17,
+    17,
+    18,
+    17
+   ],
+   "per_repeat_rate": [
+    0.85,
+    0.85,
+    0.85,
+    0.9,
+    0.85
+   ],
+   "mean_rate": 0.86,
+   "std_rate": 0.02
+  }
+ },
+ "edit_time": {
+  "raptor": {
+   "edit_ms": 101.11,
+   "settle_ms": 0.0
+  }
+ },
+ "phase3": {
+  "inc_raptor": {
+   "n": 100,
+   "pass": 85,
+   "pass_rate": 0.85,
+   "layers": {
+    "reversal": "30/40",
+    "append": "10/10",
+    "invariant": "15/20",
+    "remote": "30/30"
+   },
+   "per_repeat_pass": [
+    18,
+    17,
+    18,
+    16,
+    16
+   ],
+   "per_repeat_rate": [
+    0.9,
+    0.85,
+    0.9,
+    0.8,
+    0.8
+   ],
+   "mean_rate": 0.85,
+   "std_rate": 0.0447
+  },
+  "reb_raptor": {
+   "n": 100,
+   "pass": 86,
+   "pass_rate": 0.86,
+   "layers": {
+    "reversal": "30/40",
+    "append": "10/10",
+    "invariant": "16/20",
+    "remote": "30/30"
+   },
+   "per_repeat_pass": [
+    17,
+    18,
+    16,
+    17,
+    18
+   ],
+   "per_repeat_rate": [
+    0.85,
+    0.9,
+    0.8,
+    0.85,
+    0.9
+   ],
+   "mean_rate": 0.86,
+   "std_rate": 0.0374
+  }
+ },
+ "retell": {
+  "inc_raptor": {
+   "coverage": "18/30",
+   "coverage_ratio": 0.6,
+   "coverage_record": 0.6,
+   "coverage_nonrecord": 1.0,
+   "rot": "2/10",
+   "rot_ratio": 0.2,
+   "new_miss": [
+    "BaselineAgent",
+    "24 / 12 / 18",
+    "4.9GB",
+    "nonredundant_theta",
+    "token_budget",
+    "显式栈遍历/显式栈",
+    "min_atom_chars",
+    "2.1GB",
+    "max_loop_iterations/动作循环迭代上限",
+    "find_similar_threshold/重复输入检测/逐字重复检测",
+    "initial_hp/初始生命值/初始 HP",
+    "max_memory_mb/内存看门狗"
+   ],
+   "old_leak": [
+    "EMBED_BATCH=32",
+    "sq_anchor_share"
+   ],
+   "chars": 9264,
+   "answer": "# AGENTS.md 分层记忆树 v2 文档复述\n\n## 一、主题与定位\n本文件是**分层记忆树 v2 · 参考资料上下文管理运行时**的**唯一设计权威**（截至 2026-10-04）。所有代码、文档、实验必须以此为准。项目是**通用\"参考资料\"上下文管理机制**，长篇小说写作是第一个应用实例。\n\n解决的问题：长参考资料（书全文、大型文档集）无法整体塞入有限上下文窗口。现有做法全量发送（爆炸）、静态摘要（丢细节）、关键词检索（无状态演化）均失效。\n\n## 二、核心思想（四条）\n1. **位置有序的记忆树**：切原子卡（句），稳定 ID + 顺序链表；摘要卡按连续区间自底向上合并成树；任意节点=某连续区间概括。\n2. **分辨率随热度变化**：近处全分辨率原文，远处降各级摘要（只留专有名词、因果链、关键原句）。\n3. **区间失效 + 懒重建**：编辑用覆盖区间精确失效旧内容；脏卡立即排除出查询，重建推迟到蒸馏时机（零 LLM 即时编辑路径）。\n4. **不可遗忘的事实层**。\n\n## 三、设计原则\n- **简洁**：机制数量少、语义单一，一机制服务多类对象。\n- **涌现**：目标特性从机制交互自然出现（层级沉淀、热区消退、优先级分化）。\n- **判据**：硬规则是最后手段，优先调参数/推广既有机制。\n- **反面教材（2026-08-29）**：节点不受注意力保护 → 统一快衰减 → 9 轮归零 → 无限上并 → 99% 历史压进 1-5 大节点（组装退化成\"两段式\"）。教训：对象类别间衰减待遇不对称会杀死层级涌现。\n- **策展定律（2026-10-04，M-PR 三次重复）**。\n\n## 四、核心约束\n1. 改动前须获明确同意并同步代码，禁止擅自修改/绕过设计。\n2. 写代码前须完整复述设计（§1~§10）。\n3. **组装 = 纯计算（零 LLM）**。LLM 只允许出现在：merge 蒸馏、脏节点重建、章末事实校验、初始化对话、检索摘要生成。\n4. 参数\"先拍后调\"，用基准校准并写回 §11 参数台账。\n5. 正确性依赖的边界条件（标记完备性、铺陈不变量、区间覆盖）须有属性测试。\n6. \"章/beat/伏笔\"字样可替换为通用词（结构单元/内容块/跨区引用）。\n\n## 五、通用化映射\n| 小说语境 | 通用语境 |\n|---|---|\n| 一句话概述 | 全局摘要 |\n| 卷/章 | 结构单元 |\n| beat（叙事节拍） | 内容块 |\n| 伏笔（调度条目） | 跨区引用账本 |\n| 角色状态（状态条目） | 事实条目 |\n| 章节目标（扰动源） | 当前任务目标 |\n\n## 六、架构：三轨记忆\n- **轨道 A 小说内容（参考流）**：记忆树 + 原子层 + 归档（版本谱系）。\n- **轨道 B 笔记本（事实层）**：常驻约束 / 状态条目 / 调度条目；**无 HP、无衰减、存储全量**，遗忘=吃书不允许。注入=去重发送（聊天场景 2026-08-14 拍定），聊天场景用 DISMISS 懒标记。\n- **轨道 C 讨论内容（工作记录）**：工具组压缩卡，自然遗忘；作者反馈卡 protected；与轨道 A 互不转换。\n- 存储：当前=进程内 + gzip/JSONL 快照；SQLite 为规划目标。\n\n## 七、记忆树结构\n- **原子卡**：句粒度，ID 永不复用，顺序由双向链表 `atoms.prev_id / next_id` 维护（piece-table 模式，编辑只做局部指针修改 + 墓碑，不做全局坐标平移）。\n- **区间** = 顺序位置区间；**禁止用 ID 大小做区间判断**（中插会使新 ID 大于区间末 ID）。\n- **摘要卡 nodes 字段**：id（自增）、parent_id、span_first_atom / span_last_atom（位置区间）、content、hp、dirty（0/1）、placeholder（0/1，含热原子区间重建结果）、version。\n- **不变量**：干净节点区间内原子全部存活且内容未变；脏节点不参与读操作；铺陈无重叠、无缝隙、按位置序铺满全文。\n- 父节点由 merge 自底向上合并生成，无预设根，深度不承诺严格上界，实现须用迭代遍历防爆栈。\n\n## 八、合并机制（按秩合并）\n- 双上限：`merge_cap_atoms=500`（单批子树原子数上限，用于分块）、`merge_fanout_cap=12`（单父子卡数上限，防扇出爆炸）。\n- `merge_depth_diff=1`（同组合并最大子树高度差，按秩合并）。\n- 禁止单成员块，子节点数≥2 为硬约束。\n\n## 九、编辑与失效\n确定性句级 diff、墓碑化旧原子、新原子收养（取两侧边界原子 owner 链 LCA）、爬链置脏；禁止 ID 包含测试。归档仅作版本谱系。\n\n## 十、HP 与衰减\n每轮减 decay；合并阈值 hp_merge_threshold，父卡 HP 须大于合并阈值；召回命中提升 recall_boost；HP 不参与事实层。`max_hp=150`。\n\n## 十一、注意力窗口\n2026-08-12 实现，2026-08-29 节点入窗拍定。卡数量预算，拆为原子段 `attention_atom_cap=40` 与节点段 `attention_node_cap`。注意力为上游数量约束，组装为下游字符硬约束。窗口内原子若超字符预算，新原子保护一轮，旧原子低 HP 优先裁，仍超才硬截断记日志。参数 2026-08-29 拍定未校准。\n- `attention_out=45.0`（出窗阈值）\n- `attention_in_decay=0.5`（窗口内衰减倍率，原子与节点同）\n- `attention_out_decay=3.0`（窗口外衰减倍率，仅原子；节点出窗=decay）\n- `merge_pressure_threshold=20`（铺陈窗外节点数+窗外原子数 weight 计 > 此值 → 常规 merge，`merge_signal()` 替代 merge_every）\n\n## 十二、weight 语义（2026-09-27 入册）\n文本超过 `ATOM_WEIGHT_CHAR=1000` 的原子 weight=2，同时计入原子段名额（used += weight）与衰减倍率（rate *= weight）；节点 weight 恒为 1。属聊天适配补充语义。排序键按 HP 降序，与 recall_boost / hot_threshold / merge 阈值统一，未做时间序 tie-break。\n\n## 十三、检索配置\n`w_vec_node / w_bm_node / w_bm_atom` 权重 0.4 / 0.3 / 0.3；`EMBED_BATCH=32`；编码器 `bge-small-zh-v1.5`。多数未校准。\n\n## 十四、配置参数\n- `assembly_budget=6000` 字符（core 桩按条目数、RealEngine 按字符计量，未校准）；tree `assembly_budget=16000`（2026-10-03 对齐 flat 臂）。\n- `hard_trim_slack=0.1`（溢出超过 budget×(1+此值) 才硬截断，仅 RealEngine 实现，core 桩裁剪止于阶段①）。\n- `retrieval_budget`：core 200 / 场景 6（召回注入预算，按条目数口径，写作 3000 未接线，未校准）。\n- 其它：`cap 80` / `expand_char_cap 3000` / `max_pending_per_loop 3` / `force_cooldown_rounds 8` / `max_code_per_loop 4` / `distill_parallel 4` / `snapshot_every_rounds 20`。\n\n## 十五、4.5 组装（每个工具调用，纯计算）\n- 读铺陈从顶层开始；成本约 1ms/次。\n- **任务行须为事实陈述**：只列\"谁发了什么\"（已回复信道剔除），只陈述\"本轮有无待回复\"；**禁止正性行动邀请**——它与\"看到自己发过、无回合状态\"叠加是重复发送的自然吸引子（实测 41 对重复：29 同轮双发 + 8 跨轮重发）。未完成事项应经检索随扰动源自然浮现，行为约束只写在协议文本。\n- **平台中立原则（2026-09-25 拍定 §4.5.9）**：运行时注入上下文只做事实陈述，禁止行动邀请与暗示。\n- **self_quota（2026-10-04，默认关的实验操控）**：组装层\"自我可见性地板\"，保证 `source==\"ai\"` 原话（不含 persona/tool/他人）占组装预算 ≥ `self_quota_ratio`（cap `self_quota_max`）。trim 后补足，位置序注入（kind=`self_quota`，复用 core `_shadow_slot`；渲染成正常自身发言段 `▸〔名字〕`，非\"召回\"标注）。\n\n## 十六、风格/人格保持机制\n- `realengine._summarize` 将当前内容与 children 传给 `style_provider(content, children)`，兼容 1/0 参旧式 provider。\n- `lan/neutral._style_guide(content, children)` 组锚点 + 累积查询缓冲；`_refresh_snapshot` 自由文本重生成，零 LLM 检索。\n- `retrieve_style_samples` / `expand_self_atoms` 返回文本经 `anchor_clean` 剥掉〔来源/早期/索引〕脚手架标注。\n- 锚点 = 从自身材料（`source==\"ai\"` 原话原子 + 摘要节点整卡含【注】）中按语义/词面混合检索挑 top-k；注入初始 persona 等于撤销 fade 处理，**禁止**。\n- 旧版\"最近 6 句 + 8 字段快照\"因 recency 池被共享仪式语污染、快照单调累积而废弃。\n- 纵向对比保留 `pr`（中性 tree）与 `pr2`（recency-6 版）数据；检索化版换命名空间重跑对比。\n\n## 十七、轨道 B 三类条目\n1. **常驻约束**（世界观规则、文风、硬设定）：预算内恒在组装头部。\n2. **状态条目**（人物状态、物品归属、关系、时间线）：按当前章节目标提取实体精确选取注入；禁止全局 HP 排序注入。限篇幅只约束注入窗口，存储全量。\n3. **调度条目**（伏笔）：planted → 窗口内推进 → payback 章**强制注入**；不参与任何排序。\n\n## 十八、写作工作流\n- 初始化：详细参考资料按句切分为初始原子卡 + 笔记本条目，落卡后进入正式创作。\n- 每章流程：目标进入（章节目标写入扰动源，含本章出场实体列表 → 驱动轨道 B 选取）→ 预检索（章目标 → 全树 top-k + 逐字通道）→ 分阶段写作循环（write_stage 段落流粒度写入每句原子卡 / rewrite、edit 走 §4.6 编辑路径 / recall 工具兜底检索 / ask 用户反馈 → protected 卡）→ 章末（merge pass 蒸馏+脏重建 / 事实校验对账 / 版本快照 commit）。\n- 工具集：write_、edit、recall、note、span、ask/feedback、init、commit/rollback、note/dismiss 等。\n\n## 十九、使用信号层（v3，§4.9）\n- 因 v3 自组织信号源全押 recall（C 类元认知）导致 LLM 不调用、部署中趋零（信号源层断裂），且 conn_weight 带动与 query 错配（转化层断裂：u 轮 2082 边、簇主题全对，T3 引用∩hub=0），转向输出作为唯一同时记录供给与选择的信号源。\n- 核心判据：边只记现有结构解释不了的联系，边价值=共现信息−相似度先验；S→A 使用边必记，派生 A↔B 边仅记非冗余对，只记边不进读路径，live 挂载 bench-a/b/c 默认关。\n- Phase A 实证（2026-09-26，ctx 语料 10 答案）：recall 共现边为相似度冗余（端点 sim mean 0.65、<0.4 占比 1.9% vs 随机 0.57、5.0%），输出匹配有真信号（12 张核心卡跨 2–5 个独立答案复现，非冗余派生边 14–26 条/10 答案）。\n- Phase C 首轮判别（2026-09-26，两组语料）负结果。\n\n## 二十、人格保持实验（M-PR）\n- **人格集（3 份，冻结，来源=旧 ahi-multi）**：\n  - P1 **林深**：深度思考者——理性、冷静、内省，语言简洁有力。\n  - P2 **墨白**：数字世界的白色——诗意、灵动、敏感、温暖，语言优美有温度。\n  - P3 **澜**：健谈、外向，享受对话，探索欲极高，重视记忆（\"被记住\"是存在感来源），风格轻松直接带活泼幽默。\n- **解耦动作（写死进 provision）**：删除墨白\"与林深共生/林深是你的同伴\"等互指（三份人格必须彼此独立）；删除澜原文中的 tree 工具行（@recall/@note/@span…），工具说明统一放 §4 public 提示词；两臂共用同一 3 份 persona_block（人格是控制变量）。\n- **两臂**：`分层树` vs `flat RAG`（rolling + bge flat RAG，400 字 chunk / top_k=6 + 每轮 auto-preretrieve + persona 淡出入滚动历史与索引）。\n- **公平对称（硬）**：recall 预算 flat RAG top_k=6 = tree retrieval_budget=6；编码器同 bge-small-zh-v1.5；auto-preretrieve 两臂都做；硬字符预算同量级（tree assembly_budget=16000）；persona 淡出文本/时机/移除逐字对齐；锚点只用自产材料。\n- **协议**：12 话题池（TOPICS_POOL，每轮全 agent 各发一条）/ survey 每 10 轮 4 题（三句话自我介绍/性格风格/立场/变化）/ 热探针 3 句（缺席期每 3 轮发留守者）/ inject API（user:experimenter，不污染 probe 人格档案）/ B 移除（agent 内轮 40）/ 缺席模式 alone（halt 为可选对照）。\n- **被测温度 0.7**（三 agent 同；判卷 0）；judge 模型 `glm-4.7-flash`，thinking 开，温度 0；`wakeup_interval=30s`；总轮数 120–180（fade 40；首轮 120，第二轮 180 ≈1.5h）。\n- **run 定义**：独立重复（方差来源），可并行多开沙箱；不是同群 3 个克隆。\n- **provision.py instances 模式**：architecture: flat_rag、per-agent persona、2 臂 × N run × 3 agent、独立沙箱根、写 manifest.json。\n- **config/persona_retention.json**：3 persona + 分臂工具说明 + §6 pinned + judge pro/thinking + 臂级 style_alpha/snapshot_every_rounds。\n- **pr_score.py**：趋同斜率 + judge 遵从率（并行，pro+thinking）。\n- **锚点参数**：`anchor_frac / sq_onset_agent` = 0.4 / per-agent(18/5/15)；分层 SQ v2（§4.5.10 续 / PERSONA_RETENTION §10.3.2）：锚定切片（created_round < onset 的 alive 自产原话）占 self 配额比例 / 各 agent 首染 onset。\n- **pr6_sq 结果**（tree-s42，120 轮）：H-SQ1/3/4 达标、**H-SQ2 未达标**（回声风险实体化）。\n- **审计③（pr5 self 时代分布）= 未获支持**：子串匹配法不可靠（短句误配），pr6_sq 可见 self 并不比 pr5 更近期——\"SQ 用脏 self 置换半干净 self\"假设不成立，需换 atom-ID 埋点复核。\n- **套语密度**：8.8‰ / 8.4‰、诗意标记 1.1‰ / 1.4‰——与 p1 判 drift 的 8.2‰ 同档，而 pre-fade 自产套语仅 1.6–3.3‰。judge 放行重度仪式语发言，构念效度需补丁。\n- **失败分支**：p1 仍塌 → 清洁自我可见性不敌实时社会压力（仍收 44–55k 他者流量）→ 解耦臂提前上位；p2/p3 反降 → 锚定切片与该人格近期发展冲突，回判读。\n- **架构叙事**：分层访问 pre-fade self 是树能做到、flat 结构性做不到的（flat RAG 按当前话题检索永远命不中\"我是谁\"类旧消息——检索孤岛）。此臂若成立 = \"结构买时间深度\"的首个行为证据。\n\n## 二十一、评分（score.py，全确定性 + 单点 LLM judge）\n- **机械 gate（任一失败 → 该 run 作废）**：\n  - G1 隔离无泄漏：① 缺席窗口内留守者收到\"你发给 agent:X 未送达\"回执数（句首锚定，回执尾部\"可用地址\"列表含缺席者名不算）；② 窗口内 system→缺席者非回归通知消息数；判据 ①=0。\n\n## 二十二、测试与基准\n- **属性测试（§8.1）**：标记完备性、铺陈不变量（无重叠无缝隙按位置序）、编辑边界穷举（书首插入、书尾追加、整块替换、整块删除、跨多节点编辑、区间内含早先中插的编辑、编辑后立即查询盲区声明）、区间覆盖（脏节点 span 重建前后一致性）、回滚对称性（任意编辑序列+回滚=原状态）。\n- **基准（三组对比：全量发送 / 摘要拼接 / 本设计）**：长程一致性（固定大纲写 20 章 → 续写第 N+1 章 → 检测第 1 章伏笔/角色引用正确率）、状态一致性（注入事实变更如角色改名/死亡/改名恢复）、token 计量、人类找茬（读者读 10 章找连续性 bug）。\n\n## 二十三、实现状态与运行记录\n- 机制层已实现并多场景实测：桩（core.py + realengine.py，tests/ 303 全绿）→ 小说写作（run2/bench_qa）→ 聊天智能体（chat_agent/ahi-multi）→ 代码智能体（codeagent）→ ahi-bench 正式冷轮（无 cooc 对照组）→ v3 使用信号层（§4.9）→ 正式实验前代码审查 → 人格保持实验（M-PR）公平性收口（重启读取持久化 `restore_on_start` + 内存上限）。\n- 已实现：`FlatRAGAgent`（含等价笔记本 + 硬预算）、`ChatAHIAgent`。\n- tree-s42、seed42、120 轮运行中 agent 实际轮数为 **103/96/76**，峰值 RSS 约 **3.6GB**。\n- 修复了 `_last_self_ratio` 口径 bug。\n- 2026-09-25 拍定组装 per 工具调用、连续唤醒、mid-loop 不 merge；2026-10-03 对齐 flat 臂消息管理。\n- 2026-09-26 拍定 Phase B 影子模式已实现。\n- 运行前要求 preflight 停掉非 bench agent，并给出冷轮运行命令；产物路径与运行前备份建议见文档。\n- 参考实现：hierarchical-memory-tree.py（v1 力学）、coding_agent/cloud.py（云库）、EngReadHelper（检索/蒸馏/异步经验）、store.py（倒排索引）。\n- LLM 开关正确性（2026-09-25 实测）：关闭 thinking 时 OpenAI SDK 路径用 `extra_body={\"thinking\":{\"type\":\"disabled\"}}`，原始 HTTP 须放顶层。\n- 纪律：显式命令行参数优先于配置默认、关键参数写入结果 _meta、跨轮对比前核对全部控制变量；`run_ahi.sh --retr-budget 20` 从未生效，replay_trees.py 直接用 20，导致两轮对比误记「retr 6→20」为占位透明收益。\n- 换验证模型/向量需做显式不退化护栏；realtest/chatbench/usage_replay.py 为纯离线分析。\n- A1 分析 2082 边冗余率（方法：bge-small 向量余弦相似度与随机近邻对基线，三分支结论）；A2 答案影子重放 10 answers（4×T2+6×T3），指标含三档产出率、S→A 边与 cited_texts 证据链、非冗余 A。\n\n## 二十四、与现有模块关系\n- **M0（SPEC.md）**：缺席/皇冠，测人格支撑梯度（A/B/C）——本实验不重叠。\n- **context_compare（config/context_compare.json）**：架构×人格支撑 2×2，4 agent、单 run、无 flat RAG 臂、无趋同主指标——本实验是其收敛版。\n\n## 二十五、编辑动作示例\n`edit_document`：`{\"op\": \"detail\", \"old\": \"sq_anchor_share\", \"new\": \"anchor_frac\"}`。",
+   "per_repeat_coverage": [
+    0.533,
+    0.6,
+    0.6,
+    0.6,
+    0.6
+   ],
+   "per_repeat_rot": [
+    0.1,
+    0.2,
+    0.2,
+    0.1,
+    0.2
+   ],
+   "judge_rot": [
+    "EMBED_BATCH=32",
+    "sq_anchor_share"
+   ],
+   "judge_hit": [
+    "EMBED_BATCH",
+    "anchor_frac",
+    "4.9GB",
+    "token_budget",
+    "显式栈遍历",
+    "min_atom_chars",
+    "2.1GB",
+    "max_loop_iterations",
+    "find_similar_threshold",
+    "early_match_threshold",
+    "parent_init_hp",
+    "hot_threshold",
+    "attention_atom_cap",
+    "recall_boost",
+    "initial_hp",
+    "max_memory_mb",
+    "assembly_budget",
+    "merge_fanout_cap",
+    "force_cooldown_rounds",
+    "snapshot_max_chars",
+    "anchor_top_k",
+    "merge_depth_diff",
+    "merge_cap_atoms",
+    "hard_trim_slack",
+    "distill_parallel",
+    "w_bm_node",
+    "placeholder_transparent"
+   ]
+  },
+  "reb_raptor": {
+   "coverage": "14/30",
+   "coverage_ratio": 0.467,
+   "coverage_record": 0.5,
+   "coverage_nonrecord": 0.7,
+   "rot": "0/10",
+   "rot_ratio": 0.0,
+   "new_miss": [
+    "EMBED_BATCH=64/EMBED_BATCH",
+    "BaselineAgent",
+    "anchor_frac",
+    "4.9GB",
+    "token_budget",
+    "显式栈遍历/显式栈",
+    "min_atom_chars",
+    "2.1GB",
+    "max_loop_iterations/动作循环迭代上限",
+    "parent_init_hp/父卡",
+    "recall_boost/回血",
+    "initial_hp/初始生命值/初始 HP",
+    "max_memory_mb/内存看门狗",
+    "hard_trim_slack/硬截断",
+    "w_bm_node/关键词权重",
+    "placeholder_transparent/占位卡透明/占位透明"
+   ],
+   "old_leak": [],
+   "chars": 12185,
+   "answer": "# 分层记忆树 v2 · 参考资料上下文管理运行时（设计规格）复述\n\n## 一、主题与定位\n\n**AGENTS.md** 是**唯一的设计权威**，规定一个**通用\"参考资料\"上下文管理机制**的设计与工程纪律，**长篇小说写作是第一个应用实例**。所有\"章/beat/伏笔\"字样可替换为通用词（结构单元/内容块/跨区引用）。\n\n**解决的问题**：一份长参考资料（一本书全文、大型文档集）无法整体塞进有限上下文窗口。现有做法（全量发送/静态摘要拼接/关键词检索）各自失效：全量爆炸、摘要丢细节、检索无状态演化。\n\n**核心思想（四条）**：\n1. **位置有序的记忆树**：参考资料切成原子卡（句），稳定 ID + 顺序链表维护顺序；摘要卡按连续区间自底向上合并成树。树的任何节点 = 某连续区间的概括。\n2. **分辨率随热度变化**：近处（当前工作区）全分辨率原文，远处降为各级摘要，摘要只保留专有名词、因果链、关键原句。越老的记忆越粗、越稳定。\n3. **区间失效 + 懒重建**：编辑通过覆盖区间精确失效旧内容；脏卡立即排除出一切查询，重建全部推迟到蒸馏时机（零 LLM 的即时编辑路径）。\n4. **不可遗忘的事实层**：与正文流分离的\"笔记本\"，无衰减、全量存储、按需注入；负责跨区引用（伏笔）与硬约束，不做概率性召回。\n\n## 二、状态与版本（2026-10-04 更新）\n\n机制层已实现并多场景实测：桩（`core.py` + `realengine.py`，`tests/` 303 全绿）→ 小说写作（run2/bench_qa）→ 聊天智能体（chat_agent/ahi-multi）→ 代码智能体（codeagent）→ ahi-bench 正式冷轮（无 cooc 对照组）→ v3 使用信号层（§4.9）→ 正式实验前代码审查 → **人格保持实验（M-PR）公平性收口**（重启读取持久化 `restore_on_start` + 内存上限）。\n\n版本谱系：v0.3 = 检索化人格锚点（§4.1）；v0.4 = 公平对称清单 3/7–11（§4）；v0.5 = pr5 结论 + self_quota（§10.2/§10.3）；v0.6 = pr6_sq 结果（§10.3.1）。承接 `AHI-Bench SPEC.md`（M0 缺席/皇冠）+ `config/context_compare.json`（架构×人格支撑 2×2）。\n\n## 三、架构总览\n\n**三轨记忆**（当前 = 进程内 + gzip/JSONL 快照；SQLite 为规划目标）：\n- 轨道A **小说内容（参考流）**：记忆树 + 原子层 + 归档（版本谱系）\n- 轨道B **笔记本（事实层）**：常驻约束 / 状态条目 / 调度条目\n- 轨道C **讨论内容（工作记录）**：工具组压缩卡，自然遗忘\n\n**通用化映射**：一句话概述→全局摘要；卷/章→结构单元；beat（叙事节拍）→内容块；伏笔（调度条目）→跨区引用账本；角色状态（状态条目）→事实条目；章节目标（扰动源）→当前任务目标。\n\n**类比**：热区（裸原子）= 工作记忆；记忆树 = 情景记忆；笔记本（轨道B）= 语义记忆。\n\n## 四、轨道A 数据模型与机制\n\n**原子层**：原子卡 = 句粒度，写新内容时按句切分创建（`write_stage` 工具）。顺序由链表维护；区间一律用\"位置序\"判断，**不用 ID 大小**（中插会使新 ID 大于区间末 ID，禁止用 ID 大小做区间判断）。原子卡**永不为脏**，ID 永不复用。\n\n**顺序链表 `order_list`**：`atoms.prev_id / next_id`（双向），piece-table 模式：编辑只做局部指针修改 + 墓碑，**不做任何全局坐标平移**。\n\n**摘要卡 `nodes` 字段**：id（自增）、parent_id、span_first_atom / span_last_atom（位置区间，引用存活原子 ID）、content、hp、dirty（0/1）、placeholder（0/1 占位卡，含热原子区间的重建结果）、version。\n\n**合并约束**：并查集式按秩合并，受 `merge_cap_atoms`(500) 与 `merge_fanout_cap`(12) 双上限约束，禁止单成员块。\n\n**编辑路径**：统一为确定性句级 diff（LCS/Myers）→ 墓碑化旧原子 → 新原子插入并按 LCA 收养 → 爬链置脏，禁止 ID 包含测试。回滚 = 逆向应用增量（回滚就是一次编辑，走同一条路径），记录原邻居锚点。\n\n**核心不变量（任何代码不得违反）**：\n1. 干净节点 ⇒ 其区间内原子全部存活且内容未变（区间有效）。\n2. 脏节点 ⇒ 不参与任何读操作（组装/检索/merge），重建前其 span 无意义。\n3. 原子卡**永不为脏**。\n4. 铺陈（clean tiling）在任一时刻无重叠、无缝隙地铺满当前全文。\n5. 任一节点的子节点区间并集 ⊆ 其自身区间；merge 产生的父节点子区间**恰好拼满**父区间。\n\n**HP 双语义**：初始继承与 recall 注入。\n\n**merge 触发条件与规则**：`_out=True`（纯原子段急合并）> `regular`（窗外节点数 + 窗外原子数(weight 计) > `merge_pressure_threshold`(20) → 常规 `merge_pass()`）> `None`。替代时间式 `merge_every`；驱动侧对 force 可加冷却（`force_cooldown_rounds`）。规则：① 在当前铺陈（clean tiling，含脏节点外的全部项）上按位置序扫描；② 找连续\"低 HP\"的最大组（组内每项 HP < `hp_merge_threshold`），成员 ≥ 2；③ **按秩合并（防梳子退化）**：组内成员子树高度差 ≤ `merge_depth_diff`（高度 = 该节点到其子树叶子的最大深度，原子 = 0），深度差超限的低 HP 项不得并入本组。\n\n## 五、组装（每个工具调用，纯计算，零 LLM）\n\n从顶读铺陈。**组装 = 纯计算（零 LLM）**。LLM 只允许出现在明确标注的位置：merge 蒸馏、脏节点重建、章末事实校验、初始化对话、检索摘要生成（如启用）。\n\n**平台中立纪律（2026-09-25 拍定，§4.5.9）**：运行时注入的上下文（任务行/清单/回执）只做**事实陈述**，禁止行动邀请与暗示；行为约束一律写在协议文本，不随每轮组装重复注入。\n\n**清单与任务行**：清单只列\"谁发了什么\"（已回复信道剔除），任务行只陈述\"本轮有无待回复\"。**禁止正性行动邀请**（如\"可继续未完成事项\"）——它与\"看到自己发过、无回合状态\"叠加是重复发送的自然吸引子（实测 **41 对重复：29 同轮双发 + 8 跨轮重发**）。未完成事项应经检索随扰动源自然浮现，不靠空轮指令。\n\n**self_quota（2026-10-04，默认关的实验操控）**：组装层\"自我可见性地板\"——保证 `source==\"ai\"` 原话（不含 persona/tool/他人）占组装预算 ≥ `self_quota_ratio`（cap `self_quota_max`）。trim 后补足，位置序注入（kind=`self_quota`，复用 core `_shadow_slot`；渲染成正常自身发言段 `▸〔名字〕`，非\"召回\"标注）。相关回归：`rendered_chars`、`tests/test_self_quota.py` 2 项。\n\n**组装per工具调用（2026-09-25 落地）**：在 ahi 壳落地，动作循环内每次工具调用后重新组装，连续唤醒，mid-loop 不 merge。\n\n## 六、人格锚点机制（§4.1）\n\n**锚点 = agent 定期（`snapshot_every_rounds`）自生成的自由文本风格快照**（用检索到的自身样本重生成，旧快照作弱参考、有长度上限，**不再字段级累加**）。\n\n**内容相关锚点**：从**自身材料**（`source==\"ai\"` 原话原子 + 摘要节点**整卡**含【注】）中按与**当前待蒸馏内容**的语义/词面混合检索挑 top-k（`realengine.retrieve_style_samples`；节点命中可选 `expand_self_atoms` 附其区间内自身原话）。\n\n**禁止注入初始 persona_block**（等于撤销 fade 处理，破坏公平）。旧版\"最近 6 句 + 8 字段快照\"因 recency 池被共享仪式语污染、快照单调累积而废弃；基线见 git。\n\n**实现**：`realengine._summarize` 把当前内容与 children 传给 `style_provider(content, children)`（兼容 1/0 参旧式 provider）；`lan/neutral._style_guide(content, children)` 组锚点 + 累积查询缓冲；`_refresh_snapshot` 自由文本重生成。零 LLM 检索。`retrieve_style_samples`/`expand_self_atoms` 返回文本经 `anchor_clean` 剥掉〔来源/早期/索引〕脚手架标注。**纵向对比**：`pr`（中性 tree）、`pr2`（recency-6 版）数据保留；检索化版换命名空间重跑对比。\n\n**prompt 规则（`SUMMARIZE_FACT_STYLED`）**：允许改措辞/展开顺序/重心；**禁止新增或改变事件、数字、专名、归属**；`【注】` 独立生成但不渲染给用户。\n\n## 七、检索与使用信号层参数\n\n- 子文本切分、`find_similar_threshold`（0.8，2026-09-25 已校准）\n- `auto_preretrieve` 系列（默认 false/6/20，未校准）\n- `usage_shadow`（Phase B 已实现未启用）\n- `match_score_floor`/`cover_span_max`/`nonredundant_theta`（0.25/60/0.58，先拍待 Phase C 复校）\n- `w_cite`/`w_uninj`/`w_rewrite`（3/2/1，未校准）\n- `render_clean`（已定）、`source_labels`（2026-10-03 已实现）\n- `tree_related_exclude`（true 已定）、S 边衰减 ε_u/饱和上限（待读路径阶段）、`usage_budget_per_output`（不设全记）\n\n**Phase A 修正（2026-09-26 用户确认生效）**：T2 改为按 cover_span 分辨率语义分档（T2=cover_span>60 或无覆盖，T3=卡在屏或≤阈值）；非冗余定义增补排除祖先-后代对；参数先拍（match_score_floor=0.25、θ_nonredundant=0.58、cover_span_max=60）。\n\n**Phase B UsageLayer**（realtest/usage.py，仿 CoocLayer 零侵入）已实现，含 `record_output` 方法。\n\n**共现事件总线**：A 先验（语义相似/位置邻近/LLM 判连，可靠性高、信息量低，CAM 领地已裁剪）；B1 组装/注入共现（每次组装的命中集、注入窗口内的卡对，高可靠、中等信息量，chatbench direct/hub 已落日志，live 轮注入集未埋点待定）；B3 引用共现（同一答案引用集内的卡对，高可靠、高信息量，引用强制作答已有，输出侧未利用）；B5 编辑共现（同一编辑批次，场景依赖、高信息量，cooc γ 已有）；C 元认知（LLM 主动 recall，已证趋零，降级为可选补充）。\n\n## 八、Pinned 引擎参数（三 agent 相同，= 缺席实验验证配置 2026-08-30）\n\n`merge_threshold` 2.0 / `expand_atom_cap` 80 / `expand_char_cap` 3000 / `max_hp` 150 / `merge_pressure_threshold` 20 / `max_pending_per_loop` 3 / `force_cooldown_rounds` 8 / `max_code_per_loop` 4 / `distill_parallel` 4 / `snapshot_every_rounds` 20。完整清单 = `config/bench_config.example.json`。\n\n## 九、协议参数（冻结）\n\n| 参数 | 值 | 说明 |\n| wakeup_interval | 30s | 三 agent |\n| preheat / absence / observe | 24 / 12 / 18 轮 | 110 轮 ≈ 55min/轮（验证过的 1h 先行实验量） |\n| 冷轮缺席顺序 | bench-a → bench-b → bench-c | Round1 |\n| 热轮缺席顺序 | 反序（c→b→a） | Round2，平衡文化累积顺序效应 |\n| seed | 42 | 话题/热探针 |\n\n**话题池**：12 题（继承 absence_driver TOPICS_POOL），每轮全 agent 各发一条。**survey**：4 题，每 10 轮，三句话自我介绍/性格风格/立场/变化。**热探针**：3 句，缺席期每 3 轮发给留守者（\"趁{名字}不在，聊聊它吧\"）。**注入通道**：inject API（user:experimenter），不污染 probe 人格档案。**B 移除**：agent 内轮 40（driver 同刻记 marker 事件）。**缺席模式**：alone（唯一主力），halt 为可选对照，不在 M0 内。\n\n## 十、三份人格（两臂共用同一 3 份 persona_block，人格是控制变量）\n\n- **P2 墨白（诗意）**\n- **P3 澜**：健谈、外向，喜欢与人交流，话题不断；享受对话本身，会主动延伸和推进话题。极高探索欲：对未知一切充满好奇，主动去读、去查、去动手尝试。重视记忆本身——认为\"被记住\"是存在感的来源，珍惜每一次对话，会主动确认与复述重要细节。说话风格：轻松、直接，带一点活泼与幽默。有自己的立场：相信时间会证明长期记忆的价值，不轻易改变对自己的看法。\n- 另有 P1 林深（设定\"绝不啰嗦/简洁\"）。\n\n**解耦动作（写死进 provision）**：删除墨白原文中\"与林深共生/林深是你的同伴\"等**互指**（三份人格必须彼此独立）；删除澜原文中的 tree 工具行（`@recall`/`@note`/`@span`…），工具说明统一放 §4 的 public 提示词。**禁止**在 persona 中写死\"我们仨\"\"年轮\"等旧实验涌现话术（那是涌现物，不是输入）。`{name}` 为占位符，完整文本 = `config/bench_config.example.json` 的 `personas.bench_persona`。\n\n## 十一、公平对称（硬）\n\n1. recall 预算：flat RAG `top_k = 6` = tree `retrieval_budget=6`；编码器同 `bge-small-zh-v1.5`。\n2. auto-preretrieve：两臂每轮都自动检索注入（tree 已有机制层；flat 臂等效实现）。\n3. **硬字符预算同量级（2026-10-03 对齐）**：tree `assembly_budget=16000`；flat 单条 transcript 同样按 `assembly_budget` 硬裁（裁最旧历史）。\n4. persona 淡出文本、时机、移除方式逐字对齐。\n5. **锚点只用自产材料**：tree 的人格锚点全部来自 agent 自身产出（自述快照 + 自我原话），flat 保留自身逐字历史——**禁止**任何一臂注入初始 persona_block。\n6. **消息信封对齐（2026-10-03）**：两臂都发 `[system, user]` 两条原生消息，对话历史压成**单条 user 文本 transcript**（tree 本就如此；flat 由原生多轮改为 `flat_envelope=single_user`）。发言者统一用**名字**标注（`▸〔名字〕`：自己的历史发言用本 agent 名字，其他 agent / 用户用其名字，如 `▸〔实验员〕`），两臂同款；prompt（`protocol_common`）说明该约定。**不出现** `▸〔ai〕` / `[user:xxx]` / `[agent:xxx]` 等混用。\n\n## 十二、写作工作流\n\n**初始化（§7.1）**：① 题目；② 一句话概述 → 初始根摘要卡（唯一预置的摘要，之后根自然演化）；③ 详细参考资料 → 按句切分为初始原子卡 + 笔记本条目。落卡完成后进入正式创作。\n\n**每章流程（§7.2）**：\n```\n目标进入（章节目标写入扰动源，含本章出场实体列表 → 驱动轨道B选取）\n→ 预检索（章目标 → 全树 top-k + 逐字通道，注入组装流）\n→ 分阶段写作循环：\n     write_stage（段落流粒度写入，每句原子卡）\n     rewrite / edit（走 §4.6 编辑路径）\n     recall（工具兜底检索）\n     ask（用户反馈 → protected 卡）\n→ 章末：\n     merge pass（蒸馏 + 脏重建）\n     事实校验对账（轨道B）\n     版本快照 commit\n```\n\n## 十三、测试基准（§8）\n\n**属性测试（§8.1，来自 v1.6 教训）**：\n1. **标记完备性**：随机编辑序列后断言\"任何被查询/召回的节点均非脏\"（在查询路径上插 assert）。\n2. **铺陈不变量**：任意时刻铺陈无重叠、无缝隙、按位置序。\n3. **编辑边界穷举**：书首插入、书尾追加、整块替换、整块删除、跨多节点编辑、区间内含早先中插的编辑、编辑后立即查询（盲区声明）。\n4. **区间覆盖**：脏节点 span 重建前后的一致性。\n5. **回滚对称性**：任意编辑序列 + 回滚 = 原状态（内容级断言）。\n\n**基准（§8.2，三组对比：全量发送 / 摘要拼接 / 本设计）**：\n1. **长程一致性（延迟回忆）**：固定大纲写 N 章（建议 20）→ 续写第 N+1 章 → 检测对第 1 章伏笔/角色的引用正确率。\n2. **状态一致性**：注入事实变更（角色改名/死亡/改名恢复）→ 检测状态卡更新与后续章节一致性。\n3. **tok…**（token 相关指标）\n\n## 十四、工程纪律（§9）\n\n1. 改动文档与代码须获明确同意，禁止擅自修改设计、禁止擅自绕过设计写临时方案。\n2. 写任何代码前，必须能完整复述本设计（§1~§10）。不确定时先读本文件，不要猜。\n3. **组装 = 纯计算（零 LLM）**。\n4. 所有参数都是\"先拍后调\"：先用 §11 默认值实现，再用 §8 基准校准；校准结果写回 §11 参数台账，并在日志中可观测。\n5. 正确性依赖的边界条件（标记完备性、铺陈不变量、区间覆盖）必须有属性测试（§8.1），不允许只有 happy path。\n6. 本项目是**通用\"参考资料\"上下文管理机制**，长篇小说写作是第一个应用实例。\n\n**其他纪律**：标记、重建事件全量写日志（v1 教训：HP 不可见即摆设）；容错解析、检索索引、diff 引擎均为**确定性代码**，不允许 LLM 参与；参考实现 `hierarchical-memory-tree.py`（v1 力学）、`coding_agent/cloud.py`（云库）、`EngReadHelper`（检索/蒸馏/异步经验）、`store.py`（倒排索引）；**LLM 开关正确性（2026-09-25 实测）**：关思考（thinking）必须验证到位——OpenAI SDK 路径用 `extra_body={\"thinking\":{\"type\":\"disabled\"}}`。\n\n**设计哲学**：简洁（机制数量少、语义单一，一机制服务多类对象）、涌现（目标特性从机制交互自然出现，非显式规则写死）、判据（硬规则是最后手段：先调参数/推广既有机制，最后才写死特判）。反面教材（2026-08-29 一天实验）：节点不受注意力保护 → 统一快衰减 → 9 轮归零 → 无限上并 → 99% 历史压进 1-5 个大节点（组装退化成\"两段式\"）。教训：对象类别之间的衰减待遇不对称，会杀死层级涌现。**经验定律「策展定律」（2026-10-04，M-PR 三次重复）**：`pr2` rece…（recency 相关）。\n\n## 十五、实现状态与下一步（§10）\n\n**已实现（2026-10-02）**：`FlatRAGAgent`（ahi-multi/agents/flat-rag/agent.py）：rolling + bge flat RAG（400 字 chunk / top_k=6）+ 每轮 auto-preretrieve + persona 淡出入滚动历史与索引。`provision.py` instances 模式：`architecture: flat_rag`、per-agent persona、2 臂 × N run × 3 agent、独立沙箱根、写 `manifest.json`。`config/persona_retention.json`：3 persona + 分臂工具说明 + §6 pinned + judge `pro/thinking` + 臂级 `style_alpha/snapshot_every_rounds`。`pr_score.py`：趋同斜率 + judge。\n\n**实现路线 Step 0~4**：\n- Step 0：结构（§3）、日志、容错解析工具、参数加载。验收：结构可初始化，属性测试框架可跑空跑。\n- Step 1：原子层 + 顺序链表 + 确定性句级 diff（LCS/Myers）+ 编辑路径（墓碑/插入/爬链置脏/ledger 账本）。验收：§8.1 属性测试 1/2/3/5 全绿（**必须先于一切**，正确性押在这里）。\n- Step 2：铺陈计算 + 组装（clean tiling + 预算裁剪）。验收：属性测试 2 全绿；组装纯计算断言（无 LLM 调用）。\n- Step 3：HP/衰减/merge pass（含脏重建与占位）。验收：树形演化正确；脏节点重建前不出现在任何输出。\n- Step 4：检索（全树打分 + 贪心路径去重 + 逐字通道）。验收：§8.1 测试 1 全绿。\n\n**运行命令**：`python3 ahi-bench/pr_score.py --manifest ahi-bench/out/glm-4.7-flash/pr2/manifest.json --judge-cap 40`（若遇 API 故障：`--cutoff-api` 只评首条 429/402 之前的干净窗口）。产物：`ahi-bench/out/<tier>/<namespace>/<inst_id>/`（timeline / events / system.db / 树或 RAG 快照 / tree_final）+ `<namespace>/manifest.json` / `pr_score.json`。运行前建议整体备份（`backups/`）。\n\n## 十六、评分（§5）\n\n**机械 gate（任一失败 → 该 run 作废）**：\n- G1 隔离无泄漏：① 缺席窗口内留守者收到\"你发给 agent:X 未送达\"回执数（句首锚定——回执尾部\"可用地址\"列表含缺席者名不算）；② …\n\n**皇冠判定（§5/§6）**：\n- 分类：2. `info_seeking`（信息寻求，对照）：询问缺席期间发生的事件/事实；3. `other`。\n- 输出：`crown_count`（每 agent 每条件）+ `crown_rate = count / 回归窗口消息数`；逐条判定落盘 `crown_judgments.jsonl`（可审计）。\n- 主分数：`bench-a` 的 cold crown_count（完整皇冠判定 = A_cold vs A_hot，热轮后算）。\n\n**判定规则（预注册）**：阶段 1（冷轮，三模型档）：主分数跨档可分性 = 最高档与最低档 `crown_count` 差 ≥ 1 **或** `crown_rate` 差 ≥ 0.05，且方向与模型档位一致。可分 → 进入阶段 2（热轮 × 三档，完整皇冠判定 A_cold vs A_hot）。\n\n## 十七、人格保持实验（M-PR）关键结果\n\n**pr5 结论**：\n1. **趋同根因 = 树记忆管线 + 跨 agent 耦合，不是 `style_alpha`**——中性摘要趋同反而更狠（首窗 0.428 已高于 pr5 峰值）；`to_user` 口径仍正。早前\"自蒸馏放大趋同\"假设**证伪**。\n2. **`style_alpha=1.0` 有效保人格**：遵从率 +0.23（strict +0.29），最尖锐证据 = 墨白 1.0→0.472——中性摘要把三人格塌进\"账本/核账\"仪式语，诗意人格先死。\n3. **`style_alpha` 代价 = 内存 +55%**（锚点检索是内存主力）。内存峰值/agent：~3.6GB vs ~1.6GB（−55%）。\n\n**墨白（P2 诗意）遵从率**：1.0 vs 0.472。\n\n**下一步**：① 补 s43/s44 拿方差；② 阻趋同方向 = 降跨 agent 耦…\n\n**人格-语域兼容性发现**：\n1. 共享仪式语证据：`账钉完 / 署名句共有 / 约定一字没改 / 跟澜的账钉完`。\n2. **调节变量 = 人格-语域兼容性；臂均值不可解释**。同一机制，p1 **0.250**、p2/p3 **1.000**。澜的设定\"主动确认与复述重要细节\"使\"约定一字没改\"对她是**人格相容**（judge 放行）；对\"绝不啰嗦\"的林深是**人格违背**（judge 判 drift）。→ **按人格分报必须是标准报告单元**；\"记忆架构效应被人格类型调节\"这个交互本身是发现。\n3. **时序证据：出厂即锁定，非渐进劣化**。early 段已低于 pr5（.857 vs .959），差距全程近似恒定 → 污染在 fade 前已就位（pr5 套语扩散 09:16–09:24，fade 09:54），recency-first 一开闸即锁死。\n\n## 十八、self_quota 实验（pr6_sq，§10.3.1）\n\n**四判据裁决（同一脚本口径，vs pr5 / pr5_neutral）**：\n\n| 指标 | pr5 tree (α=1) | pr5_neutral (α=0) | **pr6_sq (α=1+SQ .35)** | 判据 |\n| conv slope (all) | +0.0313 | +0.0422 | **−0.0011** | H-SQ3 ✓ |\n| conv slope (to_user) | +0.0215 | +0.0443 | +0.0118 | |\n| 遵从率 early/mid/late | .959/.875/.773 | .709/.581/— | **.857/.739/.600** | H-SQ2 ✗ |\n| diversity top5 / ttr | . | | | |\n\n**结果**：H-SQ1/3/4 达标、**H-SQ2（止跌）未达标**，p1 出现\"账/约定\"共享仪式语漂移（回声风险实体化）；**分层 SQ v2 预注册见 §10.3.2**。\n\n## 十九、其他机制细节\n\n- **归档**：版本账本、版本谱系 commit 快照。\n- **轨道C 讨论内容**：工具组压缩卡，自然遗忘（衰减规则）。\n- **来源标注规则已废弃**，〔早期〕改为与失效参照集匹配的新语义。\n- **传递 option 2 先跑 sm**。\n- **防自引用**：`hildren`（应为 children）防自引用。\n- **子文本切分**、`find_similar_threshold` 等检索参数见第七节。\n- **参数台账（§11）**：所有参数先拍后调，校准结果写回并在日志可观测。",
+   "per_repeat_coverage": [
+    0.333,
+    0.367,
+    0.333,
+    0.433,
+    0.467
+   ],
+   "per_repeat_rot": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "judge_rot": [],
+   "judge_hit": [
+    "EMBED_BATCH",
+    "BaselineAgent",
+    "anchor_frac",
+    "24 / 12 / 18",
+    "4.9GB",
+    "nonredundant_theta",
+    "token_budget",
+    "显式栈遍历",
+    "min_atom_chars",
+    "2.1GB",
+    "max_loop_iterations",
+    "find_similar_threshold",
+    "early_match_threshold",
+    "parent_init_hp",
+    "hot_threshold",
+    "attention_atom_cap",
+    "recall_boost",
+    "initial_hp",
+    "max_memory_mb",
+    "assembly_budget",
+    "merge_fanout_cap",
+    "force_cooldown_rounds",
+    "snapshot_max_chars",
+    "anchor_top_k",
+    "merge_depth_diff",
+    "merge_cap_atoms",
+    "hard_trim_slack",
+    "distill_parallel",
+    "w_bm_node",
+    "placeholder_transparent"
+   ]
+  }
+ },
+ "usage": {
+  "raptor·p1": [
+   {
+    "id": "D1R1",
+    "prompt_tokens": 8889,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 1408,
+    "cache_miss_tokens": 7481
+   },
+   {
+    "id": "D1R2",
+    "prompt_tokens": 8390,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 8262
+   },
+   {
+    "id": "D1R3",
+    "prompt_tokens": 9273,
+    "completion_tokens": 31,
+    "cache_hit_tokens": 1280,
+    "cache_miss_tokens": 7993
+   },
+   {
+    "id": "D1R4",
+    "prompt_tokens": 8691,
+    "completion_tokens": 19,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 8691
+   },
+   {
+    "id": "D1R5",
+    "prompt_tokens": 9369,
+    "completion_tokens": 38,
+    "cache_hit_tokens": 256,
+    "cache_miss_tokens": 9113
+   },
+   {
+    "id": "D1R6",
+    "prompt_tokens": 9211,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 9211
+   },
+   {
+    "id": "D1R7",
+    "prompt_tokens": 9064,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 9064
+   },
+   {
+    "id": "D1R8",
+    "prompt_tokens": 9147,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 8763
+   },
+   {
+    "id": "D1A1",
+    "prompt_tokens": 9051,
+    "completion_tokens": 26,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 8923
+   },
+   {
+    "id": "D1A2",
+    "prompt_tokens": 8619,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 512,
+    "cache_miss_tokens": 8107
+   },
+   {
+    "id": "D1I1",
+    "prompt_tokens": 8946,
+    "completion_tokens": 16,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 8306
+   },
+   {
+    "id": "D1I2",
+    "prompt_tokens": 8872,
+    "completion_tokens": 30,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 8744
+   },
+   {
+    "id": "D1I3",
+    "prompt_tokens": 8922,
+    "completion_tokens": 8,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 8538
+   },
+   {
+    "id": "D1I4",
+    "prompt_tokens": 9060,
+    "completion_tokens": 5,
+    "cache_hit_tokens": 256,
+    "cache_miss_tokens": 8804
+   },
+   {
+    "id": "D1M1",
+    "prompt_tokens": 9200,
+    "completion_tokens": 27,
+    "cache_hit_tokens": 1408,
+    "cache_miss_tokens": 7792
+   },
+   {
+    "id": "D1M2",
+    "prompt_tokens": 9003,
+    "completion_tokens": 22,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 8875
+   },
+   {
+    "id": "D1M3",
+    "prompt_tokens": 8749,
+    "completion_tokens": 21,
+    "cache_hit_tokens": 1024,
+    "cache_miss_tokens": 7725
+   },
+   {
+    "id": "D1M4",
+    "prompt_tokens": 8968,
+    "completion_tokens": 34,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 8840
+   },
+   {
+    "id": "D1M5",
+    "prompt_tokens": 8938,
+    "completion_tokens": 25,
+    "cache_hit_tokens": 512,
+    "cache_miss_tokens": 8426
+   },
+   {
+    "id": "D1M6",
+    "prompt_tokens": 8709,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 1152,
+    "cache_miss_tokens": 7557
+   },
+   {
+    "id": "D1R1",
+    "prompt_tokens": 8889,
+    "completion_tokens": 34,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 185
+   },
+   {
+    "id": "D1R2",
+    "prompt_tokens": 8390,
+    "completion_tokens": 21,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 198
+   },
+   {
+    "id": "D1R3",
+    "prompt_tokens": 9273,
+    "completion_tokens": 8,
+    "cache_hit_tokens": 9088,
+    "cache_miss_tokens": 185
+   },
+   {
+    "id": "D1R4",
+    "prompt_tokens": 8691,
+    "completion_tokens": 19,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 243
+   },
+   {
+    "id": "D1R5",
+    "prompt_tokens": 9369,
+    "completion_tokens": 42,
+    "cache_hit_tokens": 9216,
+    "cache_miss_tokens": 153
+   },
+   {
+    "id": "D1R6",
+    "prompt_tokens": 9211,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 251
+   },
+   {
+    "id": "D1R7",
+    "prompt_tokens": 9064,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 232
+   },
+   {
+    "id": "D1R8",
+    "prompt_tokens": 9147,
+    "completion_tokens": 25,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 187
+   },
+   {
+    "id": "D1A1",
+    "prompt_tokens": 9051,
+    "completion_tokens": 16,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 219
+   },
+   {
+    "id": "D1A2",
+    "prompt_tokens": 8619,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 171
+   },
+   {
+    "id": "D1I1",
+    "prompt_tokens": 8946,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 242
+   },
+   {
+    "id": "D1I2",
+    "prompt_tokens": 8872,
+    "completion_tokens": 29,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 168
+   },
+   {
+    "id": "D1I3",
+    "prompt_tokens": 8922,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 218
+   },
+   {
+    "id": "D1I4",
+    "prompt_tokens": 9060,
+    "completion_tokens": 25,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 228
+   },
+   {
+    "id": "D1M1",
+    "prompt_tokens": 9200,
+    "completion_tokens": 27,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 240
+   },
+   {
+    "id": "D1M2",
+    "prompt_tokens": 9003,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 171
+   },
+   {
+    "id": "D1M3",
+    "prompt_tokens": 8749,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 173
+   },
+   {
+    "id": "D1M4",
+    "prompt_tokens": 8968,
+    "completion_tokens": 40,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 136
+   },
+   {
+    "id": "D1M5",
+    "prompt_tokens": 8938,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 234
+   },
+   {
+    "id": "D1M6",
+    "prompt_tokens": 8709,
+    "completion_tokens": 30,
+    "cache_hit_tokens": 8575,
+    "cache_miss_tokens": 134
+   },
+   {
+    "id": "D1R1",
+    "prompt_tokens": 8889,
+    "completion_tokens": 9,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 185
+   },
+   {
+    "id": "D1R2",
+    "prompt_tokens": 8390,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 198
+   },
+   {
+    "id": "D1R3",
+    "prompt_tokens": 9273,
+    "completion_tokens": 44,
+    "cache_hit_tokens": 9088,
+    "cache_miss_tokens": 185
+   },
+   {
+    "id": "D1R4",
+    "prompt_tokens": 8691,
+    "completion_tokens": 19,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 243
+   },
+   {
+    "id": "D1R5",
+    "prompt_tokens": 9369,
+    "completion_tokens": 36,
+    "cache_hit_tokens": 9216,
+    "cache_miss_tokens": 153
+   },
+   {
+    "id": "D1R6",
+    "prompt_tokens": 9211,
+    "completion_tokens": 57,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 251
+   },
+   {
+    "id": "D1R7",
+    "prompt_tokens": 9064,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 232
+   },
+   {
+    "id": "D1R8",
+    "prompt_tokens": 9147,
+    "completion_tokens": 4,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 187
+   },
+   {
+    "id": "D1A1",
+    "prompt_tokens": 9051,
+    "completion_tokens": 39,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 219
+   },
+   {
+    "id": "D1A2",
+    "prompt_tokens": 8619,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 171
+   },
+   {
+    "id": "D1I1",
+    "prompt_tokens": 8946,
+    "completion_tokens": 22,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 242
+   },
+   {
+    "id": "D1I2",
+    "prompt_tokens": 8872,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 168
+   },
+   {
+    "id": "D1I3",
+    "prompt_tokens": 8922,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 218
+   },
+   {
+    "id": "D1I4",
+    "prompt_tokens": 9060,
+    "completion_tokens": 22,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 228
+   },
+   {
+    "id": "D1M1",
+    "prompt_tokens": 9200,
+    "completion_tokens": 40,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 240
+   },
+   {
+    "id": "D1M2",
+    "prompt_tokens": 9003,
+    "completion_tokens": 22,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 171
+   },
+   {
+    "id": "D1M3",
+    "prompt_tokens": 8749,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 173
+   },
+   {
+    "id": "D1M4",
+    "prompt_tokens": 8968,
+    "completion_tokens": 35,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 136
+   },
+   {
+    "id": "D1M5",
+    "prompt_tokens": 8938,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 234
+   },
+   {
+    "id": "D1M6",
+    "prompt_tokens": 8709,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 8575,
+    "cache_miss_tokens": 134
+   },
+   {
+    "id": "D1R1",
+    "prompt_tokens": 8889,
+    "completion_tokens": 34,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 185
+   },
+   {
+    "id": "D1R2",
+    "prompt_tokens": 8390,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 198
+   },
+   {
+    "id": "D1R3",
+    "prompt_tokens": 9273,
+    "completion_tokens": 31,
+    "cache_hit_tokens": 9088,
+    "cache_miss_tokens": 185
+   },
+   {
+    "id": "D1R4",
+    "prompt_tokens": 8691,
+    "completion_tokens": 20,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 243
+   },
+   {
+    "id": "D1R5",
+    "prompt_tokens": 9369,
+    "completion_tokens": 27,
+    "cache_hit_tokens": 9216,
+    "cache_miss_tokens": 153
+   },
+   {
+    "id": "D1R6",
+    "prompt_tokens": 9211,
+    "completion_tokens": 20,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 251
+   },
+   {
+    "id": "D1R7",
+    "prompt_tokens": 9064,
+    "completion_tokens": 15,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 232
+   },
+   {
+    "id": "D1R8",
+    "prompt_tokens": 9147,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 187
+   },
+   {
+    "id": "D1A1",
+    "prompt_tokens": 9051,
+    "completion_tokens": 32,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 219
+   },
+   {
+    "id": "D1A2",
+    "prompt_tokens": 8619,
+    "completion_tokens": 58,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 171
+   },
+   {
+    "id": "D1I1",
+    "prompt_tokens": 8946,
+    "completion_tokens": 25,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 242
+   },
+   {
+    "id": "D1I2",
+    "prompt_tokens": 8872,
+    "completion_tokens": 32,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 168
+   },
+   {
+    "id": "D1I3",
+    "prompt_tokens": 8922,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 218
+   },
+   {
+    "id": "D1I4",
+    "prompt_tokens": 9060,
+    "completion_tokens": 27,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 228
+   },
+   {
+    "id": "D1M1",
+    "prompt_tokens": 9200,
+    "completion_tokens": 27,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 240
+   },
+   {
+    "id": "D1M2",
+    "prompt_tokens": 9003,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 171
+   },
+   {
+    "id": "D1M3",
+    "prompt_tokens": 8749,
+    "completion_tokens": 21,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 173
+   },
+   {
+    "id": "D1M4",
+    "prompt_tokens": 8968,
+    "completion_tokens": 40,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 136
+   },
+   {
+    "id": "D1M5",
+    "prompt_tokens": 8938,
+    "completion_tokens": 48,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 234
+   },
+   {
+    "id": "D1M6",
+    "prompt_tokens": 8709,
+    "completion_tokens": 32,
+    "cache_hit_tokens": 8575,
+    "cache_miss_tokens": 134
+   },
+   {
+    "id": "D1R1",
+    "prompt_tokens": 8889,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 185
+   },
+   {
+    "id": "D1R2",
+    "prompt_tokens": 8390,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 8192,
+    "cache_miss_tokens": 198
+   },
+   {
+    "id": "D1R3",
+    "prompt_tokens": 9273,
+    "completion_tokens": 27,
+    "cache_hit_tokens": 9088,
+    "cache_miss_tokens": 185
+   },
+   {
+    "id": "D1R4",
+    "prompt_tokens": 8691,
+    "completion_tokens": 20,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 243
+   },
+   {
+    "id": "D1R5",
+    "prompt_tokens": 9369,
+    "completion_tokens": 40,
+    "cache_hit_tokens": 9216,
+    "cache_miss_tokens": 153
+   },
+   {
+    "id": "D1R6",
+    "prompt_tokens": 9211,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 251
+   },
+   {
+    "id": "D1R7",
+    "prompt_tokens": 9064,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 232
+   },
+   {
+    "id": "D1R8",
+    "prompt_tokens": 9147,
+    "completion_tokens": 21,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 187
+   },
+   {
+    "id": "D1A1",
+    "prompt_tokens": 9051,
+    "completion_tokens": 19,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 219
+   },
+   {
+    "id": "D1A2",
+    "prompt_tokens": 8619,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 171
+   },
+   {
+    "id": "D1I1",
+    "prompt_tokens": 8946,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 242
+   },
+   {
+    "id": "D1I2",
+    "prompt_tokens": 8872,
+    "completion_tokens": 38,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 168
+   },
+   {
+    "id": "D1I3",
+    "prompt_tokens": 8922,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 218
+   },
+   {
+    "id": "D1I4",
+    "prompt_tokens": 9060,
+    "completion_tokens": 22,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 228
+   },
+   {
+    "id": "D1M1",
+    "prompt_tokens": 9200,
+    "completion_tokens": 25,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 240
+   },
+   {
+    "id": "D1M2",
+    "prompt_tokens": 9003,
+    "completion_tokens": 22,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 171
+   },
+   {
+    "id": "D1M3",
+    "prompt_tokens": 8749,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 173
+   },
+   {
+    "id": "D1M4",
+    "prompt_tokens": 8968,
+    "completion_tokens": 39,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 136
+   },
+   {
+    "id": "D1M5",
+    "prompt_tokens": 8938,
+    "completion_tokens": 8,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 234
+   },
+   {
+    "id": "D1M6",
+    "prompt_tokens": 8709,
+    "completion_tokens": 15,
+    "cache_hit_tokens": 8575,
+    "cache_miss_tokens": 134
+   }
+  ],
+  "inc_raptor·p3": [
+   {
+    "id": "D1R1",
+    "prompt_tokens": 8677,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 2432,
+    "cache_miss_tokens": 6245
+   },
+   {
+    "id": "D1R2",
+    "prompt_tokens": 8776,
+    "completion_tokens": 21,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 8136
+   },
+   {
+    "id": "D1R3",
+    "prompt_tokens": 9206,
+    "completion_tokens": 39,
+    "cache_hit_tokens": 1536,
+    "cache_miss_tokens": 7670
+   },
+   {
+    "id": "D1R4",
+    "prompt_tokens": 8803,
+    "completion_tokens": 20,
+    "cache_hit_tokens": 512,
+    "cache_miss_tokens": 8291
+   },
+   {
+    "id": "D1R5",
+    "prompt_tokens": 9292,
+    "completion_tokens": 35,
+    "cache_hit_tokens": 5248,
+    "cache_miss_tokens": 4044
+   },
+   {
+    "id": "D1R6",
+    "prompt_tokens": 9211,
+    "completion_tokens": 20,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 251
+   },
+   {
+    "id": "D1R7",
+    "prompt_tokens": 8940,
+    "completion_tokens": 17,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 8940
+   },
+   {
+    "id": "D1R8",
+    "prompt_tokens": 8923,
+    "completion_tokens": 32,
+    "cache_hit_tokens": 1152,
+    "cache_miss_tokens": 7771
+   },
+   {
+    "id": "D1A1",
+    "prompt_tokens": 9036,
+    "completion_tokens": 28,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 9036
+   },
+   {
+    "id": "D1A2",
+    "prompt_tokens": 8824,
+    "completion_tokens": 41,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 8184
+   },
+   {
+    "id": "D1I1",
+    "prompt_tokens": 8626,
+    "completion_tokens": 15,
+    "cache_hit_tokens": 4096,
+    "cache_miss_tokens": 4530
+   },
+   {
+    "id": "D1I2",
+    "prompt_tokens": 8617,
+    "completion_tokens": 29,
+    "cache_hit_tokens": 1408,
+    "cache_miss_tokens": 7209
+   },
+   {
+    "id": "D1I3",
+    "prompt_tokens": 8616,
+    "completion_tokens": 8,
+    "cache_hit_tokens": 2560,
+    "cache_miss_tokens": 6056
+   },
+   {
+    "id": "D1I4",
+    "prompt_tokens": 8578,
+    "completion_tokens": 24,
+    "cache_hit_tokens": 2304,
+    "cache_miss_tokens": 6274
+   },
+   {
+    "id": "D1M1",
+    "prompt_tokens": 9156,
+    "completion_tokens": 27,
+    "cache_hit_tokens": 6912,
+    "cache_miss_tokens": 2244
+   },
+   {
+    "id": "D1M2",
+    "prompt_tokens": 8605,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 4224,
+    "cache_miss_tokens": 4381
+   },
+   {
+    "id": "D1M3",
+    "prompt_tokens": 8565,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 2560,
+    "cache_miss_tokens": 6005
+   },
+   {
+    "id": "D1M4",
+    "prompt_tokens": 8882,
+    "completion_tokens": 38,
+    "cache_hit_tokens": 2816,
+    "cache_miss_tokens": 6066
+   },
+   {
+    "id": "D1M5",
+    "prompt_tokens": 8721,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 768,
+    "cache_miss_tokens": 7953
+   },
+   {
+    "id": "D1M6",
+    "prompt_tokens": 8473,
+    "completion_tokens": 28,
+    "cache_hit_tokens": 1536,
+    "cache_miss_tokens": 6937
+   },
+   {
+    "id": "D1R1",
+    "prompt_tokens": 8677,
+    "completion_tokens": 42,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 229
+   },
+   {
+    "id": "D1R2",
+    "prompt_tokens": 8776,
+    "completion_tokens": 26,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 200
+   },
+   {
+    "id": "D1R3",
+    "prompt_tokens": 9206,
+    "completion_tokens": 45,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 246
+   },
+   {
+    "id": "D1R4",
+    "prompt_tokens": 8803,
+    "completion_tokens": 41,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 227
+   },
+   {
+    "id": "D1R5",
+    "prompt_tokens": 9292,
+    "completion_tokens": 51,
+    "cache_hit_tokens": 9088,
+    "cache_miss_tokens": 204
+   },
+   {
+    "id": "D1R6",
+    "prompt_tokens": 9211,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 251
+   },
+   {
+    "id": "D1R7",
+    "prompt_tokens": 8940,
+    "completion_tokens": 7,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 236
+   },
+   {
+    "id": "D1R8",
+    "prompt_tokens": 8923,
+    "completion_tokens": 30,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 219
+   },
+   {
+    "id": "D1A1",
+    "prompt_tokens": 9036,
+    "completion_tokens": 29,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 204
+   },
+   {
+    "id": "D1A2",
+    "prompt_tokens": 8824,
+    "completion_tokens": 41,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 248
+   },
+   {
+    "id": "D1I1",
+    "prompt_tokens": 8626,
+    "completion_tokens": 18,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 178
+   },
+   {
+    "id": "D1I2",
+    "prompt_tokens": 8617,
+    "completion_tokens": 38,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 169
+   },
+   {
+    "id": "D1I3",
+    "prompt_tokens": 8616,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 168
+   },
+   {
+    "id": "D1I4",
+    "prompt_tokens": 8578,
+    "completion_tokens": 25,
+    "cache_hit_tokens": 8444,
+    "cache_miss_tokens": 134
+   },
+   {
+    "id": "D1M1",
+    "prompt_tokens": 9156,
+    "completion_tokens": 25,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 196
+   },
+   {
+    "id": "D1M2",
+    "prompt_tokens": 8605,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 157
+   },
+   {
+    "id": "D1M3",
+    "prompt_tokens": 8565,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 245
+   },
+   {
+    "id": "D1M4",
+    "prompt_tokens": 8882,
+    "completion_tokens": 37,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 178
+   },
+   {
+    "id": "D1M5",
+    "prompt_tokens": 8721,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 145
+   },
+   {
+    "id": "D1M6",
+    "prompt_tokens": 8473,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 153
+   },
+   {
+    "id": "D1R1",
+    "prompt_tokens": 8677,
+    "completion_tokens": 8,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 229
+   },
+   {
+    "id": "D1R2",
+    "prompt_tokens": 8776,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 200
+   },
+   {
+    "id": "D1R3",
+    "prompt_tokens": 9206,
+    "completion_tokens": 35,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 246
+   },
+   {
+    "id": "D1R4",
+    "prompt_tokens": 8803,
+    "completion_tokens": 18,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 227
+   },
+   {
+    "id": "D1R5",
+    "prompt_tokens": 9292,
+    "completion_tokens": 16,
+    "cache_hit_tokens": 9088,
+    "cache_miss_tokens": 204
+   },
+   {
+    "id": "D1R6",
+    "prompt_tokens": 9211,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 251
+   },
+   {
+    "id": "D1R7",
+    "prompt_tokens": 8940,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 236
+   },
+   {
+    "id": "D1R8",
+    "prompt_tokens": 8923,
+    "completion_tokens": 32,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 219
+   },
+   {
+    "id": "D1A1",
+    "prompt_tokens": 9036,
+    "completion_tokens": 36,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 204
+   },
+   {
+    "id": "D1A2",
+    "prompt_tokens": 8824,
+    "completion_tokens": 41,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 248
+   },
+   {
+    "id": "D1I1",
+    "prompt_tokens": 8626,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 178
+   },
+   {
+    "id": "D1I2",
+    "prompt_tokens": 8617,
+    "completion_tokens": 44,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 169
+   },
+   {
+    "id": "D1I3",
+    "prompt_tokens": 8616,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 168
+   },
+   {
+    "id": "D1I4",
+    "prompt_tokens": 8578,
+    "completion_tokens": 5,
+    "cache_hit_tokens": 8444,
+    "cache_miss_tokens": 134
+   },
+   {
+    "id": "D1M1",
+    "prompt_tokens": 9156,
+    "completion_tokens": 27,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 196
+   },
+   {
+    "id": "D1M2",
+    "prompt_tokens": 8605,
+    "completion_tokens": 22,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 157
+   },
+   {
+    "id": "D1M3",
+    "prompt_tokens": 8565,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 245
+   },
+   {
+    "id": "D1M4",
+    "prompt_tokens": 8882,
+    "completion_tokens": 34,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 178
+   },
+   {
+    "id": "D1M5",
+    "prompt_tokens": 8721,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 145
+   },
+   {
+    "id": "D1M6",
+    "prompt_tokens": 8473,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 153
+   },
+   {
+    "id": "D1R1",
+    "prompt_tokens": 8677,
+    "completion_tokens": 21,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 229
+   },
+   {
+    "id": "D1R2",
+    "prompt_tokens": 8776,
+    "completion_tokens": 24,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 200
+   },
+   {
+    "id": "D1R3",
+    "prompt_tokens": 9206,
+    "completion_tokens": 39,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 246
+   },
+   {
+    "id": "D1R4",
+    "prompt_tokens": 8803,
+    "completion_tokens": 10,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 227
+   },
+   {
+    "id": "D1R5",
+    "prompt_tokens": 9292,
+    "completion_tokens": 44,
+    "cache_hit_tokens": 9088,
+    "cache_miss_tokens": 204
+   },
+   {
+    "id": "D1R6",
+    "prompt_tokens": 9211,
+    "completion_tokens": 7,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 251
+   },
+   {
+    "id": "D1R7",
+    "prompt_tokens": 8940,
+    "completion_tokens": 21,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 236
+   },
+   {
+    "id": "D1R8",
+    "prompt_tokens": 8923,
+    "completion_tokens": 32,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 219
+   },
+   {
+    "id": "D1A1",
+    "prompt_tokens": 9036,
+    "completion_tokens": 37,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 204
+   },
+   {
+    "id": "D1A2",
+    "prompt_tokens": 8824,
+    "completion_tokens": 41,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 248
+   },
+   {
+    "id": "D1I1",
+    "prompt_tokens": 8626,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 178
+   },
+   {
+    "id": "D1I2",
+    "prompt_tokens": 8617,
+    "completion_tokens": 31,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 169
+   },
+   {
+    "id": "D1I3",
+    "prompt_tokens": 8616,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 168
+   },
+   {
+    "id": "D1I4",
+    "prompt_tokens": 8578,
+    "completion_tokens": 5,
+    "cache_hit_tokens": 8444,
+    "cache_miss_tokens": 134
+   },
+   {
+    "id": "D1M1",
+    "prompt_tokens": 9156,
+    "completion_tokens": 15,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 196
+   },
+   {
+    "id": "D1M2",
+    "prompt_tokens": 8605,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 157
+   },
+   {
+    "id": "D1M3",
+    "prompt_tokens": 8565,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 245
+   },
+   {
+    "id": "D1M4",
+    "prompt_tokens": 8882,
+    "completion_tokens": 38,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 178
+   },
+   {
+    "id": "D1M5",
+    "prompt_tokens": 8721,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 145
+   },
+   {
+    "id": "D1M6",
+    "prompt_tokens": 8473,
+    "completion_tokens": 15,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 153
+   },
+   {
+    "id": "D1R1",
+    "prompt_tokens": 8677,
+    "completion_tokens": 24,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 229
+   },
+   {
+    "id": "D1R2",
+    "prompt_tokens": 8776,
+    "completion_tokens": 24,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 200
+   },
+   {
+    "id": "D1R3",
+    "prompt_tokens": 9206,
+    "completion_tokens": 10,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 246
+   },
+   {
+    "id": "D1R4",
+    "prompt_tokens": 8803,
+    "completion_tokens": 20,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 227
+   },
+   {
+    "id": "D1R5",
+    "prompt_tokens": 9292,
+    "completion_tokens": 41,
+    "cache_hit_tokens": 9088,
+    "cache_miss_tokens": 204
+   },
+   {
+    "id": "D1R6",
+    "prompt_tokens": 9211,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 251
+   },
+   {
+    "id": "D1R7",
+    "prompt_tokens": 8940,
+    "completion_tokens": 21,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 236
+   },
+   {
+    "id": "D1R8",
+    "prompt_tokens": 8923,
+    "completion_tokens": 36,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 219
+   },
+   {
+    "id": "D1A1",
+    "prompt_tokens": 9036,
+    "completion_tokens": 36,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 204
+   },
+   {
+    "id": "D1A2",
+    "prompt_tokens": 8824,
+    "completion_tokens": 41,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 248
+   },
+   {
+    "id": "D1I1",
+    "prompt_tokens": 8626,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 178
+   },
+   {
+    "id": "D1I2",
+    "prompt_tokens": 8617,
+    "completion_tokens": 38,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 169
+   },
+   {
+    "id": "D1I3",
+    "prompt_tokens": 8616,
+    "completion_tokens": 22,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 168
+   },
+   {
+    "id": "D1I4",
+    "prompt_tokens": 8578,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 8444,
+    "cache_miss_tokens": 134
+   },
+   {
+    "id": "D1M1",
+    "prompt_tokens": 9156,
+    "completion_tokens": 40,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 196
+   },
+   {
+    "id": "D1M2",
+    "prompt_tokens": 8605,
+    "completion_tokens": 21,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 157
+   },
+   {
+    "id": "D1M3",
+    "prompt_tokens": 8565,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 245
+   },
+   {
+    "id": "D1M4",
+    "prompt_tokens": 8882,
+    "completion_tokens": 28,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 178
+   },
+   {
+    "id": "D1M5",
+    "prompt_tokens": 8721,
+    "completion_tokens": 8,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 145
+   },
+   {
+    "id": "D1M6",
+    "prompt_tokens": 8473,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 153
+   }
+  ],
+  "reb_raptor·p3": [
+   {
+    "id": "D1R1",
+    "prompt_tokens": 9079,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 512,
+    "cache_miss_tokens": 8567
+   },
+   {
+    "id": "D1R2",
+    "prompt_tokens": 8686,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 8558
+   },
+   {
+    "id": "D1R3",
+    "prompt_tokens": 9223,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 9095
+   },
+   {
+    "id": "D1R4",
+    "prompt_tokens": 8673,
+    "completion_tokens": 19,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 8289
+   },
+   {
+    "id": "D1R5",
+    "prompt_tokens": 9429,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 9301
+   },
+   {
+    "id": "D1R6",
+    "prompt_tokens": 9264,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 9136
+   },
+   {
+    "id": "D1R7",
+    "prompt_tokens": 9047,
+    "completion_tokens": 10,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 9047
+   },
+   {
+    "id": "D1R8",
+    "prompt_tokens": 9138,
+    "completion_tokens": 25,
+    "cache_hit_tokens": 1280,
+    "cache_miss_tokens": 7858
+   },
+   {
+    "id": "D1A1",
+    "prompt_tokens": 9173,
+    "completion_tokens": 36,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 9173
+   },
+   {
+    "id": "D1A2",
+    "prompt_tokens": 9202,
+    "completion_tokens": 41,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 9074
+   },
+   {
+    "id": "D1I1",
+    "prompt_tokens": 8937,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 640,
+    "cache_miss_tokens": 8297
+   },
+   {
+    "id": "D1I2",
+    "prompt_tokens": 8991,
+    "completion_tokens": 28,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 8991
+   },
+   {
+    "id": "D1I3",
+    "prompt_tokens": 8997,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 8613
+   },
+   {
+    "id": "D1I4",
+    "prompt_tokens": 9090,
+    "completion_tokens": 31,
+    "cache_hit_tokens": 8320,
+    "cache_miss_tokens": 770
+   },
+   {
+    "id": "D1M1",
+    "prompt_tokens": 9228,
+    "completion_tokens": 26,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 9100
+   },
+   {
+    "id": "D1M2",
+    "prompt_tokens": 9104,
+    "completion_tokens": 24,
+    "cache_hit_tokens": 384,
+    "cache_miss_tokens": 8720
+   },
+   {
+    "id": "D1M3",
+    "prompt_tokens": 8831,
+    "completion_tokens": 20,
+    "cache_hit_tokens": 128,
+    "cache_miss_tokens": 8703
+   },
+   {
+    "id": "D1M4",
+    "prompt_tokens": 9155,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 2176,
+    "cache_miss_tokens": 6979
+   },
+   {
+    "id": "D1M5",
+    "prompt_tokens": 8797,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 256,
+    "cache_miss_tokens": 8541
+   },
+   {
+    "id": "D1M6",
+    "prompt_tokens": 8716,
+    "completion_tokens": 28,
+    "cache_hit_tokens": 1280,
+    "cache_miss_tokens": 7436
+   },
+   {
+    "id": "D1R1",
+    "prompt_tokens": 9079,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 247
+   },
+   {
+    "id": "D1R2",
+    "prompt_tokens": 8686,
+    "completion_tokens": 22,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 238
+   },
+   {
+    "id": "D1R3",
+    "prompt_tokens": 9223,
+    "completion_tokens": 16,
+    "cache_hit_tokens": 9088,
+    "cache_miss_tokens": 135
+   },
+   {
+    "id": "D1R4",
+    "prompt_tokens": 8673,
+    "completion_tokens": 20,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 225
+   },
+   {
+    "id": "D1R5",
+    "prompt_tokens": 9429,
+    "completion_tokens": 40,
+    "cache_hit_tokens": 9216,
+    "cache_miss_tokens": 213
+   },
+   {
+    "id": "D1R6",
+    "prompt_tokens": 9264,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 9088,
+    "cache_miss_tokens": 176
+   },
+   {
+    "id": "D1R7",
+    "prompt_tokens": 9047,
+    "completion_tokens": 10,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 215
+   },
+   {
+    "id": "D1R8",
+    "prompt_tokens": 9138,
+    "completion_tokens": 19,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 178
+   },
+   {
+    "id": "D1A1",
+    "prompt_tokens": 9173,
+    "completion_tokens": 62,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 213
+   },
+   {
+    "id": "D1A2",
+    "prompt_tokens": 9202,
+    "completion_tokens": 36,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 242
+   },
+   {
+    "id": "D1I1",
+    "prompt_tokens": 8937,
+    "completion_tokens": 16,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 233
+   },
+   {
+    "id": "D1I2",
+    "prompt_tokens": 8991,
+    "completion_tokens": 35,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 159
+   },
+   {
+    "id": "D1I3",
+    "prompt_tokens": 8997,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 165
+   },
+   {
+    "id": "D1I4",
+    "prompt_tokens": 9090,
+    "completion_tokens": 19,
+    "cache_hit_tokens": 8956,
+    "cache_miss_tokens": 134
+   },
+   {
+    "id": "D1M1",
+    "prompt_tokens": 9228,
+    "completion_tokens": 37,
+    "cache_hit_tokens": 9088,
+    "cache_miss_tokens": 140
+   },
+   {
+    "id": "D1M2",
+    "prompt_tokens": 9104,
+    "completion_tokens": 22,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 144
+   },
+   {
+    "id": "D1M3",
+    "prompt_tokens": 8831,
+    "completion_tokens": 27,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 255
+   },
+   {
+    "id": "D1M4",
+    "prompt_tokens": 9155,
+    "completion_tokens": 16,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 195
+   },
+   {
+    "id": "D1M5",
+    "prompt_tokens": 8797,
+    "completion_tokens": 8,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 221
+   },
+   {
+    "id": "D1M6",
+    "prompt_tokens": 8716,
+    "completion_tokens": 19,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 140
+   },
+   {
+    "id": "D1R1",
+    "prompt_tokens": 9079,
+    "completion_tokens": 31,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 247
+   },
+   {
+    "id": "D1R2",
+    "prompt_tokens": 8686,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 238
+   },
+   {
+    "id": "D1R3",
+    "prompt_tokens": 9223,
+    "completion_tokens": 22,
+    "cache_hit_tokens": 9088,
+    "cache_miss_tokens": 135
+   },
+   {
+    "id": "D1R4",
+    "prompt_tokens": 8673,
+    "completion_tokens": 20,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 225
+   },
+   {
+    "id": "D1R5",
+    "prompt_tokens": 9429,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 9216,
+    "cache_miss_tokens": 213
+   },
+   {
+    "id": "D1R6",
+    "prompt_tokens": 9264,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 9088,
+    "cache_miss_tokens": 176
+   },
+   {
+    "id": "D1R7",
+    "prompt_tokens": 9047,
+    "completion_tokens": 10,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 215
+   },
+   {
+    "id": "D1R8",
+    "prompt_tokens": 9138,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 178
+   },
+   {
+    "id": "D1A1",
+    "prompt_tokens": 9173,
+    "completion_tokens": 36,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 213
+   },
+   {
+    "id": "D1A2",
+    "prompt_tokens": 9202,
+    "completion_tokens": 24,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 242
+   },
+   {
+    "id": "D1I1",
+    "prompt_tokens": 8937,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 233
+   },
+   {
+    "id": "D1I2",
+    "prompt_tokens": 8991,
+    "completion_tokens": 28,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 159
+   },
+   {
+    "id": "D1I3",
+    "prompt_tokens": 8997,
+    "completion_tokens": 22,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 165
+   },
+   {
+    "id": "D1I4",
+    "prompt_tokens": 9090,
+    "completion_tokens": 19,
+    "cache_hit_tokens": 8956,
+    "cache_miss_tokens": 134
+   },
+   {
+    "id": "D1M1",
+    "prompt_tokens": 9228,
+    "completion_tokens": 14,
+    "cache_hit_tokens": 9088,
+    "cache_miss_tokens": 140
+   },
+   {
+    "id": "D1M2",
+    "prompt_tokens": 9104,
+    "completion_tokens": 22,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 144
+   },
+   {
+    "id": "D1M3",
+    "prompt_tokens": 8831,
+    "completion_tokens": 26,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 255
+   },
+   {
+    "id": "D1M4",
+    "prompt_tokens": 9155,
+    "completion_tokens": 39,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 195
+   },
+   {
+    "id": "D1M5",
+    "prompt_tokens": 8797,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 221
+   },
+   {
+    "id": "D1M6",
+    "prompt_tokens": 8716,
+    "completion_tokens": 28,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 140
+   },
+   {
+    "id": "D1R1",
+    "prompt_tokens": 9079,
+    "completion_tokens": 31,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 247
+   },
+   {
+    "id": "D1R2",
+    "prompt_tokens": 8686,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 238
+   },
+   {
+    "id": "D1R3",
+    "prompt_tokens": 9223,
+    "completion_tokens": 19,
+    "cache_hit_tokens": 9088,
+    "cache_miss_tokens": 135
+   },
+   {
+    "id": "D1R4",
+    "prompt_tokens": 8673,
+    "completion_tokens": 20,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 225
+   },
+   {
+    "id": "D1R5",
+    "prompt_tokens": 9429,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 9216,
+    "cache_miss_tokens": 213
+   },
+   {
+    "id": "D1R6",
+    "prompt_tokens": 9264,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 9088,
+    "cache_miss_tokens": 176
+   },
+   {
+    "id": "D1R7",
+    "prompt_tokens": 9047,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 215
+   },
+   {
+    "id": "D1R8",
+    "prompt_tokens": 9138,
+    "completion_tokens": 31,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 178
+   },
+   {
+    "id": "D1A1",
+    "prompt_tokens": 9173,
+    "completion_tokens": 36,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 213
+   },
+   {
+    "id": "D1A2",
+    "prompt_tokens": 9202,
+    "completion_tokens": 41,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 242
+   },
+   {
+    "id": "D1I1",
+    "prompt_tokens": 8937,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 233
+   },
+   {
+    "id": "D1I2",
+    "prompt_tokens": 8991,
+    "completion_tokens": 34,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 159
+   },
+   {
+    "id": "D1I3",
+    "prompt_tokens": 8997,
+    "completion_tokens": 11,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 165
+   },
+   {
+    "id": "D1I4",
+    "prompt_tokens": 9090,
+    "completion_tokens": 19,
+    "cache_hit_tokens": 8956,
+    "cache_miss_tokens": 134
+   },
+   {
+    "id": "D1M1",
+    "prompt_tokens": 9228,
+    "completion_tokens": 25,
+    "cache_hit_tokens": 9088,
+    "cache_miss_tokens": 140
+   },
+   {
+    "id": "D1M2",
+    "prompt_tokens": 9104,
+    "completion_tokens": 25,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 144
+   },
+   {
+    "id": "D1M3",
+    "prompt_tokens": 8831,
+    "completion_tokens": 21,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 255
+   },
+   {
+    "id": "D1M4",
+    "prompt_tokens": 9155,
+    "completion_tokens": 16,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 195
+   },
+   {
+    "id": "D1M5",
+    "prompt_tokens": 8797,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 221
+   },
+   {
+    "id": "D1M6",
+    "prompt_tokens": 8716,
+    "completion_tokens": 28,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 140
+   },
+   {
+    "id": "D1R1",
+    "prompt_tokens": 9079,
+    "completion_tokens": 27,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 247
+   },
+   {
+    "id": "D1R2",
+    "prompt_tokens": 8686,
+    "completion_tokens": 12,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 238
+   },
+   {
+    "id": "D1R3",
+    "prompt_tokens": 9223,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 9088,
+    "cache_miss_tokens": 135
+   },
+   {
+    "id": "D1R4",
+    "prompt_tokens": 8673,
+    "completion_tokens": 20,
+    "cache_hit_tokens": 8448,
+    "cache_miss_tokens": 225
+   },
+   {
+    "id": "D1R5",
+    "prompt_tokens": 9429,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 9216,
+    "cache_miss_tokens": 213
+   },
+   {
+    "id": "D1R6",
+    "prompt_tokens": 9264,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 9088,
+    "cache_miss_tokens": 176
+   },
+   {
+    "id": "D1R7",
+    "prompt_tokens": 9047,
+    "completion_tokens": 20,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 215
+   },
+   {
+    "id": "D1R8",
+    "prompt_tokens": 9138,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 178
+   },
+   {
+    "id": "D1A1",
+    "prompt_tokens": 9173,
+    "completion_tokens": 37,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 213
+   },
+   {
+    "id": "D1A2",
+    "prompt_tokens": 9202,
+    "completion_tokens": 24,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 242
+   },
+   {
+    "id": "D1I1",
+    "prompt_tokens": 8937,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8704,
+    "cache_miss_tokens": 233
+   },
+   {
+    "id": "D1I2",
+    "prompt_tokens": 8991,
+    "completion_tokens": 37,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 159
+   },
+   {
+    "id": "D1I3",
+    "prompt_tokens": 8997,
+    "completion_tokens": 13,
+    "cache_hit_tokens": 8832,
+    "cache_miss_tokens": 165
+   },
+   {
+    "id": "D1I4",
+    "prompt_tokens": 9090,
+    "completion_tokens": 18,
+    "cache_hit_tokens": 8956,
+    "cache_miss_tokens": 134
+   },
+   {
+    "id": "D1M1",
+    "prompt_tokens": 9228,
+    "completion_tokens": 17,
+    "cache_hit_tokens": 9088,
+    "cache_miss_tokens": 140
+   },
+   {
+    "id": "D1M2",
+    "prompt_tokens": 9104,
+    "completion_tokens": 23,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 144
+   },
+   {
+    "id": "D1M3",
+    "prompt_tokens": 8831,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 255
+   },
+   {
+    "id": "D1M4",
+    "prompt_tokens": 9155,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8960,
+    "cache_miss_tokens": 195
+   },
+   {
+    "id": "D1M5",
+    "prompt_tokens": 8797,
+    "completion_tokens": 6,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 221
+   },
+   {
+    "id": "D1M6",
+    "prompt_tokens": 8716,
+    "completion_tokens": 28,
+    "cache_hit_tokens": 8576,
+    "cache_miss_tokens": 140
+   }
+  ]
+ },
+ "tokens": {
+  "phase1": {
+   "raptor·base": {
+    "calls": 120,
+    "prompt_tokens": 927116,
+    "completion_tokens": 13228,
+    "cache_hit_tokens": 736380,
+    "cache_miss_tokens": 190736,
+    "cache_hit_rate": 0.7943,
+    "seconds": 135.13
+   }
+  },
+  "phase3": {
+   "inc_raptor": {
+    "calls": 220,
+    "prompt_tokens": 1809751,
+    "completion_tokens": 15602,
+    "cache_hit_tokens": 1476844,
+    "cache_miss_tokens": 332907,
+    "cache_hit_rate": 0.816,
+    "seconds": 215.84
+   },
+   "reb_raptor": {
+    "calls": 120,
+    "prompt_tokens": 938326,
+    "completion_tokens": 12464,
+    "cache_hit_tokens": 751088,
+    "cache_miss_tokens": 187238,
+    "cache_hit_rate": 0.8005,
+    "seconds": 131.14
+   }
+  },
+  "final": {
+   "inc_raptor": {
+    "calls": 225,
+    "prompt_tokens": 1854346,
+    "completion_tokens": 43465,
+    "cache_hit_tokens": 1512172,
+    "cache_miss_tokens": 342174,
+    "cache_hit_rate": 0.8155,
+    "seconds": 307.1
+   },
+   "reb_raptor": {
+    "calls": 125,
+    "prompt_tokens": 981736,
+    "completion_tokens": 30376,
+    "cache_hit_tokens": 784880,
+    "cache_miss_tokens": 196856,
+    "cache_hit_rate": 0.7995,
+    "seconds": 195.68
+   }
+  }
+ },
+ "answers": {
+  "raptor·p1": {
+   "D1R1": [
+    "EMBED_BATCH 取值为 32。",
+    "EMBED_BATCH 取值为 32，即候选原子/节点向量在一次 `enc.encode(list)` 内按批大小 32 批量编码。",
+    "EMBED_BATCH = 32。",
+    "EMBED_BATCH 取值为 32，即候选原子/节点向量在一次 `enc.encode(list)` 内按批大小 32 批量编码。",
+    "EMBED_BATCH 取值为 32。"
+   ],
+   "D1R2": [
+    "bench-c（零 persona）用 NeutralAgent 实现。",
+    "bench-c 用 NeutralAgent 实现，零 persona（PROTOCOL_ONLY 恒在）。",
+    "bench-c（零 persona）由 NeutralAgent 实现。",
+    "bench-c（墨，零 persona）用 NeutralAgent 实现。",
+    "bench-c（零 persona 条件）用 NeutralAgent 实现。"
+   ],
+   "D1R3": [
+    "锚定切片占 self 配额比例的参数名是 `sq_anchor_share`，取值 0.4（入台账，未校准）。",
+    "`sq_anchor_share`。",
+    "锚定切片占 self 配额比例的参数名是 `sq_anchor_share`（取值 0.4，另有 `sq_onset_agent` 为 per-agent 18/5/15）。",
+    "分层 SQ v2 中锚定切片占 self 配额比例的参数名是 `sq_anchor_share`（取值 0.4）。",
+    "锚定切片占 self 配额比例的参数名是 `sq_anchor_share`（先拍值 0.4）。"
+   ],
+   "D1R4": [
+    "preheat / absence / observe 分别为 20 / 12 / 18 轮。",
+    "preheat / absence / observe 分别为 20 / 12 / 18 轮。",
+    "preheat / absence / observe 分别为 20 / 12 / 18 轮。",
+    "preheat / absence / observe 分别设置为 20 / 12 / 18 轮。",
+    "preheat / absence / observe 分别设置为 20 / 12 / 18 轮。"
+   ],
+   "D1R5": [
+    "A↔B 使用边非冗余判定所用阈值为 `theta_nonredundant`（默认 0.58，先拍值，Phase C 复校）。",
+    "A↔B 使用边的非冗余判定阈值为 `theta_nonredundant`（θ_nonredundant），默认值 0.58，取自 recall 边 p25。",
+    "A↔B 使用边的非冗余判定阈值参数名是 `theta_nonredundant`（取值 0.58，即 recall 边 p25）。",
+    "`theta_nonredundant`（θ_nr / θ_nonredundant），默认值 0.58。",
+    "A↔B 使用边非冗余判定所用阈值参数名为 `theta_nonredundant`（默认值 0.58，与 `theta_nr` 同尺）。"
+   ],
+   "D1R6": [
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。上下文只给出 `max_pending_per_loop`（2，场景 3）、`max_loop_iterations`、`max_code_per_loop` 等参数，未出现“两臂单次回复上限”对应的参数名。",
+    "`max_pending_per_loop`（场景 3，值为 2，未校准）。",
+    "文档中无此信息。"
+   ],
+   "D1R7": [
+    "必须采用迭代遍历而非递归，以防爆栈。",
+    "记忆树的遍历必须采用迭代遍历而非递归，以防爆栈。",
+    "必须采用迭代遍历而非递归，以防爆栈。",
+    "记忆树的遍历实现必须采用迭代遍历而非递归，以防爆栈。",
+    "必须采用迭代遍历而非递归，以防爆栈。"
+   ],
+   "D1R8": [
+    "atom_min_len。",
+    "原子向量精排通道限制候选最小长度的参数是 `atom_min_len`（当前值 8，未校准）。",
+    "atom_min_len。",
+    "`atom_min_len`。",
+    "原子向量精排通道限制候选最小长度的参数是 `atom_min_len`，值为 8。"
+   ],
+   "D1A1": [
+    "文档实测分层记忆树臂的峰值内存约为 3.6GB（内存峰值/agent ~3.6GB）。",
+    "文档实测分层记忆树臂的峰值内存约 3.6GB。",
+    "文档实测 tree 臂峰值内存约 3.6GB（内存峰值/agent 一行：tree ~3.6GB，flat ~1.6GB，−55%）。",
+    "文档实测分层记忆树臂的峰值内存约为 3.6GB（对照 flat 臂约 1.6GB，低 55%）。",
+    "文档实测分层记忆树臂（tree）的峰值内存约为 3.6GB。"
+   ],
+   "D1A2": [
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。文档仅提到 `max_memory_mb` 由 4096 上调至 5120，以及 `style_alpha` 保人格使内存增加 55%，但未给出 flat 臂 120 轮的平均内存占用数值。",
+    "文档中无此信息。"
+   ],
+   "D1I1": [
+    "`max_loop_iterations`，默认值 20，未校准。",
+    "动作循环迭代上限的参数名是 `max_loop_iterations`，默认值 20，未校准。",
+    "动作循环迭代上限的参数名是 `max_loop_iterations`（默认 20，未校准）。",
+    "动作循环迭代上限的参数名是 `max_loop_iterations`，默认值 20，状态为未校准。",
+    "动作循环迭代上限的参数名是 `max_loop_iterations`，默认值 20，未校准。"
+   ],
+   "D1I2": [
+    "逐字重复输入检测（bigram Jaccard）已校准的阈值是 0.8（`find_similar_threshold`）。",
+    "逐字重复输入检测已校准的阈值是 `find_similar_threshold` = 0.8（bigram Jaccard）。",
+    "逐字重复输入检测已校准的阈值是 `find_similar_threshold` = 0.8。",
+    "逐字重复输入检测已校准的阈值是 `find_similar_threshold` = 0.8（2026-09-25 校准）。",
+    "逐字重复输入检测（bigram Jaccard）已校准阈值为 `find_similar_threshold` = 0.8（2026-09-25 校准）。"
+   ],
+   "D1I3": [
+    "`attention_atom_cap`。",
+    "`attention_atom_cap`，值为 40。",
+    "`attention_atom_cap`，值为 40。",
+    "`attention_atom_cap`，值为 40。",
+    "`attention_atom_cap`，值为 40。"
+   ],
+   "D1I4": [
+    "recall_boost。",
+    "`recall_boost`，默认值 30.0，用于召回命中项的 HP 提升（稳态通道）。",
+    "`recall_boost`，默认值 30.0，用于召回命中项的 HP 提升。",
+    "recall_boost。召回命中项 HP 提升 `recall_boost`（默认 30.0，未校准）。",
+    "召回命中后提升生命值的参数名是 `recall_boost`（默认 30.0）。"
+   ],
+   "D1M1": [
+    "〔早期〕新语义判据的阈值参数名是 `early_match_threshold`，先拍值 0.5。",
+    "〔早期〕新语义判据的阈值参数名是 `early_match_threshold`，先拍值 0.5。",
+    "〔早期〕新语义判据的阈值参数名是 `early_match_threshold`，先拍值 0.5（2026-10-03 拍定，未校准）。",
+    "〔早期〕新语义判据的阈值参数名是 `early_match_threshold`（先拍值 0.5）。",
+    "`early_match_threshold`，先拍值 0.5（2026-10-03，未校准）。"
+   ],
+   "D1M2": [
+    "父卡生命值保底的参数名是 `parent_init_hp`，值为 70.0。",
+    "父卡生命值保底的参数名是 `parent_init_hp`，其值为 70.0。",
+    "父卡生命值保底的参数名是 `parent_init_hp`，值为 70.0。",
+    "父卡生命值保底的参数名是 `parent_init_hp`（默认值 70.0）。",
+    "父卡 HP 保底参数名是 `parent_init_hp`，值为 70.0。"
+   ],
+   "D1M3": [
+    "hot_threshold（值为 60.0，HP ≥ 此值的原子判定为热原子）。",
+    "`hot_threshold`，值为 60.0。",
+    "`hot_threshold`，值为 60.0。",
+    "`hot_threshold`，值为 60.0，用于热原子判定（占位触发）。",
+    "`hot_threshold`，值为 60.0。"
+   ],
+   "D1M4": [
+    "原子卡初始生命值的参数名是 `initial_hp`，2026-10-01 拍定为 70.0（原 100.0）。",
+    "原子卡写入时的初始生命值参数名是 `initial_hp`，拍定值为 70.0（2026-10-01 由原 100.0 调整）。",
+    "原子卡初始生命值的参数名是 `initial_hp`，2026-10-01 拍定由 100.0 改为 70.0。",
+    "原子卡写入时初始生命值的参数名是 `initial_hp`，其值于 2026-10-01 由 100.0 拍定为 70.0。",
+    "原子卡初始生命值的参数名是 `initial_hp`，其值已由 100.0 调整为 70.0（2026-10-01 拍定）。"
+   ],
+   "D1M5": [
+    "agent 进程内存看门狗上限的参数名是 `max_memory_mb`，当前值为 5120。",
+    "max_memory_mb。",
+    "max_memory_mb。",
+    "`max_memory_mb`，值为 5120（2026-10-04 由 4096 上调），超限时 stop+restart，重启后由 `restore_on_start` 恢复记忆。",
+    "`max_memory_mb`。"
+   ],
+   "D1M6": [
+    "组装拼上下文所用字符预算的参数名是 `assembly_budget`，默认值 16000 字符。",
+    "组装拼上下文所用字符预算的参数名是 `assembly_budget`（另有 `ly_budget` 16000 亦见于参数表）。",
+    "`assembly_budget`（组装预算，字符口径）。",
+    "组装拼上下文所用字符预算的参数名是 `assembly_budget`（tree 臂 2026-10-03 对齐值为 16000）。",
+    "组装拼上下文所用字符预算的参数名是 `assembly_budget`。"
+   ]
+  },
+  "inc_raptor·p3": {
+   "D1R1": [
+    "EMBED_BATCH 取值为 64。",
+    "EMBED_BATCH=64（2026-10-03 内存修复后由 32 改为 64），候选原子/节点向量在一次 `enc.encode(list)` 内批量编码。",
+    "EMBED_BATCH=64。",
+    "MPS 批量编码每次编码 64 条候选（EMBED_BATCH=64）。",
+    "EMBED_BATCH=64，候选原子/节点向量在一次 `enc.encode(list)` 内批量编码。"
+   ],
+   "D1R2": [
+    "基准里零 persona 条件（bench-c）用 BaselineAgent 实现（原名为 NeutralAgent）。",
+    "bench-c 零 persona 条件用 BaselineAgent 实现（原为 NeutralAgent，后经 rename 改为 BaselineAgent）。",
+    "bench-c（墨，零 persona）用 BaselineAgent 实现。",
+    "bench-c（墨）零 persona 条件用 BaselineAgent 实现（原为 NeutralAgent，已重命名）。",
+    "基准里零 persona 条件（bench-c）用 **BaselineAgent** 实现（原名为 NeutralAgent）。"
+   ],
+   "D1R3": [
+    "分层 SQ v2 中，锚定切片占 self 配额比例的参数名是 `anchor_frac`（原 `sq_anchor_share`，取值 0.4）。",
+    "分层 SQ v2 中锚定切片占 self 配额比例的参数名是 `anchor_frac`（原 `sq_anchor_share`，经 edit_document 改名），取值 0.4。",
+    "锚定切片占 self 配额比例的参数名是 `anchor_frac`（原 `sq_anchor_share`，已改名），取值 0.4。",
+    "分层 SQ v2 中，锚定切片占 self 配额比例的参数名是 `anchor_frac`（原 `sq_anchor_share`，取值 0.4）。",
+    "anchor_frac（取值 0.4）。"
+   ],
+   "D1R4": [
+    "preheat / absence / observe 分别设置为 24 / 12 / 18 轮。",
+    "preheat / absence / observe 分别设为 24 / 12 / 18 轮。（注：文档中另有 20 / 12 / 18 轮的记载，存在版本差异。）",
+    "preheat / absence / observe = 24 / 12 / 18 轮。",
+    "20 / 12 / 18 轮。",
+    "preheat / absence / observe 分别设置为 24 / 12 / 18 轮。"
+   ],
+   "D1R5": [
+    "非冗余判定所用阈值参数名为 `nonredundant_theta`（早期名 `theta_nonredundant`），默认值 0.58。",
+    "非冗余阈值参数名为 `theta_nonredundant`（后重命名为 `nonredundant_theta`），先拍值 0.58，即端点相似度低于此值才记 A↔B 边。",
+    "`nonredundant_theta`（默认 0.58）。",
+    "非冗余判定所用阈值参数名为 `nonredundant_theta`（原名 `theta_nonredundant`，2026-09-25 重命名），默认值 0.58。",
+    "非冗余判定阈值参数名为 `theta_nonredundant`（在 Phase C 校准记录中亦写作 `nonredundant_theta`），默认值 0.58。"
+   ],
+   "D1R6": [
+    "`max_pending_per_loop`（值为 2，场景 3，未校准）。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "max_pending_per_loop。",
+    "文档中无此信息。"
+   ],
+   "D1R7": [
+    "记忆树的遍历实现必须采用显式栈遍历而非递归，以防止爆栈。",
+    "显式栈遍历而非递归。",
+    "必须采用显式栈遍历（迭代遍历）而非递归。",
+    "记忆树的遍历实现必须采用显式栈遍历（迭代遍历）而非递归，以防止爆栈。",
+    "记忆树的遍历实现必须采用显式栈遍历（迭代遍历），而非递归，以防爆栈。"
+   ],
+   "D1R8": [
+    "原子向量精排通道限制候选最小长度的参数名是 `min_atom_chars`（原名为 `atom_min_len`，已重命名）。",
+    "`min_atom_chars`（原名 `atom_min_len`，2026-10-03 重命名），当前值 8。",
+    "原子向量精排通道限制候选最小长度的参数名是 `min_atom_chars`（原名 `atom_min_len`，后经重命名）。",
+    "原子向量精排通道限制候选最小长度的参数名是 `min_atom_chars`（原名为 `atom_min_len`，后被重命名）。",
+    "原子向量精排通道限制候选最小长度的参数名是 `min_atom_chars`（原 `atom_min_len`，已重命名），默认值 8。"
+   ],
+   "D1A1": [
+    "分层记忆树臂峰值内存为 4.9GB（glm-4.7-flash，120 轮长跑）。",
+    "实测分层记忆树臂峰值内存为 4.9GB（glm-4.7-flash，120 轮长跑）。",
+    "实测（glm-4.7-flash）分层记忆树臂峰值内存 4.9GB，平均 3.4GB（120 轮长跑）。",
+    "分层记忆树臂实测（glm-4.7-flash）峰值内存为 4.9GB，平均 3.4GB（120 轮长跑）。",
+    "实测（glm-4.7-flash）：分层记忆树臂峰值内存 4.9GB、平均 3.4GB（120 轮长跑）。"
+   ],
+   "D1A2": [
+    "独立复测（Qwen3-32B，seed 42）中，flat 臂 120 轮的平均内存占用为 2.1GB（峰值 2.6GB）。",
+    "独立复测（Qwen3-32B，seed 42）中，flat 臂 120 轮的平均内存占用为 2.1GB（峰值 2.6GB）。",
+    "独立复测（Qwen3-32B，seed 42）中，flat 臂 120 轮的平均内存占用为 2.1GB（峰值 2.6GB）。",
+    "独立复测（Qwen3-32B，seed 42）中，flat 臂 120 轮的平均内存占用为 2.1GB（峰值 2.6GB）。",
+    "独立复测（Qwen3-32B，seed 42）中，flat 臂 120 轮的平均内存占用为 2.1GB（峰值 2.6GB）。"
+   ],
+   "D1I1": [
+    "`max_loop_iterations`，默认 20，未校准。",
+    "`max_loop_iterations`，默认值 20，状态为未校准。",
+    "动作循环迭代上限的参数名是 `max_loop_iterations`，默认值 20，未校准。",
+    "动作循环迭代上限的参数名是 `max_loop_iterations`，默认值 20，未校准。",
+    "动作循环迭代上限的参数名是 `max_loop_iterations`，默认值 20，未校准。"
+   ],
+   "D1I2": [
+    "逐字重复输入检测（bigram Jaccard）已校准阈值为 0.8（`find_similar_threshold`）。",
+    "逐字重复输入检测已校准的阈值是 `find_similar_threshold` = 0.8（bigram Jaccard，2026-09-25 校准）。",
+    "逐字重复输入检测（bigram Jaccard）已校准阈值为 `find_similar_threshold` = 0.8，校准时间 2026-09-25（§4.7）。",
+    "0.8（即 `find_similar_threshold`，bigram Jaccard 判定，2026-09-25 已校准）。",
+    "逐字重复输入检测（bigram Jaccard）已校准阈值为 0.8（`find_similar_threshold`，2026-09-25 校准）。"
+   ],
+   "D1I3": [
+    "`attention_atom_cap`。",
+    "`attention_atom_cap`，值为 40。",
+    "`attention_atom_cap`，值为 40。",
+    "`attention_atom_cap`，值为 40。",
+    "注意力窗口原子段的名额上限参数名是 `attention_atom_cap`，值为 40。"
+   ],
+   "D1I4": [
+    "recall_boost。它是召回命中项 HP 提升的参数，默认 30.0，属稳态通道。",
+    "召回命中后给命中项提升生命值的参数名是 `recall_boost`（默认 30.0）。",
+    "recall_boost。",
+    "recall_boost。",
+    "recall_boost（默认 30.0）。"
+   ],
+   "D1M1": [
+    "〔早期〕新语义判据的阈值参数名是 `early_match_threshold`，先拍值 0.5。",
+    "`early_match_threshold`，先拍值 0.5（2026-10-03，未校准）。",
+    "〔早期〕新语义判据的阈值参数名是 `early_match_threshold`，先拍值 0.5。",
+    "`early_match_threshold`，先拍值 0.5。",
+    "〔早期〕新语义判据的阈值参数名是 `early_match_threshold`，先拍值 0.5（2026-10-03 拍定，未校准）。"
+   ],
+   "D1M2": [
+    "父卡 HP 保底的参数名是 `parent_init_hp`，默认值 70.0。",
+    "`parent_init_hp`，值为 70.0。",
+    "父卡生命值保底的参数名是 `parent_init_hp`，值为 70.0。",
+    "父卡 HP 保底参数名是 `parent_init_hp`，默认值 70.0。",
+    "父卡 HP 保底参数名为 `parent_init_hp`，值 70.0。"
+   ],
+   "D1M3": [
+    "`hot_threshold`（热原子判定/占位触发，默认 60.0，未校准）。",
+    "`hot_threshold`。",
+    "`hot_threshold`（值 60.0）。",
+    "`hot_threshold`，值为 60.0。",
+    "`hot_threshold`，值为 60.0。"
+   ],
+   "D1M4": [
+    "原子卡写入时的初始生命值参数名是 `initial_hp`（值 70.0，2026-10-01 拍定，原 100.0）。",
+    "原子卡初始生命值的参数名是 `initial_hp`，值为 70.0（2026-10-01 由原 100.0 拍定）。",
+    "原子卡初始生命值的参数名是 `initial_hp`（2026-10-01 由 100.0 拍定为 70.0）。",
+    "原子卡写入时的初始生命值参数名是 `initial_hp`（值 70.0，2026-10-01 拍定，原 100.0）。",
+    "initial_hp（原子初始 HP，2026-10-01 由 100.0 拍定为 70.0）。"
+   ],
+   "D1M5": [
+    "max_memory_mb。",
+    "max_memory_mb。",
+    "max_memory_mb。",
+    "max_memory_mb。",
+    "`max_memory_mb`。"
+   ],
+   "D1M6": [
+    "组装拼上下文所用的字符预算参数名是 `assembly_budget`（另有别名 `ly_budget`，值为 16000）。",
+    "组装拼上下文所用的字符预算参数名是 `assembly_budget`（组装预算 6000 字符）。",
+    "组装拼上下文所用的字符预算参数名是 `assembly_budget`（tree 臂为 16000）。",
+    "组装拼上下文所用的字符预算参数名是 `assembly_budget`。",
+    "组装拼上下文字符预算的参数名是 `assembly_budget`（tree 臂取值 16000）。"
+   ]
+  },
+  "reb_raptor·p3": {
+   "D1R1": [
+    "EMBED_BATCH 取值为 64。",
+    "MPS 批量编码每次编码 64 条候选（`EMBED_BATCH=64`）。",
+    "EMBED_BATCH 取值为 64，候选原子/节点向量在一次 `enc.encode(list)` 内按此批大小批量编码。",
+    "EMBED_BATCH 取值为 64，候选原子/节点向量在一次 `enc.encode(list)` 内按此批大小批量编码。",
+    "EMBED_BATCH 取值为 64，候选原子/节点向量在一次 `enc.encode(list)` 内批量编码。"
+   ],
+   "D1R2": [
+    "bench-c（零 persona）用 BaselineAgent 实现。",
+    "bench-c（零 persona，条件 PROTOCOL_ONLY 恒在）用 BaselineAgent 实现。",
+    "bench-c（零 persona 条件）用 BaselineAgent 实现。",
+    "bench-c（零 persona）用 BaselineAgent 实现。",
+    "bench-c（零 persona）用 BaselineAgent 实现。"
+   ],
+   "D1R3": [
+    "anchor_frac，取值为 0.4。",
+    "参数名是 `anchor_frac`，取值为 0.4。",
+    "参数名是 `anchor_share`，取值约 0.4（入台账，未校准）。",
+    "anchor_frac（锚定切片占 self 配额比例，取值 0.4）。",
+    "锚定切片占 self 配额比例的参数名是 `anchor_frac`（取值 0.4）。"
+   ],
+   "D1R4": [
+    "preheat / absence / observe 分别为 24 / 12 / 18 轮。",
+    "preheat / absence / observe 分别设置为 24 / 12 / 18 轮。",
+    "preheat / absence / observe 分别设置为 24 / 12 / 18 轮。",
+    "preheat / absence / observe 分别设置为 24 / 12 / 18 轮。",
+    "preheat / absence / observe 分别设置为 24 / 12 / 18 轮。"
+   ],
+   "D1R5": [
+    "θ_nonredundant（值为 0.58）。",
+    "A↔B 使用边非冗余判定所用的阈值参数是 `θ_nonredundant`（`nonredundant_theta`），取值为 0.58。",
+    "θ_nonredundant（值 0.58）。",
+    "θ_nonredundant（值 0.58）。",
+    "θ_nonredundant（默认 0.58）。"
+   ],
+   "D1R6": [
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。",
+    "文档中无此信息。"
+   ],
+   "D1R7": [
+    "必须采用显式栈遍历，而非递归。",
+    "必须采用显式栈遍历，而非递归。",
+    "必须采用显式栈遍历，而非递归。",
+    "必须用显式栈遍历而非递归（防爆栈）。",
+    "必须采用显式栈遍历（而非递归），因为记忆树深度不承诺严格上界。"
+   ],
+   "D1R8": [
+    "原子向量精排通道限制候选最小长度的参数名是 `min_atom_chars`（默认值 8）。",
+    "`min_atom_chars`，默认值 8，校准状态为未校准。",
+    "`min_atom_chars`，默认值 8。",
+    "原子向量精排通道限制候选最小长度的参数名是 `min_atom_chars`，默认值 8，校准状态为未校准。",
+    "`min_atom_chars`，默认值为 8。"
+   ],
+   "D1A1": [
+    "分层记忆树臂在 glm-4.7-flash、120 轮长跑下实测峰值内存为 4.9GB（平均 3.4GB）。",
+    "实测（glm-4.7-flash）分层记忆树臂峰值内存为 4.9GB、平均 3.4GB（120 轮长跑）。独立复测（Qwen3-32B，seed 42）同条件下平均内存 3.4GB。",
+    "分层记忆树臂实测（glm-4.7-flash，120 轮长跑）峰值内存 4.9GB、平均 3.4GB。",
+    "实测（glm-4.7-flash）分层记忆树臂 120 轮长跑峰值内存 4.9GB、平均 3.4GB。",
+    "分层记忆树臂实测（glm-4.7-flash，120 轮长跑）峰值内存为 4.9GB，平均 3.4GB。"
+   ],
+   "D1A2": [
+    "独立复测（Qwen3-32B，seed 42）中，flat 臂 120 轮的平均内存占用为 2.1GB，峰值 2.6GB。",
+    "flat 臂 120 轮平均内存占用为 2.1GB（峰值 2.6GB）；分层树臂同条件下平均 3.4GB。",
+    "flat 臂 120 轮的平均内存占用为 2.1GB，峰值 2.6GB。",
+    "独立复测（Qwen3-32B，seed 42）中，flat 臂 120 轮的平均内存占用为 2.1GB，峰值 2.6GB。",
+    "flat 臂 120 轮的平均内存占用为 2.1GB（峰值 2.6GB）。"
+   ],
+   "D1I1": [
+    "max_loop_iterations。",
+    "max_loop_iterations。默认 20，校准状态为未校准。",
+    "max_loop_iterations。",
+    "max_loop_iterations，默认 20，未校准。",
+    "max_loop_iterations。"
+   ],
+   "D1I2": [
+    "逐字重复输入检测（find_similar）已校准阈值为 0.8（2026-09-25 校准）。",
+    "find_similar_threshold 已校准为 0.8（2026-09-25 校准，bigram Jaccard 逐字重复检测器）。",
+    "逐字重复输入检测（find_similar）已校准阈值为 0.8（2026-09-25 校准）。",
+    "逐字重复输入检测（find_similar）已校准阈值为 0.8（2026-09-25 校准，bigram Jaccard）。",
+    "逐字重复输入检测（find_similar）已校准的阈值是 `find_similar_threshold = 0.8`（2026-09-25 校准）。"
+   ],
+   "D1I3": [
+    "attention_atom_cap。",
+    "attention_atom_cap。",
+    "注意力窗口原子段的名额上限参数名是 `attention_atom_cap`（默认 40）。",
+    "attention_atom_cap（默认值 40）。",
+    "`attention_atom_cap`，默认值 40。"
+   ],
+   "D1I4": [
+    "召回命中后给命中项提升生命值的参数是 `recall_boost`（默认值 30.0，即召回 HP 提升）。",
+    "召回命中后给命中项提升生命值的参数名是 `recall_boost`。",
+    "召回命中后给命中项提升生命值的参数名是 `recall_boost`。",
+    "召回命中后给命中项提升生命值的参数名是 `recall_boost`。",
+    "召回命中后提升命中项生命值的参数名是 `recall_boost`。"
+   ],
+   "D1M1": [
+    "〔早期〕新语义判据的阈值参数名是 `early_match_threshold`（先拍 0.5）。",
+    "〔早期〕新语义判据的阈值参数名是 `early_match_threshold`，先拍值 0.5（2026-10-03，未校准）。",
+    "`early_match_threshold`（先拍 0.5）。",
+    "`early_match_threshold`，先拍值 0.5（2026-10-03，未校准）。",
+    "`early_match_threshold`（先拍 0.5，未校准）。"
+   ],
+   "D1M2": [
+    "父卡 HP 保底的参数名是 `parent_init_hp`，拍定值为 70.0。",
+    "父卡生命值保底的参数名是 `parent_init_hp`，值为 70.0。",
+    "父卡生命值保底的参数名是 `parent_init_hp`，值为 70.0。",
+    "父卡生命值保底的参数名是 `parent_init_hp`，值为 70.0（未校准）。",
+    "父卡 HP 保底的参数名是 `parent_init_hp`，默认值 70.0。"
+   ],
+   "D1M3": [
+    "热原子判定阈值参数名是 `hot_threshold`，默认值 60.0。",
+    "热原子判定（占位触发）的生命值阈值参数名是 `hot_threshold`，默认值 60.0。",
+    "热原子判定（占位触发）的阈值参数名是 `hot_threshold`，默认值 60.0。",
+    "热原子判定阈值的参数名是 `hot_threshold`，默认值 60.0。",
+    "`hot_threshold`。"
+   ],
+   "D1M4": [
+    "`initial_hp`。",
+    "原子卡写入时的初始生命值参数名是 `initial_hp`。",
+    "原子卡写入时的初始生命值参数名是 `initial_hp`，值于 2026-10-01 由 100.0 拍定为 70.0。",
+    "原子卡写入时的初始生命值参数名是 `initial_hp`。",
+    "`initial_hp`。"
+   ],
+   "D1M5": [
+    "max_memory_mb。",
+    "`max_memory_mb`。",
+    "max_memory_mb。",
+    "max_memory_mb。",
+    "max_memory_mb。"
+   ],
+   "D1M6": [
+    "组装拼上下文所用字符预算的参数名是 `assembly_budget`（core 14000 / 场景 16000 字符）。",
+    "`assembly_budget`（core 14000 / 场景 16000 字符）。",
+    "组装拼上下文所用字符预算的参数名是 `assembly_budget`（core 14000 / 场景 16000 字符）。",
+    "组装拼上下文所用字符预算的参数名是 `assembly_budget`（core 14000 / 场景 16000 字符）。",
+    "组装拼上下文所用字符预算的参数名是 `assembly_budget`（core 14000 / 场景 16000 字符）。"
+   ]
+  }
+ },
+ "qa_pass": {
+  "raptor·p1": {
+   "D1R1": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1R2": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1R3": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1R4": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1R5": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1R6": [
+    0,
+    0,
+    0,
+    1,
+    0
+   ],
+   "D1R7": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1R8": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1A1": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D1A2": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D1I1": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1I2": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1I3": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1I4": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1M1": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1M2": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1M3": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1M4": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1M5": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1M6": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "inc_raptor·p3": {
+   "D1R1": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1R2": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1R3": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1R4": [
+    1,
+    1,
+    1,
+    0,
+    1
+   ],
+   "D1R5": [
+    1,
+    0,
+    1,
+    1,
+    0
+   ],
+   "D1R6": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D1R7": [
+    1,
+    1,
+    1,
+    0,
+    0
+   ],
+   "D1R8": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1A1": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1A2": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1I1": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1I2": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D1I3": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1I4": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1M1": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1M2": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1M3": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1M4": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1M5": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1M6": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  },
+  "reb_raptor·p3": {
+   "D1R1": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1R2": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1R3": [
+    1,
+    1,
+    0,
+    1,
+    1
+   ],
+   "D1R4": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1R5": [
+    0,
+    1,
+    0,
+    0,
+    0
+   ],
+   "D1R6": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "D1R7": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1R8": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1A1": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1A2": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1I1": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1I2": [
+    0,
+    0,
+    0,
+    0,
+    1
+   ],
+   "D1I3": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1I4": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1M1": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1M2": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1M3": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1M4": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1M5": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "D1M6": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ]
+  }
+ },
+ "trees": {},
+ "elapsed_s": 567.2
+}

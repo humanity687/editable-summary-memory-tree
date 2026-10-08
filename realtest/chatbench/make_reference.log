@@ -1,0 +1,10 @@
+  ANALYSIS.md: 抽取 8 → 定性保留 6
+  analysis_consistency.md: 抽取 8 → 定性保留 6
+  analysis_convergence.md: 抽取 8 → 定性保留 6
+  analysis_problems.md: 抽取 8 → 定性保留 6
+  analysis_recall.md: 抽取 8 → 定性保留 6
+  analysis_tree.md: 抽取 8 → 定性保留 6
+
+参考 claim: 36 条；T3 批次 6
+→ /Users/y/Downloads/WaterCycleSegTreeContext/realtest/chatbench/reference_claims.json
+→ /Users/y/Downloads/WaterCycleSegTreeContext/realtest/chatbench/questions_ctx.json

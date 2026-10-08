@@ -1,0 +1,38 @@
+{
+ "provider": "ollama",
+ "model": "gemma4:26b",
+ "ollama": {
+  "base_url": "http://localhost:11434",
+  "model": "gemma4:26b",
+  "num_ctx": 32768,
+  "temperature": 0.6,
+  "timeout": 900,
+  "max_tokens": 8192
+ },
+ "deepseek": {
+  "base_url": "https://api.deepseek.com/v1",
+  "model": "deepseek-v4-flash",
+  "api_key": "",
+  "temperature": 0.6,
+  "timeout": 600,
+  "thinking_budget": 0,
+  "max_tokens": 8192
+ },
+ "assembly_budget": 32000,
+ "slot_budget": 16000,
+ "retrieval_budget": 6,
+ "decay": 5.0,
+ "hp_merge_threshold": 30.0,
+ "parent_init_hp": 70.0,
+ "hot_threshold": 60.0,
+ "recall_boost": 30.0,
+ "merge_depth_diff": 1,
+ "promote_threshold": 3,
+ "attention_atom_cap": 40,
+ "attention_node_cap": 20,
+ "attention_out": 45.0,
+ "attention_in_decay": 0.5,
+ "attention_out_decay": 3.0,
+ "merge_pressure_threshold": 20,
+ "tool_log_hp": 50
+}

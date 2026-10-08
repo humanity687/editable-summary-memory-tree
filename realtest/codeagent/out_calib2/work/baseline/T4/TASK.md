@@ -1,0 +1,7 @@
+【任务 T4·@send-to 无引号目标静默广播】
+Agent 用 @send-to "user:xxx" 指定消息收件人（引号包裹）。实测发现：如果模型 写了不带引号的目标（如 @send-to user:probe 你好），解析器找不到任何目标， 但不会报错——这条消息被静默当成全量广播发给所有 Agent 和用户。
+影响：本应私密/定向的消息泄漏给所有人；模型也得不到任何错误反馈，会一直犯错。
+线索：目标解析在 agents/lin-shen/agent.py 的 _parse_send_to。
+
+工作目录为当前目录（旧版 AHI 系统源码）。
+验收：`python3 accept_t4.py` 退出码 0 = 通过。修复完成并确认验收通过后调用 finish。

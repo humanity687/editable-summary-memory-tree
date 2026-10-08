@@ -1,0 +1,20 @@
+这份文档集合围绕记忆树/编辑基准/聊天智能体实验展开，关键内容复述如下：
+
+**主题与结论**：核心是可辩护的新颖性在于机制组合——位置有序的原子里 + 连续区间摘要树 + 编辑区祖先确定性置脏 + 脏节点立即退出所有读路径 + 零 LLM 编辑/组装 + 延迟 LLM 重建 + 编辑作为使用信号 + 长程反转评测。记忆树擅长"保持"（事实零漂移），不擅长"生成"（隐喻回环）；人格住在记忆里。
+
+**关键实验与数据**：
+- editbench 小数据：`seed2/story.txt`、`questions_full.json`（40 题）、`editstorm.py`、`ab_edit_signal.py`（matched-pair），输出 `seed2_ab_editsignal`。
+- 四结构对比（full/flat/递归聚簇树/分层树）× 两更新策略（rebuild/inc）。full：P1 78/90，复述残留 100%；flat：反转 0/15，残留 50%；分层树：反转 13/15，残留 0%。编辑路径耗时 full 0.03ms / flat 120ms / 递归聚簇树 46ms / tree 0.57ms（零 LLM）。
+- 属性测试 267 全绿（5 类×3：rename/rewrite/detail/delete/append）；ahi-act 扩题 11→16。
+
+**聊天实验**：exp1+Phase A（08-26）——词汇趋同、身份混淆 99 对、"人格住记忆"（自我样本密度 62%）、回执环；主实验 1h（08-28）——技术折叠 81→50、流程展开 21→63、自我 58→82；24h 实验（08-29）；1h v2（08-30，A+B2+driver_v2）——预言 2 Δ自我 24→30pp。
+
+**缺席实验（ABSENCE_EXPERIMENT.md v0.3，08-30）**：两轮（全冷/全热），每轮三 agent 各缺席一次，合计 110 轮≈55 分钟。冷缺席触发 lan 存在确认（"我就想确认：我们仨，都被记住了"×2），热缺席零触发；回归首组装重放率 0/27。预注册预言 1（皇冠）、6（皇冠二号）等。
+
+**关键参数**：α 双组（lan α=1 / neutral α=0）；tree-budget 7000；budget 16k；decay=8；模型 glm-4.7-flash。
+
+**创新性待办（INNOVATION_REVIEW.md，10-02）**：P1 含 timeline reconstruction、edited-span verification、full-history contradiction audit、ahi N≥3 matched-pair（N=5 已完成）、多文档泛化（3 篇×3 seed）、topic-document baseline；P2 含编辑信号消融。
+
+**三场景（Phase C）**：聊天、写作（AGENTS.md 主场景）、代码，输出能力矩阵。
+
+**遗留缺口**：结构层旧值退役、记忆超载时人格稳定性、组装预算下旧卡优先序。

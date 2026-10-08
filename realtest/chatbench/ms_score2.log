@@ -1,0 +1,40 @@
+{
+ "off_t1": {
+  "a": "7/8",
+  "b": "4/4",
+  "KU": "2/2",
+  "KU-hist": "1/1",
+  "AB": "2/2",
+  "ALL": "16/17"
+ },
+ "on_t1": {
+  "a": "5/8",
+  "b": "4/4",
+  "KU": "2/2",
+  "KU-hist": "1/1",
+  "AB": "2/2",
+  "ALL": "14/17"
+ },
+ "off_meta": {
+  "mode": "off",
+  "atoms": 8963,
+  "nodes": 886,
+  "elapsed_s": 580.0,
+  "n_messages": 1197
+ },
+ "on_meta": {
+  "mode": "on",
+  "atoms": 8963,
+  "nodes": 889,
+  "elapsed_s": 564.9,
+  "n_messages": 1197
+ }
+}
+
+T2:
+  off t2_1: claims=57 cover=0.211 support=0.211 hard=1.0
+  off t2_2: claims=32 cover=0.312 support=0.312 hard=1.0
+  on t2_1: claims=50 cover=0.24 support=0.24 hard=0.125
+  on t2_2: claims=32 cover=0.344 support=0.344 hard=0.917
+
+→ realtest/chatbench/out/ms_score2.json
